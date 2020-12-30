@@ -2,6 +2,7 @@
 
 
 //TODO: check for better solutions (key-value pairs of dict are redundant)
+//TODO: think about splitting Dictionary.js into something like GameSymbols.js and Directions.js
 class Dictionary {
 	
 	
