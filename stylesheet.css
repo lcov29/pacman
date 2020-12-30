@@ -1,0 +1,21 @@
+.pacman {
+	width: 30px;
+	height: 30px;
+	background-image: url('resources/pictures/pacman/pacman_down.png');
+}
+
+
+.ghost {
+	width: 30px;
+	height: 30px;
+	background-image: url('resources/pictures/ghost_blinky/blinky_up_down.png');
+}
+
+
+#body_id {
+	position: absolute;
+	left: 30%;
+	margin: 0 auto;
+	font-family: 'Lucida Console', monospace;
+	background-color: lightgray;
+}
