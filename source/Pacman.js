@@ -61,15 +61,15 @@ class Pacman extends MovableObject {
 	
 	updateField() {
 		this.game.field.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, 'empty'));
-		if (this.number_of_lifes > 0) {
+		if (this.lifes > 0) {
 			this.game.field.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'pacman'));
 		}
 	}
 	
 	
 	decrementLife() {
-		if (this.number_of_lifes > 0) {
-			this.number_of_lifes--;
+		if (this.lifes > 0) {
+			this.lifes--;
 		}
 	}
 	
@@ -90,7 +90,7 @@ class Pacman extends MovableObject {
 	
 	
 	isDead() {
-		return this.number_of_lifes == 0;
+		return this.lifes == 0;
 	}
 	
 	

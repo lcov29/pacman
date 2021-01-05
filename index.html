@@ -12,16 +12,16 @@
 		<script src='source/Field.js'></script>
 		<script src='source/MovableObject.js'></script>
 		<script src='source/Ghost.js'></script>
-		<script src='source/PacMan.js'></script>
+		<script src='source/Pacman.js'></script>
 		<script src='source/Game.js'></script>
 		<script src='source/Dictionary.js'></script>
 		<script src='source/Controller.js'></script>
-		<script src='source/view/UpdateRequest.js'></script>
-		<script src='source/view/View.js'></script>
-		<link rel='stylesheet' href='pacman_stylesheet.css'>
+		<script src='source/UpdateRequest.js'></script>
+		<script src='source/View.js'></script>
+		<link rel='stylesheet' href='stylesheet.css'>
 	</head>
 	
-	<body id='body_id'>
+	<body id='body_id' onload='setDefaultLevel("level_input")'>
 		<h3>Pacman</h3>
 		<br>
 		<div id='game_container'>
@@ -79,28 +79,28 @@
             }
             
             function setDefaultLevel(level_input) {
-                document.getElementById(level_input).value = '###########################' +
-                                                             '#oooooooooooo#oooooooooooo#' +
-                                                             '#o####o#####o#o#####o####o#' +
-                                                             '#o####o#####o#o#####o####o#' +
-                                                             '#ooooooooooooooooooooooooo#' +
-                                                             '#o####o#o#########o#o####o#' +
-                                                             '#oooooo#ooooo#ooooo#oooooo#' +
-                                                             '######o#####o#o#####o######' +
-                                                             '######o#xxxxxgxxxxx#o######' +
-                                                             '######o#x#########x#o######' +
-                                                             '#xxxxxoxx#########xxoxxxxx#' +
-                                                             '######o#x#########x#o######' +
-                                                             '######o#xxxxxxxxxxx#o######' +
-                                                             '######o#x#########x#o######' +
-                                                             '#oooooooooooo#oooooooooooo#' +
-                                                             '#o####o#####o#o#####o####o#' +
-                                                             '#oooo#ooooooopooooooo#oooo#' +
-                                                             '####o#o#o#########o#o#o####' +
-                                                             '#oooooo#ooooo#ooooo#oooooo#' +
-                                                             '#o##########o#o##########o#' +
-                                                             '#ooooooooooooooooooooooooo#' +
-                                                             '###########################';
+                document.getElementById(level_input).value = '###########################\n'+
+                                                             '#oooooooooooo#oooooooooooo#\n' +
+                                                             '#o####o#####o#o#####o####o#\n' +
+                                                             '#o####o#####o#o#####o####o#\n' +
+                                                             '#ooooooooooooooooooooooooo#\n' +
+                                                             '#o####o#o#########o#o####o#\n' +
+                                                             '#oooooo#ooooo#ooooo#oooooo#\n' +
+                                                             '######o#####o#o#####o######\n' +
+                                                             '######o#xxxxxgxxxxx#o######\n' +
+                                                             '######o#x#########x#o######\n' +
+                                                             '#xxxxxoxx#########xxoxxxxx#\n' +
+                                                             '######o#x#########x#o######\n' +
+                                                             '######o#xxxxxxxxxxx#o######\n' +
+                                                             '######o#x#########x#o######\n' +
+                                                             '#oooooooooooo#oooooooooooo#\n' +
+                                                             '#o####o#####o#o#####o####o#\n' +
+                                                             '#oooo#ooooooopooooooo#oooo#\n' +
+                                                             '####o#o#o#########o#o#o####\n' +
+                                                             '#oooooo#ooooo#ooooo#oooooo#\n' +
+                                                             '#o##########o#o##########o#\n' +
+                                                             '#ooooooooooooooooooooooooo#\n' +
+															 '###########################\n';
             }
 		</script>
 

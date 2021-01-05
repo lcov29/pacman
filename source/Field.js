@@ -86,7 +86,7 @@ class Field {
 		for (var y = 0; y < this.field.length; y++) {
 			for (var x = 0; x < this.field[y].length; x++)  {
 				if (this.getFieldObject(x, y) == 'pacman') {
-					pacmans.push(new PacMan(game, x, y));
+					pacmans.push(new Pacman(game, x, y));
 				}
 			}
 		}
