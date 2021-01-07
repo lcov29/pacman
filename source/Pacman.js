@@ -13,33 +13,19 @@ class Pacman extends MovableObject {
 	move() {
 		if (this.next_direction != '') {
 			let direction = Dictionary.getDirectionByName(this.next_direction);
-			super.calculateNewPosition(direction);
-			this.handleCollisions();
-			this.updatePosition();
+			this.calculateNextPosition(direction);
+		    this.handleWallCollision();
+		    this.handlePointCollision();
+		    this.handleGhostCollision();
+            this.updateField();
+            this.updateCurrentPosition();
 		}
-	}
-	
-	
-	handleCollisions() {
-		this.handleWallCollision();
-		this.handlePointCollision();
-		this.handleGhostCollision();
-	}
-	
-	
-	//TODO: move functions manipulating x and y from Pacman.js and Ghost.js to MovableObject.js
-	//TODO: move content of this function into move()
-	updatePosition() {
-		this.updateField();
-		this.xPosition = this.next_xPosition;
-		this.yPosition = this.next_yPosition;
 	}
 	
 	
 	handleWallCollision() {
 		if (this.isNextFieldPositionEqual('wall')) {
-			this.next_xPosition = this.xPosition;
-			this.next_yPosition = this.yPosition;
+            this.setNextPosition(this.xPosition, this.yPosition);
 		}
 	}
 	

@@ -11,10 +11,22 @@ class MovableObject {
 	}
 	
 	
-	calculateNewPosition(direction) {
+    setNextPosition(xPosition, yPosition) {
+        this.next_xPosition = xPosition;
+        this.next_yPosition = yPosition;
+    }
+
+
+	calculateNextPosition(direction) {
 		this.next_xPosition = this.xPosition + direction.x;
 		this.next_yPosition = this.yPosition + direction.y;
 	}
+
+
+    updateCurrentPosition() {
+        this.xPosition = this.next_xPosition;
+        this.yPosition = this.next_yPosition;
+    }
 	
 	
 	isNextFieldPositionEqual(object) {

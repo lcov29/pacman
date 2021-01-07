@@ -15,12 +15,6 @@ class Ghost extends MovableObject {
 		this.updateField();
 		this.updateCurrentPosition();
 	}
-	
-    
-    setNextPosition(xPosition, yPosition) {
-        this.next_xPosition = xPosition;
-        this.next_yPosition = yPosition;
-    }
     
 
 	handlePacManCollision() {
@@ -35,12 +29,6 @@ class Ghost extends MovableObject {
 		this.updateOccupiedFieldObject();
 		this.game.field.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'ghost'));
     }
-    
-
-    updateCurrentPosition() {
-		this.xPosition = this.next_xPosition;
-		this.yPosition = this.next_yPosition;
-	}
     
     	
 	decrementLifeOfPacman() {
