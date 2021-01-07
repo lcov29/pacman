@@ -24,11 +24,10 @@ class Field {
    
    
    update() {
-      var request = undefined;
-      while (this.update_requests.length > 0) {
-         request = this.update_requests.shift();
+      for (let request of this.update_requests) {
          this.setField(request.xPosition, request.yPosition, request.object);
       }
+      this.update_requests = [];
    }
    
    
