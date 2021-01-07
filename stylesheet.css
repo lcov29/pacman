@@ -1,46 +1,46 @@
 .wall {
-	width: 30px;
-	height: 30px;
-	float: left;
-	background-color: blue;
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-color: blue;
 }
 
 .empty {
-	width: 30px;
-	height: 30px;
-	float: left;
-	background-color: black;
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-color: black;
 }
 
 .point {
-	width: 8px;
-	height: 8px;
-	border-radius: 4px;
-	position: relative;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	background-color: orange;
+   width: 8px;
+   height: 8px;
+   border-radius: 4px;
+   position: relative;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: orange;
 }
 
 .pacman {
-	width: 30px;
-	height: 30px;
-	background-image: url('resource/pacman.png');
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/pacman.png');
 }
 
 
 .ghost {
-	width: 30px;
-	height: 30px;
-	background-image: url('resource/blinky_up_down.png');
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/blinky_up_down.png');
 }
 
 
 #body_id {
-	position: absolute;
-	left: 30%;
-	margin: 0 auto;
-	font-family: 'Lucida Console', monospace;
-	background-color: lightgray;
+   position: absolute;
+   left: 30%;
+   margin: 0 auto;
+   font-family: 'Lucida Console', monospace;
+   background-color: lightgray;
 }
