@@ -1,24 +1,22 @@
 "use strict";
 
-//TODO: use dedicated function with callback-function as parameter for iterating through every fieldposition
-
 class View {
    
    
-   constructor(field_id, score_id, life_id) {
-      this.field_container = document.getElementById(field_id);
+   constructor(level_container_id, score_id, life_id) {
+      this.level_container = document.getElementById(level_container_id);
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
+      this.suffix_dynamic_element = 'dynamic';
+      this.suffix_static_element = 'static';
       this.update_requests = [];
    }
    
    
-   initializeField(field) {
-      this.setContainerDimension(field);
-      this.addStaticElements(field);
-      this.addDynamicElements(field);
-      this.styleStaticElements(field);
-      this.styleDynamicElements(field);
+   initialize(level) {
+      this.setContainerDimension(level);
+      this.addStaticElements(level);
+      this.addDynamicElements(level);
    }
    
    
@@ -28,97 +26,70 @@ class View {
    
    
    update(score, number_of_lifes) {
-      this.updateField();
+      this.updateLevel();
       this.updateScore(score);
       this.updateLifeBar(number_of_lifes);
    }
    
-   
-   setContainerDimension(field) {
+
+   printMessage(message) {
+      window.alert(message);
+   }
+
+
+   setContainerDimension(level) {
       const DIMENSION_STATIC_OBJECT = 30; //stylesheet -> .wall and .empty
-      this.field_container.style.height = field.length * DIMENSION_STATIC_OBJECT + 'px';
-      this.field_container.style.width = field[0].length * DIMENSION_STATIC_OBJECT + 'px';
+      this.level_container.style.height = level.length * DIMENSION_STATIC_OBJECT + 'px';
+      this.level_container.style.width = level[0].length * DIMENSION_STATIC_OBJECT + 'px';
    }
    
    
-   addStaticElements(field) {
+   addStaticElements(level) {
       var outer_div = undefined;
-      
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
-            outer_div = this.createDiv(x, y, 'outer');
-            this.field_container.appendChild(outer_div);
+      var id_div = '';
+      var style_class = '';
+
+      for (var y = 0; y < level.length; y++) {
+         for (var x = 0; x < level[y].length; x++) {
+            id_div = this.getDivID(x, y, this.suffix_static_element);
+            outer_div = this.createDiv(id_div);
+            style_class = (Dictionary.getObject(level[y][x]) == 'wall') ? 'wall' : 'empty';
+            outer_div.setAttribute('class', style_class);
+            this.level_container.appendChild(outer_div);
          }
       }
    }
    
    
-   addDynamicElements(field) {
-      var inner_div = undefined;
+   addDynamicElements(level) {
       var outer_div = undefined;
+      var inner_div = undefined;
       var id_div = '';
+      var style_class = '';
       
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
-            id_div = this.getDivID(x, y, 'outer');
+      for (var y = 0; y < level.length; y++) {
+         for (var x = 0; x < level[y].length; x++) {
+            id_div = this.getDivID(x, y, this.suffix_static_element);
             outer_div = document.getElementById(id_div);
-            inner_div = this.createDiv(x, y, 'inner');
+            id_div = this.getDivID(x, y, this.suffix_dynamic_element);
+            inner_div = this.createDiv(id_div);
+            style_class = Dictionary.getObject(level[y][x]);
+            style_class = (style_class == 'wall') ? '' : style_class;
+            inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
       }
    }
    
    
-   styleStaticElements(field) {
-      var current_element = undefined;
-      var current_object = '';
-      var style_class = '';
-      var id_div = '';
-      
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
-            current_object = Dictionary.getObject(field[y][x]);
-            style_class = (current_object == 'wall') ? 'wall' : 'empty';
-            id_div = this.getDivID(x, y, 'outer');
-            current_element = document.getElementById(id_div);
-            current_element.setAttribute('class', style_class);
-         }
+   updateLevel() {
+      for (let request of this.update_requests) {
+         let id_div = this.getDivID(request.xPosition, request.yPosition, this.suffix_dynamic_element);
+         document.getElementById(id_div).setAttribute('class', request.object);
       }
+      this.update_requests = []    
    }
-   
 
-   styleDynamicElements(field) {
-      var current_element = undefined;
-      var current_object = '';
-      var style_class = '';
-      var id_div = '';
-      
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
-            current_object = Dictionary.getObject(field[y][x]);
-            style_class = (current_object == 'wall') ? '' : current_object;
-            id_div = this.getDivID(x, y, 'inner');
-            current_element = document.getElementById(id_div);
-            current_element.setAttribute('class', style_class);
-         }
-      }
-   }
-   
-   
-   updateField() {
-      var request = undefined;
-      var element = undefined;
-      var id_div = '';
-      
-      while (this.update_requests.length > 0) {
-         request = this.update_requests.shift();
-         id_div = this.getDivID(request.xPosition, request.yPosition, 'inner');
-         element = document.getElementById(id_div);
-         element.setAttribute('class', request.object);
-      }
-         
-   }
-   
    
    updateScore(score) {
       this.score_display.innerHTML = 'score: ' + score;
@@ -130,10 +101,9 @@ class View {
    }
    
    
-   createDiv(x, y, suffix) {
+   createDiv(id) {
       var element = document.createElement('div');
-      var id_div = this.getDivID(x, y, suffix);
-      element.setAttribute('id', id_div);
+      element.setAttribute('id', id);
       return element;
    }
    
@@ -142,15 +112,4 @@ class View {
       return x.toString() + '_' + y.toString() + '_' + suffix;
    }
    
-    
-    //TODO: replace functions below with printMessage(message)
-   printVictoryMessage() {
-      window.alert('Congratulations, you win the game.');
-   }
-   
-   
-   printDefeatMessage() {
-      window.alert('Game over.');
-   }
-
 }

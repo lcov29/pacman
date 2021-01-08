@@ -66,7 +66,7 @@ class Game {
    
    handleWin() {
       if (this.isGameWon()) {
-         this.view.printVictoryMessage();
+         this.view.printMessage('Victory')
          this.controller.endGame();
       }
    }
@@ -74,7 +74,7 @@ class Game {
    
    handleDefeat() {
       if (this.isGameLost()) {
-         this.view.printDefeatMessage();
+         this.view.printMessage('Game over');
          this.controller.endGame();
       }
    }
