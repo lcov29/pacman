@@ -3,44 +3,13 @@
 "use strict";
 
 class Field {
+
    
-   
-   constructor(view) {
-      this.view = view;
-      this.field = undefined;
-      this.update_requests = [];
-   }
-   
-   
-   loadLevel(field_text) {
+   constructor(field_text) {
       this.field = this.parseField(field_text);
    }
-   
-   
-   addUpdateRequest(request) {
-      this.update_requests.push(request);
-      this.view.addUpdateRequest(request);
-   }
-   
-   
-   update() {
-      for (let request of this.update_requests) {
-         this.setField(request.xPosition, request.yPosition, request.object);
-      }
-      this.update_requests = [];
-   }
-   
-   
-   setField(xPosition, yPosition, object) {
-      this.field[yPosition][xPosition] = Dictionary.getSymbol(object);
-   }
-   
-   
-   getFieldObject(xPosition, yPosition) {
-      return Dictionary.getObject(this.field[yPosition][xPosition]);
-   }
-   
-      
+
+    
    parseField(field_text) {
       const LINEFEED_CODE = 10;      //source: https://www.ascii-code.com/
       var output_field = [];
@@ -65,9 +34,19 @@ class Field {
       }
       return output_field;
    }
+
+
+   setFieldObject(xPosition, yPosition, object) {
+      this.field[yPosition][xPosition] = Dictionary.getSymbol(object);
+   }
    
-    
-   countAvailablePoints() {
+   
+   getFieldObject(xPosition, yPosition) {
+      return Dictionary.getObject(this.field[yPosition][xPosition]);
+   }
+   
+
+   getPoints() {
       var number_of_points = 0;
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++) {
@@ -79,26 +58,26 @@ class Field {
       return number_of_points;
    }
    
-   //level
-   initializePacmans(game) {
+
+   getPacmans(ref_level) {
       var pacmans = [];
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++)  {
             if (this.getFieldObject(x, y) == 'pacman') {
-               pacmans.push(new Pacman(game, x, y));
+               pacmans.push(new Pacman(ref_level, x, y));
             }
          }
       }
       return pacmans;
    }
    
-   
-   initializeGhosts(game) {
+ 
+   getGhosts(ref_level) {
       var ghosts = [];
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++) {
             if (this.getFieldObject(x, y) == 'ghost') {
-               ghosts.push(new Ghost(game, x, y));
+               ghosts.push(new Ghost(ref_level, x, y));
             }
          }
       }
@@ -106,33 +85,8 @@ class Field {
    }
    
    
-   getLevelCopy() {
+   getFieldCopy() {
       return this.field.slice();
-   }
-   
-   
-   //Routing
-   getFieldNodeMap() {
-      var mapping = [];
-      var current_row = [];
-      var id = 0;
-      var current_object = ''
-      
-      for (var y = 0; y < this.field.length; y++) {
-         for (var x = 0; x < this.field[y].length; x++) {
-            switch(Dictionary.getObject(this.field[y][x])) {
-               case 'wall':
-                  current_row.push(undefined);
-                  break;
-               default:
-                  current_row.push(new FieldNode(id, x, y));
-                  id++;
-            }
-         }
-         mapping.push(current_row);
-         current_row = [];
-      }
-      return mapping;
    }
    
    

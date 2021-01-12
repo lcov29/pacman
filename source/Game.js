@@ -3,20 +3,10 @@
 class Game {
 
    
-   constructor(field, view) {
-      this.field = field;
-      this.view = view;
-      this.controller = undefined;
-      this.pacmans = field.initializePacmans(this);
-      this.ghosts = field.initializeGhosts(this);
-      this.available_points = field.countAvailablePoints();
-      this.routing = new Routing(this);
-      this.score = 0;
-   }
-
-   
-   setController(controller) {
-      this.controller = controller;
+   constructor(field_input, field_container_id, score_id, life_id) {
+      this.view = new View(field_container_id, score_id, life_id);
+      this.level = new Level(field_input, this.view);
+      this.animation_interval = undefined;
    }
    
    
@@ -25,49 +15,77 @@ class Game {
    
    
    nextStep() {
-      this.movePacmans();
-      this.field.update();
-      this.moveGhosts();
-      this.field.update();
-      this.deleteDeadPacmans();
-      this.view.update(this.score, this.getNumberOfLifes());
+      this.level.movePacmans();
+      this.level.update();
+      this.level.moveGhosts();
+      this.level.update();
+      this.level.deleteDeadPacmans();
       this.handleWin();
       this.handleDefeat();
    }
    
-   
-   movePacmans() {
-      var index = -1;
-      for (var pacman of this.pacmans) {
-         pacman.move();
-      }
-   }
-   
-   
-   moveGhosts() {
-      var new_position = undefined;
-      for (var ghost of this.ghosts) {
-         new_position = this.routing.calculateNextPosition(ghost.xPosition, ghost.yPosition);
-         ghost.moveToPosition(new_position);
-      }
-   }
-   
-   
-   deleteDeadPacmans(pacman) {
-      var index = -1;
-      for (var pacman of this.pacmans) {
-         if (pacman.isDead()) {
-            index = this.pacmans.indexOf(pacman); 
-            this.pacmans.splice(index, 1);
-         }
-      }   
-   }
       
+   start() {
+      this.initializeView();
+      this.animation_interval = setInterval(function(ref) {ref.nextStep();}, 500, this);   
+      document.addEventListener('keydown', this.callBackEventListener, true);
+   }
    
+
+   initializeView() {
+      var field = this.level.field.getFieldCopy();
+      this.view.initialize(field);
+   }
+
+   
+   callBackEventListener(event) {
+         //SOURCE http://www.javascriptkeycode.com   
+         const KEY_CODE_LEFT_ARROW = 37;
+         const KEY_CODE_UP_ARROW = 38;
+         const KEY_CODE_RIGHT_ARROW = 39;
+         const KEY_CODE_DOWN_ARROW = 40;
+         const KEY_CODE_A = 65;
+         const KEY_CODE_D = 68;
+         const KEY_CODE_S = 83;
+         const KEY_CODE_W = 87;
+
+         switch(event.keyCode) {
+            
+            case KEY_CODE_UP_ARROW:
+            case KEY_CODE_W:
+               game.level.setNextPacmanDirection('up');
+               break;
+            
+            case KEY_CODE_LEFT_ARROW:
+            case KEY_CODE_A:
+               game.level.setNextPacmanDirection('left');
+               break;
+            
+            case KEY_CODE_DOWN_ARROW:
+            case KEY_CODE_S:
+               game.level.setNextPacmanDirection('down');
+               break;
+               
+            case KEY_CODE_RIGHT_ARROW:
+            case KEY_CODE_D:
+               game.level.setNextPacmanDirection('right');
+               break;
+         }
+         
+         event.preventDefault();
+   }
+   
+   
+   end() {
+      clearInterval(this.animation_interval);
+      document.removeEventListener('keydown', this.callBackEventListener);
+   }
+
+
    handleWin() {
       if (this.isGameWon()) {
          this.view.printMessage('Victory')
-         this.controller.endGame();
+         this.end();
       }
    }
    
@@ -75,44 +93,19 @@ class Game {
    handleDefeat() {
       if (this.isGameLost()) {
          this.view.printMessage('Game over');
-         this.controller.endGame();
+         this.end();
       }
    }
    
    
    isGameWon() {
-      return this.available_points == 0;
+      return this.level.available_points == 0;
    }
 
    
    isGameLost() {
-      return this.getNumberOfLifes() == 0;
+      return this.level.getNumberOfLifes() == 0;
    }
    
    
-   setNextPacmanDirection(direction_name) {
-      for (var pacman of this.pacmans) {
-         pacman.setNextDirection(direction_name);
-      }
-   }
-   
-   
-   getNumberOfLifes() {
-      var lifes = 0;
-      for (var pacman of this.pacmans) {
-         lifes += pacman.getNumberOfLifes();
-      }
-      return lifes;
-   }
-
-   
-   incrementScoreBy(value) {
-      this.score += value;
-   }
-   
-   
-   decrementPoint() {
-      this.available_points--;
-   }
-
 }

@@ -4,8 +4,7 @@
    <head>
       <meta charset='UTF-8'>
       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Pacman</title>
-        <!-- TODO: try to link all scripts with 'source/*'' -->
+      <title>Pacman</title>
       <script src='source/FieldNode.js'></script>
       <script src='source/RoutingAlgorithm.js'></script>
       <script src='source/Routing.js'></script>
@@ -15,13 +14,13 @@
       <script src='source/Pacman.js'></script>
       <script src='source/Game.js'></script>
       <script src='source/Dictionary.js'></script>
-      <script src='source/Controller.js'></script>
+      <script src='source/Level.js'></script>
       <script src='source/UpdateRequest.js'></script>
-      <script src='source/View.js'></script>
+      <script src='source/View.js'></script> 
       <link rel='stylesheet' href='stylesheet.css'>
    </head>
    
-   <body id='body_id' onload='setDefaultLevel("level_input")'>
+   <body id='body_id' onload='setDefaultLevel("field_input")'>
       <h3>Pacman</h3>
       <br>
       <div id='game_container'>
@@ -29,12 +28,12 @@
          <p id='score'></p>
          <div id='field_container'></div>
          <br>
-         <button onclick='main("level_input", "field_container", "score", "life")'>start level</button>
+         <button onclick='main("field_input", "field_container", "score", "life")'>start level</button>
       </div>
       <br>
-      <label for='level_input'>current level:</label>
+      <label for='field_input'>current level:</label>
       <br>
-      <textarea id='level_input' rows='21' cols='25'></textarea>
+      <textarea id='field_input' rows='21' cols='25'></textarea>
       <br>
       <p>You can build your own level by using the following symbols:<p>
       <ul style='list-style-type:none;'>
@@ -59,49 +58,41 @@
          <li>ArrowKeys</li>
       </ul>
       
-
-      
       <script>
-         //WORKAROUND: GLOBAL VARIABLE FOR ACCESSING GAME FROM CONTROLLER.ADDKEYBOARDLISTENER      
+         //WORKAROUND: GLOBAL VARIABLE FOR ACCESSING GAME FROM CALLBACKFUNCTION game.callBackEventListener()      
          //TODO: FIND A BETTER SOLUTION
          var game = undefined;      
             
-            //TODO: move most of this code to the constructor of Game.js?
-         function main(level_input_id, field_id, score_id, life_id) {
-            var view = new View(field_id, score_id, life_id);
-            var field = new Field(view);
-            var level_text = document.getElementById(level_input_id).value;
-            field.loadLevel(level_text);
-            game = new Game(field, view);
-            var controller = new Controller(game);
-            view.initialize(field.getLevelCopy());
-            controller.startGame();
+         function main(level_input_id, field_container_id, score_id, life_id) {
+            var level_input = document.getElementById(level_input_id).value;
+            game = new Game(level_input, field_container_id, score_id, life_id);
+            game.start();
             }
             
-            function setDefaultLevel(level_input) {
-                document.getElementById(level_input).value = '###########################\n'+
-                                                             '#oooooooooooo#oooooooooooo#\n' +
-                                                             '#o####o#####o#o#####o####o#\n' +
-                                                             '#o####o#####o#o#####o####o#\n' +
-                                                             '#ooooooooooooooooooooooooo#\n' +
-                                                             '#o####o#o#########o#o####o#\n' +
-                                                             '#oooooo#ooooo#ooooo#oooooo#\n' +
-                                                             '######o#####o#o#####o######\n' +
-                                                             '######o#xxxxxgxxxxx#o######\n' +
-                                                             '######o#x#########x#o######\n' +
-                                                             '#xxxxxoxx#########xxoxxxxx#\n' +
-                                                             '######o#x#########x#o######\n' +
-                                                             '######o#xxxxxxxxxxx#o######\n' +
-                                                             '######o#x#########x#o######\n' +
-                                                             '#oooooooooooo#oooooooooooo#\n' +
-                                                             '#o####o#####o#o#####o####o#\n' +
-                                                             '#oooo#ooooooopooooooo#oooo#\n' +
-                                                             '####o#o#o#########o#o#o####\n' +
-                                                             '#oooooo#ooooo#ooooo#oooooo#\n' +
-                                                             '#o##########o#o##########o#\n' +
-                                                             '#ooooooooooooooooooooooooo#\n' +
-                                                             '###########################\n';
-            }
+         function setDefaultLevel(field_input) {
+               document.getElementById(field_input).value = '###########################\n'+
+                                                            '#oooooooooooo#oooooooooooo#\n' +
+                                                            '#o####o#####o#o#####o####o#\n' +
+                                                            '#o####o#####o#o#####o####o#\n' +
+                                                            '#ooooooooooooooooooooooooo#\n' +
+                                                            '#o####o#o#########o#o####o#\n' +
+                                                            '#oooooo#ooooo#ooooo#oooooo#\n' +
+                                                            '######o#####o#o#####o######\n' +
+                                                            '######o#xxxxxgxxxxx#o######\n' +
+                                                            '######o#x#########x#o######\n' +
+                                                            '#xxxxxoxx#########xxoxxxxx#\n' +
+                                                            '######o#x#########x#o######\n' +
+                                                            '######o#xxxxxxxxxxx#o######\n' +
+                                                            '######o#x#########x#o######\n' +
+                                                            '#oooooooooooo#oooooooooooo#\n' +
+                                                            '#o####o#####o#o#####o####o#\n' +
+                                                            '#oooo#ooooooopooooooo#oooo#\n' +
+                                                            '####o#o#o#########o#o#o####\n' +
+                                                            '#oooooo#ooooo#ooooo#oooooo#\n' +
+                                                            '#o##########o#o##########o#\n' +
+                                                            '#ooooooooooooooooooooooooo#\n' +
+                                                            '###########################\n';
+         }
       </script>
 
    </body>

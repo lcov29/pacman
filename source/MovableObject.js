@@ -2,8 +2,9 @@
 
 class MovableObject {
     
-   constructor(game, xPosition, yPosition) {
-      this.game = game;
+
+   constructor(level, xPosition, yPosition) {
+      this.level = level;
       this.xPosition = xPosition;
       this.yPosition = yPosition;
       this.next_xPosition = xPosition;
@@ -14,7 +15,7 @@ class MovableObject {
    setNextPosition(xPosition, yPosition) {
       this.next_xPosition = xPosition;
       this.next_yPosition = yPosition;
-    }
+   }
 
 
    calculateNextPosition(direction) {
@@ -26,11 +27,12 @@ class MovableObject {
    updateCurrentPosition() {
       this.xPosition = this.next_xPosition;
       this.yPosition = this.next_yPosition;
-    }
+   }
    
    
    isNextFieldPositionEqual(object) {
-      return this.game.field.getFieldObject(this.next_xPosition, this.next_yPosition) == object;
+      return this.level.field.getFieldObject(this.next_xPosition, this.next_yPosition) == object;
    }
+
 
 }

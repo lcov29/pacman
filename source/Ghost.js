@@ -3,8 +3,8 @@
 class Ghost extends MovableObject {
    
    
-   constructor(game, xPosition, yPosition) {
-      super(game, xPosition, yPosition);
+   constructor(level, xPosition, yPosition) {
+      super(level, xPosition, yPosition);
       this.occupied_field_object = 'empty';
    }
    
@@ -25,14 +25,14 @@ class Ghost extends MovableObject {
 
    
    updateField() {
-      this.game.field.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_field_object));
+      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_field_object));
       this.updateOccupiedFieldObject();
-      this.game.field.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'ghost'));
-    }
+      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'ghost'));
+   }
     
        
    decrementLifeOfPacman() {
-      for (let pacman of this.game.pacmans) {
+      for (let pacman of this.level.pacmans) {
          if (pacman.xPosition == this.next_xPosition && pacman.yPosition == this.next_yPosition) {
             pacman.decrementLife();
          }
@@ -42,16 +42,12 @@ class Ghost extends MovableObject {
    
    //TODO: check for edge cases
    updateOccupiedFieldObject() {
-      var next_field_object = this.game.field.getFieldObject(this.next_xPosition, this.next_yPosition);
-      switch(next_field_object) {
-         case 'ghost':
-         case 'pacman':
-            this.occupied_field_object = 'empty';
-            break;
-         default:
-            this.occupied_field_object = this.game.field.getFieldObject(this.next_xPosition, this.next_yPosition);
-            break;
+      if (this.isNextFieldPositionEqual('ghost') || this.isNextFieldPositionEqual('pacman')) {
+         this.occupied_field_object = 'empty';
+      } else {
+         this.occupied_field_object = this.level.field.getFieldObject(this.next_xPosition, this.next_yPosition);
       }
    }
 
+   
 }

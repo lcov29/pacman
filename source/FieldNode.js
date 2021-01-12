@@ -44,4 +44,5 @@ class FieldNode {
       this.path_cost += value;
    }
    
+   
 }

@@ -99,7 +99,7 @@ class RoutingAlgorithm {
    }
    
     
-    //TODO: think about moving MIN_DIRECTION_ID and MAX_DIRECTION_ID to Dictionary.js
+   //TODO: think about moving MIN_DIRECTION_ID and MAX_DIRECTION_ID to Dictionary.js
    searchNeighbors(field_node) {
       const MIN_DIRECTION_ID = 0;
       const MAX_DIRECTION_ID = 3;
@@ -136,5 +136,6 @@ class RoutingAlgorithm {
       }
       return min_cost_node;
    }
+   
    
 }

@@ -3,8 +3,8 @@
 class Pacman extends MovableObject {
    
    
-   constructor(game, xPosition, yPosition) {
-      super(game, xPosition, yPosition);
+   constructor(level, xPosition, yPosition) {
+      super(level, xPosition, yPosition);
       this.next_direction = '';
       this.lifes = 1;
    }
@@ -17,7 +17,7 @@ class Pacman extends MovableObject {
          this.handleWallCollision();
          this.handlePointCollision();
          this.handleGhostCollision();
-         this.updateField();
+         this.updateLevel();
          this.updateCurrentPosition();
       }
    }
@@ -32,8 +32,8 @@ class Pacman extends MovableObject {
    
    handlePointCollision() {
       if (this.isNextFieldPositionEqual('point')) {
-         this.game.incrementScoreBy(10);
-         this.game.decrementPoint();
+         this.level.incrementScoreBy(10);
+         this.level.decrementPoint();
       }
    }
    
@@ -45,10 +45,10 @@ class Pacman extends MovableObject {
    }
    
    
-   updateField() {
-      this.game.field.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, 'empty'));
+   updateLevel() {
+      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, 'empty'));
       if (this.lifes > 0) {
-         this.game.field.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'pacman'));
+         this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'pacman'));
       }
    }
    
@@ -78,5 +78,6 @@ class Pacman extends MovableObject {
    isDead() {
       return this.lifes == 0;
    }
+   
    
 }
