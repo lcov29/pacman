@@ -74,7 +74,7 @@
             field.loadLevel(level_text);
             game = new Game(field, view);
             var controller = new Controller(game);
-            view.initialize(field.getArrayCopy());
+            view.initialize(field.getLevelCopy());
             controller.startGame();
             }
             

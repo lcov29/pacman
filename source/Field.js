@@ -12,8 +12,8 @@ class Field {
    }
    
    
-   loadLevel(level_text) {
-      this.field = this.parseLevel(level_text);
+   loadLevel(field_text) {
+      this.field = this.parseField(field_text);
    }
    
    
@@ -41,7 +41,7 @@ class Field {
    }
    
       
-   parseLevel(level_text) {
+   parseField(field_text) {
       const LINEFEED_CODE = 10;      //source: https://www.ascii-code.com/
       var output_field = [];
       var current_row = [];
@@ -49,10 +49,10 @@ class Field {
       var is_linefeed = false;
       var is_last_character = false;
       
-      for (var i = 0; i < level_text.length; i++) {
-         current_character = level_text.charAt(i);
+      for (var i = 0; i < field_text.length; i++) {
+         current_character = field_text.charAt(i);
          is_linefeed = (current_character.charCodeAt(0) == LINEFEED_CODE);
-         is_last_character = (i == level_text.length - 1);
+         is_last_character = (i == field_text.length - 1);
          
          if (!is_linefeed) {
             current_row.push(current_character);
@@ -79,7 +79,7 @@ class Field {
       return number_of_points;
    }
    
-   
+   //level
    initializePacmans(game) {
       var pacmans = [];
       for (var y = 0; y < this.field.length; y++) {
@@ -106,11 +106,12 @@ class Field {
    }
    
    
-   getArrayCopy() {
+   getLevelCopy() {
       return this.field.slice();
    }
    
    
+   //Routing
    getFieldNodeMap() {
       var mapping = [];
       var current_row = [];
