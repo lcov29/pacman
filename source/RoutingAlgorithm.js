@@ -110,7 +110,7 @@ class RoutingAlgorithm {
       var potential_neighbor = undefined;
       
       for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
-         direction = Dictionary.getDirectionByID(i);
+         direction = Configuration.getDirectionByID(i);
          calculated_x = field_node.xPosition + direction.x;
          calculated_y = field_node.yPosition + direction.y;
          potential_neighbor = this.field_node_map[calculated_y][calculated_x];
