@@ -6,8 +6,30 @@ class Configuration {
    // general game settings
    static pacman_initial_lifes = 1;
    static interval_delay_in_milliseconds = 500;
+   static default_map = '###########################\n'+
+                        '#oooooooooooo#oooooooooooo#\n' +
+                        '#o####o#####o#o#####o####o#\n' +
+                        '#o####o#####o#o#####o####o#\n' +
+                        '#ooooooooooooooooooooooooo#\n' +
+                        '#o####o#o#########o#o####o#\n' +
+                        '#oooooo#ooooo#ooooo#oooooo#\n' +
+                        '######o#####o#o#####o######\n' +
+                        '######o#xxxxxgxxxxx#o######\n' +
+                        '######o#x#########x#o######\n' +
+                        '#xxxxxoxx#########xxoxxxxx#\n' +
+                        '######o#x#########x#o######\n' +
+                        '######o#xxxxxxxxxxx#o######\n' +
+                        '######o#x#########x#o######\n' +
+                        '#oooooooooooo#oooooooooooo#\n' +
+                        '#o####o#####o#o#####o####o#\n' +
+                        '#oooo#ooooooopooooooo#oooo#\n' +
+                        '####o#o#o#########o#o#o####\n' +
+                        '#oooooo#ooooo#ooooo#oooooo#\n' +
+                        '#o##########o#o##########o#\n' +
+                        '#ooooooooooooooooooooooooo#\n' +
+                        '###########################\n';
 
-
+                        
    // internal and css representation of different game elements
    static wall_character = "#";
    static empty_character = "x";
