@@ -37,12 +37,12 @@ class Field {
 
 
    setFieldObject(xPosition, yPosition, object) {
-      this.field[yPosition][xPosition] = Dictionary.getSymbol(object);
+      this.field[yPosition][xPosition] = object;
    }
    
    
    getFieldObject(xPosition, yPosition) {
-      return Dictionary.getObject(this.field[yPosition][xPosition]);
+      return this.field[yPosition][xPosition];
    }
    
 
@@ -50,7 +50,7 @@ class Field {
       var number_of_points = 0;
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++) {
-            if (this.getFieldObject(x, y) == 'point') {
+            if (this.getFieldObject(x, y) == Configuration.point_character) {
                number_of_points++;
             }
          }
@@ -63,7 +63,7 @@ class Field {
       var pacmans = [];
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++)  {
-            if (this.getFieldObject(x, y) == 'pacman') {
+            if (this.getFieldObject(x, y) == Configuration.pacman_character) {
                pacmans.push(new Pacman(ref_level, x, y));
             }
          }
@@ -76,7 +76,7 @@ class Field {
       var ghosts = [];
       for (var y = 0; y < this.field.length; y++) {
          for (var x = 0; x < this.field[y].length; x++) {
-            if (this.getFieldObject(x, y) == 'ghost') {
+            if (this.getFieldObject(x, y) == Configuration.ghost_character) {
                ghosts.push(new Ghost(ref_level, x, y));
             }
          }

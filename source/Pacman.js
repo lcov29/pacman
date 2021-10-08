@@ -6,13 +6,14 @@ class Pacman extends MovableObject {
    constructor(level, xPosition, yPosition) {
       super(level, xPosition, yPosition);
       this.next_direction = '';
-      this.lifes = 1;
+      this.lifes = Configuration.initial_pacman_lifes;
    }
    
    
    move() {
       if (this.next_direction != '') {
-         let direction = Dictionary.getDirectionByName(this.next_direction);
+         // let direction = Dictionary.getDirectionByName(this.next_direction);
+         let direction = Configuration.getDirectionByName(this.next_direction);
          this.calculateNextPosition(direction);
          this.handleWallCollision();
          this.handlePointCollision();
@@ -24,14 +25,14 @@ class Pacman extends MovableObject {
    
    
    handleWallCollision() {
-      if (this.isNextFieldPositionEqual('wall')) {
+      if (this.isNextFieldPositionEqual(Configuration.wall_character)) {
          this.setNextPosition(this.xPosition, this.yPosition);
       }
    }
    
    
    handlePointCollision() {
-      if (this.isNextFieldPositionEqual('point')) {
+      if (this.isNextFieldPositionEqual(Configuration.point_character)) {
          this.level.incrementScoreBy(10);
          this.level.decrementPoint();
       }
@@ -39,16 +40,18 @@ class Pacman extends MovableObject {
    
    
    handleGhostCollision() {
-      if (this.isNextFieldPositionEqual('ghost')) {
+      if (this.isNextFieldPositionEqual(Configuration.ghost_character)) {
          this.decrementLife();
       }
    }
    
    
    updateLevel() {
-      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, 'empty'));
+      var request = new UpdateRequest(this.xPosition, this.yPosition, Configuration.empty_character);
+      this.level.addUpdateRequest(request);
       if (this.lifes > 0) {
-         this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'pacman'));
+         request = new UpdateRequest(this.next_xPosition, this.next_yPosition, Configuration.pacman_character);
+         this.level.addUpdateRequest(request);
       }
    }
    

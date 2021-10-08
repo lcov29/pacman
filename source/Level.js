@@ -10,7 +10,7 @@ class Level {
         this.pacmans = this.field.getPacmans(this);
         this.ghosts = this.field.getGhosts(this);
         this.available_points = this.field.getPoints();
-        this.score = 0;
+        this.score = Configuration.initial_score;
         this.update_requests = [];
     }
 

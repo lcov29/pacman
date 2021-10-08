@@ -7,8 +7,8 @@ class View {
       this.field_container = document.getElementById(field_container_id);
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
-      this.suffix_dynamic_element = 'dynamic';
-      this.suffix_static_element = 'static';
+      // this.suffix_dynamic_element = 'dynamic';
+      // this.suffix_static_element = 'static';
       this.update_requests = [];
    }
    
@@ -38,9 +38,8 @@ class View {
 
 
    setContainerDimension(field) {
-      const DIMENSION_STATIC_OBJECT = 30; //stylesheet -> .wall and .empty
-      this.field_container.style.height = field.length * DIMENSION_STATIC_OBJECT + 'px';
-      this.field_container.style.width = field[0].length * DIMENSION_STATIC_OBJECT + 'px';
+      this.field_container.style.height = field.length * Configuration.dimension_in_px_static_div + 'px';
+      this.field_container.style.width = field[0].length * Configuration.dimension_in_px_static_div + 'px';
    }
    
    
@@ -51,9 +50,15 @@ class View {
 
       for (var y = 0; y < field.length; y++) {
          for (var x = 0; x < field[y].length; x++) {
-            id_div = this.getDivID(x, y, this.suffix_static_element);
+            id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = this.createDiv(id_div);
-            style_class = (Dictionary.getObject(field[y][x]) == 'wall') ? 'wall' : 'empty';
+            // style_class = (Dictionary.getObject(field[y][x]) == 'wall') ? 'wall' : 'empty';
+            if (field[y][x] == Configuration.wall_character) {
+               style_class = Configuration.wall_character;
+            } else {
+               style_class = Configuration.empty_character;
+            }
+            style_class = Configuration.getStyleClass(style_class);
             outer_div.setAttribute('class', style_class);
             this.field_container.appendChild(outer_div);
          }
@@ -69,12 +74,13 @@ class View {
       
       for (var y = 0; y < field.length; y++) {
          for (var x = 0; x < field[y].length; x++) {
-            id_div = this.getDivID(x, y, this.suffix_static_element);
+            id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = document.getElementById(id_div);
-            id_div = this.getDivID(x, y, this.suffix_dynamic_element);
+            id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
-            style_class = Dictionary.getObject(field[y][x]);
-            style_class = (style_class == 'wall') ? '' : style_class;
+            // style_class = Dictionary.getObject(field[y][x]);
+            style_class = (field[y][x] == Configuration.wall_character) ? '' : field[y][x];
+            style_class = Configuration.getStyleClass(style_class);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
@@ -84,8 +90,9 @@ class View {
    
    updateLevel() {
       for (let request of this.update_requests) {
-         let id_div = this.getDivID(request.xPosition, request.yPosition, this.suffix_dynamic_element);
-         document.getElementById(id_div).setAttribute('class', request.object);
+         let id_div = this.getDivID(request.xPosition, request.yPosition, Configuration.suffix_dynamic_div);
+         let style_class = Configuration.getStyleClass(request.object);
+         document.getElementById(id_div).setAttribute('class', style_class);
       }
       this.update_requests = []    
    }

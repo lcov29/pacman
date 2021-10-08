@@ -20,7 +20,7 @@ class Routing {
       for (var y = 0; y < field.length; y++) {
          for (var x = 0; x < field[y].length; x++) {
             switch(this.level.field.getFieldObject(x, y)) {
-               case 'wall':
+               case Configuration.wall_character:
                   current_row.push(undefined);
                   break;
                default:

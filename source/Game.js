@@ -27,7 +27,7 @@ class Game {
       
    start() {
       this.initializeView();
-      this.animation_interval = setInterval(function(ref) {ref.nextStep();}, 500, this);   
+      this.animation_interval = setInterval(function(ref) {ref.nextStep();}, Configuration.interval_delay_in_milliseconds, this);   
       document.addEventListener('keydown', this.callBackEventListener, true);
    }
    
@@ -39,39 +39,28 @@ class Game {
 
    
    callBackEventListener(event) {
-         //SOURCE http://www.javascriptkeycode.com   
-         const KEY_CODE_LEFT_ARROW = 37;
-         const KEY_CODE_UP_ARROW = 38;
-         const KEY_CODE_RIGHT_ARROW = 39;
-         const KEY_CODE_DOWN_ARROW = 40;
-         const KEY_CODE_A = 65;
-         const KEY_CODE_D = 68;
-         const KEY_CODE_S = 83;
-         const KEY_CODE_W = 87;
-
          switch(event.keyCode) {
             
-            case KEY_CODE_UP_ARROW:
-            case KEY_CODE_W:
+            case Configuration.key_code_up_arrow:
+            case Configuration.key_code_w:
                game.level.setNextPacmanDirection('up');
                break;
             
-            case KEY_CODE_LEFT_ARROW:
-            case KEY_CODE_A:
-               game.level.setNextPacmanDirection('left');
-               break;
-            
-            case KEY_CODE_DOWN_ARROW:
-            case KEY_CODE_S:
-               game.level.setNextPacmanDirection('down');
-               break;
-               
-            case KEY_CODE_RIGHT_ARROW:
-            case KEY_CODE_D:
+            case Configuration.key_code_right_arrow:
+            case Configuration.key_code_d:
                game.level.setNextPacmanDirection('right');
                break;
-         }
-         
+            
+            case Configuration.key_code_down_arrow:
+            case Configuration.key_code_s:
+               game.level.setNextPacmanDirection('down');
+               break;
+
+            case Configuration.key_code_left_arrow:
+            case Configuration.key_code_a:
+               game.level.setNextPacmanDirection('left');
+               break;
+         }         
          event.preventDefault();
    }
    

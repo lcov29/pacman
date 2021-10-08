@@ -5,7 +5,7 @@ class Ghost extends MovableObject {
    
    constructor(level, xPosition, yPosition) {
       super(level, xPosition, yPosition);
-      this.occupied_field_object = 'empty';
+      this.occupied_field_object = Configuration.empty_character;
    }
    
    
@@ -18,7 +18,7 @@ class Ghost extends MovableObject {
     
 
    handlePacManCollision() {
-      if (this.isNextFieldPositionEqual('pacman')) {
+      if (this.isNextFieldPositionEqual(Configuration.pacman_character)) {
          this.decrementLifeOfPacman();
       }
    }
@@ -27,7 +27,7 @@ class Ghost extends MovableObject {
    updateField() {
       this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_field_object));
       this.updateOccupiedFieldObject();
-      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, 'ghost'));
+      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, Configuration.ghost_character));
    }
     
        
@@ -42,8 +42,9 @@ class Ghost extends MovableObject {
    
    //TODO: check for edge cases
    updateOccupiedFieldObject() {
-      if (this.isNextFieldPositionEqual('ghost') || this.isNextFieldPositionEqual('pacman')) {
-         this.occupied_field_object = 'empty';
+      if (this.isNextFieldPositionEqual(Configuration.ghost_character) || 
+          this.isNextFieldPositionEqual(Configuration.pacman_character)) {
+         this.occupied_field_object = Configuration.empty_character;
       } else {
          this.occupied_field_object = this.level.field.getFieldObject(this.next_xPosition, this.next_yPosition);
       }

@@ -101,15 +101,15 @@ class RoutingAlgorithm {
     
    //TODO: think about moving MIN_DIRECTION_ID and MAX_DIRECTION_ID to Dictionary.js
    searchNeighbors(field_node) {
-      const MIN_DIRECTION_ID = 0;
-      const MAX_DIRECTION_ID = 3;
+      // const MIN_DIRECTION_ID = 0;
+      // const MAX_DIRECTION_ID = 3;
       var neighbors = [];
       var calculated_x = 0;
       var calculated_y = 0;
       var direction = undefined;
       var potential_neighbor = undefined;
       
-      for (var i = MIN_DIRECTION_ID; i <= MAX_DIRECTION_ID; i++) {
+      for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
          direction = Dictionary.getDirectionByID(i);
          calculated_x = field_node.xPosition + direction.x;
          calculated_y = field_node.yPosition + direction.y;
