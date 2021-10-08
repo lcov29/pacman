@@ -2,7 +2,6 @@
 
 class Configuration {
    
-
    // general game settings
    static initial_score = 0;
    static initial_pacman_lifes = 1;
@@ -89,9 +88,24 @@ class Configuration {
    }
 
 
-   // configuration for view.js
+   // settings for view.js
    static suffix_dynamic_div = "dynamic";
    static suffix_static_div = "static";
    static dimension_in_px_static_div = 30;
 
+
+   // Key Codes for pacman movemen
+   // Source http://www.javascriptkeycode.com 
+   static key_code_left_arrow = 37;
+   static key_code_up_arrow = 38;
+   static key_code_right_arrow = 39;
+   static key_code_down_arrow = 40;
+   static key_code_a = 65;
+   static key_code_d = 68;
+   static key_code_s = 83;
+   static key_code_w = 87;
+
+   // Code for field parsing
+   // Source: https://www.ascii-code.com/
+   static linefeed_code = 10;
 }
