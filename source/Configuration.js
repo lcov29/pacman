@@ -4,7 +4,8 @@ class Configuration {
    
 
    // general game settings
-   static pacman_initial_lifes = 1;
+   static initial_score = 0;
+   static initial_pacman_lifes = 1;
    static interval_delay_in_milliseconds = 500;
    static default_map = '###########################\n'+
                         '#oooooooooooo#oooooooooooo#\n' +
@@ -51,7 +52,7 @@ class Configuration {
       [this.point_character]:  this.point_css_class       
    };
 
-   static getClass(symbol) {
+   static getStyleClass(symbol) {
       return this.class_map[symbol];
    }
 
