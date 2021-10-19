@@ -98,11 +98,8 @@ class RoutingAlgorithm {
       nodes.splice(nodes.indexOf(node), NUMBER_OF_ELEMENTS_TO_DELETE);
    }
    
-    
-   //TODO: think about moving MIN_DIRECTION_ID and MAX_DIRECTION_ID to Dictionary.js
+   
    searchNeighbors(field_node) {
-      // const MIN_DIRECTION_ID = 0;
-      // const MAX_DIRECTION_ID = 3;
       var neighbors = [];
       var calculated_x = 0;
       var calculated_y = 0;
