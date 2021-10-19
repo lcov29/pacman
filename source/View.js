@@ -7,8 +7,6 @@ class View {
       this.field_container = document.getElementById(field_container_id);
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
-      // this.suffix_dynamic_element = 'dynamic';
-      // this.suffix_static_element = 'static';
       this.update_requests = [];
    }
    
@@ -52,7 +50,6 @@ class View {
          for (var x = 0; x < field[y].length; x++) {
             id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = this.createDiv(id_div);
-            // style_class = (Dictionary.getObject(field[y][x]) == 'wall') ? 'wall' : 'empty';
             if (field[y][x] == Configuration.wall_character) {
                style_class = Configuration.wall_character;
             } else {
@@ -78,7 +75,6 @@ class View {
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
-            // style_class = Dictionary.getObject(field[y][x]);
             style_class = (field[y][x] == Configuration.wall_character) ? '' : field[y][x];
             style_class = Configuration.getStyleClass(style_class);
             inner_div.setAttribute('class', style_class);
