@@ -12,7 +12,6 @@ class Pacman extends MovableObject {
    
    move() {
       if (this.next_direction != '') {
-         // let direction = Dictionary.getDirectionByName(this.next_direction);
          let direction = Configuration.getDirectionByName(this.next_direction);
          this.calculateNextPosition(direction);
          this.handleWallCollision();
