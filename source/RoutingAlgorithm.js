@@ -108,7 +108,7 @@ class RoutingAlgorithm {
       var calculated_y = 0;
       var direction = undefined;
       var potential_neighbor = undefined;
-      
+
       for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
          direction = Configuration.getDirectionByID(i);
          calculated_x = field_node.xPosition + direction.x;
