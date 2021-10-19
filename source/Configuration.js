@@ -79,7 +79,7 @@ class Configuration {
    static direction_id_map = {
       0: this.direction_up,
       1: this.direction_right,
-      2: this.direction_up,
+      2: this.direction_down,
       3: this.direction_left
    };
 
