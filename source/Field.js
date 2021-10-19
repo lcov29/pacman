@@ -11,7 +11,7 @@ class Field {
 
     
    parseField(field_text) {
-      const LINEFEED_CODE = 10;      //source: https://www.ascii-code.com/
+      
       var output_field = [];
       var current_row = [];
       var current_character = '';
@@ -20,7 +20,7 @@ class Field {
       
       for (var i = 0; i < field_text.length; i++) {
          current_character = field_text.charAt(i);
-         is_linefeed = (current_character.charCodeAt(0) == LINEFEED_CODE);
+         is_linefeed = (current_character.charCodeAt(0) == Configuration.linefeed_code);
          is_last_character = (i == field_text.length - 1);
          
          if (!is_linefeed) {
