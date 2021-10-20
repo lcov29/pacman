@@ -5,33 +5,7 @@ class Routing {
    
    constructor(level) {
       this.level = level;
-      this.field_node_map = this.buildFieldNodeMap();
-      this.routing_table = new RoutingAlgorithm(this.field_node_map).buildRoutingTable();
-   }
-   
-
-   buildFieldNodeMap() {
-      var field = this.level.field.clone();
-      var mapping = [];
-      var current_row = [];
-      var id = 0;
-      var current_object = ''
-
-      for (var y = 0; y < field.getRowCount(); y++) {
-         for (var x = 0; x < field.getColumnCountFor(y); x++) {
-            switch(this.level.field.getFieldObject(x, y)) {
-               case Configuration.wall_character:
-                  current_row.push(undefined);
-                  break;
-               default:
-                  current_row.push(new FieldNode(id, x, y));
-                  id++;
-            }
-         }
-         mapping.push(current_row);
-         current_row = [];
-      }
-      return mapping;
+      this.routing_table = new RoutingAlgorithm(this.level.field.clone()).buildRoutingTable();
    }
 
    
@@ -44,7 +18,7 @@ class Routing {
    
    
    getRoutingNodeForGhost(x, y) {
-      var ghost_id = this.getFieldNodeId(x, y);
+      var ghost_id = this.level.field.getFieldId(x, y);
       return this.routing_table[ghost_id][ghost_id];
    }
    
@@ -76,13 +50,8 @@ class Routing {
    }
    
    
-   getFieldNodeId(x, y) {
-      return this.field_node_map[y][x].id;
-   }
-
-   
    getRoutingNodeForPacman(ghost_id, x, y) {
-      var pacman_id = this.getFieldNodeId(x, y);
+      var pacman_id = this.level.field.getFieldId(x, y);
       return this.routing_table[ghost_id][pacman_id];
    }
  
