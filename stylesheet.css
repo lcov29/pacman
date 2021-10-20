@@ -1,3 +1,11 @@
+body {
+   position: absolute;
+   left: 30%;
+   margin: 0 auto;
+   font-family: 'Lucida Console', monospace;
+   background-color: lightgray;
+}
+
 .wall {
    width: 30px;
    height: 30px;
@@ -29,18 +37,12 @@
    background-image: url('resource/pacman.png');
 }
 
-
 .ghost {
    width: 30px;
    height: 30px;
    background-image: url('resource/blinky_up_down.png');
 }
 
-
-#body_id {
-   position: absolute;
-   left: 30%;
-   margin: 0 auto;
-   font-family: 'Lucida Console', monospace;
-   background-color: lightgray;
+#level_elements_list {
+   list-style-type: none;
 }
