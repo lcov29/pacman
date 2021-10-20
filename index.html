@@ -20,28 +20,28 @@
       <link rel='stylesheet' href='stylesheet.css'>
    </head>
    
-   <body id='body_id' onload='setDefaultLevel("field_input")'>
+   <body onload='initializePage()'>
       <h3>Pacman</h3>
-      <br>
       <div id='game_container'>
          <p id='life'></p>
          <p id='score'></p>
          <div id='field_container'></div>
          <br>
-         <button onclick='main("field_input", "field_container", "score", "life")'>start level</button>
+         <button onclick='javascript:game.start();'>start level</button>
       </div>
       <br>
       <label for='field_input'>current level:</label>
       <br>
       <textarea id='field_input' rows='21' cols='25'></textarea>
       <br>
+      <button onclick='buildLevel()'>build level</button>
       <p>You can build your own level by using the following symbols:<p>
-      <ul style='list-style-type:none;'>
-         <li># : wall</li>
-         <li>g : ghost</li>
-         <li>p : pacman</li>
-         <li>o : point</li>
-         <li>x : empty nonsolid space</li>
+      <ul id="level_elements_list">
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
+         <li></li>
       </ul>
       <br>
       <p>Rules:</p>
@@ -62,36 +62,23 @@
          //WORKAROUND: GLOBAL VARIABLE FOR ACCESSING GAME FROM CALLBACKFUNCTION game.callBackEventListener()      
          //TODO: FIND A BETTER SOLUTION
          var game = undefined;      
+
+
+         function buildLevel() {
+            var level_input = document.getElementById("field_input").value;
+            game = new Game(level_input, "field_container", "score", "life");
+         }
             
-         function main(level_input_id, field_container_id, score_id, life_id) {
-            var level_input = document.getElementById(level_input_id).value;
-            game = new Game(level_input, field_container_id, score_id, life_id);
-            game.start();
-            }
-            
-         function setDefaultLevel(field_input) {
-               document.getElementById(field_input).value = '###########################\n'+
-                                                            '#oooooooooooo#oooooooooooo#\n' +
-                                                            '#o####o#####o#o#####o####o#\n' +
-                                                            '#o####o#####o#o#####o####o#\n' +
-                                                            '#ooooooooooooooooooooooooo#\n' +
-                                                            '#o####o#o#########o#o####o#\n' +
-                                                            '#oooooo#ooooo#ooooo#oooooo#\n' +
-                                                            '######o#####o#o#####o######\n' +
-                                                            '######o#xxxxxgxxxxx#o######\n' +
-                                                            '######o#x#########x#o######\n' +
-                                                            '#xxxxxoxx#########xxoxxxxx#\n' +
-                                                            '######o#x#########x#o######\n' +
-                                                            '######o#xxxxxxxxxxx#o######\n' +
-                                                            '######o#x#########x#o######\n' +
-                                                            '#oooooooooooo#oooooooooooo#\n' +
-                                                            '#o####o#####o#o#####o####o#\n' +
-                                                            '#oooo#ooooooopooooooo#oooo#\n' +
-                                                            '####o#o#o#########o#o#o####\n' +
-                                                            '#oooooo#ooooo#ooooo#oooooo#\n' +
-                                                            '#o##########o#o##########o#\n' +
-                                                            '#ooooooooooooooooooooooooo#\n' +
-                                                            '###########################\n';
+
+         function initializePage() {
+               document.getElementById("field_input").value = Configuration.default_map;
+               var list = document.getElementById("level_elements_list");
+               list.childNodes[1].innerHTML = Configuration.wall_character + " : wall";
+               list.childNodes[3].innerHTML = Configuration.empty_character + " : empty";
+               list.childNodes[5].innerHTML = Configuration.ghost_character + " : ghost";
+               list.childNodes[7].innerHTML = Configuration.pacman_character + " : pacman";
+               list.childNodes[9].innerHTML = Configuration.point_character + " : point";
+               buildLevel();
          }
       </script>
 
