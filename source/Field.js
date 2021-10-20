@@ -7,6 +7,7 @@ class Field {
    
    constructor(field_text) {
       this.field = this.parseField(field_text);
+      this.indexAccessibleElements();
    }
 
     
@@ -35,6 +36,19 @@ class Field {
          
       }
       return output_field;
+   }
+
+
+   indexAccessibleElements() {
+      var id = 0;
+      for (var y = 0; y < this.field.length; y++) {
+         for (var x = 0; x < this.field[y].length; x++) {
+            if (this.getFieldObject(x,y) != Configuration.wall_character) {
+               this.field[y][x].id = id;
+               id++;
+            }
+         }
+      }
    }
 
 
