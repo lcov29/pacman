@@ -27,8 +27,11 @@ class Game {
    
       
    start() {
-      this.animation_interval = setInterval(function(ref) {ref.nextStep();}, Configuration.interval_delay_in_milliseconds, this);   
-      document.addEventListener('keydown', this.callBackEventListener, true);
+      // prevent the start of an already started game
+      if (this.animation_interval === undefined) {  
+         this.animation_interval = setInterval(function(ref) {ref.nextStep();}, Configuration.interval_delay_in_milliseconds, this);   
+         document.addEventListener('keydown', this.callBackEventListener, true);
+      }
    }
 
    
