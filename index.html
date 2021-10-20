@@ -27,7 +27,7 @@
          <p id='score'></p>
          <div id='field_container'></div>
          <br>
-         <button onclick='javascript:game.start();'>start level</button>
+         <button onclick='startLevel()'>start level</button>
       </div>
       <br>
       <label for='field_input'>current level:</label>
@@ -67,6 +67,14 @@
          function buildLevel() {
             var level_input = document.getElementById("field_input").value;
             game = new Game(level_input, "field_container", "score", "life");
+         }
+
+
+         function startLevel() {
+            if (game.isGameWon() || game.isGameLost()) {
+               buildLevel();
+            }
+            game.start();
          }
             
 
