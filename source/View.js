@@ -12,6 +12,8 @@ class View {
    
    
    initialize(field) {
+      this.clearField();
+      this.resetUpdateRequests();
       this.setContainerDimension(field);
       this.addStaticElements(field);
       this.addDynamicElements(field);
@@ -32,6 +34,21 @@ class View {
 
    printMessage(message) {
       window.alert(message);
+   }
+
+
+   resetUpdateRequests() {
+      this.update_requests = [];
+   }
+
+
+   clearField() {
+      this.score_display.innerHTML = "";
+      this.life_display.innerHTML = "";
+      while (this.field_container.firstChild) {
+         this.field_container.removeChild(this.field_container.firstChild);
+      }
+      
    }
 
 
