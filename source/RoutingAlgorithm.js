@@ -3,8 +3,8 @@
 class RoutingAlgorithm {
    
    
-   constructor(field_node_map) {
-      this.field_node_map = field_node_map;
+   constructor(field) {
+      this.field = field;
       this.routing_table = [];
    }
    
@@ -35,12 +35,12 @@ class RoutingAlgorithm {
    
    initializeRoutingTableRow() {
       var row = [];
-      var current_node = undefined;
-      for (var y = 0; y < this.field_node_map.length; y++) {
-         for (var x = 0; x < this.field_node_map[y].length; x++) {
-            current_node = this.field_node_map[y][x];
-            if (current_node != undefined) {
-               row.push(current_node.getClone());
+      var current_id = 0;
+      for (var y = 0; y < this.field.getRowCount(); y++) {
+         for (var x = 0; x < this.field.getColumnCountFor(y); x++) {
+            current_id = this.field.getFieldId(x, y);
+            if (current_id != Configuration.initial_element_id) {
+               row.push(new FieldNode(current_id, x, y))
             }
          }
       }
@@ -65,9 +65,9 @@ class RoutingAlgorithm {
       var routing_entry = undefined;
       this.removeNodeFrom(unused_nodes, current_node);
       
-      var neighbors = this.searchNeighbors(current_node);
-      for (let neighbor of neighbors) {
-         routing_entry = this.getRoutingTableEntry(neighbor.id, id_start_node); 
+      var neighbors_ids = this.searchNeighborsIds(current_node);
+      for (let neighbor_id of neighbors_ids) {
+         routing_entry = this.getRoutingTableEntry(neighbor_id, id_start_node); 
          routing_entry.setPathCost(1);
          routing_entry.setPredecessorId(current_node.id);
       }
@@ -76,9 +76,9 @@ class RoutingAlgorithm {
       //phase 2: iterate through all unused nodes
       while (unused_nodes.length > 0) {
          current_node = this.searchLowestCostNode(unused_nodes);
-         neighbors = this.searchNeighbors(current_node);
-         for (let neighbor of neighbors) {
-            routing_entry = this.getRoutingTableEntry(neighbor.id, id_start_node);
+         neighbors_ids = this.searchNeighborsIds(current_node);
+         for (let neighbor_id of neighbors_ids) {
+            routing_entry = this.getRoutingTableEntry(neighbor_id, id_start_node);
             
             if (unused_nodes.indexOf(routing_entry) != -1) {
                if (routing_entry.getPathCost() > current_node.getPathCost() + 1) {
@@ -99,23 +99,23 @@ class RoutingAlgorithm {
    }
    
    
-   searchNeighbors(field_node) {
-      var neighbors = [];
+   searchNeighborsIds(field_node) {
+      var neighbors_ids = [];
       var calculated_x = 0;
       var calculated_y = 0;
       var direction = undefined;
-      var potential_neighbor = undefined;
+      var potential_neighbor_id = undefined;
 
       for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
          direction = Configuration.getDirectionByID(i);
          calculated_x = field_node.xPosition + direction.x;
          calculated_y = field_node.yPosition + direction.y;
-         potential_neighbor = this.field_node_map[calculated_y][calculated_x];
-         if (potential_neighbor != undefined) {
-            neighbors.push(potential_neighbor);
+         potential_neighbor_id = this.field.getFieldId(calculated_x, calculated_y);
+         if (potential_neighbor_id != Configuration.initial_element_id) {
+            neighbors_ids.push(potential_neighbor_id);
          }
       }
-      return neighbors;
+      return neighbors_ids;
    }
    
    
