@@ -6,6 +6,7 @@ class Game {
    constructor(field_input, field_container_id, score_id, life_id) {
       this.view = new View(field_container_id, score_id, life_id);
       this.level = new Level(field_input, this.view);
+      this.view.initialize(this.level.field.getFieldCopy());
       this.animation_interval = undefined;
    }
    
@@ -26,15 +27,8 @@ class Game {
    
       
    start() {
-      this.initializeView();
       this.animation_interval = setInterval(function(ref) {ref.nextStep();}, Configuration.interval_delay_in_milliseconds, this);   
       document.addEventListener('keydown', this.callBackEventListener, true);
-   }
-   
-
-   initializeView() {
-      var field = this.level.field.getFieldCopy();
-      this.view.initialize(field);
    }
 
    
