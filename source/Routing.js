@@ -11,14 +11,14 @@ class Routing {
    
 
    buildFieldNodeMap() {
-      var field = this.level.field.getFieldCopy();
+      var field = this.level.field.clone();
       var mapping = [];
       var current_row = [];
       var id = 0;
       var current_object = ''
 
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
+      for (var y = 0; y < field.getRowCount(); y++) {
+         for (var x = 0; x < field.getColumnCountFor(y); x++) {
             switch(this.level.field.getFieldObject(x, y)) {
                case Configuration.wall_character:
                   current_row.push(undefined);

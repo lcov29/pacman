@@ -52,9 +52,10 @@ class View {
    }
 
 
+   // requires the same column count for all rows!
    setContainerDimension(field) {
-      this.field_container.style.height = field.length * Configuration.dimension_in_px_static_div + 'px';
-      this.field_container.style.width = field[0].length * Configuration.dimension_in_px_static_div + 'px';
+      this.field_container.style.height = field.getRowCount() * Configuration.dimension_in_px_static_div + 'px';
+      this.field_container.style.width = field.getColumnCountFor(0) * Configuration.dimension_in_px_static_div + 'px';
    }
    
    
@@ -63,11 +64,11 @@ class View {
       var id_div = '';
       var style_class = '';
 
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
+      for (var y = 0; y < field.getRowCount(); y++) {
+         for (var x = 0; x < field.getColumnCountFor(y); x++) {
             id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = this.createDiv(id_div);
-            if (field[y][x] == Configuration.wall_character) {
+            if (field.getFieldObject(x, y) == Configuration.wall_character) {
                style_class = Configuration.wall_character;
             } else {
                style_class = Configuration.empty_character;
@@ -85,14 +86,17 @@ class View {
       var inner_div = undefined;
       var id_div = '';
       var style_class = '';
+      var element = '';
       
-      for (var y = 0; y < field.length; y++) {
-         for (var x = 0; x < field[y].length; x++) {
+      for (var y = 0; y < field.getRowCount(); y++) {
+         for (var x = 0; x < field.getColumnCountFor(y); x++) {
             id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
-            style_class = (field[y][x] == Configuration.wall_character) ? '' : field[y][x];
+            element = field.getFieldObject(x, y);
+            // UNDEFINED FOR WALL CHARACTER, FIX
+            style_class = (element == Configuration.wall_character) ? '' : element;
             style_class = Configuration.getStyleClass(style_class);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
