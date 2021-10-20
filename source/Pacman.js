@@ -24,14 +24,14 @@ class Pacman extends MovableObject {
    
    
    handleWallCollision() {
-      if (this.isNextFieldPositionEqual(Configuration.wall_character)) {
+      if (this.isNextBoardPositionEqual(Configuration.wall_character)) {
          this.setNextPosition(this.xPosition, this.yPosition);
       }
    }
    
    
    handlePointCollision() {
-      if (this.isNextFieldPositionEqual(Configuration.point_character)) {
+      if (this.isNextBoardPositionEqual(Configuration.point_character)) {
          this.level.incrementScoreBy(10);
          this.level.decrementPoint();
       }
@@ -39,7 +39,7 @@ class Pacman extends MovableObject {
    
    
    handleGhostCollision() {
-      if (this.isNextFieldPositionEqual(Configuration.ghost_character)) {
+      if (this.isNextBoardPositionEqual(Configuration.ghost_character)) {
          this.decrementLife();
       }
    }

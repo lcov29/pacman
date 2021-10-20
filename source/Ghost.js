@@ -5,7 +5,7 @@ class Ghost extends MovableObject {
    
    constructor(level, xPosition, yPosition) {
       super(level, xPosition, yPosition);
-      this.occupied_field_object = Configuration.empty_character;
+      this.occupied_board_element = Configuration.empty_character;
    }
    
    
@@ -18,15 +18,15 @@ class Ghost extends MovableObject {
     
 
    handlePacManCollision() {
-      if (this.isNextFieldPositionEqual(Configuration.pacman_character)) {
+      if (this.isNextBoardPositionEqual(Configuration.pacman_character)) {
          this.decrementLifeOfPacman();
       }
    }
 
    
    updateField() {
-      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_field_object));
-      this.updateOccupiedFieldObject();
+      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_board_element));
+      this.updateOccupiedBoardElement();
       this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, Configuration.ghost_character));
    }
     
@@ -41,12 +41,12 @@ class Ghost extends MovableObject {
    
    
    //TODO: check for edge cases
-   updateOccupiedFieldObject() {
-      if (this.isNextFieldPositionEqual(Configuration.ghost_character) || 
-          this.isNextFieldPositionEqual(Configuration.pacman_character)) {
-         this.occupied_field_object = Configuration.empty_character;
+   updateOccupiedBoardElement() {
+      if (this.isNextBoardPositionEqual(Configuration.ghost_character) || 
+          this.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         this.occupied_board_element = Configuration.empty_character;
       } else {
-         this.occupied_field_object = this.level.field.getFieldObject(this.next_xPosition, this.next_yPosition);
+         this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
       }
    }
 

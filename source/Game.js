@@ -3,10 +3,10 @@
 class Game {
 
    
-   constructor(field_input, field_container_id, score_id, life_id) {
-      this.view = new View(field_container_id, score_id, life_id);
-      this.level = new Level(field_input, this.view);
-      this.view.initialize(this.level.field.clone());
+   constructor(level_text, board_container_id, score_id, life_id) {
+      this.view = new View(board_container_id, score_id, life_id);
+      this.level = new Level(level_text, this.view);
+      this.view.initialize(this.level.board.clone());
       this.animation_interval = undefined;
    }
    

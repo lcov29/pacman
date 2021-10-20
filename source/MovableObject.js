@@ -30,8 +30,8 @@ class MovableObject {
    }
    
    
-   isNextFieldPositionEqual(object) {
-      return this.level.field.getFieldObject(this.next_xPosition, this.next_yPosition) == object;
+   isNextBoardPositionEqual(element) {
+      return this.level.board.getElementAt(this.next_xPosition, this.next_yPosition) == element;
    }
 
 

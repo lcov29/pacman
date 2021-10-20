@@ -68,7 +68,7 @@ class View {
          for (var x = 0; x < field.getColumnCountFor(y); x++) {
             id_div = this.getDivID(x, y, Configuration.suffix_static_div);
             outer_div = this.createDiv(id_div);
-            if (field.getFieldObject(x, y) == Configuration.wall_character) {
+            if (field.getElementAt(x, y) == Configuration.wall_character) {
                style_class = Configuration.wall_character;
             } else {
                style_class = Configuration.empty_character;
@@ -94,7 +94,7 @@ class View {
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
-            element = field.getFieldObject(x, y);
+            element = field.getElementAt(x, y);
             // UNDEFINED FOR WALL CHARACTER, FIX
             style_class = (element == Configuration.wall_character) ? '' : element;
             style_class = Configuration.getStyleClass(style_class);

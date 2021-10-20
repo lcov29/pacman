@@ -38,8 +38,8 @@ class RoutingAlgorithm {
       var current_id = 0;
       for (var y = 0; y < this.field.getRowCount(); y++) {
          for (var x = 0; x < this.field.getColumnCountFor(y); x++) {
-            current_id = this.field.getFieldId(x, y);
-            if (current_id != Configuration.initial_element_id) {
+            current_id = this.field.getIdAt(x, y);
+            if (current_id != Configuration.id_unaccessible_board_element) {
                row.push(new FieldNode(current_id, x, y))
             }
          }
@@ -110,8 +110,8 @@ class RoutingAlgorithm {
          direction = Configuration.getDirectionByID(i);
          calculated_x = field_node.xPosition + direction.x;
          calculated_y = field_node.yPosition + direction.y;
-         potential_neighbor_id = this.field.getFieldId(calculated_x, calculated_y);
-         if (potential_neighbor_id != Configuration.initial_element_id) {
+         potential_neighbor_id = this.field.getIdAt(calculated_x, calculated_y);
+         if (potential_neighbor_id != Configuration.id_unaccessible_board_element) {
             neighbors_ids.push(potential_neighbor_id);
          }
       }

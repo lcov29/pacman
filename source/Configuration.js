@@ -31,7 +31,7 @@ class Configuration {
 
                         
    // internal and css representation of different game elements
-   static initial_element_id = -1;
+   static id_unaccessible_board_element = -1;
 
    static wall_character = "#";
    static empty_character = "x";

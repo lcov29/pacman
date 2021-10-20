@@ -5,7 +5,7 @@ class Routing {
    
    constructor(level) {
       this.level = level;
-      this.routing_table = new RoutingAlgorithm(this.level.field.clone()).buildRoutingTable();
+      this.routing_table = new RoutingAlgorithm(this.level.board.clone()).buildRoutingTable();
    }
 
    
@@ -18,7 +18,7 @@ class Routing {
    
    
    getRoutingNodeForGhost(x, y) {
-      var ghost_id = this.level.field.getFieldId(x, y);
+      var ghost_id = this.level.board.getIdAt(x, y);
       return this.routing_table[ghost_id][ghost_id];
    }
    
@@ -51,7 +51,7 @@ class Routing {
    
    
    getRoutingNodeForPacman(ghost_id, x, y) {
-      var pacman_id = this.level.field.getFieldId(x, y);
+      var pacman_id = this.level.board.getIdAt(x, y);
       return this.routing_table[ghost_id][pacman_id];
    }
  

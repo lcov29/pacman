@@ -8,7 +8,7 @@
       <script src='source/FieldNode.js'></script>
       <script src='source/RoutingAlgorithm.js'></script>
       <script src='source/Routing.js'></script>
-      <script src='source/Field.js'></script>
+      <script src='source/Board.js'></script>
       <script src='source/MovableObject.js'></script>
       <script src='source/Ghost.js'></script>
       <script src='source/Pacman.js'></script>
@@ -25,14 +25,14 @@
       <div id='game_container'>
          <p id='life'></p>
          <p id='score'></p>
-         <div id='field_container'></div>
+         <div id='level_container'></div>
          <br>
          <button onclick='startLevel()'>start level</button>
       </div>
       <br>
-      <label for='field_input'>current level:</label>
+      <label for='level_input'>current level:</label>
       <br>
-      <textarea id='field_input' rows='21' cols='25'></textarea>
+      <textarea id='level_input' rows='21' cols='25'></textarea>
       <br>
       <button onclick='buildLevel()'>build level</button>
       <p>You can build your own level by using the following symbols:<p>
@@ -64,7 +64,7 @@
          var game = undefined;      
 
          function initializePage() {
-               document.getElementById("field_input").value = Configuration.default_map;
+               document.getElementById("level_input").value = Configuration.default_map;
                initializeLevelElementsList();
                buildLevel();
          }
@@ -86,8 +86,8 @@
          }
 
          function buildLevel() {
-            var level_input = document.getElementById("field_input").value;
-            game = new Game(level_input, "field_container", "score", "life");
+            var level_input = document.getElementById("level_input").value;
+            game = new Game(level_input, "level_container", "score", "life");
          }
 
       </script>

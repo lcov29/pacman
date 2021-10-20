@@ -4,12 +4,12 @@ class Level {
 
 
     constructor(level_text, view) {
-        this.field = new Field(level_text);
+        this.board = new Board(level_text);
         this.routing = new Routing(this);
         this.view = view;
-        this.pacmans = this.field.getPacmans(this);
-        this.ghosts = this.field.getGhosts(this);
-        this.available_points = this.field.getPoints();
+        this.pacmans = this.board.getPacmans(this);
+        this.ghosts = this.board.getGhosts(this);
+        this.available_points = this.board.getPoints();
         this.score = Configuration.initial_score;
         this.update_requests = [];
     }
@@ -23,7 +23,7 @@ class Level {
 
     update() {
         for (let request of this.update_requests) {
-            this.field.setFieldObject(request.xPosition, request.yPosition, request.object);
+            this.board.setElementAt(request.xPosition, request.yPosition, request.object);
         }
         this.update_requests = [];
         this.view.update(this.score, this.getNumberOfLifes());
