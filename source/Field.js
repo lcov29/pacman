@@ -15,6 +15,7 @@ class Field {
       var output_field = [];
       var current_row = [];
       var current_character = '';
+      var current_object = undefined;
       var is_linefeed = false;
       var is_last_character = false;
       
@@ -24,7 +25,8 @@ class Field {
          is_last_character = (i == field_text.length - 1);
          
          if (!is_linefeed) {
-            current_row.push(current_character);
+            current_object = this.getElementObject(Configuration.initial_element_id, current_character);
+            current_row.push(current_object);
          }
          if (is_linefeed || is_last_character) {
             output_field.push(current_row);
@@ -37,14 +39,34 @@ class Field {
 
 
    setFieldObject(xPosition, yPosition, object) {
-      this.field[yPosition][xPosition] = object;
+      this.field[yPosition][xPosition].element = object;
    }
    
    
    getFieldObject(xPosition, yPosition) {
-      return this.field[yPosition][xPosition];
+      return this.field[yPosition][xPosition].element;
+   }
+
+
+   getFieldId(xPosition, yPosition) {
+      return this.field[yPosition][xPosition].id;
    }
    
+
+   getElementObject(id, element) {
+      return {id: id, element: element};
+   }
+
+
+   getRowCount() {
+      return this.field.length;
+   }
+
+
+   getColumnCountFor(index) {
+      return this.field[index].length;
+   }
+
 
    getPoints() {
       var number_of_points = 0;
@@ -84,9 +106,23 @@ class Field {
       return ghosts;
    }
    
-   
-   getFieldCopy() {
-      return this.field.slice();
+
+   clone() {
+      var output = undefined;
+      var field_clone = [];
+      var row = [];
+      var object_clone = '';
+      for (var y = 0; y < this.field.length; y++) {
+         for (var x = 0; x < this.field[y].length; x++) {
+            object_clone = this.getElementObject(this.getFieldId(x, y), this.getFieldObject(x, y));
+            row.push(object_clone);
+         }
+         field_clone.push(row);
+         row = [];
+      }
+      output = new Field("");
+      output.field = field_clone;
+      return output;
    }
    
    
