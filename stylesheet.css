@@ -31,10 +31,28 @@ body {
    background-color: orange;
 }
 
-.pacman {
+.pacman_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/pacman/pacman_up.png');
+}
+
+.pacman_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/pacman/pacman_right.png');
+}
+
+.pacman_down {
    width: 30px;
    height: 30px;
    background-image: url('resource/pacman/pacman_down.png');
+}
+
+.pacman_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/pacman/pacman_left.png');
 }
 
 .ghost {
