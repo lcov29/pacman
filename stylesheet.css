@@ -34,13 +34,13 @@ body {
 .pacman {
    width: 30px;
    height: 30px;
-   background-image: url('resource/pacman.png');
+   background-image: url('resource/pacman/pacman_down.png');
 }
 
 .ghost {
    width: 30px;
    height: 30px;
-   background-image: url('resource/blinky_up_down.png');
+   background-image: url('resource/ghost_blinky/blinky_down.png');
 }
 
 #level_elements_list {
