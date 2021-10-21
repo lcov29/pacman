@@ -5,6 +5,7 @@ class Configuration {
    // general game settings
    static initial_score = 0;
    static initial_pacman_lifes = 1;
+   static initial_pacman_direction = "right";
    static interval_delay_in_milliseconds = 500;
    static default_map = '###########################\n'+
                         '#oooooooooooo#oooooooooooo#\n' +
@@ -42,7 +43,7 @@ class Configuration {
    static wall_css_class = "wall";
    static empty_css_class = "empty";
    static pacman_css_class = "pacman";
-   static ghost_css_class = "ghost";
+   static ghost_css_class = "ghost"; // replace with ghost types blinky, inky, pinky and clyde
    static point_css_class = "point";
 
    static class_map = {
@@ -53,8 +54,12 @@ class Configuration {
       [this.point_character]:  this.point_css_class       
    };
 
-   static getStyleClass(symbol) {
-      return this.class_map[symbol];
+   static getStyleClass(symbol, direction_suffix = "") {
+      var style_class = this.class_map[symbol];
+      if (direction_suffix != "") {
+         style_class += "_" + direction_suffix;
+      }
+      return style_class;
    }
 
 
