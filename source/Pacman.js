@@ -49,7 +49,10 @@ class Pacman extends MovableObject {
       var request = new UpdateRequest(this.xPosition, this.yPosition, Configuration.empty_character);
       this.level.addUpdateRequest(request);
       if (this.lifes > 0) {
-         request = new UpdateRequest(this.next_xPosition, this.next_yPosition, Configuration.pacman_character);
+         request = new UpdateRequest(this.next_xPosition, 
+                                     this.next_yPosition, 
+                                     Configuration.pacman_character,
+                                     this.next_direction);
          this.level.addUpdateRequest(request);
       }
    }
