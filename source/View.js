@@ -95,9 +95,11 @@ class View {
             id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
             element = field.getElementAt(x, y);
-            // UNDEFINED FOR WALL CHARACTER, FIX
-            style_class = (element == Configuration.wall_character) ? '' : element;
-            style_class = Configuration.getStyleClass(style_class);
+            if (element == Configuration.pacman_character) {
+               style_class = Configuration.getStyleClass(element, Configuration.initial_pacman_direction);
+            } else {
+               style_class = Configuration.getStyleClass(element);
+            }
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
@@ -108,7 +110,7 @@ class View {
    updateLevel() {
       for (let request of this.update_requests) {
          let id_div = this.getDivID(request.xPosition, request.yPosition, Configuration.suffix_dynamic_div);
-         let style_class = Configuration.getStyleClass(request.object);
+         let style_class = Configuration.getStyleClass(request.object, request.direction);
          document.getElementById(id_div).setAttribute('class', style_class);
       }
       this.update_requests = []    
