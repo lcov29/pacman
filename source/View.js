@@ -95,14 +95,21 @@ class View {
             id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
             inner_div = this.createDiv(id_div);
             element = field.getElementAt(x, y);
-            if (element == Configuration.pacman_character) {
-               style_class = Configuration.getStyleClass(element, Configuration.initial_pacman_direction);
-            } else {
-               style_class = Configuration.getStyleClass(element);
-            }
+            style_class = this.getInitialStyleClassForDynamicElement(element);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
+      }
+   }
+
+   getInitialStyleClassForDynamicElement(element) {
+      switch (element) {
+         case Configuration.pacman_character:
+            return Configuration.getStyleClass(element, Configuration.initial_pacman_direction);
+         case Configuration.ghost_character:
+            return Configuration.getStyleClass(element, Configuration.initial_ghosts_direction);
+         default:
+            return Configuration.getStyleClass(element);
       }
    }
    

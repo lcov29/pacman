@@ -6,6 +6,7 @@ class Configuration {
    static initial_score = 0;
    static initial_pacman_lifes = 1;
    static initial_pacman_direction = "right";
+   static initial_ghosts_direction = "down";
    static interval_delay_in_milliseconds = 500;
    static default_map = '###########################\n'+
                         '#oooooooooooo#oooooooooooo#\n' +
@@ -72,26 +73,39 @@ class Configuration {
    static min_direction_id = 0;
    static max_direction_id = 3;
 
-   static direction_name_map = {
+   static direction_map_name_to_index = {
       'up':    this.direction_up,
       'right': this.direction_right,
       'down':  this.direction_down,
       'left':  this.direction_left
-   };  
+   };
    
-   static getDirectionByName(name) {
-      return this.direction_name_map[name];
-   }
+   static direction_map_index_to_name = {
+      '(0,-1)': 'up',
+      '(1,0)':  'right',
+      '(0,1)':  'down',
+      '(-1,0)': 'left'
+   };  
 
-   static direction_id_map = {
+   static direction_map_id_to_index = {
       0: this.direction_up,
       1: this.direction_right,
       2: this.direction_down,
       3: this.direction_left
    };
+   
+   static getDirectionByName(name) {
+      return this.direction_map_name_to_index[name];
+   }
+
+   static getDirectionNameByIndex(x, y) {
+      var index = "(" + x + "," + y + ")";
+      console.log('index: ' + index + ", direction: " + this.direction_map_index_to_name[index]);
+      return this.direction_map_index_to_name[index];
+   }
 
    static getDirectionByID(direction_id) {
-      return this.direction_id_map[direction_id];
+      return this.direction_map_id_to_index[direction_id];
    }
 
 

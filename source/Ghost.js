@@ -25,9 +25,14 @@ class Ghost extends MovableObject {
 
    
    updateField() {
-      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, this.yPosition, this.occupied_board_element));
+      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, 
+                                                    this.yPosition, 
+                                                    this.occupied_board_element));
       this.updateOccupiedBoardElement();
-      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, this.next_yPosition, Configuration.ghost_character));
+      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, 
+                                                    this.next_yPosition, 
+                                                    Configuration.ghost_character,
+                                                    this.calculateCurrentMovementDirection()));
    }
     
        
@@ -48,6 +53,13 @@ class Ghost extends MovableObject {
       } else {
          this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
       }
+   }
+
+
+   calculateCurrentMovementDirection() {
+      var direction_x = this.next_xPosition - this.xPosition;
+      var direction_y = this.next_yPosition - this.yPosition;
+      return Configuration.getDirectionNameByIndex(direction_x, direction_y);
    }
 
    
