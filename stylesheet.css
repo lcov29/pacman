@@ -55,10 +55,28 @@ body {
    background-image: url('resource/pacman/pacman_left.png');
 }
 
-.ghost {
+.ghost_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_blinky/blinky_up.png');
+}
+
+.ghost_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_blinky/blinky_right.png');
+}
+
+.ghost_down {
    width: 30px;
    height: 30px;
    background-image: url('resource/ghost_blinky/blinky_down.png');
+}
+
+.ghost_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_blinky/blinky_left.png');
 }
 
 #level_elements_list {
