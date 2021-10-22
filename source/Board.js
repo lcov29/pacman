@@ -119,6 +119,31 @@ class Board {
       }
       return ghosts;
    }
+
+
+   getTeleporters() {
+      var teleporter1 = new Teleporter();
+      var teleporter2 = new Teleporter();
+      var teleporter3 = new Teleporter();
+
+      for (var y = 0; y < this.board.length; y++) {
+         for (var x = 0; x < this.board[y].length; x++) {
+            switch (this.getElementAt(x, y)) {
+               case Configuration.teleporter_1_tile_character:
+                  teleporter1.add(x, y);
+                  break;
+               case Configuration.teleporter_2_tile_character:
+                  teleporter2.add(x, y);
+                  break;
+               case Configuration.teleporter_3_tile_character:
+                  teleporter3.add(x, y);
+                  break;
+            }
+         }
+      }
+
+      return [teleporter1, teleporter2, teleporter3];
+   }
    
 
    clone() {
