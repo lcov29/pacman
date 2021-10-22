@@ -9,6 +9,8 @@ class MovableObject {
       this.yPosition = yPosition;
       this.next_xPosition = xPosition;
       this.next_yPosition = yPosition;
+      this.occupied_board_element = Configuration.empty_tile_character;
+      this.has_teleported = false;
    }
    
    
@@ -29,6 +31,11 @@ class MovableObject {
       this.yPosition = this.next_yPosition;
    }
    
+   
+   isOccupiedBoardElementEqual(element) {
+      return this.occupied_board_element == element;
+   }
+
    
    isNextBoardPositionEqual(element) {
       return this.level.board.getElementAt(this.next_xPosition, this.next_yPosition) == element;

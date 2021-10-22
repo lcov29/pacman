@@ -5,7 +5,6 @@ class Ghost extends MovableObject {
    
    constructor(level, xPosition, yPosition) {
       super(level, xPosition, yPosition);
-      this.occupied_board_element = Configuration.empty_tile_character;
    }
    
    
