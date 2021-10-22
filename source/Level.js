@@ -9,6 +9,7 @@ class Level {
         this.view = view;
         this.pacmans = this.board.getPacmans(this);
         this.ghosts = this.board.getGhosts(this);
+        this.teleporters = this.board.getTeleporters();
         this.available_points = this.board.getPoints();
         this.score = Configuration.initial_score;
         this.update_requests = [];
@@ -43,6 +44,18 @@ class Level {
             new_position = this.routing.calculateNextPosition(ghost.xPosition, ghost.yPosition);
             ghost.moveToPosition(new_position);
         }
+    }
+
+
+    getTeleportDestination(xPosition, yPosition) {
+        var destination = undefined;
+        for (let teleporter of this.teleporters) {
+            if (teleporter.isTeleporterFor(xPosition, yPosition)) {
+                destination = teleporter.getDestinationPositionFor(xPosition, yPosition);
+                break;
+            }
+        }
+        return destination;
     }
 
 
