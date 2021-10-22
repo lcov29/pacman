@@ -4,6 +4,7 @@ class Configuration {
    
    // general game settings
    static initial_score = 0;
+   static score_value_per_point = 10;
    static initial_pacman_lifes = 1;
    static initial_pacman_direction = "right";
    static initial_ghosts_direction = "down";
@@ -37,31 +38,43 @@ class Configuration {
 
    static wall_character = "#";
    static empty_tile_character = "x";
+   static teleporter_1_tile_character = "1";
+   static teleporter_2_tile_character = "2";
+   static teleporter_3_tile_character = "3";
    static pacman_character = "p";
    static ghost_character = "g";
    static point_character = "o";
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
+   static teleporter_1_background_css_class = "teleporter_1_tile";
+   static teleporter_2_background_css_class = "teleporter_2_tile";
+   static teleporter_3_background_css_class = "teleporter_3_tile";
    static pacman_foreground_css_class = "pacman";
    static ghost_foreground_css_class = "ghost_blinky"; // replace with ghost types blinky, inky, pinky, clyde, dead and scared
    static point_foreground_css_class = "point";
    static empty_foreground_css_class = "empty_foreground";
 
    static background_class_map = {
-      [this.wall_character]:   this.wall_background_css_class,
-      [this.empty_tile_character]:  this.empty_background_css_class,
-      [this.pacman_character]:      this.empty_background_css_class,
-      [this.ghost_character]:       this.empty_background_css_class,
-      [this.point_character]:       this.empty_background_css_class       
+      [this.wall_character]:              this.wall_background_css_class,
+      [this.empty_tile_character]:        this.empty_background_css_class,
+      [this.teleporter_1_tile_character]: this.teleporter_1_background_css_class,
+      [this.teleporter_2_tile_character]: this.teleporter_2_background_css_class,
+      [this.teleporter_3_tile_character]: this.teleporter_3_background_css_class,
+      [this.pacman_character]:            this.empty_background_css_class,
+      [this.ghost_character]:             this.empty_background_css_class,
+      [this.point_character]:             this.empty_background_css_class       
    };
 
    static foreground_class_map = {
-      [this.wall_character]:   this.empty_foreground_css_class,
-      [this.empty_tile_character]:  this.empty_foreground_css_class,
-      [this.pacman_character]:      this.pacman_foreground_css_class,
-      [this.ghost_character]:       this.ghost_foreground_css_class,
-      [this.point_character]:       this.point_foreground_css_class       
+      [this.wall_character]:              this.empty_foreground_css_class,
+      [this.empty_tile_character]:        this.empty_foreground_css_class,
+      [this.teleporter_1_tile_character]: this.empty_foreground_css_class,
+      [this.teleporter_2_tile_character]: this.empty_foreground_css_class,
+      [this.teleporter_3_tile_character]: this.empty_foreground_css_class,
+      [this.pacman_character]:            this.pacman_foreground_css_class,
+      [this.ghost_character]:             this.ghost_foreground_css_class,
+      [this.point_character]:             this.point_foreground_css_class       
    };
 
    static getBackgroundStyleClass(character) {
