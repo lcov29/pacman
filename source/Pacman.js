@@ -15,6 +15,7 @@ class Pacman extends MovableObject {
          let direction = Configuration.getDirectionByName(this.next_direction);
          this.calculateNextPosition(direction);
          this.handleWallCollision();
+         this.handleTeleportation();
          this.handlePointCollision();
          this.handleGhostCollision();
          this.updateLevel();
@@ -28,11 +29,26 @@ class Pacman extends MovableObject {
          this.setNextPosition(this.xPosition, this.yPosition);
       }
    }
+
+
+   handleTeleportation() {
+      if (this.isOccupiedBoardElementEqual(Configuration.teleporter_1_tile_character) ||
+          this.isOccupiedBoardElementEqual(Configuration.teleporter_2_tile_character) ||
+          this.isOccupiedBoardElementEqual(Configuration.teleporter_3_tile_character)) {
+         if (this.has_teleported) {
+            this.has_teleported = false;
+         } else {
+            var destination = this.level.getTeleportDestination(this.xPosition, this.yPosition);
+            this.setNextPosition(destination.xPosition, destination.yPosition);
+            this.has_teleported = true;
+         }
+      }
+   }
    
    
    handlePointCollision() {
       if (this.isNextBoardPositionEqual(Configuration.point_character)) {
-         this.level.incrementScoreBy(10);
+         this.level.incrementScoreBy(Configuration.score_value_per_point);
          this.level.decrementPoint();
       }
    }
@@ -46,8 +62,9 @@ class Pacman extends MovableObject {
    
    
    updateLevel() {
-      var request = new UpdateRequest(this.xPosition, this.yPosition, Configuration.empty_tile_character);
+      var request = new UpdateRequest(this.xPosition, this.yPosition, this.occupied_board_element);
       this.level.addUpdateRequest(request);
+      this.updateOccupiedBoardElement();
       if (this.lifes > 0) {
          request = new UpdateRequest(this.next_xPosition, 
                                      this.next_yPosition, 
@@ -57,7 +74,18 @@ class Pacman extends MovableObject {
       }
    }
    
-   
+
+   updateOccupiedBoardElement() {
+      if (this.isNextBoardPositionEqual(Configuration.point_character)) {
+         this.occupied_board_element = Configuration.empty_tile_character;
+      } else {
+         if (!this.isNextBoardPositionEqual(Configuration.pacman_character)) {
+            this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
+         }
+      }
+   }
+
+
    decrementLife() {
       if (this.lifes > 0) {
          this.lifes--;
