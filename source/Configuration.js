@@ -36,27 +36,40 @@ class Configuration {
    static id_unaccessible_board_element = -1;
 
    static wall_character = "#";
-   static empty_character = "x";
+   static empty_tile_character = "x";
    static pacman_character = "p";
    static ghost_character = "g";
    static point_character = "o";
    
-   static wall_css_class = "wall";
-   static empty_css_class = "empty";
-   static pacman_css_class = "pacman";
-   static ghost_css_class = "ghost_blinky"; // replace with ghost types blinky, inky, pinky, clyde, dead and scared
-   static point_css_class = "point";
+   static wall_background_css_class = "wall_tile";
+   static empty_background_css_class = "empty_tile";
+   static pacman_foreground_css_class = "pacman";
+   static ghost_foreground_css_class = "ghost_blinky"; // replace with ghost types blinky, inky, pinky, clyde, dead and scared
+   static point_foreground_css_class = "point";
+   static empty_foreground_css_class = "empty_foreground";
 
-   static class_map = {
-      [this.wall_character]:   this.wall_css_class,
-      [this.empty_character]:  this.empty_css_class,
-      [this.pacman_character]: this.pacman_css_class,
-      [this.ghost_character]:  this.ghost_css_class,
-      [this.point_character]:  this.point_css_class       
+   static background_class_map = {
+      [this.wall_character]:   this.wall_background_css_class,
+      [this.empty_tile_character]:  this.empty_background_css_class,
+      [this.pacman_character]:      this.empty_background_css_class,
+      [this.ghost_character]:       this.empty_background_css_class,
+      [this.point_character]:       this.empty_background_css_class       
    };
 
-   static getStyleClass(symbol, direction_suffix = "") {
-      var style_class = this.class_map[symbol];
+   static foreground_class_map = {
+      [this.wall_character]:   this.empty_foreground_css_class,
+      [this.empty_tile_character]:  this.empty_foreground_css_class,
+      [this.pacman_character]:      this.pacman_foreground_css_class,
+      [this.ghost_character]:       this.ghost_foreground_css_class,
+      [this.point_character]:       this.point_foreground_css_class       
+   };
+
+   static getBackgroundStyleClass(character) {
+      return this.background_class_map[character];
+   }
+
+   static getForegroundStyleClass(character, direction_suffix = "") {
+      var style_class = this.foreground_class_map[character];
       if (direction_suffix != "") {
          style_class += "_" + direction_suffix;
       }
@@ -109,9 +122,9 @@ class Configuration {
 
 
    // settings for view.js
-   static suffix_dynamic_div = "dynamic";
-   static suffix_static_div = "static";
-   static dimension_in_px_static_div = 30;
+   static suffix_foreground_div = "fg";
+   static suffix_background_div = "bg";
+   static dimension_background_div_in_px = 30;
 
 
    // Key Codes for pacman movemen
