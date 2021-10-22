@@ -1,3 +1,4 @@
+/* general page elements */
 body {
    position: absolute;
    left: 30%;
@@ -6,6 +7,12 @@ body {
    background-color: lightgray;
 }
 
+#level_elements_list {
+   list-style-type: none;
+}
+
+
+/* Nonmovable level elements */
 .wall {
    width: 30px;
    height: 30px;
@@ -31,6 +38,8 @@ body {
    background-color: orange;
 }
 
+
+/* Pacman */
 .pacman_up {
    width: 30px;
    height: 30px;
@@ -55,30 +64,158 @@ body {
    background-image: url('resource/pacman/pacman_left.png');
 }
 
-.ghost_up {
+
+/* Ghost Blinky */
+.ghost_blinky_up {
    width: 30px;
    height: 30px;
    background-image: url('resource/ghost_blinky/blinky_up.png');
 }
 
-.ghost_right {
+.ghost_blinky_right {
    width: 30px;
    height: 30px;
    background-image: url('resource/ghost_blinky/blinky_right.png');
 }
 
-.ghost_down {
+.ghost_blinky_down {
    width: 30px;
    height: 30px;
    background-image: url('resource/ghost_blinky/blinky_down.png');
 }
 
-.ghost_left {
+.ghost_blinky_left {
    width: 30px;
    height: 30px;
    background-image: url('resource/ghost_blinky/blinky_left.png');
 }
 
-#level_elements_list {
-   list-style-type: none;
+
+/* Ghost Clyde */
+.ghost_clyde_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_clyde/clyde_up.png');
+}
+
+.ghost_clyde_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_clyde/clyde_right.png');
+}
+
+.ghost_clyde_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_clyde/clyde_down.png');
+}
+
+.ghost_clyde_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_clyde/clyde_left.png');
+}
+
+
+/* Ghost Inky */
+.ghost_inky_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_inky/inky_up.png');
+}
+
+.ghost_inky_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_inky/inky_right.png');
+}
+
+.ghost_inky_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_inky/inky_down.png');
+}
+
+.ghost_inky_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_inky/inky_left.png');
+}
+
+
+/* Ghost Pinky */
+.ghost_pinky_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_pinky/pinky_up.png');
+}
+
+.ghost_pinky_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_pinky/pinky_right.png');
+}
+
+.ghost_pinky_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_pinky/pinky_down.png');
+}
+
+.ghost_pinky_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_pinky/pinky_left.png');
+}
+
+
+/* Dead Ghost */
+.ghost_dead_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_dead/ghost_dead_up.png');
+}
+
+.ghost_dead_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_dead/ghost_dead_right.png');
+}
+
+.ghost_dead_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_dead/ghost_dead_down.png');
+}
+
+.ghost_dead_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_dead/ghost_dead_left.png');
+}
+
+
+/* Scared Ghost */
+.ghost_scared_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_scared/ghost_scared_up.png');
+}
+
+.ghost_scared_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_scared/ghost_scared_right.png');
+}
+
+.ghost_scared_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_scared/ghost_scared_down.png');
+}
+
+.ghost_scared_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('resource/ghost_scared/ghost_scared_left.png');
 }
