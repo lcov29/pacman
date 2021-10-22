@@ -5,7 +5,7 @@ class Ghost extends MovableObject {
    
    constructor(level, xPosition, yPosition) {
       super(level, xPosition, yPosition);
-      this.occupied_board_element = Configuration.empty_character;
+      this.occupied_board_element = Configuration.empty_tile_character;
    }
    
    
@@ -49,7 +49,7 @@ class Ghost extends MovableObject {
    updateOccupiedBoardElement() {
       if (this.isNextBoardPositionEqual(Configuration.ghost_character) || 
           this.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         this.occupied_board_element = Configuration.empty_character;
+         this.occupied_board_element = Configuration.empty_tile_character;
       } else {
          this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
       }
