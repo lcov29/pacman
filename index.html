@@ -5,6 +5,7 @@
       <meta charset='UTF-8'>
       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <title>Pacman</title>
+      <script src="source/Teleporter.js"></script>
       <script src='source/FieldNode.js'></script>
       <script src='source/RoutingAlgorithm.js'></script>
       <script src='source/Routing.js'></script>
@@ -37,6 +38,9 @@
       <button onclick='buildLevel()'>build level</button>
       <p>You can build your own level by using the following symbols:<p>
       <ul id="level_elements_list">
+         <li></li>
+         <li></li>
+         <li></li>
          <li></li>
          <li></li>
          <li></li>
@@ -83,6 +87,9 @@
             list.childNodes[5].innerHTML = Configuration.ghost_character + " : ghost";
             list.childNodes[7].innerHTML = Configuration.pacman_character + " : pacman";
             list.childNodes[9].innerHTML = Configuration.point_character + " : point";
+            list.childNodes[11].innerHTML = Configuration.teleporter_1_tile_character + " : Teleporter 1 (destination required)";
+            list.childNodes[13].innerHTML = Configuration.teleporter_2_tile_character + " : Teleporter 2 (destination required)";
+            list.childNodes[15].innerHTML = Configuration.teleporter_3_tile_character + " : Teleporter 3 (destination required)";
          }
 
          function buildLevel() {
