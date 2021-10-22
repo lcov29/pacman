@@ -44,7 +44,7 @@ class Configuration {
    static wall_css_class = "wall";
    static empty_css_class = "empty";
    static pacman_css_class = "pacman";
-   static ghost_css_class = "ghost"; // replace with ghost types blinky, inky, pinky and clyde
+   static ghost_css_class = "ghost_blinky"; // replace with ghost types blinky, inky, pinky, clyde, dead and scared
    static point_css_class = "point";
 
    static class_map = {
