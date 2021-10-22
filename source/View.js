@@ -15,8 +15,8 @@ class View {
       this.clearField();
       this.resetUpdateRequests();
       this.setContainerDimension(field);
-      this.addStaticElements(field);
-      this.addDynamicElements(field);
+      this.addBackgroundElements(field);
+      this.addForegroundElements(field);
    }
    
    
@@ -54,26 +54,21 @@ class View {
 
    // requires the same column count for all rows!
    setContainerDimension(field) {
-      this.field_container.style.height = field.getRowCount() * Configuration.dimension_in_px_static_div + 'px';
-      this.field_container.style.width = field.getColumnCountFor(0) * Configuration.dimension_in_px_static_div + 'px';
+      this.field_container.style.height = field.getRowCount() * Configuration.dimension_background_div_in_px + 'px';
+      this.field_container.style.width = field.getColumnCountFor(0) * Configuration.dimension_background_div_in_px + 'px';
    }
    
    
-   addStaticElements(field) {
+   addBackgroundElements(field) {
       var outer_div = undefined;
       var id_div = '';
       var style_class = '';
 
       for (var y = 0; y < field.getRowCount(); y++) {
          for (var x = 0; x < field.getColumnCountFor(y); x++) {
-            id_div = this.getDivID(x, y, Configuration.suffix_static_div);
+            id_div = this.getDivID(x, y, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            if (field.getElementAt(x, y) == Configuration.wall_character) {
-               style_class = Configuration.wall_character;
-            } else {
-               style_class = Configuration.empty_character;
-            }
-            style_class = Configuration.getStyleClass(style_class);
+            style_class = Configuration.getBackgroundStyleClass(field.getElementAt(x, y));
             outer_div.setAttribute('class', style_class);
             this.field_container.appendChild(outer_div);
          }
@@ -81,7 +76,7 @@ class View {
    }
    
    
-   addDynamicElements(field) {
+   addForegroundElements(field) {
       var outer_div = undefined;
       var inner_div = undefined;
       var id_div = '';
@@ -90,34 +85,40 @@ class View {
       
       for (var y = 0; y < field.getRowCount(); y++) {
          for (var x = 0; x < field.getColumnCountFor(y); x++) {
-            id_div = this.getDivID(x, y, Configuration.suffix_static_div);
+            id_div = this.getDivID(x, y, Configuration.suffix_background_div);
             outer_div = document.getElementById(id_div);
-            id_div = this.getDivID(x, y, Configuration.suffix_dynamic_div);
+            id_div = this.getDivID(x, y, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
             element = field.getElementAt(x, y);
-            style_class = this.getInitialStyleClassForDynamicElement(element);
+            style_class = this.getInitialStyleClassForForegroundElement(element);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
       }
    }
 
-   getInitialStyleClassForDynamicElement(element) {
+
+   getInitialStyleClassForForegroundElement(element) {
+      var style_class = "";
       switch (element) {
          case Configuration.pacman_character:
-            return Configuration.getStyleClass(element, Configuration.initial_pacman_direction);
+            style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_pacman_direction);
+            break;
          case Configuration.ghost_character:
-            return Configuration.getStyleClass(element, Configuration.initial_ghosts_direction);
+            style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_ghosts_direction);
+            break;
          default:
-            return Configuration.getStyleClass(element);
+            style_class =  Configuration.getForegroundStyleClass(element);
+            break;
       }
+      return style_class;
    }
    
    
    updateLevel() {
       for (let request of this.update_requests) {
-         let id_div = this.getDivID(request.xPosition, request.yPosition, Configuration.suffix_dynamic_div);
-         let style_class = Configuration.getStyleClass(request.object, request.direction);
+         let id_div = this.getDivID(request.xPosition, request.yPosition, Configuration.suffix_foreground_div);
+         let style_class = Configuration.getForegroundStyleClass(request.object, request.direction);
          document.getElementById(id_div).setAttribute('class', style_class);
       }
       this.update_requests = []    
