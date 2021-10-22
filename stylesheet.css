@@ -29,6 +29,27 @@ body {
    background-color: black;
 }
 
+.teleporter_1_tile {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('resource/teleporters/teleporter_1.png');
+}
+
+.teleporter_2_tile {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('resource/teleporters/teleporter_2.png');
+}
+
+.teleporter_3_tile {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('resource/teleporters/teleporter_3.png');
+}
+
 
 
 /* accessible foreground level elements (dynamic */
