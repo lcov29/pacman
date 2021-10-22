@@ -100,7 +100,6 @@ class Configuration {
 
    static getDirectionNameByIndex(x, y) {
       var index = "(" + x + "," + y + ")";
-      console.log('index: ' + index + ", direction: " + this.direction_map_index_to_name[index]);
       return this.direction_map_index_to_name[index];
    }
 
