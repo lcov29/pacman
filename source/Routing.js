@@ -3,9 +3,44 @@
 class Routing {
    
    
-   constructor(level) {
+   constructor(level, board) {
       this.level = level;
-      this.routing_table = new RoutingAlgorithm(this.level.board.clone()).buildRoutingTable();
+      this.routing_table = this.initializeRoutingTable(board);
+      this.routing_table = new RoutingAlgorithm(board).calculateShortestPaths(this.routing_table);
+   }
+
+
+   initializeRoutingTable(board) {
+      var routing_table = [];
+      var row = this.initializeRoutingTableRow(board);
+      for (var i = 0; i < row.length; i++) {
+         routing_table.push(this.cloneRoutingTableRow(row));
+      }
+      return routing_table;
+   }
+
+
+   initializeRoutingTableRow(board) {
+      var row = [];
+      var current_id = 0;
+      for (var y = 0; y < board.getRowCount(); y++) {
+         for (var x = 0; x < board.getColumnCountFor(y); x++) {
+            current_id = board.getIdAt(x, y);
+            if (current_id != Configuration.id_unaccessible_board_element) {
+               row.push(new FieldNode(current_id, x, y))
+            }
+         }
+      }
+      return row;
+   }
+
+
+   cloneRoutingTableRow(row) {
+      var clone = [];
+      for (var i = 0; i < row.length; i++) {
+         clone.push(row[i].getClone());
+      }
+      return clone;
    }
 
    
