@@ -5,7 +5,7 @@ class Level {
 
     constructor(level_text, view) {
         this.board = new Board(level_text);
-        this.routing = new Routing(this);
+        this.routing = new Routing(this, this.board.clone());
         this.view = view;
         this.pacmans = this.board.getPacmans(this);
         this.ghosts = this.board.getGhosts(this);
