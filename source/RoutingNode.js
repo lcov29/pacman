@@ -1,6 +1,6 @@
 "use strict";
 
-class FieldNode {
+class RoutingNode {
    
 
    constructor(id, xPosition, yPosition) {
@@ -23,7 +23,7 @@ class FieldNode {
    
 
    getClone() {
-      var clone = new FieldNode(this.id, this.xPosition, this.yPosition);
+      var clone = new RoutingNode(this.id, this.xPosition, this.yPosition);
       clone.predecessor_node_id = this.predecessor_node_id;
       clone.path_cost = this.path_cost;
       return clone;
