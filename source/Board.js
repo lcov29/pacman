@@ -1,5 +1,3 @@
-//TODO: use dedicated function with callback-function as parameter for iterating through every fieldposition
-
 "use strict";
 
 class Board {
@@ -13,7 +11,7 @@ class Board {
     
    parseBoard(board_text) {
       
-      var output_field = [];
+      var output_board = [];
       var current_row = [];
       var current_character = '';
       var current_object = undefined;
@@ -30,12 +28,12 @@ class Board {
             current_row.push(current_object);
          }
          if (is_linefeed || is_last_character) {
-            output_field.push(current_row);
+            output_board.push(current_row);
             current_row = [];
          }
          
       }
-      return output_field;
+      return output_board;
    }
 
 
@@ -43,7 +41,7 @@ class Board {
       var id = 0;
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAt(x,y) != Configuration.wall_character) {
+            if (this.getElementAtIndex(x,y) != Configuration.wall_character) {
                this.board[y][x].id = id;
                id++;
             }
@@ -52,17 +50,27 @@ class Board {
    }
 
 
-   setElementAt(xPosition, yPosition, element) {
-      this.board[yPosition][xPosition].element = element;
+   setElementAt(position, element) {
+      this.board[position.getY()][position.getX()].element = element;
    }
    
    
-   getElementAt(xPosition, yPosition) {
+   getElementAt(position) {
+      return this.board[position.getY()][position.getX()].element;
+   }
+
+
+   getElementAtIndex(xPosition, yPosition) {
       return this.board[yPosition][xPosition].element;
    }
+   
+
+   getIdAt(position) {
+      return this.board[position.getY()][position.getX()].id;
+   } 
 
 
-   getIdAt(xPosition, yPosition) {
+   getIdAtIndex(xPosition, yPosition) {
       return this.board[yPosition][xPosition].id;
    }
    
@@ -82,11 +90,11 @@ class Board {
    }
 
 
-   getPoints() {
+   countAvailablePoints() {
       var number_of_points = 0;
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAt(x, y) == Configuration.point_character) {
+            if (this.getElementAtIndex(x, y) == Configuration.point_character) {
                number_of_points++;
             }
          }
@@ -95,72 +103,64 @@ class Board {
    }
    
 
-   getPacmans(ref_level) {
-      var pacmans = [];
+   getPacmanPositions() {
+      var pacman_positions = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++)  {
-            if (this.getElementAt(x, y) == Configuration.pacman_character) {
-               pacmans.push(new Pacman(ref_level, x, y));
+            if (this.getElementAtIndex(x, y) == Configuration.pacman_character) {
+               pacman_positions.push(new BoardPosition(x, y));
             }
          }
       }
-      return pacmans;
+      return pacman_positions;
    }
    
  
-   getGhosts(ref_level) {
-      var ghosts = [];
+   getGhostPositions() {
+      var ghost_positions = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAt(x, y) == Configuration.ghost_character) {
-               ghosts.push(new Ghost(ref_level, x, y));
+            if (this.getElementAtIndex(x, y) == Configuration.ghost_character) {
+               ghost_positions.push(new BoardPosition(x, y));
             }
          }
       }
-      return ghosts;
+      return ghost_positions;
    }
 
 
-   getTeleporters() {
-      var teleporter1 = new Teleporter();
-      var teleporter2 = new Teleporter();
-      var teleporter3 = new Teleporter();
-
+   getTeleporterPositions() {
+      var teleporter_positions = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            switch (this.getElementAt(x, y)) {
+            switch (this.getElementAtIndex(x, y)) {
                case Configuration.teleporter_1_tile_character:
-                  teleporter1.add(x, y);
-                  break;
                case Configuration.teleporter_2_tile_character:
-                  teleporter2.add(x, y);
-                  break;
                case Configuration.teleporter_3_tile_character:
-                  teleporter3.add(x, y);
+                  teleporter_positions.push(new BoardPosition(x, y));
                   break;
             }
          }
       }
-
-      return [teleporter1, teleporter2, teleporter3];
+      return teleporter_positions;
    }
-   
+
 
    clone() {
       var output = undefined;
-      var field_clone = [];
+      var board_clone = [];
       var row = [];
       var object_clone = '';
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            object_clone = this.createObject(this.getIdAt(x, y), this.getElementAt(x, y));
+            object_clone = this.createObject(this.getIdAtIndex(x, y), this.getElementAtIndex(x, y));
             row.push(object_clone);
          }
-         field_clone.push(row);
+         board_clone.push(row);
          row = [];
       }
       output = new Board("");
-      output.board = field_clone;
+      output.board = board_clone;
       return output;
    }
    
