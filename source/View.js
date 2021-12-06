@@ -3,20 +3,20 @@
 class View {
    
    
-   constructor(field_container_id, score_id, life_id) {
-      this.field_container = document.getElementById(field_container_id);
+   constructor(board_container_id, score_id, life_id) {
+      this.board_container = document.getElementById(board_container_id);
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
       this.update_requests = [];
    }
    
    
-   initialize(field) {
-      this.clearField();
+   initialize(board) {
+      this.clearBoard();
       this.resetUpdateRequests();
-      this.setContainerDimension(field);
-      this.addBackgroundElements(field);
-      this.addForegroundElements(field);
+      this.setContainerDimension(board);
+      this.addBackgroundElements(board);
+      this.addForegroundElements(board);
    }
    
    
@@ -42,54 +42,58 @@ class View {
    }
 
 
-   clearField() {
+   clearBoard() {
       this.score_display.innerHTML = "";
       this.life_display.innerHTML = "";
-      while (this.field_container.firstChild) {
-         this.field_container.removeChild(this.field_container.firstChild);
+      while (this.board_container.firstChild) {
+         this.board_container.removeChild(this.board_container.firstChild);
       }
       
    }
 
 
    // requires the same column count for all rows!
-   setContainerDimension(field) {
-      this.field_container.style.height = field.getRowCount() * Configuration.dimension_background_div_in_px + 'px';
-      this.field_container.style.width = field.getColumnCountFor(0) * Configuration.dimension_background_div_in_px + 'px';
+   setContainerDimension(board) {
+      this.board_container.style.height = board.getRowCount() * Configuration.dimension_background_div_in_px + 'px';
+      this.board_container.style.width = board.getColumnCountFor(0) * Configuration.dimension_background_div_in_px + 'px';
    }
    
    
-   addBackgroundElements(field) {
+   addBackgroundElements(board) {
       var outer_div = undefined;
       var id_div = '';
       var style_class = '';
+      var current_position = undefined;
 
-      for (var y = 0; y < field.getRowCount(); y++) {
-         for (var x = 0; x < field.getColumnCountFor(y); x++) {
-            id_div = this.getDivID(x, y, Configuration.suffix_background_div);
+      for (var y = 0; y < board.getRowCount(); y++) {
+         for (var x = 0; x < board.getColumnCountFor(y); x++) {
+            current_position = new BoardPosition(x, y);
+            id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(field.getElementAt(x, y));
+            style_class = Configuration.getBackgroundStyleClass(board.getElementAt(current_position));
             outer_div.setAttribute('class', style_class);
-            this.field_container.appendChild(outer_div);
+            this.board_container.appendChild(outer_div);
          }
       }
    }
    
    
-   addForegroundElements(field) {
+   addForegroundElements(board) {
       var outer_div = undefined;
       var inner_div = undefined;
       var id_div = '';
       var style_class = '';
       var element = '';
+      var current_position = undefined;
       
-      for (var y = 0; y < field.getRowCount(); y++) {
-         for (var x = 0; x < field.getColumnCountFor(y); x++) {
-            id_div = this.getDivID(x, y, Configuration.suffix_background_div);
+      for (var y = 0; y < board.getRowCount(); y++) {
+         for (var x = 0; x < board.getColumnCountFor(y); x++) {
+            current_position= new BoardPosition(x, y);
+            id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = document.getElementById(id_div);
-            id_div = this.getDivID(x, y, Configuration.suffix_foreground_div);
+            id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
-            element = field.getElementAt(x, y);
+            element = board.getElementAt(current_position);
             style_class = this.getInitialStyleClassForForegroundElement(element);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
@@ -117,8 +121,8 @@ class View {
    
    updateLevel() {
       for (let request of this.update_requests) {
-         let id_div = this.getDivID(request.xPosition, request.yPosition, Configuration.suffix_foreground_div);
-         let style_class = Configuration.getForegroundStyleClass(request.object, request.direction);
+         let id_div = this.getDivID(request.getPosition(), Configuration.suffix_foreground_div);
+         let style_class = Configuration.getForegroundStyleClass(request.getObject(), request.getDirection());
          document.getElementById(id_div).setAttribute('class', style_class);
       }
       this.update_requests = []    
@@ -142,8 +146,8 @@ class View {
    }
    
    
-   getDivID(x, y, suffix) {
-      return x.toString() + '_' + y.toString() + '_' + suffix;
+   getDivID(position, suffix) {
+      return position.getX().toString() + '_' + position.getY().toString() + '_' + suffix;
    }
    
    
