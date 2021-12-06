@@ -34,7 +34,7 @@ class Configuration {
 
                         
    // internal and css representation of different game elements
-   static id_unaccessible_board_element = -1;
+   static id_unaccessible_board_element = -1;   // must be < 0
 
    static wall_character = "#";
    static empty_tile_character = "x";
@@ -151,7 +151,7 @@ class Configuration {
    static key_code_s = 83;
    static key_code_w = 87;
 
-   // Code for field parsing
+   // Code for board parsing
    // Source: https://www.ascii-code.com/
    static linefeed_code = 10;
 }
