@@ -3,32 +3,38 @@
 class MovableObject {
     
 
-   constructor(level, xPosition, yPosition) {
+   constructor(level, position) {
       this.level = level;
-      this.xPosition = xPosition;
-      this.yPosition = yPosition;
-      this.next_xPosition = xPosition;
-      this.next_yPosition = yPosition;
+      this.current_position = position;
+      this.current_position_id = this.level.getBoardPositionID(this.current_position);
+      this.next_position = position;
+      this.next_position_id = this.current_position_id;
       this.occupied_board_element = Configuration.empty_tile_character;
       this.has_teleported = false;
    }
    
    
-   setNextPosition(xPosition, yPosition) {
-      this.next_xPosition = xPosition;
-      this.next_yPosition = yPosition;
+   setNextPosition(position) {
+      this.next_position = position;
+      this.next_position_id = this.level.getBoardPositionID(position);
+   }
+
+
+   getCurrentPositionID() {
+      return this.current_position_id;
    }
 
 
    calculateNextPosition(direction) {
-      this.next_xPosition = this.xPosition + direction.x;
-      this.next_yPosition = this.yPosition + direction.y;
+      let next_xPosition = this.current_position.getX() + direction.x;
+      let next_yPosition = this.current_position.getY() + direction.y;
+      this.next_position = new BoardPosition(next_xPosition, next_yPosition);
    }
 
 
    updateCurrentPosition() {
-      this.xPosition = this.next_xPosition;
-      this.yPosition = this.next_yPosition;
+      this.current_position = this.next_position;
+      this.current_position_id = this.level.getBoardPositionID(this.current_position);
    }
    
    
@@ -38,7 +44,7 @@ class MovableObject {
 
    
    isNextBoardPositionEqual(element) {
-      return this.level.board.getElementAt(this.next_xPosition, this.next_yPosition) == element;
+      return this.level.getBoardPositionElement(this.next_position) == element;
    }
 
 

@@ -3,8 +3,8 @@
 class Pacman extends MovableObject {
    
    
-   constructor(level, xPosition, yPosition) {
-      super(level, xPosition, yPosition);
+   constructor(level, position) {
+      super(level, position);
       this.next_direction = '';
       this.lifes = Configuration.initial_pacman_lifes;
    }
@@ -26,7 +26,7 @@ class Pacman extends MovableObject {
    
    handleWallCollision() {
       if (this.isNextBoardPositionEqual(Configuration.wall_character)) {
-         this.setNextPosition(this.xPosition, this.yPosition);
+         this.setNextPosition(this.current_position);
       }
    }
 
@@ -38,8 +38,8 @@ class Pacman extends MovableObject {
          if (this.has_teleported) {
             this.has_teleported = false;
          } else {
-            var destination = this.level.getTeleportDestination(this.xPosition, this.yPosition);
-            this.setNextPosition(destination.xPosition, destination.yPosition);
+            var destination = this.level.getTeleportDestination(this.current_position);
+            this.setNextPosition(destination);
             this.has_teleported = true;
          }
       }
@@ -62,12 +62,11 @@ class Pacman extends MovableObject {
    
    
    updateLevel() {
-      var request = new UpdateRequest(this.xPosition, this.yPosition, this.occupied_board_element);
+      var request = new UpdateRequest(this.current_position, this.occupied_board_element);
       this.level.addUpdateRequest(request);
       this.updateOccupiedBoardElement();
       if (this.lifes > 0) {
-         request = new UpdateRequest(this.next_xPosition, 
-                                     this.next_yPosition, 
+         request = new UpdateRequest(this.next_position,
                                      Configuration.pacman_character,
                                      this.next_direction);
          this.level.addUpdateRequest(request);
@@ -80,7 +79,7 @@ class Pacman extends MovableObject {
          this.occupied_board_element = Configuration.empty_tile_character;
       } else {
          if (!this.isNextBoardPositionEqual(Configuration.pacman_character)) {
-            this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
+            this.occupied_board_element = this.level.getBoardPositionElement(this.next_position);
          }
       }
    }

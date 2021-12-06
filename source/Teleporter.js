@@ -10,11 +10,11 @@ class Teleporter {
     }
 
 
-    isTeleporterFor(xPosition, yPosition) {
-        return (xPosition == this.xPosition_teleporter1 && 
-                yPosition == this.yPosition_teleporter1) ||
-               (xPosition == this.xPosition_teleporter2 &&
-                yPosition == this.yPosition_teleporter2);
+    isTeleporterFor(position) {
+        return (position.getX() == this.xPosition_teleporter1 && 
+                position.getY() == this.yPosition_teleporter1) ||
+               (position.getX() == this.xPosition_teleporter2 &&
+                position.getY() == this.yPosition_teleporter2);
     }
 
 
@@ -29,13 +29,13 @@ class Teleporter {
     }
 
 
-    getDestinationPositionFor(xPosition, yPosition) {
+    getDestinationPositionFor(position) {
         var destination = undefined;
-        if (xPosition == this.xPosition_teleporter1 && yPosition == this.yPosition_teleporter1) {
-            destination = {xPosition: this.xPosition_teleporter2, yPosition: this.yPosition_teleporter2};
+        if (position.getX() == this.xPosition_teleporter1 && position.getY() == this.yPosition_teleporter1) {
+            destination = new BoardPosition(this.xPosition_teleporter2, this.yPosition_teleporter2);
         } else {
-            if (xPosition == this.xPosition_teleporter2 && yPosition == this.yPosition_teleporter2) {
-                destination = {xPosition: this.xPosition_teleporter1, yPosition: this.yPosition_teleporter1};
+            if (position.getX() == this.xPosition_teleporter2 && position.getY() == this.yPosition_teleporter2) {
+                destination = new BoardPosition(this.xPosition_teleporter1, this.yPosition_teleporter1);
             }
         }
         return destination;
