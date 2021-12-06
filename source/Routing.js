@@ -3,8 +3,7 @@
 class Routing {
    
    
-   constructor(level, board) {
-      this.level = level;
+   constructor(board) {
       this.routing_table = this.initializeRoutingTable(board);
       this.routing_table = new RoutingAlgorithm(board).calculateShortestPaths(this.routing_table);
    }
@@ -25,9 +24,9 @@ class Routing {
       var current_id = 0;
       for (var y = 0; y < board.getRowCount(); y++) {
          for (var x = 0; x < board.getColumnCountFor(y); x++) {
-            current_id = board.getIdAt(x, y);
+            current_id = board.getIdAtIndex(x, y);
             if (current_id != Configuration.id_unaccessible_board_element) {
-               row.push(new FieldNode(current_id, x, y))
+               row.push(new RoutingNode(current_id, x, y))
             }
          }
       }
@@ -43,36 +42,22 @@ class Routing {
       return clone;
    }
 
-   
-   calculateNextPosition(ghost_xPosition, ghost_yPosition) {
-      var start_node = this.getRoutingNodeForGhost(ghost_xPosition, ghost_yPosition);
-      var end_node = this.selectClosestPacmanNode(start_node);
-      var next_position = this.selectFirstNodeOfShortestPath(start_node, end_node);
-      return {xPosition: next_position.xPosition, yPosition: next_position.yPosition};
+
+   calculateNextPositionOnShortestPath(start_node_id, destination_node_id) {
+      var start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
+      var end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
+      var next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
+      return new BoardPosition(next_node.xPosition, next_node.yPosition);
    }
-   
-   
-   getRoutingNodeForGhost(x, y) {
-      var ghost_id = this.level.board.getIdAt(x, y);
-      return this.routing_table[ghost_id][ghost_id];
+
+
+   getRoutingNodeForId(row_id, column_id) {
+      return this.routing_table[row_id][column_id];
    }
-   
-   
-   selectClosestPacmanNode(start_node) {
-      var min_cost_end_node = undefined;
-      var current_end_node = undefined;
-      
-      for (var pacman of this.level.pacmans) {
-         current_end_node = this.getRoutingNodeForPacman(start_node.id, pacman.xPosition, pacman.yPosition);
-      
-         if (min_cost_end_node == undefined || 
-               current_end_node.getPathCost() < min_cost_end_node.getPathCost() ||
-               current_end_node.getPathCost() == Infinity) {
-               min_cost_end_node = current_end_node;
-         }
-      }
-      
-      return min_cost_end_node;
+
+
+   getShortestDistanceBetween(start_node, end_node) {
+      return this.routing_table[start_node][end_node].getPathCost();
    }
    
    
@@ -84,11 +69,5 @@ class Routing {
       return current_end_node;
    }
    
-   
-   getRoutingNodeForPacman(ghost_id, x, y) {
-      var pacman_id = this.level.board.getIdAt(x, y);
-      return this.routing_table[ghost_id][pacman_id];
-   }
- 
-   
+
 }
