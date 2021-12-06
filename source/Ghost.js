@@ -3,19 +3,38 @@
 class Ghost extends MovableObject {
    
    
-   constructor(level, xPosition, yPosition) {
-      super(level, xPosition, yPosition);
+   constructor(level, position, routing) {
+      super(level, position);
+      this.routing = routing;
    }
    
-   
-   moveToPosition(position) {
-      this.setNextPosition(position.xPosition, position.yPosition)
+
+   move() {
+      var pacman_id = this.selectClosestPacmanID();
+      var next_position = this.routing.calculateNextPositionOnShortestPath(this.current_position_id, pacman_id);
+      this.setNextPosition(next_position)
       this.handlePacManCollision();
-      this.updateField();
+      this.updateBoard();
       this.updateCurrentPosition();
    }
-    
 
+
+   selectClosestPacmanID() {
+      var pacman_ids = this.level.getPacmanIDs();
+      var min_cost_id = undefined;
+      var min_path_cost = Infinity;
+      
+      for (var pacman_id of pacman_ids) {   
+         var current_path_cost =  this.routing.getShortestDistanceBetween(this.current_position_id, pacman_id);
+         if (current_path_cost < min_path_cost) {
+            min_path_cost = current_path_cost;
+            min_cost_id = pacman_id;
+         }
+      }
+      return min_cost_id;
+   }
+
+    
    handlePacManCollision() {
       if (this.isNextBoardPositionEqual(Configuration.pacman_character)) {
          this.decrementLifeOfPacman();
@@ -23,13 +42,11 @@ class Ghost extends MovableObject {
    }
 
    
-   updateField() {
-      this.level.addUpdateRequest(new UpdateRequest(this.xPosition, 
-                                                    this.yPosition, 
+   updateBoard() {
+      this.level.addUpdateRequest(new UpdateRequest(this.current_position,
                                                     this.occupied_board_element));
       this.updateOccupiedBoardElement();
-      this.level.addUpdateRequest(new UpdateRequest(this.next_xPosition, 
-                                                    this.next_yPosition, 
+      this.level.addUpdateRequest(new UpdateRequest(this.next_position,
                                                     Configuration.ghost_character,
                                                     this.calculateCurrentMovementDirection()));
    }
@@ -37,7 +54,7 @@ class Ghost extends MovableObject {
        
    decrementLifeOfPacman() {
       for (let pacman of this.level.pacmans) {
-         if (pacman.xPosition == this.next_xPosition && pacman.yPosition == this.next_yPosition) {
+         if (pacman.getCurrentPositionID() == this.next_position_id) {
             pacman.decrementLife();
          }
       }
@@ -50,14 +67,14 @@ class Ghost extends MovableObject {
           this.isNextBoardPositionEqual(Configuration.pacman_character)) {
          this.occupied_board_element = Configuration.empty_tile_character;
       } else {
-         this.occupied_board_element = this.level.board.getElementAt(this.next_xPosition, this.next_yPosition);
+         this.occupied_board_element = this.level.getBoardPositionElement(this.next_position);
       }
    }
 
 
    calculateCurrentMovementDirection() {
-      var direction_x = this.next_xPosition - this.xPosition;
-      var direction_y = this.next_yPosition - this.yPosition;
+      var direction_x = this.next_position.getX() - this.current_position.getX();
+      var direction_y = this.next_position.getY() - this.current_position.getY();
       return Configuration.getDirectionNameByIndex(direction_x, direction_y);
    }
 
