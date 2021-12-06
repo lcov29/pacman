@@ -61,16 +61,15 @@ class RoutingAlgorithm {
    
    searchNeighborsIds(field_node) {
       var neighbors_ids = [];
-      var calculated_x = 0;
-      var calculated_y = 0;
+      var position = null;
       var direction = undefined;
       var potential_neighbor_id = undefined;
 
       for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
          direction = Configuration.getDirectionByID(i);
-         calculated_x = field_node.xPosition + direction.x;
-         calculated_y = field_node.yPosition + direction.y;
-         potential_neighbor_id = this.board.getIdAt(calculated_x, calculated_y);
+         position = new BoardPosition(field_node.xPosition + direction.x, 
+                                      field_node.yPosition + direction.y);
+         potential_neighbor_id = this.board.getIdAt(position);
          if (potential_neighbor_id != Configuration.id_unaccessible_board_element) {
             neighbors_ids.push(potential_neighbor_id);
          }
