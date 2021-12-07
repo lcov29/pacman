@@ -65,8 +65,8 @@ class RoutingAlgorithm {
       var direction = undefined;
       var potential_neighbor_id = undefined;
 
-      for (var i = Configuration.min_direction_id; i <= Configuration.max_direction_id; i++) {
-         direction = Configuration.getDirectionByID(i);
+      for (var i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
+         direction = Directions.getDirectionByID(i);
          position = new BoardPosition(field_node.xPosition + direction.x, 
                                       field_node.yPosition + direction.y);
          potential_neighbor_id = this.board.getIdAt(position);
