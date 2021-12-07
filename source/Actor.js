@@ -1,6 +1,6 @@
 "use strict";
 
-class MovableObject {
+class Actor {
     
 
    constructor(level, position) {

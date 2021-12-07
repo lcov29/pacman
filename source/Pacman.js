@@ -1,6 +1,6 @@
 "use strict";
 
-class Pacman extends MovableObject {
+class Pacman extends Actor {
    
    
    constructor(level, position) {

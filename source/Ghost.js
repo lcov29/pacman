@@ -1,6 +1,6 @@
 "use strict";
 
-class Ghost extends MovableObject {
+class Ghost extends Actor {
    
    
    constructor(level, position, routing) {
