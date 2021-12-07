@@ -25,11 +25,6 @@ class Board {
    getElementAtIndex(xPosition, yPosition) {
       return this.board[yPosition][xPosition].getElement();
    }
-   
-
-   getIdAt(position) {
-      return this.board[position.getY()][position.getX()].getID();
-   } 
 
 
    getIdAtIndex(xPosition, yPosition) {
@@ -59,6 +54,65 @@ class Board {
 
    getTeleporterPositions() {
       return this.teleporter_positions;
+   }
+
+
+   isAccessibleAtIndex(x, y) {
+      return this.getIdAtIndex(x, y) != Configuration.id_unaccessible_board_element;
+   }
+
+
+   isIndexOnBoard(x, y) {
+      return 0 <= y && y < this.board.length &&
+             0 <= x && x < this.board[y].length;
+   }
+
+
+   getRoutingNodeList() {
+      var routing_nodes = [];
+      var current_node = undefined;
+      for (var y = 0; y < this.board.length; y++) {
+         for (var x = 0; x < this.board[y].length; x++) {
+            if (this.isAccessibleAtIndex(x, y)) {
+               current_node = new RoutingNode(this.getIdAtIndex(x, y), x, y);
+               routing_nodes.push(current_node);
+            }
+         }
+      }
+      return routing_nodes;
+   }
+
+
+   buildRoutingNeighborIdList() {
+      var neighbor_id_list = [];
+      for (var y = 0; y < this.board.length; y++) {
+         for (var x = 0; x < this.board[y].length; x++) {
+            if (this.isAccessibleAtIndex(x, y)) {
+               neighbor_id_list.push(this.getNeighboringIDs(x, y));
+            }
+         }
+      }
+      return neighbor_id_list;
+   }
+
+
+   getNeighboringIDs(xPosition, yPosition) {
+      var neighbor_ids = [];
+      var direction = undefined;
+      var neighbor_x = undefined;
+      var neighbor_y = undefined;
+      var neighbor_id = undefined;
+
+      for (var i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
+         direction = Directions.getDirectionByID(i);
+         neighbor_x = xPosition + direction.x;
+         neighbor_y = yPosition + direction.y;
+         if (this.isIndexOnBoard(neighbor_x, neighbor_y) && this.isAccessibleAtIndex(neighbor_x, neighbor_y)) {
+            neighbor_id = this.getIdAtIndex(neighbor_x, neighbor_y);
+            neighbor_ids.push(neighbor_id);
+         }
+      }
+      return neighbor_ids;
    }
 
 

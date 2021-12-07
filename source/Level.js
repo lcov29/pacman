@@ -35,7 +35,9 @@ class Level {
 
     initializeGhosts() {
         var ghosts = [];
-        var routing = new Routing(this.board.clone());
+        var routing_node_list = this.board.getRoutingNodeList();
+        var neighbor_id_list = this.board.buildRoutingNeighborIdList();
+        var routing = new Routing(routing_node_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.ghost_character:                     // add different ghost types
@@ -55,13 +57,13 @@ class Level {
         for (let position of this.board.getTeleporterPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.teleporter_1_tile_character:
-                    teleporter1.add(x, y);
+                    teleporter1.add(position.getX(), position.getY());
                     break;
                 case Configuration.teleporter_2_tile_character:
-                    teleporter2.add(x, y);
+                    teleporter2.add(position.getX(), position.getY());
                     break;
                 case Configuration.teleporter_3_tile_character:
-                    teleporter3.add(x, y);
+                    teleporter3.add(position.getX(), position.getY());
                     break;
             }
         }
@@ -148,7 +150,7 @@ class Level {
 
 
     getBoardPositionID(position) {
-        return this.board.getIdAt(position);
+        return this.board.getIdAtIndex(position.getX(), position.getY());
     }
 
     
