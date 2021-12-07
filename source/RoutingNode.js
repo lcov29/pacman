@@ -11,6 +11,10 @@ class RoutingNode {
    }
    
 
+   getID() {
+      return this.id;
+   }
+
    setPredecessorId(id) {
       this.predecessor_node_id = id;
    }
@@ -21,7 +25,7 @@ class RoutingNode {
    }
    
 
-   getClone() {
+   clone() {
       var clone = new RoutingNode(this.id, this.xPosition, this.yPosition);
       clone.predecessor_node_id = this.predecessor_node_id;
       clone.path_cost = this.path_cost;
