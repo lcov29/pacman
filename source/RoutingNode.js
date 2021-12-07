@@ -2,7 +2,6 @@
 
 class RoutingNode {
    
-
    constructor(id, xPosition, yPosition) {
       this.id = id;
       this.xPosition = xPosition;
