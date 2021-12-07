@@ -90,52 +90,6 @@ class Configuration {
    }
 
 
-   /*
-   // internal direction definition
-   static direction_up = {x:0, y:-1};
-   static direction_right = {x:1, y:0};
-   static direction_down = {x:0, y:1};
-   static direction_left = {x:-1, y:0};
-
-   static min_direction_id = 0;
-   static max_direction_id = 3;
-
-   static direction_map_name_to_index = {
-      'up':    this.direction_up,
-      'right': this.direction_right,
-      'down':  this.direction_down,
-      'left':  this.direction_left
-   };
-   
-   static direction_map_index_to_name = {
-      '(0,-1)': 'up',
-      '(1,0)':  'right',
-      '(0,1)':  'down',
-      '(-1,0)': 'left'
-   };  
-
-   static direction_map_id_to_index = {
-      0: this.direction_up,
-      1: this.direction_right,
-      2: this.direction_down,
-      3: this.direction_left
-   };
-   
-   static getDirectionByName(name) {
-      return this.direction_map_name_to_index[name];
-   }
-
-   static getDirectionNameByIndex(x, y) {
-      var index = "(" + x + "," + y + ")";
-      return this.direction_map_index_to_name[index];
-   }
-
-   static getDirectionByID(direction_id) {
-      return this.direction_map_id_to_index[direction_id];
-   }
-   */
-
-
    // settings for view.js
    static suffix_foreground_div = "fg";
    static suffix_background_div = "bg";
