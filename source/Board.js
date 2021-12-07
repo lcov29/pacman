@@ -25,11 +25,6 @@ class Board {
    getElementAtIndex(xPosition, yPosition) {
       return this.board[yPosition][xPosition].getElement();
    }
-   
-
-   getIdAt(position) {
-      return this.board[position.getY()][position.getX()].getID();
-   } 
 
 
    getIdAtIndex(xPosition, yPosition) {
