@@ -4,81 +4,38 @@ class Board {
 
    
    constructor(board_text) {
-      this.board = this.parseBoard(board_text);
-      this.indexAccessibleElements();
-   }
-
-    
-   parseBoard(board_text) {
-      
-      var output_board = [];
-      var current_row = [];
-      var current_character = '';
-      var current_object = undefined;
-      var is_linefeed = false;
-      var is_last_character = false;
-      
-      for (var i = 0; i < board_text.length; i++) {
-         current_character = board_text.charAt(i);
-         is_linefeed = (current_character.charCodeAt(0) == Configuration.linefeed_code);
-         is_last_character = (i == board_text.length - 1);
-         
-         if (!is_linefeed) {
-            current_object = this.createObject(Configuration.id_unaccessible_board_element, current_character);
-            current_row.push(current_object);
-         }
-         if (is_linefeed || is_last_character) {
-            output_board.push(current_row);
-            current_row = [];
-         }
-         
-      }
-      return output_board;
-   }
-
-
-   indexAccessibleElements() {
-      var id = 0;
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAtIndex(x,y) != Configuration.wall_character) {
-               this.board[y][x].id = id;
-               id++;
-            }
-         }
-      }
+      this.board = new BoardParser().parse(board_text);
+      this.initial_pacman_positions = [];
+      this.initial_ghost_positions = [];
+      this.teleporter_positions = [];
+      this.searchCurrentPositions();
    }
 
 
    setElementAt(position, element) {
-      this.board[position.getY()][position.getX()].element = element;
+      this.board[position.getY()][position.getX()].setElement(element);
    }
    
    
    getElementAt(position) {
-      return this.board[position.getY()][position.getX()].element;
+      return this.board[position.getY()][position.getX()].getElement();
    }
 
 
    getElementAtIndex(xPosition, yPosition) {
-      return this.board[yPosition][xPosition].element;
+      return this.board[yPosition][xPosition].getElement();
    }
    
 
    getIdAt(position) {
-      return this.board[position.getY()][position.getX()].id;
+      return this.board[position.getY()][position.getX()].getID();
    } 
 
 
    getIdAtIndex(xPosition, yPosition) {
-      return this.board[yPosition][xPosition].id;
+      return this.board[yPosition][xPosition].getID();
    }
    
-
-   createObject(id, element) {
-      return {id: id, element: element};
-   }
-
 
    getRowCount() {
       return this.board.length;
@@ -90,6 +47,45 @@ class Board {
    }
 
 
+   getInitialPacmanPositions() {
+      return this.initial_pacman_positions;
+   }
+
+
+   getInitialGhostPositions() {
+      return this.initial_ghost_positions;
+   }
+
+
+   getTeleporterPositions() {
+      return this.teleporter_positions;
+   }
+
+
+   searchCurrentPositions() {
+      for (var y = 0; y < this.board.length; y++) {
+         for (var x = 0; x < this.board[y].length; x++) {
+            switch (this.getElementAtIndex(x, y)) {
+
+               case Configuration.pacman_character:
+                  this.initial_pacman_positions.push(new BoardPosition(x, y));
+                  break;
+
+               case Configuration.ghost_character:
+                  this.initial_ghost_positions.push(new BoardPosition(x, y));
+                  break;
+
+               case Configuration.teleporter_1_tile_character:
+               case Configuration.teleporter_2_tile_character:
+               case Configuration.teleporter_3_tile_character:
+                  this.teleporter_positions.push(new BoardPosition(x, y));
+                  break;
+            }
+         }
+      }
+   }
+
+  
    countAvailablePoints() {
       var number_of_points = 0;
       for (var y = 0; y < this.board.length; y++) {
@@ -103,58 +99,15 @@ class Board {
    }
    
 
-   getPacmanPositions() {
-      var pacman_positions = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++)  {
-            if (this.getElementAtIndex(x, y) == Configuration.pacman_character) {
-               pacman_positions.push(new BoardPosition(x, y));
-            }
-         }
-      }
-      return pacman_positions;
-   }
-   
- 
-   getGhostPositions() {
-      var ghost_positions = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAtIndex(x, y) == Configuration.ghost_character) {
-               ghost_positions.push(new BoardPosition(x, y));
-            }
-         }
-      }
-      return ghost_positions;
-   }
-
-
-   getTeleporterPositions() {
-      var teleporter_positions = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
-            switch (this.getElementAtIndex(x, y)) {
-               case Configuration.teleporter_1_tile_character:
-               case Configuration.teleporter_2_tile_character:
-               case Configuration.teleporter_3_tile_character:
-                  teleporter_positions.push(new BoardPosition(x, y));
-                  break;
-            }
-         }
-      }
-      return teleporter_positions;
-   }
-
-
    clone() {
       var output = undefined;
       var board_clone = [];
       var row = [];
-      var object_clone = '';
+      var element_clone = '';
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            object_clone = this.createObject(this.getIdAtIndex(x, y), this.getElementAtIndex(x, y));
-            row.push(object_clone);
+            element_clone = this.board[y][x].clone();
+            row.push(element_clone);
          }
          board_clone.push(row);
          row = [];
@@ -163,6 +116,5 @@ class Board {
       output.board = board_clone;
       return output;
    }
-   
    
 }
