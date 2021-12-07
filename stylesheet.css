@@ -33,21 +33,21 @@ body {
    width: 30px;
    height: 30px;
    float: left;
-   background-image: url('resource/teleporters/teleporter_1.png');
+   background-image: url('sprites/teleporters/teleporter_1.png');
 }
 
 .teleporter_2_tile {
    width: 30px;
    height: 30px;
    float: left;
-   background-image: url('resource/teleporters/teleporter_2.png');
+   background-image: url('sprites/teleporters/teleporter_2.png');
 }
 
 .teleporter_3_tile {
    width: 30px;
    height: 30px;
    float: left;
-   background-image: url('resource/teleporters/teleporter_3.png');
+   background-image: url('sprites/teleporters/teleporter_3.png');
 }
 
 
@@ -75,25 +75,25 @@ body {
 .pacman_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/pacman/pacman_up.png');
+   background-image: url('sprites/pacman/pacman_up.png');
 }
 
 .pacman_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/pacman/pacman_right.png');
+   background-image: url('sprites/pacman/pacman_right.png');
 }
 
 .pacman_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/pacman/pacman_down.png');
+   background-image: url('sprites/pacman/pacman_down.png');
 }
 
 .pacman_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/pacman/pacman_left.png');
+   background-image: url('sprites/pacman/pacman_left.png');
 }
 
 
@@ -101,25 +101,25 @@ body {
 .ghost_blinky_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_blinky/blinky_up.png');
+   background-image: url('sprites/ghost_blinky/blinky_up.png');
 }
 
 .ghost_blinky_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_blinky/blinky_right.png');
+   background-image: url('sprites/ghost_blinky/blinky_right.png');
 }
 
 .ghost_blinky_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_blinky/blinky_down.png');
+   background-image: url('sprites/ghost_blinky/blinky_down.png');
 }
 
 .ghost_blinky_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_blinky/blinky_left.png');
+   background-image: url('sprites/ghost_blinky/blinky_left.png');
 }
 
 
@@ -127,25 +127,25 @@ body {
 .ghost_clyde_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_clyde/clyde_up.png');
+   background-image: url('sprites/ghost_clyde/clyde_up.png');
 }
 
 .ghost_clyde_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_clyde/clyde_right.png');
+   background-image: url('sprites/ghost_clyde/clyde_right.png');
 }
 
 .ghost_clyde_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_clyde/clyde_down.png');
+   background-image: url('sprites/ghost_clyde/clyde_down.png');
 }
 
 .ghost_clyde_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_clyde/clyde_left.png');
+   background-image: url('sprites/ghost_clyde/clyde_left.png');
 }
 
 
@@ -153,25 +153,25 @@ body {
 .ghost_inky_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_inky/inky_up.png');
+   background-image: url('sprites/ghost_inky/inky_up.png');
 }
 
 .ghost_inky_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_inky/inky_right.png');
+   background-image: url('sprites/ghost_inky/inky_right.png');
 }
 
 .ghost_inky_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_inky/inky_down.png');
+   background-image: url('sprites/ghost_inky/inky_down.png');
 }
 
 .ghost_inky_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_inky/inky_left.png');
+   background-image: url('sprites/ghost_inky/inky_left.png');
 }
 
 
@@ -179,25 +179,25 @@ body {
 .ghost_pinky_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_pinky/pinky_up.png');
+   background-image: url('sprites/ghost_pinky/pinky_up.png');
 }
 
 .ghost_pinky_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_pinky/pinky_right.png');
+   background-image: url('sprites/ghost_pinky/pinky_right.png');
 }
 
 .ghost_pinky_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_pinky/pinky_down.png');
+   background-image: url('sprites/ghost_pinky/pinky_down.png');
 }
 
 .ghost_pinky_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_pinky/pinky_left.png');
+   background-image: url('sprites/ghost_pinky/pinky_left.png');
 }
 
 
@@ -205,25 +205,25 @@ body {
 .ghost_dead_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_dead/ghost_dead_up.png');
+   background-image: url('sprites/ghost_dead/ghost_dead_up.png');
 }
 
 .ghost_dead_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_dead/ghost_dead_right.png');
+   background-image: url('sprites/ghost_dead/ghost_dead_right.png');
 }
 
 .ghost_dead_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_dead/ghost_dead_down.png');
+   background-image: url('sprites/ghost_dead/ghost_dead_down.png');
 }
 
 .ghost_dead_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_dead/ghost_dead_left.png');
+   background-image: url('sprites/ghost_dead/ghost_dead_left.png');
 }
 
 
@@ -231,23 +231,23 @@ body {
 .ghost_scared_up {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_scared/ghost_scared_up.png');
+   background-image: url('sprites/ghost_scared/ghost_scared_up.png');
 }
 
 .ghost_scared_right {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_scared/ghost_scared_right.png');
+   background-image: url('sprites/ghost_scared/ghost_scared_right.png');
 }
 
 .ghost_scared_down {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_scared/ghost_scared_down.png');
+   background-image: url('sprites/ghost_scared/ghost_scared_down.png');
 }
 
 .ghost_scared_left {
    width: 30px;
    height: 30px;
-   background-image: url('resource/ghost_scared/ghost_scared_left.png');
+   background-image: url('sprites/ghost_scared/ghost_scared_left.png');
 }
