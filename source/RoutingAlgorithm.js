@@ -18,24 +18,24 @@ class RoutingAlgorithm {
       //phase 1: initialize all neighboring nodes of start_node
       var unused_nodes = routing_table[id_start_node].slice();
       var current_node = routing_table[id_start_node][id_start_node];
-      var routing_entry = undefined;
+      var routing_node = undefined;
       this.removeNodeFrom(unused_nodes, current_node);
       
       for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
-         routing_entry = routing_table[id_start_node][neighbor_id];
-         routing_entry.setPathCost(1);
-         routing_entry.setPredecessorId(current_node.id);
+         routing_node = routing_table[id_start_node][neighbor_id];
+         routing_node.setPathCost(1);
+         routing_node.setPredecessorId(current_node.getID());
       }
       
       //phase 2: iterate through all unused nodes
       while (unused_nodes.length > 0) {
          current_node = this.searchLowestCostNode(unused_nodes);
          for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
-            routing_entry = routing_table[id_start_node][neighbor_id];           
-            if (unused_nodes.indexOf(routing_entry) != -1) {
-               if (routing_entry.getPathCost() > current_node.getPathCost() + 1) {
-                  routing_entry.setPathCost(current_node.getPathCost() + 1);
-                  routing_entry.setPredecessorId(current_node.id);
+            routing_node = routing_table[id_start_node][neighbor_id];           
+            if (unused_nodes.indexOf(routing_node) != -1) {
+               if (routing_node.getPathCost() > current_node.getPathCost() + 1) {
+                  routing_node.setPathCost(current_node.getPathCost() + 1);
+                  routing_node.setPredecessorId(current_node.getID());
                }
             }
          }
