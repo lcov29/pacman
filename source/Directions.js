@@ -54,7 +54,7 @@ class Directions {
         var direction_x = destination_position.getX() - start_position.getX();
         var direction_y = destination_position.getY() - start_position.getY();
         return Directions.getDirectionNameByIndex(direction_x, direction_y);
-     }
+    }
 
-
+    
 }
