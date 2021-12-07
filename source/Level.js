@@ -17,7 +17,7 @@ class Level {
 
     initializePacmans() {
         var pacmans = [];
-        for (let position of this.board.getPacmanPositions()) {
+        for (let position of this.board.getInitialPacmanPositions()) {
             pacmans.push(new Pacman(this, position));
         }
         return pacmans;
@@ -36,7 +36,7 @@ class Level {
     initializeGhosts() {
         var ghosts = [];
         var routing = new Routing(this.board.clone());
-        for (let position of this.board.getGhostPositions()) {
+        for (let position of this.board.getInitialGhostPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.ghost_character:                     // add different ghost types
                     ghosts.push(new Ghost(this, position, routing));
