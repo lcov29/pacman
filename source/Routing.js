@@ -3,41 +3,25 @@
 class Routing {
    
    
-   constructor(board) {
-      this.routing_table = this.initializeRoutingTable(board);
-      this.routing_table = new RoutingAlgorithm(board).calculateShortestPaths(this.routing_table);
+   constructor(routing_node_list, neighbor_id_list) {
+      this.routing_table = [];
+      this.initializeRoutingTable(routing_node_list);
+      this.routing_table = new RoutingAlgorithm().calculateRoutingTable(this.routing_table, neighbor_id_list);
    }
 
 
-   initializeRoutingTable(board) {
-      var routing_table = [];
-      var row = this.initializeRoutingTableRow(board);
-      for (var i = 0; i < row.length; i++) {
-         routing_table.push(this.cloneRoutingTableRow(row));
+   initializeRoutingTable(routing_node_list) {
+      for (let i = 0; i < routing_node_list.length; i++) {
+         let clone = this.cloneRoutingTableRow(routing_node_list);
+         this.routing_table.push(clone);
       }
-      return routing_table;
-   }
-
-
-   initializeRoutingTableRow(board) {
-      var row = [];
-      var current_id = 0;
-      for (var y = 0; y < board.getRowCount(); y++) {
-         for (var x = 0; x < board.getColumnCountFor(y); x++) {
-            current_id = board.getIdAtIndex(x, y);
-            if (current_id != Configuration.id_unaccessible_board_element) {
-               row.push(new RoutingNode(current_id, x, y))
-            }
-         }
-      }
-      return row;
    }
 
 
    cloneRoutingTableRow(row) {
       var clone = [];
       for (var i = 0; i < row.length; i++) {
-         clone.push(row[i].getClone());
+         clone.push(row[i].clone());
       }
       return clone;
    }

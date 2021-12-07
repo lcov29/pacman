@@ -35,7 +35,9 @@ class Level {
 
     initializeGhosts() {
         var ghosts = [];
-        var routing = new Routing(this.board.clone());
+        var routing_node_list = this.board.getRoutingNodeList();
+        var neighbor_id_list = this.board.buildRoutingNeighborIdList();
+        var routing = new Routing(routing_node_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.ghost_character:                     // add different ghost types
