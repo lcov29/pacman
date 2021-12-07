@@ -90,6 +90,7 @@ class Configuration {
    }
 
 
+   /*
    // internal direction definition
    static direction_up = {x:0, y:-1};
    static direction_right = {x:1, y:0};
@@ -132,6 +133,7 @@ class Configuration {
    static getDirectionByID(direction_id) {
       return this.direction_map_id_to_index[direction_id];
    }
+   */
 
 
    // settings for view.js
