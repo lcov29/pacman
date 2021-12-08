@@ -10,10 +10,10 @@ class Ghost extends Actor {
    
 
    moveToPosition(position, ghost_character) {
-      this.setNextPosition(position)
+      super.setNextPosition(position)
       this.handlePacManCollision();
       this.updateBoard(ghost_character);
-      this.updateCurrentPosition();
+      super.updateCurrentPosition();
    }
 
 
@@ -34,7 +34,7 @@ class Ghost extends Actor {
 
     
    handlePacManCollision() {
-      if (this.isNextBoardPositionEqual(Configuration.pacman_character)) {
+      if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          this.decrementLifeOfPacman();
       }
    }
@@ -50,7 +50,8 @@ class Ghost extends Actor {
                                                                                           this.next_position)));
    }
     
-       
+
+   //TODO: move funtion to Level.js 
    decrementLifeOfPacman() {
       for (let pacman of this.level.pacmans) {
          if (pacman.getCurrentPositionID() == this.next_position_id) {
@@ -62,8 +63,8 @@ class Ghost extends Actor {
    
    //TODO: check for edge cases
    updateOccupiedBoardElement() {
-      if (this.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
-          this.isNextBoardPositionEqual(Configuration.pacman_character)) {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
+          super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          this.occupied_board_element = Configuration.empty_tile_character;
       } else {
          this.occupied_board_element = this.level.getBoardPositionElement(this.next_position);

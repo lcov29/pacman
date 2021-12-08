@@ -10,9 +10,9 @@ class Blinky extends Ghost {
 
 
     move() {
-        var pacman_id = this.selectClosestPacmanID();
+        var pacman_id = super.selectClosestPacmanID();
         var next_position = this.routing.calculateNextPositionOnShortestPath(this.current_position_id, pacman_id);
-        this.moveToPosition(next_position, this.character);
+        super.moveToPosition(next_position, this.character);
     }
 
 
