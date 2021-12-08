@@ -14,7 +14,7 @@ class Routing {
       var start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
       var end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
       var next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
-      return new BoardPosition(next_node.xPosition, next_node.yPosition);
+      return new BoardPosition(next_node.xPosition, next_node.yPosition, next_node.getID());
    }
 
 

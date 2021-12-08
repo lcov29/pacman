@@ -23,7 +23,7 @@ class Ghost extends Actor {
       var min_path_cost = Infinity;
       
       for (var pacman_id of pacman_ids) {   
-         var current_path_cost =  this.routing.getShortestDistanceBetween(this.current_position_id, pacman_id);
+         var current_path_cost =  this.routing.getShortestDistanceBetween(this.current_position.getID(), pacman_id);
          if (current_path_cost < min_path_cost) {
             min_path_cost = current_path_cost;
             min_cost_id = pacman_id;
@@ -54,7 +54,7 @@ class Ghost extends Actor {
    //TODO: move funtion to Level.js 
    decrementLifeOfPacman() {
       for (let pacman of this.level.pacmans) {
-         if (pacman.getCurrentPositionID() == this.next_position_id) {
+         if (pacman.getCurrentPositionID() == this.next_position.getID()) {
             pacman.decrementLife();
          }
       }

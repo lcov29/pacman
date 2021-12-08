@@ -122,17 +122,17 @@ class Board {
             switch (this.getElementAtIndex(x, y)) {
 
                case Configuration.pacman_character:
-                  this.initial_pacman_positions.push(new BoardPosition(x, y));
+                  this.initial_pacman_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
                   break;
 
                case Configuration.ghost_blinky_character:
-                  this.initial_ghost_positions.push(new BoardPosition(x, y));
+                  this.initial_ghost_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
                   break;
 
                case Configuration.teleporter_1_tile_character:
                case Configuration.teleporter_2_tile_character:
                case Configuration.teleporter_3_tile_character:
-                  this.teleporter_positions.push(new BoardPosition(x, y));
+                  this.teleporter_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
                   break;
             }
          }

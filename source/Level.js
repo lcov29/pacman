@@ -57,13 +57,13 @@ class Level {
         for (let position of this.board.getTeleporterPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.teleporter_1_tile_character:
-                    teleporter1.add(position.getX(), position.getY());
+                    teleporter1.add(position);
                     break;
                 case Configuration.teleporter_2_tile_character:
-                    teleporter2.add(position.getX(), position.getY());
+                    teleporter2.add(position);
                     break;
                 case Configuration.teleporter_3_tile_character:
-                    teleporter3.add(position.getX(), position.getY());
+                    teleporter3.add(position);
                     break;
             }
         }
@@ -149,8 +149,8 @@ class Level {
     }
 
 
-    getBoardPositionID(position) {
-        return this.board.getIdAtIndex(position.getX(), position.getY());
+    getBoardPositionID(xPosition, yPosition) {
+        return this.board.getIdAtIndex(xPosition, yPosition);
     }
 
     
