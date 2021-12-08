@@ -6,9 +6,9 @@ class Level {
     constructor(level_text, view) {
         this.board = new Board(level_text);
         this.view = view;
+        this.teleporters = this.initializeTeleporters();
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
-        this.teleporters = this.initializeTeleporters();
         this.available_points = this.board.countAvailablePoints();
         this.score = Configuration.initial_score;
         this.update_requests = [];
@@ -36,7 +36,7 @@ class Level {
     initializeGhosts() {
         var ghosts = [];
         var routing_node_list = this.board.getRoutingNodeList();
-        var neighbor_id_list = this.board.buildRoutingNeighborIdList();
+        var neighbor_id_list = this.buildRoutingNeighborIDList();
         var routing = new Routing(routing_node_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (this.board.getElementAt(position)) {
@@ -48,26 +48,46 @@ class Level {
         return ghosts;
     }
 
+    buildRoutingNeighborIDList() {
+        var neighbor_id_list = this.board.buildRoutingNeighborIdList();
+        this.addTeleportersToNeighborIDList(neighbor_id_list);
+        return neighbor_id_list;
+
+    }
+
+    addTeleportersToNeighborIDList(neighbor_id_list) {
+        for (let teleporter of this.teleporters) {
+            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
+            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
+        }
+    }
+
+
 
     initializeTeleporters() {
-        var teleporter1 = new Teleporter();
-        var teleporter2 = new Teleporter();
-        var teleporter3 = new Teleporter();
+        var teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
+        var output = [];
 
         for (let position of this.board.getTeleporterPositions()) {
             switch (this.board.getElementAt(position)) {
                 case Configuration.teleporter_1_tile_character:
-                    teleporter1.add(position);
+                    teleporters[0].add(position);
                     break;
                 case Configuration.teleporter_2_tile_character:
-                    teleporter2.add(position);
+                    teleporters[1].add(position);
                     break;
                 case Configuration.teleporter_3_tile_character:
-                    teleporter3.add(position);
+                    teleporters[2].add(position);
                     break;
             }
         }
-        return [teleporter1, teleporter2, teleporter3];
+
+        for (let teleporter of teleporters) {
+            if (teleporter.isInitialized()) {
+                output.push(teleporter);
+            }
+        }
+        return output;
     }
 
 
