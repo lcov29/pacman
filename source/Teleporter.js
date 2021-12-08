@@ -9,6 +9,22 @@ class Teleporter {
     }
 
 
+    getIDPosition1() {
+        return this.position_teleporter_1.getID();
+    }
+
+
+    getIDPosition2() {
+        return this.position_teleporter_2.getID();
+    }
+
+
+    isInitialized() {
+        return this.position_teleporter_1 != undefined &&
+               this.position_teleporter_2 != undefined;
+    }
+
+    
     isTeleporterFor(position) {
         return position.getID() == this.position_teleporter_1.getID() ||
                position.getID() == this.position_teleporter_2.getID();
