@@ -2,43 +2,38 @@
 
 class Teleporter {
 
+    
     constructor() {
-        this.xPosition_teleporter1 = -1;
-        this.yPosition_teleporter1 = -1;
-        this.xPosition_teleporter2 = -1;
-        this.yPosition_teleporter2 = -1;
+        this.position_teleporter_1 = undefined;
+        this.position_teleporter_2 = undefined;
     }
 
 
     isTeleporterFor(position) {
-        return (position.getX() == this.xPosition_teleporter1 && 
-                position.getY() == this.yPosition_teleporter1) ||
-               (position.getX() == this.xPosition_teleporter2 &&
-                position.getY() == this.yPosition_teleporter2);
+        return position.getID() == this.position_teleporter_1.getID() ||
+               position.getID() == this.position_teleporter_2.getID();
     }
 
 
-    add(xPosition, yPosition) {
-        if (this.xPosition_teleporter1 == -1 && this.yPosition_teleporter1 == -1) {
-            this.xPosition_teleporter1 = xPosition;
-            this.yPosition_teleporter1 = yPosition;
-        }  else {
-            this.xPosition_teleporter2 = xPosition;
-            this.yPosition_teleporter2 = yPosition;
+    add(position) {
+        if (this.position_teleporter_1 == undefined) {
+            this.position_teleporter_1 = position;
+        } else {
+            this.position_teleporter_2 = position;
         }
     }
 
 
     getDestinationPositionFor(position) {
         var destination = undefined;
-        if (position.getX() == this.xPosition_teleporter1 && position.getY() == this.yPosition_teleporter1) {
-            destination = new BoardPosition(this.xPosition_teleporter2, this.yPosition_teleporter2);
+        if (position.getID() == this.position_teleporter_1.getID()) {
+            destination = this.position_teleporter_2.clone();
         } else {
-            if (position.getX() == this.xPosition_teleporter2 && position.getY() == this.yPosition_teleporter2) {
-                destination = new BoardPosition(this.xPosition_teleporter1, this.yPosition_teleporter1);
+            if (position.getID() == this.position_teleporter_2.getID()) {
+                destination = this.position_teleporter_1.clone();
             }
         }
-        return destination;
+        return destination; 
     }
 
 
