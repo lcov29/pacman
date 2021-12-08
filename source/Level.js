@@ -40,8 +40,8 @@ class Level {
         var routing = new Routing(routing_node_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (this.board.getElementAt(position)) {
-                case Configuration.ghost_character:                     // add different ghost types
-                    ghosts.push(new Ghost(this, position, routing));
+                case Configuration.ghost_blinky_character:                     // add different ghost types
+                    ghosts.push(new Blinky(this, position, routing));
                     break;
             }
         }

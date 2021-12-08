@@ -108,7 +108,7 @@ class View {
          case Configuration.pacman_character:
             style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_pacman_direction);
             break;
-         case Configuration.ghost_character:
+         case Configuration.ghost_blinky_character:
             style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_ghosts_direction);
             break;
          default:

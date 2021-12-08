@@ -17,9 +17,9 @@ class Configuration {
                         '#o####o#o#########o#o####o#\n' +
                         '#oooooo#ooooo#ooooo#oooooo#\n' +
                         '######o#####o#o#####o######\n' +
-                        '######o#xxxxxgxxxxx#o######\n' +
+                        '######o#xxxxxbxxxxx#o######\n' +
                         '######o#x#########x#o######\n' +
-                        '#xxxxxoxx#########xxoxxxxx#\n' +
+                        '#1xxxxoxx#########xxoxxxx1#\n' +
                         '######o#x#########x#o######\n' +
                         '######o#xxxxxxxxxxx#o######\n' +
                         '######o#x#########x#o######\n' +
@@ -42,7 +42,7 @@ class Configuration {
    static teleporter_2_tile_character = "2";
    static teleporter_3_tile_character = "3";
    static pacman_character = "p";
-   static ghost_character = "g";
+   static ghost_blinky_character = "b";
    static point_character = "o";
    
    static wall_background_css_class = "wall_tile";
@@ -51,7 +51,7 @@ class Configuration {
    static teleporter_2_background_css_class = "teleporter_2_tile";
    static teleporter_3_background_css_class = "teleporter_3_tile";
    static pacman_foreground_css_class = "pacman";
-   static ghost_foreground_css_class = "ghost_blinky"; // replace with ghost types blinky, inky, pinky, clyde, dead and scared
+   static ghost_blinky_foreground_css_class = "ghost_blinky";
    static point_foreground_css_class = "point";
    static empty_foreground_css_class = "empty_foreground";
 
@@ -62,7 +62,7 @@ class Configuration {
       [this.teleporter_2_tile_character]: this.teleporter_2_background_css_class,
       [this.teleporter_3_tile_character]: this.teleporter_3_background_css_class,
       [this.pacman_character]:            this.empty_background_css_class,
-      [this.ghost_character]:             this.empty_background_css_class,
+      [this.ghost_blinky_character]:      this.empty_background_css_class,
       [this.point_character]:             this.empty_background_css_class       
    };
 
@@ -73,7 +73,7 @@ class Configuration {
       [this.teleporter_2_tile_character]: this.empty_foreground_css_class,
       [this.teleporter_3_tile_character]: this.empty_foreground_css_class,
       [this.pacman_character]:            this.pacman_foreground_css_class,
-      [this.ghost_character]:             this.ghost_foreground_css_class,
+      [this.ghost_blinky_character]:      this.ghost_blinky_foreground_css_class,
       [this.point_character]:             this.point_foreground_css_class       
    };
 

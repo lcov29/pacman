@@ -125,7 +125,7 @@ class Board {
                   this.initial_pacman_positions.push(new BoardPosition(x, y));
                   break;
 
-               case Configuration.ghost_character:
+               case Configuration.ghost_blinky_character:
                   this.initial_ghost_positions.push(new BoardPosition(x, y));
                   break;
 
