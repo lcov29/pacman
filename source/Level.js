@@ -15,12 +15,24 @@ class Level {
     }
 
 
-    initializePacmans() {
-        var pacmans = [];
-        for (let position of this.board.getInitialPacmanPositions()) {
-            pacmans.push(new Pacman(this, position));
+    getNumberOfLifes() {
+        var lifes = 0;
+        for (let pacman of this.pacmans) {
+            lifes += pacman.getNumberOfLifes();
         }
-        return pacmans;
+        return lifes;
+    }
+
+
+    getTeleportDestination(position) {
+        var destination = undefined;
+        for (let teleporter of this.teleporters) {
+            if (teleporter.isTeleporterFor(position)) {
+                destination = teleporter.getDestinationPositionFor(position);
+                break;
+            }
+        }
+        return destination;
     }
 
 
@@ -33,12 +45,86 @@ class Level {
     }
 
 
+    setNextPacmanDirection(direction_name) {
+        for (var pacman of this.pacmans) {
+           pacman.setMovementDirectionName(direction_name);
+        }
+    } 
+
+
     decrementLifeOfPacman(pacman_id) {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPositionID() == pacman_id) {
                 pacman.decrementLife();
             }
         }
+    }
+
+
+    addUpdateRequest(request) {
+        this.update_requests.push(request);
+        this.view.addUpdateRequest(request);
+    }
+
+    
+    getBoardPositionID(xPosition, yPosition) {
+        return this.board.getIdAtIndex(xPosition, yPosition);
+    }
+
+    
+    getBoardPositionElement(position) {
+        return this.board.getElementAtIndex(position.getX(), position.getY());
+    }
+
+    
+    isBoardElementTeleporter(element) {
+        return Teleporter.isElementTeleporter(element);
+    }
+
+
+    incrementScoreBy(value) {
+        this.score += value;
+    }
+
+    
+    decrementPoint() {
+        this.available_points--;
+    }
+
+    
+    initializeTeleporters() {
+        var teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
+        var output = [];
+
+        for (let position of this.board.getTeleporterPositions()) {
+            switch (this.board.getElementAt(position)) {
+                case Configuration.teleporter_1_tile_character:
+                    teleporters[0].add(position);
+                    break;
+                case Configuration.teleporter_2_tile_character:
+                    teleporters[1].add(position);
+                    break;
+                case Configuration.teleporter_3_tile_character:
+                    teleporters[2].add(position);
+                    break;
+            }
+        }
+
+        for (let teleporter of teleporters) {
+            if (teleporter.isInitialized()) {
+                output.push(teleporter);
+            }
+        }
+        return output;
+    }
+
+
+    initializePacmans() {
+        var pacmans = [];
+        for (let position of this.board.getInitialPacmanPositions()) {
+            pacmans.push(new Pacman(this, position));
+        }
+        return pacmans;
     }
 
 
@@ -74,48 +160,6 @@ class Level {
     }
 
 
-    initializeTeleporters() {
-        var teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
-        var output = [];
-
-        for (let position of this.board.getTeleporterPositions()) {
-            switch (this.board.getElementAt(position)) {
-                case Configuration.teleporter_1_tile_character:
-                    teleporters[0].add(position);
-                    break;
-                case Configuration.teleporter_2_tile_character:
-                    teleporters[1].add(position);
-                    break;
-                case Configuration.teleporter_3_tile_character:
-                    teleporters[2].add(position);
-                    break;
-            }
-        }
-
-        for (let teleporter of teleporters) {
-            if (teleporter.isInitialized()) {
-                output.push(teleporter);
-            }
-        }
-        return output;
-    }
-
-
-    addUpdateRequest(request) {
-        this.update_requests.push(request);
-        this.view.addUpdateRequest(request);
-    }
- 
-
-    update() {
-        for (let request of this.update_requests) {
-            this.board.setElementAt(request.position, request.object);
-        }
-        this.update_requests = [];
-        this.view.update(this.score, this.getNumberOfLifes());
-    }
-
-
     movePacmans() {
         for (var pacman of this.pacmans) {
             pacman.move();
@@ -130,15 +174,12 @@ class Level {
     }
 
 
-    getTeleportDestination(position) {
-        var destination = undefined;
-        for (let teleporter of this.teleporters) {
-            if (teleporter.isTeleporterFor(position)) {
-                destination = teleporter.getDestinationPositionFor(position);
-                break;
-            }
+    update() {
+        for (let request of this.update_requests) {
+            this.board.setElementAt(request.position, request.object);
         }
-        return destination;
+        this.update_requests = [];
+        this.view.update(this.score, this.getNumberOfLifes());
     }
 
 
@@ -151,47 +192,6 @@ class Level {
             }
         }   
     } 
-
-
-    setNextPacmanDirection(direction_name) {
-        for (var pacman of this.pacmans) {
-           pacman.setMovementDirectionName(direction_name);
-        }
-    } 
-
-
-    getNumberOfLifes() {
-        var lifes = 0;
-        for (let pacman of this.pacmans) {
-            lifes += pacman.getNumberOfLifes();
-        }
-        return lifes;
-    }
-
-
-    incrementScoreBy(value) {
-        this.score += value;
-    }
-
-
-    decrementPoint() {
-        this.available_points--;
-    }
-
-
-    getBoardPositionID(xPosition, yPosition) {
-        return this.board.getIdAtIndex(xPosition, yPosition);
-    }
-
-    
-    getBoardPositionElement(position) {
-        return this.board.getElementAtIndex(position.getX(), position.getY());
-    }
-
-    
-    isBoardElementTeleporter(element) {
-        return Teleporter.isElementTeleporter(element);
-    }
 
 
 }
