@@ -31,8 +31,6 @@ class Ghost extends Actor {
          var next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition());
          super.calculateMovementDirectionName(super.getNextPosition(), next_position_after_teleportation);
       }
-         
-
    }
 
 
@@ -62,7 +60,7 @@ class Ghost extends Actor {
    handlePacManCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          let pacman_id = super.getNextPositionID();
-         super.getLevel().decrementLifeOfPacman(pacman_id)
+         super.decrementLifeOfPacman(pacman_id);
       }
    }
     
