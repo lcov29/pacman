@@ -10,7 +10,31 @@ class Pacman extends Actor {
       this.lifes = Configuration.initial_pacman_lifes;
    }
    
+
+   getNumberOfLifes() {
+      return this.lifes;
+   }
    
+   
+   isDead() {
+      return this.lifes == 0;
+   }
+   
+
+   incrementLifeBy(value) {
+      if (this.lifes > 0 && value > 0) {
+         this.lifes += value;
+      }
+   }
+
+
+   decrementLife() {
+      if (this.lifes > 0) {
+         this.lifes--;
+      }
+   }
+
+
    move() {
       if (super.isMovementDirectionSet()) {
          this.calculateNextPosition();
@@ -81,28 +105,5 @@ class Pacman extends Actor {
       }
    }
 
-
-   incrementLifeBy(value) {
-      if (this.lifes > 0 && value > 0) {
-         this.lifes += value;
-      }
-   }
-
-   decrementLife() {
-      if (this.lifes > 0) {
-         this.lifes--;
-      }
-   }
-
-   
-   getNumberOfLifes() {
-      return this.lifes;
-   }
-   
-   
-   isDead() {
-      return this.lifes == 0;
-   }
-   
    
 }
