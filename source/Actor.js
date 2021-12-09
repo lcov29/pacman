@@ -63,11 +63,6 @@ class Actor {
    }
 
 
-   getOccupiedBoardElement() {
-      return this.occupied_board_element;
-   }
-
-
    setOccupiedBoardElement(element) {
       this.occupied_board_element = element;
    }
@@ -78,13 +73,13 @@ class Actor {
    }
 
 
-   isOccupiedBoardElementEqual(element) {
-      return this.occupied_board_element == element;
+   getMovementDirection() {
+      return Directions.getDirectionByName(this.movement_direction_name);
    }
 
 
-   getMovementDirectionName() {
-      return this.movement_direction_name;
+   isMovementDirectionSet() {
+      return this.movement_direction_name != '';
    }
 
 
@@ -93,20 +88,10 @@ class Actor {
    }
 
 
-   getMovementDirection() {
-      return Directions.getDirectionByName(this.movement_direction_name);
-   }
-
-
    calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
       current_position = (current_position == undefined) ? this.current_position : current_position;
       next_position = (next_position == undefined) ? this.next_position : next_position;
       this.movement_direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
-   }
-
-
-   isMovementDirectionSet() {
-      return this.movement_direction_name != '';
    }
 
 
