@@ -25,20 +25,6 @@ class Ghost extends Actor {
    }
 
 
-   handleTeleportation() {
-      // prevent handling when ghost is not on teleporter or simply moving over without teleporting
-      if (super.isOccupiedBoardElementTeleporter() && this.isNextPositionEqualToTeleportDestination()) {
-         var next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition());
-         super.calculateMovementDirectionName(super.getNextPosition(), next_position_after_teleportation);
-      }
-   }
-
-
-   isNextPositionEqualToTeleportDestination() {
-      return super.getNextPositionID() == super.getTeleportDestinationForCurrentPosition().getID();
-   }
-
-
    selectClosestPacmanID() {
       var pacman_ids = super.getLevel().getPacmanIDs();
       var min_cost_id = undefined;
@@ -56,15 +42,24 @@ class Ghost extends Actor {
       return min_cost_id;
    }
 
-    
+
+   handleTeleportation() {
+      // prevent handling when ghost is not on teleporter or simply moving over without teleporting
+      if (super.isOccupiedBoardElementTeleporter() && this.isNextPositionEqualToTeleportDestination()) {
+         var next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition());
+         super.calculateMovementDirectionName(super.getNextPosition(), next_position_after_teleportation);
+      }
+   }
+
+
    handlePacManCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          let pacman_id = super.getNextPositionID();
          super.decrementLifeOfPacman(pacman_id);
       }
    }
-    
-   
+
+
    //TODO: check for edge cases
    updateOccupiedBoardElement() {
       if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
@@ -76,5 +71,11 @@ class Ghost extends Actor {
 
       }
    }
+
+
+   isNextPositionEqualToTeleportDestination() {
+      return super.getNextPositionID() == super.getTeleportDestinationForCurrentPosition().getID();
+   }
+
    
 }
