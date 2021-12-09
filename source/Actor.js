@@ -10,7 +10,6 @@ class Actor {
       this.next_position = position;
       this.occupied_board_element = Configuration.empty_tile_character;
       this.movement_direction_name = '';
-      this.has_teleported = false;
    }
    
 
@@ -108,16 +107,6 @@ class Actor {
 
    isMovementDirectionSet() {
       return this.movement_direction_name != '';
-   }
-
-
-   hasTeleported() {
-      return this.has_teleported;
-   }
-
-
-   setTeleportStatus(has_teleported) {
-      this.has_teleported = has_teleported;
    }
 
 

@@ -6,6 +6,7 @@ class Pacman extends Actor {
    constructor(level, position) {
       super(level, position);
       super.setCharacter(Configuration.pacman_character);
+      this.has_teleported = false;
       this.lifes = Configuration.initial_pacman_lifes;
    }
    
@@ -42,12 +43,13 @@ class Pacman extends Actor {
 
    handleTeleportation() {
       if (super.isOccupiedBoardElementTeleporter()) {
-         if (super.hasTeleported()) {
-            super.setTeleportStatus(false);
+         // prevent teleporting loop
+         if (this.has_teleported) {
+            this.has_teleported = false;
          } else {
-            var destination = super.getTeleportDestinationForCurrentPosition() ;
+            var destination = super.getTeleportDestinationForCurrentPosition();
             super.setNextPosition(destination);
-            super.setTeleportStatus(true);
+            this.has_teleported = true;
          }
       }
    }
