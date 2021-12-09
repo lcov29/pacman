@@ -33,6 +33,15 @@ class Level {
     }
 
 
+    decrementLifeOfPacman(pacman_id) {
+        for (let pacman of this.pacmans) {
+            if (pacman.getCurrentPositionID() == pacman_id) {
+                pacman.decrementLife();
+            }
+        }
+    }
+
+
     initializeGhosts() {
         var ghosts = [];
         var routing_node_list = this.board.getRoutingNodeList();
@@ -48,6 +57,7 @@ class Level {
         return ghosts;
     }
 
+
     buildRoutingNeighborIDList() {
         var neighbor_id_list = this.board.buildRoutingNeighborIdList();
         this.addTeleportersToNeighborIDList(neighbor_id_list);
@@ -55,13 +65,13 @@ class Level {
 
     }
 
+
     addTeleportersToNeighborIDList(neighbor_id_list) {
         for (let teleporter of this.teleporters) {
             neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
             neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
         }
     }
-
 
 
     initializeTeleporters() {
@@ -145,7 +155,7 @@ class Level {
 
     setNextPacmanDirection(direction_name) {
         for (var pacman of this.pacmans) {
-           pacman.setNextDirection(direction_name);
+           pacman.setMovementDirectionName(direction_name);
         }
     } 
 
@@ -176,6 +186,11 @@ class Level {
     
     getBoardPositionElement(position) {
         return this.board.getElementAtIndex(position.getX(), position.getY());
+    }
+
+    
+    isBoardElementTeleporter(element) {
+        return Teleporter.isElementTeleporter(element);
     }
 
 

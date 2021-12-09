@@ -7,8 +7,15 @@ class Teleporter {
         this.position_teleporter_1 = undefined;
         this.position_teleporter_2 = undefined;
     }
+    
 
+    static isElementTeleporter(element) {
+        return element == Configuration.teleporter_1_tile_character ||
+               element == Configuration.teleporter_2_tile_character ||
+               element == Configuration.teleporter_3_tile_character;
+    }
 
+    
     getIDPosition1() {
         return this.position_teleporter_1.getID();
     }

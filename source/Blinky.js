@@ -5,14 +5,19 @@ class Blinky extends Ghost {
 
     constructor(level, position, routing) {
         super(level, position, routing);
-        this.character = Configuration.ghost_blinky_character;
+        super.setCharacter(Configuration.ghost_blinky_character);
     }
 
 
     move() {
+        var next_position = this.calculateNextPositionFrom(super.getCurrentPosition());
+        super.moveToPosition(next_position);
+    }
+
+
+    calculateNextPositionFrom(position) {
         var pacman_id = super.selectClosestPacmanID();
-        var next_position = this.routing.calculateNextPositionOnShortestPath(this.current_position.getID(), pacman_id);
-        super.moveToPosition(next_position, this.character);
+        return super.getRouting().calculateNextPositionOnShortestPath(position.getID(), pacman_id);
     }
 
 
