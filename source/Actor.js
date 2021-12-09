@@ -108,4 +108,9 @@ class Actor {
    } 
 
 
+   decrementLifeOfPacman(pacman_id) {
+      this.level.decrementLifeOfPacman(pacman_id);
+   }
+
+
 }
