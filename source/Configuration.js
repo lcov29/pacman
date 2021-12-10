@@ -96,7 +96,7 @@ class Configuration {
    static dimension_background_div_in_px = 30;
 
 
-   // Key Codes for pacman movemen
+   // Key Codes for pacman movement
    // Source http://www.javascriptkeycode.com 
    static key_code_left_arrow = 37;
    static key_code_up_arrow = 38;
