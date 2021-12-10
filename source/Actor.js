@@ -11,11 +11,6 @@ class Actor {
       this.occupied_board_element = Configuration.empty_tile_character;
       this.movement_direction_name = '';
    }
-   
-   
-   getLevel() {
-      return this.level;
-   }
 
 
    getCharacter() {
