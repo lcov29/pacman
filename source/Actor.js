@@ -12,7 +12,7 @@ class Actor {
       this.movement_direction_name = '';
    }
    
-
+   
    getLevel() {
       return this.level;
    }
@@ -112,6 +112,11 @@ class Actor {
    }
 
 
+   getPacmanIDs() {
+      return this.level.getPacmanIDs();
+   }
+
+
    decrementLifeOfPacman(pacman_id) {
       this.level.decrementLifeOfPacman(pacman_id);
    }
@@ -134,5 +139,5 @@ class Actor {
       }
    } 
 
-   
+
 }

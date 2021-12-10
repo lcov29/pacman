@@ -26,7 +26,8 @@ class Ghost extends Actor {
 
 
    selectClosestPacmanID() {
-      var pacman_ids = super.getLevel().getPacmanIDs();
+      //var pacman_ids = super.getLevel().getPacmanIDs();
+      var pacman_ids = super.getPacmanIDs();
       var min_cost_id = undefined;
       var min_path_cost = Infinity;
       var current_id = -1;
