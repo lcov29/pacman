@@ -119,4 +119,14 @@ class Actor {
    }
 
 
+   incrementScoreBy(value) {
+      this.level.incrementScoreBy(value);
+   }
+
+
+   decrementAvailablePoints() {
+      this.level.decrementAvailablePoints();
+   }
+
+
 }
