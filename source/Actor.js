@@ -48,8 +48,14 @@ class Actor {
    }
 
 
-   getNextPositionID() {
-      return this.next_position.getID();
+   getNextPositionID(next_xPosition = -1, next_yPosition = -1) {
+      var id = -1;
+      if (next_xPosition == -1 && next_yPosition == -1) {
+         id = this.next_position.getID();
+      } else {
+         id = this.level.getBoardPositionID(next_xPosition, next_yPosition);
+      }
+      return id;
    }
  
 
