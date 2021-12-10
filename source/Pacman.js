@@ -39,6 +39,7 @@ class Pacman extends Actor {
       if (super.isMovementDirectionSet()) {
          this.calculateNextPosition();
          this.handleWallCollision();
+         this.handleGhostDoorCollision();
          this.handleTeleportation();
          this.handlePointCollision();
          this.handleGhostCollision();
@@ -61,6 +62,13 @@ class Pacman extends Actor {
    
    handleWallCollision() {
       if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
+         super.setNextPosition(super.getCurrentPosition());
+      }
+   }
+
+
+   handleGhostDoorCollision() {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_door_character)) {
          super.setNextPosition(super.getCurrentPosition());
       }
    }
