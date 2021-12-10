@@ -66,9 +66,7 @@ class Ghost extends Actor {
           super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          super.setOccupiedBoardElement(Configuration.empty_tile_character);
       } else {
-         var next_occupied_element = super.getLevel().getBoardPositionElement(super.getNextPosition());
-         super.setOccupiedBoardElement(next_occupied_element);
-
+         super.updateNextOccupiedBoardElement();
       }
    }
 

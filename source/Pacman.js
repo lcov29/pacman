@@ -100,8 +100,7 @@ class Pacman extends Actor {
          super.setOccupiedBoardElement(Configuration.empty_tile_character);
       } else {
          if (!super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-            var next_occupied_element = super.getLevel().getBoardPositionElement(super.getNextPosition());
-            super.setOccupiedBoardElement(next_occupied_element);
+            super.updateNextOccupiedBoardElement();
          }
       }
    }

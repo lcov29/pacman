@@ -69,6 +69,12 @@ class Actor {
    }
 
 
+   updateNextOccupiedBoardElement() {
+      var next_element = this.level.getBoardPositionElement(this.next_position);
+      this.setOccupiedBoardElement(next_element);
+   }
+
+
    setOccupiedBoardElement(element) {
       this.occupied_board_element = element;
    }
