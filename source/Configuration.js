@@ -18,8 +18,8 @@ class Configuration {
                         '#oooooo#ooooo#ooooo#oooooo#\n' +
                         '######o#####o#o#####o######\n' +
                         '######o#xxxxxbxxxxx#o######\n' +
-                        '######o#x#########x#o######\n' +
-                        '#1xxxxoxx#########xxoxxxx1#\n' +
+                        '######o#x####d####x#o######\n' +
+                        '#1xxxxoxx#xxxxxxx#xxoxxxx1#\n' +
                         '######o#x#########x#o######\n' +
                         '######o#xxxxxxxxxxx#o######\n' +
                         '######o#x#########x#o######\n' +
@@ -38,6 +38,7 @@ class Configuration {
 
    static wall_character = "#";
    static empty_tile_character = "x";
+   static ghost_door_character = "d";
    static teleporter_1_tile_character = "1";
    static teleporter_2_tile_character = "2";
    static teleporter_3_tile_character = "3";
@@ -47,9 +48,11 @@ class Configuration {
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
+   static ghost_door_background_css_class = "ghost_door_horizontal";
    static teleporter_1_background_css_class = "teleporter_1_tile";
    static teleporter_2_background_css_class = "teleporter_2_tile";
    static teleporter_3_background_css_class = "teleporter_3_tile";
+
    static pacman_foreground_css_class = "pacman";
    static ghost_blinky_foreground_css_class = "ghost_blinky";
    static point_foreground_css_class = "point";
@@ -58,6 +61,7 @@ class Configuration {
    static background_class_map = {
       [this.wall_character]:              this.wall_background_css_class,
       [this.empty_tile_character]:        this.empty_background_css_class,
+      [this.ghost_door_character]:        this.ghost_door_background_css_class,
       [this.teleporter_1_tile_character]: this.teleporter_1_background_css_class,
       [this.teleporter_2_tile_character]: this.teleporter_2_background_css_class,
       [this.teleporter_3_tile_character]: this.teleporter_3_background_css_class,
@@ -69,6 +73,7 @@ class Configuration {
    static foreground_class_map = {
       [this.wall_character]:              this.empty_foreground_css_class,
       [this.empty_tile_character]:        this.empty_foreground_css_class,
+      [this.ghost_door_character]:        this.empty_foreground_css_class,
       [this.teleporter_1_tile_character]: this.empty_foreground_css_class,
       [this.teleporter_2_tile_character]: this.empty_foreground_css_class,
       [this.teleporter_3_tile_character]: this.empty_foreground_css_class,
