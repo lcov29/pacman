@@ -21,8 +21,11 @@ You can play the game via github-pages or you can download it and open the index
 * notify player about victory (no points left)
 * notify player about defeat (no lifes left)
 
+
 *Version 0.02*
 * adjust sprites of pacman and ghosts to their current direction of movement
+* add teleporter tiles
+
 
 ## Ideas for additional features
 * validate user level input
@@ -30,4 +33,3 @@ You can play the game via github-pages or you can download it and open the index
 * add power-ups for pacman allowing him to consume ghosts for a certain period
     * (re-) spawn ghosts in designated area
     * implement a movement patterns for evading pacman
-* add teleporters
