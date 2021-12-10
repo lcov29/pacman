@@ -82,8 +82,8 @@ class Pacman extends Actor {
    
    handlePointCollision() {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
-         super.getLevel().incrementScoreBy(Configuration.score_value_per_point);
-         super.getLevel().decrementPoint();
+         super.incrementScoreBy(Configuration.score_value_per_point);
+         super.decrementAvailablePoints();
       }
    }
    
