@@ -87,7 +87,7 @@ class Level {
     }
 
     
-    decrementPoint() {
+    decrementAvailablePoints() {
         this.available_points--;
     }
 
