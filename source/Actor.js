@@ -112,14 +112,6 @@ class Actor {
    }
 
 
-   sendLevelUpdateRequests(condition_update_next_position) {
-      this.level.addUpdateRequest(new UpdateRequest(this.current_position, this.occupied_board_element));
-      if (condition_update_next_position) {
-         this.level.addUpdateRequest(new UpdateRequest(this.next_position, this.character, this.movement_direction_name));
-      }
-   } 
-
-
    decrementLifeOfPacman(pacman_id) {
       this.level.decrementLifeOfPacman(pacman_id);
    }
@@ -135,4 +127,12 @@ class Actor {
    }
 
 
+   sendLevelUpdateRequests(condition_update_next_position) {
+      this.level.addUpdateRequest(new UpdateRequest(this.current_position, this.occupied_board_element));
+      if (condition_update_next_position) {
+         this.level.addUpdateRequest(new UpdateRequest(this.next_position, this.character, this.movement_direction_name));
+      }
+   } 
+
+   
 }
