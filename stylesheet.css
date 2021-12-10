@@ -50,6 +50,27 @@ body {
    background-image: url('sprites/teleporters/teleporter_3.png');
 }
 
+.ghost_door_vertical {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('sprites/door/ghost_door_vertical.png');
+}
+
+.ghost_door_horizontal {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('sprites/door/ghost_door_horizontal.png');
+}
+
+.ghost_door_crossing {
+   width: 30px;
+   height: 30px;
+   float: left;
+   background-image: url('sprites/door/ghost_door_crossing.png');
+}
+
 
 
 /* accessible foreground level elements (dynamic */
