@@ -54,7 +54,8 @@ class Pacman extends Actor {
       var next_xPosition = super.getCurrentPosition().getX() + direction.x;
       var next_yPosition = super.getCurrentPosition().getY() + direction.y;
       var next_position_id = super.getNextPositionID(next_xPosition, next_yPosition);
-      super.setNextPosition(new BoardPosition(next_xPosition, next_yPosition, next_position_id));
+      var next_position = new BoardPosition(next_xPosition, next_yPosition, next_position_id);
+      super.setNextPosition(next_position);
    }
 
    
