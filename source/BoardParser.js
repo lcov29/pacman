@@ -3,43 +3,44 @@
 class BoardParser {
 
     parse(board_text) {
-        var board_array = this.buildInternalBoardArray(board_text);
-        this.indexAccessibleInternalElements(board_array);
-        return board_array;
+        var board = this.buildBoardPositionArray(board_text);
+        this.indexAccessiblePositions(board);
+        return board;
     }
 
 
-    buildInternalBoardArray(board_text) {
-        var output_board = [];
+    buildBoardPositionArray(board_text) {
+        var output = [];
         var current_row = [];
         var current_character = '';
-        var current_element = undefined;
+        var current_x = 0;
+        var current_y = 0;
         
         for (var i = 0; i < board_text.length; i++) {
-           current_character = board_text.charAt(i);
-           
-           if (!this.isLineFeed(current_character)) {
-              current_element = new BoardInternalElement(current_character);
-              current_row.push(current_element);
-           }
-           if (this.isLineFeed(current_character) || this.isLastCharacter(i, board_text)) {
-              output_board.push(current_row);
-              current_row = [];
-           }
-           
+            current_character = board_text.charAt(i);
+            if (!this.isLineFeed(current_character)) {
+                current_row.push(new BoardPosition(current_x, current_y, current_character));
+                current_x++;
+            }
+            if (this.isLineFeed(current_character) || this.isLastCharacter(i, board_text)) {
+                output.push(current_row);
+                current_row = [];
+                current_x = 0;
+                current_y++;
+            }
         }
-        return output_board;
+        return output;
      }
 
 
-    indexAccessibleInternalElements(board_array) {
+    indexAccessiblePositions(position_array) {
         var id = 0;
         var element = "";
-        for (var y = 0; y < board_array.length; y++) {
-            for (var x = 0; x < board_array[y].length; x++) {
-                element = board_array[y][x].getElement();
+        for (var y = 0; y < position_array.length; y++) {
+            for (var x = 0; x < position_array[y].length; x++) {
+                element = position_array[y][x].getElement();
                 if (this.isAccessibleByActor(element)) {
-                    board_array[y][x].setID(id);
+                    position_array[y][x].setID(id);
                     id++;
                 }
              }
