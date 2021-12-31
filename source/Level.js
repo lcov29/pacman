@@ -179,6 +179,7 @@ class Level {
         var pacmans = [];
         for (let position of this.board.getInitialPacmanPositions()) {
             pacmans.push(new Pacman(this, position));
+            this.board.setPosition(position); // set initial movement direction
         }
         return pacmans;
     }
@@ -189,12 +190,13 @@ class Level {
         var accessible_position_list = this.board.getAccessibleBoardPositionList();
         var neighbor_id_list = this.getAccessibleNeighborIdList();
         var routing = new Routing(accessible_position_list, neighbor_id_list);
-        for (let ghost_position of this.board.getInitialGhostPositions()) {
-            switch (ghost_position.getCharacter()) {
+        for (let position of this.board.getInitialGhostPositions()) {
+            switch (position.getCharacter()) {
                 case Configuration.ghost_blinky_character:                     // add different ghost types
-                    ghosts.push(new Blinky(this, ghost_position, routing));
+                    ghosts.push(new Blinky(this, position, routing));
                     break;
             }
+            this.board.setPosition(position); // set initial movement direction
         }
         return ghosts;
     }
