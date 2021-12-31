@@ -6,13 +6,23 @@ class Level {
     constructor(game, level_text) {
         this.game = game;
         this.board = new Board(level_text);
+        this.teleporters = [];
+        this.pacmans = [];
+        this.ghosts = [];
+        this.available_points = 0;
+        this.total_pacman_lifes = 0;
+        this.score = Configuration.initial_score;
+        this.update_requests = [];
+    }
+
+
+    initialize() {
         this.teleporters = this.initializeTeleporters();
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
         this.available_points = this.board.countAvailablePoints();
         this.total_pacman_lifes = this.countNumberOfPacmanLifes();
-        this.score = Configuration.initial_score;
-        this.update_requests = [];
+        this.initializeGhostDoorDirections();
     }
 
 
@@ -81,6 +91,48 @@ class Level {
     getBoardPositionArray() {
         return this.board.getBoardPositionArray();
     }
+
+
+    initializeGhostDoorDirections() {
+        var ghost_door_direction = "";
+        var accessible_neighbors = undefined;
+
+        for(let position of this.board.getGhostDoorPositions()) {
+            accessible_neighbors = this.board.getAccessibleNeighboringPositions(position.getX(), position.getY());
+            ghost_door_direction = this.calculateGhostDoorDirection(accessible_neighbors);
+            position.setMovementDirection(ghost_door_direction);
+            this.board.setPosition(position);
+        }
+    }
+
+
+    calculateGhostDoorDirection(accessible_neighbors) {
+        var output = "";
+        switch (accessible_neighbors.length) {
+            case 0:
+            case 1:
+            case 3:
+            case 4:
+                output = Configuration.ghost_door_direction_suffix_diagonal;
+                break;
+
+            case 2:
+                let start_position = undefined;
+                let end_position = undefined;
+                for(let x = 0; x < accessible_neighbors.length; x++) {
+                    start_position = accessible_neighbors[x];
+                    for(let y = x + 1; y < accessible_neighbors.length; y++) {
+                        end_position = accessible_neighbors[y];
+                        output = Directions.calculateGhostDoorNeighborDirectionName(start_position, end_position);
+                        if(output != "") { break; }
+                    }
+                    if (output != "") { break; }
+                }
+                break;
+        }
+        return output;
+    }
+
 
     
     isBoardElementTeleporter(element) {
