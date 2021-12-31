@@ -58,7 +58,8 @@ class View {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter(), current_position.getMovementDirection());
+            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter(), 
+                                                                current_position.getMovementDirection());
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
@@ -71,7 +72,7 @@ class View {
       var inner_div = undefined;
       var id_div = '';
       var style_class = '';
-      var character = '';
+      //var character = '';
       var current_position = undefined;
       
       for (var y = 0; y < board.length; y++) {
@@ -81,29 +82,12 @@ class View {
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
-            character = current_position.getCharacter();
-            style_class = this.getInitialStyleClassForForegroundElement(character);
+            style_class = Configuration.getForegroundStyleClass(current_position.getCharacter(), 
+                                                                current_position.getMovementDirection());
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
       }
-   }
-
-
-   getInitialStyleClassForForegroundElement(element) {
-      var style_class = "";
-      switch (element) {
-         case Configuration.pacman_character:
-            style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_pacman_direction);
-            break;
-         case Configuration.ghost_blinky_character:
-            style_class = Configuration.getForegroundStyleClass(element, Configuration.initial_ghosts_direction);
-            break;
-         default:
-            style_class =  Configuration.getForegroundStyleClass(element);
-            break;
-      }
-      return style_class;
    }
    
    
