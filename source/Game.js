@@ -4,13 +4,24 @@ class Game {
 
    
    constructor(level_text, board_container_id, score_id, life_id) {
-      this.view = new View(board_container_id, score_id, life_id);
-      this.level = new Level(level_text, this.view);
-      this.view.initialize(this.level.board.clone());
       this.animation_interval = undefined;
+      this.level = new Level(this, level_text);
+      this.view = new View(board_container_id, score_id, life_id);
+      this.initializeView();
    }
    
-   
+
+   initializeView() {
+      this.view.initialize(this.level.getBoardPositionArray());
+   }
+
+
+   updateView(board_positions, score, number_of_lifes) {
+      this.view.update(board_positions, score, number_of_lifes);
+   }
+
+
+
    //TODO: implement level validation
    isLevelInputValid(level_text) {   }
    
@@ -90,7 +101,7 @@ class Game {
 
    
    isGameLost() {
-      return this.level.getNumberOfLifes() == 0;
+      return this.level.getNumberOfPacmanLifes() == 0;
    }
    
    

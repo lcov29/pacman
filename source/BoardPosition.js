@@ -35,7 +35,7 @@ class BoardPosition {
         return this.movement_direction;
     }
 
-    
+
     setID(id) {
         // prevent id of accessible elements to change after initialisation
         this.id = (this.id == Configuration.id_unaccessible_board_element) ? id : this.id;

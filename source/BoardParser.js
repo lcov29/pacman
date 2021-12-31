@@ -35,11 +35,11 @@ class BoardParser {
 
     indexAccessiblePositions(position_array) {
         var id = 0;
-        var element = "";
+        var character = "";
         for (var y = 0; y < position_array.length; y++) {
             for (var x = 0; x < position_array[y].length; x++) {
-                element = position_array[y][x].getElement();
-                if (this.isAccessibleByActor(element)) {
+                character = position_array[y][x].getCharacter();
+                if (this.isAccessibleByActor(character)) {
                     position_array[y][x].setID(id);
                     id++;
                 }
@@ -58,8 +58,8 @@ class BoardParser {
     }
 
 
-    isAccessibleByActor(element) {
-        return element != Configuration.wall_character;
+    isAccessibleByActor(character) {
+        return character != Configuration.wall_character;
     }
 
 }

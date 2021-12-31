@@ -3,19 +3,25 @@
 class Level {
 
 
-    constructor(level_text, view) {
+    constructor(game, level_text) {
+        this.game = game;
         this.board = new Board(level_text);
-        this.view = view;
         this.teleporters = this.initializeTeleporters();
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
         this.available_points = this.board.countAvailablePoints();
+        this.total_pacman_lifes = this.countNumberOfPacmanLifes();
         this.score = Configuration.initial_score;
         this.update_requests = [];
     }
 
 
-    getNumberOfLifes() {
+    getNumberOfPacmanLifes() {
+        return this.total_pacman_lifes;
+    }
+
+
+    countNumberOfPacmanLifes() {
         var lifes = 0;
         for (let pacman of this.pacmans) {
             lifes += pacman.getNumberOfLifes();
@@ -56,6 +62,7 @@ class Level {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPositionID() == pacman_id) {
                 pacman.decrementLife();
+                this.total_pacman_lifes--;
             }
         }
     }
@@ -63,17 +70,16 @@ class Level {
 
     addUpdateRequest(request) {
         this.update_requests.push(request);
-        this.view.addUpdateRequest(request);
     }
 
-    
-    getBoardPositionID(xPosition, yPosition) {
-        return this.board.getIdAtIndex(xPosition, yPosition);
+
+    getBoardPositionAt(x, y) {
+        return this.board.getPosition(x, y);
     }
 
-    
-    getBoardPositionElement(position) {
-        return this.board.getElementAtIndex(position.getX(), position.getY());
+
+    getBoardPositionArray() {
+        return this.board.getBoardPositionArray();
     }
 
     
@@ -95,9 +101,8 @@ class Level {
     initializeTeleporters() {
         var teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
         var output = [];
-
         for (let position of this.board.getTeleporterPositions()) {
-            switch (this.board.getElementAt(position)) {
+            switch (position.getCharacter()) {
                 case Configuration.teleporter_1_tile_character:
                     teleporters[0].add(position);
                     break;
@@ -109,7 +114,6 @@ class Level {
                     break;
             }
         }
-
         for (let teleporter of teleporters) {
             if (teleporter.isInitialized()) {
                 output.push(teleporter);
@@ -130,13 +134,13 @@ class Level {
 
     initializeGhosts() {
         var ghosts = [];
-        var routing_node_list = this.board.getRoutingNodeList();
-        var neighbor_id_list = this.buildRoutingNeighborIDList();
-        var routing = new Routing(routing_node_list, neighbor_id_list);
-        for (let position of this.board.getInitialGhostPositions()) {
-            switch (this.board.getElementAt(position)) {
+        var accessible_position_list = this.board.getAccessibleBoardPositionList();
+        var neighbor_id_list = this.getAccessibleNeighborIdList();
+        var routing = new Routing(accessible_position_list, neighbor_id_list);
+        for (let ghost_position of this.board.getInitialGhostPositions()) {
+            switch (ghost_position.getCharacter()) {
                 case Configuration.ghost_blinky_character:                     // add different ghost types
-                    ghosts.push(new Blinky(this, position, routing));
+                    ghosts.push(new Blinky(this, ghost_position, routing));
                     break;
             }
         }
@@ -144,8 +148,8 @@ class Level {
     }
 
 
-    buildRoutingNeighborIDList() {
-        var neighbor_id_list = this.board.buildRoutingNeighborIdList();
+    getAccessibleNeighborIdList() {
+        var neighbor_id_list = this.board.getAccessibleNeighborIdList();
         this.addTeleportersToNeighborIDList(neighbor_id_list);
         return neighbor_id_list;
 
@@ -175,11 +179,11 @@ class Level {
 
 
     update() {
-        for (let request of this.update_requests) {
-            this.board.setElementAt(request.position, request.object);
+        for (let position of this.update_requests) {
+            this.board.setPosition(position);
         }
+        this.game.updateView(this.update_requests, this.score, this.getNumberOfPacmanLifes());
         this.update_requests = [];
-        this.view.update(this.score, this.getNumberOfLifes());
     }
 
 

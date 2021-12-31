@@ -17,6 +17,16 @@ class RoutingNode {
    }
 
 
+   getX() {
+      return this.xPosition;
+   }
+
+
+   getY() {
+      return this.yPosition;
+   }
+
+
    getPredecessorId() {
       return this.predecessor_node_id;
    }

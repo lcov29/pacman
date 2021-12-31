@@ -7,26 +7,20 @@ class View {
       this.board_container = document.getElementById(board_container_id);
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
-      this.update_requests = [];
    }
    
    
-   initialize(board) {
+   initialize(board_position_array) {
       this.clearBoard();
       this.resetUpdateRequests();
-      this.setContainerDimension(board);
-      this.addBackgroundElements(board);
-      this.addForegroundElements(board);
+      this.setContainerDimension(board_position_array);
+      this.addBackgroundElements(board_position_array);
+      this.addForegroundElements(board_position_array);
    }
-   
-   
-   addUpdateRequest(request) {
-      this.update_requests.push(request);
-   }
-   
-   
-   update(score, number_of_lifes) {
-      this.updateLevel();
+
+
+   update(board_positions, score, number_of_lifes) {
+      this.updateBoard(board_positions);
       this.updateScore(score);
       this.updateLifeBar(number_of_lifes);
    }
@@ -54,10 +48,10 @@ class View {
 
    // requires the same column count for all rows!
    setContainerDimension(board) {
-      this.board_container.style.height = board.getRowCount() * Configuration.dimension_background_div_in_px + 'px';
-      this.board_container.style.width = board.getColumnCountFor(0) * Configuration.dimension_background_div_in_px + 'px';
+      this.board_container.style.height = board.length * Configuration.dimension_background_div_in_px + 'px';
+      this.board_container.style.width = board[0].length * Configuration.dimension_background_div_in_px + 'px';
    }
-   
+
    
    addBackgroundElements(board) {
       var outer_div = undefined;
@@ -65,12 +59,12 @@ class View {
       var style_class = '';
       var current_position = undefined;
 
-      for (var y = 0; y < board.getRowCount(); y++) {
-         for (var x = 0; x < board.getColumnCountFor(y); x++) {
-            current_position = new BoardPosition(x, y);
+      for (var y = 0; y < board.length; y++) {
+         for (var x = 0; x < board[y].length; x++) {
+            current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(board.getElementAt(current_position));
+            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter());
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
@@ -83,18 +77,18 @@ class View {
       var inner_div = undefined;
       var id_div = '';
       var style_class = '';
-      var element = '';
+      var character = '';
       var current_position = undefined;
       
-      for (var y = 0; y < board.getRowCount(); y++) {
-         for (var x = 0; x < board.getColumnCountFor(y); x++) {
-            current_position= new BoardPosition(x, y);
+      for (var y = 0; y < board.length; y++) {
+         for (var x = 0; x < board[y].length; x++) {
+            current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
-            element = board.getElementAt(current_position);
-            style_class = this.getInitialStyleClassForForegroundElement(element);
+            character = current_position.getCharacter();
+            style_class = this.getInitialStyleClassForForegroundElement(character);
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
@@ -119,13 +113,12 @@ class View {
    }
    
    
-   updateLevel() {
-      for (let request of this.update_requests) {
-         let id_div = this.getDivID(request.getPosition(), Configuration.suffix_foreground_div);
-         let style_class = Configuration.getForegroundStyleClass(request.getObject(), request.getDirection());
+   updateBoard(board_positions) {
+      for (let position of board_positions) {
+         let id_div = this.getDivID(position, Configuration.suffix_foreground_div);
+         let style_class = Configuration.getForegroundStyleClass(position.getCharacter(), position.getMovementDirection());
          document.getElementById(id_div).setAttribute('class', style_class);
       }
-      this.update_requests = []    
    }
 
    

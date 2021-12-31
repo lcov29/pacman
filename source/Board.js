@@ -12,23 +12,15 @@ class Board {
    }
 
 
-   setElementAt(position, element) {
-      this.board[position.getY()][position.getX()].setElement(element);
+   setPosition(position) {
+      let internal_position = this.board[position.getY()][position.getX()];
+      internal_position.setCharacter(position.getCharacter());
+      internal_position.setMovementDirection(position.getMovementDirection());
    }
    
-   
-   getElementAt(position) {
-      return this.board[position.getY()][position.getX()].getElement();
-   }
 
-
-   getElementAtIndex(xPosition, yPosition) {
-      return this.board[yPosition][xPosition].getElement();
-   }
-
-
-   getIdAtIndex(xPosition, yPosition) {
-      return this.board[yPosition][xPosition].getID();
+   getPosition(x, y) {
+      return this.board[y][x].clone();
    }
    
 
@@ -57,8 +49,8 @@ class Board {
    }
 
 
-   isAccessibleAtIndex(x, y) {
-      return this.getIdAtIndex(x, y) != Configuration.id_unaccessible_board_element;
+   isAccessibleAt(x, y) {
+      return this.board[y][x].getID() != Configuration.id_unaccessible_board_element;
    }
 
 
@@ -68,31 +60,43 @@ class Board {
    }
 
 
-   getRoutingNodeList() {
-      var routing_nodes = [];
-      var current_node = undefined;
+   getBoardPositionArray() {
+      var output = [];
+      var row = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.isAccessibleAtIndex(x, y)) {
-               current_node = new RoutingNode(this.getIdAtIndex(x, y), x, y);
-               routing_nodes.push(current_node);
-            }
+            row.push(this.getPosition(x, y));
          }
+         output.push(row);
+         row = [];
       }
-      return routing_nodes;
+      return output;
    }
 
 
-   buildRoutingNeighborIdList() {
-      var neighbor_id_list = [];
+   getAccessibleBoardPositionList() {
+      var output = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.isAccessibleAtIndex(x, y)) {
-               neighbor_id_list.push(this.getNeighboringIDs(x, y));
+            if (this.isAccessibleAt(x, y)) {
+               output.push(this.getPosition(x, y));
             }
          }
       }
-      return neighbor_id_list;
+      return output;
+   }
+
+
+   getAccessibleNeighborIdList() {
+      var output = [];
+      for (var y = 0; y < this.board.length; y++) {
+         for (var x = 0; x < this.board[y].length; x++) {
+            if (this.isAccessibleAt(x, y)) {
+               output.push(this.getNeighboringIDs(x, y));
+            }
+         }
+      }
+      return output;
    }
 
 
@@ -101,15 +105,13 @@ class Board {
       var direction = undefined;
       var neighbor_x = undefined;
       var neighbor_y = undefined;
-      var neighbor_id = undefined;
 
       for (var i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
          direction = Directions.getDirectionByID(i);
          neighbor_x = xPosition + direction.x;
          neighbor_y = yPosition + direction.y;
-         if (this.isIndexOnBoard(neighbor_x, neighbor_y) && this.isAccessibleAtIndex(neighbor_x, neighbor_y)) {
-            neighbor_id = this.getIdAtIndex(neighbor_x, neighbor_y);
-            neighbor_ids.push(neighbor_id);
+         if (this.isIndexOnBoard(neighbor_x, neighbor_y) && this.isAccessibleAt(neighbor_x, neighbor_y)) {
+            neighbor_ids.push(this.board[neighbor_y][neighbor_x].getID());
          }
       }
       return neighbor_ids;
@@ -119,20 +121,21 @@ class Board {
    searchCurrentPositions() {
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            switch (this.getElementAtIndex(x, y)) {
+            let current_position = this.getPosition(x, y);
+            switch (current_position.getCharacter()) {
 
                case Configuration.pacman_character:
-                  this.initial_pacman_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
+                  this.initial_pacman_positions.push(current_position);
                   break;
 
-               case Configuration.ghost_blinky_character:
-                  this.initial_ghost_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
+               case Configuration.ghost_blinky_character:                  // add different ghost types
+                  this.initial_ghost_positions.push(current_position);
                   break;
 
                case Configuration.teleporter_1_tile_character:
                case Configuration.teleporter_2_tile_character:
                case Configuration.teleporter_3_tile_character:
-                  this.teleporter_positions.push(new BoardPosition(x, y, this.getIdAtIndex(x, y)));
+                  this.teleporter_positions.push(current_position);
                   break;
             }
          }
@@ -144,31 +147,12 @@ class Board {
       var number_of_points = 0;
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.getElementAtIndex(x, y) == Configuration.point_character) {
+            if (this.board[y][x].getCharacter() == Configuration.point_character) {
                number_of_points++;
             }
          }
       }
       return number_of_points;
-   }
-   
-
-   clone() {
-      var output = undefined;
-      var board_clone = [];
-      var row = [];
-      var element_clone = '';
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
-            element_clone = this.board[y][x].clone();
-            row.push(element_clone);
-         }
-         board_clone.push(row);
-         row = [];
-      }
-      output = new Board("");
-      output.board = board_clone;
-      return output;
    }
    
 }

@@ -4,8 +4,7 @@ class Pacman extends Actor {
    
    
    constructor(level, position) {
-      super(level, position);
-      super.setCharacter(Configuration.pacman_character);
+      super(level, Configuration.pacman_character, position);
       this.has_teleported = false;
       this.lifes = Configuration.initial_pacman_lifes;
    }
@@ -43,8 +42,9 @@ class Pacman extends Actor {
          this.handleTeleportation();
          this.handlePointCollision();
          this.handleGhostCollision();
-         super.sendLevelUpdateRequests(!this.isDead());
-         this.updateOccupiedBoardElement();
+         this.setNextPositionOccupiedCharacter();
+         super.updateLevel(!this.isDead());
+         super.updateCurrentOccupiedBoardCharacter();
          super.updateCurrentPosition();
       }
    }
@@ -54,8 +54,7 @@ class Pacman extends Actor {
       var direction = super.getMovementDirection();
       var next_xPosition = super.getCurrentPosition().getX() + direction.x;
       var next_yPosition = super.getCurrentPosition().getY() + direction.y;
-      var next_position_id = super.getNextPositionID(next_xPosition, next_yPosition);
-      var next_position = new BoardPosition(next_xPosition, next_yPosition, next_position_id);
+      var next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
       super.setNextPosition(next_position);
    }
 
@@ -76,7 +75,7 @@ class Pacman extends Actor {
 
    handleTeleportation() {
       if (super.isOccupiedBoardElementTeleporter()) {
-         // prevent teleporting loop
+         // prevent teleportation loop
          if (this.has_teleported) {
             this.has_teleported = false;
          } else {
@@ -101,14 +100,14 @@ class Pacman extends Actor {
          this.decrementLife();
       }
    }
-   
 
-   updateOccupiedBoardElement() {
+
+   setNextPositionOccupiedCharacter() {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
-         super.setOccupiedBoardElement(Configuration.empty_tile_character);
+         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
       } else {
          if (!super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-            super.updateNextOccupiedBoardElement();
+            super.updateNextOccupiedBoardCharacter();
          }
       }
    }

@@ -3,23 +3,14 @@
 class Actor {
     
 
-   constructor(level, position) {
+   constructor(level, character, position) {
       this.level = level;
-      this.character = '';
+      this.character = character;
       this.current_position = position;
       this.next_position = position;
-      this.occupied_board_element = Configuration.empty_tile_character;
+      this.current_occupied_board_character = Configuration.empty_tile_character;
+      this.next_occupied_board_character = '';
       this.movement_direction_name = '';
-   }
-
-
-   getCharacter() {
-      return this.character;
-   }
-
-
-   setCharacter(character) {
-      this.character = character;
    }
 
 
@@ -35,22 +26,12 @@ class Actor {
    
    updateCurrentPosition() {
       this.current_position = this.next_position;
+      this.next_position = undefined;
    }
 
 
    getNextPosition() {
       return this.next_position;
-   }
-
-
-   getNextPositionID(next_xPosition = -1, next_yPosition = -1) {
-      var id = -1;
-      if (next_xPosition == -1 && next_yPosition == -1) {
-         id = this.next_position.getID();
-      } else {
-         id = this.level.getBoardPositionID(next_xPosition, next_yPosition);
-      }
-      return id;
    }
  
 
@@ -59,24 +40,29 @@ class Actor {
    }
 
 
-   isNextBoardPositionEqual(element) {
-      return this.level.getBoardPositionElement(this.next_position) == element;
+   isNextBoardPositionEqual(character) {
+      return this.next_position.getCharacter() == character;
    }
 
 
-   updateNextOccupiedBoardElement() {
-      var next_element = this.level.getBoardPositionElement(this.next_position);
-      this.setOccupiedBoardElement(next_element);
+   getBoardPositionAt(x, y) {
+      return this.level.getBoardPositionAt(x, y);
    }
 
 
-   setOccupiedBoardElement(element) {
-      this.occupied_board_element = element;
+   updateNextOccupiedBoardCharacter(character = "") {
+      this.next_occupied_board_character = (character == "") ? this.next_position.getCharacter() : character;
+   }
+
+
+   updateCurrentOccupiedBoardCharacter() {
+      this.current_occupied_board_character = this.next_occupied_board_character;
+      this.next_occupied_board_character = "";
    }
 
    
    isOccupiedBoardElementTeleporter() {
-      return this.level.isBoardElementTeleporter(this.occupied_board_element);
+      return this.level.isBoardElementTeleporter(this.current_occupied_board_character);
    }
 
 
@@ -95,6 +81,7 @@ class Actor {
    }
 
 
+   // move method to Ghost.js
    calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
       current_position = (current_position == undefined) ? this.current_position : current_position;
       next_position = (next_position == undefined) ? this.next_position : next_position;
@@ -111,7 +98,7 @@ class Actor {
       return this.level.getPacmanIDs();
    }
 
-
+ 
    decrementLifeOfPacman(pacman_id) {
       this.level.decrementLifeOfPacman(pacman_id);
    }
@@ -127,12 +114,22 @@ class Actor {
    }
 
 
-   sendLevelUpdateRequests(condition_update_next_position) {
-      this.level.addUpdateRequest(new UpdateRequest(this.current_position, this.occupied_board_element));
+   updateLevel(condition_update_next_position = true) {
+
+      this.current_position.setCharacter(this.current_occupied_board_character);
+      this.current_position.setMovementDirection("");
+      this.level.addUpdateRequest(this.current_position);
+
+      // prevent dead pacmans getting drawn on next position
       if (condition_update_next_position) {
-         this.level.addUpdateRequest(new UpdateRequest(this.next_position, this.character, this.movement_direction_name));
+         this.next_position.setCharacter(this.character);
+         this.next_position.setMovementDirection(this.movement_direction_name);
+         this.level.addUpdateRequest(this.next_position);
       }
-   } 
+
+      this.level.update();
+
+   }
 
 
 }

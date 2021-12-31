@@ -2,14 +2,13 @@
 
 class Routing {
    
-   
-   constructor(routing_node_list, neighbor_id_list) {
+   constructor(accessible_position_list, neighbor_id_list) {
       this.routing_table = [];
-      this.initializeRoutingTable(routing_node_list);
+      this.initializeRoutingTable(accessible_position_list);
       this.routing_table = new RoutingAlgorithm().calculateRoutingTable(this.routing_table, neighbor_id_list);
    }
 
-
+   
    calculateNextPositionOnShortestPath(start_node_id, destination_node_id) {
       var start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
       var end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
@@ -23,9 +22,17 @@ class Routing {
    }
 
 
-   initializeRoutingTable(routing_node_list) {
-      for (let i = 0; i < routing_node_list.length; i++) {
-         let clone = this.cloneRoutingTableRow(routing_node_list);
+   initializeRoutingTable(accessible_position_list) {
+      var routing_node_row = [];
+      var routing_node = undefined;
+
+      for (let position of accessible_position_list) {
+         routing_node = new RoutingNode(position.getID(), position.getX(), position.getY());
+         routing_node_row.push(routing_node);
+      }
+
+      for (let i = 0; i < accessible_position_list.length; i++) {
+         let clone = this.cloneRoutingTableRow(routing_node_row);
          this.routing_table.push(clone);
       }
    }
