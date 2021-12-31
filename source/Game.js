@@ -7,19 +7,14 @@ class Game {
       this.animation_interval = undefined;
       this.level = new Level(this, level_text);
       this.view = new View(board_container_id, score_id, life_id);
-      this.initializeView();
-   }
-   
-
-   initializeView() {
+      this.level.initialize();
       this.view.initialize(this.level.getBoardPositionArray());
    }
-
+   
 
    updateView(board_positions, score, number_of_lifes) {
       this.view.update(board_positions, score, number_of_lifes);
    }
-
 
 
    //TODO: implement level validation
