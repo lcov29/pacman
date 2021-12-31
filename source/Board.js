@@ -22,16 +22,6 @@ class Board {
    getPosition(x, y) {
       return this.board[y][x].clone();
    }
-   
-
-   getRowCount() {
-      return this.board.length;
-   }
-
-
-   getColumnCountFor(index) {
-      return this.board[index].length;
-   }
 
 
    getInitialPacmanPositions() {
