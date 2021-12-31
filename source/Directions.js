@@ -56,5 +56,17 @@ class Directions {
         return Directions.getDirectionNameByIndex(direction_x, direction_y);
     }
 
+
+    static calculateGhostDoorNeighborDirectionName(start_position, end_position) {
+        var direction = "";
+        if (start_position.getX() - end_position.getX() == 0) {
+            direction = Configuration.ghost_door_direction_suffix_horizontal;
+        }
+        if (start_position.getY() - end_position.getY() == 0) {
+            direction = Configuration.ghost_door_direction_suffix_vertical;
+        }
+        return direction;
+    }
+
     
 }
