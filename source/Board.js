@@ -8,6 +8,7 @@ class Board {
       this.initial_pacman_positions = [];
       this.initial_ghost_positions = [];
       this.teleporter_positions = [];
+      this.ghost_door_positions = [];
       this.searchCurrentPositions();
    }
 
@@ -36,6 +37,11 @@ class Board {
 
    getTeleporterPositions() {
       return this.teleporter_positions;
+   }
+
+
+   getGhostDoorPositions() {
+      return this.ghost_door_positions;
    }
 
 
@@ -79,10 +85,15 @@ class Board {
 
    getAccessibleNeighborIdList() {
       var output = [];
+      var ids = [];
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
-               output.push(this.getNeighboringIDs(x, y));
+               for(let position of this.getAccessibleNeighboringPositions(x, y)) {
+                  ids.push(position.getID());
+               }
+               output.push(ids);
+               ids = [];
             }
          }
       }
@@ -90,8 +101,8 @@ class Board {
    }
 
 
-   getNeighboringIDs(xPosition, yPosition) {
-      var neighbor_ids = [];
+   getAccessibleNeighboringPositions(xPosition, yPosition) {
+      var neighbor_positions = [];
       var direction = undefined;
       var neighbor_x = undefined;
       var neighbor_y = undefined;
@@ -101,10 +112,10 @@ class Board {
          neighbor_x = xPosition + direction.x;
          neighbor_y = yPosition + direction.y;
          if (this.isIndexOnBoard(neighbor_x, neighbor_y) && this.isAccessibleAt(neighbor_x, neighbor_y)) {
-            neighbor_ids.push(this.board[neighbor_y][neighbor_x].getID());
+            neighbor_positions.push(this.getPosition(neighbor_x, neighbor_y));
          }
       }
-      return neighbor_ids;
+      return neighbor_positions;
    }
 
 
@@ -126,6 +137,10 @@ class Board {
                case Configuration.teleporter_2_tile_character:
                case Configuration.teleporter_3_tile_character:
                   this.teleporter_positions.push(current_position);
+                  break;
+
+               case Configuration.ghost_door_character:
+                  this.ghost_door_positions.push(current_position);
                   break;
             }
          }
