@@ -4,7 +4,7 @@ class Ghost extends Actor {
    
    
    constructor(level, character, position, routing) {
-      super(level, character, position);
+      super(level, character, position, Configuration.initial_ghosts_direction);
       this.routing = routing;
    }
    

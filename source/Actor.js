@@ -3,14 +3,15 @@
 class Actor {
     
 
-   constructor(level, character, position) {
+   constructor(level, character, position, initial_direction) {
       this.level = level;
       this.character = character;
       this.current_position = position;
       this.next_position = position;
       this.current_occupied_board_character = Configuration.empty_tile_character;
       this.next_occupied_board_character = '';
-      this.movement_direction_name = '';
+      this.movement_direction_name = initial_direction;
+      this.current_position.setMovementDirection(this.movement_direction_name); // NEW
    }
 
 

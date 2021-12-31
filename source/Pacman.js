@@ -4,7 +4,7 @@ class Pacman extends Actor {
    
    
    constructor(level, position) {
-      super(level, Configuration.pacman_character, position);
+      super(level, Configuration.pacman_character, position, Configuration.initial_pacman_direction);
       this.has_teleported = false;
       this.lifes = Configuration.initial_pacman_lifes;
    }
