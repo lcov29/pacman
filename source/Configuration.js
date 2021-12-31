@@ -88,11 +88,20 @@ class Configuration {
 
 
    static getBackgroundStyleClass(character, direction_suffix) {
+      if (direction_suffix == this.initial_ghosts_direction ||
+          direction_suffix == this.initial_pacman_direction) {
+             direction_suffix = "";
+      }
       return this.getStyleClass(this.background_class_map, character, direction_suffix);
    }
 
 
-   static getForegroundStyleClass(character, direction_suffix = "") {
+   static getForegroundStyleClass(character, direction_suffix) {
+      if (direction_suffix == this.ghost_door_direction_suffix_diagonal ||
+          direction_suffix == this.ghost_door_direction_suffix_horizontal ||
+          direction_suffix == this.ghost_door_direction_suffix_vertical) {
+             direction_suffix = "";
+      }
       return this.getStyleClass(this.foreground_class_map, character, direction_suffix);
    }
 
