@@ -48,7 +48,7 @@ class Configuration {
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
-   static ghost_door_background_css_class = "ghost_door_horizontal";
+   static ghost_door_background_css_class = "ghost_door";
    static teleporter_1_background_css_class = "teleporter_1_tile";
    static teleporter_2_background_css_class = "teleporter_2_tile";
    static teleporter_3_background_css_class = "teleporter_3_tile";
@@ -57,6 +57,10 @@ class Configuration {
    static ghost_blinky_foreground_css_class = "ghost_blinky";
    static point_foreground_css_class = "point";
    static empty_foreground_css_class = "empty_foreground";
+
+   static ghost_door_direction_suffix_diagonal = "crossing";
+   static ghost_door_direction_suffix_horizontal = "horizontal";
+   static ghost_door_direction_suffix_vertical = "vertical";
 
    static background_class_map = {
       [this.wall_character]:              this.wall_background_css_class,
@@ -82,12 +86,19 @@ class Configuration {
       [this.point_character]:             this.point_foreground_css_class       
    };
 
-   static getBackgroundStyleClass(character) {
-      return this.background_class_map[character];
+
+   static getBackgroundStyleClass(character, direction_suffix) {
+      return this.getStyleClass(this.background_class_map, character, direction_suffix);
    }
 
+
    static getForegroundStyleClass(character, direction_suffix = "") {
-      var style_class = this.foreground_class_map[character];
+      return this.getStyleClass(this.foreground_class_map, character, direction_suffix);
+   }
+
+
+   static getStyleClass(map, character, direction_suffix) {
+      var style_class = map[character];
       if (direction_suffix != "") {
          style_class += "_" + direction_suffix;
       }
