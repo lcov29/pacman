@@ -12,7 +12,6 @@ class View {
    
    initialize(board_position_array) {
       this.clearBoard();
-      this.resetUpdateRequests();
       this.setContainerDimension(board_position_array);
       this.addBackgroundElements(board_position_array);
       this.addForegroundElements(board_position_array);
@@ -28,11 +27,6 @@ class View {
 
    printMessage(message) {
       window.alert(message);
-   }
-
-
-   resetUpdateRequests() {
-      this.update_requests = [];
    }
 
 
@@ -64,7 +58,7 @@ class View {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter());
+            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter(), current_position.getMovementDirection());
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
