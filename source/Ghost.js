@@ -7,16 +7,6 @@ class Ghost extends Actor {
       super(level, character, position, Configuration.initial_ghosts_direction);
       this.routing = routing;
    }
-   
-
-   setNextPositionOccupiedCharacter() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
-         super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
-      } else {
-         super.updateNextOccupiedBoardCharacter();
-      }
-   }
 
 
    getRouting() {
@@ -34,7 +24,7 @@ class Ghost extends Actor {
       this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       this.handleTeleportation();
       this.handlePacManCollision();
-      this.setNextPositionOccupiedCharacter();
+      this.updateNextPositionOccupiedCharacter();
       super.updateLevel();
       super.updateCurrentOccupiedBoardCharacter();
       super.updateCurrentPosition();
@@ -79,6 +69,16 @@ class Ghost extends Actor {
    updateMovementDirection(current_position, next_position) {
       let direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
       super.setMovementDirectionName(direction_name);
+   }
+
+
+   updateNextPositionOccupiedCharacter() {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
+         super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
+      } else {
+         super.updateNextOccupiedBoardCharacter();
+      }
    }
 
    

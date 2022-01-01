@@ -42,7 +42,7 @@ class Pacman extends Actor {
          this.handleTeleportation();
          this.handlePointCollision();
          this.handleGhostCollision();
-         this.setNextPositionOccupiedCharacter();
+         this.updateNextPositionOccupiedCharacter();
          super.updateLevel(!this.isDead());
          super.updateCurrentOccupiedBoardCharacter();
          super.updateCurrentPosition();
@@ -101,8 +101,8 @@ class Pacman extends Actor {
       }
    }
 
-   // RENAME TO UPDATE...
-   setNextPositionOccupiedCharacter() {
+
+   updateNextPositionOccupiedCharacter() {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
          super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
       } else {
