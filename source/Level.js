@@ -55,7 +55,7 @@ class Level {
     getPacmanIDs() {
         let ids = [];
         for (let pacman of this.pacmans) {
-            ids.push(pacman.getCurrentPositionID());
+            ids.push(pacman.getCurrentPosition().getID());
         }
         return ids;
     }
@@ -70,7 +70,7 @@ class Level {
 
     decrementLifeOfPacman(pacman_id) {
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPositionID() === pacman_id) {
+            if (pacman.getCurrentPosition().getID() === pacman_id) {
                 pacman.decrementLife();
                 this.total_pacman_lifes--;
             }
