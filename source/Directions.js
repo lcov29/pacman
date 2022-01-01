@@ -40,7 +40,7 @@ class Directions {
 
 
     static getDirectionNameByIndex(x, y) {
-        var index = "(" + x + "," + y + ")";
+        var index = `(${x},${y})`;
         return this.direction_map_direction_to_name[index];
     }
 

@@ -42,8 +42,8 @@ class View {
 
    // requires the same column count for all rows!
    setContainerDimension(board) {
-      this.board_container.style.height = board.length * Configuration.dimension_background_div_in_px + 'px';
-      this.board_container.style.width = board[0].length * Configuration.dimension_background_div_in_px + 'px';
+      this.board_container.style.height = `${board.length * Configuration.dimension_background_div_in_px}px`;
+      this.board_container.style.width = `${board[0].length * Configuration.dimension_background_div_in_px}px`;
    }
 
    
@@ -100,12 +100,12 @@ class View {
 
    
    updateScore(score) {
-      this.score_display.innerHTML = 'score: ' + score;
+      this.score_display.innerHTML = `score: ${score}`;
    }
    
    
    updateLifeBar(number_of_lifes) {
-      this.life_display.innerHTML = 'lifes: ' + number_of_lifes;
+      this.life_display.innerHTML = `lifes: ${number_of_lifes}`;
    }
    
    
@@ -117,7 +117,7 @@ class View {
    
    
    getDivID(position, suffix) {
-      return position.getX().toString() + '_' + position.getY().toString() + '_' + suffix;
+      return `${position.getX().toString()}_${position.getY().toString()}_${suffix}`;
    }
    
    
