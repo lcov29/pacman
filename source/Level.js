@@ -33,11 +33,6 @@ class Level {
     } 
 
 
-    getNumberOfPacmanLifes() {
-        return this.total_pacman_lifes;
-    }
-
-
     getTeleportDestination(position) {
         let destination = undefined;
         for (let teleporter of this.teleporters) {
@@ -71,6 +66,16 @@ class Level {
 
     isBoardElementTeleporter(element) {
         return Teleporter.isElementTeleporter(element);
+    }
+
+
+    isWon() {
+        return this.available_points === 0;
+    }
+
+
+    isLost() {
+        return this.total_pacman_lifes === 0;
     }
 
 
@@ -143,7 +148,7 @@ class Level {
         for (let position of this.update_requests) {
             this.board.setPosition(position);
         }
-        this.game.updateView(this.update_requests, this.score, this.getNumberOfPacmanLifes());
+        this.game.updateView(this.update_requests, this.score, this.total_pacman_lifes);
         this.update_requests = [];
     }
 
