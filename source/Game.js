@@ -21,7 +21,7 @@ class Game {
    isLevelInputValid(level_text) {   }
    
    
-   nextStep() {
+   nextTurn() {
       this.level.executeTurn();
       this.handleWin();
       this.handleDefeat();
@@ -31,7 +31,7 @@ class Game {
    start() {
       // prevent the start of an already started game
       if (this.animation_interval === undefined) {  
-         this.animation_interval = setInterval(function(ref) {ref.nextStep();}, Configuration.interval_delay_in_milliseconds, this);   
+         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.interval_delay_in_milliseconds, this);   
          document.addEventListener('keydown', this.callBackEventListener, true);
       }
    }
