@@ -77,7 +77,7 @@
          }
 
          function startLevel() {
-            if (game.isGameWon() || game.isGameLost()) {
+            if (!game.isInProgress()) {
                buildLevel();
             }
             game.start();
