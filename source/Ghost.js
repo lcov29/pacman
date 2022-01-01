@@ -14,10 +14,8 @@ class Ghost extends Actor {
    }
 
 
-   // REFACTOR
    moveToPosition(x, y) {
-      let next_position = super.getBoardPositionAt(x, y);
-      super.setNextPosition(next_position)
+      super.setNextPosition(super.getBoardPositionAt(x, y))
       super.calculateMovementDirectionName();
       this.handleTeleportation();
       this.handlePacManCollision();
