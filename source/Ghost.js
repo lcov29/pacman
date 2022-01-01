@@ -73,7 +73,7 @@ class Ghost extends Actor {
 
 
    isNextPositionEqualToTeleportDestination() {
-      return super.getNextPosition().getID() == super.getTeleportDestinationForCurrentPosition().getID();
+      return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
 
    

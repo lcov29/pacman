@@ -11,7 +11,7 @@ class Actor {
       this.current_occupied_board_character = Configuration.empty_tile_character;
       this.next_occupied_board_character = '';
       this.movement_direction_name = initial_direction;
-      this.current_position.setMovementDirection(this.movement_direction_name); // NEW
+      this.current_position.setMovementDirection(this.movement_direction_name);
    }
 
 
@@ -42,7 +42,7 @@ class Actor {
 
 
    isNextBoardPositionEqual(character) {
-      return this.next_position.getCharacter() == character;
+      return this.next_position.getCharacter() === character;
    }
 
 
@@ -52,7 +52,7 @@ class Actor {
 
 
    updateNextOccupiedBoardCharacter(character = "") {
-      this.next_occupied_board_character = (character == "") ? this.next_position.getCharacter() : character;
+      this.next_occupied_board_character = (character === "") ? this.next_position.getCharacter() : character;
    }
 
 
@@ -73,7 +73,7 @@ class Actor {
 
 
    isMovementDirectionSet() {
-      return this.movement_direction_name != '';
+      return this.movement_direction_name !== '';
    }
 
 
@@ -83,8 +83,8 @@ class Actor {
 
 
    calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
-      current_position = (current_position == undefined) ? this.current_position : current_position;
-      next_position = (next_position == undefined) ? this.next_position : next_position;
+      current_position = (current_position === undefined) ? this.current_position : current_position;
+      next_position = (next_position === undefined) ? this.next_position : next_position;
       this.movement_direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
    }
 

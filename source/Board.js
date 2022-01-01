@@ -46,7 +46,7 @@ class Board {
 
 
    isAccessibleAt(x, y) {
-      return this.board[y][x].getID() != Configuration.id_unaccessible_board_element;
+      return this.board[y][x].getID() !== Configuration.id_unaccessible_board_element;
    }
 
 
@@ -152,7 +152,7 @@ class Board {
       var number_of_points = 0;
       for (var y = 0; y < this.board.length; y++) {
          for (var x = 0; x < this.board[y].length; x++) {
-            if (this.board[y][x].getCharacter() == Configuration.point_character) {
+            if (this.board[y][x].getCharacter() === Configuration.point_character) {
                number_of_points++;
             }
          }

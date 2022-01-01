@@ -49,17 +49,17 @@ class BoardParser {
 
 
     isLineFeed(character) {
-        return character.charCodeAt(0) == Configuration.linefeed_code;
+        return character.charCodeAt(0) === Configuration.linefeed_code;
     }
 
 
     isLastCharacter(index, text) {
-        return index == text.length - 1;
+        return index === text.length - 1;
     }
 
 
     isAccessibleByActor(character) {
-        return character != Configuration.wall_character;
+        return character !== Configuration.wall_character;
     }
 
 }

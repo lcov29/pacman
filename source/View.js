@@ -72,7 +72,6 @@ class View {
       var inner_div = undefined;
       var id_div = '';
       var style_class = '';
-      //var character = '';
       var current_position = undefined;
       
       for (var y = 0; y < board.length; y++) {

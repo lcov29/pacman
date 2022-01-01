@@ -38,7 +38,7 @@ class BoardPosition {
 
     setID(id) {
         // prevent id of accessible elements to change after initialisation
-        this.id = (this.id == Configuration.id_unaccessible_board_element) ? id : this.id;
+        this.id = (this.id === Configuration.id_unaccessible_board_element) ? id : this.id;
     }
 
 
@@ -55,7 +55,7 @@ class BoardPosition {
     clone() {
         var clone = new BoardPosition(this.x, this.y, this.character);
         clone.setID(this.id);
-        clone.setMovementDirection(this.movement_direction); // NEW
+        clone.setMovementDirection(this.movement_direction);
         return clone;
     }
 

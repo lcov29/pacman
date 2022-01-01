@@ -91,12 +91,12 @@ class Game {
    
    
    isGameWon() {
-      return this.level.available_points == 0;
+      return this.level.available_points === 0;
    }
 
    
    isGameLost() {
-      return this.level.getNumberOfPacmanLifes() == 0;
+      return this.level.getNumberOfPacmanLifes() === 0;
    }
    
    

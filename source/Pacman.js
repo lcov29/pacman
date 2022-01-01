@@ -16,7 +16,7 @@ class Pacman extends Actor {
    
    
    isDead() {
-      return this.lifes == 0;
+      return this.lifes === 0;
    }
    
 

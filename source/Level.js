@@ -70,7 +70,7 @@ class Level {
 
     decrementLifeOfPacman(pacman_id) {
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPositionID() == pacman_id) {
+            if (pacman.getCurrentPositionID() === pacman_id) {
                 pacman.decrementLife();
                 this.total_pacman_lifes--;
             }
@@ -124,9 +124,9 @@ class Level {
                     for(let y = x + 1; y < accessible_neighbors.length; y++) {
                         end_position = accessible_neighbors[y];
                         output = Directions.calculateGhostDoorNeighborDirectionName(start_position, end_position);
-                        if(output != "") { break; }
+                        if(output !== "") { break; }
                     }
-                    if (output != "") { break; }
+                    if (output !== "") { break; }
                 }
                 break;
         }

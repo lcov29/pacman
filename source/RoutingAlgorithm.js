@@ -32,7 +32,7 @@ class RoutingAlgorithm {
          current_node = this.searchLowestCostNode(unused_nodes);
          for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
             routing_node = routing_table[id_start_node][neighbor_id];           
-            if (unused_nodes.indexOf(routing_node) != -1) {
+            if (unused_nodes.indexOf(routing_node) !== -1) {
                if (routing_node.getPathCost() > current_node.getPathCost() + 1) {
                   routing_node.setPathCost(current_node.getPathCost() + 1);
                   routing_node.setPredecessorId(current_node.getID());

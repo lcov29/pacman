@@ -59,10 +59,10 @@ class Directions {
 
     static calculateGhostDoorNeighborDirectionName(start_position, end_position) {
         var direction = "";
-        if (start_position.getX() - end_position.getX() == 0) {
+        if (start_position.getX() - end_position.getX() === 0) {
             direction = Configuration.ghost_door_direction_suffix_horizontal;
         }
-        if (start_position.getY() - end_position.getY() == 0) {
+        if (start_position.getY() - end_position.getY() === 0) {
             direction = Configuration.ghost_door_direction_suffix_vertical;
         }
         return direction;
