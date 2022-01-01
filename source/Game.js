@@ -21,13 +21,8 @@ class Game {
    isLevelInputValid(level_text) {   }
    
    
-   // REFACTOR: MOVE PARTS TO LEVEL
    nextStep() {
-      this.level.movePacmans();
-      this.level.update();
-      this.level.moveGhosts();
-      this.level.update();
-      this.level.deleteDeadPacmans();
+      this.level.executeTurn();
       this.handleWin();
       this.handleDefeat();
    }

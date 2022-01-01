@@ -95,6 +95,16 @@ class Level {
     }
 
 
+    executeTurn() {
+        this.movePacmans();
+        this.update();
+        this.moveGhosts();
+        this.update();
+        this.deleteDeadPacmans();
+    }
+
+
+
     incrementScoreBy(value) {
         this.score += value;
     }
@@ -138,7 +148,7 @@ class Level {
     }
 
 
-    deleteDeadPacmans(pacman) {
+    deleteDeadPacmans() {
         let index = -1;
         for (let pacman of this.pacmans) {
             if (pacman.isDead()) {
