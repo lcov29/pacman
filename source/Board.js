@@ -45,8 +45,7 @@ class Board {
    }
 
 
-   // CONSIDER RENAMING TO BUILD...
-   getBoardPositionArray() {
+   buildBoardPositionArray() {
       let output = [];
       let row = [];
       for (let y = 0; y < this.board.length; y++) {
@@ -60,8 +59,7 @@ class Board {
    }
 
 
-   // CONSIDER RENAMING TO BUILD...
-   getAccessibleBoardPositionList() {
+   buildAccessibleBoardPositionList() {
       let output = [];
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
@@ -74,14 +72,13 @@ class Board {
    }
 
 
-   // CONSIDER RENAMING TO BUILD...
-   getAccessibleNeighborIdList() {
+   buildAccessibleNeighborIdList() {
       let output = [];
       let ids = [];
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
-               for(let position of this.getAccessibleNeighboringPositions(x, y)) {
+               for(let position of this.buildAccessibleNeighborList(x, y)) {
                   ids.push(position.getID());
                }
                output.push(ids);
@@ -93,8 +90,7 @@ class Board {
    }
 
 
-   // CONSIDER RENAMING TO BUILD...
-   getAccessibleNeighboringPositions(xPosition, yPosition) {
+   buildAccessibleNeighborList(xPosition, yPosition) {
       let neighbor_positions = [];
       let direction = undefined;
       let neighbor_x = undefined;
