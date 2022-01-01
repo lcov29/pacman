@@ -65,15 +65,7 @@ class Level {
 
 
     getBoardPositionArray() {
-        return this.board.getBoardPositionArray();
-    }
-
-    // RENAME TO BUILD...
-    getAccessibleNeighborIdList() {
-        let neighbor_id_list = this.board.getAccessibleNeighborIdList();
-        this.addTeleportersToNeighborIDList(neighbor_id_list);
-        return neighbor_id_list;
-
+        return this.board.buildBoardPositionArray();
     }
 
 
@@ -92,6 +84,14 @@ class Level {
             neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
             neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
         }
+    }
+
+
+    buildAccessibleNeighborIdList() {
+        let neighbor_id_list = this.board.buildAccessibleNeighborIdList();
+        this.addTeleportersToNeighborIDList(neighbor_id_list);
+        return neighbor_id_list;
+
     }
 
 
@@ -195,8 +195,8 @@ class Level {
 
     initializeGhosts() {
         let ghosts = [];
-        let accessible_position_list = this.board.getAccessibleBoardPositionList();
-        let neighbor_id_list = this.getAccessibleNeighborIdList();
+        let accessible_position_list = this.board.buildAccessibleBoardPositionList();
+        let neighbor_id_list = this.buildAccessibleNeighborIdList();
         let routing = new Routing(accessible_position_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (position.getCharacter()) {
@@ -215,7 +215,7 @@ class Level {
         let accessible_neighbors = undefined;
 
         for(let position of this.board.getGhostDoorPositions()) {
-            accessible_neighbors = this.board.getAccessibleNeighboringPositions(position.getX(), position.getY());
+            accessible_neighbors = this.board.buildAccessibleNeighborList(position.getX(), position.getY());
             ghost_door_direction = this.calculateGhostDoorDirection(accessible_neighbors);
             position.setMovementDirection(ghost_door_direction);
             this.board.setPosition(position);
