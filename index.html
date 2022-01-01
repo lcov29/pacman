@@ -84,7 +84,7 @@
          }
 
          function initializeLevelElementsList() {
-            var list = document.getElementById("level_elements_list");
+            let list = document.getElementById("level_elements_list");
             list.childNodes[1].innerHTML = `${Configuration.wall_character} : Wall`;
             list.childNodes[3].innerHTML = `${Configuration.empty_tile_character} : Empty`;
             list.childNodes[5].innerHTML = `${Configuration.ghost_blinky_character} : Blinky (red ghost)`;
@@ -96,7 +96,7 @@
          }
 
          function buildLevel() {
-            var level_input = document.getElementById("level_input").value;
+            let level_input = document.getElementById("level_input").value;
             game = new Game(level_input, "level_container", "score", "life");
          }
 

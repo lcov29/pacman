@@ -48,13 +48,13 @@ class View {
 
    
    addBackgroundElements(board) {
-      var outer_div = undefined;
-      var id_div = '';
-      var style_class = '';
-      var current_position = undefined;
+      let outer_div = undefined;
+      let id_div = '';
+      let style_class = '';
+      let current_position = undefined;
 
-      for (var y = 0; y < board.length; y++) {
-         for (var x = 0; x < board[y].length; x++) {
+      for (let y = 0; y < board.length; y++) {
+         for (let x = 0; x < board[y].length; x++) {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
@@ -68,14 +68,14 @@ class View {
    
    
    addForegroundElements(board) {
-      var outer_div = undefined;
-      var inner_div = undefined;
-      var id_div = '';
-      var style_class = '';
-      var current_position = undefined;
+      let outer_div = undefined;
+      let inner_div = undefined;
+      let id_div = '';
+      let style_class = '';
+      let current_position = undefined;
       
-      for (var y = 0; y < board.length; y++) {
-         for (var x = 0; x < board[y].length; x++) {
+      for (let y = 0; y < board.length; y++) {
+         for (let x = 0; x < board[y].length; x++) {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = document.getElementById(id_div);
@@ -110,7 +110,7 @@ class View {
    
    
    createDiv(id) {
-      var element = document.createElement('div');
+      let element = document.createElement('div');
       element.setAttribute('id', id);
       return element;
    }

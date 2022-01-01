@@ -48,7 +48,7 @@ class Teleporter {
 
 
     getDestinationPositionFor(position) {
-        var destination = undefined;
+        let destination = undefined;
         if (position.getID() === this.position_teleporter_1.getID()) {
             destination = this.position_teleporter_2.clone();
         } else {

@@ -10,9 +10,9 @@ class Routing {
 
    
    calculateNextPositionOnShortestPath(start_node_id, destination_node_id) {
-      var start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
-      var end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
-      var next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
+      let start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
+      let end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
+      let next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
       return new BoardPosition(next_node.xPosition, next_node.yPosition, next_node.getID());
    }
 
@@ -23,8 +23,8 @@ class Routing {
 
 
    initializeRoutingTable(accessible_position_list) {
-      var routing_node_row = [];
-      var routing_node = undefined;
+      let routing_node_row = [];
+      let routing_node = undefined;
 
       for (let position of accessible_position_list) {
          routing_node = new RoutingNode(position.getID(), position.getX(), position.getY());
@@ -39,8 +39,8 @@ class Routing {
 
 
    cloneRoutingTableRow(row) {
-      var clone = [];
-      for (var i = 0; i < row.length; i++) {
+      let clone = [];
+      for (let i = 0; i < row.length; i++) {
          clone.push(row[i].clone());
       }
       return clone;
@@ -53,7 +53,7 @@ class Routing {
 
    
    selectFirstNodeOfShortestPath(start_node, end_node) {   
-      var current_end_node = end_node;
+      let current_end_node = end_node;
       while (current_end_node.getPredecessorId() != start_node.id) {
          current_end_node = this.routing_table[start_node.id][current_end_node.getPredecessorId()];
       }

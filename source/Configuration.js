@@ -107,7 +107,7 @@ class Configuration {
 
 
    static getStyleClass(map, character, direction_suffix) {
-      var style_class = map[character];
+      let style_class = map[character];
       if (direction_suffix !== "") {
          style_class += "_" + direction_suffix;
       }

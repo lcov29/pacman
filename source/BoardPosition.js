@@ -53,7 +53,7 @@ class BoardPosition {
 
 
     clone() {
-        var clone = new BoardPosition(this.x, this.y, this.character);
+        let clone = new BoardPosition(this.x, this.y, this.character);
         clone.setID(this.id);
         clone.setMovementDirection(this.movement_direction);
         return clone;

@@ -32,7 +32,7 @@ class Level {
 
 
     countNumberOfPacmanLifes() {
-        var lifes = 0;
+        let lifes = 0;
         for (let pacman of this.pacmans) {
             lifes += pacman.getNumberOfLifes();
         }
@@ -41,7 +41,7 @@ class Level {
 
 
     getTeleportDestination(position) {
-        var destination = undefined;
+        let destination = undefined;
         for (let teleporter of this.teleporters) {
             if (teleporter.isTeleporterFor(position)) {
                 destination = teleporter.getDestinationPositionFor(position);
@@ -53,7 +53,7 @@ class Level {
 
 
     getPacmanIDs() {
-        var ids = [];
+        let ids = [];
         for (let pacman of this.pacmans) {
             ids.push(pacman.getCurrentPositionID());
         }
@@ -62,7 +62,7 @@ class Level {
 
 
     setNextPacmanDirection(direction_name) {
-        for (var pacman of this.pacmans) {
+        for (let pacman of this.pacmans) {
            pacman.setMovementDirectionName(direction_name);
         }
     } 
@@ -94,8 +94,8 @@ class Level {
 
 
     initializeGhostDoorDirections() {
-        var ghost_door_direction = "";
-        var accessible_neighbors = undefined;
+        let ghost_door_direction = "";
+        let accessible_neighbors = undefined;
 
         for(let position of this.board.getGhostDoorPositions()) {
             accessible_neighbors = this.board.getAccessibleNeighboringPositions(position.getX(), position.getY());
@@ -107,7 +107,7 @@ class Level {
 
 
     calculateGhostDoorDirection(accessible_neighbors) {
-        var output = "";
+        let output = "";
         switch (accessible_neighbors.length) {
             case 0:
             case 1:
@@ -151,8 +151,8 @@ class Level {
 
     
     initializeTeleporters() {
-        var teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
-        var output = [];
+        let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
+        let output = [];
         for (let position of this.board.getTeleporterPositions()) {
             switch (position.getCharacter()) {
                 case Configuration.teleporter_1_tile_character:
@@ -176,7 +176,7 @@ class Level {
 
 
     initializePacmans() {
-        var pacmans = [];
+        let pacmans = [];
         for (let position of this.board.getInitialPacmanPositions()) {
             pacmans.push(new Pacman(this, position));
             this.board.setPosition(position); // set initial movement direction
@@ -186,10 +186,10 @@ class Level {
 
 
     initializeGhosts() {
-        var ghosts = [];
-        var accessible_position_list = this.board.getAccessibleBoardPositionList();
-        var neighbor_id_list = this.getAccessibleNeighborIdList();
-        var routing = new Routing(accessible_position_list, neighbor_id_list);
+        let ghosts = [];
+        let accessible_position_list = this.board.getAccessibleBoardPositionList();
+        let neighbor_id_list = this.getAccessibleNeighborIdList();
+        let routing = new Routing(accessible_position_list, neighbor_id_list);
         for (let position of this.board.getInitialGhostPositions()) {
             switch (position.getCharacter()) {
                 case Configuration.ghost_blinky_character:                     // add different ghost types
@@ -203,7 +203,7 @@ class Level {
 
 
     getAccessibleNeighborIdList() {
-        var neighbor_id_list = this.board.getAccessibleNeighborIdList();
+        let neighbor_id_list = this.board.getAccessibleNeighborIdList();
         this.addTeleportersToNeighborIDList(neighbor_id_list);
         return neighbor_id_list;
 
@@ -219,7 +219,7 @@ class Level {
 
 
     movePacmans() {
-        for (var pacman of this.pacmans) {
+        for (let pacman of this.pacmans) {
             pacman.move();
         }
     }
@@ -242,7 +242,7 @@ class Level {
 
 
     deleteDeadPacmans(pacman) {
-        var index = -1;
+        let index = -1;
         for (let pacman of this.pacmans) {
             if (pacman.isDead()) {
                 index = this.pacmans.indexOf(pacman); 

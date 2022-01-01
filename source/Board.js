@@ -57,10 +57,10 @@ class Board {
 
 
    getBoardPositionArray() {
-      var output = [];
-      var row = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
+      let output = [];
+      let row = [];
+      for (let y = 0; y < this.board.length; y++) {
+         for (let x = 0; x < this.board[y].length; x++) {
             row.push(this.getPosition(x, y));
          }
          output.push(row);
@@ -71,9 +71,9 @@ class Board {
 
 
    getAccessibleBoardPositionList() {
-      var output = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
+      let output = [];
+      for (let y = 0; y < this.board.length; y++) {
+         for (let x = 0; x < this.board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                output.push(this.getPosition(x, y));
             }
@@ -84,10 +84,10 @@ class Board {
 
 
    getAccessibleNeighborIdList() {
-      var output = [];
-      var ids = [];
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
+      let output = [];
+      let ids = [];
+      for (let y = 0; y < this.board.length; y++) {
+         for (let x = 0; x < this.board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                for(let position of this.getAccessibleNeighboringPositions(x, y)) {
                   ids.push(position.getID());
@@ -102,12 +102,12 @@ class Board {
 
 
    getAccessibleNeighboringPositions(xPosition, yPosition) {
-      var neighbor_positions = [];
-      var direction = undefined;
-      var neighbor_x = undefined;
-      var neighbor_y = undefined;
+      let neighbor_positions = [];
+      let direction = undefined;
+      let neighbor_x = undefined;
+      let neighbor_y = undefined;
 
-      for (var i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
+      for (let i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
          direction = Directions.getDirectionByID(i);
          neighbor_x = xPosition + direction.x;
          neighbor_y = yPosition + direction.y;
@@ -120,8 +120,8 @@ class Board {
 
 
    searchCurrentPositions() {
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
+      for (let y = 0; y < this.board.length; y++) {
+         for (let x = 0; x < this.board[y].length; x++) {
             let current_position = this.getPosition(x, y);
             switch (current_position.getCharacter()) {
 
@@ -149,9 +149,9 @@ class Board {
 
   
    countAvailablePoints() {
-      var number_of_points = 0;
-      for (var y = 0; y < this.board.length; y++) {
-         for (var x = 0; x < this.board[y].length; x++) {
+      let number_of_points = 0;
+      for (let y = 0; y < this.board.length; y++) {
+         for (let x = 0; x < this.board[y].length; x++) {
             if (this.board[y][x].getCharacter() === Configuration.point_character) {
                number_of_points++;
             }

@@ -40,7 +40,7 @@ class Directions {
 
 
     static getDirectionNameByIndex(x, y) {
-        var index = `(${x},${y})`;
+        let index = `(${x},${y})`;
         return this.direction_map_direction_to_name[index];
     }
 
@@ -51,14 +51,14 @@ class Directions {
 
 
     static calculateMovementDirectionName(start_position, destination_position) {
-        var direction_x = destination_position.getX() - start_position.getX();
-        var direction_y = destination_position.getY() - start_position.getY();
+        let direction_x = destination_position.getX() - start_position.getX();
+        let direction_y = destination_position.getY() - start_position.getY();
         return Directions.getDirectionNameByIndex(direction_x, direction_y);
     }
 
 
     static calculateGhostDoorNeighborDirectionName(start_position, end_position) {
-        var direction = "";
+        let direction = "";
         if (start_position.getX() - end_position.getX() === 0) {
             direction = Configuration.ghost_door_direction_suffix_horizontal;
         }

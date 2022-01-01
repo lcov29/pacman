@@ -51,10 +51,10 @@ class Pacman extends Actor {
    
 
    calculateNextPosition() {
-      var direction = super.getMovementDirection();
-      var next_xPosition = super.getCurrentPosition().getX() + direction.x;
-      var next_yPosition = super.getCurrentPosition().getY() + direction.y;
-      var next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
+      let direction = super.getMovementDirection();
+      let next_xPosition = super.getCurrentPosition().getX() + direction.x;
+      let next_yPosition = super.getCurrentPosition().getY() + direction.y;
+      let next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
       super.setNextPosition(next_position);
    }
 
@@ -79,7 +79,7 @@ class Pacman extends Actor {
          if (this.has_teleported) {
             this.has_teleported = false;
          } else {
-            var destination = super.getTeleportDestinationForCurrentPosition();
+            let destination = super.getTeleportDestinationForCurrentPosition();
             super.setNextPosition(destination);
             this.has_teleported = true;
          }
