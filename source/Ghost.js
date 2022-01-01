@@ -31,7 +31,7 @@ class Ghost extends Actor {
 
    moveToPosition(x, y) {
       super.setNextPosition(super.getBoardPositionAt(x, y))
-      super.calculateMovementDirectionName();
+      this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       this.handleTeleportation();
       this.handlePacManCollision();
       this.setNextPositionOccupiedCharacter();
@@ -63,7 +63,7 @@ class Ghost extends Actor {
       // prevent handling when ghost is not on teleporter or simply moving over without teleporting
       if (super.isOccupiedBoardElementTeleporter() && this.isNextPositionEqualToTeleportDestination()) {
          let next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition().getID());
-         super.calculateMovementDirectionName(super.getNextPosition(), next_position_after_teleportation);
+         this.updateMovementDirection(super.getNextPosition(), next_position_after_teleportation);
       }
    }
 
@@ -73,6 +73,12 @@ class Ghost extends Actor {
          let pacman_id = super.getNextPosition().getID();
          super.decrementLifeOfPacman(pacman_id);
       }
+   }
+
+
+   updateMovementDirection(current_position, next_position) {
+      let direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
+      super.setMovementDirectionName(direction_name);
    }
 
    

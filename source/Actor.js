@@ -118,12 +118,4 @@ class Actor {
    }
 
 
-   // MOVE TO GHOST
-   calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
-      current_position = (current_position === undefined) ? this.current_position : current_position;
-      next_position = (next_position === undefined) ? this.next_position : next_position;
-      this.movement_direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
-   }
-
-
 }
