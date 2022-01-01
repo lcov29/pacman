@@ -15,6 +15,15 @@ class Teleporter {
                element === Configuration.teleporter_3_tile_character;
     }
 
+
+    add(position) {
+        if (this.position_teleporter_1 === undefined) {
+            this.position_teleporter_1 = position;
+        } else {
+            this.position_teleporter_2 = position;
+        }
+    }
+
     
     getIDPosition1() {
         return this.position_teleporter_1.getID();
@@ -23,27 +32,6 @@ class Teleporter {
 
     getIDPosition2() {
         return this.position_teleporter_2.getID();
-    }
-
-
-    isInitialized() {
-        return this.position_teleporter_1 !== undefined &&
-               this.position_teleporter_2 !== undefined;
-    }
-
-    
-    isTeleporterFor(position) {
-        return position.getID() === this.position_teleporter_1.getID() ||
-               position.getID() === this.position_teleporter_2.getID();
-    }
-
-
-    add(position) {
-        if (this.position_teleporter_1 === undefined) {
-            this.position_teleporter_1 = position;
-        } else {
-            this.position_teleporter_2 = position;
-        }
     }
 
 
@@ -57,6 +45,18 @@ class Teleporter {
             }
         }
         return destination; 
+    }
+
+    
+    isInitialized() {
+        return this.position_teleporter_1 !== undefined &&
+               this.position_teleporter_2 !== undefined;
+    }
+
+    
+    isTeleporterFor(position) {
+        return position.getID() === this.position_teleporter_1.getID() ||
+               position.getID() === this.position_teleporter_2.getID();
     }
 
 

@@ -11,6 +11,22 @@ class BoardPosition {
     }
 
 
+    setID(id) {
+        // prevent id of accessible elements to change after initialisation
+        this.id = (this.id === Configuration.id_unaccessible_board_element) ? id : this.id;
+    }
+
+
+    setCharacter(character) {
+        this.character = character;
+    }
+
+
+    setMovementDirection(direction) {
+        this.movement_direction = direction;
+    }
+
+
     getX() {
         return this.x;
     }
@@ -33,22 +49,6 @@ class BoardPosition {
 
     getMovementDirection() {
         return this.movement_direction;
-    }
-
-
-    setID(id) {
-        // prevent id of accessible elements to change after initialisation
-        this.id = (this.id === Configuration.id_unaccessible_board_element) ? id : this.id;
-    }
-
-
-    setCharacter(character) {
-        this.character = character;
-    }
-
-
-    setMovementDirection(direction) {
-        this.movement_direction = direction;
     }
 
 

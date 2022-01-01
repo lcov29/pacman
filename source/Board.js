@@ -45,17 +45,7 @@ class Board {
    }
 
 
-   isAccessibleAt(x, y) {
-      return this.board[y][x].getID() !== Configuration.id_unaccessible_board_element;
-   }
-
-
-   isIndexOnBoard(x, y) {
-      return 0 <= y && y < this.board.length &&
-             0 <= x && x < this.board[y].length;
-   }
-
-
+   // CONSIDER RENAMING TO BUILD...
    getBoardPositionArray() {
       let output = [];
       let row = [];
@@ -70,6 +60,7 @@ class Board {
    }
 
 
+   // CONSIDER RENAMING TO BUILD...
    getAccessibleBoardPositionList() {
       let output = [];
       for (let y = 0; y < this.board.length; y++) {
@@ -83,6 +74,7 @@ class Board {
    }
 
 
+   // CONSIDER RENAMING TO BUILD...
    getAccessibleNeighborIdList() {
       let output = [];
       let ids = [];
@@ -101,6 +93,7 @@ class Board {
    }
 
 
+   // CONSIDER RENAMING TO BUILD...
    getAccessibleNeighboringPositions(xPosition, yPosition) {
       let neighbor_positions = [];
       let direction = undefined;
@@ -116,6 +109,17 @@ class Board {
          }
       }
       return neighbor_positions;
+   }
+
+
+   isAccessibleAt(x, y) {
+      return this.board[y][x].getID() !== Configuration.id_unaccessible_board_element;
+   }
+
+
+   isIndexOnBoard(x, y) {
+      return 0 <= y && y < this.board.length &&
+             0 <= x && x < this.board[y].length;
    }
 
 

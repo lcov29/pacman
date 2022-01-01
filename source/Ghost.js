@@ -9,8 +9,23 @@ class Ghost extends Actor {
    }
    
 
+   setNextPositionOccupiedCharacter() {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
+         super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
+      } else {
+         super.updateNextOccupiedBoardCharacter();
+      }
+   }
+
+
    getRouting() {
       return this.routing;
+   }
+
+
+   isNextPositionEqualToTeleportDestination() {
+      return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
 
 
@@ -58,21 +73,6 @@ class Ghost extends Actor {
          let pacman_id = super.getNextPosition().getID();
          super.decrementLifeOfPacman(pacman_id);
       }
-   }
-
-
-   setNextPositionOccupiedCharacter() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
-         super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
-      } else {
-         super.updateNextOccupiedBoardCharacter();
-      }
-   }
-
-
-   isNextPositionEqualToTeleportDestination() {
-      return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
 
    

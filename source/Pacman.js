@@ -101,7 +101,7 @@ class Pacman extends Actor {
       }
    }
 
-
+   // RENAME TO UPDATE...
    setNextPositionOccupiedCharacter() {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
          super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);

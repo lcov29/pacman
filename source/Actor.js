@@ -15,65 +15,8 @@ class Actor {
    }
 
 
-   getCurrentPosition() {
-      return this.current_position;
-   }
-
-
-   getCurrentPositionID() {
-      return this.current_position.getID();
-   }
-
-   
-   updateCurrentPosition() {
-      this.current_position = this.next_position;
-      this.next_position = undefined;
-   }
-
-
-   getNextPosition() {
-      return this.next_position;
-   }
- 
-
    setNextPosition(position) {
       this.next_position = position;
-   }
-
-
-   isNextBoardPositionEqual(character) {
-      return this.next_position.getCharacter() === character;
-   }
-
-
-   getBoardPositionAt(x, y) {
-      return this.level.getBoardPositionAt(x, y);
-   }
-
-
-   updateNextOccupiedBoardCharacter(character = "") {
-      this.next_occupied_board_character = (character === "") ? this.next_position.getCharacter() : character;
-   }
-
-
-   updateCurrentOccupiedBoardCharacter() {
-      this.current_occupied_board_character = this.next_occupied_board_character;
-      this.next_occupied_board_character = "";
-   }
-
-   
-   isOccupiedBoardElementTeleporter() {
-      return this.level.isBoardElementTeleporter(this.current_occupied_board_character);
-   }
-
-
-   getMovementDirection() {
-      return Directions.getDirectionByName(this.movement_direction_name);
-   }
-
-
-   isMovementDirectionSet() {
-      return this.movement_direction_name !== '';
    }
 
 
@@ -82,10 +25,28 @@ class Actor {
    }
 
 
-   calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
-      current_position = (current_position === undefined) ? this.current_position : current_position;
-      next_position = (next_position === undefined) ? this.next_position : next_position;
-      this.movement_direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
+   getCurrentPosition() {
+      return this.current_position;
+   }
+
+
+   getNextPosition() {
+      return this.next_position;
+   }
+
+
+   getMovementDirection() {
+      return Directions.getDirectionByName(this.movement_direction_name);
+   }
+
+
+   getBoardPositionAt(x, y) {
+      return this.level.getBoardPositionAt(x, y);
+   }
+
+
+   getPacmanIDs() {
+      return this.level.getPacmanIDs();
    }
 
 
@@ -94,18 +55,28 @@ class Actor {
    }
 
 
-   getPacmanIDs() {
-      return this.level.getPacmanIDs();
+   isNextBoardPositionEqual(character) {
+      return this.next_position.getCharacter() === character;
    }
 
- 
-   decrementLifeOfPacman(pacman_id) {
-      this.level.decrementLifeOfPacman(pacman_id);
+
+   isOccupiedBoardElementTeleporter() {
+      return this.level.isBoardElementTeleporter(this.current_occupied_board_character);
+   }
+
+
+   isMovementDirectionSet() {
+      return this.movement_direction_name !== '';
    }
 
 
    incrementScoreBy(value) {
       this.level.incrementScoreBy(value);
+   }
+
+
+   decrementLifeOfPacman(pacman_id) {
+      this.level.decrementLifeOfPacman(pacman_id);
    }
 
 
@@ -115,7 +86,6 @@ class Actor {
 
 
    updateLevel(condition_update_next_position = true) {
-
       this.current_position.setCharacter(this.current_occupied_board_character);
       this.current_position.setMovementDirection("");
       this.level.addUpdateRequest(this.current_position);
@@ -128,7 +98,31 @@ class Actor {
       }
 
       this.level.update();
+   }
 
+
+   updateCurrentPosition() {
+      this.current_position = this.next_position;
+      this.next_position = undefined;
+   }
+
+
+   updateCurrentOccupiedBoardCharacter() {
+      this.current_occupied_board_character = this.next_occupied_board_character;
+      this.next_occupied_board_character = "";
+   }
+
+
+   updateNextOccupiedBoardCharacter(character = "") {
+      this.next_occupied_board_character = (character === "") ? this.next_position.getCharacter() : character;
+   }
+
+
+   // MOVE TO GHOST
+   calculateMovementDirectionName(current_position = undefined, next_position = undefined) {
+      current_position = (current_position === undefined) ? this.current_position : current_position;
+      next_position = (next_position === undefined) ? this.next_position : next_position;
+      this.movement_direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
    }
 
 

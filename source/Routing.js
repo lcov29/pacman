@@ -22,6 +22,11 @@ class Routing {
    }
 
 
+   getRoutingNodeForId(row_id, column_id) {
+      return this.routing_table[row_id][column_id];
+   }
+
+
    initializeRoutingTable(accessible_position_list) {
       let routing_node_row = [];
       let routing_node = undefined;
@@ -44,11 +49,6 @@ class Routing {
          clone.push(row[i].clone());
       }
       return clone;
-   }
-
-
-   getRoutingNodeForId(row_id, column_id) {
-      return this.routing_table[row_id][column_id];
    }
 
    

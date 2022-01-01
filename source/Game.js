@@ -21,6 +21,7 @@ class Game {
    isLevelInputValid(level_text) {   }
    
    
+   // REFACTOR: MOVE PARTS TO LEVEL
    nextStep() {
       this.level.movePacmans();
       this.level.update();
@@ -90,11 +91,13 @@ class Game {
    }
    
    
+   // REFACTOR: MOVE TO LEVEL
    isGameWon() {
       return this.level.available_points === 0;
    }
 
    
+   // REFACTOR: MOVE TO LEVEL
    isGameLost() {
       return this.level.getNumberOfPacmanLifes() === 0;
    }
