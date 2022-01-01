@@ -17,6 +17,12 @@ class Game {
    }
 
 
+   isInProgress() {
+      return (this.level.isWon() === false && 
+              this.level.isLost() === false);
+   }
+
+
    //TODO: implement level validation
    isLevelInputValid(level_text) {   }
    
@@ -71,7 +77,7 @@ class Game {
 
 
    handleWin() {
-      if (this.isGameWon()) {
+      if (this.level.isWon()) {
          this.view.printMessage('Victory')
          this.end();
       }
@@ -79,22 +85,10 @@ class Game {
    
    
    handleDefeat() {
-      if (this.isGameLost()) {
+      if (this.level.isLost()) {
          this.view.printMessage('Game over');
          this.end();
       }
-   }
-   
-   
-   // REFACTOR: MOVE TO LEVEL
-   isGameWon() {
-      return this.level.available_points === 0;
-   }
-
-   
-   // REFACTOR: MOVE TO LEVEL
-   isGameLost() {
-      return this.level.getNumberOfPacmanLifes() === 0;
    }
    
    
