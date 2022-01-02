@@ -8,17 +8,27 @@ class Routing {
       this.routing_table = new RoutingAlgorithm().calculateRoutingTable(this.routing_table, neighbor_id_list);
    }
 
-   
+
    calculateNextPositionOnShortestPath(start_node_id, destination_node_id) {
+      let output = null;
       let start_node = this.getRoutingNodeForId(start_node_id, start_node_id);
       let end_node = this.getRoutingNodeForId(start_node_id, destination_node_id);
-      let next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
-      return new BoardPosition(next_node.xPosition, next_node.yPosition, next_node.getID());
+      if (start_node_id === destination_node_id) {
+         output = new BoardPosition(start_node.xPosition, start_node.yPosition, start_node_id);
+      } else {
+         let next_node = this.selectFirstNodeOfShortestPath(start_node, end_node);
+         output = new BoardPosition(next_node.xPosition, next_node.yPosition, next_node.getID());
+      }
+      return output;
    }
 
 
-   getShortestDistanceBetween(start_node, end_node) {
-      return this.routing_table[start_node][end_node].getPathCost();
+   getShortestDistanceBetween(start_node_id, end_node_id) {
+      let result = 0;
+      if (start_node_id !== end_node_id) {
+         result = this.routing_table[start_node_id][end_node_id].getPathCost();
+      }
+      return result;
    }
 
 
