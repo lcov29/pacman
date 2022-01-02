@@ -2,6 +2,7 @@
 
 class BoardParser {
 
+
     parse(board_text) {
         let board = this.buildBoardPositionArray(board_text);
         this.indexAccessiblePositions(board);
@@ -62,4 +63,5 @@ class BoardParser {
         return character !== Configuration.wall_character;
     }
 
+    
 }

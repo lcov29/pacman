@@ -2,6 +2,7 @@
 
 class Routing {
    
+   
    constructor(accessible_position_list, neighbor_id_list) {
       this.routing_table = [];
       this.initializeRoutingTable(accessible_position_list);

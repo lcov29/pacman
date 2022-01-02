@@ -2,6 +2,7 @@
 
 class BoardPosition {
 
+
     constructor(x, y, character) {
         this.x = x;
         this.y = y;
@@ -59,4 +60,5 @@ class BoardPosition {
         return clone;
     }
 
+    
 }

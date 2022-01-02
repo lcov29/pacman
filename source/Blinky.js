@@ -2,6 +2,7 @@
 
 class Blinky extends Ghost {
 
+
     constructor(level, position, routing) {
         super(level, Configuration.ghost_blinky_character, position, routing);
     }
@@ -19,4 +20,5 @@ class Blinky extends Ghost {
         return super.getRouting().calculateNextPositionOnShortestPath(position_id, pacman_id);
     }
 
+    
 }

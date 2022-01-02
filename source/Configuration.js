@@ -2,6 +2,7 @@
 
 class Configuration {
    
+   
    // general game settings
    static initial_score = 0;
    static score_value_per_point = 10;
@@ -136,4 +137,6 @@ class Configuration {
    // Code for board parsing
    // Source: https://www.ascii-code.com/
    static linefeed_code = 10;
+
+
 }
