@@ -21,7 +21,7 @@ class Level {
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
         this.available_points = this.board.countAvailablePoints();
-        this.total_pacman_lifes = this.countNumberOfPacmanLifes(); // replace with pacmans.length * Configuration.initial_pacman_lifes
+        this.total_pacman_lifes = this.pacmans.length * Configuration.initial_pacman_lifes;
         this.initializeGhostDoorDirections();
     }
 
@@ -168,15 +168,6 @@ class Level {
             }
         }   
     } 
-
-    // remove
-    countNumberOfPacmanLifes() {
-        let lifes = 0;
-        for (let pacman of this.pacmans) {
-            lifes += pacman.getNumberOfLifes();
-        }
-        return lifes;
-    }
 
 
     initializeTeleporters() {
