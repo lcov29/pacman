@@ -96,8 +96,9 @@ class Pacman extends Actor {
    
    
    handleGhostCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_character)) {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) {
          this.decrementLife();
+         this.level.decrementTotalPacmanLifes();
       }
    }
 
