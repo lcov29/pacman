@@ -110,7 +110,7 @@ class Configuration {
    static getStyleClass(map, character, direction_suffix) {
       let style_class = map[character];
       if (direction_suffix !== "") {
-         style_class += "_" + direction_suffix;
+         style_class += `_${direction_suffix}`;
       }
       return style_class;
    }
