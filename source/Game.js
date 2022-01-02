@@ -4,7 +4,7 @@ class Game {
 
    
    constructor(level_text, board_container_id, score_id, life_id) {
-      this.animation_interval = undefined;
+      this.animation_interval = null;
       this.level = new Level(this, level_text);
       this.view = new View(board_container_id, score_id, life_id);
       this.level.initialize();
@@ -36,7 +36,7 @@ class Game {
       
    start() {
       // prevent the start of an already started game
-      if (this.animation_interval === undefined) {  
+      if (this.animation_interval === null) {  
          this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.interval_delay_in_milliseconds, this);   
          document.addEventListener('keydown', this.callBackEventListener, true);
       }

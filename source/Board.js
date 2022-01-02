@@ -92,9 +92,9 @@ class Board {
 
    buildAccessibleNeighborList(xPosition, yPosition) {
       let neighbor_positions = [];
-      let direction = undefined;
-      let neighbor_x = undefined;
-      let neighbor_y = undefined;
+      let direction = null;
+      let neighbor_x = -1;
+      let neighbor_y = -1;
 
       for (let i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
          direction = Directions.getDirectionByID(i);

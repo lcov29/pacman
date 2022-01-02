@@ -39,7 +39,7 @@ class Routing {
 
    initializeRoutingTable(accessible_position_list) {
       let routing_node_row = [];
-      let routing_node = undefined;
+      let routing_node = null;
 
       for (let position of accessible_position_list) {
          routing_node = new RoutingNode(position.getID(), position.getX(), position.getY());

@@ -33,7 +33,7 @@ class Ghost extends Actor {
 
    selectClosestPacmanID() {
       let pacman_ids = super.getPacmanIDs();
-      let min_cost_id = undefined;
+      let min_cost_id = null;
       let min_path_cost = Infinity;
       let current_id = -1;
       

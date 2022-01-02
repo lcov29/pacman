@@ -34,7 +34,7 @@ class Level {
 
 
     getTeleportDestination(position) {
-        let destination = undefined;
+        let destination = null;
         for (let teleporter of this.teleporters) {
             if (teleporter.isTeleporterFor(position)) {
                 destination = teleporter.getDestinationPositionFor(position);
@@ -224,7 +224,7 @@ class Level {
 
     initializeGhostDoorDirections() {
         let ghost_door_direction = "";
-        let accessible_neighbors = undefined;
+        let accessible_neighbors = null;
 
         for(let position of this.board.getGhostDoorPositions()) {
             accessible_neighbors = this.board.buildAccessibleNeighborList(position.getX(), position.getY());
@@ -246,8 +246,8 @@ class Level {
                 break;
 
             case 2:
-                let start_position = undefined;
-                let end_position = undefined;
+                let start_position = null;
+                let end_position = null;
                 for(let x = 0; x < accessible_neighbors.length; x++) {
                     start_position = accessible_neighbors[x];
                     for(let y = x + 1; y < accessible_neighbors.length; y++) {

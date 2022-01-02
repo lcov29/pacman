@@ -18,7 +18,7 @@ class RoutingAlgorithm {
       //phase 1: initialize all neighboring nodes of start_node
       let unused_nodes = routing_table[id_start_node].slice();
       let current_node = routing_table[id_start_node][id_start_node];
-      let routing_node = undefined;
+      let routing_node = null;
       this.removeNodeFrom(unused_nodes, current_node);
       
       for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {

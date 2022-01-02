@@ -4,8 +4,8 @@ class Teleporter {
 
     
     constructor() {
-        this.position_teleporter_1 = undefined;
-        this.position_teleporter_2 = undefined;
+        this.position_teleporter_1 = null;
+        this.position_teleporter_2 = null;
     }
     
 
@@ -17,7 +17,7 @@ class Teleporter {
 
 
     add(position) {
-        if (this.position_teleporter_1 === undefined) {
+        if (this.position_teleporter_1 === null) {
             this.position_teleporter_1 = position;
         } else {
             this.position_teleporter_2 = position;
@@ -36,7 +36,7 @@ class Teleporter {
 
 
     getDestinationPositionFor(position) {
-        let destination = undefined;
+        let destination = null;
         if (position.getID() === this.position_teleporter_1.getID()) {
             destination = this.position_teleporter_2.clone();
         } else {
@@ -49,8 +49,8 @@ class Teleporter {
 
     
     isInitialized() {
-        return this.position_teleporter_1 !== undefined &&
-               this.position_teleporter_2 !== undefined;
+        return this.position_teleporter_1 !== null &&
+               this.position_teleporter_2 !== null;
     }
 
     

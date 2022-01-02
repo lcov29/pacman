@@ -103,7 +103,7 @@ class Actor {
 
    updateCurrentPosition() {
       this.current_position = this.next_position;
-      this.next_position = undefined;
+      this.next_position = null;
    }
 
 

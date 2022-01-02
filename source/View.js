@@ -48,10 +48,10 @@ class View {
 
    
    addBackgroundElements(board) {
-      let outer_div = undefined;
+      let outer_div = null;
       let id_div = '';
       let style_class = '';
-      let current_position = undefined;
+      let current_position = null;
 
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
@@ -68,11 +68,11 @@ class View {
    
    
    addForegroundElements(board) {
-      let outer_div = undefined;
-      let inner_div = undefined;
+      let outer_div = null;
+      let inner_div = null;
       let id_div = '';
       let style_class = '';
-      let current_position = undefined;
+      let current_position = null;
       
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
