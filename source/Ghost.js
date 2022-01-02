@@ -67,8 +67,10 @@ class Ghost extends Actor {
 
 
    updateMovementDirection(current_position, next_position) {
-      let direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
-      super.setMovementDirectionName(direction_name);
+      if (current_position.getID() !== next_position.getID()) {
+         let direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
+         super.setMovementDirectionName(direction_name);
+      }
    }
 
 
