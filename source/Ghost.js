@@ -23,7 +23,7 @@ class Ghost extends Actor {
       super.setNextPosition(super.getBoardPositionAt(x, y))
       this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       this.handleTeleportation();
-      this.handlePacManCollision();
+      this.handlePacmanCollision();
       this.updateNextPositionOccupiedCharacter();
       super.updateLevel();
       super.updateCurrentOccupiedBoardCharacter();
@@ -58,7 +58,7 @@ class Ghost extends Actor {
    }
 
 
-   handlePacManCollision() {
+   handlePacmanCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          let pacman_id = super.getNextPosition().getID();
          super.decrementLifeOfPacman(pacman_id);
