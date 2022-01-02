@@ -21,7 +21,7 @@ class Level {
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
         this.available_points = this.board.countAvailablePoints();
-        this.total_pacman_lifes = this.countNumberOfPacmanLifes();
+        this.total_pacman_lifes = this.countNumberOfPacmanLifes(); // replace with pacmans.length * Configuration.initial_pacman_lifes
         this.initializeGhostDoorDirections();
     }
 
@@ -103,10 +103,12 @@ class Level {
     executeTurn() {
         this.movePacmans();
         this.update();
-        this.moveGhosts();
-        this.update();
+        if (this.isWon() === false && this.isLost() === false) {
+            this.moveGhosts();
+            this.update();
+        }
         this.deleteDeadPacmans();
-    }
+    }    
 
 
     incrementScoreBy(value) {
@@ -123,9 +125,14 @@ class Level {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === pacman_id) {
                 pacman.decrementLife();
-                this.total_pacman_lifes--;
+                this.decrementTotalPacmanLifes();
             }
         }
+    }
+
+
+    decrementTotalPacmanLifes() {
+        this.total_pacman_lifes--;
     }
 
 
@@ -162,7 +169,7 @@ class Level {
         }   
     } 
 
-
+    // remove
     countNumberOfPacmanLifes() {
         let lifes = 0;
         for (let pacman of this.pacmans) {
