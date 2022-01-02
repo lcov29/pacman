@@ -61,9 +61,12 @@ class Directions {
         let direction = "";
         if (start_position.getX() - end_position.getX() === 0) {
             direction = Configuration.ghost_door_direction_suffix_horizontal;
-        }
-        if (start_position.getY() - end_position.getY() === 0) {
-            direction = Configuration.ghost_door_direction_suffix_vertical;
+        } else {
+            if (start_position.getY() - end_position.getY() === 0) {
+                direction = Configuration.ghost_door_direction_suffix_vertical;
+            } else {
+                direction = Configuration.ghost_door_direction_suffix_diagonal;
+            }
         }
         return direction;
     }
