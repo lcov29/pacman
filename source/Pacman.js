@@ -48,14 +48,20 @@ class Pacman extends Actor {
          super.updateCurrentPosition();
       }
    }
-   
+ 
 
    calculateNextPosition() {
       let direction = super.getMovementDirection();
       let next_xPosition = super.getCurrentPosition().getX() + direction.x;
       let next_yPosition = super.getCurrentPosition().getY() + direction.y;
-      let next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
-      super.setNextPosition(next_position);
+      let next_position = null;
+      try {
+         next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
+      } catch(e) {
+         next_position = super.getCurrentPosition();
+      } finally {
+         super.setNextPosition(next_position);
+      }
    }
 
    
