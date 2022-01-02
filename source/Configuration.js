@@ -20,7 +20,7 @@ class Configuration {
                         '######o#####o#o#####o######\n' +
                         '######o#xxxxxbxxxxx#o######\n' +
                         '######o#x####d####x#o######\n' +
-                        '#1xxxxoxx#xxxxxxx#xxoxxxx1#\n' +
+                        '1xxxxxoxx#xxxxxxx#xxoxxxxx1\n' +
                         '######o#x#########x#o######\n' +
                         '######o#xxxxxxxxxxx#o######\n' +
                         '######o#x#########x#o######\n' +
