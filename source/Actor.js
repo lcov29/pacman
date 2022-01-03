@@ -35,6 +35,11 @@ class Actor {
    }
 
 
+   getOccupiedBoardCharacter() {
+      return this.current_occupied_board_character;
+   }
+
+
    getMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
    }
