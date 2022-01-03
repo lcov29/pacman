@@ -115,12 +115,15 @@ class Pacman extends Actor {
    handlePacmanCollision() {
       let result = true;
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         let this_pacman_id = super.getCurrentPosition().getID();
          let other_pacman_id = super.getNextPosition().getID();
-         let other_pacman_completed_turn = this.level.getTurnCompletionStatusForPacman(other_pacman_id);
-         if (other_pacman_completed_turn) {
-            super.setNextPosition(super.getCurrentPosition());
-         } else {
-            result = false;
+         if (this_pacman_id !== other_pacman_id) {
+            let other_completed_turn = this.level.getTurnCompletionStatusForPacman(other_pacman_id);
+            if (other_completed_turn) {
+               super.setNextPosition(super.getCurrentPosition());
+            } else {
+               result = false;
+            }
          }
       }
       return result;
