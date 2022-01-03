@@ -8,6 +8,13 @@ You can play the game via github-pages or you can download it and open the index
 
 ## Version history
 
+*Version 0.02*
+* adjust sprites of pacman and ghosts to their current direction of movement
+* add teleporter tiles
+* implement collision handling for pacmans
+* implement collision handling for ghosts
+
+
 *Version 0.01*
 * build basic level from user input
 * implement basic pacman behavior
@@ -20,11 +27,6 @@ You can play the game via github-pages or you can download it and open the index
 * display game on HTML-site 
 * notify player about victory (no points left)
 * notify player about defeat (no lifes left)
-
-
-*Version 0.02*
-* adjust sprites of pacman and ghosts to their current direction of movement
-* add teleporter tiles
 
 
 ## Ideas for additional features
