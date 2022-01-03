@@ -11,7 +11,18 @@ class Actor {
       this.current_occupied_board_character = Configuration.empty_tile_character;
       this.next_occupied_board_character = '';
       this.movement_direction_name = initial_direction;
+      this.has_moved_in_current_turn = false;
       this.current_position.setMovementDirection(this.movement_direction_name);
+   }
+
+
+   setTurnMovementStatus(status) {
+      this.has_moved_in_current_turn = status;
+   }
+
+
+   getTurnMovementStatus() {
+      return this.has_moved_in_current_turn;
    }
 
 
@@ -87,6 +98,24 @@ class Actor {
 
    decrementAvailablePoints() {
       this.level.decrementAvailablePoints();
+   }
+
+
+   handleCollisionWithSameActorType() {
+      let result = true;
+      if (this.isNextBoardPositionEqual(this.character)) {
+         let this_actor_id = this.getCurrentPosition().getID();
+         let other_actor_id = this.getNextPosition().getID();
+         if (this_actor_id !== other_actor_id) {
+            let other_completed_turn = this.level.getTurnCompletionStatusForActor(this.character, other_actor_id);
+            if (other_completed_turn) {
+               this.setNextPosition(this.getCurrentPosition());
+            } else {
+               result = false;
+            }
+         }
+      }
+      return result;
    }
 
 

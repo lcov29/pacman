@@ -7,22 +7,11 @@ class Pacman extends Actor {
       super(level, Configuration.pacman_character, position, Configuration.initial_pacman_direction);
       this.has_teleported_in_previous_turn = false;
       this.lifes = Configuration.initial_pacman_lifes;
-      this.has_moved_in_current_turn = false;
    }
    
 
    setTeleportationStatus(status) {
       this.has_teleported_in_previous_turn = status;
-   }
-
-
-   setTurnMovementStatus(status) {
-      this.has_moved_in_current_turn = status;
-   }
-
-
-   getTurnMovementStatus() {
-      return this.has_moved_in_current_turn;
    }
 
 
@@ -48,13 +37,13 @@ class Pacman extends Actor {
          this.lifes--;
       }
    }
- 
+
 
    move() {
-      if (super.isMovementDirectionSet() && !this.getTurnMovementStatus()) {
+      if (super.isMovementDirectionSet() && !super.getTurnMovementStatus()) {
          this.calculateNextPosition();
          let teleportation_status = this.handleTeleportation();
-         if (this.handlePacmanCollision()) {
+         if (super.handleCollisionWithSameActorType()) {
             this.setTeleportationStatus(teleportation_status);
             this.handleWallCollision();
             this.handleGhostDoorCollision();
@@ -64,10 +53,10 @@ class Pacman extends Actor {
             super.updateLevel(!this.isDead());
             super.updateCurrentOccupiedBoardCharacter();
             super.updateCurrentPosition();
-            this.setTurnMovementStatus(true);
+            super.setTurnMovementStatus(true);
          }
       }
-      return this.getTurnMovementStatus();
+      return super.getTurnMovementStatus();
    }
 
 
@@ -94,24 +83,6 @@ class Pacman extends Actor {
          executed = true;
       }
       return executed;
-   }
-
-
-   handlePacmanCollision() {
-      let result = true;
-      if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         let this_pacman_id = super.getCurrentPosition().getID();
-         let other_pacman_id = super.getNextPosition().getID();
-         if (this_pacman_id !== other_pacman_id) {
-            let other_completed_turn = this.level.getTurnCompletionStatusForPacman(other_pacman_id);
-            if (other_completed_turn) {
-               super.setNextPosition(super.getCurrentPosition());
-            } else {
-               result = false;
-            }
-         }
-      }
-      return result;
    }
 
 
