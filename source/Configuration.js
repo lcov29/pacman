@@ -11,7 +11,7 @@ class Configuration {
    static initial_ghosts_direction = "down";
    static interval_delay_in_milliseconds = 500;
    static default_map = '###########################\n'+
-                        '#oooooooooooo#oooooooooooo#\n' +
+                        '#8ooooooooooo#ooooooooooo9#\n' +
                         '#o####o#####o#o#####o####o#\n' +
                         '#o####o#####o#o#####o####o#\n' +
                         '#ooooooooooooooooooooooooo#\n' +
@@ -30,7 +30,7 @@ class Configuration {
                         '####o#o#o#########o#o#o####\n' +
                         '#oooooo#ooooo#ooooo#oooooo#\n' +
                         '#o##########o#o##########o#\n' +
-                        '#ooooooooooooooooooooooooo#\n' +
+                        '#7ooooooooooooooooooooooo6#\n' +
                         '###########################\n';
 
                         
@@ -46,6 +46,10 @@ class Configuration {
    static pacman_character = "p";
    static ghost_blinky_character = "b";
    static point_character = "o";
+   static scatter_point_character_blinky = "9";
+   static scatter_point_character_pinky = "8";
+   static scatter_point_character_inky = "7";
+   static scatter_point_character_clyde = "6";
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
@@ -64,27 +68,35 @@ class Configuration {
    static ghost_door_direction_suffix_vertical = "vertical";
 
    static background_class_map = {
-      [this.wall_character]:              this.wall_background_css_class,
-      [this.empty_tile_character]:        this.empty_background_css_class,
-      [this.ghost_door_character]:        this.ghost_door_background_css_class,
-      [this.teleporter_1_tile_character]: this.teleporter_1_background_css_class,
-      [this.teleporter_2_tile_character]: this.teleporter_2_background_css_class,
-      [this.teleporter_3_tile_character]: this.teleporter_3_background_css_class,
-      [this.pacman_character]:            this.empty_background_css_class,
-      [this.ghost_blinky_character]:      this.empty_background_css_class,
-      [this.point_character]:             this.empty_background_css_class       
+      [this.wall_character]:                 this.wall_background_css_class,
+      [this.empty_tile_character]:           this.empty_background_css_class,
+      [this.ghost_door_character]:           this.ghost_door_background_css_class,
+      [this.teleporter_1_tile_character]:    this.teleporter_1_background_css_class,
+      [this.teleporter_2_tile_character]:    this.teleporter_2_background_css_class,
+      [this.teleporter_3_tile_character]:    this.teleporter_3_background_css_class,
+      [this.pacman_character]:               this.empty_background_css_class,
+      [this.ghost_blinky_character]:         this.empty_background_css_class,
+      [this.point_character]:                this.empty_background_css_class,
+      [this.scatter_point_character_blinky]: this.empty_background_css_class,   
+      [this.scatter_point_character_pinky]:  this.empty_background_css_class,
+      [this.scatter_point_character_inky]:   this.empty_background_css_class,
+      [this.scatter_point_character_clyde]:  this.empty_background_css_class    
    };
 
    static foreground_class_map = {
-      [this.wall_character]:              this.empty_foreground_css_class,
-      [this.empty_tile_character]:        this.empty_foreground_css_class,
-      [this.ghost_door_character]:        this.empty_foreground_css_class,
-      [this.teleporter_1_tile_character]: this.empty_foreground_css_class,
-      [this.teleporter_2_tile_character]: this.empty_foreground_css_class,
-      [this.teleporter_3_tile_character]: this.empty_foreground_css_class,
-      [this.pacman_character]:            this.pacman_foreground_css_class,
-      [this.ghost_blinky_character]:      this.ghost_blinky_foreground_css_class,
-      [this.point_character]:             this.point_foreground_css_class       
+      [this.wall_character]:                 this.empty_foreground_css_class,
+      [this.empty_tile_character]:           this.empty_foreground_css_class,
+      [this.ghost_door_character]:           this.empty_foreground_css_class,
+      [this.teleporter_1_tile_character]:    this.empty_foreground_css_class,
+      [this.teleporter_2_tile_character]:    this.empty_foreground_css_class,
+      [this.teleporter_3_tile_character]:    this.empty_foreground_css_class,
+      [this.pacman_character]:               this.pacman_foreground_css_class,
+      [this.ghost_blinky_character]:         this.ghost_blinky_foreground_css_class,
+      [this.point_character]:                this.point_foreground_css_class,
+      [this.scatter_point_character_blinky]: this.point_foreground_css_class,  
+      [this.scatter_point_character_pinky]:  this.point_foreground_css_class,
+      [this.scatter_point_character_inky]:   this.point_foreground_css_class,
+      [this.scatter_point_character_clyde]:  this.point_foreground_css_class        
    };
 
 
