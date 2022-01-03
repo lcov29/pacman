@@ -121,10 +121,10 @@ class Level {
 
 
     executeTurn() {
-        this.movePacmans();
+        this.moveActors(this.pacmans);
         this.update();
         if (this.isWon() === false && this.isLost() === false) {
-            this.moveGhosts();
+            this.moveActors(this.ghosts);
             this.update();
         }
         this.deleteDeadPacmans();
@@ -156,11 +156,6 @@ class Level {
     }
 
 
-    movePacmans() {
-        this.moveActors(this.pacmans);
-    }
-
-
     moveActors(actors) {
         let unmoved_actors = [...actors];
         while (unmoved_actors.length > 0) {
@@ -179,13 +174,6 @@ class Level {
     removeElementFrom(array, element) {
         const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
         array.splice(array.indexOf(element), NUMBER_OF_ELEMENTS_TO_DELETE);
-    }
-
-
-    moveGhosts() {
-        for (let ghost of this.ghosts) {
-            ghost.move();
-        }
     }
 
 
