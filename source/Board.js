@@ -9,6 +9,7 @@ class Board {
       this.initial_ghost_positions = [];
       this.teleporter_positions = [];
       this.ghost_door_positions = [];
+      this.ghost_scatter_positions = [];
       this.searchCurrentPositions();
    }
 
@@ -42,6 +43,11 @@ class Board {
 
    getGhostDoorPositions() {
       return this.ghost_door_positions;
+   }
+
+
+   getGhostScatterPositions() {
+      return this.ghost_scatter_positions;
    }
 
 
@@ -142,6 +148,13 @@ class Board {
                case Configuration.ghost_door_character:
                   this.ghost_door_positions.push(current_position);
                   break;
+
+               case Configuration.scatter_point_character_blinky:
+               case Configuration.scatter_point_character_pinky:
+               case Configuration.scatter_point_character_inky:
+               case Configuration.scatter_point_character_clyde:
+                  this.ghost_scatter_positions.push(current_position);
+                  break;
             }
          }
       }
@@ -158,6 +171,14 @@ class Board {
          }
       }
       return number_of_points;
+   }
+
+
+   setCharactersOfScatterPointsTo(character) {
+      for (let position of this.ghost_scatter_positions) {
+         position.setCharacter(character);
+         this.setPosition(position);
+      }
    }
    
    
