@@ -54,11 +54,12 @@ class Level {
     }
 
 
-    getTurnCompletionStatusForPacman(pacman_id) {
+    getTurnCompletionStatusForActor(actor_character, actor_id) {
         let result = true;
-        for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === pacman_id) {
-                result = pacman.getTurnMovementStatus();
+        let actors = (actor_character === Configuration.pacman_character) ? this.pacmans : this.ghosts;
+        for (let actor of actors) {
+            if (actor.getCurrentPosition().getID() === actor_id) {
+                result = actor.getTurnMovementStatus();
                 break;
             }
         }
@@ -112,9 +113,9 @@ class Level {
     }
 
 
-    resetTurnMovementStatusOfPacmans() {
-        for (let pacman of this.pacmans) {
-            pacman.setTurnMovementStatus(false);
+    resetTurnMovementStatusOfActors(actors) {
+        for (let actor of actors) {
+            actor.setTurnMovementStatus(false);
         }
     }
 
@@ -155,26 +156,23 @@ class Level {
     }
 
 
-    /*
     movePacmans() {
-        for (let pacman of this.pacmans) {
-            pacman.move();
-        }
-    }*/
+        this.moveActors(this.pacmans);
+    }
 
 
-    movePacmans() {
-        let unmoved_pacmans = [...this.pacmans];
-        while (unmoved_pacmans.length > 0) {
-            for (let pacman of unmoved_pacmans) {
-                if (pacman.getTurnMovementStatus() == false) {
-                    if (pacman.move()) {
-                        this.removeElementFrom(unmoved_pacmans, pacman);
+    moveActors(actors) {
+        let unmoved_actors = [...actors];
+        while (unmoved_actors.length > 0) {
+            for (let actor of unmoved_actors) {
+                if (actor.getTurnMovementStatus() == false) {
+                    if (actor.move()) {
+                        this.removeElementFrom(unmoved_actors, actor);
                     }
                 }
             }
         }
-        this.resetTurnMovementStatusOfPacmans();
+        this.resetTurnMovementStatusOfActors(actors);
     }
 
 
