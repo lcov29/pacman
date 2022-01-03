@@ -3,9 +3,23 @@
 class Ghost extends Actor {
    
    
-   constructor(level, character, position, routing) {
+   constructor(level, character, position, routing, scatter_character) {
       super(level, character, position, Configuration.initial_ghosts_direction);
       this.routing = routing;
+      //this.state = new GhostStateChase(20, this);
+      this.state = new GhostStateScatter(7, this);
+      this.scatter_position_character = scatter_character;
+      this.scatter_position_id = -1;
+   }
+
+
+   setState(state) {
+      this.state = state;
+   }
+
+
+   setScatterID(position_id) {
+      this.scatter_position_id = position_id;
    }
 
 
@@ -14,8 +28,25 @@ class Ghost extends Actor {
    }
 
 
+   getScatterCharacter(){
+      return this.scatter_position_character;
+   }
+
+
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
+   }
+
+
+   move() {
+      return this.state.move();
+   }
+
+
+   scatter() {
+      let current_position_id = this.getCurrentPosition().getID();
+      let next_position = this.routing.calculateNextPositionOnShortestPath(current_position_id, this.scatter_position_id);
+      return this.moveToPosition(next_position.getX(), next_position.getY());
    }
 
 
