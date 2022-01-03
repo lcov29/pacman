@@ -224,9 +224,12 @@ class Level {
 
     initializePacmans() {
         let pacmans = [];
+        let pacman = null;
         for (let position of this.board.getInitialPacmanPositions()) {
-            pacmans.push(new Pacman(this, position));
-            this.board.setPosition(position); // set initial movement direction
+            pacman = new Pacman(this, position);
+            this.board.setPosition(position);       // set movement direction of pacman for initial render of level
+            pacman.setMovementDirectionName("");    // prevent pacman from instantly moving after start of the level
+            pacmans.push(pacman);
         }
         return pacmans;
     }
