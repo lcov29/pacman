@@ -54,6 +54,18 @@ class Level {
     }
 
 
+    getTurnCompletionStatusForPacman(pacman_id) {
+        let result = true;
+        for (let pacman of this.pacmans) {
+            if (pacman.getCurrentPosition().getID() === pacman_id) {
+                result = pacman.getTurnMovementStatus();
+                break;
+            }
+        }
+        return result;
+    }
+
+
     getBoardPositionAt(x, y) {
         return this.board.getPosition(x, y);
     }
@@ -100,6 +112,13 @@ class Level {
     }
 
 
+    resetTurnMovementStatusOfPacmans() {
+        for (let pacman of this.pacmans) {
+            pacman.setTurnMovementStatus(false);
+        }
+    }
+
+
     executeTurn() {
         this.movePacmans();
         this.update();
@@ -136,10 +155,32 @@ class Level {
     }
 
 
+    /*
     movePacmans() {
         for (let pacman of this.pacmans) {
             pacman.move();
         }
+    }*/
+
+
+    movePacmans() {
+        let unmoved_pacmans = [...this.pacmans];
+        while (unmoved_pacmans.length > 0) {
+            for (let pacman of unmoved_pacmans) {
+                if (pacman.getTurnMovementStatus() == false) {
+                    if (pacman.move()) {
+                        this.removeElementFrom(unmoved_pacmans, pacman);
+                    }
+                }
+            }
+        }
+        this.resetTurnMovementStatusOfPacmans();
+    }
+
+
+    removeElementFrom(array, element) {
+        const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
+        array.splice(array.indexOf(element), NUMBER_OF_ELEMENTS_TO_DELETE);
     }
 
 

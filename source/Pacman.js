@@ -7,8 +7,19 @@ class Pacman extends Actor {
       super(level, Configuration.pacman_character, position, Configuration.initial_pacman_direction);
       this.has_teleported = false;
       this.lifes = Configuration.initial_pacman_lifes;
+      this.has_moved_in_current_turn = false;
    }
    
+
+   setTurnMovementStatus(bool) {
+      this.has_moved_in_current_turn = bool;
+   }
+
+
+   getTurnMovementStatus() {
+      return this.has_moved_in_current_turn;
+   }
+
 
    getNumberOfLifes() {
       return this.lifes;
@@ -34,6 +45,7 @@ class Pacman extends Actor {
    }
 
 
+   /*
    move() {
       if (super.isMovementDirectionSet()) {
          this.calculateNextPosition();
@@ -47,8 +59,29 @@ class Pacman extends Actor {
          super.updateCurrentOccupiedBoardCharacter();
          super.updateCurrentPosition();
       }
-   }
+   }*/
  
+
+   move() {
+      if (super.isMovementDirectionSet() && !this.getTurnMovementStatus()) {
+         this.calculateNextPosition();
+         this.handleTeleportation();
+         if (this.handlePacmanCollision()) {
+            this.handleWallCollision();
+            this.handleGhostDoorCollision();
+            //this.handleTeleportation();
+            this.handlePointCollision();
+            this.handleGhostCollision();
+            this.updateNextPositionOccupiedCharacter();
+            super.updateLevel(!this.isDead());
+            super.updateCurrentOccupiedBoardCharacter();
+            super.updateCurrentPosition();
+            this.setTurnMovementStatus(true);
+         }
+      }
+      return this.getTurnMovementStatus();
+   }
+
 
    calculateNextPosition() {
       let direction = super.getMovementDirection();
@@ -64,20 +97,6 @@ class Pacman extends Actor {
       }
    }
 
-   
-   handleWallCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
-         super.setNextPosition(super.getCurrentPosition());
-      }
-   }
-
-
-   handleGhostDoorCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_door_character)) {
-         super.setNextPosition(super.getCurrentPosition());
-      }
-   }
-
 
    handleTeleportation() {
       if (super.isOccupiedBoardElementTeleporter()) {
@@ -89,6 +108,35 @@ class Pacman extends Actor {
             super.setNextPosition(destination);
             this.has_teleported = true;
          }
+      }
+   }
+
+
+   handlePacmanCollision() {
+      let result = true;
+      if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         let other_pacman_id = super.getNextPosition().getID();
+         let other_pacman_completed_turn = this.level.getTurnCompletionStatusForPacman(other_pacman_id);
+         if (other_pacman_completed_turn) {
+            super.setNextPosition(super.getCurrentPosition());
+         } else {
+            result = false;
+         }
+      }
+      return result;
+   }
+
+
+   handleWallCollision() {
+      if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
+         super.setNextPosition(super.getCurrentPosition());
+      }
+   }
+
+
+   handleGhostDoorCollision() {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_door_character)) {
+         super.setNextPosition(super.getCurrentPosition());
       }
    }
    
