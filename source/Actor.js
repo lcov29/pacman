@@ -16,16 +16,6 @@ class Actor {
    }
 
 
-   setTurnMovementStatus(status) {
-      this.has_moved_in_current_turn = status;
-   }
-
-
-   getTurnMovementStatus() {
-      return this.has_moved_in_current_turn;
-   }
-
-
    setNextPosition(position) {
       this.next_position = position;
    }
@@ -33,6 +23,11 @@ class Actor {
 
    setMovementDirectionName(direction) {
       this.movement_direction_name = direction;
+   }
+
+
+   setTurnMovementStatus(status) {
+      this.has_moved_in_current_turn = status;
    }
 
 
@@ -53,6 +48,11 @@ class Actor {
 
    getMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
+   }
+
+
+   getTurnMovementStatus() {
+      return this.has_moved_in_current_turn;
    }
 
 
