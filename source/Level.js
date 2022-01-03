@@ -236,19 +236,43 @@ class Level {
 
 
     initializeGhosts() {
-        let ghosts = [];
+        let routing = this.initializeRouting();
+        let ghosts = this.initializeGhostObjects(routing);
+        this.initializeGhostScatterPoints(ghosts);
+        return ghosts;
+    }
+
+
+    initializeRouting() {
         let accessible_position_list = this.board.buildAccessibleBoardPositionList();
         let neighbor_id_list = this.buildAccessibleNeighborIdList();
-        let routing = new Routing(accessible_position_list, neighbor_id_list);
+        return new Routing(accessible_position_list, neighbor_id_list);
+    }
+
+
+    initializeGhostObjects(routing) {
+        let ghosts = [];
         for (let position of this.board.getInitialGhostPositions()) {
             switch (position.getCharacter()) {
-                case Configuration.ghost_blinky_character:                     // add different ghost types
+                case Configuration.ghost_blinky_character:             // add different ghost types
                     ghosts.push(new Blinky(this, position, routing));
                     break;
             }
             this.board.setPosition(position); // set initial movement direction
         }
         return ghosts;
+    }
+
+
+    initializeGhostScatterPoints(ghosts) {
+        for (let position of this.board.getGhostScatterPositions()) {
+            for (let ghost of ghosts) {
+                if (ghost.getScatterCharacter() === position.getCharacter()) {
+                    ghost.setScatterID(position.getID());
+                }
+            }
+        }
+        this.board.setCharactersOfScatterPointsTo(Configuration.point_character);
     }
 
 
