@@ -5,14 +5,19 @@ class Pacman extends Actor {
    
    constructor(level, position) {
       super(level, Configuration.pacman_character, position, Configuration.initial_pacman_direction);
-      this.has_teleported = false;
+      this.has_teleported_in_previous_turn = false;
       this.lifes = Configuration.initial_pacman_lifes;
       this.has_moved_in_current_turn = false;
    }
    
 
-   setTurnMovementStatus(bool) {
-      this.has_moved_in_current_turn = bool;
+   setTeleportationStatus(status) {
+      this.has_teleported_in_previous_turn = status;
+   }
+
+
+   setTurnMovementStatus(status) {
+      this.has_moved_in_current_turn = status;
    }
 
 
@@ -43,33 +48,16 @@ class Pacman extends Actor {
          this.lifes--;
       }
    }
-
-
-   /*
-   move() {
-      if (super.isMovementDirectionSet()) {
-         this.calculateNextPosition();
-         this.handleWallCollision();
-         this.handleGhostDoorCollision();
-         this.handleTeleportation();
-         this.handlePointCollision();
-         this.handleGhostCollision();
-         this.updateNextPositionOccupiedCharacter();
-         super.updateLevel(!this.isDead());
-         super.updateCurrentOccupiedBoardCharacter();
-         super.updateCurrentPosition();
-      }
-   }*/
  
 
    move() {
       if (super.isMovementDirectionSet() && !this.getTurnMovementStatus()) {
          this.calculateNextPosition();
-         this.handleTeleportation();
+         let teleportation_status = this.handleTeleportation();
          if (this.handlePacmanCollision()) {
+            this.setTeleportationStatus(teleportation_status);
             this.handleWallCollision();
             this.handleGhostDoorCollision();
-            //this.handleTeleportation();
             this.handlePointCollision();
             this.handleGhostCollision();
             this.updateNextPositionOccupiedCharacter();
@@ -99,16 +87,13 @@ class Pacman extends Actor {
 
 
    handleTeleportation() {
-      if (super.isOccupiedBoardElementTeleporter()) {
-         // prevent teleportation loop
-         if (this.has_teleported) {
-            this.has_teleported = false;
-         } else {
-            let destination = super.getTeleportDestinationForCurrentPosition();
-            super.setNextPosition(destination);
-            this.has_teleported = true;
-         }
+     let executed = false;
+      if (super.isOccupiedBoardElementTeleporter() && this.has_teleported_in_previous_turn === false) {
+         let destination = super.getTeleportDestinationForCurrentPosition();
+         super.setNextPosition(destination);
+         executed = true;
       }
+      return executed;
    }
 
 
@@ -164,7 +149,9 @@ class Pacman extends Actor {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
          super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
       } else {
-         if (!super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+         if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+            super.updateNextOccupiedBoardCharacter(super.getOccupiedBoardCharacter());
+         } else {
             super.updateNextOccupiedBoardCharacter();
          }
       }
