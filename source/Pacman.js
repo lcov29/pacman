@@ -40,21 +40,27 @@ class Pacman extends Actor {
 
 
    move() {
-      if (super.isMovementDirectionSet() && !super.getTurnMovementStatus()) {
-         this.calculateNextPosition();
-         let teleportation_status = this.handleTeleportation();
-         if (super.handleCollisionWithSameActorType()) {
-            this.setTeleportationStatus(teleportation_status);
-            this.handleWallCollision();
-            this.handleGhostDoorCollision();
-            this.handlePointCollision();
-            this.handleGhostCollision();
-            this.updateNextPositionOccupiedCharacter();
-            super.updateLevel(!this.isDead());
-            super.updateCurrentOccupiedBoardCharacter();
-            super.updateCurrentPosition();
-            super.setTurnMovementStatus(true);
+      if (super.isMovementDirectionSet() === false) {
+         super.setTurnMovementStatus(true);
+      } else {
+
+         if (super.getTurnMovementStatus() === false) {
+            this.calculateNextPosition();
+            let teleportation_status = this.handleTeleportation();
+            if (super.handleCollisionWithSameActorType()) {
+               this.setTeleportationStatus(teleportation_status);
+               this.handleWallCollision();
+               this.handleGhostDoorCollision();
+               this.handlePointCollision();
+               this.handleGhostCollision();
+               this.updateNextPositionOccupiedCharacter();
+               super.updateLevel(!this.isDead());
+               super.updateCurrentOccupiedBoardCharacter();
+               super.updateCurrentPosition();
+               super.setTurnMovementStatus(true);
+            }
          }
+
       }
       return super.getTurnMovementStatus();
    }
