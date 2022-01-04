@@ -26,6 +26,14 @@ class Directions {
     };  
 
 
+    static direction_map_inverse = {
+        'up':       'down',
+        'right':    'left',
+        'down':     'up',
+        'left':     'right'
+    };
+
+
     static direction_map_id_to_direction = {
         0: this.direction_up,
         1: this.direction_right,
@@ -42,6 +50,11 @@ class Directions {
     static getDirectionNameByIndex(x, y) {
         let index = `(${x},${y})`;
         return this.direction_map_direction_to_name[index];
+    }
+
+
+    static getReversedDirectionName(name) {
+        return this.direction_map_inverse[name];
     }
 
 
