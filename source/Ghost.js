@@ -33,6 +33,11 @@ class Ghost extends Actor {
    }
 
 
+   getScatterID() {
+      return this.scatter_position_id;
+   }
+
+
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
@@ -43,10 +48,8 @@ class Ghost extends Actor {
    }
 
 
-   scatter() {
-      let current_position_id = this.getCurrentPosition().getID();
-      let next_position = this.routing.calculateNextPositionOnShortestPath(current_position_id, this.scatter_position_id);
-      return this.moveToPosition(next_position.getX(), next_position.getY());
+   calculateNextRoutingPosition(start_id, destination_id) {
+      return this.routing.calculateNextPositionOnShortestPath(start_id, destination_id);
    }
 
 
