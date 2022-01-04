@@ -125,5 +125,11 @@ class Ghost extends Actor {
       }
    }
 
+
+   reverseMovementDirection() {
+      let reverse_direction = Directions.getReversedDirectionName(super.getMovementDirectionName());
+      super.setMovementDirectionName(reverse_direction);
+   }
+
    
 }
