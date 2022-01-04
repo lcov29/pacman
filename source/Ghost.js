@@ -52,15 +52,19 @@ class Ghost extends Actor {
 
    moveToPosition(x, y) {
       super.setNextPosition(super.getBoardPositionAt(x, y))
-      if (super.handleCollisionWithSameActorType()) {
-         this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
-         this.handleTeleportation();
-         this.handlePacmanCollision();
-         this.updateNextPositionOccupiedCharacter();
-         super.updateLevel();
-         super.updateCurrentOccupiedBoardCharacter();
-         super.updateCurrentPosition();
+      if (super.getCurrentPosition().getID() === super.getNextPosition().getID()) {
          super.setTurnMovementStatus(true);
+      } else {
+         if (super.handleCollisionWithSameActorType()) {
+            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+            this.handleTeleportation();
+            this.handlePacmanCollision();
+            this.updateNextPositionOccupiedCharacter();
+            super.updateLevel();
+            super.updateCurrentOccupiedBoardCharacter();
+            super.updateCurrentPosition();
+            super.setTurnMovementStatus(true);
+         }
       }
       return super.getTurnMovementStatus();
    }
