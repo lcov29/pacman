@@ -46,6 +46,11 @@ class Actor {
    }
 
 
+   getMovementDirectionName() {
+      return this.movement_direction_name;
+   }
+
+
    getMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
    }
