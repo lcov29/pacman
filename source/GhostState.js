@@ -4,11 +4,11 @@
 class GhostState {
 
 
-    constructor(name, duration_in_turns, ghost_reference, ghost_css_class) {
+    constructor(name, duration_in_turns, ghost, base_style_class) {
         this.name = name;
         this.remaining_turns = duration_in_turns;
-        this.ghost = ghost_reference;
-        this.ghost_css_class = ghost_css_class;
+        this.ghost = ghost;
+        this.base_style_class = base_style_class;
     }
 
 
@@ -27,8 +27,8 @@ class GhostState {
     }
 
 
-    getCSSClass() {
-        return this.ghost_css_class;
+    getBaseStyleClass() {
+        return this.base_style_class;
     }
 
 
