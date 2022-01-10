@@ -17,7 +17,6 @@ class Board {
    setPosition(position) {
       let internal_position = this.board[position.getY()][position.getX()];
       internal_position.setCharacter(position.getCharacter());
-      internal_position.setMovementDirection(position.getMovementDirection());
    }
    
 

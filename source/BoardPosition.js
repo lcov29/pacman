@@ -8,7 +8,6 @@ class BoardPosition {
         this.y = y;
         this.id = Configuration.id_unaccessible_board_element;
         this.character = character;
-        this.movement_direction = "";
     }
 
 
@@ -20,11 +19,6 @@ class BoardPosition {
 
     setCharacter(character) {
         this.character = character;
-    }
-
-
-    setMovementDirection(direction) {
-        this.movement_direction = direction;
     }
 
 
@@ -48,15 +42,9 @@ class BoardPosition {
     }
 
 
-    getMovementDirection() {
-        return this.movement_direction;
-    }
-
-
     clone() {
         let clone = new BoardPosition(this.x, this.y, this.character);
         clone.setID(this.id);
-        clone.setMovementDirection(this.movement_direction);
         return clone;
     }
 
