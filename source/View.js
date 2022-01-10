@@ -18,8 +18,8 @@ class View {
    }
 
 
-   update(board_positions, score, number_of_lifes) {
-      this.updateBoard(board_positions);
+   update(board_position, style_class, score, number_of_lifes) {
+      this.updateBoard(board_position, style_class);
       this.updateScore(score);
       this.updateLifeBar(number_of_lifes);
    }
@@ -67,7 +67,7 @@ class View {
       }
    }
    
-   
+
    addForegroundElements(board) {
       let outer_div = null;
       let inner_div = null;
@@ -82,21 +82,17 @@ class View {
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
-            style_class = Configuration.getForegroundStyleClass(current_position.getCharacter(), 
-                                                                current_position.getMovementDirection());
+            style_class = Configuration.getForegroundStyleClass(current_position.getCharacter());
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
       }
    }
-   
-   
-   updateBoard(board_positions) {
-      for (let position of board_positions) {
+
+
+   updateBoard(position, style_class) {
          let id_div = this.getDivID(position, Configuration.suffix_foreground_div);
-         let style_class = Configuration.getForegroundStyleClass(position.getCharacter(), position.getMovementDirection());
          document.getElementById(id_div).setAttribute('class', style_class);
-      }
    }
 
    
