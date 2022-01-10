@@ -4,7 +4,10 @@ class GhostStateFlee extends GhostState {
 
 
     constructor(duration_in_turns, ghost) {
-        super("Flee", duration_in_turns, ghost, Configuration.ghost_scared_foreground_css_class);
+        super(Configuration.ghost_state_flee_name,
+              duration_in_turns,
+              ghost,
+              Configuration.ghost_scared_foreground_css_class);
         super.getGhost().reverseMovementDirection();
     }
 

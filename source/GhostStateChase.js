@@ -5,7 +5,10 @@ class GhostStateChase extends GhostState {
 
 
     constructor(duration_in_turns, ghost) {
-        super("Chase", duration_in_turns, ghost, ghost.getBaseStyleClass());
+        super(Configuration.ghost_state_chase_name,
+              duration_in_turns,
+              ghost,
+              ghost.getBaseStyleClass());
     }
 
 

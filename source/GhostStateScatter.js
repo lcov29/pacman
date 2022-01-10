@@ -4,7 +4,10 @@ class GhostStateScatter extends GhostState {
 
 
     constructor(duration_in_turns, ghost) {
-        super("Scatter", duration_in_turns, ghost, ghost.getBaseStyleClass());
+        super(Configuration.ghost_state_scatter_name,
+              duration_in_turns,
+              ghost,
+              ghost.getBaseStyleClass());
     }
 
 

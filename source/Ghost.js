@@ -16,7 +16,7 @@ class Ghost extends Actor {
       this.state = new GhostStateFlee(30, this);
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
-      this.has_teleported_in_previous_turn === false  // NEW
+      this.has_teleported_in_previous_turn === false;
    }
 
 
@@ -50,7 +50,6 @@ class Ghost extends Actor {
    }
 
 
-   // NEW
    getStyleClass() {
       return `${this.state.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
    }
@@ -120,13 +119,15 @@ class Ghost extends Actor {
       let executed = false;
       if (super.isOccupiedBoardElementTeleporter()) {
 
-         if (this.state.getName() === "Flee" && this.has_teleported_in_previous_turn === false) {
+         if (this.state.getName() === Configuration.ghost_state_flee_name && 
+             this.has_teleported_in_previous_turn === false) {
             let destination = super.getTeleportDestinationForCurrentPosition();
             super.setNextPosition(destination);
             executed = true;
          }
 
-         if (this.state.getName() !== "Flee" && this.isNextPositionEqualToTeleportDestination()) {
+         if (this.state.getName() !== Configuration.ghost_state_flee_name && 
+             this.isNextPositionEqualToTeleportDestination()) {
             let next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition().getID());
             this.updateMovementDirection(super.getNextPosition(), next_position_after_teleportation);
             executed = true;
