@@ -77,6 +77,7 @@ class Directions {
     }
 
 
+    // THINK ABOUT MOVING TO GHOST.JS
     static calculateMovementDirectionName(start_position, destination_position) {
         let direction_x = destination_position.getX() - start_position.getX();
         let direction_y = destination_position.getY() - start_position.getY();
@@ -84,6 +85,7 @@ class Directions {
     }
 
 
+    // THINK ABOUT MOVING TO LEVEL.JS
     static calculateGhostDoorNeighborDirectionName(start_position, end_position) {
         let direction = "";
         if (start_position.getX() - end_position.getX() === 0) {
