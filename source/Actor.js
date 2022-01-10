@@ -3,16 +3,16 @@
 class Actor {
     
 
-   constructor(level, character, position, initial_direction) {
+   constructor(level, position, character, initial_direction, base_style_class) {
       this.level = level;
-      this.character = character;
       this.current_position = position;
       this.next_position = position;
+      this.character = character;
       this.current_occupied_board_character = Configuration.empty_tile_character;
       this.next_occupied_board_character = '';
       this.movement_direction_name = initial_direction;
       this.has_moved_in_current_turn = false;
-      this.current_position.setMovementDirection(this.movement_direction_name);
+      this.base_style_class = base_style_class;
    }
 
 
@@ -58,6 +58,11 @@ class Actor {
 
    getTurnMovementStatus() {
       return this.has_moved_in_current_turn;
+   }
+
+
+   getBaseStyleClass() {
+      return this.base_style_class;
    }
 
 
@@ -124,16 +129,15 @@ class Actor {
    }
 
 
-   updateLevel(condition_update_next_position = true) {
+   updateLevel(styleclass_next_position, condition_update_next_position = true) {
       this.current_position.setCharacter(this.current_occupied_board_character);
-      this.current_position.setMovementDirection("");
-      this.level.addUpdateRequest(this.current_position);
+      let styleclass_current_position = Configuration.getForegroundStyleClass(this.current_occupied_board_character);
+      this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass_current_position));
 
       // prevent dead pacmans getting drawn on next position
       if (condition_update_next_position) {
          this.next_position.setCharacter(this.character);
-         this.next_position.setMovementDirection(this.movement_direction_name);
-         this.level.addUpdateRequest(this.next_position);
+         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass_next_position));
       }
 
       this.level.update();
