@@ -60,6 +60,7 @@ class Configuration {
 
    static pacman_foreground_css_class = "pacman";
    static ghost_blinky_foreground_css_class = "ghost_blinky";
+   static ghost_scared_foreground_css_class = "ghost_scared";
    static point_foreground_css_class = "point";
    static empty_foreground_css_class = "empty_foreground";
 
