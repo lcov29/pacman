@@ -8,12 +8,12 @@ class View {
       this.score_display = document.getElementById(score_id);
       this.life_display = document.getElementById(life_id);
    }
-   
-   
-   initialize(board_position_array) {
+
+
+   initialize(board_position_array, ghost_door_direction_map) {
       this.clearBoard();
       this.setContainerDimension(board_position_array);
-      this.addBackgroundElements(board_position_array);
+      this.addBackgroundElements(board_position_array, ghost_door_direction_map);
       this.addForegroundElements(board_position_array);
    }
 
@@ -46,8 +46,8 @@ class View {
       this.board_container.style.width = `${board[0].length * Configuration.dimension_background_div_in_px}px`;
    }
 
-   
-   addBackgroundElements(board) {
+
+   addBackgroundElements(board, ghost_door_direction_map) {
       let outer_div = null;
       let id_div = '';
       let style_class = '';
@@ -58,8 +58,9 @@ class View {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter(), 
-                                                                current_position.getMovementDirection());
+            style_class = Configuration.getBackgroundStyleClass(current_position.getCharacter(),
+                                                                current_position.getID(),
+                                                                ghost_door_direction_map);
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
