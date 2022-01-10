@@ -18,6 +18,14 @@ class Directions {
     };
     
 
+    static direction_map_inverse = {
+        'up':       'down',
+        'right':    'left',
+        'down':     'up',
+        'left':     'right'
+    };
+
+
     static direction_map_direction_to_name = {
         '(0,-1)': 'up',
         '(1,0)':  'right',
@@ -26,12 +34,12 @@ class Directions {
     };  
 
 
-    static direction_map_inverse = {
-        'up':       'down',
-        'right':    'left',
-        'down':     'up',
-        'left':     'right'
-    };
+    static direction_map_id_to_name = {
+        0:  'up',
+        1:  'right',
+        2:  'down',
+        3:  'left'
+    }
 
 
     static direction_map_id_to_direction = {
@@ -63,6 +71,12 @@ class Directions {
     }
 
 
+    static getRandomDirectionName() {
+        let random_direction_id = this.getRandomDirectionID();
+        return this.direction_map_id_to_name[random_direction_id];
+    }
+
+
     static calculateMovementDirectionName(start_position, destination_position) {
         let direction_x = destination_position.getX() - start_position.getX();
         let direction_y = destination_position.getY() - start_position.getY();
@@ -82,6 +96,13 @@ class Directions {
             }
         }
         return direction;
+    }
+
+
+    static getRandomDirectionID() {
+        let min = this.min_direction_id;
+        let max = this.max_direction_id;
+        return Math.floor(min + (max - min + 1) * Math.random());
     }
 
     
