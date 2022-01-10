@@ -7,9 +7,12 @@ class Ghost extends Actor {
       super(level, character, position, Configuration.initial_ghosts_direction);
       this.routing = routing;
       //this.state = new GhostStateChase(20, this);
-      this.state = new GhostStateScatter(7, this);
+      //this.state = new GhostStateScatter(7, this);
+      //this.state = new GhostStateFlee(Infinity, this);
+      this.state = new GhostStateFlee(30, this);
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
+      this.has_teleported_in_previous_turn === false  // NEW
    }
 
 
@@ -20,6 +23,11 @@ class Ghost extends Actor {
 
    setScatterID(position_id) {
       this.scatter_position_id = position_id;
+   }
+
+
+   setTeleportationStatus(status) {
+      this.has_teleported_in_previous_turn = status;
    }
 
 
@@ -55,12 +63,16 @@ class Ghost extends Actor {
 
    moveToPosition(x, y) {
       super.setNextPosition(super.getBoardPositionAt(x, y))
+      let teleportation_status = this.handleTeleportation();
       if (super.getCurrentPosition().getID() === super.getNextPosition().getID()) {
          super.setTurnMovementStatus(true);
       } else {
          if (super.handleCollisionWithSameActorType()) {
-            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
-            this.handleTeleportation();
+            this.setTeleportationStatus(teleportation_status);
+            if (teleportation_status === false) {
+               this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+            }
+            this.handleWallCollision();
             this.handlePacmanCollision();
             this.updateNextPositionOccupiedCharacter();
             super.updateLevel();
@@ -92,10 +104,42 @@ class Ghost extends Actor {
 
 
    handleTeleportation() {
-      // prevent handling when ghost is not on teleporter or simply moving over without teleporting
-      if (super.isOccupiedBoardElementTeleporter() && this.isNextPositionEqualToTeleportDestination()) {
-         let next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition().getID());
-         this.updateMovementDirection(super.getNextPosition(), next_position_after_teleportation);
+      // ghosts have the option to move over teleporters without teleporting if their current state 
+      // uses a movement pattern based on the routing table 
+
+      let executed = false;
+      if (super.isOccupiedBoardElementTeleporter()) {
+
+         if (this.state.getName() === "Flee" && this.has_teleported_in_previous_turn === false) {
+            let destination = super.getTeleportDestinationForCurrentPosition();
+            super.setNextPosition(destination);
+            executed = true;
+         }
+
+         if (this.state.getName() !== "Flee" && this.isNextPositionEqualToTeleportDestination()) {
+            let next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition().getID());
+            this.updateMovementDirection(super.getNextPosition(), next_position_after_teleportation);
+            executed = true;
+         }
+
+      }
+      return executed;
+   }
+
+
+   handleWallCollision() {
+      // wall collisions will only occur in GhostStateFlee because its movement pattern 
+      // does not use the routing table to calculate the next position
+
+      if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
+         while (true) {
+            let random_direction_name = Directions.getRandomDirectionName();
+            if (random_direction_name !== super.getMovementDirectionName()) {
+               super.setMovementDirectionName(random_direction_name);
+               break;
+            }
+         }
+         super.setNextPosition(super.getCurrentPosition());
       }
    }
 
