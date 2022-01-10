@@ -4,9 +4,10 @@ class Blinky extends Ghost {
 
 
     constructor(level, position, routing) {
-        super(level, 
-              Configuration.ghost_blinky_character, 
+        super(level,
               position, 
+              Configuration.ghost_blinky_character, 
+              Configuration.ghost_blinky_foreground_css_class, 
               routing,
               Configuration.scatter_point_character_blinky);
     }

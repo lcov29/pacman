@@ -3,8 +3,12 @@
 class Ghost extends Actor {
    
    
-   constructor(level, character, position, routing, scatter_character) {
-      super(level, character, position, Configuration.initial_ghosts_direction);
+   constructor(level, position, character, base_style_class, routing, scatter_character) {
+      super(level, 
+            position, 
+            character,
+            Configuration.initial_ghosts_direction,
+            base_style_class);
       this.routing = routing;
       //this.state = new GhostStateChase(20, this);
       //this.state = new GhostStateScatter(7, this);
@@ -46,6 +50,12 @@ class Ghost extends Actor {
    }
 
 
+   // NEW
+   getStyleClass() {
+      return `${this.state.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
+   }
+
+
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
@@ -75,7 +85,7 @@ class Ghost extends Actor {
             this.handleWallCollision();
             this.handlePacmanCollision();
             this.updateNextPositionOccupiedCharacter();
-            super.updateLevel();
+            super.updateLevel(this.getStyleClass());
             super.updateCurrentOccupiedBoardCharacter();
             super.updateCurrentPosition();
             super.setTurnMovementStatus(true);
