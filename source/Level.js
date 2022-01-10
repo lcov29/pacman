@@ -178,10 +178,13 @@ class Level {
 
 
     update() {
-        for (let position of this.update_requests) {
-            this.board.setPosition(position);
+        for (let request of this.update_requests) {
+            this.board.setPosition(request.getPosition());
+            this.game.updateView(request.getPosition(), 
+                                 request.getStyleClass(), 
+                                 this.score, 
+                                 this.total_pacman_lifes);
         }
-        this.game.updateView(this.update_requests, this.score, this.total_pacman_lifes);
         this.update_requests = [];
     }
 
@@ -227,8 +230,6 @@ class Level {
         let pacman = null;
         for (let position of this.board.getInitialPacmanPositions()) {
             pacman = new Pacman(this, position);
-            this.board.setPosition(position);       // set movement direction of pacman for initial render of level
-            pacman.setMovementDirectionName("");    // prevent pacman from instantly moving after start of the level
             pacmans.push(pacman);
         }
         return pacmans;
@@ -258,7 +259,7 @@ class Level {
                     ghosts.push(new Blinky(this, position, routing));
                     break;
             }
-            this.board.setPosition(position); // set initial movement direction
+            //this.board.setPosition(position); // set initial movement direction
         }
         return ghosts;
     }
