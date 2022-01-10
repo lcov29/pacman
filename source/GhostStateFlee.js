@@ -5,6 +5,7 @@ class GhostStateFlee extends GhostState {
 
     constructor(duration_in_turns, ghost_reference,) {
         super("Flee", duration_in_turns, ghost_reference, "");
+        super.getGhost().reverseMovementDirection();
     }
 
 
@@ -22,13 +23,9 @@ class GhostStateFlee extends GhostState {
 
 
     flee() {
-        /*
         let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let scatter_position_id = ghost.getScatterID();
-        let next_position = ghost.calculateNextRoutingPosition(current_position_id, scatter_position_id);
+        let next_position = ghost.calculateNextPositionByDirection();
         return ghost.moveToPosition(next_position.getX(), next_position.getY());
-        */
     }
 
 
