@@ -12,8 +12,8 @@ class Game {
    }
    
 
-   updateView(board_positions, score, number_of_lifes) {
-      this.view.update(board_positions, score, number_of_lifes);
+   updateView(board_positions, style_class, score, number_of_lifes) {
+      this.view.update(board_positions, style_class, score, number_of_lifes);
    }
 
 
