@@ -157,4 +157,19 @@ class Actor {
    }
 
 
+   calculateNextPositionByDirection() {
+      let direction = this.getMovementDirection();
+      let next_xPosition = this.getCurrentPosition().getX() + direction.x;
+      let next_yPosition = this.getCurrentPosition().getY() + direction.y;
+      let next_position = null;
+      try {
+         next_position =  this.getBoardPositionAt(next_xPosition, next_yPosition);
+      } catch(e) {
+         // prevent actor from leaving the board
+         next_position = this.getCurrentPosition();
+      }
+      return next_position;
+   }
+
+
 }

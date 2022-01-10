@@ -45,7 +45,7 @@ class Pacman extends Actor {
       } else {
 
          if (super.getTurnMovementStatus() === false) {
-            this.calculateNextPosition();
+            super.setNextPosition(super.calculateNextPositionByDirection());
             let teleportation_status = this.handleTeleportation();
             if (super.handleCollisionWithSameActorType()) {
                this.setTeleportationStatus(teleportation_status);
@@ -63,21 +63,6 @@ class Pacman extends Actor {
 
       }
       return super.getTurnMovementStatus();
-   }
-
-
-   calculateNextPosition() {
-      let direction = super.getMovementDirection();
-      let next_xPosition = super.getCurrentPosition().getX() + direction.x;
-      let next_yPosition = super.getCurrentPosition().getY() + direction.y;
-      let next_position = null;
-      try {
-         next_position =  super.getBoardPositionAt(next_xPosition, next_yPosition);
-      } catch(e) {
-         next_position = super.getCurrentPosition();
-      } finally {
-         super.setNextPosition(next_position);
-      }
    }
 
 
