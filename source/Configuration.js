@@ -90,8 +90,8 @@ class Configuration {
       [this.teleporter_1_tile_character]:    this.empty_foreground_css_class,
       [this.teleporter_2_tile_character]:    this.empty_foreground_css_class,
       [this.teleporter_3_tile_character]:    this.empty_foreground_css_class,
-      [this.pacman_character]:               this.pacman_foreground_css_class,
-      [this.ghost_blinky_character]:         this.ghost_blinky_foreground_css_class,
+      [this.pacman_character]:               `${this.pacman_foreground_css_class}_${this.initial_pacman_direction}`,
+      [this.ghost_blinky_character]:         `${this.ghost_blinky_foreground_css_class}_${this.initial_ghosts_direction}`,
       [this.point_character]:                this.point_foreground_css_class,
       [this.scatter_point_character_blinky]: this.point_foreground_css_class,  
       [this.scatter_point_character_pinky]:  this.point_foreground_css_class,
@@ -100,26 +100,26 @@ class Configuration {
    };
 
 
-   static getBackgroundStyleClass(character, direction_suffix) {
-      if (direction_suffix === this.initial_ghosts_direction ||
-          direction_suffix === this.initial_pacman_direction) {
-             direction_suffix = "";
+   static getBackgroundStyleClass(character, position_id, ghost_door_direction_map) {
+      let direction_suffix = "";
+      if (character === this.ghost_door_character) {
+         for (let entry of ghost_door_direction_map) {
+            if (entry.id === position_id) {
+               direction_suffix = entry.direction_suffix;
+               break;
+            }
+         }
       }
       return this.getStyleClass(this.background_class_map, character, direction_suffix);
    }
 
 
-   static getForegroundStyleClass(character, direction_suffix) {
-      if (direction_suffix === this.ghost_door_direction_suffix_diagonal ||
-          direction_suffix === this.ghost_door_direction_suffix_horizontal ||
-          direction_suffix === this.ghost_door_direction_suffix_vertical) {
-             direction_suffix = "";
-      }
-      return this.getStyleClass(this.foreground_class_map, character, direction_suffix);
+   static getForegroundStyleClass(character) {
+      return this.getStyleClass(this.foreground_class_map, character);
    }
 
 
-   static getStyleClass(map, character, direction_suffix) {
+   static getStyleClass(map, character, direction_suffix="") {
       let style_class = map[character];
       if (direction_suffix !== "") {
          style_class += `_${direction_suffix}`;
