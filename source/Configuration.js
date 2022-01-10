@@ -50,6 +50,11 @@ class Configuration {
    static scatter_point_character_pinky = "8";
    static scatter_point_character_inky = "7";
    static scatter_point_character_clyde = "6";
+
+   static ghost_state_dead_name = "dead";
+   static ghost_state_flee_name = "flee";
+   static ghost_state_chase_name = "chase";
+   static ghost_state_scatter_name = "scatter";
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
