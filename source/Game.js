@@ -8,7 +8,7 @@ class Game {
       this.level = new Level(this, level_text);
       this.view = new View(board_container_id, score_id, life_id);
       this.level.initialize();
-      this.view.initialize(this.level.getBoardPositionArray());
+      this.view.initialize(this.level.getBoardPositionArray(), this.level.buildGhostDoorDirectionMap());
    }
    
 
