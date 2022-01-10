@@ -11,7 +11,7 @@ class Level {
         this.ghosts = [];
         this.available_points = 0;
         this.total_pacman_lifes = 0;
-        this.score = Configuration.initial_score;
+        this.score = 0;
         this.update_requests = [];
     }
 
@@ -22,7 +22,7 @@ class Level {
         this.ghosts = this.initializeGhosts();
         this.available_points = this.board.countAvailablePoints();
         this.total_pacman_lifes = this.pacmans.length * Configuration.initial_pacman_lifes;
-        this.initializeGhostDoorDirections();
+        this.score = Configuration.initial_score;
     }
 
 
@@ -276,16 +276,16 @@ class Level {
     }
 
 
-    initializeGhostDoorDirections() {
+    buildGhostDoorDirectionMap() {
         let ghost_door_direction = "";
         let accessible_neighbors = null;
-
+        let output = [];
         for(let position of this.board.getGhostDoorPositions()) {
             accessible_neighbors = this.board.buildAccessibleNeighborList(position.getX(), position.getY());
             ghost_door_direction = this.calculateGhostDoorDirection(accessible_neighbors);
-            position.setMovementDirection(ghost_door_direction);
-            this.board.setPosition(position);
+            output.push({id: position.getID(), direction_suffix: ghost_door_direction});
         }
+        return output;
     }
 
 
