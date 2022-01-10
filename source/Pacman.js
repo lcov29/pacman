@@ -4,7 +4,11 @@ class Pacman extends Actor {
    
    
    constructor(level, position) {
-      super(level, Configuration.pacman_character, position, Configuration.initial_pacman_direction);
+      super(level,
+            position,  
+            Configuration.pacman_character, 
+            Configuration.initial_pacman_direction,
+            Configuration.pacman_foreground_css_class);
       this.has_teleported_in_previous_turn = false;
       this.lifes = Configuration.initial_pacman_lifes;
    }
@@ -17,6 +21,12 @@ class Pacman extends Actor {
 
    getNumberOfLifes() {
       return this.lifes;
+   }
+
+
+   // NEW
+   getStyleClass() {
+      return `${super.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
    }
    
    
@@ -54,7 +64,7 @@ class Pacman extends Actor {
                this.handlePointCollision();
                this.handleGhostCollision();
                this.updateNextPositionOccupiedCharacter();
-               super.updateLevel(!this.isDead());
+               super.updateLevel(this.getStyleClass(), !this.isDead());
                super.updateCurrentOccupiedBoardCharacter();
                super.updateCurrentPosition();
                super.setTurnMovementStatus(true);
