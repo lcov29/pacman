@@ -24,7 +24,6 @@ class Pacman extends Actor {
    }
 
 
-   // NEW
    getStyleClass() {
       return `${super.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
    }
