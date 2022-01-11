@@ -159,21 +159,24 @@ class Board {
       }
    }
 
-  
-   countAvailablePoints() {
-      let number_of_points = 0;
+
+   countOccurrencesOfCharacters(characters) {
+      let counter = 0;
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
-            if (this.board[y][x].getCharacter() === Configuration.point_character) {
-               number_of_points++;
+            for (let character of characters) {
+               if (this.board[y][x].getCharacter() === character) {
+                  counter++;
+                  break;
+               }
             }
          }
       }
-      return number_of_points;
+      return counter;
    }
 
 
-   setCharactersOfScatterPointsTo(character) {
+   setCharactersOfScatterPositionsTo(character) {
       for (let position of this.ghost_scatter_positions) {
          position.setCharacter(character);
          this.setPosition(position);
