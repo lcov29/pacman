@@ -11,9 +11,9 @@ class Ghost extends Actor {
             base_style_class);
       this.routing = routing;
       //this.state = new GhostStateChase(20, this);
-      //this.state = new GhostStateScatter(7, this);
+      this.state = new GhostStateScatter(7, this);
       //this.state = new GhostStateFlee(Infinity, this);
-      this.state = new GhostStateFlee(30, this);
+      //this.state = new GhostStateFlee(30, this);
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
       this.has_teleported_in_previous_turn === false;
@@ -62,6 +62,11 @@ class Ghost extends Actor {
 
    move() {
       return this.state.move();
+   }
+
+
+   scare() {
+      this.setState(new GhostStateFlee(30, this));
    }
 
 
