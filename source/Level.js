@@ -20,8 +20,8 @@ class Level {
         this.teleporters = this.initializeTeleporters();
         this.pacmans = this.initializePacmans();
         this.ghosts = this.initializeGhosts();
-        this.available_points = this.board.countAvailablePoints();
-        this.total_pacman_lifes = this.pacmans.length * Configuration.initial_pacman_lifes;
+        this.available_points = this.countAvailablePoints();
+        this.total_pacman_lifes = this.countInitialPacmanLifes();
         this.score = Configuration.initial_score;
     }
 
@@ -31,6 +31,12 @@ class Level {
            pacman.setMovementDirectionName(direction_name);
         }
     } 
+
+
+    /*
+    setScatterTilesToPoints() {
+        this.board.setScatterTilesToPoints()
+    }*/
 
 
     getTeleportDestination(position) {
@@ -90,6 +96,17 @@ class Level {
     isLost() {
         return this.total_pacman_lifes === 0;
     }
+
+
+    countAvailablePoints() {
+        let point_characters = [Configuration.point_character, Configuration.powerup_character];
+        return this.board.countOccurrencesOfCharacters(point_characters);
+    }
+
+
+    countInitialPacmanLifes() {
+        return this.pacmans.length * Configuration.initial_pacman_lifes;
+    } 
 
 
     addUpdateRequest(request) {
@@ -168,6 +185,13 @@ class Level {
             }
         }
         this.resetTurnMovementStatusOfActors(actors);
+    }
+
+
+    scareGhosts() {
+        for (let ghost of this.ghosts) {
+            ghost.scare();
+        }
     }
 
 
@@ -273,7 +297,7 @@ class Level {
                 }
             }
         }
-        this.board.setCharactersOfScatterPointsTo(Configuration.point_character);
+        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
     }
 
 
