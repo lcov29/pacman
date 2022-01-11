@@ -7,7 +7,7 @@ class Pacman extends Actor {
       super(level,
             position,  
             Configuration.pacman_character, 
-            Configuration.initial_pacman_direction,
+            "",
             Configuration.pacman_foreground_css_class);
       this.has_teleported_in_previous_turn = false;
       this.lifes = Configuration.initial_pacman_lifes;
@@ -61,6 +61,7 @@ class Pacman extends Actor {
                this.handleWallCollision();
                this.handleGhostDoorCollision();
                this.handlePointCollision();
+               this.handlePowerUpCollision();
                this.handleGhostCollision();
                this.updateNextPositionOccupiedCharacter();
                super.updateLevel(this.getStyleClass(), !this.isDead());
@@ -106,6 +107,15 @@ class Pacman extends Actor {
          super.decrementAvailablePoints();
       }
    }
+
+
+   handlePowerUpCollision() {
+      if (super.isNextBoardPositionEqual(Configuration.powerup_character)) {
+         super.incrementScoreBy(Configuration.score_value_per_powerup);
+         super.decrementAvailablePoints();
+         this.level.scareGhosts();
+      }
+   }
    
    
    handleGhostCollision() {
@@ -117,7 +127,8 @@ class Pacman extends Actor {
 
 
    updateNextPositionOccupiedCharacter() {
-      if (super.isNextBoardPositionEqual(Configuration.point_character)) {
+      if (super.isNextBoardPositionEqual(Configuration.point_character) ||
+          super.isNextBoardPositionEqual(Configuration.powerup_character)) {
          super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
       } else {
          if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
