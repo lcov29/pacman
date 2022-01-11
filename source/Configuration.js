@@ -6,6 +6,7 @@ class Configuration {
    // general game settings
    static initial_score = 0;
    static score_value_per_point = 10;
+   static score_value_per_powerup = 50;
    static initial_pacman_lifes = 1;
    static initial_pacman_direction = "right";
    static initial_ghosts_direction = "down";
@@ -13,7 +14,7 @@ class Configuration {
    static default_map = '###########################\n'+
                         '#8ooooooooooo#ooooooooooo9#\n' +
                         '#o####o#####o#o#####o####o#\n' +
-                        '#o####o#####o#o#####o####o#\n' +
+                        '#O####o#####o#o#####o####O#\n' +
                         '#ooooooooooooooooooooooooo#\n' +
                         '#o####o#o#########o#o####o#\n' +
                         '#oooooo#ooooo#ooooo#oooooo#\n' +
@@ -26,12 +27,13 @@ class Configuration {
                         '######o#x#########x#o######\n' +
                         '#oooooooooooo#oooooooooooo#\n' +
                         '#o####o#####o#o#####o####o#\n' +
-                        '#oooo#ooooooopooooooo#oooo#\n' +
+                        '#Oooo#ooooooopooooooo#oooO#\n' +
                         '####o#o#o#########o#o#o####\n' +
                         '#oooooo#ooooo#ooooo#oooooo#\n' +
                         '#o##########o#o##########o#\n' +
                         '#7ooooooooooooooooooooooo6#\n' +
                         '###########################\n';
+   
 
                         
    // internal and css representation of different game elements
@@ -46,6 +48,7 @@ class Configuration {
    static pacman_character = "p";
    static ghost_blinky_character = "b";
    static point_character = "o";
+   static powerup_character = "O";
    static scatter_point_character_blinky = "9";
    static scatter_point_character_pinky = "8";
    static scatter_point_character_inky = "7";
@@ -67,6 +70,7 @@ class Configuration {
    static ghost_blinky_foreground_css_class = "ghost_blinky";
    static ghost_scared_foreground_css_class = "ghost_scared";
    static point_foreground_css_class = "point";
+   static powerup_foreground_css_class = "powerup";
    static empty_foreground_css_class = "empty_foreground";
 
    static ghost_door_direction_suffix_diagonal = "crossing";
@@ -83,6 +87,7 @@ class Configuration {
       [this.pacman_character]:               this.empty_background_css_class,
       [this.ghost_blinky_character]:         this.empty_background_css_class,
       [this.point_character]:                this.empty_background_css_class,
+      [this.powerup_character]:              this.empty_background_css_class,
       [this.scatter_point_character_blinky]: this.empty_background_css_class,   
       [this.scatter_point_character_pinky]:  this.empty_background_css_class,
       [this.scatter_point_character_inky]:   this.empty_background_css_class,
@@ -99,6 +104,7 @@ class Configuration {
       [this.pacman_character]:               `${this.pacman_foreground_css_class}_${this.initial_pacman_direction}`,
       [this.ghost_blinky_character]:         `${this.ghost_blinky_foreground_css_class}_${this.initial_ghosts_direction}`,
       [this.point_character]:                this.point_foreground_css_class,
+      [this.powerup_character]:              this.powerup_foreground_css_class,
       [this.scatter_point_character_blinky]: this.point_foreground_css_class,  
       [this.scatter_point_character_pinky]:  this.point_foreground_css_class,
       [this.scatter_point_character_inky]:   this.point_foreground_css_class,
