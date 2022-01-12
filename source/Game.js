@@ -21,10 +21,6 @@ class Game {
       return (this.level.isWon() === false && 
               this.level.isLost() === false);
    }
-
-
-   //TODO: implement level validation
-   isLevelInputValid(level_text) {   }
    
    
    nextTurn() {
