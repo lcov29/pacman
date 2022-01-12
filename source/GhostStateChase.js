@@ -16,7 +16,9 @@ class GhostStateChase extends GhostState {
         let result = false;
         if (super.getRemainingTurns() > 0) {
             result = super.getGhost().chase();
-            super.decrementRemainingTurns();
+            if (result) {
+                super.decrementRemainingTurns();
+            }
         } else {
             let subsequent_state = new GhostStateScatter(7, super.getGhost());
             super.getGhost().setState(subsequent_state);

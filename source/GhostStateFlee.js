@@ -16,7 +16,9 @@ class GhostStateFlee extends GhostState {
         let result = false;
         if (super.getRemainingTurns() > 0) {
             result = this.flee();
-            super.decrementRemainingTurns();
+            if (result) {
+                super.decrementRemainingTurns();
+            }
         } else {
             let subsequent_state = new GhostStateChase(20, super.getGhost());
             super.getGhost().setState(subsequent_state);
