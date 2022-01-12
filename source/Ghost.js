@@ -78,22 +78,33 @@ class Ghost extends Actor {
    moveToPosition(x, y) {
       super.setNextPosition(super.getBoardPositionAt(x, y))
       let teleportation_status = this.handleTeleportation();
-      if (super.getCurrentPosition().getID() === super.getNextPosition().getID()) {
+      this.handleScatterPositionCollision();
+      this.handlePacmanCollision();
+      this.handleWallCollision();
+      if (super.handleCollisionWithSameActorType()) {
+
          super.setTurnMovementStatus(true);
-      } else {
-         if (super.handleCollisionWithSameActorType()) {
-            this.setTeleportationStatus(teleportation_status);
-            if (teleportation_status === false) {
-               this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
-            }
-            this.handleWallCollision();
-            this.handlePacmanCollision();
-            this.updateNextPositionOccupiedCharacter();
-            super.updateLevel(this.getStyleClass());
+         this.setTeleportationStatus(teleportation_status);
+         if (teleportation_status === false) {
+            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+         }
+         this.updateNextPositionOccupiedCharacter();
+         super.updateLevel(this.getStyleClass());
+         if (!this.isNextPositionEqualToCurrentPosition()) {
             super.updateCurrentOccupiedBoardCharacter();
             super.updateCurrentPosition();
-            super.setTurnMovementStatus(true);
          }
+         super.setTurnMovementStatus(true);
+
+      } else {
+
+         // CHECK FOR DEADLOCKS BETWEEN DIFFERENT GHOST TYPES !!
+
+         // prevent deadlock of colliding ghosts while in state flee
+         if (this.state.getName() === Configuration.ghost_state_flee_name) {
+            this.randomizeMovementDirection();
+         }
+         
       }
       return super.getTurnMovementStatus();
    }
@@ -148,18 +159,32 @@ class Ghost extends Actor {
       // does not use the routing table to calculate the next position
 
       if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
-         while (true) {
-            let random_direction_name = Directions.getRandomDirectionName();
-            if (random_direction_name !== super.getMovementDirectionName()) {
-               super.setMovementDirectionName(random_direction_name);
-               break;
-            }
+         super.setNextPosition(super.getCurrentPosition());
+         this.randomizeMovementDirection();
+      }
+   }
+
+
+   randomizeMovementDirection() {
+      while (true) {
+         let random_direction_name = Directions.getRandomDirectionName();
+         if (random_direction_name !== super.getMovementDirectionName()) {
+            super.setMovementDirectionName(random_direction_name);
+            break;
          }
+      }
+   }
+
+
+   handleScatterPositionCollision() {
+      if (this.state.getName() === Configuration.ghost_state_scatter_name &&
+          super.getCurrentPosition().getID() === this.getScatterID()) {
          super.setNextPosition(super.getCurrentPosition());
       }
    }
 
 
+   // ADD HANDLING FOR COLLISION WHILE SCARED
    handlePacmanCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
          let pacman_id = super.getNextPosition().getID();
@@ -177,11 +202,15 @@ class Ghost extends Actor {
 
 
    updateNextPositionOccupiedCharacter() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
-         super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
-      } else {
-         super.updateNextOccupiedBoardCharacter();
+      if (super.getNextPosition().getID() !== super.getCurrentPosition().getID()) {
+
+         if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) || 
+             super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+            super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
+         } else {
+            super.updateNextOccupiedBoardCharacter();
+         }
+
       }
    }
 
@@ -189,6 +218,11 @@ class Ghost extends Actor {
    reverseMovementDirection() {
       let reverse_direction = Directions.getReversedDirectionName(super.getMovementDirectionName());
       super.setMovementDirectionName(reverse_direction);
+   }
+
+
+   isNextPositionEqualToCurrentPosition() {
+      return super.getNextPosition().getID() === super.getCurrentPosition().getID();
    }
 
    
