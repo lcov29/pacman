@@ -33,12 +33,6 @@ class Level {
     } 
 
 
-    /*
-    setScatterTilesToPoints() {
-        this.board.setScatterTilesToPoints()
-    }*/
-
-
     getTeleportDestination(position) {
         let destination = null;
         for (let teleporter of this.teleporters) {
@@ -283,7 +277,6 @@ class Level {
                     ghosts.push(new Blinky(this, position, routing));
                     break;
             }
-            //this.board.setPosition(position); // set initial movement direction
         }
         return ghosts;
     }
