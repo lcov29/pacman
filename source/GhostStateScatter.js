@@ -11,27 +11,17 @@ class GhostStateScatter extends GhostState {
     }
 
 
-    move() {
-        let result = false;
-        if (super.getRemainingTurns() > 0) {
-            result = this.scatter();
-            if (result) {
-                super.decrementRemainingTurns();
-            }
-        } else {
-            let subsequent_state = new GhostStateChase(20, super.getGhost());
-            super.getGhost().setState(subsequent_state);
-        }
-        return result;
-    }
-
-
-    scatter() {
+     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
         let scatter_position_id = ghost.getScatterID();
         let next_position = ghost.calculateNextRoutingPosition(current_position_id, scatter_position_id);
         return ghost.moveToPosition(next_position.getX(), next_position.getY());
+     }
+
+
+     getSubsequentState() {
+         return new GhostStateChase(20, this.getGhost());
      }
 
 

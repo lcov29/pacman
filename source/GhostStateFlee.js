@@ -12,25 +12,15 @@ class GhostStateFlee extends GhostState {
     }
 
 
-    move() {
-        let result = false;
-        if (super.getRemainingTurns() > 0) {
-            result = this.flee();
-            if (result) {
-                super.decrementRemainingTurns();
-            }
-        } else {
-            let subsequent_state = new GhostStateChase(20, super.getGhost());
-            super.getGhost().setState(subsequent_state);
-        }
-        return result;
-    }
-
-
-    flee() {
+    executeStateMovementPattern() {
         let ghost = super.getGhost();
         let next_position = ghost.calculateNextPositionByDirection();
         return ghost.moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    getSubsequentState() {
+        return new GhostStateChase(20, this.getGhost());
     }
 
 
