@@ -17,11 +17,6 @@ class GhostState {
     }
 
 
-    getRemainingTurns() {
-        return this.remaining_turns;
-    }
-
-
     getGhost() {
         return this.ghost;
     }
@@ -32,8 +27,15 @@ class GhostState {
     }
 
 
-    decrementRemainingTurns() {
-        this.remaining_turns--;
+    move() {
+        let executed = false;
+        if (this.remaining_turns > 0) {
+            executed = this.executeStateMovementPattern();      // subclass method
+            if (executed) { this.remaining_turns--; }
+        } else {
+            this.ghost.setState(this.getSubsequentState());     // subclass method
+        }
+        return executed;
     }
 
 
