@@ -167,6 +167,27 @@ class Level {
     }
 
 
+    killGhost(ghost_id) {
+        for (let ghost of this.ghosts) {
+            if (ghost.getCurrentPosition().getID() === ghost_id) {
+                ghost.kill();
+            }
+        }
+    }
+
+
+    isGhostScared(ghost_id) {
+        let result = false;
+        for (let ghost of this.ghosts) {
+            if (ghost.getCurrentPosition().getID() === ghost_id) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+
     moveActors(actors) {
         let unmoved_actors = [...actors];
         while (unmoved_actors.length > 0) {
