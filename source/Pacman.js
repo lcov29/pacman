@@ -120,8 +120,16 @@ class Pacman extends Actor {
    
    handleGhostCollision() {
       if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) {
-         this.decrementLife();
-         this.level.decrementTotalPacmanLifes();
+
+         let ghost_position_id = super.getNextPosition().getID();
+         if (this.level.isGhostScared(ghost_position_id)) {
+            this.level.killGhost(ghost_position_id);
+            super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
+         } else {
+            this.decrementLife();
+            this.level.decrementTotalPacmanLifes();
+         }
+         
       }
    }
 

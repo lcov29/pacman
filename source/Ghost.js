@@ -16,6 +16,7 @@ class Ghost extends Actor {
       //this.state = new GhostStateFlee(30, this);
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
+      this.spawn_position_id = position.getID();
       this.has_teleported_in_previous_turn === false;
    }
 
@@ -37,6 +38,11 @@ class Ghost extends Actor {
 
    getRouting() {
       return this.routing;
+   }
+
+
+   getSpawnID() {
+      return this.spawn_position_id;
    }
 
 
@@ -70,6 +76,11 @@ class Ghost extends Actor {
    }
 
 
+   kill() {
+      this.setState(new GhostStateDead(this));
+   }
+
+
    calculateNextRoutingPosition(start_id, destination_id) {
       return this.routing.calculateNextPositionOnShortestPath(start_id, destination_id);
    }
@@ -81,19 +92,25 @@ class Ghost extends Actor {
       this.handleScatterPositionCollision();
       this.handlePacmanCollision();
       this.handleWallCollision();
+
       if (super.handleCollisionWithSameActorType()) {
 
+         this.handleSpawnCollision();      // NEW
          super.setTurnMovementStatus(true);
          this.setTeleportationStatus(teleportation_status);
+
          if (teleportation_status === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
+
          this.updateNextPositionOccupiedCharacter();
          super.updateLevel(this.getStyleClass());
+
          if (!this.isNextPositionEqualToCurrentPosition()) {
             super.updateCurrentOccupiedBoardCharacter();
             super.updateCurrentPosition();
          }
+
          super.setTurnMovementStatus(true);
 
       } else {
@@ -187,8 +204,23 @@ class Ghost extends Actor {
    // ADD HANDLING FOR COLLISION WHILE SCARED
    handlePacmanCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-         let pacman_id = super.getNextPosition().getID();
-         super.decrementLifeOfPacman(pacman_id);
+
+         if (this.state.getName() === Configuration.ghost_state_flee_name) {
+            this.kill();
+            super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
+         } else {
+            let pacman_id = super.getNextPosition().getID();
+            super.decrementLifeOfPacman(pacman_id);
+         }
+
+      }
+   }
+
+
+   handleSpawnCollision() {
+      if (this.state.getName() === Configuration.ghost_state_flee_name &&
+          this.getCurrentPosition().getID() === this.getSpawnID()) {
+            this.state = new GhostStateChase(20, this);
       }
    }
 
