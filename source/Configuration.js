@@ -7,6 +7,7 @@ class Configuration {
    static initial_score = 0;
    static score_value_per_point = 10;
    static score_value_per_powerup = 50;
+   static score_value_per_eaten_ghost = 200;
    static initial_pacman_lifes = 1;
    static initial_pacman_direction = "right";
    static initial_ghosts_direction = "down";
@@ -69,6 +70,7 @@ class Configuration {
    static pacman_foreground_css_class = "pacman";
    static ghost_blinky_foreground_css_class = "ghost_blinky";
    static ghost_scared_foreground_css_class = "ghost_scared";
+   static ghost_dead_foreground_css_class = "ghost_dead";
    static point_foreground_css_class = "point";
    static powerup_foreground_css_class = "powerup";
    static empty_foreground_css_class = "empty_foreground";
