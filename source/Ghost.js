@@ -201,6 +201,7 @@ class Ghost extends Actor {
    }
 
 
+   /*
    // ADD HANDLING FOR COLLISION WHILE SCARED
    handlePacmanCollision() {
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
@@ -214,13 +215,34 @@ class Ghost extends Actor {
          }
 
       }
+   }*/
+
+
+   // ADD HANDLING FOR COLLISION WHILE SCARED
+   handlePacmanCollision() {
+      if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
+
+         switch (this.state.getName()) {
+
+            case Configuration.ghost_state_flee_name:
+               this.kill();
+               super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
+               break;
+
+            case Configuration.ghost_state_chase_name:
+            case Configuration.ghost_state_scatter_name:
+               let pacman_id = super.getNextPosition().getID();
+               super.decrementLifeOfPacman(pacman_id);
+               break;
+         }
+      }
    }
 
 
    handleSpawnCollision() {
-      if (this.state.getName() === Configuration.ghost_state_flee_name &&
+      if (this.state.getName() === Configuration.ghost_state_dead_name &&
           this.getCurrentPosition().getID() === this.getSpawnID()) {
-            this.state = new GhostStateChase(20, this);
+            this.state.end();
       }
    }
 
