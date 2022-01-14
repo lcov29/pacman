@@ -27,6 +27,11 @@ class GhostState {
     }
 
 
+    end() {
+        this.remaining_turns = 0;
+    }
+
+
     move() {
         let executed = false;
         if (this.remaining_turns > 0) {
