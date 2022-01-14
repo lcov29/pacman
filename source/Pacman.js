@@ -55,11 +55,11 @@ class Pacman extends Actor {
 
          if (super.getTurnMovementStatus() === false) {
             super.setNextPosition(super.calculateNextPositionByDirection());
+            this.handleWallCollision();
+            this.handleGhostDoorCollision();
             let teleportation_status = this.handleTeleportation();
             if (super.handleCollisionWithSameActorType()) {
                this.setTeleportationStatus(teleportation_status);
-               this.handleWallCollision();
-               this.handleGhostDoorCollision();
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();
@@ -77,13 +77,13 @@ class Pacman extends Actor {
 
 
    handleTeleportation() {
-     let executed = false;
+     let teleportation_executed = false;
       if (super.isOccupiedBoardElementTeleporter() && this.has_teleported_in_previous_turn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
          super.setNextPosition(destination);
-         executed = true;
+         teleportation_executed = true;
       }
-      return executed;
+      return teleportation_executed;
    }
 
 
