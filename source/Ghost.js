@@ -66,6 +66,11 @@ class Ghost extends Actor {
    }
 
 
+   isStateEqual(state_name) {
+      return this.state.getName() === state_name;
+   }
+
+
    move() {
       return this.state.move();
    }
