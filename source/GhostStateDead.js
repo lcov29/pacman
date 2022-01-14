@@ -2,6 +2,8 @@
 
 
 class GhostStateDead extends GhostState {
+
+    
     constructor(ghost) {
         super(Configuration.ghost_state_dead_name,
               Infinity,
@@ -19,9 +21,9 @@ class GhostStateDead extends GhostState {
     }
 
 
-    /*
     getSubsequentState() {
         return new GhostStateScatter(7, this.getGhost());
-    }*/
+    }
+
 
 }
