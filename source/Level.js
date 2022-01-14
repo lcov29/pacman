@@ -180,7 +180,7 @@ class Level {
         let result = false;
         for (let ghost of this.ghosts) {
             if (ghost.getCurrentPosition().getID() === ghost_id) {
-                result = true;
+                result = ghost.isStateEqual(Configuration.ghost_state_flee_name);
                 break;
             }
         }
