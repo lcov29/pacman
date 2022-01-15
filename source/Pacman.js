@@ -120,15 +120,30 @@ class Pacman extends Actor {
    
    handleGhostCollision() {
       if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) {
-         let ghost_position_id = super.getNextPosition().getID();
-         if (this.level.isGhostScared(ghost_position_id)) {
-            this.level.killGhost(ghost_position_id);
-            super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
-         } else {
-            this.decrementLife();
-            this.level.decrementTotalPacmanLifes();
-         }
-         
+         let position_id = super.getNextPosition().getID();
+         let state_names = this.level.getStateNamesOfGhostsAt(position_id);
+         let executed = this.handleGhostChaseScatterCollision(state_names);
+         if (!executed) { this.handleGhostScaredCollision(state_names, position_id); }      
+      }
+   }
+
+
+   handleGhostChaseScatterCollision(ghost_states) {
+      let executed = false;
+      if (ghost_states.includes(Configuration.ghost_state_chase_name) ||
+          ghost_states.includes(Configuration.ghost_state_scatter_name)) {
+               this.decrementLife();
+               this.level.decrementTotalPacmanLifes();
+               executed = true;
+      }
+      return executed;
+   }
+
+
+   handleGhostScaredCollision(ghost_states, position_id) {
+      if (ghost_states.includes(Configuration.ghost_state_flee_name)) {
+         this.level.killGhost(position_id);
+         super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
       }
    }
 
