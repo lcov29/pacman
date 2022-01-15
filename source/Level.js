@@ -176,15 +176,18 @@ class Level {
     }
 
 
-    isGhostScared(ghost_id) {
-        let result = false;
+    getStateNamesOfGhostsAt(position_id) {
+        let output = [];
+        let ghost_state = "";
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === ghost_id) {
-                result = ghost.isStateEqual(Configuration.ghost_state_flee_name);
-                break;
+            if (ghost.getCurrentPosition().getID() === position_id) {
+                ghost_state = ghost.getStateName();
+                if (!output.includes(ghost_state)) {
+                    output.push(ghost_state);
+                }
             }
         }
-        return result;
+        return output;
     }
 
 
