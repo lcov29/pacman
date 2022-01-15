@@ -16,7 +16,8 @@ class Board {
 
    setPosition(position) {
       let internal_position = this.board[position.getY()][position.getX()];
-      internal_position.setCharacter(position.getCharacter());
+      internal_position.setActorCharacter(position.getActorCharacter());
+      internal_position.setElementCharacter(position.getElementCharacter());
    }
    
 
@@ -128,8 +129,8 @@ class Board {
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
             let current_position = this.getPosition(x, y);
-            switch (current_position.getCharacter()) {
 
+            switch (current_position.getActorCharacter()) {
                case Configuration.pacman_character:
                   this.initial_pacman_positions.push(current_position);
                   break;
@@ -137,7 +138,9 @@ class Board {
                case Configuration.ghost_blinky_character:                  // add different ghost types
                   this.initial_ghost_positions.push(current_position);
                   break;
+            }
 
+            switch (current_position.getElementCharacter()) {
                case Configuration.teleporter_1_tile_character:
                case Configuration.teleporter_2_tile_character:
                case Configuration.teleporter_3_tile_character:
@@ -165,7 +168,8 @@ class Board {
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
             for (let character of characters) {
-               if (this.board[y][x].getCharacter() === character) {
+               if (this.board[y][x].getActorCharacter() === character ||
+                   this.board[y][x].getElementCharacter() === character) {
                   counter++;
                   break;
                }
@@ -178,7 +182,7 @@ class Board {
 
    setCharactersOfScatterPositionsTo(character) {
       for (let position of this.ghost_scatter_positions) {
-         position.setCharacter(character);
+         position.setElementCharacter(character);
          this.setPosition(position);
       }
    }

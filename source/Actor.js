@@ -8,11 +8,9 @@ class Actor {
       this.current_position = position;
       this.next_position = position;
       this.character = character;
-      this.current_occupied_board_character = Configuration.empty_tile_character;
-      this.next_occupied_board_character = '';
       this.movement_direction_name = initial_direction;
-      this.has_moved_in_current_turn = false;
       this.base_style_class = base_style_class;
+      this.has_moved_in_current_turn = false;
    }
 
 
@@ -38,11 +36,6 @@ class Actor {
 
    getNextPosition() {
       return this.next_position;
-   }
-
-
-   getOccupiedBoardCharacter() {
-      return this.current_occupied_board_character;
    }
 
 
@@ -82,12 +75,14 @@ class Actor {
 
 
    isNextBoardPositionEqual(character) {
-      return this.next_position.getCharacter() === character;
+      return this.next_position.getActorCharacter() === character ||
+             this.next_position.getElementCharacter() === character;
    }
 
 
    isOccupiedBoardElementTeleporter() {
-      return this.level.isBoardElementTeleporter(this.current_occupied_board_character);
+      let occupied_element_character = this.current_position.getElementCharacter();
+      return this.level.isBoardElementTeleporter(occupied_element_character);
    }
 
 
@@ -130,34 +125,32 @@ class Actor {
 
 
    updateLevel(styleclass_next_position, condition_update_next_position = true) {
-      this.current_position.setCharacter(this.current_occupied_board_character);
-      let styleclass_current_position = Configuration.getForegroundStyleClass(this.current_occupied_board_character);
-      this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass_current_position));
-
-      // prevent dead pacmans getting drawn on next position
-      if (condition_update_next_position) {
-         this.next_position.setCharacter(this.character);
-         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass_next_position));
-      }
-
+      this.sendLevelUpdateRequestForCurrentPosition();
+      this.sendLevelUpdateRequestForNextPosition(styleclass_next_position, condition_update_next_position);
       this.level.update();
+   }
+
+
+   sendLevelUpdateRequestForCurrentPosition() {
+      let actor = Configuration.empty_tile_character;
+      let element = this.current_position.getElementCharacter();
+      let styleclass = Configuration.getForegroundStyleClass(actor, element);
+      this.current_position.setActorCharacter(actor);
+      this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass));
+   }
+
+
+   sendLevelUpdateRequestForNextPosition(styleclass, update_condition) {
+      if (update_condition) {
+         this.next_position.setActorCharacter(this.character);
+         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass));
+      }
    }
 
 
    updateCurrentPosition() {
       this.current_position = this.next_position;
       this.next_position = null;
-   }
-
-
-   updateCurrentOccupiedBoardCharacter() {
-      this.current_occupied_board_character = this.next_occupied_board_character;
-      this.next_occupied_board_character = "";
-   }
-
-
-   updateNextOccupiedBoardCharacter(character = "") {
-      this.next_occupied_board_character = (character === "") ? this.next_position.getCharacter() : character;
    }
 
 

@@ -3,11 +3,12 @@
 class BoardPosition {
 
 
-    constructor(x, y, character) {
+    constructor(x, y, actor_character, element_character) {
         this.x = x;
         this.y = y;
         this.id = Configuration.id_unaccessible_board_element;
-        this.character = character;
+        this.actor_layer_character = actor_character;
+        this.element_layer_character = element_character;
     }
 
 
@@ -17,8 +18,13 @@ class BoardPosition {
     }
 
 
-    setCharacter(character) {
-        this.character = character;
+    setActorCharacter(character) {
+        this.actor_layer_character = character;
+    }
+
+
+    setElementCharacter(character) {
+        this.element_layer_character = character;
     }
 
 
@@ -37,13 +43,21 @@ class BoardPosition {
     }
 
 
-    getCharacter() {
-        return this.character;
+    getActorCharacter() {
+        return this.actor_layer_character;
+    }
+
+
+    getElementCharacter() {
+        return this.element_layer_character;
     }
 
 
     clone() {
-        let clone = new BoardPosition(this.x, this.y, this.character);
+        let clone = new BoardPosition(this.x, 
+                                      this.y, 
+                                      this.actor_layer_character,
+                                      this.element_layer_character);
         clone.setID(this.id);
         return clone;
     }
