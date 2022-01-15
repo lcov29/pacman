@@ -128,7 +128,8 @@ class Configuration {
    }
 
 
-   static getForegroundStyleClass(character) {
+   static getForegroundStyleClass(actor_character, element_character) {
+      let character = (actor_character !== Configuration.empty_tile_character) ? actor_character : element_character;
       return this.getStyleClass(this.foreground_class_map, character);
    }
 
