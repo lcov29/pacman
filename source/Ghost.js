@@ -33,6 +33,11 @@ class Ghost extends Actor {
    }
 
 
+   getStateName() {
+      return this.state.getName();
+   }
+
+
    getRouting() {
       return this.routing;
    }
@@ -82,12 +87,6 @@ class Ghost extends Actor {
    kill() {
       this.setState(new GhostStateDead(this));
    }
-
-
-   /*
-   calculateNextRoutingPosition(start_id, destination_id) {
-      return this.routing.calculateNextPositionOnShortestPath(start_id, destination_id);
-   }*/
 
 
    calculateNextPositionOnShortestPath(start_id, destination_id) {
