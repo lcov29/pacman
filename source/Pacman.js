@@ -63,9 +63,7 @@ class Pacman extends Actor {
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();
-               this.updateNextPositionOccupiedCharacter();
                super.updateLevel(this.getStyleClass(), !this.isDead());
-               super.updateCurrentOccupiedBoardCharacter();
                super.updateCurrentPosition();
                super.setTurnMovementStatus(true);
             }
@@ -105,6 +103,7 @@ class Pacman extends Actor {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
          super.incrementScoreBy(Configuration.score_value_per_point);
          super.decrementAvailablePoints();
+         super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
    }
 
@@ -114,13 +113,13 @@ class Pacman extends Actor {
          super.incrementScoreBy(Configuration.score_value_per_powerup);
          super.decrementAvailablePoints();
          this.level.scareGhosts();
+         super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
    }
    
    
    handleGhostCollision() {
       if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) {
-
          let ghost_position_id = super.getNextPosition().getID();
          if (this.level.isGhostScared(ghost_position_id)) {
             this.level.killGhost(ghost_position_id);
@@ -130,20 +129,6 @@ class Pacman extends Actor {
             this.level.decrementTotalPacmanLifes();
          }
          
-      }
-   }
-
-
-   updateNextPositionOccupiedCharacter() {
-      if (super.isNextBoardPositionEqual(Configuration.point_character) ||
-          super.isNextBoardPositionEqual(Configuration.powerup_character)) {
-         super.updateNextOccupiedBoardCharacter(Configuration.empty_tile_character);
-      } else {
-         if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-            super.updateNextOccupiedBoardCharacter(super.getOccupiedBoardCharacter());
-         } else {
-            super.updateNextOccupiedBoardCharacter();
-         }
       }
    }
 

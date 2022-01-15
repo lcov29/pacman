@@ -33,14 +33,12 @@ class GhostState {
 
 
     move() {
-        let executed = false;
         if (this.remaining_turns > 0) {
-            executed = this.executeStateMovementPattern();      // subclass method
-            if (executed) { this.remaining_turns--; }
+            this.executeStateMovementPattern();      // subclass method
+            this.remaining_turns--;
         } else {
             this.ghost.setState(this.getSubsequentState());     // subclass method
         }
-        return executed;
     }
 
 

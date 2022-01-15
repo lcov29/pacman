@@ -15,7 +15,7 @@ class GhostStateFlee extends GhostState {
     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let next_position = ghost.calculateNextPositionByDirection();
-        return ghost.moveToPosition(next_position.getX(), next_position.getY());
+        ghost.moveToPosition(next_position.getX(), next_position.getY());
     }
 
 

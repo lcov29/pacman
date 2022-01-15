@@ -243,7 +243,7 @@ class Level {
         let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
         let output = [];
         for (let position of this.board.getTeleporterPositions()) {
-            switch (position.getCharacter()) {
+            switch (position.getElementCharacter()) {
                 case Configuration.teleporter_1_tile_character:
                     teleporters[0].add(position);
                     break;
@@ -293,7 +293,7 @@ class Level {
     initializeGhostObjects(routing) {
         let ghosts = [];
         for (let position of this.board.getInitialGhostPositions()) {
-            switch (position.getCharacter()) {
+            switch (position.getActorCharacter()) {
                 case Configuration.ghost_blinky_character:             // add different ghost types
                     ghosts.push(new Blinky(this, position, routing));
                     break;
@@ -306,7 +306,7 @@ class Level {
     initializeGhostScatterPoints(ghosts) {
         for (let position of this.board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getScatterCharacter() === position.getCharacter()) {
+                if (ghost.getScatterCharacter() === position.getElementCharacter()) {
                     ghost.setScatterID(position.getID());
                 }
             }

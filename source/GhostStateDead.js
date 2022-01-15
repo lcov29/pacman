@@ -16,8 +16,8 @@ class GhostStateDead extends GhostState {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
         let spawn_position_id = ghost.getSpawnID();
-        let next_position = ghost.calculateNextRoutingPosition(current_position_id, spawn_position_id);
-        return ghost.moveToPosition(next_position.getX(), next_position.getY());
+        let next_position = ghost.calculateNextPositionOnShortestPath(current_position_id, spawn_position_id);
+        ghost.moveToPosition(next_position.getX(), next_position.getY());
     }
 
 

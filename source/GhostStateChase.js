@@ -13,7 +13,7 @@ class GhostStateChase extends GhostState {
 
 
     executeStateMovementPattern() {
-        return super.getGhost().chase();
+        super.getGhost().chase();
     }
 
 
