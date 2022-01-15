@@ -8,6 +8,18 @@ You can play the game via github-pages or you can download it and open the index
 
 ## Version history
 
+*Version 0.03*
+* add powerups
+* add ghost doors (only accessible by ghosts)
+* add movement states for ghosts:
+    * Chase: chase closest pacman on the shortest path (chase pattern for ghost Blinky)
+    * Scatter: move to predefined position on the shortest path and wait there until state changes
+    * Flee: move randomly upon consumption of a powerup by pacman
+    * Dead: move to the initial starting position on the shortest path
+* add sprites for the movement states flee and dead
+* add sprites for bonus elements
+
+
 *Version 0.02*
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
@@ -27,11 +39,3 @@ You can play the game via github-pages or you can download it and open the index
 * display game on HTML-site 
 * notify player about victory (no points left)
 * notify player about defeat (no lifes left)
-
-
-## Ideas for additional features
-* validate user level input
-* implement different movement patterns for the ghosts
-* add power-ups for pacman allowing him to consume ghosts for a certain period
-    * (re-) spawn ghosts in designated area
-    * implement a movement patterns for evading pacman
