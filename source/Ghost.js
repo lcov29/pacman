@@ -204,6 +204,10 @@ class Ghost extends Actor {
                let pacman_id = super.getNextPosition().getID();
                this.level.killPacman(pacman_id);
                break;
+
+            case Configuration.ghost_state_dead_name:
+               super.setUpdateFlagNextPosition(false);
+               break;
          }
       }
    }
