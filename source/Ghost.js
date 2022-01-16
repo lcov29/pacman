@@ -181,35 +181,8 @@ class Ghost extends Actor {
 
 
    handlePacmanCollision() {
-
-      if (super.isCurrentBoardPositionEqual(Configuration.pacman_character)) {
-         if (this.state.getName() === Configuration.ghost_state_dead_name) {
-            super.setUpdateFlagCurrentPosition(false);
-         }
-      }
-
-
-      if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
-
-         switch (this.state.getName()) {
-
-            case Configuration.ghost_state_flee_name:
-               this.kill();
-               super.setUpdateFlagNextPosition(false);
-               super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
-               break;
-
-            case Configuration.ghost_state_chase_name:
-            case Configuration.ghost_state_scatter_name:
-               let pacman_id = super.getNextPosition().getID();
-               this.level.killPacman(pacman_id);
-               break;
-
-            case Configuration.ghost_state_dead_name:
-               super.setUpdateFlagNextPosition(false);
-               break;
-         }
-      }
+      this.state.handlePacmanCollisionOnCurrentPosition();
+      this.state.handlePacmanCollisionOnNextPosition();
    }
 
 
@@ -250,6 +223,11 @@ class Ghost extends Actor {
             break;
          }
       }
+   }
+
+
+   killPacman(pacman_id) {
+      this.level.killPacman(pacman_id);
    }
 
    
