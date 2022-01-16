@@ -87,7 +87,7 @@ class Pacman extends Actor {
       if (super.isNextBoardPositionEqual(Configuration.powerup_character)) {
          super.incrementScoreBy(Configuration.score_value_per_powerup);
          super.decrementAvailablePoints();
-         this.level.scareGhosts();
+         this.level.scareLivingGhosts();
          super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
    }
