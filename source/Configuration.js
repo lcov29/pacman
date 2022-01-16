@@ -22,7 +22,7 @@ class Configuration {
                         '######o#####o#o#####o######\n' +
                         '######o#xxxxxbxxxxx#o######\n' +
                         '######o#x####d####x#o######\n' +
-                        '1xxxxxoxx#xxxxxxx#xxoxxxxx1\n' +
+                        '1xxxxxoxx#Bxxxxxx#xxoxxxxx1\n' +
                         '######o#x#########x#o######\n' +
                         '######o#xxxxxxxxxxx#o######\n' +
                         '######o#x#########x#o######\n' +
@@ -48,6 +48,7 @@ class Configuration {
    static teleporter_3_tile_character = "3";
    static pacman_character = "p";
    static ghost_blinky_character = "b";
+   static ghost_blinky_spawn_character = "B";
    static point_character = "o";
    static powerup_character = "O";
    static scatter_point_character_blinky = "9";
