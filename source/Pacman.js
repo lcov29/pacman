@@ -10,7 +10,6 @@ class Pacman extends Actor {
             "",
             Configuration.pacman_foreground_css_class);
       this.has_teleported_in_previous_turn = false;
-      this.lifes = Configuration.initial_pacman_lifes;
    }
    
 
@@ -19,34 +18,10 @@ class Pacman extends Actor {
    }
 
 
-   getNumberOfLifes() {
-      return this.lifes;
-   }
-
-
    getStyleClass() {
       return `${super.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
    }
    
-   
-   isDead() {
-      return this.lifes === 0;
-   }
-   
-
-   incrementLifeBy(value) {
-      if (this.lifes > 0 && value > 0) {
-         this.lifes += value;
-      }
-   }
-
-
-   decrementLife() {
-      if (this.lifes > 0) {
-         this.lifes--;
-      }
-   }
-
 
    move() {
       if (super.isMovementDirectionSet() === false) {
@@ -63,7 +38,7 @@ class Pacman extends Actor {
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();
-               super.updateLevel(this.getStyleClass(), !this.isDead());
+               super.updateLevel(this.getStyleClass());
                super.updateCurrentPosition();
                super.setTurnMovementStatus(true);
             }
@@ -132,8 +107,7 @@ class Pacman extends Actor {
       let executed = false;
       if (ghost_states.includes(Configuration.ghost_state_chase_name) ||
           ghost_states.includes(Configuration.ghost_state_scatter_name)) {
-               this.decrementLife();
-               this.level.decrementTotalPacmanLifes();
+               this.kill();
                executed = true;
       }
       return executed;
@@ -145,6 +119,13 @@ class Pacman extends Actor {
          this.level.killGhost(position_id);
          super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
       }
+   }
+
+
+   kill() {
+      super.setUpdateFlagNextPosition(false);
+      this.level.decrementTotalPacmanLifes();
+      this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
    }
 
    
