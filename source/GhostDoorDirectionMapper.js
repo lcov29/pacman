@@ -2,7 +2,7 @@
 
 /*  
     =================================================================================================================
-    Methods for building a map containing the directions in which each ghost door should be displayed by the view.
+    Map contains directions in which each ghost door should be displayed by the view.
     Is used in Level.buildGhostDoorDirectionMap().
     =================================================================================================================
 */
