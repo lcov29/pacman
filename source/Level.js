@@ -1,5 +1,15 @@
 "use strict";
 
+/*  
+    =================================================================================================================
+    Represents the current state of the level.
+    Holds references to Board (model), Pacmans, Ghosts and Teleporter. 
+    Mediates between its associated game elements.
+    Offers high level methods to class Game.js.
+    =================================================================================================================
+*/
+
+
 class Level {
 
 
