@@ -202,10 +202,23 @@ class Level {
     }
 
 
-    scareGhosts() {
+    scareLivingGhosts() {
         for (let ghost of this.ghosts) {
-            ghost.scare();
+            if (ghost.getStateName() !== Configuration.ghost_state_dead_name) {
+                ghost.scare();
+            } 
         }
+    }
+
+
+    countScaredGhosts() {
+        let counter = 0;
+        for (let ghost of this.ghosts) {
+            if (ghost.getStateName() === Configuration.ghost_state_flee_name) {
+                counter++;
+            }
+        }
+        return counter;
     }
 
 
