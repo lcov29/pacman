@@ -133,12 +133,9 @@ class Level {
 
     executeTurn() {
         this.moveActors(this.pacmans);
-        this.update();
         if (this.isWon() === false && this.isLost() === false) {
             this.moveActors(this.ghosts);
-            this.update();
         }
-        this.deleteDeadPacmans();
     }    
 
 
@@ -152,25 +149,24 @@ class Level {
     }
 
 
-    decrementLifeOfPacman(pacman_id) {
-        for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === pacman_id) {
-                pacman.decrementLife();
-                this.decrementTotalPacmanLifes();
-            }
-        }
-    }
-
-
     decrementTotalPacmanLifes() {
         this.total_pacman_lifes--;
     }
 
 
-    killGhost(ghost_id) {
+    killGhost(position_id) {
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === ghost_id) {
+            if (ghost.getCurrentPosition().getID() === position_id) {
                 ghost.kill();
+            }
+        }
+    }
+
+
+    killPacman(position_id) {
+        for (let pacman of this.pacmans) {
+            if (pacman.getCurrentPosition().getID() === position_id) {
+                pacman.kill();
             }
         }
     }
@@ -231,15 +227,14 @@ class Level {
     }
 
 
-    deleteDeadPacmans() {
+    removeDeadPacmanAt(position_id) {
         let index = -1;
         for (let pacman of this.pacmans) {
-            if (pacman.isDead()) {
-                index = this.pacmans.indexOf(pacman); 
-                this.pacmans.splice(index, 1);
+            if (pacman.getCurrentPosition().getID() === position_id) {
+                this.removeElementFrom(this.pacmans, pacman);
             }
-        }   
-    } 
+        }  
+    }
 
 
     initializeTeleporters() {
@@ -282,6 +277,7 @@ class Level {
         let routing = this.initializeRouting();
         let ghosts = this.initializeGhostObjects(routing);
         this.initializeGhostScatterPoints(ghosts);
+        this.initializeOptionalGhostSpawnPoints(ghosts);
         return ghosts;
     }
 
@@ -307,14 +303,26 @@ class Level {
 
 
     initializeGhostScatterPoints(ghosts) {
-        for (let position of this.board.getGhostScatterPositions()) {
+        for (let scatter_position of this.board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getScatterCharacter() === position.getElementCharacter()) {
-                    ghost.setScatterID(position.getID());
+                if (ghost.getScatterCharacter() === scatter_position.getElementCharacter()) {
+                    ghost.setScatterID(scatter_position.getID());
                 }
             }
         }
         this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
+    }
+
+
+    initializeOptionalGhostSpawnPoints(ghosts) {
+        for (let spawn_position of this.board.getOptionalGhostSpawnPositions()) {
+            for (let ghost of ghosts) {
+                if (ghost.getSpawnCharacter() === spawn_position.getElementCharacter()) {
+                    ghost.setSpawnID(spawn_position.getID());
+                }
+            }
+        } 
+        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);      
     }
 
 
