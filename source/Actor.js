@@ -77,16 +77,6 @@ class Actor {
    }
 
 
-   getBoardPositionAt(x, y) {
-      return this.level.getBoardPositionAt(x, y);
-   }
-
-
-   getPacmanIDs() {
-      return this.level.getPacmanIDs();
-   }
-
-
    getTeleportDestinationForCurrentPosition() {
       return this.level.getTeleportDestination(this.current_position);
    }
@@ -117,11 +107,6 @@ class Actor {
 
    incrementScoreBy(value) {
       this.level.incrementScoreBy(value);
-   }
-
-
-   decrementAvailablePoints() {
-      this.level.decrementAvailablePoints();
    }
 
 
@@ -188,7 +173,7 @@ class Actor {
       let next_yPosition = this.getCurrentPosition().getY() + direction.y;
       let next_position = null;
       try {
-         next_position =  this.getBoardPositionAt(next_xPosition, next_yPosition);
+         next_position =  this.level.getBoardPositionAt(next_xPosition, next_yPosition);
       } catch(e) {
          // prevent actor from leaving the board
          next_position = this.getCurrentPosition();
