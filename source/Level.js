@@ -17,12 +17,28 @@ class Level {
 
 
     initialize() {
-        this.teleporters = this.initializeTeleporters();
-        this.pacmans = this.initializePacmans();
-        this.ghosts = this.initializeGhosts();
+        let teleporter_positions = this.board.getTeleporterPositions();
+        let pacman_positions = this.board.getInitialPacmanPositions();
+        let ghost_positions = this.board.getInitialGhostPositions();
+        let scatter_positions = this.board.getGhostScatterPositions();
+        let spawn_positons = this.board.getOptionalGhostSpawnPositions();
+        let accessible_position_list = this.board.buildAccessibleBoardPositionList();
+        let neighbor_id_list = this.buildAccessibleNeighborIdList();
+
+        this.teleporters = LevelInitializer.initializeTeleporters(teleporter_positions);
+        this.pacmans = LevelInitializer.initializePacmans(pacman_positions, this);
+        this.ghosts = LevelInitializer.initializeGhosts(ghost_positions,
+                                                        scatter_positions,
+                                                        spawn_positons,
+                                                        accessible_position_list,
+                                                        neighbor_id_list,
+                                                        this);
+        this.score = Configuration.initial_score;
         this.available_points = this.countAvailablePoints();
         this.total_pacman_lifes = this.countInitialPacmanLifes();
-        this.score = Configuration.initial_score;
+
+        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
+        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);
     }
 
 
@@ -247,95 +263,6 @@ class Level {
                 this.removeElementFrom(this.pacmans, pacman);
             }
         }  
-    }
-
-
-    initializeTeleporters() {
-        let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
-        let output = [];
-        for (let position of this.board.getTeleporterPositions()) {
-            switch (position.getElementCharacter()) {
-                case Configuration.teleporter_1_tile_character:
-                    teleporters[0].add(position);
-                    break;
-                case Configuration.teleporter_2_tile_character:
-                    teleporters[1].add(position);
-                    break;
-                case Configuration.teleporter_3_tile_character:
-                    teleporters[2].add(position);
-                    break;
-            }
-        }
-        for (let teleporter of teleporters) {
-            if (teleporter.isInitialized()) {
-                output.push(teleporter);
-            }
-        }
-        return output;
-    }
-
-
-    initializePacmans() {
-        let pacmans = [];
-        let pacman = null;
-        for (let position of this.board.getInitialPacmanPositions()) {
-            pacman = new Pacman(this, position);
-            pacmans.push(pacman);
-        }
-        return pacmans;
-    }
-
-
-    initializeGhosts() {
-        let routing = this.initializeRouting();
-        let ghosts = this.initializeGhostObjects(routing);
-        this.initializeGhostScatterPoints(ghosts);
-        this.initializeOptionalGhostSpawnPoints(ghosts);
-        return ghosts;
-    }
-
-
-    initializeRouting() {
-        let accessible_position_list = this.board.buildAccessibleBoardPositionList();
-        let neighbor_id_list = this.buildAccessibleNeighborIdList();
-        return new Routing(accessible_position_list, neighbor_id_list);
-    }
-
-
-    initializeGhostObjects(routing) {
-        let ghosts = [];
-        for (let position of this.board.getInitialGhostPositions()) {
-            switch (position.getActorCharacter()) {
-                case Configuration.ghost_blinky_character:             // add different ghost types
-                    ghosts.push(new Blinky(this, position, routing));
-                    break;
-            }
-        }
-        return ghosts;
-    }
-
-
-    initializeGhostScatterPoints(ghosts) {
-        for (let scatter_position of this.board.getGhostScatterPositions()) {
-            for (let ghost of ghosts) {
-                if (ghost.getScatterCharacter() === scatter_position.getElementCharacter()) {
-                    ghost.setScatterID(scatter_position.getID());
-                }
-            }
-        }
-        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
-    }
-
-
-    initializeOptionalGhostSpawnPoints(ghosts) {
-        for (let spawn_position of this.board.getOptionalGhostSpawnPositions()) {
-            for (let ghost of ghosts) {
-                if (ghost.getSpawnCharacter() === spawn_position.getElementCharacter()) {
-                    ghost.setSpawnID(spawn_position.getID());
-                }
-            }
-        } 
-        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);      
     }
 
 
