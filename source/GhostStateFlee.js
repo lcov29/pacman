@@ -20,7 +20,7 @@ class GhostStateFlee extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateChase(20, this.getGhost());
+        return new GhostStateChase(20, super.getGhost());
     }
 
 

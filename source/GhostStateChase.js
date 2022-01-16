@@ -18,7 +18,7 @@ class GhostStateChase extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateScatter(7, this.getGhost());
+        return new GhostStateScatter(7, super.getGhost());
     }
 
 
