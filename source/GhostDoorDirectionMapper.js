@@ -40,7 +40,7 @@ class GhostDoorDirectionMapper {
                     for(let y = x + 1; y < accessible_neighbors.length; y++) {
                         end_position = accessible_neighbors[y];
                         if (start_position.getX() - end_position.getX() === 0) {
-                            output= Configuration.ghost_door_direction_suffix_horizontal;
+                            output = Configuration.ghost_door_direction_suffix_horizontal;
                         } else {
                             if (start_position.getY() - end_position.getY() === 0) {
                                 output = Configuration.ghost_door_direction_suffix_vertical;
