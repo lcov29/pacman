@@ -91,8 +91,7 @@ class Ghost extends Actor {
 
 
    scare() {
-      //this.setState(new GhostStateFlee(30, this));
-      this.setState(new GhostStateFlee(80, this));
+      this.setState(new GhostStateFlee(30, this));
    }
 
 
@@ -113,7 +112,7 @@ class Ghost extends Actor {
 
 
    selectClosestPacmanID() {
-      let pacman_ids = super.getPacmanIDs();
+      let pacman_ids = this.level.getPacmanIDs();
       let min_cost_id = null;
       let min_path_cost = Infinity;
       let current_id = -1;
@@ -132,7 +131,7 @@ class Ghost extends Actor {
 
    moveToPosition(x, y) {
       super.loadCurrentPositionFromBoard();
-      super.setNextPosition(super.getBoardPositionAt(x, y))
+      super.setNextPosition(this.level.getBoardPositionAt(x, y));
       this.handleTeleportation();
       this.handleScatterPositionCollision();
       this.handlePacmanCollision();

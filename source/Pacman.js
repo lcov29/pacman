@@ -77,7 +77,7 @@ class Pacman extends Actor {
    handlePointCollision() {
       if (super.isNextBoardPositionEqual(Configuration.point_character)) {
          super.incrementScoreBy(Configuration.score_value_per_point);
-         super.decrementAvailablePoints();
+         this.level.decrementAvailablePoints();
          super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
    }
@@ -86,7 +86,7 @@ class Pacman extends Actor {
    handlePowerUpCollision() {
       if (super.isNextBoardPositionEqual(Configuration.powerup_character)) {
          super.incrementScoreBy(Configuration.score_value_per_powerup);
-         super.decrementAvailablePoints();
+         this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
          super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
