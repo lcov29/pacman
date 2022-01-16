@@ -60,20 +60,12 @@ class Level {
 
 
     killGhost(position_id) {
-        for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === position_id) {
-                ghost.kill();
-            }
-        }
+        this.killActor(this.ghosts, position_id);
     }
 
 
     killPacman(position_id) {
-        for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === position_id) {
-                pacman.kill();
-            }
-        }
+        this.killActor(this.pacmans, position_id);
     }
 
 
@@ -272,6 +264,15 @@ class Level {
             }
         }
         this.resetTurnMovementStatusOfActors(actors);
+    }
+
+
+    killActor(actors, position_id) {
+        for (let actor of actors) {
+            if (actor.getCurrentPosition().getID() === position_id) {
+                actor.kill();
+            }
+        }
     }
 
 
