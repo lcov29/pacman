@@ -1,6 +1,6 @@
 "use strict";
 
-class Actor {
+export default class Actor {
     
 
    constructor(level, position, character, initial_direction, base_style_class) {

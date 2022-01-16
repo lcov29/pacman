@@ -1,7 +1,7 @@
 "use strict";
 
 
-class GhostStateChase extends GhostState {
+export default class GhostStateChase extends GhostState {
 
 
     constructor(duration_in_turns, ghost) {

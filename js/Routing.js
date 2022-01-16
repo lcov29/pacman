@@ -1,6 +1,6 @@
 "use strict";
 
-class Routing {
+export default class Routing {
    
    
    constructor(accessible_position_list, neighbor_id_list) {

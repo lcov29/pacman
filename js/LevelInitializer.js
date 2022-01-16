@@ -7,7 +7,7 @@
 */
 
 
-class LevelInitializer {
+export default class LevelInitializer {
 
 
     static initializeTeleporters(teleporter_positions) {

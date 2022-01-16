@@ -1,6 +1,6 @@
 "use strict";
 
-class Teleporter {
+export default class Teleporter {
 
     
     constructor() {

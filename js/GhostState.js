@@ -1,7 +1,7 @@
 "use strict";
 
 
-class GhostState {
+export default class GhostState {
 
 
     constructor(name, duration_in_turns, ghost, base_style_class) {

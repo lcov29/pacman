@@ -1,6 +1,6 @@
 "use strict";
 
-class Pacman extends Actor {
+export default class Pacman extends Actor {
    
    
    constructor(level, position) {

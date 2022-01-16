@@ -1,6 +1,6 @@
 "use strict";
 
-class BoardParser {
+export default class BoardParser {
 
 
     parse(board_text) {

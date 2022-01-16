@@ -1,6 +1,6 @@
 "use strict";
 
-class RoutingAlgorithm {
+export default class RoutingAlgorithm {
      
    
    calculateRoutingTable(routing_table, neighbor_id_list) {

@@ -18,7 +18,7 @@
  */
 
 
-class BoardPosition {
+export default class BoardPosition {
 
 
     constructor(x, y, actor_character, element_character) {

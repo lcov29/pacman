@@ -1,6 +1,6 @@
 "use strict";
 
-class View {
+export default class View {
    
    
    constructor(board_container_id, score_id, life_id) {

@@ -1,6 +1,6 @@
 "use strict";
 
-class UpdateRequest {
+export default class UpdateRequest {
 
 
     constructor(board_position, styleclass) {

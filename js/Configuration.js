@@ -1,6 +1,6 @@
 "use strict";
 
-class Configuration {
+export default class Configuration {
    
    
    // general game settings

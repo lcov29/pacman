@@ -10,7 +10,7 @@
 */
 
 
-class Level {
+export default class Level {
 
 
     constructor(game, level_text) {

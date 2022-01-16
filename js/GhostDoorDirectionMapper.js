@@ -8,7 +8,7 @@
 */
 
 
-class GhostDoorDirectionMapper {
+export default class GhostDoorDirectionMapper {
 
 
     static buildMap(ghost_door_positions, level) {

@@ -1,6 +1,6 @@
 "use strict";
 
-class Board {
+export default class Board {
 
    
    constructor(board_text) {

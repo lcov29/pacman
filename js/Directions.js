@@ -1,6 +1,6 @@
 "use strict";
 
-class Directions {
+export default class Directions {
 
     static direction_up = {x:0, y:-1};
     static direction_right = {x:1, y:0};

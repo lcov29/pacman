@@ -1,6 +1,6 @@
 "use strict";
 
-class Blinky extends Ghost {
+export default class Blinky extends Ghost {
 
 
     constructor(level, position, routing) {

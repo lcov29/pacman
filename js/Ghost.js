@@ -1,6 +1,6 @@
 "use strict";
 
-class Ghost extends Actor {
+export default class Ghost extends Actor {
    
    
    constructor(level, position, character, base_style_class, routing, scatter_character, spawn_character) {

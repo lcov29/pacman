@@ -1,6 +1,6 @@
 "use strict";
 
-class RoutingNode {
+export default class RoutingNode {
    
    
    constructor(id, xPosition, yPosition) {

@@ -1,7 +1,7 @@
 "use strict";
 
 
-class GhostStateDead extends GhostState {
+export default class GhostStateDead extends GhostState {
 
     
     constructor(ghost) {
