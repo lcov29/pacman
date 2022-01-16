@@ -26,4 +26,20 @@ class GhostStateDead extends GhostState {
     }
 
 
+    handlePacmanCollisionOnCurrentPosition() {
+        let ghost = super.getGhost();
+        if (ghost.isCurrentBoardPositionEqual(Configuration.pacman_character)) {
+            ghost.setUpdateFlagCurrentPosition(false);
+        } 
+    }
+
+
+    handlePacmanCollisionOnNextPosition() {
+        let ghost = super.getGhost();
+        if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {
+            ghost.setUpdateFlagNextPosition(false);
+        }
+    }
+
+
 }

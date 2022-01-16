@@ -24,4 +24,17 @@ class GhostStateFlee extends GhostState {
     }
 
 
+    handlePacmanCollisionOnCurrentPosition() {}
+
+
+    handlePacmanCollisionOnNextPosition() {
+        let ghost = super.getGhost();
+        if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {            
+            ghost.kill();
+            ghost.setUpdateFlagNextPosition(false);
+            ghost.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
+        }
+    }
+
+
 }

@@ -22,4 +22,15 @@ class GhostStateChase extends GhostState {
     }
 
 
+    handlePacmanCollisionOnCurrentPosition() {}
+
+
+    handlePacmanCollisionOnNextPosition() {
+        let ghost = super.getGhost();
+        if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {
+            ghost.killPacman(ghost.getNextPosition().getID());
+        }
+    }
+
+
 }
