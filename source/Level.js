@@ -257,7 +257,6 @@ class Level {
 
 
     removeDeadPacmanAt(position_id) {
-        let index = -1;
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === position_id) {
                 this.removeElementFrom(this.pacmans, pacman);
@@ -267,43 +266,13 @@ class Level {
 
 
     buildGhostDoorDirectionMap() {
-        let ghost_door_direction = "";
-        let accessible_neighbors = null;
-        let output = [];
-        for(let position of this.board.getGhostDoorPositions()) {
-            accessible_neighbors = this.board.buildAccessibleNeighborList(position.getX(), position.getY());
-            ghost_door_direction = this.calculateGhostDoorDirection(accessible_neighbors);
-            output.push({id: position.getID(), direction_suffix: ghost_door_direction});
-        }
-        return output;
+        let ghost_door_positions = this.board.getGhostDoorPositions();
+        return GhostDoorDirectionMapper.buildMap(ghost_door_positions, this);
     }
 
 
-    calculateGhostDoorDirection(accessible_neighbors) {
-        let output = "";
-        switch (accessible_neighbors.length) {
-            case 0:
-            case 1:
-            case 3:
-            case 4:
-                output = Configuration.ghost_door_direction_suffix_diagonal;
-                break;
-
-            case 2:
-                let start_position = null;
-                let end_position = null;
-                for(let x = 0; x < accessible_neighbors.length; x++) {
-                    start_position = accessible_neighbors[x];
-                    for(let y = x + 1; y < accessible_neighbors.length; y++) {
-                        end_position = accessible_neighbors[y];
-                        output = Directions.calculateGhostDoorNeighborDirectionName(start_position, end_position);
-                        if(output !== "") { break; }
-                    }
-                    if (output !== "") { break; }
-                }
-                break;
-        }
-        return output;
+    buildAccessibleNeighborList(xPosition, yPosition) {
+        return this.board.buildAccessibleNeighborList(xPosition, yPosition);
     }
     
 
