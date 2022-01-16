@@ -3,7 +3,7 @@
 class Ghost extends Actor {
    
    
-   constructor(level, position, character, base_style_class, routing, scatter_character) {
+   constructor(level, position, character, base_style_class, routing, scatter_character, spawn_character) {
       super(level, 
             position, 
             character,
@@ -12,6 +12,7 @@ class Ghost extends Actor {
       this.routing = routing;
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
+      this.spawn_position_character = spawn_character;
       this.spawn_position_id = position.getID();
       this.has_teleported_in_previous_turn === false;
       this.state = new GhostStateScatter(7, this);
@@ -25,6 +26,11 @@ class Ghost extends Actor {
 
    setScatterID(position_id) {
       this.scatter_position_id = position_id;
+   }
+
+
+   setSpawnID(position_id) {
+      this.spawn_position_id = position_id;
    }
 
 
@@ -43,11 +49,6 @@ class Ghost extends Actor {
    }
 
 
-   getSpawnID() {
-      return this.spawn_position_id;
-   }
-
-
    getScatterCharacter(){
       return this.scatter_position_character;
    }
@@ -55,6 +56,16 @@ class Ghost extends Actor {
 
    getScatterID() {
       return this.scatter_position_id;
+   }
+
+
+   getSpawnCharacter() {
+      return this.spawn_position_character;
+   }
+
+
+   getSpawnID() {
+      return this.spawn_position_id;
    }
 
 
@@ -119,6 +130,7 @@ class Ghost extends Actor {
 
 
    moveToPosition(x, y) {
+      super.loadCurrentPositionFromBoard();
       super.setNextPosition(super.getBoardPositionAt(x, y))
       this.handleTeleportation();
       this.handleScatterPositionCollision();
@@ -168,19 +180,28 @@ class Ghost extends Actor {
 
 
    handlePacmanCollision() {
+
+      if (super.isCurrentBoardPositionEqual(Configuration.pacman_character)) {
+         if (this.state.getName() === Configuration.ghost_state_dead_name) {
+            super.setUpdateFlagCurrentPosition(false);
+         }
+      }
+
+
       if (super.isNextBoardPositionEqual(Configuration.pacman_character)) {
 
          switch (this.state.getName()) {
 
             case Configuration.ghost_state_flee_name:
                this.kill();
+               super.setUpdateFlagNextPosition(false);
                super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
                break;
 
             case Configuration.ghost_state_chase_name:
             case Configuration.ghost_state_scatter_name:
                let pacman_id = super.getNextPosition().getID();
-               super.decrementLifeOfPacman(pacman_id);
+               this.level.killPacman(pacman_id);
                break;
          }
       }
