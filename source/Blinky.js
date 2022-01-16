@@ -9,7 +9,8 @@ class Blinky extends Ghost {
               Configuration.ghost_blinky_character, 
               Configuration.ghost_blinky_foreground_css_class, 
               routing,
-              Configuration.scatter_point_character_blinky);
+              Configuration.scatter_point_character_blinky,
+              Configuration.ghost_blinky_spawn_character);
     }
 
 
