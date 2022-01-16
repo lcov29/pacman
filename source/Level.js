@@ -43,12 +43,13 @@ class Level {
                                                         accessible_position_list,
                                                         neighbor_id_list,
                                                         this);
+                                                        
+        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
+        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);
+        
         this.score = Configuration.initial_score;
         this.available_points = this.countAvailablePoints();
         this.total_pacman_lifes = this.countInitialPacmanLifes();
-
-        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
-        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);
     }
 
 
