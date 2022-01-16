@@ -91,7 +91,8 @@ class Ghost extends Actor {
 
 
    scare() {
-      this.setState(new GhostStateFlee(30, this));
+      //this.setState(new GhostStateFlee(30, this));
+      this.setState(new GhostStateFlee(80, this));
    }
 
 
@@ -220,8 +221,10 @@ class Ghost extends Actor {
 
 
    handleSpawnCollision() {
+      // prevent ghost from leaving the spawn while pacman has still scared ghost to chase
       if (this.state.getName() === Configuration.ghost_state_dead_name &&
-          this.getCurrentPosition().getID() === this.getSpawnID()) {
+          this.getCurrentPosition().getID() === this.getSpawnID() &&
+          this.level.countScaredGhosts() === 0) {
             this.state.end();
       }
    }
