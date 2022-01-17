@@ -1,7 +1,7 @@
 "use strict";
 
-import Configuration from "./Configuration.js";
-import Game from "./Game.js";
+import Configuration from "./Configuration.mjs";
+import Game from "./Game.mjs";
 
 /*  
     =================================================================================================================
