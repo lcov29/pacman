@@ -1,5 +1,10 @@
 "use strict";
 
+import GhostState from "./GhostState.js";
+import Configuration from "./Configuration.js";
+import GhostStateChase from "./GhostStateChase.js";
+
+
 export default class GhostStateFlee extends GhostState {
 
 

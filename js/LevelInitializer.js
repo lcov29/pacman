@@ -1,5 +1,15 @@
 "use strict"
 
+import Configuration from "./Configuration.js";
+import Teleporter from "./Teleporter.js"
+import Routing from "./Routing.js";
+import Pacman from "./Pacman.js";
+import Blinky from "./Blinky.js";
+//import Pinky from "./Pinky.js";
+//import Inky from "./Inky.js";
+//import Clyde from "./Clyde.js";
+
+
 /*  
     =================================================================================================================
     Initialization methods for level elements Teleporter, Ghost and Pacman. Is used in Level.initialize().

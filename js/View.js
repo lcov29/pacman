@@ -1,5 +1,8 @@
 "use strict";
 
+import Configuration from "./Configuration.js";
+
+
 export default class View {
    
    

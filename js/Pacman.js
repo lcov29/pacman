@@ -1,5 +1,9 @@
 "use strict";
 
+import Actor from "./Actor.js";
+import Configuration from "./Configuration.js";
+
+
 export default class Pacman extends Actor {
    
    

@@ -1,5 +1,7 @@
 "use strict";
 
+import Configuration from "./Configuration.js";
+
 /*  
     =================================================================================================================
     Map contains directions in which each ghost door should be displayed by the view.

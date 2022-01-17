@@ -1,5 +1,7 @@
 "use strict";
 
+import Configuration from "./Configuration.js";
+
 /*  
     =================================================================================================================
     Representation of a tile on the board.

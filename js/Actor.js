@@ -1,5 +1,10 @@
 "use strict";
 
+import Directions from "./Directions.js";
+import UpdateRequest from "./UpdateRequest.js";
+import Configuration from "./Configuration.js";
+
+
 export default class Actor {
     
 

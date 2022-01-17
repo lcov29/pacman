@@ -1,5 +1,11 @@
 "use strict";
 
+import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.js";
+import LevelInitializer from "./LevelInitializer.js";
+import Configuration from "./Configuration.js";
+import Teleporter from "./Teleporter.js";
+import Board from "./Board.js";
+
 /*  
     =================================================================================================================
     Represents the current state of the level.

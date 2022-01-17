@@ -1,5 +1,10 @@
 "use strict";
 
+import Configuration from "./Configuration.js";
+import BoardParser from "./BoardParser.js";
+import Directions from "./Directions.js";
+
+
 export default class Board {
 
    
