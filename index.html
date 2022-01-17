@@ -5,49 +5,26 @@
       <meta charset='UTF-8'>
       <meta name='viewport' content='width=device-width, initial-scale=1.0'>
       <title>Pacman</title>
-      <script src='js/Configuration.js'></script>
-      <script src="js/BoardPosition.js"></script>
-      <script src="js/BoardParser.js"></script>
-      <script src='js/Board.js'></script>
-      <script src='js/UpdateRequest.js'></script>
-      <script src='js/Directions.js'></script>
-      <script src="js/Teleporter.js"></script>
-      <script src='js/RoutingNode.js'></script>
-      <script src='js/RoutingAlgorithm.js'></script>
-      <script src='js/Routing.js'></script>
-      <script src='js/Actor.js'></script>
-      <script src='js/Pacman.js'></script>
-      <script src='js/Ghost.js'></script>
-      <script src='js/GhostState.js'></script>
-      <script src='js/GhostStateChase.js'></script>
-      <script src='js/GhostStateScatter.js'></script>
-      <script src='js/GhostStateFlee.js'></script>
-      <script src='js/GhostStateDead.js'></script>
-      <script src="js/Blinky.js"></script>
-      <script src='js/Game.js'></script>
-      <script src='js/GhostDoorDirectionMapper.js'></script>
-      <script src='js/LevelInitializer.js'></script>
-      <script src='js/Level.js'></script>
-      <script src='js/View.js'></script> 
+      <script type= 'module' src='./js/main.js'></script>
       <link rel='stylesheet' href='css/stylesheet.css'>
       <link rel="icon" type="image/png" href="favicon.png">
    </head>
    
-   <body onload='initializePage()'>
+   <body id='body_id'>
       <h3>Pacman</h3>
       <div id='game_container'>
          <p id='life'></p>
          <p id='score'></p>
          <div id='level_container'></div>
          <br>
-         <button onclick='startLevel()'>start level</button>
+         <button id='button_start'>start level</button>
       </div>
       <br>
       <label for='level_input'>current level:</label>
       <br>
       <textarea id='level_input' rows='21' cols='25'></textarea>
       <br>
-      <button onclick='buildLevel()'>build level</button>
+      <button id='button_build_level'>build level</button>
       <p>You can build your own level by using the following symbols:<p>
       <ul id="level_elements_list">
          <li></li>
@@ -61,58 +38,11 @@
          <li></li>
       </ul>
       <br>
-      <p>Rules:</p>
-      <ul>
-         <li>Level is limited by walls</li>
-         <li>Every non-wall element is reachable</li>
-         <li>Level contains at least one point, pacman and ghost</li>
-      </ul>
-      <br>
-      <br>
       <p>Controls</p>
       <ul>
          <li>WASD</li>
          <li>ArrowKeys</li>
       </ul>
-      
-      <script>
-         
-         //GLOBAL VARIABLE FOR ACCESSING GAME FROM CALLBACKFUNCTION game.callBackEventListener()      
-         var game = undefined;      
-
-         function initializePage() {
-               document.getElementById("level_input").value = Configuration.default_map;
-               initializeLevelElementsList();
-               buildLevel();
-         }
-
-         function startLevel() {
-            if (!game.isInProgress()) {
-               buildLevel();
-            }
-            game.start();
-         }
-
-         function initializeLevelElementsList() {
-            let list = document.getElementById("level_elements_list");
-            list.childNodes[1].innerHTML = `${Configuration.wall_character} : Wall`;
-            list.childNodes[3].innerHTML = `${Configuration.empty_tile_character} : Empty`;
-            list.childNodes[5].innerHTML = `${Configuration.ghost_door_character} : Ghost Door`;
-            list.childNodes[7].innerHTML = `${Configuration.ghost_blinky_character} : Blinky (red ghost)`;
-            list.childNodes[9].innerHTML = `${Configuration.pacman_character} : Pacman`;
-            list.childNodes[11].innerHTML = `${Configuration.point_character} : Point`;
-            list.childNodes[13].innerHTML = `${Configuration.teleporter_1_tile_character} : Teleporter 1 (requires destination)`;
-            list.childNodes[15].innerHTML = `${Configuration.teleporter_2_tile_character} : Teleporter 2 (requires destination)`;
-            list.childNodes[17].innerHTML = `${Configuration.teleporter_3_tile_character} : Teleporter 3 (requires destination)`;
-         }
-
-         function buildLevel() {
-            let level_input = document.getElementById("level_input").value;
-            game = new Game(level_input, "level_container", "score", "life");
-         }
-
-      </script>
-
    </body>
    
 </html>
