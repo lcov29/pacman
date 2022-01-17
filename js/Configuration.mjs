@@ -12,28 +12,28 @@ export default class Configuration {
    static initial_pacman_direction = "right";
    static initial_ghosts_direction = "down";
    static interval_delay_in_milliseconds = 500;
-   static default_map = '###########################\n'+
-                        '#8ooooooooooo#ooooooooooo9#\n' +
-                        '#o####o#####o#o#####o####o#\n' +
-                        '#O####o#####o#o#####o####O#\n' +
-                        '#ooooooooooooooooooooooooo#\n' +
-                        '#o####o#o#########o#o####o#\n' +
-                        '#oooooo#ooooo#ooooo#oooooo#\n' +
-                        '######o#####o#o#####o######\n' +
-                        '######o#xxxxxbxxxxx#o######\n' +
-                        '######o#x####d####x#o######\n' +
-                        '1xxxxxoxx#Bxxxxxx#xxoxxxxx1\n' +
-                        '######o#x#########x#o######\n' +
-                        '######o#xxxxxxxxxxx#o######\n' +
-                        '######o#x#########x#o######\n' +
-                        '#oooooooooooo#oooooooooooo#\n' +
-                        '#o####o#####o#o#####o####o#\n' +
-                        '#Oooo#ooooooopooooooo#oooO#\n' +
-                        '####o#o#o#########o#o#o####\n' +
-                        '#oooooo#ooooo#ooooo#oooooo#\n' +
-                        '#o##########o#o##########o#\n' +
-                        '#7ooooooooooooooooooooooo6#\n' +
-                        '###########################\n';
+   static default_level = '###########################\n'+
+                          '#8ooooooooooo#ooooooooooo9#\n' +
+                          '#o####o#####o#o#####o####o#\n' +
+                          '#O####o#####o#o#####o####O#\n' +
+                          '#ooooooooooooooooooooooooo#\n' +
+                          '#o####o#o#########o#o####o#\n' +
+                          '#oooooo#ooooo#ooooo#oooooo#\n' +
+                          '######o#####o#o#####o######\n' +
+                          '######o#xxxxxbxxxxx#o######\n' +
+                          '######o#x####d####x#o######\n' +
+                          '1xxxxxoxx#Bxxxxxx#xxoxxxxx1\n' +
+                          '######o#x#########x#o######\n' +
+                          '######o#xxxxxxxxxxx#o######\n' +
+                          '######o#x#########x#o######\n' +
+                          '#oooooooooooo#oooooooooooo#\n' +
+                          '#o####o#####o#o#####o####o#\n' +
+                          '#Oooo#ooooooopooooooo#oooO#\n' +
+                          '####o#o#o#########o#o#o####\n' +
+                          '#oooooo#ooooo#ooooo#oooooo#\n' +
+                          '#o##########o#o##########o#\n' +
+                          '#7ooooooooooooooooooooooo6#\n' +
+                          '###########################\n';
    
 
                         
