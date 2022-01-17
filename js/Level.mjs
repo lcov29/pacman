@@ -35,14 +35,14 @@ export default class Level {
     initialize() {
         let teleporter_positions = this.board.getTeleporterPositions();
         let pacman_positions = this.board.getInitialPacmanPositions();
+        this.teleporters = LevelInitializer.initializeTeleporters(teleporter_positions);
+        this.pacmans = LevelInitializer.initializePacmans(pacman_positions, this);
+
         let ghost_positions = this.board.getInitialGhostPositions();
         let scatter_positions = this.board.getGhostScatterPositions();
         let spawn_positons = this.board.getOptionalGhostSpawnPositions();
         let accessible_position_list = this.board.buildAccessibleBoardPositionList();
         let neighbor_id_list = this.buildAccessibleNeighborIdList();
-
-        this.teleporters = LevelInitializer.initializeTeleporters(teleporter_positions);
-        this.pacmans = LevelInitializer.initializePacmans(pacman_positions, this);
         this.ghosts = LevelInitializer.initializeGhosts(ghost_positions,
                                                         scatter_positions,
                                                         spawn_positons,
@@ -206,14 +206,6 @@ export default class Level {
     }
 
 
-    addTeleportersToNeighborIDList(neighbor_id_list) {
-        for (let teleporter of this.teleporters) {
-            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
-            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
-        }
-    }
-
-
     removeDeadPacmanAt(position_id) {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === position_id) {
@@ -233,6 +225,14 @@ export default class Level {
         let neighbor_id_list = this.board.buildAccessibleNeighborIdList();
         this.addTeleportersToNeighborIDList(neighbor_id_list);
         return neighbor_id_list;
+    }
+
+
+    addTeleportersToNeighborIDList(neighbor_id_list) {
+        for (let teleporter of this.teleporters) {
+            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
+            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
+        }
     }
 
 
