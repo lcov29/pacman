@@ -1,74 +1,40 @@
 "use strict";
 
-class Game {
+import Level from "./Level.js";
+import View from "./View.js";
+import Configuration from "./Configuration.js";
 
-   
-   constructor(level_text, board_container_id, score_id, life_id) {
+
+export default class Game {
+
+
+   constructor(board_container_id, score_id, life_id) {
       this.animation_interval = null;
-      this.level = new Level(this, level_text);
+      this.level = null;
       this.view = new View(board_container_id, score_id, life_id);
+      this.is_in_progress = false;
+   }
+
+
+   loadLevel(level_text) {
+      this.level = new Level(this, level_text);
       this.level.initialize();
       this.view.initialize(this.level.getBoardPositionArray(), this.level.buildGhostDoorDirectionMap());
    }
    
 
-   updateView(board_positions, style_class, score, number_of_lifes) {
-      this.view.update(board_positions, style_class, score, number_of_lifes);
+   start() {
+      if (this.is_in_progress === false) {  
+         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.interval_delay_in_milliseconds, this);
+         this.is_in_progress = true; 
+      }
    }
 
 
-   isInProgress() {
-      return (this.level.isWon() === false && 
-              this.level.isLost() === false);
-   }
-   
-   
    nextTurn() {
       this.level.executeTurn();
       this.handleWin();
       this.handleDefeat();
-   }
-   
-      
-   start() {
-      // prevent the start of an already started game
-      if (this.animation_interval === null) {  
-         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.interval_delay_in_milliseconds, this);   
-         document.addEventListener('keydown', this.callBackEventListener, true);
-      }
-   }
-
-   
-   callBackEventListener(event) {
-         switch(event.keyCode) {
-            
-            case Configuration.key_code_up_arrow:
-            case Configuration.key_code_w:
-               game.level.setNextPacmanDirection('up');
-               break;
-            
-            case Configuration.key_code_right_arrow:
-            case Configuration.key_code_d:
-               game.level.setNextPacmanDirection('right');
-               break;
-            
-            case Configuration.key_code_down_arrow:
-            case Configuration.key_code_s:
-               game.level.setNextPacmanDirection('down');
-               break;
-
-            case Configuration.key_code_left_arrow:
-            case Configuration.key_code_a:
-               game.level.setNextPacmanDirection('left');
-               break;
-         }         
-         event.preventDefault();
-   }
-   
-   
-   end() {
-      clearInterval(this.animation_interval);
-      document.removeEventListener('keydown', this.callBackEventListener);
    }
 
 
@@ -85,6 +51,27 @@ class Game {
          this.view.printMessage('Game over');
          this.end();
       }
+   }
+
+
+   end() {
+      clearInterval(this.animation_interval);
+      this.is_in_progress = false;
+   }
+
+
+   setPacmanDirection(direction_name) {
+      this.level.setNextPacmanDirection(direction_name);
+   }
+
+
+   isInProgress() {
+      return this.is_in_progress;
+   }
+
+
+   updateView(board_positions, style_class, score, number_of_lifes) {
+      this.view.update(board_positions, style_class, score, number_of_lifes);
    }
    
    
