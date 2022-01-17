@@ -1,10 +1,10 @@
 "use strict";
 
-import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.js";
-import LevelInitializer from "./LevelInitializer.js";
-import Configuration from "./Configuration.js";
-import Teleporter from "./Teleporter.js";
-import Board from "./Board.js";
+import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.mjs";
+import LevelInitializer from "./LevelInitializer.mjs";
+import Configuration from "./Configuration.mjs";
+import Teleporter from "./Teleporter.mjs";
+import Board from "./Board.mjs";
 
 /*  
     =================================================================================================================

@@ -1,11 +1,11 @@
 "use strict";
 
-import GhostStateScatter from "./GhostStateScatter.js";
-import GhostStateFlee from "./GhostStateFlee.js";
-import GhostStateDead from "./GhostStateDead.js";
-import Configuration from "./Configuration.js";
-import Directions from "./Directions.js";
-import Actor from "./Actor.js";
+import GhostStateScatter from "./GhostStateScatter.mjs";
+import GhostStateFlee from "./GhostStateFlee.mjs";
+import GhostStateDead from "./GhostStateDead.mjs";
+import Configuration from "./Configuration.mjs";
+import Directions from "./Directions.mjs";
+import Actor from "./Actor.mjs";
 
 
 export default class Ghost extends Actor {

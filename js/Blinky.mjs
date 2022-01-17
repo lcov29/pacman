@@ -1,7 +1,7 @@
 "use strict";
 
-import Ghost from "./Ghost.js";
-import Configuration from "./Configuration.js";
+import Ghost from "./Ghost.mjs";
+import Configuration from "./Configuration.mjs";
 
 
 export default class Blinky extends Ghost {

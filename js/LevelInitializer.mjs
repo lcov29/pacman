@@ -1,10 +1,10 @@
 "use strict"
 
-import Configuration from "./Configuration.js";
-import Teleporter from "./Teleporter.js"
-import Routing from "./Routing.js";
-import Pacman from "./Pacman.js";
-import Blinky from "./Blinky.js";
+import Configuration from "./Configuration.mjs";
+import Teleporter from "./Teleporter.mjs"
+import Routing from "./Routing.mjs";
+import Pacman from "./Pacman.mjs";
+import Blinky from "./Blinky.mjs";
 //import Pinky from "./Pinky.js";
 //import Inky from "./Inky.js";
 //import Clyde from "./Clyde.js";

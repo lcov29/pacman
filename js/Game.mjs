@@ -1,8 +1,8 @@
 "use strict";
 
 import Level from "./Level.mjs";
-import View from "./View.js";
-import Configuration from "./Configuration.js";
+import View from "./View.mjs";
+import Configuration from "./Configuration.mjs";
 
 
 export default class Game {

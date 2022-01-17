@@ -1,8 +1,8 @@
 "use strict";
 
-import RoutingAlgorithm from "./RoutingAlgorithm.js";
-import BoardPosition from "./BoardPosition.js";
-import RoutingNode from "./RoutingNode.js";
+import RoutingAlgorithm from "./RoutingAlgorithm.mjs";
+import BoardPosition from "./BoardPosition.mjs";
+import RoutingNode from "./RoutingNode.mjs";
 
 
 export default class Routing {
