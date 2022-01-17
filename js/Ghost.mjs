@@ -1,6 +1,7 @@
 "use strict";
 
 import GhostStateScatter from "./GhostStateScatter.mjs";
+import GhostStateChase from "./GhostStateChase.mjs";
 import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateDead from "./GhostStateDead.mjs";
 import Configuration from "./Configuration.mjs";
@@ -216,7 +217,9 @@ export default class Ghost extends Actor {
 
    updateMovementDirection(current_position, next_position) {
       if (current_position.getID() !== next_position.getID()) {
-         let direction_name = Directions.calculateMovementDirectionName(current_position, next_position);
+         let direction_x = next_position.getX() - current_position.getX();
+         let direction_y = next_position.getY() - current_position.getY();
+         let direction_name = Directions.getDirectionNameByIndex(direction_x, direction_y);
          super.setMovementDirectionName(direction_name);
       }
    }

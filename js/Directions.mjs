@@ -77,14 +77,6 @@ export default class Directions {
     }
 
 
-    // THINK ABOUT MOVING TO GHOST.JS
-    static calculateMovementDirectionName(start_position, destination_position) {
-        let direction_x = destination_position.getX() - start_position.getX();
-        let direction_y = destination_position.getY() - start_position.getY();
-        return Directions.getDirectionNameByIndex(direction_x, direction_y);
-    }
-
-
     static getRandomDirectionID() {
         let min = this.min_direction_id;
         let max = this.max_direction_id;
