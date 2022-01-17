@@ -1,6 +1,6 @@
 "use strict";
 
-import Level from "./Level.js";
+import Level from "./Level.mjs";
 import View from "./View.js";
 import Configuration from "./Configuration.js";
 
