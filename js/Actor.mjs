@@ -100,6 +100,7 @@ export default class Actor {
    }
 
 
+   // RENAME METHOD
    isOccupiedBoardElementTeleporter() {
       let occupied_element_character = this.current_position.getElementCharacter();
       return this.level.isBoardElementTeleporter(occupied_element_character);
