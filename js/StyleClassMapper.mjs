@@ -32,7 +32,7 @@ export default class StyleClassMapper {
         [Configuration.teleporter_2_tile_character]:    Configuration.empty_foreground_css_class,
         [Configuration.teleporter_3_tile_character]:    Configuration.empty_foreground_css_class,
         [Configuration.pacman_character]:               `${Configuration.pacman_foreground_css_class}_${Configuration.initial_pacman_direction}`,
-        [Configuration.ghost_blinky_character]:         `${Configuration.ghost_blinky_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
+        [Configuration.ghost_blinky_character]:         `${Configuration.ghost_blinky_movement_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
         [Configuration.point_character]:                Configuration.point_foreground_css_class,
         [Configuration.powerup_character]:              Configuration.powerup_foreground_css_class,
         [Configuration.scatter_point_character_blinky]: Configuration.point_foreground_css_class,  
