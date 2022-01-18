@@ -2,6 +2,12 @@
 
 export default class Configuration {
    
+   // Direction names
+   static direction_name_up = "up";
+   static direction_name_right = "right";
+   static direction_name_down = "down";
+   static direction_name_left = "left";
+
    
    // Game settings
    static initial_score = 0;
@@ -9,7 +15,9 @@ export default class Configuration {
    static score_value_per_powerup = 50;
    static score_value_per_eaten_ghost = 200;
    static initial_pacman_lifes = 1;
-   static initial_pacman_direction = "right";
+   static initial_pacman_direction = Configuration.direction_name_right;
+   static initial_ghosts_direction = Configuration.direction_name_down;
+
    static initial_ghosts_direction = "down";
    static interval_delay_in_milliseconds = 500;
    static default_level = '###########################\n'+
@@ -104,8 +112,8 @@ export default class Configuration {
       [this.teleporter_1_tile_character]:    this.empty_foreground_css_class,
       [this.teleporter_2_tile_character]:    this.empty_foreground_css_class,
       [this.teleporter_3_tile_character]:    this.empty_foreground_css_class,
-      [this.pacman_character]:               `${this.pacman_foreground_css_class}_${this.initial_pacman_direction}`,
-      [this.ghost_blinky_character]:         `${this.ghost_blinky_foreground_css_class}_${this.initial_ghosts_direction}`,
+      [this.pacman_character]:               `${this.pacman_foreground_css_class}_${Configuration.initial_pacman_direction}`,
+      [this.ghost_blinky_character]:         `${this.ghost_blinky_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
       [this.point_character]:                this.point_foreground_css_class,
       [this.powerup_character]:              this.powerup_foreground_css_class,
       [this.scatter_point_character_blinky]: this.point_foreground_css_class,  
@@ -142,13 +150,6 @@ export default class Configuration {
       }
       return style_class;
    }
-
-
-   // Direction names
-   static direction_name_up = "up";
-   static direction_name_right = "right";
-   static direction_name_down = "down";
-   static direction_name_left = "left";
 
 
    // Settings for view.js
