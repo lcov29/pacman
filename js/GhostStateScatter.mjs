@@ -38,6 +38,11 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
+    getStyleClass() {
+        return `${super.getBaseStyleClass()}_${super.getGhost().getMovementDirectionName()}`;
+    }
+
+
     handlePacmanCollisionOnCurrentPosition() {}
 
 

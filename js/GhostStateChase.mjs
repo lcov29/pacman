@@ -29,6 +29,11 @@ export default class GhostStateChase extends GhostState {
     }
 
 
+    getStyleClass() {
+        return `${super.getBaseStyleClass()}_${super.getGhost().getMovementDirectionName()}`;
+    }
+
+
     handleTeleportation() {
         let ghost = super.getGhost();
         if (ghost.isOccupiedBoardElementTeleporter()) {

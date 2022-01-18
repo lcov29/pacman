@@ -37,6 +37,11 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
+    getStyleClass() {
+        return `${super.getBaseStyleClass()}_${super.getGhost().getMovementDirectionName()}`;
+    }
+
+
     handleTeleportation() {
         let ghost = super.getGhost();
         if (ghost.isOccupiedBoardElementTeleporter() && ghost.getTeleportationStatus() === false) {
