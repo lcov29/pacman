@@ -3,6 +3,7 @@
 import Directions from "./Directions.mjs";
 import UpdateRequest from "./UpdateRequest.mjs";
 import Configuration from "./Configuration.mjs";
+import StyleClassMapper from "./StyleClassMapper.mjs";
 
 
 export default class Actor {
@@ -145,7 +146,7 @@ export default class Actor {
       if (this.update_flag_current_position) {
          let actor = Configuration.empty_tile_character;
          let element = this.current_position.getElementCharacter();
-         let styleclass = Configuration.getForegroundStyleClass(actor, element);
+         let styleclass = StyleClassMapper.getForegroundStyleClass(actor, element);
          this.current_position.setActorCharacter(actor);
          this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass));
       }
