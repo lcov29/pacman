@@ -19,9 +19,17 @@ export default class GhostStateScatter extends GhostState {
     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
-        let scatter_position_id = ghost.getScatterID();
-        let next_position = ghost.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
+        let next_position = this.calculateNextPosition(current_position_id);
         ghost.moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    // scatter state movement pattern
+    calculateNextPosition(current_position_id) {
+        let ghost = super.getGhost();
+        let routing = ghost.getRouting();
+        let scatter_position_id = ghost.getScatterID();
+        return routing.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
     }
 
 
@@ -31,6 +39,28 @@ export default class GhostStateScatter extends GhostState {
 
 
     handlePacmanCollisionOnCurrentPosition() {}
+
+
+
+    handleTeleportation() {
+        let ghost = super.getGhost();
+        if (ghost.isOccupiedBoardElementTeleporter()) {
+
+            // ghost has the option to move over teleporters without teleporting
+            if (ghost.isNextPositionEqualToTeleportDestination()) {
+
+                // after teleportation ghost sprite should already face in the direction of the next move
+                let after_teleportation_position_id = ghost.getNextPosition().getID();
+                let next__after_teleportation_position = this.calculateNextPosition(after_teleportation_position_id);
+                ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);
+                ghost.setTeleportationStatus(true);
+            } 
+
+        } else {
+            ghost.setTeleportationStatus(false);
+        }
+    }
+
 
 
     handlePacmanCollisionOnNextPosition() {

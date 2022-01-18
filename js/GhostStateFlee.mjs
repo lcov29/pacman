@@ -18,14 +18,34 @@ export default class GhostStateFlee extends GhostState {
 
 
     executeStateMovementPattern() {
-        let ghost = super.getGhost();
-        let next_position = ghost.calculateNextPositionByDirection();
-        ghost.moveToPosition(next_position.getX(), next_position.getY());
+        let next_position = this.calculateNextPosition();
+        super.getGhost().moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    // flee state movement pattern: 
+    // 1.) reverse current movement direction upon entering this state
+    // 2.) move in this direction
+    // 3.) when colliding with a wall, select another random movement direction and resume with step 2
+    calculateNextPosition() {
+        return super.getGhost().calculateNextPositionByDirection();
     }
 
 
     getSubsequentState() {
         return new GhostStateChase(20, super.getGhost());
+    }
+
+
+    handleTeleportation() {
+        let ghost = super.getGhost();
+        if (ghost.isOccupiedBoardElementTeleporter() && ghost.getTeleportationStatus() === false) {
+            let destination = ghost.getTeleportDestinationForCurrentPosition();
+            ghost.setNextPosition(destination);
+            ghost.setTeleportationStatus(true);
+        } else {
+            ghost.setTeleportationStatus(false);
+        }
     }
 
 
