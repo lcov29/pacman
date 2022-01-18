@@ -1,54 +1,68 @@
 "use strict";
 
+import Configuration from "./Configuration.mjs";
+
+
 export default class Directions {
 
-    static direction_up = {x:0, y:-1};
-    static direction_right = {x:1, y:0};
-    static direction_down = {x:0, y:1};
-    static direction_left = {x:-1, y:0};
-    static min_direction_id = 0;
-    static max_direction_id = 3;
+
+    static DIRECTION_UP = {x:0, y:-1};
+    static DIRECTION_RIGHT = {x:1, y:0};
+    static DIRECTION_DOWN = {x:0, y:1};
+    static DIRECTION_LEFT = {x:-1, y:0};
+    static MIN_DIRECTION_ID = 0;
+    static MAX_DIRECTION_ID = 3;
 
 
     static direction_map_name_to_direction = {
-        'up':    this.direction_up,
-        'right': this.direction_right,
-        'down':  this.direction_down,
-        'left':  this.direction_left
+        [Configuration.direction_name_up]:    this.DIRECTION_UP,
+        [Configuration.direction_name_right]: this.DIRECTION_RIGHT,
+        [Configuration.direction_name_down]:  this.DIRECTION_DOWN,
+        [Configuration.direction_name_left]:  this.DIRECTION_LEFT
     };
-    
+
 
     static direction_map_inverse = {
-        'up':       'down',
-        'right':    'left',
-        'down':     'up',
-        'left':     'right'
+        [Configuration.direction_name_up]:      Configuration.direction_name_down,
+        [Configuration.direction_name_right]:   Configuration.direction_name_left,
+        [Configuration.direction_name_down]:    Configuration.direction_name_up,
+        [Configuration.direction_name_left]:    Configuration.direction_name_right
     };
 
 
     static direction_map_direction_to_name = {
-        '(0,-1)': 'up',
-        '(1,0)':  'right',
-        '(0,1)':  'down',
-        '(-1,0)': 'left'
-    };  
+        '(0,-1)': Configuration.direction_name_up,
+        '(1,0)':  Configuration.direction_name_right,
+        '(0,1)':  Configuration.direction_name_down,
+        '(-1,0)': Configuration.direction_name_left
+    };
 
 
     static direction_map_id_to_name = {
-        0:  'up',
-        1:  'right',
-        2:  'down',
-        3:  'left'
+        0:  Configuration.direction_name_up,
+        1:  Configuration.direction_name_right,
+        2:  Configuration.direction_name_down,
+        3:  Configuration.direction_name_left
     }
 
 
     static direction_map_id_to_direction = {
-        0: this.direction_up,
-        1: this.direction_right,
-        2: this.direction_down,
-        3: this.direction_left
+        0: this.DIRECTION_UP,
+        1: this.DIRECTION_RIGHT,
+        2: this.DIRECTION_DOWN,
+        3: this.DIRECTION_LEFT
     };
     
+
+    static getMinDirectionID() {
+        return this.MIN_DIRECTION_ID;
+    }
+
+
+    static getMaxDirectionID() {
+        return this.MAX_DIRECTION_ID;
+    }
+
 
     static getDirectionByName(name) {
         return this.direction_map_name_to_direction[name];
@@ -78,9 +92,7 @@ export default class Directions {
 
 
     static getRandomDirectionID() {
-        let min = this.min_direction_id;
-        let max = this.max_direction_id;
-        return Math.floor(min + (max - min + 1) * Math.random());
+        return Math.floor(this.MIN_DIRECTION_ID + (this.MAX_DIRECTION_ID - this.MIN_DIRECTION_ID + 1) * Math.random());
     }
 
     
