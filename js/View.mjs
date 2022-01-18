@@ -16,9 +16,9 @@ export default class View {
 
    initialize(board_position_array, ghost_door_direction_map) {
       this.clearBoard();
-      this.setContainerDimension(board_position_array);
-      this.addBackgroundElements(board_position_array, ghost_door_direction_map);
-      this.addForegroundElements(board_position_array);
+      this.initializeContainerDimension(board_position_array);
+      this.initializeBackgroundElements(board_position_array, ghost_door_direction_map);
+      this.initializeForegroundElements(board_position_array);
    }
 
 
@@ -45,13 +45,13 @@ export default class View {
 
 
    // requires the same column count for all rows!
-   setContainerDimension(board) {
+   initializeContainerDimension(board) {
       this.board_container.style.height = `${board.length * Configuration.dimension_background_div_in_px}px`;
       this.board_container.style.width = `${board[0].length * Configuration.dimension_background_div_in_px}px`;
    }
 
 
-   addBackgroundElements(board, ghost_door_direction_map) {
+   initializeBackgroundElements(board, ghost_door_direction_map) {
       let outer_div = null;
       let id_div = '';
       let style_class = '';
@@ -70,9 +70,9 @@ export default class View {
          }
       }
    }
-   
 
-   addForegroundElements(board) {
+
+   initializeForegroundElements(board) {
       let outer_div = null;
       let inner_div = null;
       let id_div = '';
