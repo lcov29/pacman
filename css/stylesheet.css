@@ -132,28 +132,58 @@ body {
 
 
 /* Ghost Blinky */
-.ghost_blinky_up {
+.ghost_blinky_movement_up {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_blinky/movement/blinky_up.png');
 }
 
-.ghost_blinky_right {
+.ghost_blinky_movement_right {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_blinky/movement/blinky_right.png');
 }
 
-.ghost_blinky_down {
+.ghost_blinky_movement_down {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_blinky/movement/blinky_down.png');
 }
 
-.ghost_blinky_left {
+.ghost_blinky_movement_left {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_blinky/movement/blinky_left.png');
+}
+
+.ghost_blinky_respawn_stage_0 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_dead/ghost_dead_down.png');
+}
+
+.ghost_blinky_respawn_stage_1 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_1.png');
+}
+
+.ghost_blinky_respawn_stage_2 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_2.png');
+}
+
+.ghost_blinky_respawn_stage_3 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_3.png');
+}
+
+.ghost_blinky_respawn_stage_4 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_blinky/movement/blinky_down.png');
 }
 
 
