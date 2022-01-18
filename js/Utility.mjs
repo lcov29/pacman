@@ -1,7 +1,14 @@
 "use strict";
 
+export default class Utility {
 
-export function removeElementFrom(array, element) {
-    const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
-    array.splice(array.indexOf(element), NUMBER_OF_ELEMENTS_TO_DELETE);
- }
+
+    static removeElementFrom(array, element) {
+        const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
+        array.splice(array.indexOf(element), NUMBER_OF_ELEMENTS_TO_DELETE);
+    }
+
+
+    
+
+}

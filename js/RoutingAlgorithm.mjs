@@ -1,6 +1,6 @@
 "use strict";
 
-import {removeElementFrom} from "./Utility.mjs";
+import Utility from "./Utility.mjs";
 
 
 export default class RoutingAlgorithm {
@@ -22,7 +22,7 @@ export default class RoutingAlgorithm {
       let unused_nodes = routing_table[id_start_node].slice();
       let current_node = routing_table[id_start_node][id_start_node];
       let routing_node = null;
-      removeElementFrom(unused_nodes, current_node);
+      Utility.removeElementFrom(unused_nodes, current_node);
       
       for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
          routing_node = routing_table[id_start_node][neighbor_id];
@@ -42,7 +42,7 @@ export default class RoutingAlgorithm {
                }
             }
          }
-         removeElementFrom(unused_nodes, current_node);
+         Utility.removeElementFrom(unused_nodes, current_node);
       }
       
    }
