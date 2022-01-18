@@ -11,7 +11,8 @@ export default class Blinky extends Ghost {
         super(level,
               position, 
               Configuration.ghost_blinky_character, 
-              Configuration.ghost_blinky_foreground_css_class, 
+              Configuration.ghost_blinky_movement_foreground_css_class,
+              Configuration.ghost_blinky_respawn_foreground_css_class, 
               routing,
               Configuration.scatter_point_character_blinky,
               Configuration.ghost_blinky_spawn_character);
