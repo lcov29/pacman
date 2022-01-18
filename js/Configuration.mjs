@@ -68,6 +68,7 @@ export default class Configuration {
    static ghost_state_flee_name = "flee";
    static ghost_state_chase_name = "chase";
    static ghost_state_scatter_name = "scatter";
+   static ghost_state_respawn_name = "respawn";
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
@@ -77,7 +78,8 @@ export default class Configuration {
    static teleporter_3_background_css_class = "teleporter_3_tile";
 
    static pacman_foreground_css_class = "pacman";
-   static ghost_blinky_foreground_css_class = "ghost_blinky";
+   static ghost_blinky_movement_foreground_css_class = "ghost_blinky_movement";
+   static ghost_blinky_respawn_foreground_css_class = "ghost_blinky_respawn"
    static ghost_scared_foreground_css_class = "ghost_scared";
    static ghost_dead_foreground_css_class = "ghost_dead";
    static point_foreground_css_class = "point";
@@ -110,6 +112,10 @@ export default class Configuration {
    // Code for board parsing
    // Source: https://www.ascii-code.com/
    static linefeed_code = 10;
+
+
+   // NEW
+   static max_respawn_stage = 4;
 
 
 }
