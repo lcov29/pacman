@@ -42,22 +42,22 @@ function callBackKeyDown(e) {
       
          case Configuration.key_code_up_arrow:
          case Configuration.key_code_w:
-            game.setPacmanDirection('up');
+            game.setPacmanDirection(Configuration.direction_name_up);
             break;
          
          case Configuration.key_code_right_arrow:
          case Configuration.key_code_d:
-            game.setPacmanDirection('right');
+            game.setPacmanDirection(Configuration.direction_name_right);
             break;
          
          case Configuration.key_code_down_arrow:
          case Configuration.key_code_s:
-            game.setPacmanDirection('down');
+            game.setPacmanDirection(Configuration.direction_name_down);
             break;
    
          case Configuration.key_code_left_arrow:
          case Configuration.key_code_a:
-            game.setPacmanDirection('left');
+            game.setPacmanDirection(Configuration.direction_name_left);
             break;
       }         
       e.preventDefault();
