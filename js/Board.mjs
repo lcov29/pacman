@@ -113,7 +113,7 @@ export default class Board {
       let neighbor_x = -1;
       let neighbor_y = -1;
 
-      for (let i = Directions.min_direction_id; i <= Directions.max_direction_id; i++) {
+      for (let i = Directions.getMinDirectionID(); i <= Directions.getMaxDirectionID(); i++) {
          direction = Directions.getDirectionByID(i);
          neighbor_x = xPosition + direction.x;
          neighbor_y = yPosition + direction.y;
