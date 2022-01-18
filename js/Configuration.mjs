@@ -3,7 +3,7 @@
 export default class Configuration {
    
    
-   // general game settings
+   // Game settings
    static initial_score = 0;
    static score_value_per_point = 10;
    static score_value_per_powerup = 50;
@@ -37,7 +37,7 @@ export default class Configuration {
    
 
                         
-   // internal and css representation of different game elements
+   // Internal and css representation of different game elements
    static id_unaccessible_board_element = -1;   // must be < 0
 
    static wall_character = "#";
@@ -144,7 +144,14 @@ export default class Configuration {
    }
 
 
-   // settings for view.js
+   // Direction names
+   static direction_name_up = "up";
+   static direction_name_right = "right";
+   static direction_name_down = "down";
+   static direction_name_left = "left";
+
+
+   // Settings for view.js
    static suffix_foreground_div = "fg";
    static suffix_background_div = "bg";
    static dimension_background_div_in_px = 30;
