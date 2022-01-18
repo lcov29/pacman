@@ -49,6 +49,9 @@ export default class GhostStateChase extends GhostState {
     }
 
 
+    handleScatterPositionCollision() {}
+
+
     handlePacmanCollisionOnCurrentPosition() {}
 
 

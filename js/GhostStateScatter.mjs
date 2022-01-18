@@ -62,6 +62,14 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
+    handleScatterPositionCollision() {
+        let ghost = super.getGhost();
+        if (ghost.getCurrentPosition().getID() === ghost.getScatterID()) {
+            ghost.setNextPosition(ghost.getCurrentPosition());
+        }
+    }
+
+
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();

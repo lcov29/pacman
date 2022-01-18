@@ -49,6 +49,9 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
+    handleScatterPositionCollision() {}
+
+
     handlePacmanCollisionOnCurrentPosition() {}
 
 

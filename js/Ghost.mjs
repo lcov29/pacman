@@ -147,8 +147,9 @@ export default class Ghost extends Actor {
       super.loadCurrentPositionFromBoard();
       super.setNextPosition(this.level.getBoardPositionAt(x, y));
       this.state.handleTeleportation();
-      this.handleScatterPositionCollision();
-      this.handlePacmanCollision();
+      this.state.handleScatterPositionCollision();
+      this.state.handlePacmanCollisionOnCurrentPosition();
+      this.state.handlePacmanCollisionOnNextPosition();
       this.handleWallCollision();
       this.handleSpawnCollision();
       if (this.has_teleported_in_previous_turn === false) {
@@ -156,20 +157,6 @@ export default class Ghost extends Actor {
       }
       super.updateLevel(this.getStyleClass());
       super.updateCurrentPosition();
-   }
-
-
-   handleScatterPositionCollision() {
-      if (this.state.getName() === Configuration.ghost_state_scatter_name &&
-          super.getCurrentPosition().getID() === this.getScatterID()) {
-         super.setNextPosition(super.getCurrentPosition());
-      }
-   }
-
-
-   handlePacmanCollision() {
-      this.state.handlePacmanCollisionOnCurrentPosition();
-      this.state.handlePacmanCollisionOnNextPosition();
    }
 
 

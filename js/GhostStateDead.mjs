@@ -58,6 +58,9 @@ export default class GhostStateDead extends GhostState {
     }
 
 
+    handleScatterPositionCollision() {}
+
+
     handlePacmanCollisionOnCurrentPosition() {
         let ghost = super.getGhost();
         if (ghost.isCurrentBoardPositionEqual(Configuration.pacman_character)) {
