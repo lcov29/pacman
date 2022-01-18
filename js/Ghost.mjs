@@ -88,11 +88,6 @@ export default class Ghost extends Actor {
    }
 
 
-   getStyleClass() {
-      return `${this.state.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
-   }
-
-
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
@@ -155,7 +150,7 @@ export default class Ghost extends Actor {
       if (this.has_teleported_in_previous_turn === false) {
          this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       }
-      super.updateLevel(this.getStyleClass());
+      super.updateLevel(this.state.getStyleClass());
       super.updateCurrentPosition();
    }
 
