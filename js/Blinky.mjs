@@ -18,14 +18,8 @@ export default class Blinky extends Ghost {
     }
 
 
-    chase() {
-        let current_position_id = super.getCurrentPosition().getID();
-        let next_position = this.calculateNextPositionFrom(current_position_id);
-        return super.moveToPosition(next_position.x, next_position.y);
-    }
-
-
-    calculateNextPositionFrom(position_id) {
+    // chase movement pattern implementation; is used by GhostStateChase
+    calculateNextChasePosition(position_id) {
         let pacman_id = super.selectClosestPacmanID();
         return super.getRouting().calculateNextPositionOnShortestPath(position_id, pacman_id);
     }
