@@ -150,24 +150,13 @@ export default class Ghost extends Actor {
       this.state.handleScatterPositionCollision();
       this.state.handlePacmanCollisionOnCurrentPosition();
       this.state.handlePacmanCollisionOnNextPosition();
-      this.handleWallCollision();
+      this.state.handleWallCollision();
       this.handleSpawnCollision();
       if (this.has_teleported_in_previous_turn === false) {
          this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       }
       super.updateLevel(this.getStyleClass());
       super.updateCurrentPosition();
-   }
-
-
-   handleWallCollision() {
-      // wall collisions will only occur in GhostStateFlee because its movement pattern 
-      // does not use the routing table to calculate the next position
-
-      if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
-         super.setNextPosition(super.getCurrentPosition());
-         this.randomizeMovementDirection();
-      }
    }
 
 
