@@ -88,44 +88,46 @@ export default class Configuration {
    static ghost_door_direction_suffix_horizontal = "horizontal";
    static ghost_door_direction_suffix_vertical = "vertical";
 
+
    static background_class_map = {
-      [this.wall_character]:                 this.wall_background_css_class,
-      [this.empty_tile_character]:           this.empty_background_css_class,
-      [this.ghost_door_character]:           this.ghost_door_background_css_class,
-      [this.teleporter_1_tile_character]:    this.teleporter_1_background_css_class,
-      [this.teleporter_2_tile_character]:    this.teleporter_2_background_css_class,
-      [this.teleporter_3_tile_character]:    this.teleporter_3_background_css_class,
-      [this.pacman_character]:               this.empty_background_css_class,
-      [this.ghost_blinky_character]:         this.empty_background_css_class,
-      [this.point_character]:                this.empty_background_css_class,
-      [this.powerup_character]:              this.empty_background_css_class,
-      [this.scatter_point_character_blinky]: this.empty_background_css_class,   
-      [this.scatter_point_character_pinky]:  this.empty_background_css_class,
-      [this.scatter_point_character_inky]:   this.empty_background_css_class,
-      [this.scatter_point_character_clyde]:  this.empty_background_css_class    
+      [Configuration.wall_character]:                 Configuration.wall_background_css_class,
+      [Configuration.empty_tile_character]:           Configuration.empty_background_css_class,
+      [Configuration.ghost_door_character]:           Configuration.ghost_door_background_css_class,
+      [Configuration.teleporter_1_tile_character]:    Configuration.teleporter_1_background_css_class,
+      [Configuration.teleporter_2_tile_character]:    Configuration.teleporter_2_background_css_class,
+      [Configuration.teleporter_3_tile_character]:    Configuration.teleporter_3_background_css_class,
+      [Configuration.pacman_character]:               Configuration.empty_background_css_class,
+      [Configuration.ghost_blinky_character]:         Configuration.empty_background_css_class,
+      [Configuration.point_character]:                Configuration.empty_background_css_class,
+      [Configuration.powerup_character]:              Configuration.empty_background_css_class,
+      [Configuration.scatter_point_character_blinky]: Configuration.empty_background_css_class,   
+      [Configuration.scatter_point_character_pinky]:  Configuration.empty_background_css_class,
+      [Configuration.scatter_point_character_inky]:   Configuration.empty_background_css_class,
+      [Configuration.scatter_point_character_clyde]:  Configuration.empty_background_css_class    
    };
 
+
    static foreground_class_map = {
-      [this.wall_character]:                 this.empty_foreground_css_class,
-      [this.empty_tile_character]:           this.empty_foreground_css_class,
-      [this.ghost_door_character]:           this.empty_foreground_css_class,
-      [this.teleporter_1_tile_character]:    this.empty_foreground_css_class,
-      [this.teleporter_2_tile_character]:    this.empty_foreground_css_class,
-      [this.teleporter_3_tile_character]:    this.empty_foreground_css_class,
-      [this.pacman_character]:               `${this.pacman_foreground_css_class}_${Configuration.initial_pacman_direction}`,
-      [this.ghost_blinky_character]:         `${this.ghost_blinky_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
-      [this.point_character]:                this.point_foreground_css_class,
-      [this.powerup_character]:              this.powerup_foreground_css_class,
-      [this.scatter_point_character_blinky]: this.point_foreground_css_class,  
-      [this.scatter_point_character_pinky]:  this.point_foreground_css_class,
-      [this.scatter_point_character_inky]:   this.point_foreground_css_class,
-      [this.scatter_point_character_clyde]:  this.point_foreground_css_class        
+      [Configuration.wall_character]:                 Configuration.empty_foreground_css_class,
+      [Configuration.empty_tile_character]:           Configuration.empty_foreground_css_class,
+      [Configuration.ghost_door_character]:           Configuration.empty_foreground_css_class,
+      [Configuration.teleporter_1_tile_character]:    Configuration.empty_foreground_css_class,
+      [Configuration.teleporter_2_tile_character]:    Configuration.empty_foreground_css_class,
+      [Configuration.teleporter_3_tile_character]:    Configuration.empty_foreground_css_class,
+      [Configuration.pacman_character]:               `${Configuration.pacman_foreground_css_class}_${Configuration.initial_pacman_direction}`,
+      [Configuration.ghost_blinky_character]:         `${Configuration.ghost_blinky_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
+      [Configuration.point_character]:                Configuration.point_foreground_css_class,
+      [Configuration.powerup_character]:              Configuration.powerup_foreground_css_class,
+      [Configuration.scatter_point_character_blinky]: Configuration.point_foreground_css_class,  
+      [Configuration.scatter_point_character_pinky]:  Configuration.point_foreground_css_class,
+      [Configuration.scatter_point_character_inky]:   Configuration.point_foreground_css_class,
+      [Configuration.scatter_point_character_clyde]:  Configuration.point_foreground_css_class        
    };
 
 
    static getBackgroundStyleClass(character, position_id, ghost_door_direction_map) {
       let direction_suffix = "";
-      if (character === this.ghost_door_character) {
+      if (character === Configuration.ghost_door_character) {
          for (let entry of ghost_door_direction_map) {
             if (entry.id === position_id) {
                direction_suffix = entry.direction_suffix;
@@ -133,13 +135,13 @@ export default class Configuration {
             }
          }
       }
-      return this.getStyleClass(this.background_class_map, character, direction_suffix);
+      return Configuration.getStyleClass(Configuration.background_class_map, character, direction_suffix);
    }
 
 
    static getForegroundStyleClass(actor_character, element_character) {
       let character = (actor_character !== Configuration.empty_tile_character) ? actor_character : element_character;
-      return this.getStyleClass(this.foreground_class_map, character);
+      return Configuration.getStyleClass(Configuration.foreground_class_map, character);
    }
 
 
