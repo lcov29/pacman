@@ -151,22 +151,12 @@ export default class Ghost extends Actor {
       this.state.handlePacmanCollisionOnCurrentPosition();
       this.state.handlePacmanCollisionOnNextPosition();
       this.state.handleWallCollision();
-      this.handleSpawnCollision();
+      this.state.handleSpawnCollision();
       if (this.has_teleported_in_previous_turn === false) {
          this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       }
       super.updateLevel(this.getStyleClass());
       super.updateCurrentPosition();
-   }
-
-
-   handleSpawnCollision() {
-      // prevent ghost from leaving the spawn while pacman has still scared ghost to chase
-      if (this.state.getName() === Configuration.ghost_state_dead_name &&
-          this.getCurrentPosition().getID() === this.getSpawnID() &&
-          this.level.countScaredGhosts() === 0) {
-            this.state.end();
-      }
    }
 
 
@@ -193,6 +183,11 @@ export default class Ghost extends Actor {
 
    killPacman(pacman_id) {
       this.level.killPacman(pacman_id);
+   }
+
+
+   countScaredGhosts() {
+      return this.level.countScaredGhosts();
    }
 
    
