@@ -41,7 +41,6 @@ export default class GhostStateScatter extends GhostState {
     handlePacmanCollisionOnCurrentPosition() {}
 
 
-
     handleTeleportation() {
         let ghost = super.getGhost();
         if (ghost.isOccupiedBoardElementTeleporter()) {
@@ -70,13 +69,15 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {
             ghost.killPacman(ghost.getNextPosition().getID());
         }
     }
+
+
+    handleWallCollision() {}
 
 
 }

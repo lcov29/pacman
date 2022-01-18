@@ -65,4 +65,13 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
+    handleWallCollision() {
+        let ghost = super.getGhost();
+        if (ghost.isNextBoardPositionEqual(Configuration.wall_character)) {
+           ghost.setNextPosition(ghost.getCurrentPosition());
+           ghost.randomizeMovementDirection();
+        }
+     }
+
+
 }

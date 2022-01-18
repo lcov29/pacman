@@ -77,4 +77,7 @@ export default class GhostStateDead extends GhostState {
     }
 
 
+    handleWallCollision() {}
+
+
 }
