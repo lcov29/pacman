@@ -48,6 +48,11 @@ export default class Ghost extends Actor {
    }
 
 
+   getRouting() {
+      return this.routing;
+   }
+
+
    getStateName() {
       return this.state.getName();
    }
@@ -75,6 +80,11 @@ export default class Ghost extends Actor {
 
    getSpawnID() {
       return this.spawn_position_id;
+   }
+
+
+   getTeleportationStatus() {
+      return this.has_teleported_in_previous_turn;
    }
 
 
@@ -109,11 +119,6 @@ export default class Ghost extends Actor {
    }
 
 
-   calculateNextPositionOnShortestPath(start_id, destination_id) {
-      return this.routing.calculateNextPositionOnShortestPath(start_id, destination_id);
-   }
-
-
    reverseMovementDirection() {
       let reverse_direction = Directions.getReversedDirectionName(super.getMovementDirectionName());
       super.setMovementDirectionName(reverse_direction);
@@ -141,7 +146,7 @@ export default class Ghost extends Actor {
    moveToPosition(x, y) {
       super.loadCurrentPositionFromBoard();
       super.setNextPosition(this.level.getBoardPositionAt(x, y));
-      this.handleTeleportation();
+      this.state.handleTeleportation();
       this.handleScatterPositionCollision();
       this.handlePacmanCollision();
       this.handleWallCollision();
@@ -151,32 +156,6 @@ export default class Ghost extends Actor {
       }
       super.updateLevel(this.getStyleClass());
       super.updateCurrentPosition();
-   }
-
-
-   handleTeleportation() {
-      // ghosts have the option to move over teleporters without teleporting if their current state 
-      // uses a movement pattern based on the routing table 
-
-      if (super.isOccupiedBoardElementTeleporter()) {
-
-         if (this.state.getName() === Configuration.ghost_state_flee_name && 
-             this.has_teleported_in_previous_turn === false) {
-            let destination = super.getTeleportDestinationForCurrentPosition();
-            super.setNextPosition(destination);
-            this.setTeleportationStatus(true);
-         }
-
-         if (this.state.getName() !== Configuration.ghost_state_flee_name && 
-             this.isNextPositionEqualToTeleportDestination()) {
-            let next_position_after_teleportation = this.calculateNextPositionFrom(super.getNextPosition().getID());
-            this.updateMovementDirection(super.getNextPosition(), next_position_after_teleportation);
-            this.setTeleportationStatus(true);
-         }
-
-      } else {
-         this.setTeleportationStatus(false);
-      }
    }
 
 
