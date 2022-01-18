@@ -2,7 +2,7 @@
 
 import GhostState from "./GhostState.mjs";
 import Configuration from "./Configuration.mjs";
-import GhostStateScatter from "./GhostStateScatter.mjs";
+import GhostStateRespawn from "./GhostStateRespawn.mjs";
 
 
 export default class GhostStateDead extends GhostState {
@@ -34,7 +34,7 @@ export default class GhostStateDead extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateScatter(7, super.getGhost());
+        return new GhostStateRespawn(super.getGhost());
     }
 
 
@@ -86,9 +86,8 @@ export default class GhostStateDead extends GhostState {
 
 
     handleSpawnCollision() {
-        // prevent ghost from leaving the spawn while pacman has still scared ghost to chase
         let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID() && ghost.countScaredGhosts() === 0) {
+        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
             super.end();
         }
     }
