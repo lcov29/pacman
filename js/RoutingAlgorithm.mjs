@@ -1,5 +1,8 @@
 "use strict";
 
+import {removeElementFrom} from "./Utility.mjs";
+
+
 export default class RoutingAlgorithm {
      
    
@@ -19,7 +22,7 @@ export default class RoutingAlgorithm {
       let unused_nodes = routing_table[id_start_node].slice();
       let current_node = routing_table[id_start_node][id_start_node];
       let routing_node = null;
-      this.removeNodeFrom(unused_nodes, current_node);
+      removeElementFrom(unused_nodes, current_node);
       
       for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
          routing_node = routing_table[id_start_node][neighbor_id];
@@ -39,15 +42,9 @@ export default class RoutingAlgorithm {
                }
             }
          }
-         this.removeNodeFrom(unused_nodes, current_node);
+         removeElementFrom(unused_nodes, current_node);
       }
       
-   }
-   
-   
-   removeNodeFrom(nodes, node) {
-      const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
-      nodes.splice(nodes.indexOf(node), NUMBER_OF_ELEMENTS_TO_DELETE);
    }
    
    

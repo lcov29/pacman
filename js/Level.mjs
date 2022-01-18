@@ -2,6 +2,7 @@
 
 import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.mjs";
 import LevelInitializer from "./LevelInitializer.mjs";
+import {removeElementFrom} from "./Utility.mjs";
 import Configuration from "./Configuration.mjs";
 import Teleporter from "./Teleporter.mjs";
 import Board from "./Board.mjs";
@@ -209,15 +210,9 @@ export default class Level {
     removeDeadPacmanAt(position_id) {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === position_id) {
-                this.removeElementFrom(this.pacmans, pacman);
+                removeElementFrom(this.pacmans, pacman);
             }
         }  
-    }
-
-
-    removeElementFrom(array, element) {
-        const NUMBER_OF_ELEMENTS_TO_DELETE = 1;
-        array.splice(array.indexOf(element), NUMBER_OF_ELEMENTS_TO_DELETE);
     }
 
 
@@ -275,7 +270,7 @@ export default class Level {
             for (let actor of unmoved_actors) {
                 if (actor.getTurnMovementStatus() == false) {
                     if (actor.move()) {
-                        this.removeElementFrom(unmoved_actors, actor);
+                        removeElementFrom(unmoved_actors, actor);
                     }
                 }
             }
