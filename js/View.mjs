@@ -1,6 +1,7 @@
 "use strict";
 
 import Configuration from "./Configuration.mjs";
+import StyleClassMapper from "./StyleClassMapper.mjs";
 
 
 export default class View {
@@ -61,9 +62,9 @@ export default class View {
             current_position = board[y][x];
             id_div = this.getDivID(current_position, Configuration.suffix_background_div);
             outer_div = this.createDiv(id_div);
-            style_class = Configuration.getBackgroundStyleClass(current_position.getElementCharacter(),
-                                                                current_position.getID(),
-                                                                ghost_door_direction_map);
+            style_class = StyleClassMapper.getBackgroundStyleClass(current_position.getElementCharacter(),
+                                                                   current_position.getID(),
+                                                                   ghost_door_direction_map);
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
@@ -85,8 +86,8 @@ export default class View {
             outer_div = document.getElementById(id_div);
             id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
             inner_div = this.createDiv(id_div);
-            style_class = Configuration.getForegroundStyleClass(current_position.getActorCharacter(),
-                                                                current_position.getElementCharacter());
+            style_class = StyleClassMapper.getForegroundStyleClass(current_position.getActorCharacter(),
+                                                                   current_position.getElementCharacter());
             inner_div.setAttribute('class', style_class);
             outer_div.appendChild(inner_div);
          }
