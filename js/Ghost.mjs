@@ -12,12 +12,22 @@ import Actor from "./Actor.mjs";
 export default class Ghost extends Actor {
    
    
-   constructor(level, position, character, base_style_class, routing, scatter_character, spawn_character) {
+   constructor(level, 
+               position, 
+               character, 
+               base_style_class, 
+               base_respawn_style_class, 
+               routing, 
+               scatter_character, 
+               spawn_character) {
+
       super(level, 
             position, 
             character,
             Configuration.initial_ghosts_direction,
             base_style_class);
+
+      this.base_respawn_style_class = base_respawn_style_class;
       this.routing = routing;
       this.scatter_position_character = scatter_character;
       this.scatter_position_id = -1;
@@ -45,6 +55,16 @@ export default class Ghost extends Actor {
 
    setTeleportationStatus(status) {
       this.has_teleported_in_previous_turn = status;
+   }
+
+
+   getBaseRespawnStyleClass() {
+      return this.base_respawn_style_class;
+   }
+
+
+   getBaseRespawnStyleClass() {
+      return this.base_respawn_style_class;
    }
 
 
