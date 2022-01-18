@@ -80,4 +80,13 @@ export default class GhostStateDead extends GhostState {
     handleWallCollision() {}
 
 
+    handleSpawnCollision() {
+        // prevent ghost from leaving the spawn while pacman has still scared ghost to chase
+        let ghost = super.getGhost();
+        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID() && ghost.countScaredGhosts() === 0) {
+            super.end();
+        }
+    }
+
+
 }

@@ -80,4 +80,7 @@ export default class GhostStateScatter extends GhostState {
     handleWallCollision() {}
 
 
+    handleSpawnCollision() {}
+
+
 }
