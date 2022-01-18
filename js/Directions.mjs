@@ -1,6 +1,7 @@
 "use strict";
 
 import Configuration from "./Configuration.mjs";
+import Utility from "./Utility.mjs";
 
 
 export default class Directions {
@@ -86,13 +87,8 @@ export default class Directions {
 
 
     static getRandomDirectionName() {
-        let random_direction_id = this.getRandomDirectionID();
-        return this.direction_map_id_to_name[random_direction_id];
-    }
-
-
-    static getRandomDirectionID() {
-        return Math.floor(this.MIN_DIRECTION_ID + (this.MAX_DIRECTION_ID - this.MIN_DIRECTION_ID + 1) * Math.random());
+        let direction_id = Utility.getRandomIntegerBetweenInclusive(this.MIN_DIRECTION_ID, this.MAX_DIRECTION_ID);
+        return this.direction_map_id_to_name[direction_id];
     }
 
     
