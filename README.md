@@ -13,10 +13,13 @@ You can play the game via github-pages or you can download it and open the index
 * add ghost doors (only accessible by ghosts)
 * add movement states for ghosts:
     * Chase: chase closest pacman on the shortest path (chase pattern for ghost Blinky)
-    * Scatter: move to predefined position on the shortest path and wait there until state changes
+    * Scatter: move to scatter position on the shortest path and wait there until state changes
     * Flee: move randomly upon consumption of a powerup by pacman
-    * Dead: move to the initial starting position on the shortest path
-* add sprites for the movement states flee and dead
+    * Dead: move to spawn position on the shortest path
+    * Respawn: wait until state changes
+* add sprites for movement state flee
+* add sprites for movement state dead
+* add sprites for movement state respawn
 * add sprites for bonus elements
 
 
