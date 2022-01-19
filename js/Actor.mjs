@@ -17,6 +17,7 @@ export default class Actor {
       this.movement_direction_name = "";
       this.base_style_class = "";
       this.has_moved_in_current_turn = false;
+      this.has_teleported_in_previous_turn = false;
       this.update_flag_current_position = true;
       this.update_flag_next_position = true;
    }
@@ -44,6 +45,11 @@ export default class Actor {
 
    setTurnMovementStatus(status) {
       this.has_moved_in_current_turn = status;
+   }
+
+
+   setTeleportationStatus(status) {
+      this.has_teleported_in_previous_turn = status;
    }
 
 
