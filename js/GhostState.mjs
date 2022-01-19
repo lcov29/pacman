@@ -4,11 +4,21 @@
 export default class GhostState {
 
 
-    constructor(name, duration_in_turns, ghost, base_style_class) {
-        this.name = name;
+    constructor(duration_in_turns, ghost) {
+        this.name = "";
+        this.base_style_class = "";
         this.remaining_turns = duration_in_turns;
         this.ghost = ghost;
-        this.base_style_class = base_style_class;
+    }
+
+
+    setName(name) {
+        this.name = name;
+    }
+
+
+    setBaseStyleClass(style_class) {
+        this.base_style_class = style_class;
     }
 
 
