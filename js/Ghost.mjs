@@ -63,11 +63,6 @@ export default class Ghost extends Actor {
    }
 
 
-   getBaseRespawnStyleClass() {
-      return this.base_respawn_style_class;
-   }
-
-
    getRouting() {
       return this.routing;
    }
