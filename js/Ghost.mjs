@@ -4,47 +4,43 @@ import GhostStateScatter from "./GhostStateScatter.mjs";
 import GhostStateChase from "./GhostStateChase.mjs";
 import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateDead from "./GhostStateDead.mjs";
-import Configuration from "./Configuration.mjs";
 import Directions from "./Directions.mjs";
 import Actor from "./Actor.mjs";
 
 
 export default class Ghost extends Actor {
-   
-   
-   constructor(level, 
-               position, 
-               character, 
-               base_style_class, 
-               base_respawn_style_class, 
-               routing, 
-               scatter_character, 
-               spawn_character) {
 
-      super(level, 
-            position, 
-            character,
-            Configuration.initial_ghosts_direction,
-            base_style_class);
 
-      this.base_respawn_style_class = base_respawn_style_class;
+   constructor(level, position, routing) {
+      super(level, position); 
       this.routing = routing;
-      this.scatter_position_character = scatter_character;
+      this.base_respawn_style_class = "";
+      this.scatter_position_character = "";
       this.scatter_position_id = -1;
-      this.spawn_position_character = spawn_character;
+      this.spawn_position_character = "";
       this.spawn_position_id = position.getID();
       this.has_teleported_in_previous_turn === false;
-      this.state = new GhostStateScatter(7, this);
+      this.state = null;
    }
 
 
-   setState(state) {
-      this.state = state;
+   setBaseRespawnStyleClass(style_class_name) {
+      this.base_respawn_style_class = style_class_name;
+   }
+
+
+   setScatterCharacter(character) {
+      this.scatter_position_character = character;
    }
 
 
    setScatterID(position_id) {
       this.scatter_position_id = position_id;
+   }
+
+
+   setSpawnCharacter(character) {
+      this.spawn_position_character = character;
    }
 
 
@@ -55,6 +51,18 @@ export default class Ghost extends Actor {
 
    setTeleportationStatus(status) {
       this.has_teleported_in_previous_turn = status;
+   }
+
+
+   setInitialState() {
+      if (this.state === null) {
+         this.state = new GhostStateScatter(7, this);
+      }
+   }
+
+
+   setState(state) {
+      this.state = state;
    }
 
 
@@ -108,6 +116,7 @@ export default class Ghost extends Actor {
    }
 
 
+   // TODO: REMOVE
    isStateEqual(state_name) {
       return this.state.getName() === state_name;
    }
