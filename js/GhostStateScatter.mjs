@@ -9,10 +9,9 @@ export default class GhostStateScatter extends GhostState {
 
 
     constructor(duration_in_turns, ghost) {
-        super(Configuration.ghost_state_scatter_name,
-              duration_in_turns,
-              ghost,
-              ghost.getBaseStyleClass());
+        super(duration_in_turns, ghost);
+        super.setName(Configuration.ghost_state_scatter_name);
+        super.setBaseStyleClass(ghost.getBaseStyleClass());
     }
 
 
@@ -56,7 +55,7 @@ export default class GhostStateScatter extends GhostState {
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {
 
-                // after teleportation ghost sprite should already face in the direction of the next move
+                // after teleportation ghost sprite should display the direction of the next move
                 let after_teleportation_position_id = ghost.getNextPosition().getID();
                 let next__after_teleportation_position = this.calculateNextPosition(after_teleportation_position_id);
                 ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);

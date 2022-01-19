@@ -9,10 +9,10 @@ export default class GhostStateRespawn extends GhostState {
 
 
     constructor(ghost) {
-        super(Configuration.ghost_state_respawn_name,
-              Infinity,
-              ghost,
-              ghost.getBaseRespawnStyleClass());
+        // set duration to infinite; state ends when all respawn stages are completed
+        super(Infinity, ghost);
+        super.setName(Configuration.ghost_state_respawn_name);
+        super.setBaseStyleClass(ghost.getBaseRespawnStyleClass());
         this.respawn_stage = 0;
     }
 

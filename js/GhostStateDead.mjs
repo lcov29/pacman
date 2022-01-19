@@ -7,12 +7,12 @@ import GhostStateRespawn from "./GhostStateRespawn.mjs";
 
 export default class GhostStateDead extends GhostState {
 
-    
+
     constructor(ghost) {
-        super(Configuration.ghost_state_dead_name,
-              Infinity,
-              ghost,
-              Configuration.ghost_dead_foreground_css_class);
+        // set duration to infinite; state ends when spawn is reached
+        super(Infinity, ghost);   
+        super.setName(Configuration.ghost_state_dead_name);
+        super.setBaseStyleClass(Configuration.ghost_dead_foreground_css_class);
     }
 
 
@@ -50,7 +50,7 @@ export default class GhostStateDead extends GhostState {
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {
 
-                // after teleportation ghost sprite should already face in the direction of the next move
+                // after teleportation ghost sprite should display the direction of the next move
                 let after_teleportation_position_id = ghost.getNextPosition().getID();
                 let next__after_teleportation_position = this.calculateNextPosition(after_teleportation_position_id);
                 ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);
