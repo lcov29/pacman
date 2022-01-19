@@ -12,7 +12,7 @@ export default class GhostStateRespawn extends GhostState {
         super(Configuration.ghost_state_respawn_name,
               Infinity,
               ghost,
-              ghost.getBaseRespawnStyleClass()); // IMPLEMENT THIS METHOD IN GHOST
+              ghost.getBaseRespawnStyleClass());
         this.respawn_stage = 0;
     }
 
@@ -34,19 +34,32 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {}
+    handlePacmanCollisionOnCurrentPosition() {
+        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
+        // is handled by the method Pacman.handleGhostCollision()
+    }
 
 
-    handleTeleportation() {}
+    handleTeleportation() {
+        // teleporter position can not be equal to spawn position
+    }
 
 
-    handleScatterPositionCollision() {}
+    handleScatterPositionCollision() {
+        // scatter position can not be equal to spawn position
+    }
 
 
-    handlePacmanCollisionOnNextPosition() {}
+    handlePacmanCollisionOnNextPosition() {
+        // ghost is not leaving the spawn position
+    }
 
 
-    handleWallCollision() {}
+    handleWallCollision() {
+        // wall collision is not possible, because state is triggered by GhostStateDead upon reaching
+        // the spawn position (can not be a wall) and the state movement pattern just stays on the 
+        // spawn position
+    }
 
 
     handleSpawnCollision() {

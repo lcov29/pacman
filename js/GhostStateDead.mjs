@@ -63,7 +63,9 @@ export default class GhostStateDead extends GhostState {
     }
 
 
-    handleScatterPositionCollision() {}
+    handleScatterPositionCollision() {
+        // scatter position can not be equal to spawn position
+    }
 
 
     handlePacmanCollisionOnCurrentPosition() {
@@ -82,7 +84,10 @@ export default class GhostStateDead extends GhostState {
     }
 
 
-    handleWallCollision() {}
+    handleWallCollision() {
+        // wall collision is not possible, because state movement pattern is based on the routing table 
+        // for all ACCESSIBLE positions
+    }
 
 
     handleSpawnCollision() {

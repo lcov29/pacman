@@ -43,7 +43,10 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {}
+    handlePacmanCollisionOnCurrentPosition() {
+        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
+        // is handled by the method Pacman.handleGhostCollision()
+    }
 
 
     handleTeleportation() {
@@ -82,10 +85,15 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    handleWallCollision() {}
+    handleWallCollision() {
+        // wall collision is not possible, because state movement pattern is based on the routing table 
+        // for all ACCESSIBLE positions
+    }
 
 
-    handleSpawnCollision() {}
+    handleSpawnCollision() {
+        // spawn position can not be equal to scatter position
+    }
 
 
 }

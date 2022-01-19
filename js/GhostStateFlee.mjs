@@ -54,10 +54,15 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
-    handleScatterPositionCollision() {}
+    handleScatterPositionCollision() {
+        // ignore scatter position
+    }
 
 
-    handlePacmanCollisionOnCurrentPosition() {}
+    handlePacmanCollisionOnCurrentPosition() {
+        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
+        // is handled by the method Pacman.handleGhostCollision()
+    }
 
 
     handlePacmanCollisionOnNextPosition() {
@@ -79,7 +84,9 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
-    handleSpawnCollision() {}
+    handleSpawnCollision() {
+        // ignore spawn position
+    }
 
 
 }
