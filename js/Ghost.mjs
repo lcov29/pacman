@@ -110,12 +110,6 @@ export default class Ghost extends Actor {
    }
 
 
-   // TODO: REMOVE
-   isStateEqual(state_name) {
-      return this.state.getName() === state_name;
-   }
-
-
    move() {
       this.state.move();
       return true;
