@@ -54,8 +54,8 @@ export default class Pacman extends Actor {
 
 
    handleTeleportation() {
-     let teleportation_executed = false;
-      if (super.isOccupiedBoardElementTeleporter() && this.has_teleported_in_previous_turn === false) {
+      let teleportation_executed = false;
+      if (super.isCurrentPositionTeleporter() && this.has_teleported_in_previous_turn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
          super.setNextPosition(destination);
          teleportation_executed = true;

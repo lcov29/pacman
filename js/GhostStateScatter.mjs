@@ -51,7 +51,7 @@ export default class GhostStateScatter extends GhostState {
 
     handleTeleportation() {
         let ghost = super.getGhost();
-        if (ghost.isOccupiedBoardElementTeleporter()) {
+        if (ghost.isCurrentPositionTeleporter()) {
 
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {

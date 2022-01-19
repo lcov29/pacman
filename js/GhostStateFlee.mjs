@@ -44,7 +44,7 @@ export default class GhostStateFlee extends GhostState {
 
     handleTeleportation() {
         let ghost = super.getGhost();
-        if (ghost.isOccupiedBoardElementTeleporter() && ghost.getTeleportationStatus() === false) {
+        if (ghost.isCurrentPositionTeleporter() && ghost.getTeleportationStatus() === false) {
             let destination = ghost.getTeleportDestinationForCurrentPosition();
             ghost.setNextPosition(destination);
             ghost.setTeleportationStatus(true);
