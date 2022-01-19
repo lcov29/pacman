@@ -6,13 +6,11 @@ import Configuration from "./Configuration.mjs";
 
 export default class Pacman extends Actor {
    
-   
+
    constructor(level, position) {
-      super(level,
-            position,  
-            Configuration.pacman_character, 
-            "",
-            Configuration.pacman_foreground_css_class);
+      super(level, position);
+      super.setCharacter( Configuration.pacman_character);
+      super.setBaseStyleClass(Configuration.pacman_foreground_css_class);  
       this.has_teleported_in_previous_turn = false;
    }
    
