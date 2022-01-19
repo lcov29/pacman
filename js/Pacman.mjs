@@ -11,12 +11,6 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter( Configuration.pacman_character);
       super.setBaseStyleClass(Configuration.pacman_foreground_css_class);  
-      this.has_teleported_in_previous_turn = false;
-   }
-   
-
-   setTeleportationStatus(status) {
-      this.has_teleported_in_previous_turn = status;
    }
 
 
@@ -36,7 +30,7 @@ export default class Pacman extends Actor {
             this.handleGhostDoorCollision();
             let teleportation_status = this.handleTeleportation();
             if (super.handleCollisionWithSameActorType()) {
-               this.setTeleportationStatus(teleportation_status);
+               super.setTeleportationStatus(teleportation_status);
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();

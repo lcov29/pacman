@@ -19,7 +19,6 @@ export default class Ghost extends Actor {
       this.scatter_position_id = -1;
       this.spawn_position_character = "";
       this.spawn_position_id = position.getID();
-      this.has_teleported_in_previous_turn === false;
       this.state = null;
    }
 
@@ -46,11 +45,6 @@ export default class Ghost extends Actor {
 
    setSpawnID(position_id) {
       this.spawn_position_id = position_id;
-   }
-
-
-   setTeleportationStatus(status) {
-      this.has_teleported_in_previous_turn = status;
    }
 
 
