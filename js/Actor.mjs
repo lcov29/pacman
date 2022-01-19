@@ -7,15 +7,15 @@ import StyleClassMapper from "./StyleClassMapper.mjs";
 
 
 export default class Actor {
-    
 
-   constructor(level, position, character, initial_direction, base_style_class) {
+
+   constructor(level, position) {
       this.level = level;
       this.current_position = position;
       this.next_position = position;
-      this.character = character;
-      this.movement_direction_name = initial_direction;
-      this.base_style_class = base_style_class;
+      this.character = "";
+      this.movement_direction_name = "";
+      this.base_style_class = "";
       this.has_moved_in_current_turn = false;
       this.update_flag_current_position = true;
       this.update_flag_next_position = true;
@@ -27,8 +27,18 @@ export default class Actor {
    }
 
 
+   setCharacter(character) {
+      this.character = character;
+   }
+
+
    setMovementDirectionName(direction) {
       this.movement_direction_name = direction;
+   }
+
+
+   setBaseStyleClass(style_class_name) {
+      this.base_style_class = style_class_name;
    }
 
 
@@ -142,6 +152,7 @@ export default class Actor {
    }
 
 
+   // TODO: CHECK IMPLEMENTATION
    sendLevelUpdateRequestForCurrentPosition() {
       if (this.update_flag_current_position) {
          let actor = Configuration.empty_tile_character;
