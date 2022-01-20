@@ -71,9 +71,13 @@ export default class BoardParser {
     }
 
 
+    // TODO: REFACTOR
     isActor(character) {
         return character === Configuration.pacman_character ||
-               character === Configuration.ghost_blinky_character;
+               character === Configuration.ghost_blinky_character ||
+               character === Configuration.GHOST_PINKY_CHARACTER ||
+               character === Configuration.GHOST_CLYDE_CHARACTER ||
+               character === Configuration.GHOST_INKY_CHARACTER;
     }
 
 
