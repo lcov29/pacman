@@ -8,6 +8,7 @@ export default class GhostState {
         this.name = "";
         this.base_style_class = "";
         this.remaining_turns = duration_in_turns;
+        this.sprite_display_priority = 0;
         this.ghost = ghost;
     }
 
@@ -22,18 +23,28 @@ export default class GhostState {
     }
 
 
+    setSpriteDisplayPriority(priority) {
+        this.sprite_display_priority = priority;
+    }
+
+
     getName() {
         return this.name;
     }
 
 
-    getGhost() {
-        return this.ghost;
+    getBaseStyleClass() {
+        return this.base_style_class;
     }
 
 
-    getBaseStyleClass() {
-        return this.base_style_class;
+    getSpriteDisplayPriority() {
+        return this.sprite_display_priority;
+    }
+
+
+    getGhost() {
+        return this.ghost;
     }
 
 
