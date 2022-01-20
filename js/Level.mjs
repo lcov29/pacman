@@ -63,14 +63,15 @@ export default class Level {
 
 
     executeTurn() {
-        this.moveActors(this.pacmans);
+        this.movePacmans();
         if (this.isWon() === false && this.isLost() === false) {
-            this.moveActors(this.ghosts);
+            this.moveGhosts();
         }
         this.update_manager.updateView();
-    }    
+    }
 
 
+    // TODO: MOVE STATE CHECK TO METHOD ghost.scare()
     scareLivingGhosts() {
         for (let ghost of this.ghosts) {
             if (ghost.getStateName() !== Configuration.ghost_state_dead_name) {
@@ -122,9 +123,9 @@ export default class Level {
     } 
 
 
-    resetTurnMovementStatusOfActors(actors) {
-        for (let actor of actors) {
-            actor.setTurnMovementStatus(false);
+    resetTurnCompletionStatusOfPacmans() {
+        for (let pacman of this.pacmans) {
+            pacman.setTurnCompletionStatus(false);
         }
     }
 
@@ -167,7 +168,7 @@ export default class Level {
         let status = false;
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === position_id) {
-                status = pacman.getTurnMovementStatus();
+                status = pacman.getTurnCompletionStatus();
                 break;
             }
         }
@@ -264,18 +265,25 @@ export default class Level {
     }
 
 
-    moveActors(actors) {
-        let unmoved_actors = [...actors];
-        while (unmoved_actors.length > 0) {
-            for (let actor of unmoved_actors) {
-                if (actor.getTurnMovementStatus() == false) {
-                    if (actor.move()) {
-                        Utility.removeElementFrom(unmoved_actors, actor);
+    movePacmans() {
+        let unmoved_pacmans = [...this.pacmans];
+        while (unmoved_pacmans.length > 0) {
+            for (let pacman of unmoved_pacmans) {
+                if (pacman.getTurnCompletionStatus() == false) {
+                    if (pacman.move()) {
+                        Utility.removeElementFrom(unmoved_pacmans, pacman);
                     }
                 }
             }
         }
-        this.resetTurnMovementStatusOfActors(actors);
+        this.resetTurnCompletionStatusOfPacmans();
+    }
+
+
+    moveGhosts() {
+        for (let ghost of this.ghosts) {
+            ghost.move();
+        }
     }
 
 
