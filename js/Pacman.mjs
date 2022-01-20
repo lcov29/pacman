@@ -10,14 +10,23 @@ export default class Pacman extends Actor {
    constructor(level, position) {
       super(level, position);
       super.setCharacter( Configuration.pacman_character);
-      super.setBaseStyleClass(Configuration.pacman_foreground_css_class);  
+      super.setBaseStyleClass(Configuration.pacman_foreground_css_class);
+      this.has_changed_position_in_previous_turn = false;
    }
 
 
    getStyleClass() {
       return `${super.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
    }
-   
+
+
+   // NEW
+   updatePositionChangeFlag() {
+      let current_position_id = super.getCurrentPosition().getID();
+      let next_Position_id = super.getNextPosition().getID();
+      this.has_changed_position_in_previous_turn = (current_position_id !== next_Position_id);
+   }
+
 
    move() {
       if (super.isMovementDirectionSet() === false) {
@@ -26,18 +35,23 @@ export default class Pacman extends Actor {
 
          if (super.getTurnMovementStatus() === false) {
             super.setNextPosition(super.calculateNextPositionByDirection());
-            this.handleWallCollision();
-            this.handleGhostDoorCollision();
             let teleportation_status = this.handleTeleportation();
+            this.handleWallCollision();
+            this.handleGhostDoorCollision();         
             if (super.handleCollisionWithSameActorType()) {
                super.setTeleportationStatus(teleportation_status);
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();
-               super.updateLevel(this.getStyleClass());
+               this.updatePositionChangeFlag();
+               super.updateBoard(this.getStyleClass());
                super.updateCurrentPosition();
                super.setTurnMovementStatus(true);
+            } else {
+               super.resetUpdateFlags();
+               // TODO: RESET NEXT POSITION IN ELSE STATEMENT
             }
+            
          }
 
       }
@@ -45,6 +59,7 @@ export default class Pacman extends Actor {
    }
 
 
+   // TODO: ADD COMMENT
    handleTeleportation() {
       let teleportation_executed = false;
       if (super.isCurrentPositionTeleporter() && this.has_teleported_in_previous_turn === false) {
@@ -59,6 +74,10 @@ export default class Pacman extends Actor {
    handleWallCollision() {
       if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
          super.setNextPosition(super.getCurrentPosition());
+         super.setUpdateFlagCurrentPosition(false);
+         if (this.has_changed_position_in_previous_turn === false) {
+            super.setUpdateFlagNextPosition(false);
+         }
       }
    }
 
@@ -66,6 +85,10 @@ export default class Pacman extends Actor {
    handleGhostDoorCollision() {
       if (super.isNextBoardPositionEqual(Configuration.ghost_door_character)) {
          super.setNextPosition(super.getCurrentPosition());
+         super.setUpdateFlagCurrentPosition(false);
+         if (this.has_changed_position_in_previous_turn === false) { 
+            super.setUpdateFlagNextPosition(false);
+         }
       }
    }
    
