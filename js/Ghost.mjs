@@ -75,6 +75,7 @@ export default class Ghost extends Actor {
    }
 
 
+   // TODO: REMOVE DUPLICATE METHOD
    getRouting() {
       return this.routing;
    }
@@ -162,9 +163,39 @@ export default class Ghost extends Actor {
       if (this.has_teleported_in_previous_turn === false) {
          this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
       }
-      super.updateLevel(this.state.getStyleClass());
+      super.updateBoard(this.state.getStyleClass(), this.state.getSpriteDisplayPriority());
       super.updateCurrentPosition();
    }
+
+
+   /*
+   handleGhostCollision() {
+      if (ghost.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) { // TODO: ADD DIFFERENT GHOST TYPES
+         let result = false;
+         let position_id = super.getNextPosition().getID();
+         let turn_status_list = this.level.getActorTurnCompletionStatusListFor(this.character, position_id);
+         if (turn_status_list.includes(false)) {
+            result = false;
+         } else {
+            
+         }
+      }
+
+      /*
+         if next position is occupied by a ghost:
+
+            get list of turn_completion_status of all ghosts occupying next position
+
+            if list includes not_moved_status:
+               wait
+               return false
+
+            if list does not include not_moved_status:
+               move to next position
+               send update request with priority
+               return true
+
+   } */
 
 
    updateMovementDirection(current_position, next_position) {
