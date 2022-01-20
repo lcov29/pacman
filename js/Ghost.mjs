@@ -60,24 +60,18 @@ export default class Ghost extends Actor {
    }
 
 
+   getRouting() {
+      return this.routing;
+   }
+
+
    getBaseRespawnStyleClass() {
       return this.base_respawn_style_class;
    }
 
 
-   getRouting() {
-      return this.routing;
-   }
-
-
    getStateName() {
       return this.state.getName();
-   }
-
-
-   // TODO: REMOVE DUPLICATE METHOD
-   getRouting() {
-      return this.routing;
    }
 
 
