@@ -58,8 +58,19 @@ export default class Configuration {
    static teleporter_2_tile_character = "2";
    static teleporter_3_tile_character = "3";
    static pacman_character = "p";
+
    static ghost_blinky_character = "b";
    static ghost_blinky_spawn_character = "B";
+
+   static GHOST_PINKY_CHARACTER = "y";
+   static GHOST_PINKY_SPAWN_CHARACTER = "Y";
+
+   static GHOST_INKY_CHARACTER = "i";
+   static GHOST_INKY_SPAWN_CHARACTER = "I";
+
+   static GHOST_CLYDE_CHARACTER = "c";
+   static GHOST_CLYDE_SPAWN_CHARACTER = "C";
+
    static point_character = "o";
    static powerup_character = "O";
 
@@ -83,8 +94,21 @@ export default class Configuration {
    static teleporter_3_background_css_class = "teleporter_3_tile";
 
    static pacman_foreground_css_class = "pacman";
+
    static ghost_blinky_movement_foreground_css_class = "ghost_blinky_movement";
-   static ghost_blinky_respawn_foreground_css_class = "ghost_blinky_respawn"
+   static ghost_blinky_respawn_foreground_css_class = "ghost_blinky_respawn";
+
+   static GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_pinky_movement";
+   static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_pinky_respawn";
+
+   static GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_inky_movement";
+   static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_inky_respawn";
+
+   static GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_clyde_movement";
+   static GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_clyde_respawn";
+
+
+
    static ghost_scared_foreground_css_class = "ghost_scared";
    static ghost_dead_foreground_css_class = "ghost_dead";
    static point_foreground_css_class = "point";
