@@ -11,7 +11,18 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter( Configuration.pacman_character);
       super.setBaseMovementStyleClass(Configuration.pacman_foreground_css_class);
+      this.has_completed_current_turn = false;
       this.has_changed_position_in_previous_turn = false;
+   }
+
+
+   setTurnCompletionStatus(status) {
+      this.has_completed_current_turn = status;
+   }
+
+
+   getTurnCompletionStatus() {
+      return this.has_completed_current_turn;
    }
 
 
@@ -31,10 +42,10 @@ export default class Pacman extends Actor {
 
    move() {
       if (super.isMovementDirectionSet() === false) {
-         super.setTurnMovementStatus(true);
+         this.setTurnCompletionStatus(true);
       } else {
 
-         if (super.getTurnMovementStatus() === false) {
+         if (this.getTurnCompletionStatus() === false) {
             super.setNextPosition(super.calculateNextPositionByDirection());
             let teleportation_status = this.handleTeleportation();
             this.handleWallCollision();
@@ -47,7 +58,7 @@ export default class Pacman extends Actor {
                this.updatePositionChangeFlag();
                super.updateBoard(this.getStyleClass());
                super.updateCurrentPosition();
-               super.setTurnMovementStatus(true);
+               this.setTurnCompletionStatus(true);
             } else {
                super.resetUpdateFlags();
                // TODO: RESET NEXT POSITION IN ELSE STATEMENT
@@ -57,7 +68,7 @@ export default class Pacman extends Actor {
          }
 
       }
-      return super.getTurnMovementStatus();
+      return this.getTurnCompletionStatus();
    }
 
 

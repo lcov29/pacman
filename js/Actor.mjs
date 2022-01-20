@@ -16,7 +16,6 @@ export default class Actor {
       this.character = "";
       this.movement_direction_name = "";
       this.base_movement_style_class = "";
-      this.has_moved_in_current_turn = false;
       this.has_teleported_in_previous_turn = false;
       this.update_flag_current_position = true;
       this.update_flag_next_position = true;
@@ -40,12 +39,6 @@ export default class Actor {
 
    setBaseMovementStyleClass(style_class_name) {
       this.base_movement_style_class = style_class_name;
-   }
-
-
-   // RENAME TO setTurnCompletionStatus() + move to pacman
-   setTurnMovementStatus(status) {
-      this.has_moved_in_current_turn = status;
    }
 
 
@@ -87,12 +80,6 @@ export default class Actor {
 
    getCurrentMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
-   }
-
-
-   // RENAME TO getTurnCompletionStatus() + move to pacman
-   getTurnMovementStatus() {
-      return this.has_moved_in_current_turn;
    }
 
 
