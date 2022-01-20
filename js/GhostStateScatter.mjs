@@ -82,7 +82,7 @@ export default class GhostStateScatter extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {
+        if (ghost.isNextPositionActorCharacter(Configuration.pacman_character)) {
             ghost.killPacman(ghost.getNextPosition().getID());
         }
     }

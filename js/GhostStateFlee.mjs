@@ -69,7 +69,7 @@ export default class GhostStateFlee extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextBoardPositionEqual(Configuration.pacman_character)) {            
+        if (ghost.isNextPositionActorCharacter(Configuration.pacman_character)) {            
             ghost.kill();
             ghost.setUpdateFlagNextPosition(false);
             ghost.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
@@ -79,7 +79,7 @@ export default class GhostStateFlee extends GhostState {
 
     handleWallCollision() {
         let ghost = super.getGhost();
-        if (ghost.isNextBoardPositionEqual(Configuration.wall_character)) {
+        if (ghost.isNextPositionElementCharacter(Configuration.wall_character)) {
             ghost.setNextPosition(ghost.getCurrentPosition());
             ghost.randomizeMovementDirection();
         }

@@ -73,7 +73,7 @@ export default class Pacman extends Actor {
 
 
    handleWallCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.wall_character)) {
+      if (super.isNextPositionElementCharacter(Configuration.wall_character)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
          if (this.has_changed_position_in_previous_turn === false) {
@@ -84,7 +84,7 @@ export default class Pacman extends Actor {
 
 
    handleGhostDoorCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_door_character)) {
+      if (super.isNextPositionElementCharacter(Configuration.ghost_door_character)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
          if (this.has_changed_position_in_previous_turn === false) { 
@@ -95,7 +95,7 @@ export default class Pacman extends Actor {
    
    
    handlePointCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.point_character)) {
+      if (super.isNextPositionElementCharacter(Configuration.point_character)) {
          super.incrementScoreBy(Configuration.score_value_per_point);
          this.level.decrementAvailablePoints();
          super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
@@ -104,7 +104,7 @@ export default class Pacman extends Actor {
 
 
    handlePowerUpCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.powerup_character)) {
+      if (super.isNextPositionElementCharacter(Configuration.powerup_character)) {
          super.incrementScoreBy(Configuration.score_value_per_powerup);
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
@@ -115,10 +115,10 @@ export default class Pacman extends Actor {
    
    // TODO: REFACTOR
    handleGhostCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) ||
-          super.isNextBoardPositionEqual(Configuration.GHOST_PINKY_CHARACTER) ||
-          super.isNextBoardPositionEqual(Configuration.GHOST_CLYDE_CHARACTER) ||
-          super.isNextBoardPositionEqual(Configuration.GHOST_INKY_CHARACTER)) {
+      if (super.isNextPositionActorCharacter(Configuration.ghost_blinky_character) ||
+          super.isNextPositionActorCharacter(Configuration.GHOST_PINKY_CHARACTER) ||
+          super.isNextPositionActorCharacter(Configuration.GHOST_CLYDE_CHARACTER) ||
+          super.isNextPositionActorCharacter(Configuration.GHOST_INKY_CHARACTER)) {
          let position_id = super.getNextPosition().getID();
          let state_names = this.level.getStateNamesOfGhostsAt(position_id);
          let executed = this.handleGhostChaseScatterCollision(state_names);
