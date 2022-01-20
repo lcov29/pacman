@@ -79,13 +79,12 @@ export default class Actor {
    }
 
 
-   getMovementDirectionName() {
+   getCurrentMovementDirectionName() {
       return this.movement_direction_name;
    }
 
 
-   // TODO: THINK ABOUT RENAMING TO getCurrentMovementDirection()
-   getMovementDirection() {
+   getCurrentMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
    }
 
@@ -197,7 +196,7 @@ export default class Actor {
 
 
    calculateNextPositionByDirection() {
-      let direction = this.getMovementDirection();
+      let direction = this.getCurrentMovementDirection();
       let next_xPosition = this.getCurrentPosition().getX() + direction.x;
       let next_yPosition = this.getCurrentPosition().getY() + direction.y;
       let next_position = null;
