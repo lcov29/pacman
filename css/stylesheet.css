@@ -187,81 +187,171 @@ body {
 }
 
 
-/* Ghost Clyde */
-.ghost_clyde_up {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_clyde/movement/clyde_up.png');
-}
-
-.ghost_clyde_right {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
-}
-
-.ghost_clyde_down {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_clyde/movement/clyde_down.png');
-}
-
-.ghost_clyde_left {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_clyde/movement/clyde_left.png');
-}
-
-
-/* Ghost Inky */
-.ghost_inky_up {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_inky/movement/inky_up.png');
-}
-
-.ghost_inky_right {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_inky/movement/inky_right.png');
-}
-
-.ghost_inky_down {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_inky/movement/inky_down.png');
-}
-
-.ghost_inky_left {
-   width: 30px;
-   height: 30px;
-   background-image: url('../sprites/ghost_inky/movement/inky_left.png');
-}
-
-
 /* Ghost Pinky */
-.ghost_pinky_up {
+.ghost_pinky_movement_up {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_pinky/movement/pinky_up.png');
 }
 
-.ghost_pinky_right {
+.ghost_pinky_movement_right {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_pinky/movement/pinky_right.png');
 }
 
-.ghost_pinky_down {
+.ghost_pinky_movement_down {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_pinky/movement/pinky_down.png');
 }
 
-.ghost_pinky_left {
+.ghost_pinky_movement_left {
    width: 30px;
    height: 30px;
    background-image: url('../sprites/ghost_pinky/movement/pinky_left.png');
+}
+
+.ghost_pinky_respawn_stage_0 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_dead/ghost_dead_down.png');
+}
+
+.ghost_pinky_respawn_stage_1 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_1.png');
+}
+
+.ghost_pinky_respawn_stage_2 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_2.png');
+}
+
+.ghost_pinky_respawn_stage_3 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_3.png');
+}
+
+.ghost_pinky_respawn_stage_4 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_pinky/movement/pinky_down.png');
+}
+
+
+/* Ghost Inky */
+.ghost_inky_movement_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/movement/inky_up.png');
+}
+
+.ghost_inky_movement_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/movement/inky_right.png');
+}
+
+.ghost_inky_movement_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/movement/inky_down.png');
+}
+
+.ghost_inky_movement_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/movement/inky_left.png');
+}
+
+.ghost_inky_respawn_stage_0 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_dead/ghost_dead_down.png');
+}
+
+.ghost_inky_respawn_stage_1 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_1.png');
+}
+
+.ghost_inky_respawn_stage_2 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_2.png');
+}
+
+.ghost_inky_respawn_stage_3 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_3.png');
+}
+
+.ghost_inky_respawn_stage_4 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_inky/movement/inky_down.png');
+}
+
+
+/* Ghost Clyde */
+.ghost_clyde_movement_up {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/movement/clyde_up.png');
+}
+
+.ghost_clyde_movement_right {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
+}
+
+.ghost_clyde_movement_down {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/movement/clyde_down.png');
+}
+
+.ghost_clyde_movement_left {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/movement/clyde_left.png');
+}
+
+.ghost_clyde_respawn_stage_0 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_dead/ghost_dead_down.png');
+}
+
+.ghost_clyde_respawn_stage_1 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_1.png');
+}
+
+.ghost_clyde_respawn_stage_2 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_2.png');
+}
+
+.ghost_clyde_respawn_stage_3 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_3.png');
+}
+
+.ghost_clyde_respawn_stage_4 {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/ghost_clyde/movement/clyde_down.png');
 }
 
 
