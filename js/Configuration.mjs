@@ -2,6 +2,9 @@
 
 export default class Configuration {
    
+   // TODO: CONVERT ALL ATTRIBUTE NAMES TO UPPERCASE
+
+
    // Direction names
    static direction_name_up = "up";
    static direction_name_right = "right";
@@ -10,7 +13,7 @@ export default class Configuration {
 
    
    // Game settings
-   static initial_score = 0;
+   static initial_score = 0;  // TODO: REMOVE ATTRIBUTE AND 
    static score_value_per_point = 10;
    static score_value_per_powerup = 50;
    static score_value_per_eaten_ghost = 200;
@@ -59,13 +62,15 @@ export default class Configuration {
    static ghost_blinky_spawn_character = "B";
    static point_character = "o";
    static powerup_character = "O";
+
+   // TODO: RENAME TO GHOST_X_SCATTER_POSITION_CHARACTER
    static scatter_point_character_blinky = "9";
    static scatter_point_character_pinky = "8";
    static scatter_point_character_inky = "7";
    static scatter_point_character_clyde = "6";
 
    static ghost_state_dead_name = "dead";
-   static ghost_state_flee_name = "flee";
+   static ghost_state_flee_name = "flee";          // TODO: RENAME TO GHOST_STATE_SCARED_NAME
    static ghost_state_chase_name = "chase";
    static ghost_state_scatter_name = "scatter";
    static ghost_state_respawn_name = "respawn";
@@ -89,6 +94,12 @@ export default class Configuration {
    static ghost_door_direction_suffix_diagonal = "crossing";
    static ghost_door_direction_suffix_horizontal = "horizontal";
    static ghost_door_direction_suffix_vertical = "vertical";
+
+   static GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY = 5;
+   static GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY = 4;
+   static GHOST_STATE_FLEE_SPRITE_DISPLAY_PRIORITY = 3;
+   static GHOST_STATE_RESPAWN_SPRITE_DISPLAY_PRIORITY = 2;
+   static GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY = 1;
 
 
    // Settings for view.js
