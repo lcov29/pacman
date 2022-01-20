@@ -113,7 +113,6 @@ export default class Ghost extends Actor {
 
    move() {
       this.state.move();
-      return true;
    }
 
 
