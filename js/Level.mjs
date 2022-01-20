@@ -105,13 +105,11 @@ export default class Level {
     }
 
 
-    // NEW
     sendViewUpdate(position, style_class) {
         this.game.updateView(position, style_class, this.score, this.total_pacman_lifes);
     }
 
 
-    // NEW
     updateBoard() {
         this.update_manager.updateBoard();
     }

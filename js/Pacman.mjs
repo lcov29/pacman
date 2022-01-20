@@ -20,7 +20,6 @@ export default class Pacman extends Actor {
    }
 
 
-   // NEW
    updatePositionChangeFlag() {
       let current_position_id = super.getCurrentPosition().getID();
       let next_Position_id = super.getNextPosition().getID();

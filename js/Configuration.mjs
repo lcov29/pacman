@@ -149,7 +149,6 @@ export default class Configuration {
    static linefeed_code = 10;
 
 
-   // NEW
    static max_respawn_stage = 4;
 
 
