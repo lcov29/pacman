@@ -15,7 +15,7 @@ export default class Actor {
       this.next_position = position;
       this.character = "";
       this.movement_direction_name = "";
-      this.base_style_class = "";
+      this.base_movement_style_class = "";
       this.has_moved_in_current_turn = false;
       this.has_teleported_in_previous_turn = false;
       this.update_flag_current_position = true;
@@ -38,9 +38,8 @@ export default class Actor {
    }
 
 
-   // TODO: RENAME TO setBaseMovementStyleClass()
-   setBaseStyleClass(style_class_name) {
-      this.base_style_class = style_class_name;
+   setBaseMovementStyleClass(style_class_name) {
+      this.base_movement_style_class = style_class_name;
    }
 
 
@@ -96,9 +95,8 @@ export default class Actor {
    }
 
 
-   // TODO: RENAME TO getBaseMovementStyleClass()
-   getBaseStyleClass() {
-      return this.base_style_class;
+   getBaseMovementStyleClass() {
+      return this.base_movement_style_class;
    }
 
 
