@@ -12,8 +12,8 @@ export default class GhostStateFlee extends GhostState {
         super(duration_in_turns, ghost);
         super.setName(Configuration.ghost_state_flee_name);
         super.setBaseStyleClass(Configuration.ghost_scared_foreground_css_class);
-        super.getGhost().reverseMovementDirection();
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_FLEE_SPRITE_DISPLAY_PRIORITY);
+        super.getGhost().reverseCurrentMovementDirection();
     }
 
 
