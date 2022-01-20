@@ -2,6 +2,7 @@
 
 import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.mjs";
 import LevelInitializer from "./LevelInitializer.mjs";
+import UpdateManager from "./UpdateManager.mjs";
 import Configuration from "./Configuration.mjs";
 import Teleporter from "./Teleporter.mjs";
 import Utility from "./Utility.mjs";
@@ -23,6 +24,7 @@ export default class Level {
     constructor(game, level_text) {
         this.game = game;
         this.board = new Board(level_text);
+        this.update_manager = new UpdateManager(this, this.board);
         this.teleporters = [];
         this.pacmans = [];
         this.ghosts = [];
@@ -65,6 +67,7 @@ export default class Level {
         if (this.isWon() === false && this.isLost() === false) {
             this.moveActors(this.ghosts);
         }
+        this.update_manager.updateView();
     }    
 
 
@@ -102,15 +105,15 @@ export default class Level {
     }
 
 
-    update() {
-        for (let request of this.update_requests) {
-            this.board.setPosition(request.getPosition());
-            this.game.updateView(request.getPosition(), 
-                                 request.getStyleClass(), 
-                                 this.score, 
-                                 this.total_pacman_lifes);
-        }
-        this.update_requests = [];
+    // NEW
+    sendViewUpdate(position, style_class) {
+        this.game.updateView(position, style_class, this.score, this.total_pacman_lifes);
+    }
+
+
+    // NEW
+    updateBoard() {
+        this.update_manager.updateBoard();
     }
 
 
@@ -162,16 +165,15 @@ export default class Level {
     }
 
 
-    getTurnCompletionStatusForActor(actor_character, actor_id) {
-        let result = true;
+    getActorTurnCompletionStatusListFor(actor_character, position_id) {
+        let status_list = [];
         let actors = (actor_character === Configuration.pacman_character) ? this.pacmans : this.ghosts;
         for (let actor of actors) {
-            if (actor.getCurrentPosition().getID() === actor_id) {
-                result = actor.getTurnMovementStatus();
-                break;
+            if (actor.getCurrentPosition().getID() === position_id) {
+                status_list.push(actor.getTurnMovementStatus());
             }
         }
-        return result;
+        return status_list;
     }
 
 
@@ -203,7 +205,7 @@ export default class Level {
 
 
     addUpdateRequest(request) {
-        this.update_requests.push(request);
+        this.update_manager.addRequest(request);
     }
 
 
