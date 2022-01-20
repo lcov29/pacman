@@ -1,14 +1,13 @@
-"use strict"
+"use strict";
 
 import Configuration from "./Configuration.mjs";
 import Teleporter from "./Teleporter.mjs"
 import Routing from "./Routing.mjs";
 import Pacman from "./Pacman.mjs";
-import Blinky from "./Blinky.mjs";
-//import Pinky from "./Pinky.js";
-//import Inky from "./Inky.js";
-//import Clyde from "./Clyde.js";
-
+import GhostBlinky from "./GhostBlinky.mjs";
+import GhostPinky from "./GhostPinky.mjs";
+import GhostClyde from "./GhostClyde.mjs";
+import GhostInky from "./GhostInky.mjs";
 
 /*  
     =================================================================================================================
@@ -73,8 +72,17 @@ export default class LevelInitializer {
         let ghosts = [];
         for (let position of ghost_positions) {
             switch (position.getActorCharacter()) {
-                case Configuration.ghost_blinky_character:             // add different ghost types
-                    ghosts.push(new Blinky(level_reference, position, routing));
+                case Configuration.ghost_blinky_character:
+                    ghosts.push(new GhostBlinky(level_reference, position, routing));
+                    break;
+                case Configuration.GHOST_PINKY_CHARACTER:
+                    ghosts.push(new GhostPinky(level_reference, position, routing));
+                    break;
+                case Configuration.GHOST_INKY_CHARACTER:
+                    ghosts.push(new GhostInky(level_reference, position, routing));
+                    break;
+                case Configuration.GHOST_CLYDE_CHARACTER:
+                    ghosts.push(new GhostClyde(level_reference, position, routing));
                     break;
             }
         }
