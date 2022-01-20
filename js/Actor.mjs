@@ -110,10 +110,13 @@ export default class Actor {
    }
 
 
-   // TODO: SPLIT METHOD INTO isNextPositionActorCharacter() and isNextPositionElementCharacter()
-   isNextBoardPositionEqual(character) {
-      return this.next_position.getActorCharacter() === character ||
-             this.next_position.getElementCharacter() === character;
+   isNextPositionActorCharacter(character) {
+      return this.next_position.getActorCharacter() === character;
+   }
+
+
+   isNextPositionElementCharacter(character) {
+      return this.next_position.getElementCharacter() === character;
    }
 
 
@@ -136,7 +139,7 @@ export default class Actor {
    // TODO: TEMP, REFACTOR
    handleCollisionWithSameActorType() {
       let result = true;
-      if (this.isNextBoardPositionEqual(this.character)) {
+      if (this.isNextPositionActorCharacter(this.character)) {
          let this_actor_id = this.getCurrentPosition().getID();
          let other_actor_id = this.getNextPosition().getID();
          if (this_actor_id !== other_actor_id) {
