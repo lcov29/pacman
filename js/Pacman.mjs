@@ -112,8 +112,12 @@ export default class Pacman extends Actor {
    }
    
    
+   // TODO: REFACTOR
    handleGhostCollision() {
-      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character)) {
+      if (super.isNextBoardPositionEqual(Configuration.ghost_blinky_character) ||
+          super.isNextBoardPositionEqual(Configuration.GHOST_PINKY_CHARACTER) ||
+          super.isNextBoardPositionEqual(Configuration.GHOST_CLYDE_CHARACTER) ||
+          super.isNextBoardPositionEqual(Configuration.GHOST_INKY_CHARACTER)) {
          let position_id = super.getNextPosition().getID();
          let state_names = this.level.getStateNamesOfGhostsAt(position_id);
          let executed = this.handleGhostChaseScatterCollision(state_names);
