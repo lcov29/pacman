@@ -38,6 +38,7 @@ export default class Actor {
    }
 
 
+   // TODO: RENAME TO setBaseMovementStyleClass()
    setBaseStyleClass(style_class_name) {
       this.base_style_class = style_class_name;
    }
@@ -95,6 +96,7 @@ export default class Actor {
    }
 
 
+   // TODO: RENAME TO getBaseMovementStyleClass()
    getBaseStyleClass() {
       return this.base_style_class;
    }
