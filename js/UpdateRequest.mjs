@@ -3,9 +3,10 @@
 export default class UpdateRequest {
 
 
-    constructor(board_position, styleclass) {
+    constructor(board_position, styleclass, priority = 0) {
         this.board_position = board_position;
         this.styleclass = styleclass;
+        this.priority = priority;
     }
 
 
@@ -16,6 +17,11 @@ export default class UpdateRequest {
 
     getStyleClass() {
         return this.styleclass;
+    }
+
+
+    getPriority() {
+        return this.priority;
     }
 
 
