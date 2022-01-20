@@ -185,6 +185,8 @@ export default class Actor {
    }
 
 
+   // TODO: THINK ABOUT RENAMING TO calculateNextPositionByCurrentDirection()
+   // TODO: THINK ABOUT SETTING NEXT POSITION INSIDE OF THIS METHOD
    calculateNextPositionByDirection() {
       let direction = this.getCurrentMovementDirection();
       let next_xPosition = this.getCurrentPosition().getX() + direction.x;
