@@ -120,8 +120,7 @@ export default class Ghost extends Actor {
    }
 
 
-   // TODO: RENAME TO reverseCurrentMovementDirection
-   reverseMovementDirection() {
+   reverseCurrentMovementDirection() {
       let direction_name = super.getCurrentMovementDirectionName();
       let reverse_direction_name = Directions.getReversedDirectionName(direction_name);
       super.setMovementDirectionName(reverse_direction_name);
