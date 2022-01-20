@@ -12,6 +12,7 @@ export default class GhostStateScatter extends GhostState {
         super(duration_in_turns, ghost);
         super.setName(Configuration.ghost_state_scatter_name);
         super.setBaseStyleClass(ghost.getBaseStyleClass());
+        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY);
     }
 
 

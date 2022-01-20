@@ -13,6 +13,7 @@ export default class GhostStateRespawn extends GhostState {
         super(Infinity, ghost);
         super.setName(Configuration.ghost_state_respawn_name);
         super.setBaseStyleClass(ghost.getBaseRespawnStyleClass());
+        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_RESPAWN_SPRITE_DISPLAY_PRIORITY);
         this.respawn_stage = 0;
     }
 
