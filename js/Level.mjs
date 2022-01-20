@@ -163,15 +163,15 @@ export default class Level {
     }
 
 
-    getActorTurnCompletionStatusListFor(actor_character, position_id) {
-        let status_list = [];
-        let actors = (actor_character === Configuration.pacman_character) ? this.pacmans : this.ghosts;
-        for (let actor of actors) {
-            if (actor.getCurrentPosition().getID() === position_id) {
-                status_list.push(actor.getTurnMovementStatus());
+    getTurnCompletionStatusForPacmanAt(position_id) {
+        let status = false;
+        for (let pacman of this.pacmans) {
+            if (pacman.getCurrentPosition().getID() === position_id) {
+                status = pacman.getTurnMovementStatus();
+                break;
             }
         }
-        return status_list;
+        return status;
     }
 
 
