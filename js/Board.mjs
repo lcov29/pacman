@@ -146,7 +146,10 @@ export default class Board {
                   this.initial_pacman_positions.push(current_position);
                   break;
 
-               case Configuration.ghost_blinky_character:                  // add different ghost types
+               case Configuration.ghost_blinky_character:
+               case Configuration.GHOST_PINKY_CHARACTER:
+               case Configuration.GHOST_CLYDE_CHARACTER:
+               case Configuration.GHOST_INKY_CHARACTER:
                   this.initial_ghost_positions.push(current_position);
                   break;
             }
@@ -170,6 +173,9 @@ export default class Board {
                   break;
 
                case Configuration.ghost_blinky_spawn_character:
+               case Configuration.GHOST_PINKY_SPAWN_CHARACTER:
+               case Configuration.GHOST_CLYDE_SPAWN_CHARACTER:
+               case Configuration.GHOST_INKY_SPAWN_CHARACTER:
                   this.ghost_optional_spawn_positions.push(current_position);
                   break;
             }
