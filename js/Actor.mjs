@@ -43,6 +43,7 @@ export default class Actor {
    }
 
 
+   // RENAME TO setTurnCompletionStatus() + move to pacman
    setTurnMovementStatus(status) {
       this.has_moved_in_current_turn = status;
    }
@@ -89,6 +90,7 @@ export default class Actor {
    }
 
 
+   // RENAME TO getTurnCompletionStatus() + move to pacman
    getTurnMovementStatus() {
       return this.has_moved_in_current_turn;
    }
@@ -137,25 +139,6 @@ export default class Actor {
 
    incrementScoreBy(value) {
       this.level.incrementScoreBy(value);
-   }
-
-
-   // TODO: TEMP, REFACTOR
-   handleCollisionWithSameActorType() {
-      let result = true;
-      if (this.isNextPositionActorCharacter(this.character)) {
-         let this_actor_id = this.getCurrentPosition().getID();
-         let other_actor_id = this.getNextPosition().getID();
-         if (this_actor_id !== other_actor_id) {
-            let other_completed_turn = this.level.getActorTurnCompletionStatusListFor(this.character, other_actor_id);
-            if (other_completed_turn[0]) {
-               this.setNextPosition(this.getCurrentPosition());
-            } else {
-               result = false;
-            }
-         }
-      }
-      return result;
    }
 
 
