@@ -33,8 +33,8 @@ export default class Actor {
    }
 
 
-   setMovementDirectionName(direction) {
-      this.movement_direction_name = direction;
+   setMovementDirectionName(direction_name) {
+      this.movement_direction_name = direction_name;
    }
 
 
@@ -84,6 +84,7 @@ export default class Actor {
    }
 
 
+   // TODO: THINK ABOUT RENAMING TO getCurrentMovementDirection()
    getMovementDirection() {
       return Directions.getDirectionByName(this.movement_direction_name);
    }
@@ -110,6 +111,7 @@ export default class Actor {
    }
 
 
+   // TODO: SPLIT METHOD INTO isNextPositionActorCharacter() and isNextPositionElementCharacter()
    isNextBoardPositionEqual(character) {
       return this.next_position.getActorCharacter() === character ||
              this.next_position.getElementCharacter() === character;
@@ -132,14 +134,15 @@ export default class Actor {
    }
 
 
+   // TODO: TEMP, REFACTOR
    handleCollisionWithSameActorType() {
       let result = true;
       if (this.isNextBoardPositionEqual(this.character)) {
          let this_actor_id = this.getCurrentPosition().getID();
          let other_actor_id = this.getNextPosition().getID();
          if (this_actor_id !== other_actor_id) {
-            let other_completed_turn = this.level.getTurnCompletionStatusForActor(this.character, other_actor_id);
-            if (other_completed_turn) {
+            let other_completed_turn = this.level.getActorTurnCompletionStatusListFor(this.character, other_actor_id);
+            if (other_completed_turn[0]) {
                this.setNextPosition(this.getCurrentPosition());
             } else {
                result = false;
@@ -150,15 +153,16 @@ export default class Actor {
    }
 
 
-   updateLevel(styleclass_next_position) {
+   updateBoard(styleclass_next_position, sprite_priority = Infinity) {
       this.sendLevelUpdateRequestForCurrentPosition();
-      this.sendLevelUpdateRequestForNextPosition(styleclass_next_position);
-      this.level.update();
+      this.sendLevelUpdateRequestForNextPosition(styleclass_next_position, sprite_priority);
+      this.level.updateBoard();
       this.resetUpdateFlags();
    }
 
 
    // TODO: CHECK IMPLEMENTATION
+   // NOTE: FOR PACMAN MOVEMENT STYLECLASS CAN ALWAYS BE EMPTY_FOREGROUND_CSS_CLASS ?
    sendLevelUpdateRequestForCurrentPosition() {
       if (this.update_flag_current_position) {
          let actor = Configuration.empty_tile_character;
@@ -166,14 +170,15 @@ export default class Actor {
          let styleclass = StyleClassMapper.getForegroundStyleClass(actor, element);
          this.current_position.setActorCharacter(actor);
          this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass));
+
       }
    }
 
 
-   sendLevelUpdateRequestForNextPosition(styleclass) {
+   sendLevelUpdateRequestForNextPosition(styleclass, sprite_priority) {
       if (this.update_flag_next_position) {
          this.next_position.setActorCharacter(this.character);
-         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass));
+         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass, sprite_priority));
       }
    }
 
@@ -184,6 +189,7 @@ export default class Actor {
    }
 
 
+   // TODO: EXTRACT new method resetNextPosition()
    updateCurrentPosition() {
       this.current_position = this.next_position;
       this.next_position = null;
