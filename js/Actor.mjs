@@ -104,9 +104,13 @@ export default class Actor {
    }
 
 
-   isCurrentBoardPositionEqual(character) {
-      return this.current_position.getActorCharacter() === character ||
-             this.current_position.getElementCharacter() === character;
+   isCurrentPositionActorCharacter(character) {
+      return this.current_position.getActorCharacter() === character;
+   }
+
+
+   isCurrentPositionElementCharacter(character) {
+      return this.current_position.getElementCharacter() === character;
    }
 
 
