@@ -10,13 +10,13 @@ export default class Pacman extends Actor {
    constructor(level, position) {
       super(level, position);
       super.setCharacter( Configuration.pacman_character);
-      super.setBaseStyleClass(Configuration.pacman_foreground_css_class);
+      super.setBaseMovementStyleClass(Configuration.pacman_foreground_css_class);
       this.has_changed_position_in_previous_turn = false;
    }
 
 
    getStyleClass() {
-      return `${super.getBaseStyleClass()}_${super.getMovementDirectionName()}`;
+      return `${super.getBaseMovementStyleClass()}_${super.getMovementDirectionName()}`;
    }
 
 

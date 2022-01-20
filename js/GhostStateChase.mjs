@@ -11,7 +11,7 @@ export default class GhostStateChase extends GhostState {
     constructor(duration_in_turns, ghost) {
         super(duration_in_turns, ghost);
         super.setName(Configuration.ghost_state_chase_name);
-        super.setBaseStyleClass(ghost.getBaseStyleClass());
+        super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY);
     }
 

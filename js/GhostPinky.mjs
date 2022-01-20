@@ -10,7 +10,7 @@ export default class GhostPinky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.setCharacter(Configuration.GHOST_PINKY_CHARACTER);
-        super.setBaseStyleClass(Configuration.GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS);
+        super.setBaseMovementStyleClass(Configuration.GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS);
         super.setBaseRespawnStyleClass(Configuration.GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS);
         super.setScatterCharacter(Configuration.scatter_point_character_pinky);
         super.setSpawnCharacter(Configuration.GHOST_PINKY_SPAWN_CHARACTER);
