@@ -30,7 +30,9 @@ export default class GhostStateChase extends GhostState {
 
 
     getStyleClass() {
-        return `${super.getBaseStyleClass()}_${super.getGhost().getMovementDirectionName()}`;
+        let base_style_class = super.getBaseStyleClass();
+        let direction_name = super.getGhost().getCurrentMovementDirectionName();
+        return `${base_style_class}_${direction_name}`;
     }
 
 

@@ -127,9 +127,11 @@ export default class Ghost extends Actor {
    }
 
 
+   // TODO: RENAME TO reverseCurrentMovementDirection
    reverseMovementDirection() {
-      let reverse_direction = Directions.getReversedDirectionName(super.getMovementDirectionName());
-      super.setMovementDirectionName(reverse_direction);
+      let direction_name = super.getCurrentMovementDirectionName();
+      let reverse_direction_name = Directions.getReversedDirectionName(direction_name);
+      super.setMovementDirectionName(reverse_direction_name);
    }
 
 
@@ -181,7 +183,7 @@ export default class Ghost extends Actor {
    randomizeMovementDirection() {
       while (true) {
          let random_direction_name = Directions.getRandomDirectionName();
-         if (random_direction_name !== super.getMovementDirectionName()) {
+         if (random_direction_name !== super.getCurrentMovementDirectionName()) {
             super.setMovementDirectionName(random_direction_name);
             break;
          }

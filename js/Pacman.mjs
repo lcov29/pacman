@@ -16,7 +16,9 @@ export default class Pacman extends Actor {
 
 
    getStyleClass() {
-      return `${super.getBaseMovementStyleClass()}_${super.getMovementDirectionName()}`;
+      let base_style_class = super.getBaseMovementStyleClass();
+      let direction_name = super.getCurrentMovementDirectionName();
+      return `${base_style_class}_${direction_name}`;
    }
 
 
