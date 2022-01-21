@@ -86,8 +86,7 @@ export default class GhostStateRespawn extends GhostState {
     handleSpawnCollision() {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
-
-            if (this.respawn_stage < Configuration.max_respawn_stage) {
+            if (this.respawn_stage < Configuration.GHOST_MAX_RESPAWN_STAGE) {
                 this.respawn_stage++;
             } else {
                 // prevent ghost from leaving the spawn while pacman still has scared ghost to chase

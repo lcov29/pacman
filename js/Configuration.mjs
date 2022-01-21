@@ -148,9 +148,7 @@ export default class Configuration {
    // Source: https://www.ascii-code.com/
    static linefeed_code = 10;
 
-
-   // TODO: RENAME TO GHOST_MAX_RESPAWN_STAGE
-   static max_respawn_stage = 4;
+   static GHOST_MAX_RESPAWN_STAGE = 4;
 
 
    static GHOST_CHARACTERS = [Configuration.ghost_blinky_character,
