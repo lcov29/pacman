@@ -3,6 +3,7 @@
 export default class Configuration {
    
    // TODO: CONVERT ALL ATTRIBUTE NAMES TO UPPERCASE
+   // TODO: REARRANGE ATTRIBUTES AND ADD COMMENTS
 
 
    // Direction names
@@ -149,6 +150,7 @@ export default class Configuration {
    static linefeed_code = 10;
 
 
+   // TODO: RENAME TO GHOST_MAX_RESPAWN_STAGE
    static max_respawn_stage = 4;
 
 
@@ -157,7 +159,7 @@ export default class Configuration {
                               Configuration.GHOST_CLYDE_CHARACTER,
                               Configuration.GHOST_INKY_CHARACTER];
 
-                              
+
    static ACTOR_CHARACTERS = [Configuration.pacman_character,
                               Configuration.ghost_blinky_character,
                               Configuration.GHOST_PINKY_CHARACTER,
