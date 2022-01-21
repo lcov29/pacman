@@ -69,9 +69,11 @@ export default class Pacman extends Actor {
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
             } else {
+               // next position is blocked by another pacman that has not completed the current turn, 
+               // so this pacman has to abort its movement and wait for the other to complete the turn
                super.resetUpdateFlags();
-               // TODO: RESET NEXT POSITION IN ELSE STATEMENT
-               // TODO setTurnMovementStatus(false);
+               super.setNextPosition(null);
+               this.setTurnCompletionStatus(false);
             }
             
          }
@@ -83,7 +85,7 @@ export default class Pacman extends Actor {
 
    handleTeleportation() {
       let teleportation_executed = false;
-      // check teleporter flag to prevent teleportation loop
+      // check teleportation flag to prevent teleportation loop
       if (super.isCurrentPositionTeleporter() && this.has_teleported_in_previous_turn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
          super.setNextPosition(destination);
