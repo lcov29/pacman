@@ -33,6 +33,11 @@ export default class GhostState {
     }
 
 
+    getRemainingTurns() {
+        return this.remaining_turns;
+    }
+
+
     getBaseStyleClass() {
         return this.base_style_class;
     }
@@ -53,15 +58,8 @@ export default class GhostState {
     }
 
 
-    move() {
-        // calls subclass methods
-        if (this.remaining_turns > 0) {
-            this.executeStateMovementPattern();
-            this.remaining_turns--;
-        } else {
-            this.ghost.setState(this.getSubsequentState()); 
-            this.ghost.move();
-        }
+    decrementRemainingTurns() {
+        this.remaining_turns--;
     }
 
 
