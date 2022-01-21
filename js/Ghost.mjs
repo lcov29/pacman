@@ -117,6 +117,11 @@ export default class Ghost extends Actor {
    }
 
 
+   isKillable() {
+      return this.state.isKillable();
+   }
+
+
    move() {
       this.state.move();
    }
