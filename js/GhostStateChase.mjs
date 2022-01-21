@@ -1,8 +1,10 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
 import GhostState from "./GhostState.mjs";
+import Configuration from "./Configuration.mjs";
+import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateScatter from "./GhostStateScatter.mjs";
+
 
 
 export default class GhostStateChase extends GhostState {
@@ -16,14 +18,6 @@ export default class GhostStateChase extends GhostState {
     }
 
 
-    executeStateMovementPattern() {
-        let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = ghost.calculateNextChasePosition(current_position_id);
-        ghost.moveToPosition(next_position.getX(), next_position.getY());
-    }
-
-
     getSubsequentState() {
         return new GhostStateScatter(7, super.getGhost());
     }
@@ -33,6 +27,20 @@ export default class GhostStateChase extends GhostState {
         let base_style_class = super.getBaseStyleClass();
         let direction_name = super.getGhost().getCurrentMovementDirectionName();
         return `${base_style_class}_${direction_name}`;
+    }
+
+
+    executeStateMovementPattern() {
+        let ghost = super.getGhost();
+        let current_position_id = ghost.getCurrentPosition().getID();
+        let next_position = ghost.calculateNextChasePosition(current_position_id);
+        ghost.moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    scare() {
+        let ghost = super.getGhost();
+        ghost.setState(new GhostStateFlee(30, ghost));
     }
 
 

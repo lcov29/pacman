@@ -17,23 +17,6 @@ export default class GhostStateDead extends GhostState {
     }
 
 
-    executeStateMovementPattern() {
-        let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = this.calculateNextPosition(current_position_id);
-        ghost.moveToPosition(next_position.getX(), next_position.getY());
-    }
-
-
-    // dead state movement pattern
-    calculateNextPosition(current_position_id) {
-        let ghost = super.getGhost();
-        let routing = ghost.getRouting();
-        let spawn_position_id = ghost.getSpawnID();
-        return routing.calculateNextPositionOnShortestPath(current_position_id, spawn_position_id);
-    }
-
-
     getSubsequentState() {
         return new GhostStateRespawn(super.getGhost());
     }
@@ -43,6 +26,28 @@ export default class GhostStateDead extends GhostState {
         let base_style_class = super.getBaseStyleClass();
         let direction_name = super.getGhost().getCurrentMovementDirectionName();
         return `${base_style_class}_${direction_name}`;
+    }
+
+
+    executeStateMovementPattern() {
+        let ghost = super.getGhost();
+        let current_position_id = ghost.getCurrentPosition().getID();
+        let next_position = this.calculateNextPosition(current_position_id);
+        ghost.moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    scare() {
+        // dead ghosts can not be scared
+    }
+
+
+    // dead state movement pattern
+    calculateNextPosition(current_position_id) {
+        let ghost = super.getGhost();
+        let routing = ghost.getRouting();
+        let spawn_position_id = ghost.getSpawnID();
+        return routing.calculateNextPositionOnShortestPath(current_position_id, spawn_position_id);
     }
 
 

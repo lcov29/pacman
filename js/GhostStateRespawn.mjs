@@ -18,13 +18,6 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    executeStateMovementPattern() {
-        let ghost = super.getGhost();
-        let current_position = ghost.getCurrentPosition();
-        ghost.moveToPosition(current_position.getX(), current_position.getY());
-    }
-
-
     getSubsequentState() {
         return new GhostStateScatter(7, super.getGhost());
     }
@@ -32,6 +25,18 @@ export default class GhostStateRespawn extends GhostState {
 
     getStyleClass() {
         return `${super.getBaseStyleClass()}_stage_${this.respawn_stage}`;
+    }
+
+
+    executeStateMovementPattern() {
+        let ghost = super.getGhost();
+        let current_position = ghost.getCurrentPosition();
+        ghost.moveToPosition(current_position.getX(), current_position.getY());
+    }
+
+
+    scare() {
+        // respawning ghosts can not be scared
     }
 
 

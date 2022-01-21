@@ -2,6 +2,7 @@
 
 import GhostState from "./GhostState.mjs";
 import Configuration from "./Configuration.mjs";
+import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateChase from "./GhostStateChase.mjs";
 
 
@@ -16,23 +17,6 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    executeStateMovementPattern() {
-        let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = this.calculateNextPosition(current_position_id);
-        ghost.moveToPosition(next_position.getX(), next_position.getY());
-    }
-
-
-    // scatter state movement pattern
-    calculateNextPosition(current_position_id) {
-        let ghost = super.getGhost();
-        let routing = ghost.getRouting();
-        let scatter_position_id = ghost.getScatterID();
-        return routing.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
-    }
-
-
     getSubsequentState() {
         return new GhostStateChase(20, super.getGhost());
     }
@@ -42,6 +26,29 @@ export default class GhostStateScatter extends GhostState {
         let base_style_class = super.getBaseStyleClass();
         let direction_name = super.getGhost().getCurrentMovementDirectionName();
         return `${base_style_class}_${direction_name}`;
+    }
+
+
+    executeStateMovementPattern() {
+        let ghost = super.getGhost();
+        let current_position_id = ghost.getCurrentPosition().getID();
+        let next_position = this.calculateNextPosition(current_position_id);
+        ghost.moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    scare() {
+        let ghost = super.getGhost();
+        ghost.setState(new GhostStateFlee(30, ghost));
+    }
+
+
+    // scatter state movement pattern
+    calculateNextPosition(current_position_id) {
+        let ghost = super.getGhost();
+        let routing = ghost.getRouting();
+        let scatter_position_id = ghost.getScatterID();
+        return routing.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
     }
 
 

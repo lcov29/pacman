@@ -17,21 +17,6 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
-    executeStateMovementPattern() {
-        let next_position = this.calculateNextPosition();
-        super.getGhost().moveToPosition(next_position.getX(), next_position.getY());
-    }
-
-
-    // flee state movement pattern: 
-    // 1.) reverse current movement direction upon entering this state
-    // 2.) move in this direction
-    // 3.) when colliding with a wall, select another random movement direction and resume with step 2
-    calculateNextPosition() {
-        return super.getGhost().calculateNextPositionByDirection();
-    }
-
-
     getSubsequentState() {
         return new GhostStateChase(20, super.getGhost());
     }
@@ -41,6 +26,27 @@ export default class GhostStateFlee extends GhostState {
         let base_style_class = super.getBaseStyleClass();
         let direction_name = super.getGhost().getCurrentMovementDirectionName();
         return `${base_style_class}_${direction_name}`;
+    }
+
+
+    executeStateMovementPattern() {
+        let next_position = this.calculateNextPosition();
+        super.getGhost().moveToPosition(next_position.getX(), next_position.getY());
+    }
+
+
+    scare() {
+        let ghost = super.getGhost();
+        ghost.setState(new GhostStateFlee(30, ghost));
+    }
+
+
+    // flee state movement pattern: 
+    // 1.) reverse current movement direction upon entering this state
+    // 2.) move in this direction
+    // 3.) when colliding with a wall, select another random movement direction and resume with step 2
+    calculateNextPosition() {
+        return super.getGhost().calculateNextPositionByDirection();
     }
 
 
