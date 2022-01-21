@@ -76,7 +76,7 @@ export default class GhostStateScared extends GhostState {
 
 
     calculateNextPosition() {
-        return super.getGhost().calculateNextPositionByDirection();
+        return super.getGhost().calculateNextPositionByCurrentDirection();
     }
 
 

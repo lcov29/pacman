@@ -75,7 +75,8 @@ export default class Pacman extends Actor {
       } else {
 
          if (this.getTurnCompletionStatus() === false) {
-            super.setNextPosition(super.calculateNextPositionByDirection());
+            let next_position = super.calculateNextPositionByCurrentDirection();
+            super.setNextPosition(next_position);
             let teleportation_status = this.handleTeleportation();
             this.handleWallCollision();
             this.handleGhostDoorCollision();         
