@@ -147,22 +147,6 @@ export default class Level {
     }
 
 
-    /*
-    getStateNamesOfGhostsAt(position_id) {
-        let output = [];
-        let ghost_state = "";
-        for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === position_id) {
-                ghost_state = ghost.getStateName();
-                if (!output.includes(ghost_state)) {
-                    output.push(ghost_state);
-                }
-            }
-        }
-        return output;
-    }*/
-
-
     isPositionOccupiedByHostileGhost(position_id) {
         let result = false;
         for (let ghost of this.ghosts) {
@@ -277,10 +261,11 @@ export default class Level {
     } 
 
 
+    // TODO: THINK ABOUT REFACTORING 
     countScaredGhosts() {
         let counter = 0;
         for (let ghost of this.ghosts) {
-            if (ghost.getStateName() === Configuration.ghost_state_flee_name) {
+            if (ghost.getStateName() === Configuration.GHOST_STATE_SCARED_NAME) {
                 counter++;
             }
         }
