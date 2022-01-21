@@ -71,12 +71,10 @@ export default class Level {
     }
 
 
-    // TODO: MOVE STATE CHECK TO METHOD ghost.scare()
+
     scareLivingGhosts() {
         for (let ghost of this.ghosts) {
-            if (ghost.getStateName() !== Configuration.ghost_state_dead_name) {
-                ghost.scare();
-            } 
+            ghost.scare();
         }
     }
 
