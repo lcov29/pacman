@@ -9,6 +9,14 @@ import Configuration from "./Configuration.mjs";
 
 export default class Ghost extends Actor {
 
+   
+   static isGhost(character) {
+      return character === Configuration.ghost_blinky_character ||
+             character === Configuration.GHOST_PINKY_CHARACTER ||
+             character === Configuration.GHOST_CLYDE_CHARACTER ||
+             character === Configuration.GHOST_INKY_CHARACTER;
+   }
+
 
    constructor(level, position, routing) {
       super(level, position); 
