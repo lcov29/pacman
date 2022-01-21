@@ -159,10 +159,10 @@ export default class Actor {
    }
 
 
-   // TODO: IMPLEMENT LIKE loadNextPositionFromBoard
    loadCurrentPositionFromBoard() {
-      this.current_position = this.level.getBoardPositionAt(this.current_position.getX(), 
-                                                            this.current_position.getY());
+      let current_x = this.current_position.getX();
+      let current_y = this.current_position.getY();
+      this.current_position = this.level.getBoardPositionAt(current_x, current_y); 
    }
 
 
