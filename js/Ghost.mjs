@@ -1,11 +1,10 @@
 "use strict";
 
 import GhostStateScatter from "./GhostStateScatter.mjs";
-import GhostStateChase from "./GhostStateChase.mjs";
-import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateDead from "./GhostStateDead.mjs";
 import Directions from "./Directions.mjs";
 import Actor from "./Actor.mjs";
+import Configuration from "./Configuration.mjs";
 
 
 export default class Ghost extends Actor {
@@ -111,7 +110,7 @@ export default class Ghost extends Actor {
 
 
    scare() {
-      this.setState(new GhostStateFlee(30, this));
+      this.state.scare();
    }
 
 
