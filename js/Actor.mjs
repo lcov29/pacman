@@ -179,14 +179,13 @@ export default class Actor {
    }
 
 
-   // TODO: THINK ABOUT RENAMING TO calculateNextPositionByCurrentDirection()
-   calculateNextPositionByDirection() {
+   calculateNextPositionByCurrentDirection() {
       let direction = this.getCurrentMovementDirection();
-      let next_xPosition = this.getCurrentPosition().getX() + direction.x;
-      let next_yPosition = this.getCurrentPosition().getY() + direction.y;
+      let next_x = this.getCurrentPosition().getX() + direction.x;
+      let next_y = this.getCurrentPosition().getY() + direction.y;
       let next_position = null;
       try {
-         next_position =  this.level.getBoardPositionAt(next_xPosition, next_yPosition);
+         next_position =  this.level.getBoardPositionAt(next_x, next_y);
       } catch(e) {
          // prevent actor from leaving the board
          next_position = this.getCurrentPosition();
