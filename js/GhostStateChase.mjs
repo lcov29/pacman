@@ -36,6 +36,11 @@ export default class GhostStateChase extends GhostState {
     }
 
 
+    isKillable() {
+        return false;
+    }
+
+
     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
