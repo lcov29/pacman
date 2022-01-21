@@ -5,6 +5,23 @@ import Configuration from "./Configuration.mjs";
 import GhostStateDead from "./GhostStateDead.mjs";
 import GhostStateChase from "./GhostStateChase.mjs";
 
+/*  
+   =================================================================================================================
+   Implements the movement of scared ghosts and the interaction with pacman and other elements
+
+   Note 1:      Starts when pacman consumes a powerup. 
+                Ends after the defined duration or when ghost collides with a pacman
+
+   Note 2:      See documentation: [ADD LINK TO UML-STATE-DIAGRAM]
+
+   Note 3:      Movement pattern:
+                1.) reverse current movement direction upon entering this state
+                2.) move in current direction
+                3.) when colliding with a wall, select another random movement direction and resume with step 2
+   =================================================================================================================
+ */
+
+
 
 export default class GhostStateScared extends GhostState {
 
@@ -58,10 +75,6 @@ export default class GhostStateScared extends GhostState {
     }
 
 
-    // scared state movement pattern: 
-    // 1.) reverse current movement direction upon entering this state
-    // 2.) move in this direction
-    // 3.) when colliding with a wall, select another random movement direction and resume with step 2
     calculateNextPosition() {
         return super.getGhost().calculateNextPositionByDirection();
     }
