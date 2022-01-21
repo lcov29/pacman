@@ -3,6 +3,26 @@
 import Actor from "./Actor.mjs";
 import Configuration from "./Configuration.mjs";
 
+/*  
+   =================================================================================================================
+   Implements the movement of pacman and the interaction with other actors and other elements like points etc
+
+   Note 1:     There can be multiple pacmans on the board
+
+   Note 2:     Each pacman moves in the same current direction as all the others
+
+   Note 3:     Each position on the board can only be occupied by a single pacman. 
+               Two pacmans can not share a position.
+
+   Note 4:     If a pacman is blocking the move of another pacman, the move of the blocked pacman will be 
+               postponed until the blocking pacman has finished its turn. If the target position is then 
+               still blocked, the blocked pacman will stay on its current position. Two pacmans will not
+               deadlock each other because of their shared direction of movement.
+
+   Note 5:     Pacmans move before ghosts
+   =================================================================================================================
+ */
+
 
 export default class Pacman extends Actor {
    
