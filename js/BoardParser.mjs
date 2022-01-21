@@ -69,15 +69,10 @@ export default class BoardParser {
     isLastCharacter(index, text) {
         return index === text.length - 1;
     }
+    
 
-
-    // TODO: REFACTOR
     isActor(character) {
-        return character === Configuration.pacman_character ||
-               character === Configuration.ghost_blinky_character ||
-               character === Configuration.GHOST_PINKY_CHARACTER ||
-               character === Configuration.GHOST_CLYDE_CHARACTER ||
-               character === Configuration.GHOST_INKY_CHARACTER;
+        return Configuration.ACTOR_CHARACTERS.includes(character);
     }
 
 
