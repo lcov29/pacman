@@ -126,6 +126,7 @@ export default class Pacman extends Actor {
    }
 
 
+   // TODO: FIX CHANGE OF MOVEMENT DIRECTION INTO ANOTHER WALL IS NOT DISPLAYED IN THE VIEW
    handleGhostDoorCollision() {
       if (super.isNextPositionElementCharacter(Configuration.ghost_door_character)) {
          super.setNextPosition(super.getCurrentPosition());
