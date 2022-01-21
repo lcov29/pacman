@@ -147,6 +147,7 @@ export default class Level {
     }
 
 
+    /*
     getStateNamesOfGhostsAt(position_id) {
         let output = [];
         let ghost_state = "";
@@ -159,6 +160,18 @@ export default class Level {
             }
         }
         return output;
+    }*/
+
+
+    isPositionOccupiedByHostileGhost(position_id) {
+        let result = false;
+        for (let ghost of this.ghosts) {
+            if (ghost.getCurrentPosition().getID() === position_id) {
+                result = ghost.isHostile();
+                if (result === true) { break; }
+            }
+        }
+        return result;
     }
 
 
