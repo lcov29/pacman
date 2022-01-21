@@ -115,7 +115,7 @@ export default class Ghost extends Actor {
 
 
    kill() {
-      this.setState(new GhostStateDead(this));
+      this.state.kill();
    }
 
 
