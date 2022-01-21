@@ -9,7 +9,7 @@ import Configuration from "./Configuration.mjs";
 
 export default class Ghost extends Actor {
 
-   
+
    static isGhost(character) {
       return character === Configuration.ghost_blinky_character ||
              character === Configuration.GHOST_PINKY_CHARACTER ||
@@ -109,6 +109,11 @@ export default class Ghost extends Actor {
 
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
+   }
+
+
+   isHostile() {
+      return this.state.isHostileTowardsPacman();
    }
 
 
