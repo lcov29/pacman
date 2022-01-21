@@ -49,7 +49,6 @@ export default class GhostStateScatter extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        //ghost.setState(new GhostStateFlee(30, ghost));
         ghost.setState(new GhostStateScared(30, ghost));
     }
 
