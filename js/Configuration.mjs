@@ -14,7 +14,6 @@ export default class Configuration {
 
    
    // Game settings
-   static initial_score = 0;  // TODO: REMOVE ATTRIBUTE AND 
    static score_value_per_point = 10;
    static score_value_per_powerup = 50;
    static score_value_per_eaten_ghost = 200;
