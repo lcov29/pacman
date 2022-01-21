@@ -165,7 +165,6 @@ export default class Actor {
    }
 
 
-   // TODO: EXTRACT new method resetNextPosition()
    updateCurrentPosition() {
       this.current_position = this.next_position;
       this.next_position = null;
