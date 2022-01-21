@@ -175,6 +175,18 @@ export default class Level {
     }
 
 
+    isPositionOccupiedByKillableGhost(position_id) {
+        let result = false;
+        for (let ghost of this.ghosts) {
+            if (ghost.getCurrentPosition().getID() === position_id) {
+                result = ghost.isKillable();
+                if (result === true) { break; }
+            }
+        }
+        return result;
+    }
+
+
     getTurnCompletionStatusForPacmanAt(position_id) {
         let status = false;
         for (let pacman of this.pacmans) {
