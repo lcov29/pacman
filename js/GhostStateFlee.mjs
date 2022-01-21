@@ -30,6 +30,11 @@ export default class GhostStateFlee extends GhostState {
     }
 
 
+    isHostileTowardsPacman() {
+        return false;
+    }
+
+
     executeStateMovementPattern() {
         let next_position = this.calculateNextPosition();
         super.getGhost().moveToPosition(next_position.getX(), next_position.getY());

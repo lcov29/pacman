@@ -28,6 +28,11 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
+    isHostileTowardsPacman() {
+        return false;
+    }
+
+
     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let current_position = ghost.getCurrentPosition();

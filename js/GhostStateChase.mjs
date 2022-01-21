@@ -31,6 +31,11 @@ export default class GhostStateChase extends GhostState {
     }
 
 
+    isHostileTowardsPacman() {
+        return true;
+    }
+
+
     executeStateMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
