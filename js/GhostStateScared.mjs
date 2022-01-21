@@ -11,10 +11,8 @@ export default class GhostStateScared extends GhostState {
 
     constructor(duration_in_turns, ghost) {
         super(duration_in_turns, ghost);
-        //super.setName(Configuration.ghost_state_flee_name);
         super.setName(Configuration.GHOST_STATE_SCARED_NAME);
         super.setBaseStyleClass(Configuration.ghost_scared_foreground_css_class);
-        //super.setSpriteDisplayPriority(Configuration.GHOST_STATE_FLEE_SPRITE_DISPLAY_PRIORITY);
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY);
         super.getGhost().reverseCurrentMovementDirection();
     }
@@ -50,7 +48,6 @@ export default class GhostStateScared extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        //ghost.setState(new GhostStateFlee(30, ghost));
         ghost.setState(new GhostStateScared(30, ghost));
     }
 

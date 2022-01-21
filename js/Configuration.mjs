@@ -82,7 +82,6 @@ export default class Configuration {
    static scatter_point_character_clyde = "6";
 
    static ghost_state_dead_name = "dead";
-   //static ghost_state_flee_name = "flee";          // TODO: RENAME TO GHOST_STATE_SCARED_NAME
    static GHOST_STATE_SCARED_NAME = "scared";
    static ghost_state_chase_name = "chase";
    static ghost_state_scatter_name = "scatter";
@@ -123,7 +122,6 @@ export default class Configuration {
 
    static GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY = 5;
    static GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY = 4;
-   //static GHOST_STATE_FLEE_SPRITE_DISPLAY_PRIORITY = 3;
    static GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY = 3;
    static GHOST_STATE_RESPAWN_SPRITE_DISPLAY_PRIORITY = 2;
    static GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY = 1;

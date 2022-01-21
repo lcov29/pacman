@@ -4,7 +4,6 @@ import GhostState from "./GhostState.mjs";
 import Configuration from "./Configuration.mjs";
 import GhostStateScared from "./GhostStateScared.mjs";
 import GhostStateScatter from "./GhostStateScatter.mjs";
-import GhostStateDead from "./GhostStateDead.mjs";
 
 
 
@@ -51,7 +50,6 @@ export default class GhostStateChase extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        //ghost.setState(new GhostStateFlee(30, ghost));
         ghost.setState(new GhostStateScared(30, ghost));
     }
 
