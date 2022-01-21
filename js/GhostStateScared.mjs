@@ -17,10 +17,10 @@ import GhostStateChase from "./GhostStateChase.mjs";
    Note 3:      Movement pattern:
                 1.) reverse current movement direction upon entering this state
                 2.) move in current direction
-                3.) when colliding with a wall, select another random movement direction and resume with step 2
+                3.) when colliding with a wall, select a DIFFERENT random movement direction and 
+                    resume with step 2
    =================================================================================================================
  */
-
 
 
 export default class GhostStateScared extends GhostState {
