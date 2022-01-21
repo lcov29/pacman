@@ -113,7 +113,26 @@ export default class Ghost extends Actor {
 
 
    move() {
-      this.state.move();
+      if (this.state.getRemainingTurns() > 0) {
+         super.loadCurrentPositionFromBoard();
+         this.state.executeStateMovementPattern();    // TODO: THINK ABOUT RENAMING IT TO SOMETHING LIKE CALCULATE
+         super.loadNextPositionFromBoard();
+         this.state.handleTeleportation();
+         this.state.handleScatterPositionCollision();
+         this.state.handlePacmanCollisionOnCurrentPosition();
+         this.state.handlePacmanCollisionOnNextPosition();
+         this.state.handleWallCollision();
+         this.state.handleSpawnCollision();
+         if (this.has_teleported_in_previous_turn === false) {
+            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+         }
+         super.updateBoard(this.state.getStyleClass(), this.state.getSpriteDisplayPriority());
+         super.updateCurrentPosition();
+         this.state.decrementRemainingTurns();
+     } else {
+         this.state = this.state.getSubsequentState();
+         this.move();
+     }
    }
 
 
@@ -149,23 +168,6 @@ export default class Ghost extends Actor {
          }
       }
       return min_cost_id;
-   }
-
-
-   moveToPosition(x, y) {
-      super.loadCurrentPositionFromBoard();
-      super.setNextPosition(this.level.getBoardPositionAt(x, y));
-      this.state.handleTeleportation();
-      this.state.handleScatterPositionCollision();
-      this.state.handlePacmanCollisionOnCurrentPosition();
-      this.state.handlePacmanCollisionOnNextPosition();
-      this.state.handleWallCollision();
-      this.state.handleSpawnCollision();
-      if (this.has_teleported_in_previous_turn === false) {
-         this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
-      }
-      super.updateBoard(this.state.getStyleClass(), this.state.getSpriteDisplayPriority());
-      super.updateCurrentPosition();
    }
 
 
