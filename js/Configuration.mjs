@@ -74,11 +74,11 @@ export default class Configuration {
    static point_character = "o";
    static powerup_character = "O";
 
-   // TODO: RENAME TO GHOST_X_SCATTER_POSITION_CHARACTER
-   static scatter_point_character_blinky = "9";
-   static scatter_point_character_pinky = "8";
-   static scatter_point_character_inky = "7";
-   static scatter_point_character_clyde = "6";
+   static GHOST_BLINKY_SCATTER_POSITION_CHARACTER = "9";
+   static GHOST_PINKY_SCATTER_POSITION_CHARACTER = "8";
+   static GHOST_INKY_SCATTER_POSITION_CHARACTER = "7";
+   static GHOST_CLYDE_SCATTER_POSITION_CHARACTER = "6";
+
 
    static ghost_state_dead_name = "dead";
    static GHOST_STATE_SCARED_NAME = "scared";

@@ -136,6 +136,7 @@ export default class Board {
    }
 
 
+   // TODO: REFACTOR TO USE COLLECTIONS DEFINED IN CONFIGURATION.JS
    searchCurrentPositions() {
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
@@ -165,10 +166,10 @@ export default class Board {
                   this.ghost_door_positions.push(current_position);
                   break;
 
-               case Configuration.scatter_point_character_blinky:
-               case Configuration.scatter_point_character_pinky:
-               case Configuration.scatter_point_character_inky:
-               case Configuration.scatter_point_character_clyde:
+               case Configuration.GHOST_BLINKY_SCATTER_POSITION_CHARACTER:
+               case Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER:
+               case Configuration.GHOST_PINKY_SCATTER_POSITION_CHARACTER:
+               case Configuration.GHOST_INKY_SCATTER_POSITION_CHARACTER:
                   this.ghost_scatter_positions.push(current_position);
                   break;
 
