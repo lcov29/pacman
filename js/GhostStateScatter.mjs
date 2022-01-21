@@ -43,6 +43,11 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
+    kill() {
+        // ghosts can only be killed when in state flee
+    }
+
+
     // scatter state movement pattern
     calculateNextPosition(current_position_id) {
         let ghost = super.getGhost();

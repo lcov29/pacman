@@ -4,6 +4,7 @@ import GhostState from "./GhostState.mjs";
 import Configuration from "./Configuration.mjs";
 import GhostStateFlee from "./GhostStateFlee.mjs";
 import GhostStateScatter from "./GhostStateScatter.mjs";
+import GhostStateDead from "./GhostStateDead.mjs";
 
 
 
@@ -41,6 +42,11 @@ export default class GhostStateChase extends GhostState {
     scare() {
         let ghost = super.getGhost();
         ghost.setState(new GhostStateFlee(30, ghost));
+    }
+
+
+    kill() {
+        // ghosts can only be killed when in state flee
     }
 
 

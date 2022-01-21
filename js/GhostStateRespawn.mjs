@@ -40,6 +40,11 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
+    kill() {
+        // respawning ghosts can not be killed
+    }
+
+
     handlePacmanCollisionOnCurrentPosition() {
         // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
         // is handled by the method Pacman.handleGhostCollision()

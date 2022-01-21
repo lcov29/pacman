@@ -42,6 +42,11 @@ export default class GhostStateDead extends GhostState {
     }
 
 
+    kill() {
+        // dead ghosts can not be killed
+    }
+
+
     // dead state movement pattern
     calculateNextPosition(current_position_id) {
         let ghost = super.getGhost();

@@ -2,6 +2,7 @@
 
 import GhostState from "./GhostState.mjs";
 import Configuration from "./Configuration.mjs";
+import GhostStateDead from "./GhostStateDead.mjs";
 import GhostStateChase from "./GhostStateChase.mjs";
 
 
@@ -38,6 +39,12 @@ export default class GhostStateFlee extends GhostState {
     scare() {
         let ghost = super.getGhost();
         ghost.setState(new GhostStateFlee(30, ghost));
+    }
+
+
+    kill() {
+        let ghost = super.getGhost();
+        ghost.setState(new GhostStateDead(ghost));
     }
 
 
