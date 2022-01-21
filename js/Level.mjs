@@ -55,8 +55,7 @@ export default class Level {
                                                         
         this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
         this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);
-        
-        this.score = Configuration.initial_score;
+        this.score = 0;
         this.available_points = this.countAvailablePoints();
         this.total_pacman_lifes = this.countInitialPacmanLifes();
     }
