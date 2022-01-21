@@ -1,7 +1,6 @@
 "use strict";
 
 import Actor from "./Actor.mjs";
-import Ghost from "./Ghost.mjs";
 import Configuration from "./Configuration.mjs";
 
 
@@ -155,7 +154,7 @@ export default class Pacman extends Actor {
 
    handleGhostCollision() {
       let next_position_actor_character = super.getNextPosition().getActorCharacter();
-      if (Ghost.isGhost(next_position_actor_character)) {
+      if (Configuration.GHOST_CHARACTERS.includes(next_position_actor_character)) {
          if (this.handleHostileGhostCollision() === false) {
             this.handleKillableGhostCollision();
          }
