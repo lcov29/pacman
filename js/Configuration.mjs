@@ -152,4 +152,17 @@ export default class Configuration {
    static max_respawn_stage = 4;
 
 
+   static GHOST_CHARACTERS = [Configuration.ghost_blinky_character,
+                              Configuration.GHOST_PINKY_CHARACTER,
+                              Configuration.GHOST_CLYDE_CHARACTER,
+                              Configuration.GHOST_INKY_CHARACTER];
+
+                              
+   static ACTOR_CHARACTERS = [Configuration.pacman_character,
+                              Configuration.ghost_blinky_character,
+                              Configuration.GHOST_PINKY_CHARACTER,
+                              Configuration.GHOST_CLYDE_CHARACTER,
+                              Configuration.GHOST_INKY_CHARACTER];
+
+
 }
