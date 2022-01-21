@@ -1,6 +1,7 @@
 "use strict";
 
 import Actor from "./Actor.mjs";
+import Ghost from "./Ghost.mjs";
 import Configuration from "./Configuration.mjs";
 
 
@@ -37,6 +38,13 @@ export default class Pacman extends Actor {
       let current_position_id = super.getCurrentPosition().getID();
       let next_Position_id = super.getNextPosition().getID();
       this.has_changed_position_in_previous_turn = (current_position_id !== next_Position_id);
+   }
+
+
+   kill() {
+      super.setUpdateFlagNextPosition(false);
+      this.level.decrementTotalPacmanLifes();
+      this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
    }
 
 
@@ -143,45 +151,35 @@ export default class Pacman extends Actor {
          super.getNextPosition().setElementCharacter(Configuration.empty_tile_character);
       }
    }
-   
-   
-   // TODO: REFACTOR
+
+
    handleGhostCollision() {
-      if (super.isNextPositionActorCharacter(Configuration.ghost_blinky_character) ||
-          super.isNextPositionActorCharacter(Configuration.GHOST_PINKY_CHARACTER) ||
-          super.isNextPositionActorCharacter(Configuration.GHOST_CLYDE_CHARACTER) ||
-          super.isNextPositionActorCharacter(Configuration.GHOST_INKY_CHARACTER)) {
-         let position_id = super.getNextPosition().getID();
-         let state_names = this.level.getStateNamesOfGhostsAt(position_id);
-         let executed = this.handleGhostChaseScatterCollision(state_names);
-         if (!executed) { this.handleGhostScaredCollision(state_names, position_id); }      
+      let next_position_actor_character = super.getNextPosition().getActorCharacter();
+      if (Ghost.isGhost(next_position_actor_character)) {
+         if (this.handleHostileGhostCollision() === false) {
+            this.handleKillableGhostCollision();
+         }
       }
    }
 
 
-   handleGhostChaseScatterCollision(ghost_states) {
-      let executed = false;
-      if (ghost_states.includes(Configuration.ghost_state_chase_name) ||
-          ghost_states.includes(Configuration.ghost_state_scatter_name)) {
-               this.kill();
-               executed = true;
+   handleHostileGhostCollision() {
+      let result = false;
+      let position_id = super.getNextPosition().getID();
+      if (this.level.isPositionOccupiedByHostileGhost(position_id)) {
+         this.kill();
+         result = true;
       }
-      return executed;
+      return result;
    }
 
 
-   handleGhostScaredCollision(ghost_states, position_id) {
-      if (ghost_states.includes(Configuration.ghost_state_flee_name)) {
+   handleKillableGhostCollision() {
+      let position_id = super.getNextPosition().getID();
+      if (this.level.isPositionOccupiedByKillableGhost(position_id)) {
          this.level.killGhost(position_id);
          super.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
       }
-   }
-
-
-   kill() {
-      super.setUpdateFlagNextPosition(false);
-      this.level.decrementTotalPacmanLifes();
-      this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
    }
 
    
