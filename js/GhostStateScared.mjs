@@ -59,7 +59,7 @@ export default class GhostStateScared extends GhostState {
 
     executeStateMovementPattern() {
         let next_position = this.calculateNextPosition();
-        super.getGhost().moveToPosition(next_position.getX(), next_position.getY());
+        super.getGhost().setNextPosition(next_position);
     }
 
 

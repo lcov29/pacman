@@ -44,7 +44,7 @@ export default class GhostStateChase extends GhostState {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
         let next_position = ghost.calculateNextChasePosition(current_position_id);
-        ghost.moveToPosition(next_position.getX(), next_position.getY());
+        ghost.setNextPosition(next_position);
     }
 
 
