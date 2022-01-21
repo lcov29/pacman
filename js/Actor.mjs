@@ -159,9 +159,17 @@ export default class Actor {
    }
 
 
+   // TODO: IMPLEMENT LIKE loadNextPositionFromBoard
    loadCurrentPositionFromBoard() {
       this.current_position = this.level.getBoardPositionAt(this.current_position.getX(), 
                                                             this.current_position.getY());
+   }
+
+
+   loadNextPositionFromBoard() {
+      let next_x = this.next_position.getX();
+      let next_y = this.next_position.getY();
+      this.next_position = this.level.getBoardPositionAt(next_x, next_y);
    }
 
 
@@ -172,7 +180,6 @@ export default class Actor {
 
 
    // TODO: THINK ABOUT RENAMING TO calculateNextPositionByCurrentDirection()
-   // TODO: THINK ABOUT SETTING NEXT POSITION INSIDE OF THIS METHOD
    calculateNextPositionByDirection() {
       let direction = this.getCurrentMovementDirection();
       let next_xPosition = this.getCurrentPosition().getX() + direction.x;
