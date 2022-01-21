@@ -1,7 +1,6 @@
 "use strict";
 
 import GhostStateScatter from "./GhostStateScatter.mjs";
-import GhostStateDead from "./GhostStateDead.mjs";
 import Directions from "./Directions.mjs";
 import Actor from "./Actor.mjs";
 
