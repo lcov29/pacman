@@ -79,16 +79,16 @@ export default class Pacman extends Actor {
    }
 
 
-   // TODO: CHECK FOR BUGFIX: IS NEXT POSITION UPDATED BEFORE MOVING SO THAT A CONSUMPTION
-   // OF A POINT ON NEXT POSITION BY AN EARLIER PACMAN IN THE SAME TURN IS HANDLED
    move() {
       if (super.isMovementDirectionSet() === false) {
          this.setTurnCompletionStatus(true);
       } else {
 
          if (this.getTurnCompletionStatus() === false) {
+            super.loadCurrentPositionFromBoard();
             let next_position = super.calculateNextPositionByCurrentDirection();
             super.setNextPosition(next_position);
+            super.loadNextPositionFromBoard();
             let teleportation_status = this.handleTeleportation();  
             this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
