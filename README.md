@@ -3,7 +3,11 @@ This is an attempt to build a variant of the game pacman using HTML and JavaScri
 
 
 ## How to play
-You can play the game via github-pages or you can download it and open the index.html in a webbrowser. 
+Play the game via github-pages or upload it to a webserver. 
+
+
+## Ideas for additional features
+
 
 
 ## Version history
@@ -42,3 +46,5 @@ You can play the game via github-pages or you can download it and open the index
 * display game on HTML-site 
 * notify player about victory (no points left)
 * notify player about defeat (no lifes left)
+
+
