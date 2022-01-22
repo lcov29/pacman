@@ -92,11 +92,11 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    // TODO: SET MOVEMENT DIRECTION TO DOWN TO 
     handleScatterPositionCollision() {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getScatterID()) {
             ghost.setNextPosition(ghost.getCurrentPosition());
+            ghost.setMovementDirectionName(Configuration.direction_name_down);
         }
     }
 
