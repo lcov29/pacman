@@ -116,7 +116,7 @@ export default class Ghost extends Actor {
    move() {
       if (this.state.getRemainingTurns() > 0) {
          super.loadCurrentPositionFromBoard();
-         this.state.executeStateMovementPattern();    // TODO: THINK ABOUT RENAMING IT TO SOMETHING LIKE CALCULATE
+         this.state.executeMovementPattern();
          super.loadNextPositionFromBoard();
          this.state.handleTeleportation();
          this.state.handleScatterPositionCollision();
