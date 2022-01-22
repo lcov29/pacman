@@ -16,7 +16,7 @@ export default class Board {
       this.ghost_door_positions = [];
       this.ghost_scatter_positions = [];
       this.ghost_optional_spawn_positions = [];
-      this.searchCurrentPositions();
+      this.initializePositionLists();
    }
 
 
@@ -136,7 +136,7 @@ export default class Board {
    }
 
 
-   searchCurrentPositions() {
+   initializePositionLists() {
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
             let current_position = this.getPosition(x, y);
