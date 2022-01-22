@@ -39,8 +39,7 @@ export default class GhostStateChase extends GhostState {
     }
 
 
-    // TODO: THINK ABOUT RENAMING THIS METHOD LIKE executeMovementPattern() ?
-    executeStateMovementPattern() {
+    executeMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
         let next_position = ghost.calculateNextChasePosition(current_position_id);
