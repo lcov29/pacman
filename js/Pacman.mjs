@@ -89,9 +89,8 @@ export default class Pacman extends Actor {
          if (this.getTurnCompletionStatus() === false) {
             let next_position = super.calculateNextPositionByCurrentDirection();
             super.setNextPosition(next_position);
-            let teleportation_status = this.handleTeleportation();
-            this.handleWallCollision();
-            this.handleGhostDoorCollision();         
+            let teleportation_status = this.handleTeleportation();  
+            this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
                super.setTeleportationStatus(teleportation_status);
                this.handlePointCollision();
@@ -129,23 +128,12 @@ export default class Pacman extends Actor {
    }
 
 
-   // TODO: REFACTOR METHODS handleWallCollision and handleGhostDoorCollision into new method handleInaccessibleElementCollision()
-   handleWallCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.wall_character)) {
+   handleInaccessibleTileCollision() {
+      let next_element = super.getNextPosition().getElementCharacter();
+      if (Configuration.PACMAN_INACCESSIBLE_TILES.includes(next_element)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
          if (this.has_changed_movement_direction === false) {
-            super.setUpdateFlagNextPosition(false);
-         }
-      }
-   }
-
-
-   handleGhostDoorCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.ghost_door_character)) {
-         super.setNextPosition(super.getCurrentPosition());
-         super.setUpdateFlagCurrentPosition(false);
-         if (this.has_changed_movement_direction === false) { 
             super.setUpdateFlagNextPosition(false);
          }
       }
