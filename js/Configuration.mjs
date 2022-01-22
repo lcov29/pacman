@@ -156,5 +156,8 @@ export default class Configuration {
                               Configuration.GHOST_CLYDE_CHARACTER,
                               Configuration.GHOST_INKY_CHARACTER];
 
+   static PACMAN_INACCESSIBLE_TILES = [Configuration.wall_character, 
+                                       Configuration.ghost_door_character];
+
 
 }
