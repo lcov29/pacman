@@ -32,12 +32,24 @@ export default class Pacman extends Actor {
       super.setCharacter( Configuration.pacman_character);
       super.setBaseMovementStyleClass(Configuration.pacman_foreground_css_class);
       this.has_completed_current_turn = false;
-      this.has_changed_position_in_previous_turn = false;
+      this.has_changed_movement_direction = false;
    }
 
 
    setTurnCompletionStatus(status) {
       this.has_completed_current_turn = status;
+   }
+
+
+   setMovementDirectionChangeStatus(status) {
+      this.has_changed_movement_direction = status;
+   }
+
+
+   setMovementDirectionName(direction_name) {
+      let change_status = (direction_name !== super.getCurrentMovementDirectionName());
+      this.setMovementDirectionChangeStatus(change_status);
+      super.setMovementDirectionName(direction_name);
    }
 
 
@@ -89,6 +101,7 @@ export default class Pacman extends Actor {
                super.updateBoard(this.getStyleClass());
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
+               this.setMovementDirectionChangeStatus(false);
             } else {
                // next position is blocked by another pacman that has not completed the current turn, 
                // so this pacman has to abort its movement and wait for the other to complete the turn
@@ -116,23 +129,23 @@ export default class Pacman extends Actor {
    }
 
 
+   // TODO: REFACTOR METHODS handleWallCollision and handleGhostDoorCollision into new method handleInaccessibleElementCollision()
    handleWallCollision() {
       if (super.isNextPositionElementCharacter(Configuration.wall_character)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
-         if (this.has_changed_position_in_previous_turn === false) {
+         if (this.has_changed_movement_direction === false) {
             super.setUpdateFlagNextPosition(false);
          }
       }
    }
 
 
-   // TODO: FIX CHANGE OF MOVEMENT DIRECTION INTO ANOTHER WALL IS NOT DISPLAYED IN THE VIEW
    handleGhostDoorCollision() {
       if (super.isNextPositionElementCharacter(Configuration.ghost_door_character)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
-         if (this.has_changed_position_in_previous_turn === false) { 
+         if (this.has_changed_movement_direction === false) { 
             super.setUpdateFlagNextPosition(false);
          }
       }
