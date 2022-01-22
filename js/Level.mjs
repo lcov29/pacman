@@ -260,11 +260,10 @@ export default class Level {
     } 
 
 
-    // TODO: THINK ABOUT REFACTORING 
     countScaredGhosts() {
         let counter = 0;
         for (let ghost of this.ghosts) {
-            if (ghost.getStateName() === Configuration.GHOST_STATE_SCARED_NAME) {
+            if (ghost.isScared()) {
                 counter++;
             }
         }
