@@ -124,6 +124,8 @@ export default class Ghost extends Actor {
          this.state.handlePacmanCollisionOnNextPosition();
          this.state.handleWallCollision();
          this.state.handleSpawnCollision();
+
+         //TODO: REFACTOR; MOVE CONDITION TO METHOD updateMovementDirection()
          if (this.has_teleported_in_previous_turn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
