@@ -78,13 +78,6 @@ export default class Configuration {
    static GHOST_PINKY_SCATTER_POSITION_CHARACTER = "8";
    static GHOST_INKY_SCATTER_POSITION_CHARACTER = "7";
    static GHOST_CLYDE_SCATTER_POSITION_CHARACTER = "6";
-
-
-   static ghost_state_dead_name = "dead";
-   static GHOST_STATE_SCARED_NAME = "scared";
-   static ghost_state_chase_name = "chase";
-   static ghost_state_scatter_name = "scatter";
-   static ghost_state_respawn_name = "respawn";
    
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
