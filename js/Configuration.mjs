@@ -149,6 +149,15 @@ export default class Configuration {
                               Configuration.GHOST_CLYDE_CHARACTER,
                               Configuration.GHOST_INKY_CHARACTER];
 
+   static GHOST_SPAWN_CHARACTERS = [Configuration.ghost_blinky_spawn_character,
+                                    Configuration.GHOST_PINKY_SPAWN_CHARACTER,
+                                    Configuration.GHOST_CLYDE_SPAWN_CHARACTER,
+                                    Configuration.GHOST_INKY_SPAWN_CHARACTER];
+
+   static GHOST_SCATTER_POSITION_CHARACTERS = [Configuration.GHOST_BLINKY_SCATTER_POSITION_CHARACTER,
+                                               Configuration.GHOST_PINKY_SCATTER_POSITION_CHARACTER,
+                                               Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER,
+                                               Configuration.GHOST_INKY_SCATTER_POSITION_CHARACTER];
 
    static ACTOR_CHARACTERS = [Configuration.pacman_character,
                               Configuration.ghost_blinky_character,
@@ -158,6 +167,10 @@ export default class Configuration {
 
    static PACMAN_INACCESSIBLE_TILES = [Configuration.wall_character, 
                                        Configuration.ghost_door_character];
+
+   static TELEPORTER_CHARACTERS = [Configuration.teleporter_1_tile_character,
+                                   Configuration.teleporter_2_tile_character,
+                                   Configuration.teleporter_3_tile_character];
 
 
 }
