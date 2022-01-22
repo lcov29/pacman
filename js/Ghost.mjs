@@ -1,6 +1,7 @@
 "use strict";
 
 import GhostStateScatter from "./GhostStateScatter.mjs";
+import GhostStateScared from "./GhostStateScared.mjs";
 import Directions from "./Directions.mjs";
 import Actor from "./Actor.mjs";
 
@@ -67,11 +68,6 @@ export default class Ghost extends Actor {
    }
 
 
-   getStateName() {
-      return this.state.getName();
-   }
-
-
    getScatterCharacter(){
       return this.scatter_position_character;
    }
@@ -109,6 +105,11 @@ export default class Ghost extends Actor {
 
    isKillable() {
       return this.state.isKillable();
+   }
+
+
+   isScared() {
+      return (this.state instanceof GhostStateScared);
    }
 
 
