@@ -18,6 +18,7 @@ Play the game via github-pages or upload it to a webserver.
 * add level rotation
 * add instruction page
 * add highscore counter
+* add spawn stack for respawning multiple ghosts of the same type
 * represent number of lifes with visual pacman characters
 * represent level counter with fruits
 
