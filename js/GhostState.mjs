@@ -5,16 +5,10 @@ export default class GhostState {
 
 
     constructor(duration_in_turns, ghost) {
-        this.name = "";
         this.base_style_class = "";
         this.remaining_turns = duration_in_turns;
         this.sprite_display_priority = 0;
         this.ghost = ghost;
-    }
-
-
-    setName(name) {
-        this.name = name;
     }
 
 
@@ -25,11 +19,6 @@ export default class GhostState {
 
     setSpriteDisplayPriority(priority) {
         this.sprite_display_priority = priority;
-    }
-
-
-    getName() {
-        return this.name;
     }
 
 
