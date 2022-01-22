@@ -6,8 +6,20 @@ This is an attempt to build a variant of the game pacman using HTML and JavaScri
 Play the game via github-pages or upload it to a webserver. 
 
 
-## Ideas for additional features
-
+## Ideas for improvements and additional features
+* animate pacmans mouth
+* improve movement animation for ghosts and pacman to be smoother
+* add death animation
+* add visual representation of the change from state scared to normal
+* add sound effects
+* add ability to play on mobile devices
+* add bonus elements
+* add visual level editor
+* add level rotation
+* add instruction page
+* add highscore counter
+* represent number of lifes with visual pacman characters
+* represent level counter with fruits
 
 
 ## Version history
