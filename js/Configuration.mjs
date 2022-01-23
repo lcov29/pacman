@@ -66,7 +66,7 @@ export default class Configuration {
                                          '["#","#","#","#","o","#","o","#","o","#","#","#","#","#","#","#","#","#","o","#","o","#","o","#","#","#","#"],' +
                                          '["#","o","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","o","#"],' +  
                                          '["#","o","#","#","#","#","#","#","#","#","#","#","o","#","o","#","#","#","#","#","#","#","#","#","#","o","#"],' +
-                                         '["#","o","o","o","o","o",".",".",".","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
+                                         '["#","o","o","o","b","o",".",".",".","o","o","p","o","o","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
                                          '["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"]],'+
                                        
                                 '"scatter_positions":[{"ghost":"b","x":"25","y":"1"},' +
@@ -179,7 +179,11 @@ export default class Configuration {
                                    Configuration.TELEPORTER_3_CHARACTER];
 
    static PACMAN_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
-                                       Configuration.GHOST_DOOR_CHARACTER];
+                                       Configuration.GHOST_DOOR_CHARACTER,
+                                       Configuration.UNDEFINED_TILE_CHARACTER];
+
+   static GHOSTS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
+                                       Configuration.UNDEFINED_TILE_CHARACTER];
 
    
 
