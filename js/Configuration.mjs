@@ -218,8 +218,9 @@ export default class Configuration {
                                        Configuration.GHOST_DOOR_CHARACTER,
                                        Configuration.UNDEFINED_TILE_CHARACTER];
 
+   // Tiles that are inaccessible for both ghosts and pacmans
    static ACTORS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
-                                           Configuration.UNDEFINED_TILE_CHARACTER];
+                                       Configuration.UNDEFINED_TILE_CHARACTER];
 
    
 
