@@ -187,11 +187,6 @@ export default class Level {
     isLost() {
         return this.total_pacman_lifes === 0;
     }
-   
-
-    isBoardElementTeleporter(element) {
-        return Teleporter.isElementTeleporter(element);
-    }
 
 
     addUpdateRequest(request) {
