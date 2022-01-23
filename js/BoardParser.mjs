@@ -127,8 +127,7 @@ export default class BoardParser {
 
 
     isAccessibleByActor(character) {
-        return (Configuration.GHOSTS_INACCESSIBLE_TILES.includes(character) === false) &&
-               (Configuration.PACMAN_INACCESSIBLE_TILES.includes(character) === false);
+        return (Configuration.ACTORS_INACCESSIBLE_TILES.includes(character) === false)
     }
 
 
