@@ -16,34 +16,34 @@ export default class Directions {
 
 
     static direction_map_name_to_direction = {
-        [Configuration.direction_name_up]:    this.DIRECTION_UP,
-        [Configuration.direction_name_right]: this.DIRECTION_RIGHT,
-        [Configuration.direction_name_down]:  this.DIRECTION_DOWN,
-        [Configuration.direction_name_left]:  this.DIRECTION_LEFT
+        [Configuration.DIRECTION_NAME_UP]:    this.DIRECTION_UP,
+        [Configuration.DIRECTION_NAME_RIGHT]: this.DIRECTION_RIGHT,
+        [Configuration.DIRECTION_NAME_DOWN]:  this.DIRECTION_DOWN,
+        [Configuration.DIRECTION_NAME_LEFT]:  this.DIRECTION_LEFT
     };
 
 
     static direction_map_inverse = {
-        [Configuration.direction_name_up]:      Configuration.direction_name_down,
-        [Configuration.direction_name_right]:   Configuration.direction_name_left,
-        [Configuration.direction_name_down]:    Configuration.direction_name_up,
-        [Configuration.direction_name_left]:    Configuration.direction_name_right
+        [Configuration.DIRECTION_NAME_UP]:      Configuration.DIRECTION_NAME_DOWN,
+        [Configuration.DIRECTION_NAME_RIGHT]:   Configuration.DIRECTION_NAME_LEFT,
+        [Configuration.DIRECTION_NAME_DOWN]:    Configuration.DIRECTION_NAME_UP,
+        [Configuration.DIRECTION_NAME_LEFT]:    Configuration.DIRECTION_NAME_RIGHT
     };
 
 
     static direction_map_direction_to_name = {
-        '(0,-1)': Configuration.direction_name_up,
-        '(1,0)':  Configuration.direction_name_right,
-        '(0,1)':  Configuration.direction_name_down,
-        '(-1,0)': Configuration.direction_name_left
+        '(0,-1)': Configuration.DIRECTION_NAME_UP,
+        '(1,0)':  Configuration.DIRECTION_NAME_RIGHT,
+        '(0,1)':  Configuration.DIRECTION_NAME_DOWN,
+        '(-1,0)': Configuration.DIRECTION_NAME_LEFT
     };
 
 
     static direction_map_id_to_name = {
-        0:  Configuration.direction_name_up,
-        1:  Configuration.direction_name_right,
-        2:  Configuration.direction_name_down,
-        3:  Configuration.direction_name_left
+        0:  Configuration.DIRECTION_NAME_UP,
+        1:  Configuration.DIRECTION_NAME_RIGHT,
+        2:  Configuration.DIRECTION_NAME_DOWN,
+        3:  Configuration.DIRECTION_NAME_LEFT
     }
 
 

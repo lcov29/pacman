@@ -31,7 +31,7 @@ export default class GhostDoorDirectionMapper {
             case 1:
             case 3:
             case 4:
-                output = Configuration.ghost_door_direction_suffix_diagonal;
+                output = Configuration.GHOST_DOOR_DIRECTION_SUFFIX_DIAGONAL;
                 break;
 
             case 2:
@@ -42,12 +42,12 @@ export default class GhostDoorDirectionMapper {
                     for(let y = x + 1; y < accessible_neighbors.length; y++) {
                         end_position = accessible_neighbors[y];
                         if (start_position.getX() - end_position.getX() === 0) {
-                            output = Configuration.ghost_door_direction_suffix_horizontal;
+                            output = Configuration.GHOST_DOOR_DIRECTION_SUFFIX_HORIZONTAL;
                         } else {
                             if (start_position.getY() - end_position.getY() === 0) {
-                                output = Configuration.ghost_door_direction_suffix_vertical;
+                                output = Configuration.GHOST_DOOR_DIRECTION_SUFFIX_VERTICAL;
                             } else {
-                                output = Configuration.ghost_door_direction_suffix_diagonal;
+                                output = Configuration.GHOST_DOOR_DIRECTION_SUFFIX_DIAGONAL;
                             }
                         }
                         if(output !== "") { break; }

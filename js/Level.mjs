@@ -245,14 +245,15 @@ export default class Level {
     }
 
 
+    // TODO: MOVE LIST TO CONFIGURATION
     countAvailablePoints() {
-        let point_characters = [Configuration.point_character, Configuration.powerup_character];
+        let point_characters = [Configuration.POINT_CHARACTER, Configuration.POWERUP_CHARACTER];
         return this.board.countOccurrencesOfCharacters(point_characters);
     }
 
 
     countInitialPacmanLifes() {
-        return this.pacmans.length * Configuration.initial_pacman_lifes;
+        return this.pacmans.length * Configuration.INITIAL_PACMAN_LIFES;
     } 
 
 

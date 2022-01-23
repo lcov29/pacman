@@ -34,9 +34,9 @@ export default class BoardParser {
                 current_character = output[y][x];
                 if (this.isActor(current_character)) {
                     current_actor_character = current_character;
-                    current_element_character = Configuration.empty_tile_character;
+                    current_element_character = Configuration.EMPTY_TILE_CHARACTER;
                 } else {
-                    current_actor_character = Configuration.empty_tile_character;
+                    current_actor_character = Configuration.EMPTY_TILE_CHARACTER;
                     current_element_character = current_character;
                 }
                 output[y][x] = new BoardPosition(x, y, current_actor_character, current_element_character);
@@ -65,7 +65,7 @@ export default class BoardParser {
         let positions = [];
         for (let position of parsed_json.scatter_positions) {
             let board_position_clone = board[position.y][position.x].clone();
-            board_position_clone.setActorCharacter(Configuration.empty_tile_character);
+            board_position_clone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
             board_position_clone.setElementCharacter(position.ghost);
             positions.push(board_position_clone);
         }
@@ -77,7 +77,7 @@ export default class BoardParser {
         let positions = [];
         for (let position of parsed_json.optional_spawns) {
             let board_position_clone = board[position.y][position.x].clone();
-            board_position_clone.setActorCharacter(Configuration.empty_tile_character);
+            board_position_clone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
             board_position_clone.setElementCharacter(position.ghost);
             positions.push(board_position_clone);
         }
@@ -97,7 +97,7 @@ export default class BoardParser {
               let current_actor_character = current_position.getActorCharacter();
               let current_element_character = current_position.getElementCharacter();
   
-              if (current_actor_character === Configuration.pacman_character) {
+              if (current_actor_character === Configuration.PACMAN_CHARACTER) {
                  initial_pacman_positions.push(current_position);
               }
 
@@ -109,7 +109,7 @@ export default class BoardParser {
                  teleporter_positions.push(current_position);
               }
   
-              if (current_element_character === Configuration.ghost_door_character) {
+              if (current_element_character === Configuration.GHOST_DOOR_CHARACTER) {
                  ghost_door_positions.push(current_position);
               }   
            }
@@ -127,7 +127,7 @@ export default class BoardParser {
 
 
     isAccessibleByActor(character) {
-        return character !== Configuration.wall_character;
+        return character !== Configuration.WALL_CHARACTER;
     }
 
     

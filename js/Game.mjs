@@ -25,7 +25,7 @@ export default class Game {
 
    start() {
       if (this.is_in_progress === false) {  
-         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.interval_delay_in_milliseconds, this);
+         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.INTERVAL_DELAY_IN_MILLISECONDS, this);
          this.is_in_progress = true; 
       }
    }

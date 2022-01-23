@@ -28,7 +28,7 @@ export default class GhostStateScared extends GhostState {
 
     constructor(duration_in_turns, ghost) {
         super(duration_in_turns, ghost);
-        super.setBaseStyleClass(Configuration.ghost_scared_foreground_css_class);
+        super.setBaseStyleClass(Configuration.GHOST_SCARED_FOREGROUND_CSS_CLASS);
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY);
         super.getGhost().reverseCurrentMovementDirection();
     }
@@ -104,17 +104,17 @@ export default class GhostStateScared extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.pacman_character)) {            
+        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {            
             ghost.kill();
             ghost.setUpdateFlagNextPosition(false);
-            ghost.incrementScoreBy(Configuration.score_value_per_eaten_ghost);
+            ghost.incrementScoreBy(Configuration.SCORE_VALUE_PER_EATEN_GHOST);
         }
     }
 
 
     handleWallCollision() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionElementCharacter(Configuration.wall_character)) {
+        if (ghost.isNextPositionElementCharacter(Configuration.WALL_CHARACTER)) {
             ghost.setNextPosition(ghost.getCurrentPosition());
             ghost.randomizeMovementDirection();
         }

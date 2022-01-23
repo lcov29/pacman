@@ -24,13 +24,13 @@ export default class LevelInitializer {
         let output = [];
         for (let position of teleporter_positions) {
             switch (position.getElementCharacter()) {
-                case Configuration.teleporter_1_tile_character:
+                case Configuration.TELEPORTER_1_CHARACTER:
                     teleporters[0].add(position);
                     break;
-                case Configuration.teleporter_2_tile_character:
+                case Configuration.TELEPORTER_2_CHARACTER:
                     teleporters[1].add(position);
                     break;
-                case Configuration.teleporter_3_tile_character:
+                case Configuration.TELEPORTER_3_CHARACTER:
                     teleporters[2].add(position);
                     break;
             }
@@ -72,7 +72,7 @@ export default class LevelInitializer {
         let ghosts = [];
         for (let position of ghost_positions) {
             switch (position.getActorCharacter()) {
-                case Configuration.ghost_blinky_character:
+                case Configuration.GHOST_BLINKY_CHARACTER:
                     ghosts.push(new GhostBlinky(level_reference, position, routing));
                     break;
                 case Configuration.GHOST_PINKY_CHARACTER:

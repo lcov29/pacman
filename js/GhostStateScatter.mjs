@@ -96,14 +96,14 @@ export default class GhostStateScatter extends GhostState {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getScatterID()) {
             ghost.setNextPosition(ghost.getCurrentPosition());
-            ghost.setMovementDirectionName(Configuration.direction_name_down);
+            ghost.setMovementDirectionName(Configuration.DIRECTION_NAME_DOWN);
         }
     }
 
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.pacman_character)) {
+        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
             ghost.killPacman(ghost.getNextPosition().getID());
         }
     }

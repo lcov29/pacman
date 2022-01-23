@@ -26,7 +26,7 @@ export default class BoardPosition {
     constructor(x, y, actor_character, element_character) {
         this.x = x;
         this.y = y;
-        this.id = Configuration.id_unaccessible_board_element;
+        this.id = Configuration.ID_UNACCESSIBLE_BOARD_TILES;
         this.actor_layer_character = actor_character;
         this.element_layer_character = element_character;
     }
@@ -34,7 +34,7 @@ export default class BoardPosition {
 
     setID(id) {
         // prevent id of accessible elements to change after initialisation
-        this.id = (this.id === Configuration.id_unaccessible_board_element) ? id : this.id;
+        this.id = (this.id === Configuration.ID_UNACCESSIBLE_BOARD_TILES) ? id : this.id;
     }
 
 

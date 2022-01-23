@@ -146,7 +146,7 @@ export default class Actor {
    // NOTE: FOR PACMAN MOVEMENT STYLECLASS CAN ALWAYS BE EMPTY_FOREGROUND_CSS_CLASS ?
    sendLevelUpdateRequestForCurrentPosition() {
       if (this.update_flag_current_position) {
-         let actor = Configuration.empty_tile_character;
+         let actor = Configuration.EMPTY_TILE_CHARACTER;
          let element = this.current_position.getElementCharacter();
          let styleclass = StyleClassMapper.getForegroundStyleClass(actor, element);
          this.current_position.setActorCharacter(actor);

@@ -46,8 +46,8 @@ export default class View {
 
    // requires the same column count for all rows!
    initializeContainerDimension(board) {
-      this.board_container.style.height = `${board.length * Configuration.dimension_background_div_in_px}px`;
-      this.board_container.style.width = `${board[0].length * Configuration.dimension_background_div_in_px}px`;
+      this.board_container.style.height = `${board.length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
+      this.board_container.style.width = `${board[0].length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
    }
 
 
@@ -60,7 +60,7 @@ export default class View {
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
             current_position = board[y][x];
-            id_div = this.getDivID(current_position, Configuration.suffix_background_div);
+            id_div = this.getDivID(current_position, Configuration.SUFFIX_BACKGROUND_DIV);
             outer_div = this.createDiv(id_div);
             style_class = StyleClassMapper.getBackgroundStyleClass(current_position.getElementCharacter(),
                                                                    current_position.getID(),
@@ -82,9 +82,9 @@ export default class View {
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
             current_position = board[y][x];
-            id_div = this.getDivID(current_position, Configuration.suffix_background_div);
+            id_div = this.getDivID(current_position, Configuration.SUFFIX_BACKGROUND_DIV);
             outer_div = document.getElementById(id_div);
-            id_div = this.getDivID(current_position, Configuration.suffix_foreground_div);
+            id_div = this.getDivID(current_position, Configuration.SUFFIX_FOREGROUND_DIV);
             inner_div = this.createDiv(id_div);
             style_class = StyleClassMapper.getForegroundStyleClass(current_position.getActorCharacter(),
                                                                    current_position.getElementCharacter());
@@ -96,7 +96,7 @@ export default class View {
 
 
    updateBoard(position, style_class) {
-         let id_div = this.getDivID(position, Configuration.suffix_foreground_div);
+         let id_div = this.getDivID(position, Configuration.SUFFIX_FOREGROUND_DIV);
          document.getElementById(id_div).setAttribute('class', style_class);
    }
 

@@ -13,9 +13,9 @@ export default class Teleporter {
     
 
     static isElementTeleporter(element) {
-        return element === Configuration.teleporter_1_tile_character ||
-               element === Configuration.teleporter_2_tile_character ||
-               element === Configuration.teleporter_3_tile_character;
+        return element === Configuration.TELEPORTER_1_CHARACTER ||
+               element === Configuration.TELEPORTER_2_CHARACTER ||
+               element === Configuration.TELEPORTER_3_CHARACTER;
     }
 
 

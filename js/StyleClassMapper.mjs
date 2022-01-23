@@ -7,40 +7,40 @@ export default class StyleClassMapper {
 
 
     static background_class_map = {
-        [Configuration.wall_character]:                 Configuration.wall_background_css_class,
-        [Configuration.empty_tile_character]:           Configuration.empty_background_css_class,
-        [Configuration.ghost_door_character]:           Configuration.ghost_door_background_css_class,
-        [Configuration.teleporter_1_tile_character]:    Configuration.teleporter_1_background_css_class,
-        [Configuration.teleporter_2_tile_character]:    Configuration.teleporter_2_background_css_class,
-        [Configuration.teleporter_3_tile_character]:    Configuration.teleporter_3_background_css_class,
-        [Configuration.pacman_character]:               Configuration.empty_background_css_class,
-        [Configuration.ghost_blinky_character]:         Configuration.empty_background_css_class,
+        [Configuration.WALL_CHARACTER]:                 Configuration.WALL_BACKGROUND_CSS_CLASS,
+        [Configuration.EMPTY_TILE_CHARACTER]:           Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.GHOST_DOOR_CHARACTER]:           Configuration.GHOST_DOOR_BACKGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_1_CHARACTER]:    Configuration.TELEPORTER_1_BACKGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_2_CHARACTER]:    Configuration.TELEPORTER_2_BACKGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_3_CHARACTER]:    Configuration.TELEPORTER_3_BACKGROUND_CSS_CLASS,
+        [Configuration.PACMAN_CHARACTER]:               Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.GHOST_BLINKY_CHARACTER]:         Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
 
-        [Configuration.GHOST_PINKY_CHARACTER]:          Configuration.empty_background_css_class,
-        [Configuration.GHOST_INKY_CHARACTER]:           Configuration.empty_background_css_class,
-        [Configuration.GHOST_CLYDE_CHARACTER]:          Configuration.empty_background_css_class,
+        [Configuration.GHOST_PINKY_CHARACTER]:          Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.GHOST_INKY_CHARACTER]:           Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.GHOST_CLYDE_CHARACTER]:          Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
 
-        [Configuration.point_character]:                Configuration.empty_background_css_class,
-        [Configuration.powerup_character]:              Configuration.empty_background_css_class
+        [Configuration.POINT_CHARACTER]:                Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.POWERUP_CHARACTER]:              Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS
     };
   
   
     static foreground_class_map = {
-        [Configuration.wall_character]:                 Configuration.empty_foreground_css_class,
-        [Configuration.empty_tile_character]:           Configuration.empty_foreground_css_class,
-        [Configuration.ghost_door_character]:           Configuration.empty_foreground_css_class,
-        [Configuration.teleporter_1_tile_character]:    Configuration.empty_foreground_css_class,
-        [Configuration.teleporter_2_tile_character]:    Configuration.empty_foreground_css_class,
-        [Configuration.teleporter_3_tile_character]:    Configuration.empty_foreground_css_class,
-        [Configuration.pacman_character]:               `${Configuration.pacman_foreground_css_class}_${Configuration.initial_pacman_direction}`,
-        [Configuration.ghost_blinky_character]:         `${Configuration.ghost_blinky_movement_foreground_css_class}_${Configuration.initial_ghosts_direction}`,
+        [Configuration.WALL_CHARACTER]:                 Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.EMPTY_TILE_CHARACTER]:           Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.GHOST_DOOR_CHARACTER]:           Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_1_CHARACTER]:    Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_2_CHARACTER]:    Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.TELEPORTER_3_CHARACTER]:    Configuration.EMPTY_FOREGROUND_CSS_CLASS,
+        [Configuration.PACMAN_CHARACTER]:               `${Configuration.PACMAN_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_PACMAN_SPRITE_DIRECTION}`,
+        [Configuration.GHOST_BLINKY_CHARACTER]:         `${Configuration.GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
 
-        [Configuration.GHOST_PINKY_CHARACTER]:          `${Configuration.GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.initial_ghosts_direction}`,
-        [Configuration.GHOST_INKY_CHARACTER]:           `${Configuration.GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.initial_ghosts_direction}`,
-        [Configuration.GHOST_CLYDE_CHARACTER]:          `${Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.initial_ghosts_direction}`,
+        [Configuration.GHOST_PINKY_CHARACTER]:          `${Configuration.GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
+        [Configuration.GHOST_INKY_CHARACTER]:           `${Configuration.GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
+        [Configuration.GHOST_CLYDE_CHARACTER]:          `${Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
 
-        [Configuration.point_character]:                Configuration.point_foreground_css_class,
-        [Configuration.powerup_character]:              Configuration.powerup_foreground_css_class
+        [Configuration.POINT_CHARACTER]:                Configuration.POINT_FOREGROUND_CSS_CLASS,
+        [Configuration.POWERUP_CHARACTER]:              Configuration.POWERUP_FOREGROUND_CSS_CLASS
     };
   
   
@@ -58,7 +58,7 @@ export default class StyleClassMapper {
 
     static getBackgroundDirectionSuffix(character, position_id, ghost_door_direction_map) {
         let direction_suffix = "";
-        if (character === Configuration.ghost_door_character) {
+        if (character === Configuration.GHOST_DOOR_CHARACTER) {
             for (let entry of ghost_door_direction_map) {
                 if (entry.id === position_id) {
                     direction_suffix = entry.direction_suffix;
@@ -71,7 +71,7 @@ export default class StyleClassMapper {
 
 
     static chooseBoardPositionLayerElementForForegroundMapping(actor_character, element_character) {
-        return (actor_character === Configuration.empty_tile_character) ? element_character : actor_character;
+        return (actor_character === Configuration.EMPTY_TILE_CHARACTER) ? element_character : actor_character;
     }
 
 
