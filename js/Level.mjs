@@ -21,10 +21,10 @@ import Board from "./Board.mjs";
 export default class Level {
 
 
-    constructor(game, level_json) {
+    constructor(game) {
         this.game = game;
-        this.board = new Board(level_json);
-        this.update_manager = new UpdateManager(this, this.board);
+        this.board = null;
+        this.update_manager = null;
         this.teleporters = [];
         this.pacmans = [];
         this.ghosts = [];
@@ -35,23 +35,12 @@ export default class Level {
     }
 
 
-    initialize() {
-        let teleporter_positions = this.board.getTeleporterPositions();
-        let pacman_positions = this.board.getInitialPacmanPositions();
-        this.teleporters = LevelInitializer.initializeTeleporters(teleporter_positions);
-        this.pacmans = LevelInitializer.initializePacmans(pacman_positions, this);
-
-        let ghost_positions = this.board.getInitialGhostPositions();
-        let scatter_positions = this.board.getGhostScatterPositions();
-        let spawn_positons = this.board.getOptionalGhostSpawnPositions();
-        let accessible_position_list = this.board.buildAccessibleBoardPositionList();
-        let neighbor_id_list = this.buildAccessibleNeighborIdList();
-        this.ghosts = LevelInitializer.initializeGhosts(ghost_positions,
-                                                        scatter_positions,
-                                                        spawn_positons,
-                                                        accessible_position_list,
-                                                        neighbor_id_list,
-                                                        this);
+    initialize(level_json) {
+        this.board = new Board(level_json);
+        this.update_manager = new UpdateManager(this, this.board);
+        this.teleporters = LevelInitializer.initializeTeleporters(this.board);
+        this.pacmans = LevelInitializer.initializePacmans(this.board, this);
+        this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
         this.available_points = this.countAvailablePoints();
         this.total_pacman_lifes = this.countInitialPacmanLifes();
     }
@@ -216,21 +205,6 @@ export default class Level {
                 Utility.removeElementFrom(this.pacmans, pacman);
             }
         }  
-    }
-
-
-    buildAccessibleNeighborIdList() {
-        let neighbor_id_list = this.board.buildAccessibleNeighborIdList();
-        this.addTeleportersToNeighborIDList(neighbor_id_list);
-        return neighbor_id_list;
-    }
-
-
-    addTeleportersToNeighborIDList(neighbor_id_list) {
-        for (let teleporter of this.teleporters) {
-            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
-            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
-        }
     }
 
 
