@@ -93,7 +93,7 @@ export default class LevelInitializer {
     static initializeGhostScatterPoints(scatter_positions, ghosts) {
         for (let scatter_position of scatter_positions) {
             for (let ghost of ghosts) {
-                if (ghost.getScatterCharacter() === scatter_position.getElementCharacter()) {
+                if (ghost.getCharacter() === scatter_position.getElementCharacter()) {
                     ghost.setScatterID(scatter_position.getID());
                 }
             }
@@ -104,7 +104,7 @@ export default class LevelInitializer {
     static initializeOptionalGhostSpawnPoints(spawn_positions, ghosts) {
         for (let spawn_position of spawn_positions) {
             for (let ghost of ghosts) {
-                if (ghost.getSpawnCharacter() === spawn_position.getElementCharacter()) {
+                if (ghost.getCharacter() === spawn_position.getElementCharacter()) {
                     ghost.setSpawnID(spawn_position.getID());
                 }
             }
