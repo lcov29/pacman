@@ -16,8 +16,8 @@ export default class Game {
    }
 
 
-   loadLevel(level_text) {
-      this.level = new Level(this, level_text);
+   loadLevel(level_json = Configuration.DEFAULT_LEVEL_JSON) {
+      this.level = new Level(this, level_json);
       this.level.initialize();
       this.view.initialize(this.level.getBoardPositionArray(), this.level.buildGhostDoorDirectionMap());
    }
