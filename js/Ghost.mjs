@@ -13,9 +13,7 @@ export default class Ghost extends Actor {
       super(level, position); 
       this.routing = routing;
       this.base_respawn_style_class = "";
-      this.scatter_position_character = "";
       this.scatter_position_id = -1;
-      this.spawn_position_character = "";
       this.spawn_position_id = position.getID();
       this.state = null;
    }
@@ -26,18 +24,8 @@ export default class Ghost extends Actor {
    }
 
 
-   setScatterCharacter(character) {
-      this.scatter_position_character = character;
-   }
-
-
    setScatterID(position_id) {
       this.scatter_position_id = position_id;
-   }
-
-
-   setSpawnCharacter(character) {
-      this.spawn_position_character = character;
    }
 
 
@@ -68,18 +56,8 @@ export default class Ghost extends Actor {
    }
 
 
-   getScatterCharacter(){
-      return this.scatter_position_character;
-   }
-
-
    getScatterID() {
       return this.scatter_position_id;
-   }
-
-
-   getSpawnCharacter() {
-      return this.spawn_position_character;
    }
 
 
