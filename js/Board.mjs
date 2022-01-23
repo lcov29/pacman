@@ -8,15 +8,50 @@ import Directions from "./Directions.mjs";
 export default class Board {
 
    
-   constructor(board_text) {
-      this.board = new BoardParser().parse(board_text);
+   constructor(level_json) {
+      this.board = [];
       this.initial_pacman_positions = [];
       this.initial_ghost_positions = [];
       this.teleporter_positions = [];
       this.ghost_door_positions = [];
       this.ghost_scatter_positions = [];
       this.ghost_optional_spawn_positions = [];
-      this.initializePositionLists();
+      new BoardParser(this).parse(level_json);
+   }
+
+
+   setBoard(board) {
+      this.board = board;
+   }
+
+
+   setInitialPacmanPositions(positions) {
+      this.initial_pacman_positions = positions;
+   }
+
+
+   setInitialGhostPositions(positions) {
+      this.initial_ghost_positions = positions;
+   }
+
+
+   setTeleporterPositions(positions) {
+      this.teleporter_positions = positions;
+   }
+
+   
+   setGhostDoorPositions(positions) {
+      this.ghost_door_positions = positions;
+   }
+
+
+   setGhostScatterPositions(positions) {
+      this.ghost_scatter_positions = positions;
+   }
+
+
+   setGhostOptionalSpawnPositions(positions) {
+      this.ghost_optional_spawn_positions = positions;
    }
 
 
@@ -133,41 +168,6 @@ export default class Board {
    isIndexOnBoard(x, y) {
       return 0 <= y && y < this.board.length &&
              0 <= x && x < this.board[y].length;
-   }
-
-
-   initializePositionLists() {
-      for (let y = 0; y < this.board.length; y++) {
-         for (let x = 0; x < this.board[y].length; x++) {
-            let current_position = this.getPosition(x, y);
-            let current_actor_character = current_position.getActorCharacter();
-            let current_element_character = current_position.getElementCharacter();
-
-            if (current_actor_character === Configuration.pacman_character) {
-               this.initial_pacman_positions.push(current_position);
-            }
-
-            if (Configuration.GHOST_CHARACTERS.includes(current_actor_character)) {
-               this.initial_ghost_positions.push(current_position);
-            }
-
-            if (Configuration.TELEPORTER_CHARACTERS.includes(current_element_character)) {
-               this.teleporter_positions.push(current_position);
-            }
-
-            if (Configuration.GHOST_SCATTER_POSITION_CHARACTERS.includes(current_element_character)) {
-               this.ghost_scatter_positions.push(current_position);
-            }
-
-            if (Configuration.GHOST_SPAWN_CHARACTERS.includes(current_element_character)) {
-               this.ghost_optional_spawn_positions.push(current_position);
-            }
-
-            if (current_element_character === Configuration.ghost_door_character) {
-               this.ghost_door_positions.push(current_position);
-            }   
-         }
-      }
    }
 
 
