@@ -125,6 +125,9 @@ export default class Configuration {
 
 
    // Definition of element lists 
+   static POINT_CHARACTERS = [Configuration.POINT_CHARACTER, 
+                              Configuration.POWERUP_CHARACTER];
+
    static ACTOR_CHARACTERS = [Configuration.PACMAN_CHARACTER,
                               Configuration.GHOST_BLINKY_CHARACTER,
                               Configuration.GHOST_PINKY_CHARACTER,
