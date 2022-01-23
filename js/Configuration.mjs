@@ -21,31 +21,41 @@ export default class Configuration {
    static initial_pacman_direction = Configuration.direction_name_right;
    static initial_ghosts_direction = Configuration.direction_name_down;
 
-   static initial_ghosts_direction = "down";
+   // static initial_ghosts_direction = "down";
    static interval_delay_in_milliseconds = 500;
-   static default_level = '###########################\n'+
-                          '#8ooooooooooo#ooooooooooo9#\n' +
-                          '#o####o#####o#o#####o####o#\n' +
-                          '#O####o#####o#o#####o####O#\n' +
-                          '#ooooooooooooooooooooooooo#\n' +
-                          '#o####o#o#########o#o####o#\n' +
-                          '#oooooo#ooooo#ooooo#oooooo#\n' +
-                          '######o#####o#o#####o######\n' +
-                          '######o#xxxxxbxxxxx#o######\n' +
-                          '######o#x####d####x#o######\n' +
-                          '1xxxxxoxx#Bxxxxxx#xxoxxxxx1\n' +
-                          '######o#x#########x#o######\n' +
-                          '######o#xxxxxxxxxxx#o######\n' +
-                          '######o#x#########x#o######\n' +
-                          '#oooooooooooo#oooooooooooo#\n' +
-                          '#o####o#####o#o#####o####o#\n' +
-                          '#Oooo#ooooooopooooooo#oooO#\n' +
-                          '####o#o#o#########o#o#o####\n' +
-                          '#oooooo#ooooo#ooooo#oooooo#\n' +
-                          '#o##########o#o##########o#\n' +
-                          '#7ooooooooooooooooooooooo6#\n' +
-                          '###########################\n';
-   
+
+   static default_level = '{"board":[["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"],' + 
+                                    '["#","o","o","o","o","o","o","o","o","o","o","o","o","#","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
+                                    '["#","o","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","o","#"],' +
+                                    '["#","O","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","O","#"],' +
+                                    '["#","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +  
+                                    '["#","o","#","#","#","#","o","#","o","#","#","#","#","#","#","#","#","#","o","#","o","#","#","#","#","o","#"],' +
+                                    '["#","o","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","o","#"],' +
+                                    '["#","#","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","#","#"],' + 
+                                    '["#","#","#","#","#","#","o","#","x","x","x","x","x","b","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
+                                    '["#","#","#","#","#","#","o","#","x","#","#","#","#","d","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
+                                    '["1","x","x","x","x","x","o","x","x","#","x","x","x","x","x","x","x","#","x","x","o","x","x","x","x","x","1"],' +  
+                                    '["#","#","#","#","#","#","o","#","x","#","#","#","#","#","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
+                                    '["#","#","#","#","#","#","o","#","x","x","x","x","x","x","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
+                                    '["#","#","#","#","#","#","o","#","x","#","#","#","#","#","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +  
+                                    '["#","o","o","o","o","o","o","o","o","o","o","o","o","#","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
+                                    '["#","o","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","o","#"],' +
+                                    '["#","O","o","o","o","#","o","o","o","o","o","o","o","p","o","o","o","o","o","o","o","#","o","o","o","O","#"],' +   
+                                    '["#","#","#","#","o","#","o","#","o","#","#","#","#","#","#","#","#","#","o","#","o","#","o","#","#","#","#"],' +
+                                    '["#","o","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","o","#"],' +  
+                                    '["#","o","#","#","#","#","#","#","#","#","#","#","o","#","o","#","#","#","#","#","#","#","#","#","#","o","#"],' +
+                                    '["#","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
+                                    '["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"]],'+
+                                    
+                           '"scatter_positions":[{"ghost":"b","x":"25","y":"1"},' +
+                                                '{"ghost":"y","x":"1","y":"1"},' +
+                                                '{"ghost":"i","x":"1","y":"20"},' +
+                                                '{"ghost":"c","x":"25","y":"20"}],' +
+                                                            
+                           '"optional_spawns":[{"ghost":"b","x":"10","y":"10"},' +
+                                             '{"ghost":"y","x":"11","y":"10"},' +
+                                             '{"ghost":"i","x":"15","y":"10"},' +
+                                             '{"ghost":"c","x":"16","y":"10"}]}';
 
                         
    // Internal and css representation of different game elements
@@ -60,25 +70,13 @@ export default class Configuration {
    static pacman_character = "p";
 
    static ghost_blinky_character = "b";
-   static ghost_blinky_spawn_character = "B";
-
    static GHOST_PINKY_CHARACTER = "y";
-   static GHOST_PINKY_SPAWN_CHARACTER = "Y";
-
    static GHOST_INKY_CHARACTER = "i";
-   static GHOST_INKY_SPAWN_CHARACTER = "I";
-
    static GHOST_CLYDE_CHARACTER = "c";
-   static GHOST_CLYDE_SPAWN_CHARACTER = "C";
 
    static point_character = "o";
    static powerup_character = "O";
 
-   static GHOST_BLINKY_SCATTER_POSITION_CHARACTER = "9";
-   static GHOST_PINKY_SCATTER_POSITION_CHARACTER = "8";
-   static GHOST_INKY_SCATTER_POSITION_CHARACTER = "7";
-   static GHOST_CLYDE_SCATTER_POSITION_CHARACTER = "6";
-   
    static wall_background_css_class = "wall_tile";
    static empty_background_css_class = "empty_tile";
    static ghost_door_background_css_class = "ghost_door";
@@ -148,16 +146,6 @@ export default class Configuration {
                               Configuration.GHOST_PINKY_CHARACTER,
                               Configuration.GHOST_CLYDE_CHARACTER,
                               Configuration.GHOST_INKY_CHARACTER];
-
-   static GHOST_SPAWN_CHARACTERS = [Configuration.ghost_blinky_spawn_character,
-                                    Configuration.GHOST_PINKY_SPAWN_CHARACTER,
-                                    Configuration.GHOST_CLYDE_SPAWN_CHARACTER,
-                                    Configuration.GHOST_INKY_SPAWN_CHARACTER];
-
-   static GHOST_SCATTER_POSITION_CHARACTERS = [Configuration.GHOST_BLINKY_SCATTER_POSITION_CHARACTER,
-                                               Configuration.GHOST_PINKY_SCATTER_POSITION_CHARACTER,
-                                               Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER,
-                                               Configuration.GHOST_INKY_SCATTER_POSITION_CHARACTER];
 
    static ACTOR_CHARACTERS = [Configuration.pacman_character,
                               Configuration.ghost_blinky_character,
