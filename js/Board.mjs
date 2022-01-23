@@ -186,22 +186,6 @@ export default class Board {
       }
       return counter;
    }
-
-
-   setCharactersOfScatterPositionsTo(character) {
-      for (let position of this.ghost_scatter_positions) {
-         position.setElementCharacter(character);
-         this.setPosition(position);
-      }
-   }
-
-
-   setCharactersOfOptionalSpawnPositionsTo(character) {
-      for (let position of this.ghost_optional_spawn_positions) {
-         position.setElementCharacter(character);
-         this.setPosition(position);
-      }
-   }
    
    
 }
