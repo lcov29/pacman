@@ -29,6 +29,7 @@ body {
    background-color: black;
 }
 
+
 .teleporter_1_tile {
    width: 30px;
    height: 30px;
@@ -69,6 +70,13 @@ body {
    height: 30px;
    float: left;
    background-image: url('../sprites/door/ghost_door_crossing.png');
+}
+
+.undefined_tile {
+   width: 30px;
+   height: 30px;
+   float: left;
+   opacity: 0.0;
 }
 
 
