@@ -8,6 +8,7 @@ import GhostBlinky from "./GhostBlinky.mjs";
 import GhostPinky from "./GhostPinky.mjs";
 import GhostClyde from "./GhostClyde.mjs";
 import GhostInky from "./GhostInky.mjs";
+import Level from "./Level.mjs";
 
 /*  
     =================================================================================================================
@@ -19,10 +20,10 @@ import GhostInky from "./GhostInky.mjs";
 export default class LevelInitializer {
 
 
-    static initializeTeleporters(teleporter_positions) {
+    static initializeTeleporters(board) {
         let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
         let output = [];
-        for (let position of teleporter_positions) {
+        for (let position of board.getTeleporterPositions()) {
             switch (position.getElementCharacter()) {
                 case Configuration.TELEPORTER_1_CHARACTER:
                     teleporters[0].add(position);
@@ -44,33 +45,41 @@ export default class LevelInitializer {
     }
 
 
-    static initializePacmans(pacman_positions, level_reference) {
+
+    static initializePacmans(board, level_reference) {
         let pacmans = [];
-        for (let position of pacman_positions) {
+        for (let position of board.getInitialPacmanPositions()) {
             pacmans.push(new Pacman(level_reference, position));
         }
         return pacmans;
     }
 
 
-    static initializeGhosts(ghost_positions, 
-                            scatter_positions, 
-                            spawn_positions,
-                            accessible_position_list, 
-                            neighbor_id_list,
-                            level_reference) {
-
+    static initializeGhosts(board, teleporter_list, level_reference) {
+        let accessible_position_list = board.buildAccessibleBoardPositionList();
+        let neighbor_id_list = LevelInitializer.buildAccessibleNeighborIdList(board, teleporter_list);
         let routing = new Routing(accessible_position_list, neighbor_id_list);
-        let ghosts = this.initializeGhostObjects(ghost_positions, routing, level_reference);
-        this.initializeGhostScatterPoints(scatter_positions, ghosts);
-        this.initializeOptionalGhostSpawnPoints(spawn_positions, ghosts);
+        let ghosts = LevelInitializer.initializeGhostObjects(board, routing, level_reference);
+        LevelInitializer.initializeGhostScatterPoints(board, ghosts);
+        LevelInitializer.initializeOptionalGhostSpawnPoints(board, ghosts);
         return ghosts;
     }
 
 
-    static initializeGhostObjects(ghost_positions, routing, level_reference) {
+    static buildAccessibleNeighborIdList(board, teleporter_list) {
+        let neighbor_id_list = board.buildAccessibleNeighborIdList();
+        // mark connected teleporters as neighbors
+        for (let teleporter of teleporter_list) {
+            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
+            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
+        }
+        return neighbor_id_list;
+    }
+
+
+    static initializeGhostObjects(board, routing, level_reference) {
         let ghosts = [];
-        for (let position of ghost_positions) {
+        for (let position of board.getInitialGhostPositions()) {
             switch (position.getActorCharacter()) {
                 case Configuration.GHOST_BLINKY_CHARACTER:
                     ghosts.push(new GhostBlinky(level_reference, position, routing));
@@ -90,8 +99,8 @@ export default class LevelInitializer {
     }
 
 
-    static initializeGhostScatterPoints(scatter_positions, ghosts) {
-        for (let scatter_position of scatter_positions) {
+    static initializeGhostScatterPoints(board, ghosts) {
+        for (let scatter_position of board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === scatter_position.getElementCharacter()) {
                     ghost.setScatterID(scatter_position.getID());
@@ -101,8 +110,8 @@ export default class LevelInitializer {
     }
 
 
-    static initializeOptionalGhostSpawnPoints(spawn_positions, ghosts) {
-        for (let spawn_position of spawn_positions) {
+    static initializeOptionalGhostSpawnPoints(board, ghosts) {
+        for (let spawn_position of board.getOptionalGhostSpawnPositions()) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === spawn_position.getElementCharacter()) {
                     ghost.setSpawnID(spawn_position.getID());
