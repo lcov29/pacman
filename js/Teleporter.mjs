@@ -1,21 +1,11 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
-
-
 export default class Teleporter {
 
     
     constructor() {
         this.position_teleporter_1 = null;
         this.position_teleporter_2 = null;
-    }
-    
-
-    static isElementTeleporter(element) {
-        return element === Configuration.TELEPORTER_1_CHARACTER ||
-               element === Configuration.TELEPORTER_2_CHARACTER ||
-               element === Configuration.TELEPORTER_3_CHARACTER;
     }
 
 
