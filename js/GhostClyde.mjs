@@ -12,8 +12,6 @@ export default class GhostClyde extends Ghost {
         super.setCharacter(Configuration.GHOST_CLYDE_CHARACTER);
         super.setBaseMovementStyleClass(Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS);
         super.setBaseRespawnStyleClass(Configuration.GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS);
-        super.setScatterCharacter(Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER);
-        super.setSpawnCharacter(Configuration.GHOST_CLYDE_SPAWN_CHARACTER);
         super.setInitialState();
     }
 
