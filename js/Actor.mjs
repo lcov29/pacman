@@ -119,8 +119,8 @@ export default class Actor {
 
 
    isCurrentPositionTeleporter() {
-      let occupied_element_character = this.current_position.getElementCharacter();
-      return this.level.isBoardElementTeleporter(occupied_element_character);
+      let current_position_element = this.current_position.getElementCharacter();
+      return Configuration.TELEPORTER_CHARACTERS.includes(current_position_element);
    }
 
 
