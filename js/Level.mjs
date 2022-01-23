@@ -21,9 +21,9 @@ import Board from "./Board.mjs";
 export default class Level {
 
 
-    constructor(game, level_text) {
+    constructor(game, level_json) {
         this.game = game;
-        this.board = new Board(level_text);
+        this.board = new Board(level_json);
         this.update_manager = new UpdateManager(this, this.board);
         this.teleporters = [];
         this.pacmans = [];
@@ -52,10 +52,6 @@ export default class Level {
                                                         accessible_position_list,
                                                         neighbor_id_list,
                                                         this);
-                                                        
-        this.board.setCharactersOfScatterPositionsTo(Configuration.point_character);
-        this.board.setCharactersOfOptionalSpawnPositionsTo(Configuration.empty_tile_character);
-        this.score = 0;
         this.available_points = this.countAvailablePoints();
         this.total_pacman_lifes = this.countInitialPacmanLifes();
     }
