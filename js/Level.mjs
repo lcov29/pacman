@@ -253,6 +253,7 @@ export default class Level {
     moveGhosts() {
         for (let ghost of this.ghosts) {
             ghost.move();
+            if (this.isLost()) { break; }
         }
     }
 
