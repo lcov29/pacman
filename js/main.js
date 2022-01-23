@@ -11,8 +11,8 @@ import Game from "./Game.mjs";
 
 
 let game = new Game('level_container', 'score', 'life');
-game.loadLevel(Configuration.DEFAULT_LEVEL);   
-document.getElementById("level_input").value = Configuration.DEFAULT_LEVEL; // THINK ABOUT REMOVING
+game.loadLevel();   
+document.getElementById("level_input").value = Configuration.DEFAULT_LEVEL_JSON; // THINK ABOUT REMOVING
 initializeLevelElementsList();
 
 document.getElementById('button_start').addEventListener('click', callBackStartButton);
