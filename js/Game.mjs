@@ -60,8 +60,8 @@ export default class Game {
    }
 
 
-   setPacmanDirection(direction_name) {
-      this.level.setNextPacmanDirection(direction_name);
+   updateView(board_positions, style_class, score, number_of_lifes) {
+      this.view.update(board_positions, style_class, score, number_of_lifes);
    }
 
 
@@ -70,8 +70,31 @@ export default class Game {
    }
 
 
-   updateView(board_positions, style_class, score, number_of_lifes) {
-      this.view.update(board_positions, style_class, score, number_of_lifes);
+   processUserCommand(keycode) {
+      if (this.isInProgress()) {
+         switch(keycode) {
+         
+            case Configuration.KEY_CODE_UP_ARROW:
+            case Configuration.KEY_CODE_W:
+               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_UP);
+               break;
+            
+            case Configuration.KEY_CODE_RIGHT_ARROW:
+            case Configuration.KEY_CODE_D:
+               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_RIGHT);
+               break;
+            
+            case Configuration.KEY_CODE_DOWN_ARROW:
+            case Configuration.KEY_CODE_S:
+               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_DOWN);
+               break;
+      
+            case Configuration.KEY_CODE_LEFT_ARROW:
+            case Configuration.KEY_CODE_A:
+               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_LEFT);
+               break;
+         }         
+      }
    }
    
    
