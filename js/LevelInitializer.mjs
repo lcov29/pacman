@@ -60,8 +60,8 @@ export default class LevelInitializer {
         let neighbor_id_list = LevelInitializer.buildAccessibleNeighborIdList(board, teleporter_list);
         let routing = new Routing(accessible_position_list, neighbor_id_list);
         let ghosts = LevelInitializer.initializeGhostObjects(board, routing, level_reference);
-        LevelInitializer.initializeGhostScatterPoints(board, ghosts);
-        LevelInitializer.initializeOptionalGhostSpawnPoints(board, ghosts);
+        LevelInitializer.initializeGhostScatterPositions(board, ghosts);
+        LevelInitializer.initializeOptionalGhostSpawnPositions(board, ghosts);
         return ghosts;
     }
 
@@ -99,7 +99,7 @@ export default class LevelInitializer {
     }
 
 
-    static initializeGhostScatterPoints(board, ghosts) {
+    static initializeGhostScatterPositions(board, ghosts) {
         for (let scatter_position of board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === scatter_position.getElementCharacter()) {
@@ -110,7 +110,7 @@ export default class LevelInitializer {
     }
 
 
-    static initializeOptionalGhostSpawnPoints(board, ghosts) {
+    static initializeOptionalGhostSpawnPositions(board, ghosts) {
         for (let spawn_position of board.getOptionalGhostSpawnPositions()) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === spawn_position.getElementCharacter()) {
