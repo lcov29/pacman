@@ -219,10 +219,8 @@ export default class Level {
     }
 
 
-    // TODO: MOVE LIST TO CONFIGURATION
     countAvailablePoints() {
-        let point_characters = [Configuration.POINT_CHARACTER, Configuration.POWERUP_CHARACTER];
-        return this.board.countOccurrencesOfCharacters(point_characters);
+        return this.board.countOccurrencesOfCharacters(Configuration.POINT_CHARACTERS);
     }
 
 
