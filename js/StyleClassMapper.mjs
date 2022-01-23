@@ -21,12 +21,7 @@ export default class StyleClassMapper {
         [Configuration.GHOST_CLYDE_CHARACTER]:          Configuration.empty_background_css_class,
 
         [Configuration.point_character]:                Configuration.empty_background_css_class,
-        [Configuration.powerup_character]:              Configuration.empty_background_css_class,
-
-        [Configuration.GHOST_BLINKY_SCATTER_POSITION_CHARACTER]:    Configuration.empty_background_css_class,   
-        [Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER]:     Configuration.empty_background_css_class,
-        [Configuration.GHOST_PINKY_SCATTER_POSITION_CHARACTER]:     Configuration.empty_background_css_class,
-        [Configuration.GHOST_INKY_SCATTER_POSITION_CHARACTER]:      Configuration.empty_background_css_class 
+        [Configuration.powerup_character]:              Configuration.empty_background_css_class
     };
   
   
@@ -45,12 +40,7 @@ export default class StyleClassMapper {
         [Configuration.GHOST_CLYDE_CHARACTER]:          `${Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.initial_ghosts_direction}`,
 
         [Configuration.point_character]:                Configuration.point_foreground_css_class,
-        [Configuration.powerup_character]:              Configuration.powerup_foreground_css_class,
-
-        [Configuration.GHOST_BLINKY_SCATTER_POSITION_CHARACTER]:    Configuration.point_foreground_css_class,   
-        [Configuration.GHOST_CLYDE_SCATTER_POSITION_CHARACTER]:     Configuration.point_foreground_css_class,
-        [Configuration.GHOST_PINKY_SCATTER_POSITION_CHARACTER]:     Configuration.point_foreground_css_class,
-        [Configuration.GHOST_INKY_SCATTER_POSITION_CHARACTER]:      Configuration.point_foreground_css_class 
+        [Configuration.powerup_character]:              Configuration.powerup_foreground_css_class
     };
   
   
