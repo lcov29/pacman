@@ -218,7 +218,7 @@ export default class Configuration {
                                        Configuration.GHOST_DOOR_CHARACTER,
                                        Configuration.UNDEFINED_TILE_CHARACTER];
 
-   static ALL_ACTORS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
+   static ACTORS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
                                            Configuration.UNDEFINED_TILE_CHARACTER];
 
    
