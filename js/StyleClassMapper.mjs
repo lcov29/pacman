@@ -19,7 +19,8 @@ export default class StyleClassMapper {
         [Configuration.GHOST_INKY_CHARACTER]:       Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
         [Configuration.GHOST_CLYDE_CHARACTER]:      Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
         [Configuration.POINT_CHARACTER]:            Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
-        [Configuration.POWERUP_CHARACTER]:          Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS
+        [Configuration.POWERUP_CHARACTER]:          Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
+        [Configuration.UNDEFINED_TILE_CHARACTER]:   Configuration.UNDEFINED_TILE_BACKGROUND_CSS_CLASS
     };
   
   
@@ -36,7 +37,8 @@ export default class StyleClassMapper {
         [Configuration.GHOST_INKY_CHARACTER]:       `${Configuration.GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
         [Configuration.GHOST_CLYDE_CHARACTER]:      `${Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS}_${Configuration.INITIAL_GHOST_SPRITES_DIRECTION}`,
         [Configuration.POINT_CHARACTER]:            Configuration.POINT_FOREGROUND_CSS_CLASS,
-        [Configuration.POWERUP_CHARACTER]:          Configuration.POWERUP_FOREGROUND_CSS_CLASS
+        [Configuration.POWERUP_CHARACTER]:          Configuration.POWERUP_FOREGROUND_CSS_CLASS,
+        [Configuration.UNDEFINED_TILE_CHARACTER]:   Configuration.EMPTY_FOREGROUND_CSS_CLASS
     };
   
   
