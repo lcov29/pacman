@@ -73,6 +73,11 @@ export default class Actor {
    }
 
 
+   getCharacter() {
+      return this.character;
+   }
+
+
    getCurrentMovementDirectionName() {
       return this.movement_direction_name;
    }
