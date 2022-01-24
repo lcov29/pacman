@@ -1,5 +1,12 @@
 /* TODO: THINK ABOUT BINDING STYLECLASSES TO DIV ELEMENTS: div.styleclassname */
 
+
+/* use border-box-model */
+*, *::before, *::after {
+   box-sizing: border-box;
+}
+
+
 /* general page elements */
 body {
    position: absolute;
