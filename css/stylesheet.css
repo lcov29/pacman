@@ -1,3 +1,5 @@
+/* TODO: THINK ABOUT BINDING STYLECLASSES TO DIV ELEMENTS: div.styleclassname */
+
 /* general page elements */
 body {
    position: absolute;
@@ -6,11 +8,6 @@ body {
    font-family: 'Lucida Console', monospace;
    background-color: lightgray;
 }
-
-#level_elements_list {
-   list-style-type: none;
-}
-
 
 
 /* background level elements (static) */
