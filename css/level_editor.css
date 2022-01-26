@@ -1,0 +1,204 @@
+
+body {
+    font-family: 'Lucida Console', monospace;
+    background-color: black;
+}
+
+
+.main_container {
+    display: grid;
+    grid-template-columns: 1.5fr 10fr 3fr;
+    column-gap: 1rem;
+    margin: 2em;
+}
+
+
+.selector_container {
+    background-color: gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-left: 0.5em;
+    padding-right:0.5em;
+    padding-bottom: 1em;
+    column-gap: 0.5em;
+}
+
+
+.editor_container {
+    background-color: red;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 30px);
+
+}
+
+
+.control_container {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    row-gap: 1.5em;
+}
+
+
+.inline_block {
+    display: inline-block;
+}
+
+
+.undefined_map_tile {
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+
+
+.selection_bar {
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+}
+
+
+.selector {
+    width: 30px;
+    height: 30px;
+    margin-top: 1em;
+    border: 5px solid;
+    display: inline-block;
+}
+
+
+.selector_pacman {
+    background-image: url('../sprites/pacman/pacman_right.png');
+}
+
+
+.selector_ghost_blinky {
+    background-image: url('../sprites/ghost_blinky/movement/blinky_right.png');
+}
+
+
+.selector_ghost_pinky {
+    background-image: url('../sprites/ghost_pinky/movement/pinky_right.png');
+}
+
+
+.selector_ghost_inky {
+    background-image: url('../sprites/ghost_inky/movement/inky_right.png');
+}
+
+
+.selector_ghost_clyde {
+    background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
+}
+
+
+.selector_wall_tile {
+    border-color: blue;
+    background-color: blue;
+}
+
+
+.selector_empty_tile {
+    background-color: black;
+}
+
+
+.selector_ghost_door_horizontal {
+    background-image: url('../sprites/door/ghost_door_horizontal.png');
+}
+
+
+.selector_ghost_door_vertical {
+    background-image: url('../sprites/door/ghost_door_vertical.png');
+}
+
+
+.selector_ghost_door_crossing {
+    background-image: url('../sprites/door/ghost_door_crossing.png');
+}
+
+
+.selector_teleporter_1 {
+    background-image: url('../sprites/teleporters/teleporter_1.png');
+}
+
+
+.selector_teleporter_2 {
+    background-image: url('../sprites/teleporters/teleporter_2.png');
+}
+
+
+.selector_teleporter_3 {
+    background-image: url('../sprites/teleporters/teleporter_3.png');
+}
+
+
+.selector_bonus {
+    background-image: url('../sprites/bonus_elements/cherry.png');
+}
+
+
+.selector_point_tile {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: orange;
+}
+
+
+.selector_powerup_tile {
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: lightgray;
+}
+
+
+input[type=radio] {
+    display: none;
+}
+
+
+.empty_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-color: black;
+ }
+
+
+ .input_map_dimension {
+     width: 3em;
+     margin: auto;
+ }
+
+
+ .input_position {
+    width: 4em;
+    text-align: center;
+    padding: 0.4em;
+}
+
+
+ .control_group {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+ }
+
+ 
+ .control_group label {
+     margin-left: 0.5em;
+ }
