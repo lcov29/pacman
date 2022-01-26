@@ -18,6 +18,13 @@ for (let radio of radios) {
 }
 
 
+// add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
+let editor_container = document.getElementById('editor_container');
+editor_container.addEventListener('mousedown', function() { editor.setMousePressedStatus(true); });
+editor_container.addEventListener('mouseup', function() { editor.setMousePressedStatus(false); });
+editor_container.addEventListener('mouseleave', function() { editor.setMousePressedStatus(false);});
+
+
 // add handler to map dimension apply button
 document.getElementById('button_map_sizer').addEventListener('click', changeMapDimension);
 
@@ -41,7 +48,8 @@ for (let spawn_button of spawn_buttons) {
 document.getElementById('play_level').addEventListener('click', function() { editor.handlePlay(); });
 
 
-editor.handleMapDimensionChange(LevelTileCallback);
+//editor.handleMapDimensionChange(LevelTileCallback);
+editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
 
 
 
@@ -50,11 +58,17 @@ function selectTileTypeCallback() {
     editor.handleTileTypeSelectionCallback(this.id);
 }
 
+
 function changeMapDimension() {
-    editor.handleMapDimensionChange(LevelTileCallback);
+    editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
 }
 
 
-function LevelTileCallback() {
-    editor.handleTileManipuationCallback(this.id);
+function LevelTileClickCallback() {
+    editor.handleTileManipulationClickCallback(this.id);
+}
+
+
+function LevelTileMousedownCallback() {
+    editor.handleTileManipuationMousedownCallback(this.id);
 }

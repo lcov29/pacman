@@ -16,6 +16,7 @@ export default class LevelEditor {
         this.level_scatter_positions = [];
         this.level_optional_spawn_positions = [];
         this.currently_selected_tile_type = "undefined_tile";
+        this.is_mouse_pressed_inside_editor_area = false;
     }
 
 
@@ -49,9 +50,14 @@ export default class LevelEditor {
     }
 
 
-    handleMapDimensionChange(callback) {
+    setMousePressedStatus(status) {
+        this.is_mouse_pressed_inside_editor_area = status;
+    }
+
+
+    handleMapDimensionChange(callback_mousedown, callback_click) {
         this.clearMap();
-        this.initializeEditingArea(callback);
+        this.initializeEditingArea(callback_mousedown, callback_click);
         this.initializeInternalLevelBoard();
     }
 
@@ -62,7 +68,13 @@ export default class LevelEditor {
     }
 
 
-    handleTileManipuationCallback(caller_id) {
+    handleTileManipuationMousedownCallback(caller_id) {
+        if (this.is_mouse_pressed_inside_editor_area) {
+            this.handleTileManipulationClickCallback(caller_id);
+        }
+    }
+
+    handleTileManipulationClickCallback(caller_id) {
         let styleclass = this.currently_selected_tile_type;
         if (['point_tile', 'powerup_tile'].includes(this.currently_selected_tile_type)) {
             styleclass = `empty_tile ${styleclass}`;
@@ -107,7 +119,8 @@ export default class LevelEditor {
     }
 
 
-    initializeEditingArea(callback) {
+
+    initializeEditingArea(callback_mousedown, callback_click) {
         let width = this.input_map_width.value;
         let height = this.input_map_height.value;
         
@@ -120,7 +133,8 @@ export default class LevelEditor {
                 let new_id = `(${x},${y})`;
                 new_div.setAttribute('id', new_id);
                 new_div.setAttribute('class', 'undefined_tile');
-                new_div.addEventListener('mouseover', callback);
+                new_div.addEventListener('mouseover', callback_mousedown);
+                new_div.addEventListener('click', callback_click)
                 this.editor_container.appendChild(new_div);
             }
         }
