@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Lucida Console', monospace;
-    background-color: black;
+    background-color: gray;
 }
 
 
@@ -14,7 +14,7 @@ body {
 
 
 .selector_container {
-    background-color: gray;
+    background-color: yellow;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -26,7 +26,6 @@ body {
 
 
 .editor_container {
-    background-color: red;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, 30px);
@@ -48,10 +47,10 @@ body {
 }
 
 
-.undefined_map_tile {
+.undefined_tile {
     width: 30px;
     height: 30px;
-    background-color: blue;
+    background-color: lightgray;
 }
 
 
@@ -143,26 +142,12 @@ body {
 
 
 .selector_point_tile {
-    width: 8px;
-    height: 8px;
-    border-radius: 4px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: orange;
+    background-image: url('../sprites/consumables/point.png');
 }
 
 
 .selector_powerup_tile {
-    width: 14px;
-    height: 14px;
-    border-radius: 7px;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: lightgray;
+    background-image: url('../sprites/consumables/powerup.png');
 }
 
 
@@ -171,11 +156,119 @@ input[type=radio] {
 }
 
 
-.empty_tile {
+
+ .wall_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-color: blue;
+ }
+ 
+ .empty_tile {
     width: 30px;
     height: 30px;
     float: left;
     background-color: black;
+ }
+
+
+ .point_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/consumables/point.png');
+ }
+
+
+ .powerup_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/consumables/powerup.png');
+ }
+ 
+ 
+ .teleporter_1_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/teleporters/teleporter_1.png');
+ }
+ 
+ .teleporter_2_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/teleporters/teleporter_2.png');
+ }
+ 
+ .teleporter_3_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/teleporters/teleporter_3.png');
+ }
+ 
+ .ghost_door_vertical_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/door/ghost_door_vertical.png');
+ }
+ 
+ .ghost_door_horizontal_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/door/ghost_door_horizontal.png');
+ }
+ 
+ .ghost_door_crossing_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/door/ghost_door_crossing.png');
+ }
+
+ .bonus_spawn_tile {
+    width: 30px;
+    height: 30px;
+    float: left;
+    background-image: url('../sprites/bonus_elements/cherry.png');
+ }
+
+
+ .pacman_right_tile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../sprites/pacman/pacman_right.png');
+ }
+
+
+ .ghost_blinky_right_tile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../sprites/ghost_blinky/movement/blinky_right.png');
+ }
+
+
+ .ghost_pinky_right_tile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../sprites/ghost_pinky/movement/pinky_right.png');
+ }
+
+ .ghost_inky_right_tile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../sprites/ghost_inky/movement/inky_right.png');
+ }
+
+
+ .ghost_clyde_right_tile {
+    width: 30px;
+    height: 30px;
+    background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
  }
 
 
