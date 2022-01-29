@@ -10,7 +10,7 @@ editor.setReferenceInputMapWidth("map_width");
 editor.setScatterPositionsContainer("scatter_position_container");
 editor.setOptionalSpawnPositionsContainer("spawn_position_container");
 editor.initialize();
-editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
+editor.handleMapDimensionChange(LevelTileMouseoverCallback, LevelTileClickCallback);
 
 
 // add handlers to level element selectors in selector bar
@@ -62,7 +62,7 @@ function selectTileTypeCallback() {
 
 
 function changeMapDimension() {
-    editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
+    editor.handleMapDimensionChange(LevelTileMouseoverCallback, LevelTileClickCallback);
 }
 
 
@@ -71,6 +71,6 @@ function LevelTileClickCallback() {
 }
 
 
-function LevelTileMousedownCallback() {
-    editor.handleTileManipuationMousedownCallback(this.id);
+function LevelTileMouseoverCallback() {
+    editor.handleTileManipuationMouseoverCallback(this.id);
 }

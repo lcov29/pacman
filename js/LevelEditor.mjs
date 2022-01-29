@@ -130,7 +130,7 @@ export default class LevelEditor {
     }
 
 
-    handleTileManipuationMousedownCallback(caller_id) {
+    handleTileManipuationMouseoverCallback(caller_id) {
         if (this.is_mouse_pressed_inside_editor_area) {
             this.handleTileManipulationClickCallback(caller_id);
         }
@@ -230,7 +230,7 @@ export default class LevelEditor {
     }
 
 
-    initializeEditingArea(callback_mousedown, callback_click) {
+    initializeEditingArea(callback_mouseover, callback_click) {
         let width = this.input_map_width.value;
         let height = this.input_map_height.value;
         
@@ -243,7 +243,7 @@ export default class LevelEditor {
                 let new_id = `(${x},${y})`;
                 new_div.setAttribute('id', new_id);
                 new_div.setAttribute('class', 'undefined_tile');
-                new_div.addEventListener('mouseover', callback_mousedown);
+                new_div.addEventListener('mouseover', callback_mouseover);
                 new_div.addEventListener('click', callback_click)
                 this.editor_container.appendChild(new_div);
             }
