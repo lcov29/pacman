@@ -9,6 +9,8 @@ editor.setReferenceInputMapHeight("map_height");
 editor.setReferenceInputMapWidth("map_width");
 editor.setScatterPositionsContainer("scatter_position_container");
 editor.setOptionalSpawnPositionsContainer("spawn_position_container");
+editor.initialize();
+editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
 
 
 // add handlers to level element selectors in selector bar
@@ -29,7 +31,6 @@ editor_container.addEventListener('mouseleave', function() { editor.setMousePres
 document.getElementById('button_map_sizer').addEventListener('click', changeMapDimension);
 
 
-
 // add handlers to scatter select buttons
 let scatter_buttons = document.querySelectorAll('button[name="button_scatter_position"]');
 for (let scatter_button of scatter_buttons) {
@@ -48,8 +49,9 @@ for (let spawn_button of spawn_buttons) {
 document.getElementById('play_level').addEventListener('click', function() { editor.handlePlay(); });
 
 
-//editor.handleMapDimensionChange(LevelTileCallback);
-editor.handleMapDimensionChange(LevelTileMousedownCallback, LevelTileClickCallback);
+
+
+
 
 
 
