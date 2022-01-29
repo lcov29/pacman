@@ -46,8 +46,9 @@
                  <label id='teleporter_3_label' class='selector selector_teleporter_3' for='teleporter_3_tile' title='Teleporter 3 Tile (requires destination of same type)'></label>
                  <input type='radio' id='teleporter_3_tile' name='selectors'>
      
+                 <!-- TODO: ACTIVATE WHEN BONUS SPAWNS ARE IMPLEMENTED
                  <label id='bonus_spawn_label' class='selector selector_bonus' for='bonus_spawn_tile' title='Spawn Tile For Bonus (consumable)'></label>
-                 <input type='radio' id='bonus_spawn_tile' name='selectors'>
+                 <input type='radio' id='bonus_spawn_tile' name='selectors'>-->
               </div>
   
               <div class='selection_bar'>
@@ -90,22 +91,22 @@
   
               <fieldset  id="scatter_position_container" control="control_group">
                  <legend>Scatter Positions</legend>
-                 <div class="control_group">
+                 <div id="scatter_control_ghost_blinky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_blinky/movement/blinky_right.png">
                     <input id="scatter_position_ghost_blinky" class="input_position" type="text">
                     <button id="select_scatter_position_ghost_blinky" name="button_scatter_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="scatter_control_ghost_pinky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_pinky/movement/pinky_right.png">
                     <input id="scatter_position_ghost_pinky" class="input_position" type="text">
                     <button id="select_scatter_position_ghost_pinky" name="button_scatter_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="scatter_control_ghost_inky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_inky/movement/inky_right.png">
                     <input id="scatter_position_ghost_inky" class="input_position" type="text">
                     <button id="select_scatter_position_ghost_inky" name="button_scatter_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="scatter_control_ghost_clyde" class="control_group" style="display:none">
                     <img src="../sprites/ghost_clyde/movement/clyde_right.png">
                     <input id="scatter_position_ghost_clyde" class="input_position" type="text">
                     <button id="select_scatter_position_ghost_clyde" name="button_scatter_position">Select</button>
@@ -114,26 +115,25 @@
   
               <fieldset id="spawn_position_container" control="control_group">
                  <legend>Optional Spawn Positions</legend>
-                 <div class="control_group">
+                 <div id="spawn_control_ghost_blinky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_blinky/movement/blinky_right.png">
                     <input id="spawn_position_ghost_blinky" class="input_position" type="text">
                     <button id="select_spawn_position_ghost_blinky" name="button_spawn_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="spawn_control_ghost_pinky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_pinky/movement/pinky_right.png">
                     <input id="spawn_position_ghost_pinky" class="input_position" type="text">
                     <button id="select_spawn_position_ghost_pinky" name="button_spawn_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="spawn_control_ghost_inky" class="control_group" style="display:none">
                     <img src="../sprites/ghost_inky/movement/inky_right.png">
                     <input id="spawn_position_ghost_inky" class="input_position" type="text">
                     <button id="select_spawn_position_ghost_inky" name="button_spawn_position">Select</button>
                  </div>
-                 <div class="control_group">
+                 <div id="spawn_control_ghost_clyde" class="control_group" style="display:none">
                     <img src="../sprites/ghost_clyde/movement/clyde_right.png">
                     <input id="spawn_position_ghost_clyde" class="input_position" type="text">
                     <button id="select_spawn_position_ghost_clyde" name="button_spawn_position">Select</button>
-  
                  </div>
               </fieldset>
   
