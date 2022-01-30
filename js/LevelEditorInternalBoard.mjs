@@ -1,6 +1,7 @@
 "use strict";
 
 import Configuration from "./Configuration.mjs";
+import Utility from "./Utility.mjs";
 
 
 export default class LevelEditorInternalBoard {
@@ -8,10 +9,39 @@ export default class LevelEditorInternalBoard {
 
     constructor() {
         this.internal_board = [[]];
+        this.coordinates_ghost_blinky = [];
+        this.coordinates_ghost_pinky = [];
+        this.coordinates_ghost_clyde = [];
+        this.coordinates_ghost_inky = [];
         this.counter_ghosts_blinky = 0;
         this.counter_ghosts_pinky = 0;
         this.counter_ghosts_clyde = 0;
         this.counter_ghosts_inky = 0;
+    }
+
+
+    getBoardCharacterAt(coordinates) {
+        return this.internal_board[coordinates.y][coordinates.x];
+    }
+
+
+    getGhostCoordinatesListFor(ghost_character) {
+        let output = [];
+        switch(ghost_character) {
+            case Configuration.GHOST_BLINKY_CHARACTER:
+                output = [...this.coordinates_ghost_blinky];
+                break;
+            case Configuration.GHOST_PINKY_CHARACTER:
+                output = [...this.coordinates_ghost_pinky];
+                break;
+            case Configuration.GHOST_CLYDE_CHARACTER:
+                output = [...this.coordinates_ghost_clyde];
+                break;
+            case Configuration.GHOST_INKY_CHARACTER:
+                output = [...this.coordinates_ghost_inky];
+                break;
+        }
+        return output;
     }
 
 
@@ -32,6 +62,11 @@ export default class LevelEditorInternalBoard {
 
     getCounterGhostsInky() {
         return this.counter_ghosts_inky;
+    }
+
+
+    setBoardCharacter(coordinates, character) {
+        this.internal_board[coordinates.y][coordinates.x] = character;
     }
 
 
@@ -67,29 +102,77 @@ export default class LevelEditorInternalBoard {
     }
 
 
-    update(coordinates, character) {
-        let parsed_coordinates = this.parseCoordinates(coordinates);
-        this.updateGhostCounters(parsed_coordinates, character);
-        this.internal_board[parsed_coordinates.y][parsed_coordinates.x] = character;
+    update(coordinates_string, character) {
+        let parsed_coordinates = this.parseCoordinates(coordinates_string);
+        let current_board_character = this.getBoardCharacterAt(parsed_coordinates);
+        this.updateGhostCoordinateLists(coordinates_string, current_board_character, character);
+        this.updateGhostCounters(current_board_character, character);
+        this.setBoardCharacter(parsed_coordinates, character);
     }
 
 
-    updateGhostCounters(parsed_coordinates, character) {
-        let current_character = this.internal_board[parsed_coordinates.y][parsed_coordinates.x];
+    updateGhostCoordinateLists(coordinates_string, current_board_character, new_character) {
+        if (Configuration.GHOST_CHARACTERS.includes(current_board_character)) {
+            this.removeCoordinatesFromGhostList(coordinates_string, current_board_character);
+        }
+
+        if (Configuration.GHOST_CHARACTERS.includes(new_character)) {
+            this.addCoordinatesToGhostList(coordinates_string, new_character);
+        }
+    }
+
+
+    addCoordinatesToGhostList(coordinates, ghost_character) {
+        switch(ghost_character) {
+            case Configuration.GHOST_BLINKY_CHARACTER:
+                this.coordinates_ghost_blinky.push(coordinates);
+                break;
+            case Configuration.GHOST_PINKY_CHARACTER:
+                this.coordinates_ghost_pinky.push(coordinates);
+                break;
+            case Configuration.GHOST_CLYDE_CHARACTER:
+                this.coordinates_ghost_clyde.push(coordinates);
+                break;
+            case Configuration.GHOST_INKY_CHARACTER:
+                this.coordinates_ghost_inky.push(coordinates);
+                break;
+        }
+    }
+
+
+    removeCoordinatesFromGhostList(coordinates, ghost_character) {
+        switch(ghost_character) {
+            case Configuration.GHOST_BLINKY_CHARACTER:
+                Utility.removeElementFrom(this.coordinates_ghost_blinky, coordinates);
+                break;
+            case Configuration.GHOST_PINKY_CHARACTER:
+                Utility.removeElementFrom(this.coordinates_ghost_pinky, coordinates);
+                break;
+            case Configuration.GHOST_CLYDE_CHARACTER:
+                Utility.removeElementFrom(this.coordinates_ghost_clyde, coordinates);
+                break;
+            case Configuration.GHOST_INKY_CHARACTER:
+                Utility.removeElementFrom(this.coordinates_ghost_inky, coordinates);
+                break;
+        }
+    }
+
+
+    updateGhostCounters(current_board_character, new_character) {
 
         // decrement counter for overwritten ghost
-        if (Configuration.GHOST_CHARACTERS.includes(current_character)) {
-            this.decrementGhostCounterFor(current_character);
+        if (Configuration.GHOST_CHARACTERS.includes(current_board_character)) {
+            this.decrementGhostCounterFor(current_board_character);
         }
 
-        if (Configuration.GHOST_CHARACTERS.includes(character)) {
-            this.incrementGhostCounterFor(character);
+        if (Configuration.GHOST_CHARACTERS.includes(new_character)) {
+            this.incrementGhostCounterFor(new_character);
         }
     }
 
 
-    incrementGhostCounterFor(character) {
-        switch(character) {
+    incrementGhostCounterFor(ghost_character) {
+        switch(ghost_character) {
             case Configuration.GHOST_BLINKY_CHARACTER:
                 this.counter_ghosts_blinky++;
                 break;
@@ -106,8 +189,8 @@ export default class LevelEditorInternalBoard {
     }
 
 
-    decrementGhostCounterFor(character) {
-        switch(character) {
+    decrementGhostCounterFor(ghost_character) {
+        switch(ghost_character) {
             case Configuration.GHOST_BLINKY_CHARACTER:
                 this.counter_ghosts_blinky--;
                 break;
