@@ -114,7 +114,12 @@ export default class LevelEditor {
 
 
     setCurrentlyActiveSpawnSelection(button_id) {
-        this.currently_active_spawn_selection = button_id;
+        if (button_id === '') {
+            this.currently_active_spawn_input = null;
+        } else {
+            let input_id = this.mapButtonIdToInputId[button_id];
+            this.currently_active_spawn_input = document.getElementById(input_id);
+        }
     }
 
 
@@ -155,10 +160,14 @@ export default class LevelEditor {
 
 
     getGhostCharacterForCurrentSelectionButton() {
-        return this.mapButtonIdToGhostCharacter[this.currently_active_scatter_input.id];
+        let active_input = null;
+        if (this.currently_active_scatter_input === null) {
+            active_input = this.currently_active_spawn_input;
+        } else {
+            active_input = this.currently_active_scatter_input;
+        }
+        return this.mapButtonIdToGhostCharacter[active_input.id];
     }
-
-
 
 
     // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
@@ -172,14 +181,21 @@ export default class LevelEditor {
 
     levelTileMouseoverCallback(caller_id) {
         this.handleTileManipuationMouseover(caller_id);
-        //this.handleScatterSelectionMouseover(caller_id);
     }
 
 
     scatterSelectionButtonCallback(caller_id) {
+        this.resetHighlighOfChosenSelectorTile();
         this.setCurrentlyActiveScatterInput(caller_id);
         this.setCurrentlySelectedTileType('');
+        this.highlightPlacedGhosts();
+    }
+
+
+    spawnSelectionButtonCallback(caller_id) {
         this.resetHighlighOfChosenSelectorTile();
+        this.setCurrentlyActiveSpawnSelection(caller_id);
+        this.setCurrentlySelectedTileType('');
         this.highlightPlacedGhosts();
     }
 
