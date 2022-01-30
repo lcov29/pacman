@@ -1,7 +1,11 @@
-
 body {
     font-family: 'Lucida Console', monospace;
-    background-color: gray;
+    background-color: black;
+}
+
+
+.inline_block {
+    display: inline-block;
 }
 
 
@@ -28,8 +32,7 @@ body {
 .editor_container {
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 30px);
-
+    grid-template-columns: repeat(auto-fit, 32px);
 }
 
 
@@ -42,22 +45,40 @@ body {
 }
 
 
-.inline_block {
-    display: inline-block;
-}
-
-
-.undefined_tile {
-    width: 30px;
-    height: 30px;
-    background-color: lightgray;
-}
-
-
 .selection_bar {
     display: flex;
     flex-direction: column;
     background-color:white;
+}
+
+
+.control_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.control_group label {
+    margin-left: 0.5em;
+}
+
+
+input[type=radio] {
+    display: none;
+}
+
+
+.input_map_dimension {
+    width: 3em;
+    margin: auto;
+}
+
+
+.input_position {
+    width: 4em;
+    text-align: center;
+    padding: 0.4em;
 }
 
 
@@ -70,228 +91,105 @@ body {
 }
 
 
-.selector_pacman {
-    background-image: url('../sprites/pacman/pacman_right.png');
-}
-
-
-.selector_ghost_blinky {
-    background-image: url('../sprites/ghost_blinky/movement/blinky_right.png');
-}
-
-
-.selector_ghost_pinky {
-    background-image: url('../sprites/ghost_pinky/movement/pinky_right.png');
-}
-
-
-.selector_ghost_inky {
-    background-image: url('../sprites/ghost_inky/movement/inky_right.png');
-}
-
-
-.selector_ghost_clyde {
-    background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
-}
-
-
 .selector_wall_tile {
     border-color: blue;
     background-color: blue;
 }
 
 
-.selector_empty_tile {
-    background-color: black;
+.editor_tile {
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border: 1px solid white;
 }
 
 
-.selector_ghost_door_horizontal {
-    background-image: url('../sprites/door/ghost_door_horizontal.png');
+.undefined_tile {
+    background-color: rgb(99, 93, 93);
 }
 
 
-.selector_ghost_door_vertical {
-    background-image: url('../sprites/door/ghost_door_vertical.png');
-}
-
-
-.selector_ghost_door_crossing {
-    background-image: url('../sprites/door/ghost_door_crossing.png');
-}
-
-
-.selector_teleporter_1 {
-    background-image: url('../sprites/teleporters/teleporter_1.png');
-}
-
-
-.selector_teleporter_2 {
-    background-image: url('../sprites/teleporters/teleporter_2.png');
-}
-
-
-.selector_teleporter_3 {
-    background-image: url('../sprites/teleporters/teleporter_3.png');
-}
-
-
-.selector_bonus {
-    background-image: url('../sprites/bonus_elements/cherry.png');
-}
-
-
-.selector_point_tile {
-    background-image: url('../sprites/consumables/point.png');
-}
-
-
-.selector_powerup_tile {
-    background-image: url('../sprites/consumables/powerup.png');
-}
-
-
-input[type=radio] {
-    display: none;
-}
-
-
-
- .wall_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
+.wall_tile {
     background-color: blue;
- }
- 
- .empty_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-color: black;
- }
-
-
- .point_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/consumables/point.png');
- }
-
-
- .powerup_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/consumables/powerup.png');
- }
- 
- 
- .teleporter_1_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/teleporters/teleporter_1.png');
- }
- 
- .teleporter_2_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/teleporters/teleporter_2.png');
- }
- 
- .teleporter_3_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/teleporters/teleporter_3.png');
- }
- 
- .ghost_door_vertical_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/door/ghost_door_vertical.png');
- }
- 
- .ghost_door_horizontal_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/door/ghost_door_horizontal.png');
- }
- 
- .ghost_door_crossing_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/door/ghost_door_crossing.png');
- }
-
- .bonus_spawn_tile {
-    width: 30px;
-    height: 30px;
-    float: left;
-    background-image: url('../sprites/bonus_elements/cherry.png');
- }
-
-
- .pacman_right_tile {
-    width: 30px;
-    height: 30px;
-    background-image: url('../sprites/pacman/pacman_right.png');
- }
-
-
- .ghost_blinky_right_tile {
-    width: 30px;
-    height: 30px;
-    background-image: url('../sprites/ghost_blinky/movement/blinky_right.png');
- }
-
-
- .ghost_pinky_right_tile {
-    width: 30px;
-    height: 30px;
-    background-image: url('../sprites/ghost_pinky/movement/pinky_right.png');
- }
-
- .ghost_inky_right_tile {
-    width: 30px;
-    height: 30px;
-    background-image: url('../sprites/ghost_inky/movement/inky_right.png');
- }
-
-
- .ghost_clyde_right_tile {
-    width: 30px;
-    height: 30px;
-    background-image: url('../sprites/ghost_clyde/movement/clyde_right.png');
- }
-
-
- .input_map_dimension {
-     width: 3em;
-     margin: auto;
- }
-
-
- .input_position {
-    width: 4em;
-    text-align: center;
-    padding: 0.4em;
 }
 
 
- .control_group {
-     display: flex;
-     flex-direction: row;
-     justify-content: space-between;
- }
+.empty_tile {
+    background-color: black;
+}
 
 
- .control_group label {
-     margin-left: 0.5em;
- }
+.bonus_spawn_tile {
+    background-image: url('../sprites/bonus_elements/cherry.png');
+}
+
+
+.point_tile {
+    background-image: url('../sprites/consumables/point.png');
+}
+
+
+.powerup_tile {
+    background-image: url('../sprites/consumables/powerup.png');
+}
+
+
+.teleporter_1_tile {
+    background-image: url('../sprites/teleporters/teleporter_1.png');
+}
+
+
+.teleporter_2_tile {
+    background-image: url('../sprites/teleporters/teleporter_2.png');
+}
+
+
+.teleporter_3_tile {
+    background-image: url('../sprites/teleporters/teleporter_3.png');
+}
+
+
+.ghost_door_vertical_tile {
+    background-image: url('../sprites/door/ghost_door_vertical.png');
+}
+
+
+.ghost_door_horizontal_tile {
+    background-image: url('../sprites/door/ghost_door_horizontal.png');
+}
+
+
+.ghost_door_crossing_tile {
+    background-image: url('../sprites/door/ghost_door_crossing.png');
+}
+
+
+.bonus_spawn_tile {
+    background-image: url('../sprites/bonus_elements/cherry.png');
+}
+
+
+.pacman_tile {
+    background-image: url('../sprites/pacman/pacman_right.png');
+}
+
+
+.ghost_blinky_tile {
+    background-image: url('../sprites/ghost_blinky/movement/blinky_down.png');
+}
+
+
+.ghost_pinky_tile {
+    background-image: url('../sprites/ghost_pinky/movement/pinky_down.png');
+}
+
+
+.ghost_inky_tile {
+    background-image: url('../sprites/ghost_inky/movement/inky_down.png');
+}
+
+
+.ghost_clyde_tile {
+    background-image: url('../sprites/ghost_clyde/movement/clyde_down.png');
+}
