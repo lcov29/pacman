@@ -44,7 +44,7 @@ for (let scatter_button of scatter_buttons) {
 // add handlers to spawn select buttons
 let spawn_buttons = document.querySelectorAll('button[name="button_spawn_position"]');
 for (let spawn_button of spawn_buttons) {
-    spawn_button.addEventListener('click', function() { editor.handleSpawnSelection(); });
+    spawn_button.addEventListener('click', spawnSelectionButtonCallback);
 }
 
 
@@ -73,9 +73,12 @@ function changeMapDimension() {
 
 
 function scatterSelectionButtonCallback() {
-    //editor.setCurrentlyActiveScatterInput(this.id);
-    //editor.setCurrentlySelectedTileType('');
     editor.scatterSelectionButtonCallback(this.id);
+}
+
+
+function spawnSelectionButtonCallback() {
+    editor.spawnSelectionButtonCallback(this.id);
 }
 
 
