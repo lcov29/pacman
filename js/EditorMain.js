@@ -10,8 +10,11 @@ editor.setReferenceInputMapWidth("map_width");
 editor.setScatterPositionsContainer("scatter_position_container");
 editor.setOptionalSpawnPositionsContainer("spawn_position_container");
 editor.initialize();
-editor.handleMapDimensionChange(LevelTileMouseoverCallback, LevelTileClickCallback);
-
+editor.handleMapDimensionChange(levelTileMouseoverCallback,
+                                scatterSelectionTileMouseenterCallback,
+                                scatterSelectionTileMouseleaveCallback, 
+                                levelTileClickCallback);
+                                
 
 // add handlers to level element selectors in selector bar
 let radios = document.querySelectorAll('input[name="selectors"]');
@@ -62,7 +65,10 @@ function selectTileTypeCallback() {
 
 
 function changeMapDimension() {
-    editor.handleMapDimensionChange(LevelTileMouseoverCallback, LevelTileClickCallback);
+    editor.handleMapDimensionChange(levelTileMouseoverCallback,
+                                    scatterSelectionTileMouseenterCallback,
+                                    scatterSelectionTileMouseleaveCallback, 
+                                    levelTileClickCallback);
 }
 
 
@@ -73,11 +79,21 @@ function scatterSelectionButtonCallback() {
 }
 
 
-function LevelTileClickCallback() {
+function scatterSelectionTileMouseenterCallback() {
+    editor.handleScatterSelectionMouseenter(this.id);
+}
+
+
+function scatterSelectionTileMouseleaveCallback() {
+    editor.handleScatterSelectionMouseleave(this.id);
+}
+
+
+function levelTileClickCallback() {
     editor.levelTileClickCallback(this.id);
 }
 
 
-function LevelTileMouseoverCallback() {
+function levelTileMouseoverCallback() {
     editor.levelTileMouseoverCallback(this.id);
 }
