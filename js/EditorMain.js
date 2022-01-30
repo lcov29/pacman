@@ -34,7 +34,7 @@ document.getElementById('button_map_sizer').addEventListener('click', changeMapD
 // add handlers to scatter select buttons
 let scatter_buttons = document.querySelectorAll('button[name="button_scatter_position"]');
 for (let scatter_button of scatter_buttons) {
-    scatter_button.addEventListener('click', function(){ editor.handleScatterSelection(); });
+    scatter_button.addEventListener('click', scatterSelectionButtonCallback);
 }
 
 
@@ -66,11 +66,18 @@ function changeMapDimension() {
 }
 
 
+function scatterSelectionButtonCallback() {
+    //editor.setCurrentlyActiveScatterInput(this.id);
+    //editor.setCurrentlySelectedTileType('');
+    editor.scatterSelectionButtonCallback(this.id);
+}
+
+
 function LevelTileClickCallback() {
-    editor.handleTileManipulationClickCallback(this.id);
+    editor.levelTileClickCallback(this.id);
 }
 
 
 function LevelTileMouseoverCallback() {
-    editor.handleTileManipuationMouseoverCallback(this.id);
+    editor.levelTileMouseoverCallback(this.id);
 }
