@@ -44,11 +44,11 @@ export default class LevelEditor {
             'teleporter_1_tile':            Configuration.TELEPORTER_1_CHARACTER,
             'teleporter_2_tile':            Configuration.TELEPORTER_2_CHARACTER,
             'teleporter_3_tile':            Configuration.TELEPORTER_3_CHARACTER,
-            'pacman_right_tile':            Configuration.PACMAN_CHARACTER,
-            'ghost_blinky_right_tile':      Configuration.GHOST_BLINKY_CHARACTER,
-            'ghost_pinky_right_tile':       Configuration.GHOST_PINKY_CHARACTER,
-            'ghost_inky_right_tile':        Configuration.GHOST_INKY_CHARACTER,
-            'ghost_clyde_right_tile':       Configuration.GHOST_CLYDE_CHARACTER
+            'pacman_tile':                  Configuration.PACMAN_CHARACTER,
+            'ghost_blinky_tile':            Configuration.GHOST_BLINKY_CHARACTER,
+            'ghost_pinky_tile':             Configuration.GHOST_PINKY_CHARACTER,
+            'ghost_inky_tile':              Configuration.GHOST_INKY_CHARACTER,
+            'ghost_clyde_tile':             Configuration.GHOST_CLYDE_CHARACTER
         };
         this.mapButtonIdToInputId = {
             'select_scatter_position_ghost_blinky':     'scatter_position_ghost_blinky',
@@ -60,6 +60,16 @@ export default class LevelEditor {
             'select_spawn_position_ghost_inky':         'spawn_position_ghost_inky',
             'select_spawn_position_ghost_clyde':        'spawn_position_ghost_clyde'
         };
+        this.mapButtonIdToGhostCharacter = {
+            'scatter_position_ghost_blinky':     Configuration.GHOST_BLINKY_CHARACTER,
+            'scatter_position_ghost_pinky':      Configuration.GHOST_PINKY_CHARACTER,
+            'scatter_position_ghost_inky':       Configuration.GHOST_INKY_CHARACTER,
+            'scatter_position_ghost_clyde':      Configuration.GHOST_CLYDE_CHARACTER,
+            'spawn_position_ghost_blinky':       Configuration.GHOST_BLINKY_CHARACTER,
+            'spawn_position_ghost_pinky':        Configuration.GHOST_PINKY_CHARACTER,
+            'spawn_position_ghost_inky':         Configuration.GHOST_INKY_CHARACTER,
+            'spawn_position_ghost_clyde':        Configuration.GHOST_CLYDE_CHARACTER
+        }
     }
 
 
@@ -144,8 +154,8 @@ export default class LevelEditor {
     }
 
 
-    getScatterSpawnInputIdForCurrentSelectionButton() {
-        return this.mapButtonIdToInputId[this.currently_active_scatter_selection];
+    getGhostCharacterForCurrentSelectionButton() {
+        return this.mapButtonIdToGhostCharacter[this.currently_active_scatter_input.id];
     }
 
 
@@ -154,12 +164,13 @@ export default class LevelEditor {
 
     levelTileClickCallback(caller_id) {
         this.handleTileManipulationClick(caller_id);
+        this.handleScatterSelectionClick(caller_id);
     }
 
 
     levelTileMouseoverCallback(caller_id) {
         this.handleTileManipuationMouseover(caller_id);
-        this.handleScatterSelectionMouseover(caller_id);
+        //this.handleScatterSelectionMouseover(caller_id);
     }
 
 
@@ -167,14 +178,24 @@ export default class LevelEditor {
         this.setCurrentlyActiveScatterInput(caller_id);
         this.setCurrentlySelectedTileType('');
         this.resetHighlighOfChosenSelectorTile();
-        // ADD: HIGHLIGHT ALL GHOSTS OF SELECTED TYPE
+        this.highlightPlacedGhosts();
     }
 
 
-    handleMapDimensionChange(callback_mousedown, callback_click) {
+    highlightPlacedGhosts() {
+        let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
+        let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
+        for (let coordinate of ghost_coordinates) {
+            document.getElementById(coordinate).style.borderColor = 'red';
+            document.getElementById(coordinate).style.borderWidth = '5px';
+        }
+    }
+
+
+    handleMapDimensionChange(callback_mousedown, callback_mouseenter, callback_mouseleave, callback_click) {
         this.clearMap();
         this.internal_board.initializeNewMap(this.input_map_width.value, this.input_map_height.value);
-        this.initializeEditingArea(callback_mousedown, callback_click);
+        this.initializeEditingArea(callback_mousedown, callback_mouseenter, callback_mouseleave, callback_click);
         this.resetSpawnScatterControlDisplayStatus();
     }
 
@@ -185,6 +206,18 @@ export default class LevelEditor {
     }
 
 
+    handleTileManipulationClick(caller_id) {
+        if (this.currently_selected_tile_type !== '') {
+            let styleclass = `editor_tile ${this.currently_selected_tile_type}`;
+            document.getElementById(caller_id).setAttribute('class', styleclass);
+            let internal_element = this.getInternalElementForCurrentTileType();
+            this.internal_board.update(caller_id, internal_element);
+            this.manageScatterSpawnControlVisibility();
+            //this.internal_board.printInternalBoardToConsole();
+        }
+    }
+
+
     handleTileManipuationMouseover(caller_id) {
         if (this.is_mouse_pressed_inside_editor_area) {
             this.handleTileManipulationClick(caller_id);
@@ -192,23 +225,56 @@ export default class LevelEditor {
     }
 
 
+    /*
     handleScatterSelectionMouseover(caller_id) {
         if (this.currently_active_scatter_input !== null) {
             this.currently_active_scatter_input.value = caller_id;
             // ADD: HIGHLIGHT SELECTED TILE WITH BORDER
         }
-    }
+    }*/
 
 
-    handleTileManipulationClick(caller_id) {
-        if (this.currently_selected_tile_type !== '') {
-            document.getElementById(caller_id).setAttribute('class', this.currently_selected_tile_type);
-            let internal_element = this.getInternalElementForCurrentTileType();
-            this.internal_board.update(caller_id, internal_element);
-            this.manageScatterSpawnControlVisibility();
-            //this.internal_board.printInternalBoardToConsole();
+    handleScatterSelectionMouseenter(caller_id) {
+        if (this.currently_active_scatter_input !== null) {
+            let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
+            let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
+            if (ghost_coordinates.includes(caller_id) === false) {
+                document.getElementById(caller_id).style.borderColor = 'green';
+                document.getElementById(caller_id).style.borderWidth = "5px";
+                this.currently_active_scatter_input.value = caller_id;
+            }
         }
     }
+
+
+    handleScatterSelectionMouseleave(caller_id) {
+        if (this.currently_active_scatter_input !== null) {
+            let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
+            let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
+            if (ghost_coordinates.includes(caller_id) === false) {
+                document.getElementById(caller_id).style = null;
+            }
+        }
+    }
+
+
+    handleScatterSelectionClick(caller_id) {
+        if (this.currently_active_scatter_input !== null) {
+            this.resetHighlightPlacedGhosts();
+            document.getElementById(caller_id).style = null;
+            this.currently_selected_tile_type = 'undefined_tile';
+            this.currently_active_scatter_input = null;
+        }       
+    }
+
+
+    resetHighlightPlacedGhosts() {
+        let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
+        let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
+        for (let coordinate of ghost_coordinates) {
+            document.getElementById(coordinate).style = null;
+        }
+    }   
 
 
     manageScatterSpawnControlVisibility() {
@@ -302,20 +368,23 @@ export default class LevelEditor {
     }
 
 
-    initializeEditingArea(callback_mouseover, callback_click) {
+    initializeEditingArea(callback_mouseover, callback_mouseenter, callback_mouseleave, callback_click) {
         let width = this.input_map_width.value;
         let height = this.input_map_height.value;
         
-        this.editor_container.style.width = `${width * 30}px`;
-        this.editor_container.style.height = `${height * 30}px`;
+        this.editor_container.style.width = `${width * 32}px`;
+        this.editor_container.style.height = `${height * 32}px`;
 
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 let new_div = document.createElement('div');
                 let new_id = `(${x},${y})`;
                 new_div.setAttribute('id', new_id);
-                new_div.setAttribute('class', 'undefined_tile');
+                new_div.setAttribute('title', new_id);
+                new_div.setAttribute('class', 'editor_tile undefined_tile');
                 new_div.addEventListener('mouseover', callback_mouseover);
+                new_div.addEventListener('mouseenter', callback_mouseenter);
+                new_div.addEventListener('mouseleave', callback_mouseleave);
                 new_div.addEventListener('click', callback_click)
                 this.editor_container.appendChild(new_div);
             }
