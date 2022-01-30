@@ -159,6 +159,8 @@ export default class LevelEditor {
     }
 
 
+
+
     // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
 
 
@@ -179,16 +181,6 @@ export default class LevelEditor {
         this.setCurrentlySelectedTileType('');
         this.resetHighlighOfChosenSelectorTile();
         this.highlightPlacedGhosts();
-    }
-
-
-    highlightPlacedGhosts() {
-        let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
-        let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
-        for (let coordinate of ghost_coordinates) {
-            document.getElementById(coordinate).style.borderColor = 'red';
-            document.getElementById(coordinate).style.borderWidth = '5px';
-        }
     }
 
 
@@ -225,15 +217,6 @@ export default class LevelEditor {
     }
 
 
-    /*
-    handleScatterSelectionMouseover(caller_id) {
-        if (this.currently_active_scatter_input !== null) {
-            this.currently_active_scatter_input.value = caller_id;
-            // ADD: HIGHLIGHT SELECTED TILE WITH BORDER
-        }
-    }*/
-
-
     handleScatterSelectionMouseenter(caller_id) {
         if (this.currently_active_scatter_input !== null) {
             let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
@@ -268,15 +251,35 @@ export default class LevelEditor {
     }
 
 
+    handleSpawnSelection() {
+        window.alert("implement spawn selection");
+    }
+
+
+    handlePlay() {
+        window.alert("implement play");
+    }
+
+
+    highlightPlacedGhosts() {
+        let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
+        let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
+        for (let coordinate of ghost_coordinates) {
+            document.getElementById(coordinate).style.borderColor = 'red';
+            document.getElementById(coordinate).style.borderWidth = '5px';
+        }
+    }
+
+
     resetHighlightPlacedGhosts() {
         let ghost_character = this.getGhostCharacterForCurrentSelectionButton();
         let ghost_coordinates = this.internal_board.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style = null;
         }
-    }   
-
-
+    }  
+    
+   
     manageScatterSpawnControlVisibility() {
         let ghost_type_counter = 0;
         let ghost_type_control_display_status = false;
@@ -322,21 +325,6 @@ export default class LevelEditor {
             }
 
         }
-    }
-
-
-    handleScatterSelection() {
-        window.alert("implement scatter selection");
-    }
-
-
-    handleSpawnSelection() {
-        window.alert("implement spawn selection");
-    }
-
-
-    handlePlay() {
-        window.alert("implement play");
     }
 
 
