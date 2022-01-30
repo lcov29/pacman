@@ -17,7 +17,10 @@ export default class LevelEditor {
         this.level_scatter_positions = [];
         this.level_optional_spawn_positions = [];
         this.mapTileTypeToInternalElement = [];
-        this.currently_selected_tile_type = "undefined_tile";
+        this.mapButtonIdToInputId = [];
+        this.currently_selected_tile_type = "";
+        this.currently_active_scatter_input = null;
+        this.currently_active_spawn_input = null;
         this.is_mouse_pressed_inside_editor_area = false;
         this.is_ghost_blinky_scatter_spawn_control_displayed = false;
         this.is_ghost_pinky_scatter_spawn_control_displayed = false;
@@ -46,7 +49,17 @@ export default class LevelEditor {
             'ghost_pinky_right_tile':       Configuration.GHOST_PINKY_CHARACTER,
             'ghost_inky_right_tile':        Configuration.GHOST_INKY_CHARACTER,
             'ghost_clyde_right_tile':       Configuration.GHOST_CLYDE_CHARACTER
-        }
+        };
+        this.mapButtonIdToInputId = {
+            'select_scatter_position_ghost_blinky':     'scatter_position_ghost_blinky',
+            'select_scatter_position_ghost_pinky':      'scatter_position_ghost_pinky',
+            'select_scatter_position_ghost_inky':       'scatter_position_ghost_inky',
+            'select_scatter_position_ghost_clyde':      'scatter_position_ghost_clyde',
+            'select_spawn_position_ghost_blinky':       'spawn_position_ghost_blinky',
+            'select_spawn_position_ghost_pinky':        'spawn_position_ghost_pinky',
+            'select_spawn_position_ghost_inky':         'spawn_position_ghost_inky',
+            'select_spawn_position_ghost_clyde':        'spawn_position_ghost_clyde'
+        };
     }
 
 
@@ -77,6 +90,21 @@ export default class LevelEditor {
 
     setCurrentlySelectedTileType(tile_type) {
         this.currently_selected_tile_type = tile_type;
+    }
+
+
+    setCurrentlyActiveScatterInput(button_id) {
+        if (button_id === '') {
+            this.currently_active_scatter_input = null;
+        } else {
+            let input_id = this.mapButtonIdToInputId[button_id];
+            this.currently_active_scatter_input = document.getElementById(input_id);
+        }
+    }
+
+
+    setCurrentlyActiveSpawnSelection(button_id) {
+        this.currently_active_spawn_selection = button_id;
     }
 
 
@@ -116,6 +144,33 @@ export default class LevelEditor {
     }
 
 
+    getScatterSpawnInputIdForCurrentSelectionButton() {
+        return this.mapButtonIdToInputId[this.currently_active_scatter_selection];
+    }
+
+
+    // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
+
+
+    levelTileClickCallback(caller_id) {
+        this.handleTileManipulationClick(caller_id);
+    }
+
+
+    levelTileMouseoverCallback(caller_id) {
+        this.handleTileManipuationMouseover(caller_id);
+        this.handleScatterSelectionMouseover(caller_id);
+    }
+
+
+    scatterSelectionButtonCallback(caller_id) {
+        this.setCurrentlyActiveScatterInput(caller_id);
+        this.setCurrentlySelectedTileType('');
+        this.resetHighlighOfChosenSelectorTile();
+        // ADD: HIGHLIGHT ALL GHOSTS OF SELECTED TYPE
+    }
+
+
     handleMapDimensionChange(callback_mousedown, callback_click) {
         this.clearMap();
         this.internal_board.initializeNewMap(this.input_map_width.value, this.input_map_height.value);
@@ -130,19 +185,29 @@ export default class LevelEditor {
     }
 
 
-    handleTileManipuationMouseoverCallback(caller_id) {
+    handleTileManipuationMouseover(caller_id) {
         if (this.is_mouse_pressed_inside_editor_area) {
-            this.handleTileManipulationClickCallback(caller_id);
+            this.handleTileManipulationClick(caller_id);
         }
     }
 
 
-    handleTileManipulationClickCallback(caller_id) {
-        document.getElementById(caller_id).setAttribute('class', this.currently_selected_tile_type);
-        let internal_element = this.getInternalElementForCurrentTileType();
-        this.internal_board.update(caller_id, internal_element);
-        this.manageScatterSpawnControlVisibility();
-        //this.internal_board.printInternalBoardToConsole();
+    handleScatterSelectionMouseover(caller_id) {
+        if (this.currently_active_scatter_input !== null) {
+            this.currently_active_scatter_input.value = caller_id;
+            // ADD: HIGHLIGHT SELECTED TILE WITH BORDER
+        }
+    }
+
+
+    handleTileManipulationClick(caller_id) {
+        if (this.currently_selected_tile_type !== '') {
+            document.getElementById(caller_id).setAttribute('class', this.currently_selected_tile_type);
+            let internal_element = this.getInternalElementForCurrentTileType();
+            this.internal_board.update(caller_id, internal_element);
+            this.manageScatterSpawnControlVisibility();
+            //this.internal_board.printInternalBoardToConsole();
+        }
     }
 
 
@@ -220,6 +285,13 @@ export default class LevelEditor {
                 radio_label.setAttribute('style', '');
             }
         }
+    }
+
+
+    resetHighlighOfChosenSelectorTile() {
+        let selected_radio_id = document.querySelector('input[name="selectors"]:checked').id;
+        let selected_radio_label = document.querySelector(`label[for="${selected_radio_id}"]`);
+        selected_radio_label.setAttribute('style', '');
     }
 
 
