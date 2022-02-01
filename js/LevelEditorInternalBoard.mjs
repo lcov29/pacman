@@ -73,8 +73,8 @@ export default class LevelEditorInternalBoard {
 
 
     initialize(width, height) {
+        this.reset();
         this.buildEmptyMap(width, height);
-        this.resetGhostCounters();
     }
 
 
@@ -91,7 +91,14 @@ export default class LevelEditorInternalBoard {
     }
 
 
-    resetGhostCounters() {
+    reset() {
+        this.internal_board = [[]];
+        this.scatter_positions = [];
+        this.optional_spawn_positions = [];
+        this.coordinates_ghost_blinky = [];
+        this.coordinates_ghost_pinky = [];
+        this.coordinates_ghost_clyde = [];
+        this.coordinates_ghost_inky = [];
         this.counter_ghosts_blinky = 0;
         this.counter_ghosts_pinky = 0;
         this.counter_ghosts_clyde = 0;
