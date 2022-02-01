@@ -22,7 +22,6 @@ for (let radio of radios) {
 }
 
 
-
 // add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
 let editor_container = document.getElementById('editor_container');
 editor_container.addEventListener('mousedown', editorContainerMouseDownCallback);
@@ -30,10 +29,10 @@ editor_container.addEventListener('mouseup', editorContainerMouseUpCallback);
 editor_container.addEventListener('mouseleave', editorContainerMouseLeaveCallback);
 
 
-
 // add handler to map dimension apply button
+document.getElementById('map_width').addEventListener('input', validateMapHeightWidthInput);
+document.getElementById('map_height').addEventListener('input', validateMapHeightWidthInput);
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
-
 
 
 // add handlers to scatter select buttons
@@ -43,7 +42,6 @@ for (let scatter_button of scatter_buttons) {
 }
 
 
-
 // add handlers to spawn select buttons
 let spawn_buttons = document.querySelectorAll('button[name="button_spawn_position"]');
 for (let spawn_button of spawn_buttons) {
@@ -51,9 +49,9 @@ for (let spawn_button of spawn_buttons) {
 }
 
 
-
 // add handler to play button
-document.getElementById('play_level').addEventListener('click', function() { editor.handlePlay(); });
+document.getElementById('play_level').addEventListener('click', buttonPlayCallback);
+
 
 
 
@@ -98,6 +96,19 @@ function radioButtonTileSelectionCallback() {
 }
 
 
+function validateMapHeightWidthInput() {
+    try {
+        let input = document.getElementById(this.id);
+        let input_number = parseInt(input.value);
+        if (input_number < 4 || input_number > 30) {
+            input.value = "";
+        }
+    } catch(e) {
+        input.value = "";
+    }
+}
+
+
 function buttonMapDimensionChangeCallback() {
     let new_state = new LevelEditorMapDimensionChangeState();
     new_state.setEditorTileClickCallback(editorTileClickCallback);
@@ -115,4 +126,10 @@ function buttonScatterSelectionCallback() {
 
 function buttonSpawnSelectionCallback() {
     editor.setState(new LevelEditorScatterSpawnSelectionState(this.id));
+}
+
+
+function buttonPlayCallback() {
+    //editor.loadLevel();
+    window.alert("Play");
 }
