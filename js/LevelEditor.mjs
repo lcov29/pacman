@@ -134,6 +134,11 @@ export default class LevelEditor {
     }
 
 
+    getBoardCharacterAt(coordinates) {
+        return this.internal_board.getBoardCharacterAt(coordinates);
+    }
+
+
     getScatterSpawnInputFor(button_id) {
         return this.mapButtonIdToInputId[button_id];
     }
@@ -266,6 +271,12 @@ export default class LevelEditor {
         if (button_id.includes('spawn')) {
             this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
         }
+    }
+
+
+    removeScatterSpawnPosition(button_id) {
+        let ghost_character = this.getGhostCharacterFor(button_id);
+        this.internal_board.removeScatterSpawnPositionFor(ghost_character);
     }
 
 
