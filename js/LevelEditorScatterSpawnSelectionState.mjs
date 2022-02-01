@@ -30,6 +30,7 @@ export default class LevelEditorScatterSpawnSelectionState {
 
 
     handleEditorTileClick(caller_id) {
+        this.level_editor.addScatterSpawnPosition(this.button_id, caller_id);
         this.level_editor.setState(new LevelEditorDefaultState());
         document.getElementById(caller_id).style = null;
     }
