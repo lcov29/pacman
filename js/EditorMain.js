@@ -30,8 +30,8 @@ editor_container.addEventListener('mouseleave', editorContainerMouseLeaveCallbac
 
 
 // add handler to map dimension apply button
-document.getElementById('map_width').addEventListener('input', validateMapHeightWidthInput);
-document.getElementById('map_height').addEventListener('input', validateMapHeightWidthInput);
+document.getElementById('map_width').addEventListener('blur', validateMapHeightWidthInput);
+document.getElementById('map_height').addEventListener('blur', validateMapHeightWidthInput);
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
@@ -110,12 +110,16 @@ function validateMapHeightWidthInput() {
 
 
 function buttonMapDimensionChangeCallback() {
-    let new_state = new LevelEditorMapDimensionChangeState();
-    new_state.setEditorTileClickCallback(editorTileClickCallback);
-    new_state.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
-    new_state.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
-    new_state.setEditorTileMouseOverCallback(editorTileMouseOverCallback);
-    editor.setState(new_state);
+    let input_height = document.getElementById("map_height").value;
+    let input_width = document.getElementById("map_width").value;
+    if (input_height !== "" && input_width !== "") {
+        let new_state = new LevelEditorMapDimensionChangeState();
+        new_state.setEditorTileClickCallback(editorTileClickCallback);
+        new_state.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
+        new_state.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
+        new_state.setEditorTileMouseOverCallback(editorTileMouseOverCallback);
+        editor.setState(new_state);
+    }
 }
 
 
