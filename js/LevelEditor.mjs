@@ -131,7 +131,6 @@ export default class LevelEditor {
     }
 
 
-    //getScatterInputIdFor(button_id) {
     getScatterSpawnInputFor(button_id) {
         return this.mapButtonIdToInputId[button_id];
     }
