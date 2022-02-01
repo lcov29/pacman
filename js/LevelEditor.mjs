@@ -315,7 +315,7 @@ export default class LevelEditor {
     loadLevel() {
         let levelJSONString = this.internal_board.buildLevelJSONString();
         sessionStorage.setItem("level", levelJSONString);
-        location.href = "index.html";
+        location.href = "../index.html";
     }
 
 
