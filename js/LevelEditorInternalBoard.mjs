@@ -22,7 +22,8 @@ export default class LevelEditorInternalBoard {
     }
 
 
-    getBoardCharacterAt(coordinates) {
+    getBoardCharacterAt(coordinates_string) {
+        let coordinates = this.parseCoordinates(coordinates_string);
         return this.internal_board[coordinates.y][coordinates.x];
     }
 
@@ -108,7 +109,7 @@ export default class LevelEditorInternalBoard {
 
     update(coordinates_string, character) {
         let parsed_coordinates = this.parseCoordinates(coordinates_string);
-        let current_board_character = this.getBoardCharacterAt(parsed_coordinates);
+        let current_board_character = this.getBoardCharacterAt(coordinates_string);
         this.updateGhostCoordinateLists(coordinates_string, current_board_character, character);
         this.updateGhostCounters(current_board_character, character);
         this.setBoardCharacter(parsed_coordinates, character);
