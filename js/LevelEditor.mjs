@@ -11,8 +11,6 @@ export default class LevelEditor {
     constructor() {
         this.editor_container = null;
         this.internal_board = new LevelEditorInternalBoard();
-        this.level_scatter_positions = [];
-        this.level_optional_spawn_positions = [];
         this.mapTileTypeToInternalElement = [];
         this.mapButtonIdToInputId = [];
         this.mapButtonIdToGhostCharacter = [];
@@ -255,10 +253,28 @@ export default class LevelEditor {
     }
 
 
+    addScatterSpawnPosition(button_id, coordinates) {
+        let ghost_character = this.getGhostCharacterFor(button_id);
+        if (button_id.includes('scatter')) {
+            this.internal_board.addScatterPosition(ghost_character, coordinates);
+        }
+        if (button_id.includes('spawn')) {
+            this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
+        }
+    }
+
+
     clearMap() {
         while (this.editor_container.firstChild) {
            this.editor_container.removeChild(this.editor_container.firstChild);
         }
+    }
+
+
+    loadLevel() {
+        let levelJSONString = this.internal_board.buildLevelJSONString();
+        sessionStorage.setItem("level", levelJSONString);
+        location.href = "";
     }
 
 
