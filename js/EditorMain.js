@@ -2,7 +2,7 @@
 
 import LevelEditor from "./LevelEditor.mjs";
 import LevelEditorTileManipulationState from "./LevelEditorTileManipulationState.mjs";
-import LevelEditorScatterSelectionState from "./LevelEditorScatterSelectionState.mjs";
+import LevelEditorScatterSpawnSelectionState from "./LevelEditorScatterSpawnSelectionState.mjs";
 import LevelEditorMapDimensionChangeState from "./LevelEditorMapDimensionChangeState.mjs";
 
 
@@ -54,7 +54,6 @@ for (let spawn_button of spawn_buttons) {
 
 // add handler to play button
 document.getElementById('play_level').addEventListener('click', function() { editor.handlePlay(); });
-
 
 
 
@@ -110,10 +109,10 @@ function buttonMapDimensionChangeCallback() {
 
 
 function buttonScatterSelectionCallback() {
-    editor.setState(new LevelEditorScatterSelectionState(this.id));
+    editor.setState(new LevelEditorScatterSpawnSelectionState(this.id));
 }
 
 
 function buttonSpawnSelectionCallback() {
-    window.alert("implement scatter selection");
+    editor.setState(new LevelEditorScatterSpawnSelectionState(this.id));
 }
