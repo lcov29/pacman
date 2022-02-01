@@ -3,13 +3,13 @@
 import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
 
 
-export default class LevelEditorScatterSelectionState {
+export default class LevelEditorScatterSpawnSelectionState {
 
     
-    constructor(scatter_button_id) {
+    constructor(button_id) {
         this.level_editor = null;
-        this.scatter_position_input = null;
-        this.scatter_button_id = scatter_button_id;
+        this.position_input = null;
+        this.button_id = button_id;
     }
 
 
@@ -39,18 +39,18 @@ export default class LevelEditorScatterSelectionState {
 
 
     handleEditorTileMouseEnter(caller_id) {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.scatter_button_id);
+        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
         let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
         if (ghost_coordinates.includes(caller_id) === false) {
             document.getElementById(caller_id).style.borderColor = 'green';
             document.getElementById(caller_id).style.borderWidth = "5px";
         }
-        this.scatter_position_input.value = caller_id;
+        this.position_input.value = caller_id;
     }
 
 
     handleEditorTileMouseLeave(caller_id) {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.scatter_button_id);
+        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
         let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
         if (ghost_coordinates.includes(caller_id) === false) {
             document.getElementById(caller_id).style = null;
@@ -64,13 +64,13 @@ export default class LevelEditorScatterSelectionState {
 
 
     initializeInputReference() {
-        let input_id = this.level_editor.getScatterInputIdFor(this.scatter_button_id);
-        this.scatter_position_input = document.getElementById(input_id);
+        let input_id = this.level_editor.getScatterSpawnInputFor(this.button_id);
+        this.position_input = document.getElementById(input_id);
     }
 
 
     highlightPlacedGhosts() {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.scatter_button_id);
+        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
         let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style.borderColor = 'red';
@@ -80,7 +80,7 @@ export default class LevelEditorScatterSelectionState {
 
 
     resetHighlightPlacedGhosts() {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.scatter_button_id);
+        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
         let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style = null;
