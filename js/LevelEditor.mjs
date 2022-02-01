@@ -72,6 +72,16 @@ export default class LevelEditor {
             [Configuration.GHOST_CLYDE_CHARACTER]:  ["scatter_control_ghost_clyde", "spawn_control_ghost_clyde"],
             [Configuration.GHOST_INKY_CHARACTER]:   ["scatter_control_ghost_inky", "spawn_control_ghost_inky"]
         };
+        this.mapScatterSpawnControlIdsToInputIds = {
+            'scatter_control_ghost_blinky':     'scatter_position_ghost_blinky',
+            'scatter_control_ghost_pinky':      'scatter_position_ghost_pinky',
+            'scatter_control_ghost_clyde':      'scatter_position_ghost_clyde',
+            'scatter_control_ghost_inky':       'scatter_position_ghost_inky',
+            'spawn_control_ghost_blinky':       'spawn_position_ghost_blinky',
+            'spawn_control_ghost_pinky':        'spawn_position_ghost_pinky',
+            'spawn_control_ghost_clyde':        'spawn_position_ghost_clyde',
+            'spawn_control_ghost_inky':         'spawn_position_ghost_inky'
+        }
     }
 
 
@@ -179,6 +189,11 @@ export default class LevelEditor {
     }
 
 
+    getScatterSpawnInputIdForControlId(control_id) {
+        return this.mapScatterSpawnControlIdsToInputIds[control_id];
+    }
+
+
     getScatterSpawnControlDisplayStatusForGhostType(ghost_character) {
         let status = false;
         switch(ghost_character) {
@@ -274,8 +289,18 @@ export default class LevelEditor {
     }
 
 
+    /*
     removeScatterSpawnPosition(button_id) {
         let ghost_character = this.getGhostCharacterFor(button_id);
+        this.internal_board.removeScatterSpawnPositionFor(ghost_character);
+    }*/
+
+
+    removeScatterSpawnPosition(button_id) {
+        let ghost_character = button_id;
+        if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
+            ghost_character = this.getGhostCharacterFor(button_id);
+        } 
         this.internal_board.removeScatterSpawnPositionFor(ghost_character);
     }
 
