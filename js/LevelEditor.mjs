@@ -129,6 +129,11 @@ export default class LevelEditor {
     }
 
 
+    resetInternalLevel(width, height) {
+        this.internal_board.initialize(width, height);
+    }
+
+
     getScatterSpawnInputFor(button_id) {
         return this.mapButtonIdToInputId[button_id];
     }
@@ -274,7 +279,7 @@ export default class LevelEditor {
     loadLevel() {
         let levelJSONString = this.internal_board.buildLevelJSONString();
         sessionStorage.setItem("level", levelJSONString);
-        location.href = "";
+        location.href = "index.html";
     }
 
 
