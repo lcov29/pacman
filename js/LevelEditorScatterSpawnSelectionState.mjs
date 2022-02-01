@@ -1,5 +1,6 @@
 "use strict";
 
+import Configuration from "./Configuration.mjs";
 import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
 
 
@@ -15,6 +16,7 @@ export default class LevelEditorScatterSpawnSelectionState {
 
     initialize(level_editor_reference) {
         this.level_editor = level_editor_reference;
+        this.level_editor.removeScatterSpawnPosition(this.button_id);
         this.initializeInputReference();
         this.highlightPlacedGhosts();
     }
@@ -26,13 +28,19 @@ export default class LevelEditorScatterSpawnSelectionState {
     handleEditorContainerMouseUp(caller_id) {}
 
 
-    handleEditorContainerMouseLeave(caller_id) {}
+    handleEditorContainerMouseLeave(caller_id) {
+        this.level_editor.setState(new LevelEditorDefaultState());
+    }
 
 
     handleEditorTileClick(caller_id) {
-        this.level_editor.addScatterSpawnPosition(this.button_id, caller_id);
-        this.level_editor.setState(new LevelEditorDefaultState());
-        document.getElementById(caller_id).style = null;
+        let tile_character = this.level_editor.getBoardCharacterAt(caller_id);
+        let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
+        if (is_tile_accessible) {
+            this.level_editor.addScatterSpawnPosition(this.button_id, caller_id);
+            this.level_editor.setState(new LevelEditorDefaultState());
+            document.getElementById(caller_id).style = null;
+        }
     }
 
 
@@ -41,12 +49,16 @@ export default class LevelEditorScatterSpawnSelectionState {
 
     handleEditorTileMouseEnter(caller_id) {
         let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
+        let tile_character = this.level_editor.getBoardCharacterAt(caller_id);
         let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
-        if (ghost_coordinates.includes(caller_id) === false) {
+        let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
+        let is_tile_selected_ghost_type = ghost_coordinates.includes(caller_id);
+
+        if (is_tile_accessible && !is_tile_selected_ghost_type) {
             document.getElementById(caller_id).style.borderColor = 'green';
             document.getElementById(caller_id).style.borderWidth = "5px";
         }
-        this.position_input.value = caller_id;
+        this.position_input.value = (is_tile_accessible) ? caller_id : "";
     }
 
 
