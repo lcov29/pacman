@@ -40,6 +40,7 @@ export default class LevelEditorMapDimensionChangeState {
         this.input_map_width = document.getElementById("map_width");
         this.input_map_height = document.getElementById("map_height");
         this.level_editor.resetSpawnScatterControlDisplayStatus();
+        this.level_editor.resetInternalLevel(this.input_map_width.value, this.input_map_height.value);
         this.level_editor.clearMap();
         this.initializeEditingArea();
     }
@@ -69,7 +70,6 @@ export default class LevelEditorMapDimensionChangeState {
     exit() {}
 
 
-    //initializeEditingArea(callback_mouseover, callback_mouseenter, callback_mouseleave, callback_click) {
     initializeEditingArea() {
         let width = this.level_editor.getMapWidthInput();
         let height = this.level_editor.getMapHeightInput();
