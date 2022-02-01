@@ -9,6 +9,8 @@ export default class LevelEditorInternalBoard {
 
     constructor() {
         this.internal_board = [[]];
+        this.scatter_positions = [];
+        this.optional_spawn_positions = [];
         this.coordinates_ghost_blinky = [];
         this.coordinates_ghost_pinky = [];
         this.coordinates_ghost_clyde = [];
@@ -71,11 +73,6 @@ export default class LevelEditorInternalBoard {
 
 
     initialize(width, height) {
-        this.initializeNewMap(width, height);
-    }
-
-
-    initializeNewMap(width, height) {
         this.buildEmptyMap(width, height);
         this.resetGhostCounters();
     }
@@ -137,6 +134,53 @@ export default class LevelEditorInternalBoard {
                 this.coordinates_ghost_inky.push(coordinates);
                 break;
         }
+    }
+
+
+    addScatterPosition(ghost_character, coordinates) {
+        this.removeScatterSpawnPositionFor(ghost_character);
+        let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
+        this.scatter_positions.push(position_object);
+    }
+
+
+    addOptionalSpawnPosition(ghost_character, coordinates) {
+        this.removeScatterSpawnPositionFor(ghost_character);
+        let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
+        this.optional_spawn_positions.push(position_object);
+    }
+
+
+    removeScatterSpawnPositionFor(ghost_character) {
+        for (let scatter_position of this.scatter_positions) {
+            if (scatter_position.ghost === ghost_character) {
+                Utility.removeElementFrom(this.scatter_positions, scatter_position);
+            }
+        }
+        for (let optional_spawn_position of this.optional_spawn_positions) {
+            if (optional_spawn_position.ghost === ghost_character) {
+                Utility.removeElementFrom(this.optional_spawn_positions, optional_spawn_position);
+            }
+        }
+    }
+
+
+    buildScatterSpawnPositionObject(ghost_character, coordinates) {
+        let parsed_coordinates = this.parseCoordinates(coordinates);
+        let output_object = {};
+        output_object.ghost = ghost_character;
+        output_object.x = parsed_coordinates.x;
+        output_object.y = parsed_coordinates.y;
+        return output_object;
+    }
+
+
+    buildLevelJSONString() {
+        let json_object = {};
+        json_object.board = this.internal_board;
+        json_object.scatter_positions = this.scatter_positions;
+        json_object.optional_spawns = this.optional_spawn_positions;
+        return JSON.stringify(json_object);
     }
 
 
@@ -205,7 +249,6 @@ export default class LevelEditorInternalBoard {
                 break;
         }
     }
-
 
 
     parseCoordinates(coordinates) {
