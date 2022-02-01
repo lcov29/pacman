@@ -134,6 +134,6 @@ function buttonSpawnSelectionCallback() {
 
 
 function buttonPlayCallback() {
-    //editor.loadLevel();
-    window.alert("Play");
+    editor.loadLevel();
+    //window.alert("Play");
 }
