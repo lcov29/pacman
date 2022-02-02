@@ -35,6 +35,15 @@ document.getElementById('map_height').addEventListener('blur', validateMapHeight
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
+// ADDED 02-02-2022, TEST 
+// add handlers to scatter spawn control group
+let scatter_spawn_inputs = document.querySelectorAll('input[class="input_position"]');
+for (let scatter_spawn_input of scatter_spawn_inputs) {
+    scatter_spawn_input.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
+    scatter_spawn_input.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
+}
+
+
 // add handlers to scatter select buttons
 let scatter_buttons = document.querySelectorAll('button[name="button_scatter_position"]');
 for (let scatter_button of scatter_buttons) {
@@ -107,6 +116,27 @@ function validateMapHeightWidthInput() {
         input.value = "";
     }
 }
+
+
+// START: ADDED 02-02-2022; TEST
+
+function inputScatterSpawnMouseEnterCallback() {
+    let coordinate_string = document.getElementById(this.id).value;
+    if (coordinate_string !== "") {
+        document.getElementById(coordinate_string).style.borderColor = 'red';
+        document.getElementById(coordinate_string).style.borderWidth = '5px';
+    }
+}
+
+
+function inputScatterSpawnMouseLeaveCallback() {
+    let coordinate_string = document.getElementById(this.id).value;
+    if (coordinate_string !== "") {
+        document.getElementById(coordinate_string).style = null;
+    }
+}
+
+// END: ADDED 02-02-2020; TEST
 
 
 function buttonMapDimensionChangeCallback() {
