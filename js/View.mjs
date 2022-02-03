@@ -40,7 +40,6 @@ export default class View {
       while (this.board_container.firstChild) {
          this.board_container.removeChild(this.board_container.firstChild);
       }
-      
    }
 
 
