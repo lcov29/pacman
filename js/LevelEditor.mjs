@@ -278,23 +278,33 @@ export default class LevelEditor {
     }
 
 
-    addScatterSpawnPosition(button_id, coordinates) {
+    addScatterPosition(button_id, coordinates) {
         let ghost_character = this.getGhostCharacterFor(button_id);
-        if (button_id.includes('scatter')) {
-            this.internal_board.addScatterPosition(ghost_character, coordinates);
-        }
-        if (button_id.includes('spawn')) {
-            this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
-        }
+        this.internal_board.addScatterPosition(ghost_character, coordinates);
     }
 
 
-    removeScatterSpawnPosition(button_id) {
+    addSpawnPosition(button_id, coordinates) {
+        let ghost_character = this.getGhostCharacterFor(button_id);
+        this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
+    }
+
+
+    removeScatterPosition(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
             ghost_character = this.getGhostCharacterFor(button_id);
-        } 
-        this.internal_board.removeScatterSpawnPositionFor(ghost_character);
+        }
+        this.internal_board.removeScatterPositionFor(ghost_character);
+    }
+
+
+    removeSpawnPosition(button_id) {
+        let ghost_character = button_id;
+        if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
+            ghost_character = this.getGhostCharacterFor(button_id);
+        }
+        this.internal_board.removeSpawnPositionFor(ghost_character);
     }
 
 
@@ -305,10 +315,9 @@ export default class LevelEditor {
     }
 
 
-    loadLevel() {
+    sendLevelJson() {
         let levelJSONString = this.internal_board.buildLevelJSONString();
-        sessionStorage.setItem("level", levelJSONString);
-        location.href = "../index.html";
+        sessionStorage.setItem("customLevel", levelJSONString);
     }
 
 
