@@ -289,13 +289,6 @@ export default class LevelEditor {
     }
 
 
-    /*
-    removeScatterSpawnPosition(button_id) {
-        let ghost_character = this.getGhostCharacterFor(button_id);
-        this.internal_board.removeScatterSpawnPositionFor(ghost_character);
-    }*/
-
-
     removeScatterSpawnPosition(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
