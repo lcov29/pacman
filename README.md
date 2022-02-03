@@ -14,7 +14,6 @@ Play the game via github-pages or upload it to a webserver.
 * add sound effects
 * add ability to play on mobile devices
 * add bonus elements
-* add visual level editor
 * add level rotation
 * add instruction page
 * add highscore counter
@@ -24,6 +23,14 @@ Play the game via github-pages or upload it to a webserver.
 
 
 ## Version history
+
+*Version 0.04*
+* add visual level editor with basic functions:
+    * set width and height
+    * add actors and elements
+    * set scatter positions for ghosts
+    * set optional spawn positions for ghosts
+    * send and parse custom level
 
 *Version 0.03*
 * add powerups
@@ -59,5 +66,3 @@ Play the game via github-pages or upload it to a webserver.
 * display game on HTML-site 
 * notify player about victory (no points left)
 * notify player about defeat (no lifes left)
-
-
