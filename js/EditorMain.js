@@ -118,12 +118,10 @@ function validateMapHeightWidthInput() {
 }
 
 
-// START: ADDED 02-02-2022; TEST
-
 function inputScatterSpawnMouseEnterCallback() {
     let coordinate_string = document.getElementById(this.id).value;
     if (coordinate_string !== "") {
-        document.getElementById(coordinate_string).style.borderColor = 'red';
+        document.getElementById(coordinate_string).style.borderColor = 'green';
         document.getElementById(coordinate_string).style.borderWidth = '5px';
     }
 }
@@ -135,8 +133,6 @@ function inputScatterSpawnMouseLeaveCallback() {
         document.getElementById(coordinate_string).style = null;
     }
 }
-
-// END: ADDED 02-02-2020; TEST
 
 
 function buttonMapDimensionChangeCallback() {
