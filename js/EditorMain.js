@@ -2,8 +2,9 @@
 
 import LevelEditor from "./LevelEditor.mjs";
 import LevelEditorTileManipulationState from "./LevelEditorTileManipulationState.mjs";
-import LevelEditorScatterSpawnSelectionState from "./LevelEditorScatterSpawnSelectionState.mjs";
+import LevelEditorScatterSelectionState from "./LevelEditorScatterSelectionState.mjs";
 import LevelEditorMapDimensionChangeState from "./LevelEditorMapDimensionChangeState.mjs";
+import LevelEditorSpawnSelectionState from "./LevelEditorSpawnSelectionState.mjs";
 
 
 let editor = new LevelEditor();
@@ -150,16 +151,16 @@ function buttonMapDimensionChangeCallback() {
 
 
 function buttonScatterSelectionCallback() {
-    editor.setState(new LevelEditorScatterSpawnSelectionState(this.id));
+    editor.setState(new LevelEditorScatterSelectionState(this.id));
 }
 
 
 function buttonSpawnSelectionCallback() {
-    editor.setState(new LevelEditorScatterSpawnSelectionState(this.id));
+    editor.setState(new LevelEditorSpawnSelectionState(this.id));
 }
 
 
 function buttonPlayCallback() {
-    editor.loadLevel();
-    //window.alert("Play");
+    editor.sendLevelJson();
+    location.href = "../index.html";
 }
