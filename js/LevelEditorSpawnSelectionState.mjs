@@ -4,7 +4,7 @@ import Configuration from "./Configuration.mjs";
 import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
 
 
-export default class LevelEditorScatterSpawnSelectionState {
+export default class LevelEditorSpawnSelectionState {
 
     
     constructor(button_id) {
@@ -16,7 +16,8 @@ export default class LevelEditorScatterSpawnSelectionState {
 
     initialize(level_editor_reference) {
         this.level_editor = level_editor_reference;
-        this.level_editor.removeScatterSpawnPosition(this.button_id);
+        //this.level_editor.removeScatterSpawnPosition(this.button_id);
+        this.level_editor.removeSpawnPosition(this.button_id);
         this.initializeInputReference();
         this.highlightPlacedGhosts();
     }
@@ -37,7 +38,8 @@ export default class LevelEditorScatterSpawnSelectionState {
         let tile_character = this.level_editor.getBoardCharacterAt(caller_id);
         let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
         if (is_tile_accessible) {
-            this.level_editor.addScatterSpawnPosition(this.button_id, caller_id);
+            //this.level_editor.addScatterSpawnPosition(this.button_id, caller_id);
+            this.level_editor.addSpawnPosition(this.button_id, caller_id);
             this.level_editor.setState(new LevelEditorDefaultState());
             document.getElementById(caller_id).style = null;
         }
