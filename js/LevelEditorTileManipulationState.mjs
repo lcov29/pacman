@@ -103,14 +103,10 @@ export default class LevelEditorTileManipulationState {
             if ((ghost_type_counter === 0) && (is_control_displayed === true)) {
                 for (let control_id of ghost_type_control_ids) {
                     document.getElementById(control_id).style = "display:none";
-                    
-                    // START NEW
                     let input_id = this.level_editor.getScatterSpawnInputIdForControlId(control_id);
                     document.getElementById(input_id).value = "";
-                    this.level_editor.removeScatterSpawnPosition(ghost_character);
-                    console.log(this.level_editor.internal_board.buildLevelJSONString());
-                    // END NEW
-
+                    this.level_editor.removeScatterPosition(ghost_character);
+                    this.level_editor.removeSpawnPosition(ghost_character);
                 }
                 this.level_editor.setSpawnScatterControlDisplayStatus(ghost_character, false);
             }
