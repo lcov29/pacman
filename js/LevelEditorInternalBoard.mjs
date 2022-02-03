@@ -146,25 +146,29 @@ export default class LevelEditorInternalBoard {
 
 
     addScatterPosition(ghost_character, coordinates) {
-        this.removeScatterSpawnPositionFor(ghost_character);
+        this.removeScatterPositionFor(ghost_character);
         let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
         this.scatter_positions.push(position_object);
     }
 
 
     addOptionalSpawnPosition(ghost_character, coordinates) {
-        this.removeScatterSpawnPositionFor(ghost_character);
+        this.removeSpawnPositionFor(ghost_character);
         let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
         this.optional_spawn_positions.push(position_object);
     }
 
 
-    removeScatterSpawnPositionFor(ghost_character) {
+    removeScatterPositionFor(ghost_character) {
         for (let scatter_position of this.scatter_positions) {
             if (scatter_position.ghost === ghost_character) {
                 Utility.removeElementFrom(this.scatter_positions, scatter_position);
             }
         }
+    }
+
+
+    removeSpawnPositionFor(ghost_character) {
         for (let optional_spawn_position of this.optional_spawn_positions) {
             if (optional_spawn_position.ghost === ghost_character) {
                 Utility.removeElementFrom(this.optional_spawn_positions, optional_spawn_position);
@@ -267,19 +271,6 @@ export default class LevelEditorInternalBoard {
         let y = parseInt(parsed_input[1]);
         return {'x': x, 'y': y};
     }
-
-
-    /*
-    printInternalBoardToConsole() {
-        console.log("==================================");
-        for (let y = 0; y < this.internal_board.length; y++) {
-            let row = "";
-            for (let x = 0; x < this.internal_board[y].length; x++) {
-                row += this.internal_board[y][x];
-            }
-            console.log(row);
-        }
-    }*/
 
     
 }
