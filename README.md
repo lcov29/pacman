@@ -32,6 +32,7 @@ Play the game via github-pages or upload it to a webserver.
     * set optional spawn positions for ghosts
     * send and parse custom level
 
+
 *Version 0.03*
 * add powerups
 * add ghost doors (only accessible by ghosts)
