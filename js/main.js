@@ -1,6 +1,5 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
 import Game from "./Game.mjs";
 
 /*  
@@ -12,15 +11,6 @@ import Game from "./Game.mjs";
 
 let game = new Game('level_container', 'score', 'life');
 game.loadLevel();   
-
-//document.getElementById("level_input").value = Configuration.DEFAULT_LEVEL_JSON; // THINK ABOUT REMOVING
-try {
-   document.getElementById("level_input").value = sessionStorage.getItem("level");
-   sessionStorage.removeItem("level");
-} catch(e) {
-   document.getElementById("level_input").value = Configuration.DEFAULT_LEVEL_JSON;
-}
-
 
 document.getElementById('button_start').addEventListener('click', callBackStartButton);
 document.getElementById('button_build_level').addEventListener('click', callBackBuildLevelButton);
