@@ -16,10 +16,20 @@ export default class Game {
    }
 
 
-   loadLevel(level_json = Configuration.DEFAULT_LEVEL_JSON) {
+   loadLevel() {
       this.level = new Level(this);
-      this.level.initialize(level_json);
+      this.level.initialize(this.readLevelJson());
       this.view.initialize(this.level.getBoardPositionArray(), this.level.buildGhostDoorDirectionMap());
+   }
+
+
+   readLevelJson() {
+      let level = sessionStorage.getItem("customLevel");
+      sessionStorage.removeItem("customLevel");
+      if (level === null) {
+         level = Configuration.DEFAULT_LEVEL_JSON;
+      }
+      return level;
    }
    
 
