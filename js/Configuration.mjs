@@ -66,7 +66,7 @@ export default class Configuration {
       static TELEPORTER_1_CHARACTER= "1";
       static TELEPORTER_2_CHARACTER = "2";
       static TELEPORTER_3_CHARACTER = "3";
-      static UNDEFINED_TILE_CHARACTER = ".";    // NEW
+      static UNDEFINED_TILE_CHARACTER = ".";
 
 
 
