@@ -22,7 +22,7 @@ export default class Configuration {
                                          '["#","o","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","#","o","o","o","o","o","o","#"],' +
                                          '["#","#","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","#","#"],' + 
                                          '["#","#","#","#","#","#","o","#","x","x","x","x","x","b","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
-                                         '["#","#","#","#","#","#","o","#","x","#","#","#","#","d","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
+                                         '["#","#","#","#","#","#","o","#","x","#","#","#","#","-","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
                                          '["1","x","x","x","x","x","o","x","x","#","x","x","x","x","x","x","x","#","x","x","o","x","x","x","x","x","1"],' +  
                                          '["#","#","#","#","#","#","o","#","x","#","#","#","#","#","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
                                          '["#","#","#","#","#","#","o","#","x","x","x","x","x","x","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
@@ -62,12 +62,13 @@ export default class Configuration {
       static POINT_CHARACTER = "o";
       static POWERUP_CHARACTER = "O";
       static EMPTY_TILE_CHARACTER = "x";
-      static GHOST_DOOR_CHARACTER = "d";
       static TELEPORTER_1_CHARACTER= "1";
       static TELEPORTER_2_CHARACTER = "2";
       static TELEPORTER_3_CHARACTER = "3";
       static UNDEFINED_TILE_CHARACTER = ".";
-
+      static GHOST_DOOR_CROSSING_CHARACTER = "+";
+      static GHOST_DOOR_VERTICAL_CHARACTER = "|";
+      static GHOST_DOOR_HORIZONTAL_CHARACTER = "-";
 
 
    // Definition of directions
@@ -77,12 +78,6 @@ export default class Configuration {
       static DIRECTION_NAME_DOWN = "down";
       static DIRECTION_NAME_LEFT = "left";
       static DIRECTION_NAME_RIGHT = "right";
-
-      // Ghost door 
-      static GHOST_DOOR_DIRECTION_SUFFIX_VERTICAL = "vertical";
-      static GHOST_DOOR_DIRECTION_SUFFIX_DIAGONAL = "crossing";
-      static GHOST_DOOR_DIRECTION_SUFFIX_HORIZONTAL = "horizontal";
-
    
    
    // Definition of css class names
@@ -90,11 +85,13 @@ export default class Configuration {
       // Background
       static WALL_BACKGROUND_CSS_CLASS = "wall_tile";
       static EMPTY_TILE_BACKGROUND_CSS_CLASS = "empty_tile";
-      static GHOST_DOOR_BACKGROUND_CSS_CLASS = "ghost_door";
       static TELEPORTER_1_BACKGROUND_CSS_CLASS = "teleporter_1_tile";
       static TELEPORTER_2_BACKGROUND_CSS_CLASS = "teleporter_2_tile";
       static TELEPORTER_3_BACKGROUND_CSS_CLASS = "teleporter_3_tile";
       static UNDEFINED_TILE_BACKGROUND_CSS_CLASS = "undefined_tile";
+      static GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS = "ghost_door_crossing";
+      static GHOST_DOOR_VERTICAL_BACKGROUND_CSS_CLASS = "ghost_door_vertical";
+      static GHOST_DOOR_HORIZONTAL_BACKGROUND_CSS_CLASS = "ghost_door_horizontal";
 
       // Foreground
       static EMPTY_FOREGROUND_CSS_CLASS = "empty_foreground";
@@ -146,8 +143,10 @@ export default class Configuration {
                                    Configuration.TELEPORTER_3_CHARACTER];
 
    static PACMAN_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
-                                       Configuration.GHOST_DOOR_CHARACTER,
-                                       Configuration.UNDEFINED_TILE_CHARACTER];
+                                       Configuration.UNDEFINED_TILE_CHARACTER,
+                                       Configuration.GHOST_DOOR_CROSSING_CHARACTER,
+                                       Configuration.GHOST_DOOR_VERTICAL_CHARACTER,
+                                       Configuration.GHOST_DOOR_HORIZONTAL_CHARACTER];
 
    // Tiles that are inaccessible for both ghosts and pacmans
    static ACTORS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
