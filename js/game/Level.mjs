@@ -202,12 +202,6 @@ export default class Level {
     }
 
 
-    buildGhostDoorDirectionMap() {
-        let ghost_door_positions = this.board.getGhostDoorPositions();
-        return GhostDoorDirectionMapper.buildMap(ghost_door_positions, this);
-    }
-
-
     buildAccessibleNeighborList(xPosition, yPosition) {
         return this.board.buildAccessibleNeighborList(xPosition, yPosition);
     }
