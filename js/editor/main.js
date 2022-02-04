@@ -36,7 +36,6 @@ document.getElementById('map_height').addEventListener('blur', validateMapHeight
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
-// ADDED 02-02-2022, TEST 
 // add handlers to scatter spawn control group
 let scatter_spawn_inputs = document.querySelectorAll('input[class="input_position"]');
 for (let scatter_spawn_input of scatter_spawn_inputs) {
