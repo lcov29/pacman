@@ -14,10 +14,10 @@ export default class View {
    }
 
 
-   initialize(board_position_array, ghost_door_direction_map) {
+   initialize(board_position_array) {
       this.clearBoard();
       this.initializeContainerDimension(board_position_array);
-      this.initializeBackgroundElements(board_position_array, ghost_door_direction_map);
+      this.initializeBackgroundElements(board_position_array);
       this.initializeForegroundElements(board_position_array);
    }
 
@@ -50,7 +50,7 @@ export default class View {
    }
 
 
-   initializeBackgroundElements(board, ghost_door_direction_map) {
+   initializeBackgroundElements(board) {
       let outer_div = null;
       let id_div = '';
       let style_class = '';
@@ -62,8 +62,7 @@ export default class View {
             id_div = this.getDivID(current_position, Configuration.SUFFIX_BACKGROUND_DIV);
             outer_div = this.createDiv(id_div);
             style_class = StyleClassMapper.getBackgroundStyleClass(current_position.getElementCharacter(),
-                                                                   current_position.getID(),
-                                                                   ghost_door_direction_map);
+                                                                   current_position.getID());
             outer_div.setAttribute('class', style_class);
             this.board_container.appendChild(outer_div);
          }
