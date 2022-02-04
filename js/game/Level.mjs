@@ -3,9 +3,8 @@
 import GhostDoorDirectionMapper from "./GhostDoorDirectionMapper.mjs";
 import LevelInitializer from "./LevelInitializer.mjs";
 import UpdateManager from "./UpdateManager.mjs";
-import Configuration from "./Configuration.mjs";
-import Teleporter from "./Teleporter.mjs";
-import Utility from "./Utility.mjs";
+import Configuration from "../Configuration.mjs";
+import Utility from "../Utility.mjs";
 import Board from "./Board.mjs";
 
 /*  

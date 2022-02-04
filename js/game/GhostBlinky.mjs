@@ -1,17 +1,17 @@
 "use strict";
 
 import Ghost from "./Ghost.mjs";
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 
 
-export default class GhostClyde extends Ghost {
+export default class GhostBlinky extends Ghost {
 
 
     constructor(level, position, routing) {
         super(level, position, routing);
-        super.setCharacter(Configuration.GHOST_CLYDE_CHARACTER);
-        super.setBaseMovementStyleClass(Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS);
-        super.setBaseRespawnStyleClass(Configuration.GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS);
+        super.setCharacter(Configuration.GHOST_BLINKY_CHARACTER);
+        super.setBaseMovementStyleClass(Configuration.GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS);
+        super.setBaseRespawnStyleClass(Configuration.GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS);
         super.setInitialState();
     }
 

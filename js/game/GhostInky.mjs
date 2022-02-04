@@ -1,7 +1,7 @@
 "use strict";
 
 import Ghost from "./Ghost.mjs";
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 
 
 export default class GhostInky extends Ghost {

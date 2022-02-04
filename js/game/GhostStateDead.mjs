@@ -1,23 +1,23 @@
 "use strict";
 
 import GhostState from "./GhostState.mjs";
-import Configuration from "./Configuration.mjs";
-import GhostStateScared from "./GhostStateScared.mjs";
-import GhostStateChase from "./GhostStateChase.mjs";
+import Configuration from "../Configuration.mjs";
+import GhostStateRespawn from "./GhostStateRespawn.mjs";
 
 
-export default class GhostStateScatter extends GhostState {
+export default class GhostStateDead extends GhostState {
 
 
-    constructor(duration_in_turns, ghost) {
-        super(duration_in_turns, ghost);
-        super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY);
+    constructor(ghost) {
+        // set duration to infinite; state ends when spawn is reached
+        super(Infinity, ghost);   
+        super.setBaseStyleClass(Configuration.GHOST_DEAD_FOREGROUND_CSS_CLASS);
+        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY);
     }
 
 
     getSubsequentState() {
-        return new GhostStateChase(20, super.getGhost());
+        return new GhostStateRespawn(super.getGhost());
     }
 
 
@@ -29,7 +29,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     isHostileTowardsPacman() {
-        return true;
+        return false;
     }
 
 
@@ -47,28 +47,21 @@ export default class GhostStateScatter extends GhostState {
 
 
     scare() {
-        let ghost = super.getGhost();
-        ghost.setState(new GhostStateScared(30, ghost));
+        // dead ghosts can not be scared
     }
 
 
     kill() {
-        // ghosts can only be killed when scared
+        // dead ghosts can not be killed
     }
 
 
-    // scatter state movement pattern
+    // dead state movement pattern
     calculateNextPosition(current_position_id) {
         let ghost = super.getGhost();
         let routing = ghost.getRouting();
-        let scatter_position_id = ghost.getScatterID();
-        return routing.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
-    }
-
-
-    handlePacmanCollisionOnCurrentPosition() {
-        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
-        // is handled by the method Pacman.handleGhostCollision()
+        let spawn_position_id = ghost.getSpawnID();
+        return routing.calculateNextPositionOnShortestPath(current_position_id, spawn_position_id);
     }
 
 
@@ -93,18 +86,22 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleScatterPositionCollision() {
+        // scatter position can not be equal to spawn position
+    }
+
+
+    handlePacmanCollisionOnCurrentPosition() {
         let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().getID() === ghost.getScatterID()) {
-            ghost.setNextPosition(ghost.getCurrentPosition());
-            ghost.setMovementDirectionName(Configuration.DIRECTION_NAME_DOWN);
-        }
+        if (ghost.isCurrentPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+            ghost.setUpdateFlagCurrentPosition(false);
+        } 
     }
 
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
-            ghost.killPacman(ghost.getNextPosition().getID());
+            ghost.setUpdateFlagNextPosition(false);
         }
     }
 
@@ -116,7 +113,10 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleSpawnCollision() {
-        // spawn position can not be equal to scatter position
+        let ghost = super.getGhost();
+        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
+            super.end();
+        }
     }
 
 

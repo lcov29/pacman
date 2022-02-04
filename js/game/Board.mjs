@@ -1,6 +1,6 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 import BoardParser from "./BoardParser.mjs";
 import Directions from "./Directions.mjs";
 

@@ -1,6 +1,6 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 import LevelEditorInternalBoard from "./LevelEditorInternalBoard.mjs";
 import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
 

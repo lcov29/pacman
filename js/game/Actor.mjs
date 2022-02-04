@@ -2,7 +2,7 @@
 
 import Directions from "./Directions.mjs";
 import UpdateRequest from "./UpdateRequest.mjs";
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 import StyleClassMapper from "./StyleClassMapper.mjs";
 
 

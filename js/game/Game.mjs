@@ -2,7 +2,7 @@
 
 import Level from "./Level.mjs";
 import View from "./View.mjs";
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 
 
 export default class Game {

@@ -1,7 +1,7 @@
 "use strict";
 
 import BoardPosition from "./BoardPosition.mjs";
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 
 
 export default class BoardParser {

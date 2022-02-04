@@ -1,7 +1,7 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
-import Utility from "./Utility.mjs";
+import Configuration from "../Configuration.mjs";
+import Utility from "../Utility.mjs";
 
 
 export default class LevelEditorInternalBoard {

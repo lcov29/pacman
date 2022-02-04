@@ -1,6 +1,6 @@
 "use strict";
 
-import Configuration from "./Configuration.mjs";
+import Configuration from "../Configuration.mjs";
 import Teleporter from "./Teleporter.mjs"
 import Routing from "./Routing.mjs";
 import Pacman from "./Pacman.mjs";
@@ -8,7 +8,7 @@ import GhostBlinky from "./GhostBlinky.mjs";
 import GhostPinky from "./GhostPinky.mjs";
 import GhostClyde from "./GhostClyde.mjs";
 import GhostInky from "./GhostInky.mjs";
-import Level from "./Level.mjs";
+
 
 /*  
     =================================================================================================================

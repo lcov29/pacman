@@ -1,6 +1,6 @@
 "use strict";
 
-import Utility from "./Utility.mjs";
+import Utility from "../Utility.mjs";
 
 
 export default class UpdateManager {

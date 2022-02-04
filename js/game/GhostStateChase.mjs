@@ -1,23 +1,24 @@
 "use strict";
 
 import GhostState from "./GhostState.mjs";
-import Configuration from "./Configuration.mjs";
-import GhostStateRespawn from "./GhostStateRespawn.mjs";
+import Configuration from "../Configuration.mjs";
+import GhostStateScared from "./GhostStateScared.mjs";
+import GhostStateScatter from "./GhostStateScatter.mjs";
 
 
-export default class GhostStateDead extends GhostState {
+
+export default class GhostStateChase extends GhostState {
 
 
-    constructor(ghost) {
-        // set duration to infinite; state ends when spawn is reached
-        super(Infinity, ghost);   
-        super.setBaseStyleClass(Configuration.GHOST_DEAD_FOREGROUND_CSS_CLASS);
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY);
+    constructor(duration_in_turns, ghost) {
+        super(duration_in_turns, ghost);
+        super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
+        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY);
     }
 
 
     getSubsequentState() {
-        return new GhostStateRespawn(super.getGhost());
+        return new GhostStateScatter(7, super.getGhost());
     }
 
 
@@ -29,7 +30,7 @@ export default class GhostStateDead extends GhostState {
 
 
     isHostileTowardsPacman() {
-        return false;
+        return true;
     }
 
 
@@ -41,27 +42,19 @@ export default class GhostStateDead extends GhostState {
     executeMovementPattern() {
         let ghost = super.getGhost();
         let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = this.calculateNextPosition(current_position_id);
+        let next_position = ghost.calculateNextChasePosition(current_position_id);
         ghost.setNextPosition(next_position);
     }
 
 
     scare() {
-        // dead ghosts can not be scared
+        let ghost = super.getGhost();
+        ghost.setState(new GhostStateScared(30, ghost));
     }
 
 
     kill() {
-        // dead ghosts can not be killed
-    }
-
-
-    // dead state movement pattern
-    calculateNextPosition(current_position_id) {
-        let ghost = super.getGhost();
-        let routing = ghost.getRouting();
-        let spawn_position_id = ghost.getSpawnID();
-        return routing.calculateNextPositionOnShortestPath(current_position_id, spawn_position_id);
+        // ghosts can only be killed when scared
     }
 
 
@@ -74,7 +67,7 @@ export default class GhostStateDead extends GhostState {
 
                 // after teleportation ghost sprite should display the direction of the next move
                 let after_teleportation_position_id = ghost.getNextPosition().getID();
-                let next__after_teleportation_position = this.calculateNextPosition(after_teleportation_position_id);
+                let next__after_teleportation_position = ghost.calculateNextChasePosition(after_teleportation_position_id);
                 ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);
                 ghost.setTeleportationStatus(true);
             } 
@@ -86,22 +79,20 @@ export default class GhostStateDead extends GhostState {
 
 
     handleScatterPositionCollision() {
-        // scatter position can not be equal to spawn position
+        // ignore scatter position
     }
 
 
     handlePacmanCollisionOnCurrentPosition() {
-        let ghost = super.getGhost();
-        if (ghost.isCurrentPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
-            ghost.setUpdateFlagCurrentPosition(false);
-        } 
+        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
+        // is handled by the method Pacman.handleGhostCollision()
     }
 
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
-            ghost.setUpdateFlagNextPosition(false);
+            ghost.killPacman(ghost.getNextPosition().getID());
         }
     }
 
@@ -113,11 +104,8 @@ export default class GhostStateDead extends GhostState {
 
 
     handleSpawnCollision() {
-        let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
-            super.end();
-        }
+        // ignore spawn position
     }
 
-
+    
 }
