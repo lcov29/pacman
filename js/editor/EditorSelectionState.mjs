@@ -45,6 +45,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(caller_id) {
+        let border_color = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
         let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
         let tile_character = this.editor.getBoardCharacterAt(caller_id);
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
@@ -52,7 +53,7 @@ export default class EditorSelectionState {
         let is_tile_selected_ghost_type = ghost_coordinates.includes(caller_id);
 
         if (is_tile_accessible && !is_tile_selected_ghost_type) {
-            document.getElementById(caller_id).style.borderColor = 'green';
+            document.getElementById(caller_id).style.borderColor = border_color;
             document.getElementById(caller_id).style.borderWidth = "5px";
         }
         this.position_input.value = (is_tile_accessible) ? caller_id : "";

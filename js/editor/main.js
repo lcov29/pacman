@@ -5,6 +5,7 @@ import EditorTileManipulationState from "./EditorTileManipulationState.mjs";
 import EditorScatterSelectionState from "./EditorScatterSelectionState.mjs";
 import EditorMapDimensionChangeState from "./EditorMapDimensionChangeState.mjs";
 import EditorSpawnSelectionState from "./EditorSpawnSelectionState.mjs";
+import Configuration from "../Configuration.mjs";
 
 
 let editor = new Editor();
@@ -119,9 +120,10 @@ function validateMapHeightWidthInput() {
 
 
 function inputScatterSpawnMouseEnterCallback() {
+    let border_color = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
     let coordinate_string = document.getElementById(this.id).value;
     if (coordinate_string !== "") {
-        document.getElementById(coordinate_string).style.borderColor = 'green';
+        document.getElementById(coordinate_string).style.borderColor = border_color;
         document.getElementById(coordinate_string).style.borderWidth = '5px';
     }
 }
