@@ -1,16 +1,16 @@
 "use strict";
 
 
-export default class LevelEditorDefaultState {
+export default class EditorDefaultState {
 
     
     constructor() {
-        this.level_editor = null;
+        this.editor = null;
     }
 
 
-    initialize(level_editor_reference) {
-        this.level_editor = level_editor_reference;
+    initialize(editor) {
+        this.editor = editor;
     }
 
 

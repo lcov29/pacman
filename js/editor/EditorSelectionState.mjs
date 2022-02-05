@@ -1,26 +1,26 @@
 "use strict";
 
 import Configuration from "../Configuration.mjs";
-import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
+import EditorDefaultState from "./EditorDefaultState.mjs";
 
 
-export default class LevelEditorSelectionState {
+export default class EditorSelectionState {
 
     
     constructor(button_id) {
-        this.level_editor = null;
+        this.editor = null;
         this.position_input = null;
         this.button_id = button_id;
     }
 
 
-    setLevelEditor(level_editor) {
-        this.level_editor = level_editor;
+    setEditor(editor) {
+        this.editor = editor;
     }
 
 
-    getLevelEditor() {
-        return this.level_editor;
+    getEditor() {
+        return this.editor;
     }
 
 
@@ -36,7 +36,7 @@ export default class LevelEditorSelectionState {
 
 
     handleEditorContainerMouseLeave(caller_id) {
-        this.level_editor.setState(new LevelEditorDefaultState());
+        this.editor.setState(new EditorDefaultState());
     }
 
 
@@ -44,9 +44,9 @@ export default class LevelEditorSelectionState {
 
 
     handleEditorTileMouseEnter(caller_id) {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
-        let tile_character = this.level_editor.getBoardCharacterAt(caller_id);
-        let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
+        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let tile_character = this.editor.getBoardCharacterAt(caller_id);
+        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
         let is_tile_selected_ghost_type = ghost_coordinates.includes(caller_id);
 
@@ -59,8 +59,8 @@ export default class LevelEditorSelectionState {
 
 
     handleEditorTileMouseLeave(caller_id) {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
-        let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
+        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         if (ghost_coordinates.includes(caller_id) === false) {
             document.getElementById(caller_id).style = null;
         }
@@ -73,14 +73,14 @@ export default class LevelEditorSelectionState {
 
 
     initializeInputReference() {
-        let input_id = this.level_editor.getScatterSpawnInputFor(this.button_id);
+        let input_id = this.editor.getScatterSpawnInputFor(this.button_id);
         this.position_input = document.getElementById(input_id);
     }
 
 
     highlightPlacedGhosts() {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
-        let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
+        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style.borderColor = 'red';
             document.getElementById(coordinate).style.borderWidth = '5px';
@@ -89,8 +89,8 @@ export default class LevelEditorSelectionState {
 
 
     resetHighlightPlacedGhosts() {
-        let ghost_character = this.level_editor.getGhostCharacterFor(this.button_id);
-        let ghost_coordinates = this.level_editor.getGhostCoordinatesListFor(ghost_character);
+        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style = null;
         }

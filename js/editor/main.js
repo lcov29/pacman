@@ -1,13 +1,13 @@
 "use strict";
 
-import LevelEditor from "./LevelEditor.mjs";
-import LevelEditorTileManipulationState from "./LevelEditorTileManipulationState.mjs";
-import LevelEditorScatterSelectionState from "./LevelEditorScatterSelectionState.mjs";
-import LevelEditorMapDimensionChangeState from "./LevelEditorMapDimensionChangeState.mjs";
-import LevelEditorSpawnSelectionState from "./LevelEditorSpawnSelectionState.mjs";
+import Editor from "./Editor.mjs";
+import EditorTileManipulationState from "./EditorTileManipulationState.mjs";
+import EditorScatterSelectionState from "./EditorScatterSelectionState.mjs";
+import EditorMapDimensionChangeState from "./EditorMapDimensionChangeState.mjs";
+import EditorSpawnSelectionState from "./EditorSpawnSelectionState.mjs";
 
 
-let editor = new LevelEditor();
+let editor = new Editor();
 editor.setEditorContainer("editor_container");
 editor.setReferenceInputMapHeight("map_height");
 editor.setReferenceInputMapWidth("map_width");
@@ -101,7 +101,7 @@ function editorTileMouseLeaveCallback() {
 
 
 function radioButtonTileSelectionCallback() {
-    editor.setState(new LevelEditorTileManipulationState(this.id));
+    editor.setState(new EditorTileManipulationState(this.id));
 }
 
 
@@ -139,7 +139,7 @@ function buttonMapDimensionChangeCallback() {
     let input_height = document.getElementById("map_height").value;
     let input_width = document.getElementById("map_width").value;
     if (input_height !== "" && input_width !== "") {
-        let new_state = new LevelEditorMapDimensionChangeState();
+        let new_state = new EditorMapDimensionChangeState();
         new_state.setEditorTileClickCallback(editorTileClickCallback);
         new_state.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
         new_state.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
@@ -150,12 +150,12 @@ function buttonMapDimensionChangeCallback() {
 
 
 function buttonScatterSelectionCallback() {
-    editor.setState(new LevelEditorScatterSelectionState(this.id));
+    editor.setState(new EditorScatterSelectionState(this.id));
 }
 
 
 function buttonSpawnSelectionCallback() {
-    editor.setState(new LevelEditorSpawnSelectionState(this.id));
+    editor.setState(new EditorSpawnSelectionState(this.id));
 }
 
 

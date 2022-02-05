@@ -1,16 +1,16 @@
 "use strict";
 
 import Configuration from "../Configuration.mjs";
-import LevelEditorInternalBoard from "./LevelEditorInternalBoard.mjs";
-import LevelEditorDefaultState from "./LevelEditorDefaultState.mjs";
+import EditorInternalBoard from "./EditorInternalBoard.mjs";
+import EditorDefaultState from "./EditorDefaultState.mjs";
 
 
-export default class LevelEditor {
+export default class Editor {
 
 
     constructor() {
         this.editor_container = null;
-        this.internal_board = new LevelEditorInternalBoard();
+        this.internal_board = new EditorInternalBoard();
         this.mapTileTypeToInternalElement = [];
         this.mapButtonIdToInputId = [];
         this.mapButtonIdToGhostCharacter = [];
@@ -27,7 +27,7 @@ export default class LevelEditor {
         let width = this.input_map_width.value;
         let height = this.input_map_height.value;
         this.internal_board.initialize(width, height);
-        this.current_state = new LevelEditorDefaultState();
+        this.current_state = new EditorDefaultState();
 
         this.mapTileTypeToInternalElement = {
             'wall_tile':                    Configuration.WALL_CHARACTER,

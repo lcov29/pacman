@@ -4,7 +4,7 @@ import Configuration from "../Configuration.mjs";
 import Utility from "../Utility.mjs";
 
 // TODO: Think about adding a mapping with ghost characters
-export default class LevelEditorInternalBoard {
+export default class EditorInternalBoard {
 
 
     constructor() {

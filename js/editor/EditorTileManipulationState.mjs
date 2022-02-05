@@ -3,18 +3,18 @@
 import Configuration from "../Configuration.mjs";
 
 
-export default class LevelEditorTileManipulationState {
+export default class EditorTileManipulationState {
 
 
     constructor(selector_tile_type) {
         this.selector_tile_type = selector_tile_type;
-        this.level_editor = null;
+        this.editor = null;
         this.is_mouse_pressed_inside_editor_area = false;
     }
 
 
-    initialize(level_editor_reference) {
-        this.level_editor = level_editor_reference;
+    initialize(editor) {
+        this.editor = editor;
         this.highlightChosenSelectorTile();
     }
 
@@ -37,7 +37,7 @@ export default class LevelEditorTileManipulationState {
     handleEditorTileClick(caller_id) {
         let styleclass = `editor_tile ${this.selector_tile_type}`;
         document.getElementById(caller_id).setAttribute('class', styleclass);
-        this.level_editor.updateInternalBoard(caller_id, this.selector_tile_type);
+        this.editor.updateInternalBoard(caller_id, this.selector_tile_type);
         this.manageScatterSpawnControlVisibility();
     }
 
@@ -87,28 +87,28 @@ export default class LevelEditorTileManipulationState {
         let ghost_type_control_ids = [];
 
         for (let ghost_character of Configuration.GHOST_CHARACTERS) {
-            ghost_type_counter = this.level_editor.getCounterForGhostType(ghost_character);
-            ghost_type_control_ids = this.level_editor.getScatterSpawnControlIDsForGhostType(ghost_character);
-            is_control_displayed = this.level_editor.getScatterSpawnControlDisplayStatusForGhostType(ghost_character);
+            ghost_type_counter = this.editor.getCounterForGhostType(ghost_character);
+            ghost_type_control_ids = this.editor.getScatterSpawnControlIDsForGhostType(ghost_character);
+            is_control_displayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghost_character);
     
             // display invisible controls
             if ((ghost_type_counter > 0) && (is_control_displayed === false)) {
                 for (let control_id of ghost_type_control_ids) {
                     document.getElementById(control_id).style = null;
                 }
-                this.level_editor.setSpawnScatterControlDisplayStatus(ghost_character, true);
+                this.editor.setSpawnScatterControlDisplayStatus(ghost_character, true);
             }
     
             // hide visible controls
             if ((ghost_type_counter === 0) && (is_control_displayed === true)) {
                 for (let control_id of ghost_type_control_ids) {
                     document.getElementById(control_id).style = "display:none";
-                    let input_id = this.level_editor.getScatterSpawnInputIdForControlId(control_id);
+                    let input_id = this.editor.getScatterSpawnInputIdForControlId(control_id);
                     document.getElementById(input_id).value = "";
-                    this.level_editor.removeScatterPosition(ghost_character);
-                    this.level_editor.removeSpawnPosition(ghost_character);
+                    this.editor.removeScatterPosition(ghost_character);
+                    this.editor.removeSpawnPosition(ghost_character);
                 }
-                this.level_editor.setSpawnScatterControlDisplayStatus(ghost_character, false);
+                this.editor.setSpawnScatterControlDisplayStatus(ghost_character, false);
             }
 
         }

@@ -1,11 +1,11 @@
 "use strict";
 
 
-export default class LevelEditorMapDimensionChangeState {
+export default class EditorMapDimensionChangeState {
 
     
     constructor() {
-        this.level_editor = null;
+        this.editor = null;
         this.input_map_width = null;
         this.input_map_height = null;
         this.callback_click = null;
@@ -35,13 +35,13 @@ export default class LevelEditorMapDimensionChangeState {
     }
 
 
-    initialize(level_editor_reference) {
-        this.level_editor = level_editor_reference;
+    initialize(editor) {
+        this.editor = editor;
         this.input_map_width = document.getElementById("map_width");
         this.input_map_height = document.getElementById("map_height");
-        this.level_editor.resetSpawnScatterControlDisplayStatus();
-        this.level_editor.resetInternalLevel(this.input_map_width.value, this.input_map_height.value);
-        this.level_editor.clearMap();
+        this.editor.resetSpawnScatterControlDisplayStatus();
+        this.editor.resetInternalLevel(this.input_map_width.value, this.input_map_height.value);
+        this.editor.clearMap();
         this.initializeEditingArea();
     }
 
@@ -71,9 +71,9 @@ export default class LevelEditorMapDimensionChangeState {
 
 
     initializeEditingArea() {
-        let width = this.level_editor.getMapWidthInput();
-        let height = this.level_editor.getMapHeightInput();
-        this.level_editor.setEditorContainerDimension(width, height);
+        let width = this.editor.getMapWidthInput();
+        let height = this.editor.getMapHeightInput();
+        this.editor.setEditorContainerDimension(width, height);
         
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
@@ -86,7 +86,7 @@ export default class LevelEditorMapDimensionChangeState {
                 new_div.addEventListener('mouseenter', this.callback_mouseenter);
                 new_div.addEventListener('mouseleave', this.callback_mouseleave);
                 new_div.addEventListener('click', this.callback_click);
-                this.level_editor.addEditorTile(new_div);
+                this.editor.addEditorTile(new_div);
             }
         }
     }
