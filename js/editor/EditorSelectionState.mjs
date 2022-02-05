@@ -81,9 +81,10 @@ export default class EditorSelectionState {
 
     highlightPlacedGhosts() {
         let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
+        let ghost_highlight_color = EditorElementMapper.mapGhostCharacterToHighlightColor[ghost_character];
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
-            document.getElementById(coordinate).style.borderColor = 'red';
+            document.getElementById(coordinate).style.borderColor = ghost_highlight_color;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
     }
