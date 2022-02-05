@@ -123,12 +123,19 @@ export default class Configuration {
 
 
    // Editor Settings
+      static EDITOR_BOARD_MIN_HEIGHT = 4;
+      static EDITOR_BOARD_MAX_HEIGHT = 30;
+      static EDITOR_BOARD_DEFAULT_HEIGHT = 20;
+
+      static EDITOR_BOARD_MIN_WIDTH = 4;
+      static EDITOR_BOARD_MAX_WIDTH = 30;
+      static EDITOR_BOARD_DEFAULT_WIDTH = 20;
 
       static EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX = "#dd1717";
       static EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX = "#ee45bc";
       static EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX = "#ee810d";
       static EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX = "#08e6db";
-
+      
       static EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX = "#289D10";
 
 
