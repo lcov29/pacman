@@ -11,6 +11,8 @@ export default class Editor {
 
     constructor() {
         this.editor_container = null;
+        this.input_map_width = null;
+        this.input_map_height = null;
         this.internal_level = new EditorInternalLevel();
         this.is_ghost_blinky_scatter_spawn_control_displayed = false;
         this.is_ghost_pinky_scatter_spawn_control_displayed = false;
@@ -22,9 +24,10 @@ export default class Editor {
 
 
     initialize() {
-        let width = this.input_map_width.value;
-        let height = this.input_map_height.value;
+        let width = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
+        let height = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
         this.internal_level.initialize(width, height);
+        this.initializeDimensionInput();
         this.current_state = new EditorDefaultState();
         this.mapGhostCharacterToDisplayStatusName = {
             [Configuration.GHOST_BLINKY_CHARACTER]:     'is_ghost_blinky_scatter_spawn_control_displayed',
@@ -32,6 +35,18 @@ export default class Editor {
             [Configuration.GHOST_CLYDE_CHARACTER]:      'is_ghost_clyde_scatter_spawn_control_displayed',
             [Configuration.GHOST_INKY_CHARACTER]:       'is_ghost_inky_scatter_spawn_control_displayed'
         };
+    }
+
+
+    initializeDimensionInput() {
+        this.input_map_height.setAttribute("min", Configuration.EDITOR_BOARD_MIN_HEIGHT);
+        this.input_map_width.setAttribute("min", Configuration.EDITOR_BOARD_MIN_WIDTH);
+
+        this.input_map_height.setAttribute("max", Configuration.EDITOR_BOARD_MAX_HEIGHT);
+        this.input_map_width.setAttribute("max", Configuration.EDITOR_BOARD_MAX_WIDTH);
+
+        this.input_map_height.value = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
+        this.input_map_width.value = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
     }
 
 
