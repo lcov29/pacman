@@ -93,22 +93,7 @@ export default class Editor {
 
 
     getCounterForGhostType(ghost_character) {
-        let counter = false;
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                counter = this.internal_board.getCounterGhostsBlinky();
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                counter = this.internal_board.getCounterGhostsPinky();;
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                counter = this.internal_board.getCounterGhostsClyde();
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                counter = this.internal_board.getCounterGhostsInky();;
-                break;
-        }
-        return counter;
+        return this.internal_board.getGhostCounterFor(ghost_character);
     }
 
 
