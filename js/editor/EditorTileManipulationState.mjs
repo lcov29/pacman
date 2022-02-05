@@ -67,7 +67,7 @@ export default class EditorTileManipulationState {
         for (let radio of radios) {
             let radio_label = document.querySelector(`label[for="${radio.id}"]`);
             if (selected_radio_id === radio.id) {
-                radio_label.style.borderColor = 'red';
+                radio_label.style.borderColor = Configuration.EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX;
             } else {
                 radio_label.setAttribute('style', '');
             }
