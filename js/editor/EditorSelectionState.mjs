@@ -2,6 +2,7 @@
 
 import Configuration from "../Configuration.mjs";
 import EditorDefaultState from "./EditorDefaultState.mjs";
+import EditorElementMapper from "./EditorElementMapper.mjs";
 
 
 export default class EditorSelectionState {
@@ -44,7 +45,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(caller_id) {
-        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
         let tile_character = this.editor.getBoardCharacterAt(caller_id);
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
@@ -59,7 +60,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseLeave(caller_id) {
-        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         if (ghost_coordinates.includes(caller_id) === false) {
             document.getElementById(caller_id).style = null;
@@ -73,13 +74,13 @@ export default class EditorSelectionState {
 
 
     initializeInputReference() {
-        let input_id = this.editor.getScatterSpawnInputFor(this.button_id);
+        let input_id = EditorElementMapper.mapButtonIdToInputId[this.button_id];
         this.position_input = document.getElementById(input_id);
     }
 
 
     highlightPlacedGhosts() {
-        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style.borderColor = 'red';
@@ -89,7 +90,7 @@ export default class EditorSelectionState {
 
 
     resetHighlightPlacedGhosts() {
-        let ghost_character = this.editor.getGhostCharacterFor(this.button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
         let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
         for (let coordinate of ghost_coordinates) {
             document.getElementById(coordinate).style = null;

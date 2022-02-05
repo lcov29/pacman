@@ -1,6 +1,7 @@
 "use strict";
 
 import Configuration from "../Configuration.mjs";
+import EditorElementMapper from "./EditorElementMapper.mjs";
 
 
 export default class EditorTileManipulationState {
@@ -88,7 +89,7 @@ export default class EditorTileManipulationState {
 
         for (let ghost_character of Configuration.GHOST_CHARACTERS) {
             ghost_type_counter = this.editor.getCounterForGhostType(ghost_character);
-            ghost_type_control_ids = this.editor.getScatterSpawnControlIDsForGhostType(ghost_character);
+            ghost_type_control_ids = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character];
             is_control_displayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghost_character);
     
             // display invisible controls
@@ -103,7 +104,7 @@ export default class EditorTileManipulationState {
             if ((ghost_type_counter === 0) && (is_control_displayed === true)) {
                 for (let control_id of ghost_type_control_ids) {
                     document.getElementById(control_id).style = "display:none";
-                    let input_id = this.editor.getScatterSpawnInputIdForControlId(control_id);
+                    let input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[control_id];
                     document.getElementById(input_id).value = "";
                     this.editor.removeScatterPosition(ghost_character);
                     this.editor.removeSpawnPosition(ghost_character);

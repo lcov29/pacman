@@ -3,6 +3,7 @@
 import Configuration from "../Configuration.mjs";
 import EditorInternalBoard from "./EditorInternalBoard.mjs";
 import EditorDefaultState from "./EditorDefaultState.mjs";
+import EditorElementMapper from "./EditorElementMapper.mjs";
 
 
 export default class Editor {
@@ -11,10 +12,6 @@ export default class Editor {
     constructor() {
         this.editor_container = null;
         this.internal_board = new EditorInternalBoard();
-        this.mapTileTypeToInternalElement = [];
-        this.mapButtonIdToInputId = [];
-        this.mapButtonIdToGhostCharacter = [];
-        this.mapInternalElementToScatterSpawnControlIds = [];
         this.is_ghost_blinky_scatter_spawn_control_displayed = false;
         this.is_ghost_pinky_scatter_spawn_control_displayed = false;
         this.is_ghost_clyde_scatter_spawn_control_displayed = false;
@@ -28,60 +25,6 @@ export default class Editor {
         let height = this.input_map_height.value;
         this.internal_board.initialize(width, height);
         this.current_state = new EditorDefaultState();
-
-        this.mapTileTypeToInternalElement = {
-            'wall_tile':                    Configuration.WALL_CHARACTER,
-            'empty_tile':                   Configuration.EMPTY_TILE_CHARACTER,
-            'point_tile':                   Configuration.POINT_CHARACTER,
-            'powerup_tile':                 Configuration.POWERUP_CHARACTER,
-            'ghost_door_horizontal_tile':   Configuration.GHOST_DOOR_HORIZONTAL_CHARACTER,
-            'ghost_door_vertical_tile':     Configuration.GHOST_DOOR_VERTICAL_CHARACTER,
-            'ghost_door_crossing_tile':     Configuration.GHOST_DOOR_CROSSING_CHARACTER,
-            'teleporter_1_tile':            Configuration.TELEPORTER_1_CHARACTER,
-            'teleporter_2_tile':            Configuration.TELEPORTER_2_CHARACTER,
-            'teleporter_3_tile':            Configuration.TELEPORTER_3_CHARACTER,
-            'pacman_tile':                  Configuration.PACMAN_CHARACTER,
-            'ghost_blinky_tile':            Configuration.GHOST_BLINKY_CHARACTER,
-            'ghost_pinky_tile':             Configuration.GHOST_PINKY_CHARACTER,
-            'ghost_inky_tile':              Configuration.GHOST_INKY_CHARACTER,
-            'ghost_clyde_tile':             Configuration.GHOST_CLYDE_CHARACTER
-        };
-        this.mapButtonIdToInputId = {
-            'select_scatter_position_ghost_blinky':     'scatter_position_ghost_blinky',
-            'select_scatter_position_ghost_pinky':      'scatter_position_ghost_pinky',
-            'select_scatter_position_ghost_inky':       'scatter_position_ghost_inky',
-            'select_scatter_position_ghost_clyde':      'scatter_position_ghost_clyde',
-            'select_spawn_position_ghost_blinky':       'spawn_position_ghost_blinky',
-            'select_spawn_position_ghost_pinky':        'spawn_position_ghost_pinky',
-            'select_spawn_position_ghost_inky':         'spawn_position_ghost_inky',
-            'select_spawn_position_ghost_clyde':        'spawn_position_ghost_clyde'
-        };
-        this.mapButtonIdToGhostCharacter = {
-            'select_scatter_position_ghost_blinky':     Configuration.GHOST_BLINKY_CHARACTER,
-            'select_scatter_position_ghost_pinky':      Configuration.GHOST_PINKY_CHARACTER,
-            'select_scatter_position_ghost_inky':       Configuration.GHOST_INKY_CHARACTER,
-            'select_scatter_position_ghost_clyde':      Configuration.GHOST_CLYDE_CHARACTER,
-            'select_spawn_position_ghost_blinky':       Configuration.GHOST_BLINKY_CHARACTER,
-            'select_spawn_position_ghost_pinky':        Configuration.GHOST_PINKY_CHARACTER,
-            'select_spawn_position_ghost_inky':         Configuration.GHOST_INKY_CHARACTER,
-            'select_spawn_position_ghost_clyde':        Configuration.GHOST_CLYDE_CHARACTER
-        }
-        this.mapInternalElementToScatterSpawnControlIds = {
-            [Configuration.GHOST_BLINKY_CHARACTER]: ["scatter_control_ghost_blinky", "spawn_control_ghost_blinky"],
-            [Configuration.GHOST_PINKY_CHARACTER]:  ["scatter_control_ghost_pinky", "spawn_control_ghost_pinky"],
-            [Configuration.GHOST_CLYDE_CHARACTER]:  ["scatter_control_ghost_clyde", "spawn_control_ghost_clyde"],
-            [Configuration.GHOST_INKY_CHARACTER]:   ["scatter_control_ghost_inky", "spawn_control_ghost_inky"]
-        };
-        this.mapScatterSpawnControlIdsToInputIds = {
-            'scatter_control_ghost_blinky':     'scatter_position_ghost_blinky',
-            'scatter_control_ghost_pinky':      'scatter_position_ghost_pinky',
-            'scatter_control_ghost_clyde':      'scatter_position_ghost_clyde',
-            'scatter_control_ghost_inky':       'scatter_position_ghost_inky',
-            'spawn_control_ghost_blinky':       'spawn_position_ghost_blinky',
-            'spawn_control_ghost_pinky':        'spawn_position_ghost_pinky',
-            'spawn_control_ghost_clyde':        'spawn_position_ghost_clyde',
-            'spawn_control_ghost_inky':         'spawn_position_ghost_inky'
-        }
     }
 
 
@@ -149,11 +92,6 @@ export default class Editor {
     }
 
 
-    getScatterSpawnInputFor(button_id) {
-        return this.mapButtonIdToInputId[button_id];
-    }
-
-
     getCounterForGhostType(ghost_character) {
         let counter = false;
         switch(ghost_character) {
@@ -174,23 +112,8 @@ export default class Editor {
     }
 
 
-    getInternalElementFor(tile_id) {
-        return this.mapTileTypeToInternalElement[tile_id];
-    }
-
-
-    getGhostCharacterFor(button_id) {
-        return this.mapButtonIdToGhostCharacter[button_id];
-    }
-
-
     getGhostCoordinatesListFor(ghost_character) {
         return this.internal_board.getGhostCoordinatesListFor(ghost_character);
-    }
-
-
-    getScatterSpawnInputIdForControlId(control_id) {
-        return this.mapScatterSpawnControlIdsToInputIds[control_id];
     }
 
 
@@ -211,11 +134,6 @@ export default class Editor {
                 break;
         }
         return status;
-    }
-
-
-    getScatterSpawnControlIDsForGhostType(ghost_character) {
-        return this.mapInternalElementToScatterSpawnControlIds[ghost_character];
     }
 
 
@@ -268,7 +186,7 @@ export default class Editor {
 
 
     updateInternalBoard(tile_coordinates, element) {
-        let internal_element = this.getInternalElementFor(element);
+        let internal_element = EditorElementMapper.mapTileTypeToInternalElement[element];
         this.internal_board.update(tile_coordinates, internal_element);
     }
 
@@ -279,13 +197,13 @@ export default class Editor {
 
 
     addScatterPosition(button_id, coordinates) {
-        let ghost_character = this.getGhostCharacterFor(button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         this.internal_board.addScatterPosition(ghost_character, coordinates);
     }
 
 
     addSpawnPosition(button_id, coordinates) {
-        let ghost_character = this.getGhostCharacterFor(button_id);
+        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
     }
 
@@ -293,7 +211,7 @@ export default class Editor {
     removeScatterPosition(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
-            ghost_character = this.getGhostCharacterFor(button_id);
+            ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         }
         this.internal_board.removeScatterPositionFor(ghost_character);
     }
@@ -302,7 +220,7 @@ export default class Editor {
     removeSpawnPosition(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
-            ghost_character = this.getGhostCharacterFor(button_id);
+            ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         }
         this.internal_board.removeSpawnPositionFor(ghost_character);
     }
