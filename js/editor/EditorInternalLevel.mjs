@@ -4,7 +4,7 @@ import Configuration from "../Configuration.mjs";
 import Utility from "../Utility.mjs";
 
 
-export default class EditorInternalBoard {
+export default class EditorInternalLevel {
 
 
     constructor() {
