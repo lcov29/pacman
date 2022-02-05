@@ -16,6 +16,7 @@ export default class Editor {
         this.is_ghost_pinky_scatter_spawn_control_displayed = false;
         this.is_ghost_clyde_scatter_spawn_control_displayed = false;
         this.is_ghost_inky_scatter_spawn_control_displayed = false;
+        this.mapGhostCharacterToDisplayStatus = null;
         this.current_state = null;
     }
 
@@ -25,6 +26,12 @@ export default class Editor {
         let height = this.input_map_height.value;
         this.internal_board.initialize(width, height);
         this.current_state = new EditorDefaultState();
+        this.mapGhostCharacterToDisplayStatusName = {
+            [Configuration.GHOST_BLINKY_CHARACTER]:     'is_ghost_blinky_scatter_spawn_control_displayed',
+            [Configuration.GHOST_PINKY_CHARACTER]:      'is_ghost_pinky_scatter_spawn_control_displayed',
+            [Configuration.GHOST_CLYDE_CHARACTER]:      'is_ghost_clyde_scatter_spawn_control_displayed',
+            [Configuration.GHOST_INKY_CHARACTER]:       'is_ghost_inky_scatter_spawn_control_displayed'
+        };
     }
 
 
@@ -56,21 +63,9 @@ export default class Editor {
     }
 
 
-    setSpawnScatterControlDisplayStatus(internal_character, status) {
-        switch(internal_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                this.is_ghost_blinky_scatter_spawn_control_displayed = status;
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                this.is_ghost_pinky_scatter_spawn_control_displayed = status;
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                this.is_ghost_clyde_scatter_spawn_control_displayed = status;
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                this.is_ghost_inky_scatter_spawn_control_displayed = status;
-                break;
-        }
+    setSpawnScatterControlDisplayStatus(ghost_character, status) {
+        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghost_character];
+        this[displayVariableName] = status;
     }
 
 
@@ -103,22 +98,8 @@ export default class Editor {
 
 
     getScatterSpawnControlDisplayStatusForGhostType(ghost_character) {
-        let status = false;
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                status = this.is_ghost_blinky_scatter_spawn_control_displayed;
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                status = this.is_ghost_pinky_scatter_spawn_control_displayed;
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                status = this.is_ghost_clyde_scatter_spawn_control_displayed;
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                status = this.is_ghost_inky_scatter_spawn_control_displayed;
-                break;
-        }
-        return status;
+        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghost_character];
+        return this[displayVariableName];
     }
 
 
