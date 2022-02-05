@@ -1,7 +1,7 @@
 "use strict";
 
 import Configuration from "../Configuration.mjs";
-import EditorInternalBoard from "./EditorInternalBoard.mjs";
+import EditorInternalLevel from "./EditorInternalLevel.mjs";
 import EditorDefaultState from "./EditorDefaultState.mjs";
 import EditorElementMapper from "./EditorElementMapper.mjs";
 
@@ -11,7 +11,7 @@ export default class Editor {
 
     constructor() {
         this.editor_container = null;
-        this.internal_board = new EditorInternalBoard();
+        this.internal_level = new EditorInternalLevel();
         this.is_ghost_blinky_scatter_spawn_control_displayed = false;
         this.is_ghost_pinky_scatter_spawn_control_displayed = false;
         this.is_ghost_clyde_scatter_spawn_control_displayed = false;
@@ -24,7 +24,7 @@ export default class Editor {
     initialize() {
         let width = this.input_map_width.value;
         let height = this.input_map_height.value;
-        this.internal_board.initialize(width, height);
+        this.internal_level.initialize(width, height);
         this.current_state = new EditorDefaultState();
         this.mapGhostCharacterToDisplayStatusName = {
             [Configuration.GHOST_BLINKY_CHARACTER]:     'is_ghost_blinky_scatter_spawn_control_displayed',
@@ -78,22 +78,22 @@ export default class Editor {
 
 
     resetInternalLevel(width, height) {
-        this.internal_board.initialize(width, height);
+        this.internal_level.initialize(width, height);
     }
 
 
     getBoardCharacterAt(coordinates) {
-        return this.internal_board.getBoardCharacterAt(coordinates);
+        return this.internal_level.getBoardCharacterAt(coordinates);
     }
 
 
     getCounterForGhostType(ghost_character) {
-        return this.internal_board.getGhostCounterFor(ghost_character);
+        return this.internal_level.getGhostCounterFor(ghost_character);
     }
 
 
     getGhostCoordinatesListFor(ghost_character) {
-        return this.internal_board.getGhostCoordinatesListFor(ghost_character);
+        return this.internal_level.getGhostCoordinatesListFor(ghost_character);
     }
 
 
@@ -153,7 +153,7 @@ export default class Editor {
 
     updateInternalBoard(tile_coordinates, element) {
         let internal_element = EditorElementMapper.mapTileTypeToInternalElement[element];
-        this.internal_board.update(tile_coordinates, internal_element);
+        this.internal_level.update(tile_coordinates, internal_element);
     }
 
 
@@ -164,13 +164,13 @@ export default class Editor {
 
     addScatterPosition(button_id, coordinates) {
         let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
-        this.internal_board.addScatterPosition(ghost_character, coordinates);
+        this.internal_level.addScatterPosition(ghost_character, coordinates);
     }
 
 
     addSpawnPosition(button_id, coordinates) {
         let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
-        this.internal_board.addOptionalSpawnPosition(ghost_character, coordinates);
+        this.internal_level.addOptionalSpawnPosition(ghost_character, coordinates);
     }
 
 
@@ -179,7 +179,7 @@ export default class Editor {
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
             ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         }
-        this.internal_board.removeScatterPositionFor(ghost_character);
+        this.internal_level.removeScatterPositionFor(ghost_character);
     }
 
 
@@ -188,7 +188,7 @@ export default class Editor {
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
             ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         }
-        this.internal_board.removeSpawnPositionFor(ghost_character);
+        this.internal_level.removeSpawnPositionFor(ghost_character);
     }
 
 
@@ -200,7 +200,7 @@ export default class Editor {
 
 
     sendLevelJson() {
-        let levelJSONString = this.internal_board.buildLevelJSONString();
+        let levelJSONString = this.internal_level.buildLevelJSONString();
         sessionStorage.setItem("customLevel", levelJSONString);
     }
 
