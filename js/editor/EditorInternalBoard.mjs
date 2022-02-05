@@ -11,33 +11,22 @@ export default class EditorInternalBoard {
         this.internal_board = [[]];
         this.scatter_positions = [];
         this.optional_spawn_positions = [];
-        this.mapCharacterToCoordinateVariable = null;
-        this.mapCharacterToGhostCounterVariable = null;
         this.coordinates_ghost_blinky = [];
         this.coordinates_ghost_pinky = [];
         this.coordinates_ghost_clyde = [];
         this.coordinates_ghost_inky = [];
-        this.counter_ghosts_blinky = 0;
-        this.counter_ghosts_pinky = 0;
-        this.counter_ghosts_clyde = 0;
-        this.counter_ghosts_inky = 0;
+        this.mapCharacterToCoordinateList = null;
     }
 
 
     initialize(width, height) {
         this.reset();
         this.buildEmptyMap(width, height);
-        this.mapCharacterToCoordinateVariable = {
+        this.mapCharacterToCoordinateList = {
             [Configuration.GHOST_BLINKY_CHARACTER]:     this.coordinates_ghost_blinky,
             [Configuration.GHOST_PINKY_CHARACTER]:      this.coordinates_ghost_pinky,
             [Configuration.GHOST_CLYDE_CHARACTER]:      this.coordinates_ghost_clyde,
             [Configuration.GHOST_INKY_CHARACTER]:       this.coordinates_ghost_inky
-        };
-        this.mapCharacterToGhostCounterVariableName = {
-            [Configuration.GHOST_BLINKY_CHARACTER]:     'counter_ghosts_blinky',
-            [Configuration.GHOST_PINKY_CHARACTER]:      'counter_ghosts_pinky',
-            [Configuration.GHOST_CLYDE_CHARACTER]:      'counter_ghosts_clyde',
-            [Configuration.GHOST_INKY_CHARACTER]:       'counter_ghosts_inky'
         };
     }
 
@@ -49,28 +38,14 @@ export default class EditorInternalBoard {
 
 
     getGhostCoordinatesListFor(ghost_character) {
-        let coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        let coordinates = this.mapCharacterToCoordinateList[ghost_character];
         return [...coordinates];
     }
 
 
-    getCounterGhostsBlinky() {
-        return this.counter_ghosts_blinky;
-    }
-
-
-    getCounterGhostsPinky() {
-        return this.counter_ghosts_pinky;
-    }
-
-
-    getCounterGhostsClyde() {
-        return this.counter_ghosts_clyde;
-    }
-
-
-    getCounterGhostsInky() {
-        return this.counter_ghosts_inky;
+    getGhostCounterFor(ghost_character) {
+        let coordinates = this.mapCharacterToCoordinateList[ghost_character];
+        return coordinates.length;
     }
 
 
@@ -100,10 +75,6 @@ export default class EditorInternalBoard {
         this.coordinates_ghost_pinky = [];
         this.coordinates_ghost_clyde = [];
         this.coordinates_ghost_inky = [];
-        this.counter_ghosts_blinky = 0;
-        this.counter_ghosts_pinky = 0;
-        this.counter_ghosts_clyde = 0;
-        this.counter_ghosts_inky = 0;
     }
 
 
@@ -111,7 +82,6 @@ export default class EditorInternalBoard {
         let parsed_coordinates = this.parseCoordinates(coordinates_string);
         let current_board_character = this.getBoardCharacterAt(coordinates_string);
         this.updateGhostCoordinateLists(coordinates_string, current_board_character, character);
-        this.updateGhostCounters(current_board_character, character);
         this.setBoardCharacter(parsed_coordinates, character);
     }
 
@@ -128,7 +98,7 @@ export default class EditorInternalBoard {
 
 
     addCoordinatesToGhostList(coordinates, ghost_character) {
-        let ghost_coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        let ghost_coordinates = this.mapCharacterToCoordinateList[ghost_character];
         ghost_coordinates.push(coordinates);
     }
 
@@ -185,33 +155,8 @@ export default class EditorInternalBoard {
 
 
     removeCoordinatesFromGhostList(coordinates, ghost_character) {
-        let ghost_coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        let ghost_coordinates = this.mapCharacterToCoordinateList[ghost_character];
         Utility.removeElementFrom(ghost_coordinates, coordinates);
-    }
-
-
-    updateGhostCounters(current_board_character, new_character) {
-
-        // decrement counter for overwritten ghost
-        if (Configuration.GHOST_CHARACTERS.includes(current_board_character)) {
-            this.decrementGhostCounterFor(current_board_character);
-        }
-
-        if (Configuration.GHOST_CHARACTERS.includes(new_character)) {
-            this.incrementGhostCounterFor(new_character);
-        }
-    }
-
-
-    incrementGhostCounterFor(ghost_character) {
-        let ghostCounterName = this.mapCharacterToGhostCounterVariableName[ghost_character];
-        this[ghostCounterName]++;
-    }
-
-
-    decrementGhostCounterFor(ghost_character) {
-        let ghostCounterName = this.mapCharacterToGhostCounterVariableName[ghost_character];
-        this[ghostCounterName]--;
     }
 
 
