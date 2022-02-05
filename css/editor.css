@@ -18,7 +18,7 @@ body {
 
 
 .selector_container {
-    background-color: yellow;
+    background-color: #1c1c1a;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -26,6 +26,7 @@ body {
     padding-right:0.5em;
     padding-bottom: 1em;
     column-gap: 0.5em;
+    border: 2px solid white;
 }
 
 
@@ -37,18 +38,19 @@ body {
 
 
 .control_container {
-    background-color: green;
+    background-color: #1c1c1a;
     display: flex;
     flex-direction: column;
     padding: 0.5em;
     row-gap: 1.5em;
+    border: 2px solid white;
+    color: white;
 }
 
 
 .selection_bar {
     display: flex;
     flex-direction: column;
-    background-color:white;
 }
 
 
