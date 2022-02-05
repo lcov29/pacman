@@ -32,8 +32,8 @@ editor_container.addEventListener('mouseleave', editorContainerMouseLeaveCallbac
 
 
 // add handler to map dimension apply button
-document.getElementById('map_width').addEventListener('blur', validateMapHeightWidthInput);
-document.getElementById('map_height').addEventListener('blur', validateMapHeightWidthInput);
+document.getElementById('map_width').addEventListener('blur', validateMapWidthInput);
+document.getElementById('map_height').addEventListener('blur', validateMapHeightInput);
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
@@ -106,11 +106,26 @@ function radioButtonTileSelectionCallback() {
 }
 
 
-function validateMapHeightWidthInput() {
+function validateMapWidthInput() {
     try {
         let input = document.getElementById(this.id);
         let input_number = parseInt(input.value);
-        if (input_number < 4 || input_number > 30) {
+        if ((input_number < Configuration.EDITOR_BOARD_MIN_WIDTH) ||
+            (input_number > Configuration.EDITOR_BOARD_MAX_WIDTH)) {
+            input.value = "";
+        }
+    } catch(e) {
+        input.value = "";
+    }
+}
+
+
+function validateMapHeightInput() {
+    try {
+        let input = document.getElementById(this.id);
+        let input_number = parseInt(input.value);
+        if ((input_number < Configuration.EDITOR_BOARD_MIN_HEIGHT) ||
+            (input_number > Configuration.EDITOR_BOARD_MAX_HEIGHT)) {
             input.value = "";
         }
     } catch(e) {
