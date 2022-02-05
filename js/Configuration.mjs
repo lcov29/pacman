@@ -137,6 +137,7 @@ export default class Configuration {
       static EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX = "#08e6db";
       
       static EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX = "#289D10";
+      static EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX = "#fdfdfd";
 
 
    // Definition of element lists 
