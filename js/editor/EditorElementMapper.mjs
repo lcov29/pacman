@@ -69,4 +69,12 @@ export default class EditorElementMapper {
     }
 
 
+    static mapGhostCharacterToHighlightColor = {
+        [Configuration.GHOST_BLINKY_CHARACTER]:     Configuration.EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX,
+        [Configuration.GHOST_PINKY_CHARACTER]:      Configuration.EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX,
+        [Configuration.GHOST_CLYDE_CHARACTER]:      Configuration.EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX,
+        [Configuration.GHOST_INKY_CHARACTER]:       Configuration.EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX
+    }
+
+
 }
