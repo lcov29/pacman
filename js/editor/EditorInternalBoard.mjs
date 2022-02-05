@@ -11,6 +11,8 @@ export default class EditorInternalBoard {
         this.internal_board = [[]];
         this.scatter_positions = [];
         this.optional_spawn_positions = [];
+        this.mapCharacterToCoordinateVariable = null;
+        this.mapCharacterToGhostCounterVariable = null;
         this.coordinates_ghost_blinky = [];
         this.coordinates_ghost_pinky = [];
         this.coordinates_ghost_clyde = [];
@@ -22,6 +24,24 @@ export default class EditorInternalBoard {
     }
 
 
+    initialize(width, height) {
+        this.reset();
+        this.buildEmptyMap(width, height);
+        this.mapCharacterToCoordinateVariable = {
+            [Configuration.GHOST_BLINKY_CHARACTER]:     this.coordinates_ghost_blinky,
+            [Configuration.GHOST_PINKY_CHARACTER]:      this.coordinates_ghost_pinky,
+            [Configuration.GHOST_CLYDE_CHARACTER]:      this.coordinates_ghost_clyde,
+            [Configuration.GHOST_INKY_CHARACTER]:       this.coordinates_ghost_inky
+        };
+        this.mapCharacterToGhostCounterVariableName = {
+            [Configuration.GHOST_BLINKY_CHARACTER]:     'counter_ghosts_blinky',
+            [Configuration.GHOST_PINKY_CHARACTER]:      'counter_ghosts_pinky',
+            [Configuration.GHOST_CLYDE_CHARACTER]:      'counter_ghosts_clyde',
+            [Configuration.GHOST_INKY_CHARACTER]:       'counter_ghosts_inky'
+        };
+    }
+
+
     getBoardCharacterAt(coordinates_string) {
         let coordinates = this.parseCoordinates(coordinates_string);
         return this.internal_board[coordinates.y][coordinates.x];
@@ -29,22 +49,8 @@ export default class EditorInternalBoard {
 
 
     getGhostCoordinatesListFor(ghost_character) {
-        let output = [];
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                output = [...this.coordinates_ghost_blinky];
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                output = [...this.coordinates_ghost_pinky];
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                output = [...this.coordinates_ghost_clyde];
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                output = [...this.coordinates_ghost_inky];
-                break;
-        }
-        return output;
+        let coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        return [...coordinates];
     }
 
 
@@ -70,12 +76,6 @@ export default class EditorInternalBoard {
 
     setBoardCharacter(coordinates, character) {
         this.internal_board[coordinates.y][coordinates.x] = character;
-    }
-
-
-    initialize(width, height) {
-        this.reset();
-        this.buildEmptyMap(width, height);
     }
 
 
@@ -128,20 +128,8 @@ export default class EditorInternalBoard {
 
 
     addCoordinatesToGhostList(coordinates, ghost_character) {
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                this.coordinates_ghost_blinky.push(coordinates);
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                this.coordinates_ghost_pinky.push(coordinates);
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                this.coordinates_ghost_clyde.push(coordinates);
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                this.coordinates_ghost_inky.push(coordinates);
-                break;
-        }
+        let ghost_coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        ghost_coordinates.push(coordinates);
     }
 
 
@@ -197,20 +185,8 @@ export default class EditorInternalBoard {
 
 
     removeCoordinatesFromGhostList(coordinates, ghost_character) {
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                Utility.removeElementFrom(this.coordinates_ghost_blinky, coordinates);
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                Utility.removeElementFrom(this.coordinates_ghost_pinky, coordinates);
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                Utility.removeElementFrom(this.coordinates_ghost_clyde, coordinates);
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                Utility.removeElementFrom(this.coordinates_ghost_inky, coordinates);
-                break;
-        }
+        let ghost_coordinates = this.mapCharacterToCoordinateVariable[ghost_character];
+        Utility.removeElementFrom(ghost_coordinates, coordinates);
     }
 
 
@@ -228,38 +204,14 @@ export default class EditorInternalBoard {
 
 
     incrementGhostCounterFor(ghost_character) {
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                this.counter_ghosts_blinky++;
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                this.counter_ghosts_pinky++;
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                this.counter_ghosts_clyde++;
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                this.counter_ghosts_inky++;
-                break;
-        }
+        let ghostCounterName = this.mapCharacterToGhostCounterVariableName[ghost_character];
+        this[ghostCounterName]++;
     }
 
 
     decrementGhostCounterFor(ghost_character) {
-        switch(ghost_character) {
-            case Configuration.GHOST_BLINKY_CHARACTER:
-                this.counter_ghosts_blinky--;
-                break;
-            case Configuration.GHOST_PINKY_CHARACTER:
-                this.counter_ghosts_pinky--;
-                break;
-            case Configuration.GHOST_CLYDE_CHARACTER:
-                this.counter_ghosts_clyde--;
-                break;
-            case Configuration.GHOST_INKY_CHARACTER:
-                this.counter_ghosts_inky--;
-                break;
-        }
+        let ghostCounterName = this.mapCharacterToGhostCounterVariableName[ghost_character];
+        this[ghostCounterName]--;
     }
 
 
