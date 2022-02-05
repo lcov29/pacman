@@ -122,6 +122,14 @@ export default class Configuration {
       static GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY = 1;
 
 
+   // Editor Settings
+
+      static EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX = "#dd1717";
+      static EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX = "#ee45bc";
+      static EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX = "#ee810d";
+      static EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX = "#08e6db";
+
+
 
    // Definition of element lists 
    static POINT_CHARACTERS = [Configuration.POINT_CHARACTER, 
