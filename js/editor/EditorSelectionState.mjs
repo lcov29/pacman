@@ -38,6 +38,7 @@ export default class EditorSelectionState {
 
     handleEditorContainerMouseLeave(caller_id) {
         this.editor.setState(new EditorDefaultState());
+        this.position_input.value = "";
     }
 
 
