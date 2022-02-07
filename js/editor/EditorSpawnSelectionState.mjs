@@ -15,7 +15,7 @@ export default class EditorSpawnSelectionState extends EditorSelectionState {
 
     initialize(editor) {
         super.setEditor(editor);
-        super.getEditor().removeSpawnPosition(super.getButtonId());
+        super.getEditor().removeSpawnPositionFor(super.getButtonId());
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
