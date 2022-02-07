@@ -128,6 +128,16 @@ export default class Editor {
     }
 
 
+    getGhostCharactersForScatterPosition(coordinate_string) {
+        return this.internal_level.getGhostCharactersForScatterPosition(coordinate_string);
+    }
+
+
+    getGhostCharactersForSpawnPosition(coordinate_string) {
+        return this.internal_level.getGhostCharactersForSpawnPosition(coordinate_string);
+    }
+
+
     // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
     
 
@@ -189,7 +199,7 @@ export default class Editor {
     }
 
 
-    removeScatterPosition(button_id) {
+    removeScatterPositionFor(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
             ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
@@ -198,12 +208,18 @@ export default class Editor {
     }
 
 
-    removeSpawnPosition(button_id) {
+    removeSpawnPositionFor(button_id) {
         let ghost_character = button_id;
         if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
             ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
         }
         this.internal_level.removeSpawnPositionFor(ghost_character);
+    }
+
+
+    removeScatterAndSpawnPosition(coordinate_string) {
+        this.internal_level.removeScatterPosition(coordinate_string);
+        this.internal_level.removeSpawnPosition(coordinate_string);
     }
 
 
