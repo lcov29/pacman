@@ -40,6 +40,7 @@ export default class EditorTileManipulationState {
         document.getElementById(caller_id).setAttribute('class', styleclass);
         this.editor.updateInternalBoard(caller_id, this.selector_tile_type);
         this.manageScatterSpawnControlVisibility();
+        this.manageOverwriteOfSpawnScatterWithInaccessibleElement(caller_id);
     }
 
 
@@ -106,13 +107,49 @@ export default class EditorTileManipulationState {
                     document.getElementById(control_id).style = "display:none";
                     let input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[control_id];
                     document.getElementById(input_id).value = "";
-                    this.editor.removeScatterPosition(ghost_character);
-                    this.editor.removeSpawnPosition(ghost_character);
+                    this.editor.removeScatterPositionFor(ghost_character);
+                    this.editor.removeSpawnPositionFor(ghost_character);
                 }
                 this.editor.setSpawnScatterControlDisplayStatus(ghost_character, false);
             }
 
         }
     }
+
+
+    manageOverwriteOfSpawnScatterWithInaccessibleElement(caller_id) {
+        let character = EditorElementMapper.mapTileTypeToInternalElement[this.selector_tile_type];
+        let is_tile_inaccessible = Configuration.ACTORS_INACCESSIBLE_TILES.includes(character);
+        let ghost_characters_scatter = this.editor.getGhostCharactersForScatterPosition(caller_id);
+        let ghost_characters_spawn = this.editor.getGhostCharactersForSpawnPosition(caller_id);
+        console.log(ghost_characters_spawn);
+        let is_tile_scatter_or_spawn = (ghost_characters_scatter.length > 0) || (ghost_characters_spawn.length > 0);
+        console.log(`is_tile_inaccessible: ${is_tile_inaccessible}`);
+        console.log(`is_tile_scatter_or_spawn: ${is_tile_scatter_or_spawn}`);
+        if (is_tile_inaccessible && is_tile_scatter_or_spawn) {
+            this.editor.removeScatterAndSpawnPosition(caller_id);           
+            this.clearScatterInputFor(ghost_characters_scatter);
+            this.clearSpawnInputFor(ghost_characters_spawn);
+        } 
+    }
+
+
+    clearScatterInputFor(ghost_characters) {
+        for (let ghost_character of ghost_characters) {
+            let input_id = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character][0];
+            input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[input_id];
+            document.getElementById(input_id).value = "";
+        }
+    }
+
+
+    clearSpawnInputFor(ghost_characters) {
+        for (let ghost_character of ghost_characters) {
+            let input_id = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character][1];
+            input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[input_id];
+            document.getElementById(input_id).value = "";
+        }
+    }
+
 
 }
