@@ -122,10 +122,7 @@ export default class EditorTileManipulationState {
         let is_tile_inaccessible = Configuration.ACTORS_INACCESSIBLE_TILES.includes(character);
         let ghost_characters_scatter = this.editor.getGhostCharactersForScatterPosition(caller_id);
         let ghost_characters_spawn = this.editor.getGhostCharactersForSpawnPosition(caller_id);
-        console.log(ghost_characters_spawn);
         let is_tile_scatter_or_spawn = (ghost_characters_scatter.length > 0) || (ghost_characters_spawn.length > 0);
-        console.log(`is_tile_inaccessible: ${is_tile_inaccessible}`);
-        console.log(`is_tile_scatter_or_spawn: ${is_tile_scatter_or_spawn}`);
         if (is_tile_inaccessible && is_tile_scatter_or_spawn) {
             this.editor.removeScatterAndSpawnPosition(caller_id);           
             this.clearScatterInputFor(ghost_characters_scatter);
