@@ -15,7 +15,7 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
 
     initialize(editor) {
         super.setEditor(editor);
-        super.getEditor().removeScatterPosition(super.getButtonId());
+        super.getEditor().removeScatterPositionFor(super.getButtonId());
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
