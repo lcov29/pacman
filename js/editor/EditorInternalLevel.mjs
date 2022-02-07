@@ -49,6 +49,30 @@ export default class EditorInternalLevel {
     }
 
 
+    getGhostCharactersForScatterPosition(coordinate_string) {
+        let output = [];
+        let parsedCoordinates = this.parseCoordinates(coordinate_string);
+        for (let scatterPosition of this.scatter_positions) {
+            if (scatterPosition.x === parsedCoordinates.x && scatterPosition.y === parsedCoordinates.y) {
+                output.push(scatterPosition.ghost);
+            }
+        }
+        return output;
+    }
+
+
+    getGhostCharactersForSpawnPosition(coordinate_string) {
+        let output = [];
+        let parsedCoordinates = this.parseCoordinates(coordinate_string);
+        for (let spawnPosition of this.optional_spawn_positions) {
+            if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
+                output.push(spawnPosition.ghost);
+            }
+        }
+        return output;
+    }
+
+
     setBoardCharacter(coordinates, character) {
         this.internal_board[coordinates.y][coordinates.x] = character;
     }
@@ -131,6 +155,37 @@ export default class EditorInternalLevel {
             if (optional_spawn_position.ghost === ghost_character) {
                 Utility.removeElementFrom(this.optional_spawn_positions, optional_spawn_position);
             }
+        }
+    }
+
+
+    removeScatterPosition(coordinate_string) {
+        let elements_to_remove = [];
+        let parsed_coordinate = this.parseCoordinates(coordinate_string);
+        for (let scatter_position of this.scatter_positions) {
+            if (scatter_position.x === parsed_coordinate.x && scatter_position.y === parsed_coordinate.y) {
+                elements_to_remove.push(scatter_position);
+            }
+        }
+        this.removeElementsFromArray(this.scatter_positions, elements_to_remove);
+    }
+
+
+    removeSpawnPosition(coordinate_string) {
+        let elements_to_remove = [];
+        let parseCoordinates = this.parseCoordinates(coordinate_string);
+        for (let spawn_position of this.optional_spawn_positions) {
+            if (spawn_position.x === parseCoordinates.x && spawn_position.y === parseCoordinates.y) {
+                elements_to_remove.push(spawn_position);
+            }
+        }
+        this.removeElementsFromArray(this.optional_spawn_positions, elements_to_remove);
+    }
+
+
+    removeElementsFromArray(array, elements_to_remove) {
+        for (let element of elements_to_remove) {
+            Utility.removeElementFrom(array, element);
         }
     }
 
