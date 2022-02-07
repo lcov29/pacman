@@ -42,6 +42,7 @@ export default class EditorMapDimensionChangeState {
         this.editor.resetSpawnScatterControlDisplayStatus();
         this.editor.resetInternalLevel(this.input_map_width.value, this.input_map_height.value);
         this.editor.clearMap();
+        this.resetScatterSpawnInputs();
         this.initializeEditingArea();
     }
 
@@ -68,6 +69,25 @@ export default class EditorMapDimensionChangeState {
 
 
     exit() {}
+
+
+    resetScatterSpawnInputs() {
+        let input_ids = ["scatter_position_ghost_blinky", "scatter_position_ghost_pinky",
+                         "scatter_position_ghost_clyde", "scatter_position_ghost_inky",
+                         "spawn_position_ghost_blinky", "spawn_position_ghost_pinky",
+                         "spawn_position_ghost_clyde", "spawn_position_ghost_inky"];
+        for (let input_id of input_ids) {
+            document.getElementById(input_id).value = "";
+        }
+
+        let control_ids = ["scatter_control_ghost_blinky", "scatter_control_ghost_pinky",
+                                 "scatter_control_ghost_clyde", "scatter_control_ghost_inky",
+                                 "spawn_control_ghost_blinky", "spawn_control_ghost_pinky",
+                                 "spawn_control_ghost_clyde", "spawn_control_ghost_inky"];
+        for (let control_id of control_ids) {
+            document.getElementById(control_id).style = "display:none";
+        }
+    }
 
 
     initializeEditingArea() {
