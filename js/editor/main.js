@@ -182,6 +182,7 @@ function buttonPlayCallback() {
     //location.href = "../../";
     //location.href = "../index.html";
     //location.href = "./index.html";
-    location.href = "./pacman/index.html";
+    //location.href = "./pacman/index.html";
+    location.href = "./";
 
 }
