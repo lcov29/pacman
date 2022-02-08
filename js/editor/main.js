@@ -178,11 +178,11 @@ function buttonSpawnSelectionCallback() {
 
 function buttonPlayCallback() {
     editor.sendLevelJson();
-    //location.href = "../../index.html";
-    //location.href = "../../";
-    //location.href = "../index.html";
-    //location.href = "./index.html";
-    //location.href = "./pacman/index.html";
-    location.href = "./";
+    loadIndexPage();
+}
 
+
+function loadIndexPage() {
+    let url = location.href;
+    location.href = url.replace('editor.html', 'index.html');
 }
