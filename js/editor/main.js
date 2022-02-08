@@ -179,5 +179,5 @@ function buttonSpawnSelectionCallback() {
 function buttonPlayCallback() {
     editor.sendLevelJson();
     //location.href = "../../index.html";
-    location.href = "/";
+    location.href = "../../";
 }
