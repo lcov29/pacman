@@ -66,12 +66,6 @@ export default class Ghost extends Actor {
    }
 
 
-   /*
-   getTeleportationStatus() {
-      return this.has_teleported_in_previous_turn;
-   }*/
-
-
    getTeleportationStatus() {
       return this.hasTeleportedInPreviousTurn;
    }
@@ -108,10 +102,6 @@ export default class Ghost extends Actor {
          this.state.handlePacmanCollisionOnNextPosition();
          this.state.handleWallCollision();
          this.state.handleSpawnCollision();
-         /*
-         if (this.has_teleported_in_previous_turn === false) {
-            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
-         }*/
          if (this.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
