@@ -17,8 +17,8 @@ import GhostStateChase from "./GhostStateChase.mjs";
    Note 3:      Movement pattern:
                 1.) reverse current movement direction upon entering this state
                 2.) move in current direction
-                3.) when colliding with an inaccessible tile, select a DIFFERENT random movement direction and 
-                    resume with step 2
+                3.) when colliding with an inaccessible tile or with level border, select a DIFFERENT 
+                    random movement direction and resume with step 2
    =================================================================================================================
  */
 
@@ -59,6 +59,7 @@ export default class GhostStateScared extends GhostState {
     executeMovementPattern() {
         let nextPosition = this.calculateNextPosition();
         super.getGhost().setNextPosition(nextPosition);
+        this.handleLevelBorderCollision(nextPosition);
     }
 
 
@@ -124,6 +125,16 @@ export default class GhostStateScared extends GhostState {
 
     handleSpawnCollision() {
         // ignore spawn position
+    }
+
+
+    // internal method
+    handleLevelBorderCollision(nextPosition) {
+        let ghost = super.getGhost();
+        // when an actor moves out of the level its position is reset to current position 
+        if (nextPosition.getID() === ghost.getCurrentPosition().getID()) {
+            ghost.randomizeMovementDirection();
+        }
     }
 
 
