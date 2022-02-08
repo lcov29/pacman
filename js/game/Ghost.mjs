@@ -100,7 +100,7 @@ export default class Ghost extends Actor {
          this.state.handleScatterPositionCollision();
          this.state.handlePacmanCollisionOnCurrentPosition();
          this.state.handlePacmanCollisionOnNextPosition();
-         this.state.handleWallCollision();
+         this.state.handleInaccessibleTileCollision();
          this.state.handleSpawnCollision();
          if (this.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
