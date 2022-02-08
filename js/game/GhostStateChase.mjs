@@ -97,9 +97,9 @@ export default class GhostStateChase extends GhostState {
     }
 
 
-    handleWallCollision() {
-        // wall collision is not possible, because state movement pattern is based on the routing table 
-        // for all ACCESSIBLE positions
+    handleInaccessibleTileCollision() {
+        // collision is not possible, because state movement pattern is based on the routing table 
+        // for all ACCESSIBLE positions       
     }
 
 

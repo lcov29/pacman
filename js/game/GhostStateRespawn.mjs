@@ -74,10 +74,10 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    handleWallCollision() {
-        // wall collision is not possible, because state is triggered by GhostStateDead upon reaching
-        // the spawn position (can not be a wall) and the state movement pattern just stays on the 
-        // spawn position
+    handleInaccessibleTileCollision() {
+        // collision is not possible, because state is triggered by GhostStateDead upon reaching
+        // the spawn position (can not be a wall or undefined) and the state movement pattern just
+        // stays on the spawn position
     }
 
 
