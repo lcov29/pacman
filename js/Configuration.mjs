@@ -123,6 +123,9 @@ export default class Configuration {
 
 
    // Editor Settings
+      static FILE_NAME_INDEX = "index.html";
+      static FILE_NAME_EDITOR = "editor.html";
+
       static EDITOR_BOARD_MIN_HEIGHT = 4;
       static EDITOR_BOARD_MAX_HEIGHT = 30;
       static EDITOR_BOARD_DEFAULT_HEIGHT = 20;
