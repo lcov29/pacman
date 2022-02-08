@@ -8,8 +8,8 @@ import EditorSelectionState from "./EditorSelectionState.mjs";
 export default class EditorScatterSelectionState extends EditorSelectionState {
 
     
-    constructor(button_id) {
-        super(button_id);
+    constructor(buttonId) {
+        super(buttonId);
     }
 
 
@@ -21,14 +21,14 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
     }
 
 
-    handleEditorTileClick(caller_id) {
+    handleEditorTileClick(callerId) {
         let editor = super.getEditor();
-        let tile_character = editor.getBoardCharacterAt(caller_id);
-        let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
-        if (is_tile_accessible) {
-            editor.addScatterPosition(super.getButtonId(), caller_id);
+        let tileCharacter = editor.getBoardCharacterAt(callerId);
+        let isTileAccessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tileCharacter) === false);
+        if (isTileAccessible) {
+            editor.addScatterPosition(super.getButtonId(), callerId);
             editor.setState(new EditorDefaultState());
-            document.getElementById(caller_id).style = null;
+            document.getElementById(callerId).style = null;
         }
     }
 

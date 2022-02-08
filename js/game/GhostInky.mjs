@@ -17,9 +17,9 @@ export default class GhostInky extends Ghost {
 
 
     // chase movement pattern implementation; is used by GhostStateChase
-    calculateNextChasePosition(position_id) {
-        let pacman_id = super.selectClosestPacmanID();
-        return super.getRouting().calculateNextPositionOnShortestPath(position_id, pacman_id);
+    calculateNextChasePosition(positionId) {
+        let pacmanId = super.selectClosestPacmanID();
+        return super.getRouting().calculateNextPositionOnShortestPath(positionId, pacmanId);
     }
 
     

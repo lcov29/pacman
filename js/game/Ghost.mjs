@@ -12,25 +12,25 @@ export default class Ghost extends Actor {
    constructor(level, position, routing) {
       super(level, position); 
       this.routing = routing;
-      this.base_respawn_style_class = "";
-      this.scatter_position_id = -1;
-      this.spawn_position_id = position.getID();
+      this.baseRespawnStyleClass = "";
+      this.scatterPositionId = -1;
+      this.spawnPositionId = position.getID();
       this.state = null;
    }
 
 
-   setBaseRespawnStyleClass(style_class_name) {
-      this.base_respawn_style_class = style_class_name;
+   setBaseRespawnStyleClass(styleClassName) {
+      this.baseRespawnStyleClass = styleClassName;
    }
 
 
-   setScatterID(position_id) {
-      this.scatter_position_id = position_id;
+   setScatterID(positionId) {
+      this.scatterPositionId = positionId;
    }
 
 
-   setSpawnID(position_id) {
-      this.spawn_position_id = position_id;
+   setSpawnID(positionId) {
+      this.spawnPositionId = positionId;
    }
 
 
@@ -52,22 +52,28 @@ export default class Ghost extends Actor {
 
 
    getBaseRespawnStyleClass() {
-      return this.base_respawn_style_class;
+      return this.baseRespawnStyleClass;
    }
 
 
    getScatterID() {
-      return this.scatter_position_id;
+      return this.scatterPositionId;
    }
 
 
    getSpawnID() {
-      return this.spawn_position_id;
+      return this.spawnPositionId;
    }
 
 
+   /*
    getTeleportationStatus() {
       return this.has_teleported_in_previous_turn;
+   }*/
+
+
+   getTeleportationStatus() {
+      return this.hasTeleportedInPreviousTurn;
    }
 
 
@@ -102,7 +108,11 @@ export default class Ghost extends Actor {
          this.state.handlePacmanCollisionOnNextPosition();
          this.state.handleWallCollision();
          this.state.handleSpawnCollision();
+         /*
          if (this.has_teleported_in_previous_turn === false) {
+            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+         }*/
+         if (this.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
          super.updateBoard(this.state.getStyleClass(), this.state.getSpriteDisplayPriority());
@@ -126,53 +136,53 @@ export default class Ghost extends Actor {
 
 
    reverseCurrentMovementDirection() {
-      let direction_name = super.getCurrentMovementDirectionName();
-      let reverse_direction_name = Directions.getReversedDirectionName(direction_name);
-      super.setMovementDirectionName(reverse_direction_name);
+      let directionName = super.getCurrentMovementDirectionName();
+      let reverseDirectionName = Directions.getReversedDirectionName(directionName);
+      super.setMovementDirectionName(reverseDirectionName);
    }
 
 
    selectClosestPacmanID() {
-      let pacman_ids = this.level.getPacmanIDs();
-      let min_cost_id = null;
-      let min_path_cost = Infinity;
-      let current_id = -1;
+      let pacmanIds = this.level.getPacmanIDs();
+      let minCostId = null;
+      let minPathCost = Infinity;
+      let currentId = -1;
       
-      for (let pacman_id of pacman_ids) {   
-         current_id = super.getCurrentPosition().getID();
-         let current_path_cost =  this.routing.getShortestDistanceBetween(current_id, pacman_id);
-         if (current_path_cost < min_path_cost) {
-            min_path_cost = current_path_cost;
-            min_cost_id = pacman_id;
+      for (let pacmanId of pacmanIds) {   
+         currentId = super.getCurrentPosition().getID();
+         let currentPathCost =  this.routing.getShortestDistanceBetween(currentId, pacmanId);
+         if (currentPathCost < minPathCost) {
+            minPathCost = currentPathCost;
+            minCostId = pacmanId;
          }
       }
-      return min_cost_id;
+      return minCostId;
    }
 
 
-   updateMovementDirection(current_position, next_position) {
-      if (current_position.getID() !== next_position.getID()) {
-         let direction_x = next_position.getX() - current_position.getX();
-         let direction_y = next_position.getY() - current_position.getY();
-         let direction_name = Directions.getDirectionNameByIndex(direction_x, direction_y);
-         super.setMovementDirectionName(direction_name);
+   updateMovementDirection(currentPosition, nextPosition) {
+      if (currentPosition.getID() !== nextPosition.getID()) {
+         let directionX = nextPosition.getX() - currentPosition.getX();
+         let directionY = nextPosition.getY() - currentPosition.getY();
+         let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
+         super.setMovementDirectionName(directionName);
       }
    }
 
 
    randomizeMovementDirection() {
       while (true) {
-         let random_direction_name = Directions.getRandomDirectionName();
-         if (random_direction_name !== super.getCurrentMovementDirectionName()) {
-            super.setMovementDirectionName(random_direction_name);
+         let randomDirectionName = Directions.getRandomDirectionName();
+         if (randomDirectionName !== super.getCurrentMovementDirectionName()) {
+            super.setMovementDirectionName(randomDirectionName);
             break;
          }
       }
    }
 
 
-   killPacman(pacman_id) {
-      this.level.killPacman(pacman_id);
+   killPacman(pacmanId) {
+      this.level.killPacman(pacmanId);
    }
 
 

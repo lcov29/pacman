@@ -13,7 +13,7 @@ export default class GhostStateRespawn extends GhostState {
         super(Infinity, ghost);
         super.setBaseStyleClass(ghost.getBaseRespawnStyleClass());
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_RESPAWN_SPRITE_DISPLAY_PRIORITY);
-        this.respawn_stage = 0;
+        this.respawnStage = 0;
     }
 
 
@@ -23,7 +23,7 @@ export default class GhostStateRespawn extends GhostState {
 
 
     getStyleClass() {
-        return `${super.getBaseStyleClass()}_stage_${this.respawn_stage}`;
+        return `${super.getBaseStyleClass()}_stage_${this.respawnStage}`;
     }
 
 
@@ -84,8 +84,8 @@ export default class GhostStateRespawn extends GhostState {
     handleSpawnCollision() {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
-            if (this.respawn_stage < Configuration.GHOST_MAX_RESPAWN_STAGE) {
-                this.respawn_stage++;
+            if (this.respawnStage < Configuration.GHOST_MAX_RESPAWN_STAGE) {
+                this.respawnStage++;
             } else {
                 // prevent ghost from leaving the spawn while pacman still has scared ghost to chase
                 if (ghost.countScaredGhosts() === 0) {

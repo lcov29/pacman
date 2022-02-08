@@ -8,11 +8,11 @@ import Configuration from "../Configuration.mjs";
 export default class Game {
 
 
-   constructor(board_container_id, score_id, life_id) {
-      this.animation_interval = null;
+   constructor(boardContainerId, scoreId, lifeId) {
+      this.animationInterval = null;
       this.level = null;
-      this.view = new View(board_container_id, score_id, life_id);
-      this.is_in_progress = false;
+      this.view = new View(boardContainerId, scoreId, lifeId);
+      this.inProgress = false;
    }
 
 
@@ -34,9 +34,9 @@ export default class Game {
    
 
    start() {
-      if (this.is_in_progress === false) {  
-         this.animation_interval = setInterval(function(ref) {ref.nextTurn();}, Configuration.INTERVAL_DELAY_IN_MILLISECONDS, this);
-         this.is_in_progress = true; 
+      if (this.inProgress === false) {  
+         this.animationInterval = setInterval(function(ref) {ref.nextTurn();}, Configuration.INTERVAL_DELAY_IN_MILLISECONDS, this);
+         this.inProgress = true; 
       }
    }
 
@@ -65,23 +65,23 @@ export default class Game {
 
 
    end() {
-      clearInterval(this.animation_interval);
-      this.is_in_progress = false;
+      clearInterval(this.animationInterval);
+      this.inProgress = false;
    }
 
 
-   updateView(board_positions, style_class, score, number_of_lifes) {
-      this.view.update(board_positions, style_class, score, number_of_lifes);
+   updateView(boardPositions, styleClass, score, numberOfLifes) {
+      this.view.update(boardPositions, styleClass, score, numberOfLifes);
    }
 
 
    isInProgress() {
-      return this.is_in_progress;
+      return this.inProgress;
    }
 
 
    processUserCommand(keycode) {
-      if (this.isInProgress()) {
+      if (this.inProgress) {
          switch(keycode) {
          
             case Configuration.KEY_CODE_UP_ARROW:

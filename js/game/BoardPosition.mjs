@@ -23,12 +23,12 @@ import Configuration from "../Configuration.mjs";
 export default class BoardPosition {
 
 
-    constructor(x, y, actor_character, element_character) {
+    constructor(x, y, actorCharacter, elementCharacter) {
         this.x = x;
         this.y = y;
         this.id = Configuration.ID_UNACCESSIBLE_BOARD_TILES;
-        this.actor_layer_character = actor_character;
-        this.element_layer_character = element_character;
+        this.actorLayerCharacter = actorCharacter;
+        this.elementLayerCharacter = elementCharacter;
     }
 
 
@@ -39,12 +39,12 @@ export default class BoardPosition {
 
 
     setActorCharacter(character) {
-        this.actor_layer_character = character;
+        this.actorLayerCharacter = character;
     }
 
 
     setElementCharacter(character) {
-        this.element_layer_character = character;
+        this.elementLayerCharacter = character;
     }
 
 
@@ -64,20 +64,20 @@ export default class BoardPosition {
 
 
     getActorCharacter() {
-        return this.actor_layer_character;
+        return this.actorLayerCharacter;
     }
 
 
     getElementCharacter() {
-        return this.element_layer_character;
+        return this.elementLayerCharacter;
     }
 
 
     clone() {
         let clone = new BoardPosition(this.x, 
                                       this.y, 
-                                      this.actor_layer_character,
-                                      this.element_layer_character);
+                                      this.actorLayerCharacter,
+                                      this.elementLayerCharacter);
         clone.setID(this.id);
         return clone;
     }

@@ -10,8 +10,8 @@ import GhostStateScatter from "./GhostStateScatter.mjs";
 export default class GhostStateChase extends GhostState {
 
 
-    constructor(duration_in_turns, ghost) {
-        super(duration_in_turns, ghost);
+    constructor(durationInTurns, ghost) {
+        super(durationInTurns, ghost);
         super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY);
     }
@@ -23,9 +23,9 @@ export default class GhostStateChase extends GhostState {
 
 
     getStyleClass() {
-        let base_style_class = super.getBaseStyleClass();
-        let direction_name = super.getGhost().getCurrentMovementDirectionName();
-        return `${base_style_class}_${direction_name}`;
+        let baseStyleClass = super.getBaseStyleClass();
+        let directionName = super.getGhost().getCurrentMovementDirectionName();
+        return `${baseStyleClass}_${directionName}`;
     }
 
 
@@ -41,9 +41,9 @@ export default class GhostStateChase extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = ghost.calculateNextChasePosition(current_position_id);
-        ghost.setNextPosition(next_position);
+        let currentPositionId = ghost.getCurrentPosition().getID();
+        let nextPosition = ghost.calculateNextChasePosition(currentPositionId);
+        ghost.setNextPosition(nextPosition);
     }
 
 
@@ -66,9 +66,9 @@ export default class GhostStateChase extends GhostState {
             if (ghost.isNextPositionEqualToTeleportDestination()) {
 
                 // after teleportation ghost sprite should display the direction of the next move
-                let after_teleportation_position_id = ghost.getNextPosition().getID();
-                let next__after_teleportation_position = ghost.calculateNextChasePosition(after_teleportation_position_id);
-                ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);
+                let afterTeleportationPositionId = ghost.getNextPosition().getID();
+                let nextAfterTeleportationPosition = ghost.calculateNextChasePosition(afterTeleportationPositionId);
+                ghost.updateMovementDirection(ghost.getNextPosition(), nextAfterTeleportationPosition);
                 ghost.setTeleportationStatus(true);
             } 
 

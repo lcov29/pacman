@@ -25,10 +25,10 @@ for (let radio of radios) {
 
 
 // add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
-let editor_container = document.getElementById('editor_container');
-editor_container.addEventListener('mousedown', editorContainerMouseDownCallback);
-editor_container.addEventListener('mouseup', editorContainerMouseUpCallback);
-editor_container.addEventListener('mouseleave', editorContainerMouseLeaveCallback);
+let editorContainer = document.getElementById('editor_container');
+editorContainer.addEventListener('mousedown', editorContainerMouseDownCallback);
+editorContainer.addEventListener('mouseup', editorContainerMouseUpCallback);
+editorContainer.addEventListener('mouseleave', editorContainerMouseLeaveCallback);
 
 
 // add handler to map dimension apply button
@@ -38,24 +38,24 @@ document.getElementById('button_map_sizer').addEventListener('click', buttonMapD
 
 
 // add handlers to scatter spawn control group
-let scatter_spawn_inputs = document.querySelectorAll('input[class="input_position"]');
-for (let scatter_spawn_input of scatter_spawn_inputs) {
-    scatter_spawn_input.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
-    scatter_spawn_input.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
+let scatterSpawnInputs = document.querySelectorAll('input[class="input_position"]');
+for (let scatterSpawnInput of scatterSpawnInputs) {
+    scatterSpawnInput.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
+    scatterSpawnInput.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
 }
 
 
 // add handlers to scatter select buttons
-let scatter_buttons = document.querySelectorAll('button[name="button_scatter_position"]');
-for (let scatter_button of scatter_buttons) {
-    scatter_button.addEventListener('click', buttonScatterSelectionCallback);
+let scatterButtons = document.querySelectorAll('button[name="button_scatter_position"]');
+for (let scatterButton of scatterButtons) {
+    scatterButton.addEventListener('click', buttonScatterSelectionCallback);
 }
 
 
 // add handlers to spawn select buttons
-let spawn_buttons = document.querySelectorAll('button[name="button_spawn_position"]');
-for (let spawn_button of spawn_buttons) {
-    spawn_button.addEventListener('click', buttonSpawnSelectionCallback);
+let spawnButtons = document.querySelectorAll('button[name="button_spawn_position"]');
+for (let spawnButton of spawnButtons) {
+    spawnButton.addEventListener('click', buttonSpawnSelectionCallback);
 }
 
 
@@ -109,9 +109,9 @@ function radioButtonTileSelectionCallback() {
 function validateMapWidthInput() {
     try {
         let input = document.getElementById(this.id);
-        let input_number = parseInt(input.value);
-        if ((input_number < Configuration.EDITOR_BOARD_MIN_WIDTH) ||
-            (input_number > Configuration.EDITOR_BOARD_MAX_WIDTH)) {
+        let inputNumber = parseInt(input.value);
+        if ((inputNumber < Configuration.EDITOR_BOARD_MIN_WIDTH) ||
+            (inputNumber > Configuration.EDITOR_BOARD_MAX_WIDTH)) {
             input.value = "";
         }
     } catch(e) {
@@ -123,9 +123,9 @@ function validateMapWidthInput() {
 function validateMapHeightInput() {
     try {
         let input = document.getElementById(this.id);
-        let input_number = parseInt(input.value);
-        if ((input_number < Configuration.EDITOR_BOARD_MIN_HEIGHT) ||
-            (input_number > Configuration.EDITOR_BOARD_MAX_HEIGHT)) {
+        let inputNumber = parseInt(input.value);
+        if ((inputNumber < Configuration.EDITOR_BOARD_MIN_HEIGHT) ||
+            (inputNumber > Configuration.EDITOR_BOARD_MAX_HEIGHT)) {
             input.value = "";
         }
     } catch(e) {
@@ -135,33 +135,33 @@ function validateMapHeightInput() {
 
 
 function inputScatterSpawnMouseEnterCallback() {
-    let border_color = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
-    let coordinate_string = document.getElementById(this.id).value;
-    if (coordinate_string !== "") {
-        document.getElementById(coordinate_string).style.borderColor = border_color;
-        document.getElementById(coordinate_string).style.borderWidth = '5px';
+    let borderColor = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
+    let coordinateString = document.getElementById(this.id).value;
+    if (coordinateString !== "") {
+        document.getElementById(coordinateString).style.borderColor = borderColor;
+        document.getElementById(coordinateString).style.borderWidth = '5px';
     }
 }
 
 
 function inputScatterSpawnMouseLeaveCallback() {
-    let coordinate_string = document.getElementById(this.id).value;
-    if (coordinate_string !== "") {
-        document.getElementById(coordinate_string).style = null;
+    let coordinateString = document.getElementById(this.id).value;
+    if (coordinateString !== "") {
+        document.getElementById(coordinateString).style = null;
     }
 }
 
 
 function buttonMapDimensionChangeCallback() {
-    let input_height = document.getElementById("map_height").value;
-    let input_width = document.getElementById("map_width").value;
-    if (input_height !== "" && input_width !== "") {
-        let new_state = new EditorMapDimensionChangeState();
-        new_state.setEditorTileClickCallback(editorTileClickCallback);
-        new_state.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
-        new_state.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
-        new_state.setEditorTileMouseOverCallback(editorTileMouseOverCallback);
-        editor.setState(new_state);
+    let inputHeight = document.getElementById("map_height").value;
+    let inputWidth = document.getElementById("map_width").value;
+    if (inputHeight !== "" && inputWidth !== "") {
+        let newState = new EditorMapDimensionChangeState();
+        newState.setEditorTileClickCallback(editorTileClickCallback);
+        newState.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
+        newState.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
+        newState.setEditorTileMouseOverCallback(editorTileMouseOverCallback);
+        editor.setState(newState);
     }
 }
 

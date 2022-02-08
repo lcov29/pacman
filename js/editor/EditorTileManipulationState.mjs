@@ -7,10 +7,10 @@ import EditorElementMapper from "./EditorElementMapper.mjs";
 export default class EditorTileManipulationState {
 
 
-    constructor(selector_tile_type) {
-        this.selector_tile_type = selector_tile_type;
+    constructor(selectorTileType) {
+        this.selectorTileType = selectorTileType;
         this.editor = null;
-        this.is_mouse_pressed_inside_editor_area = false;
+        this.isMousePressedInsideEditorArea = false;
     }
 
 
@@ -20,41 +20,41 @@ export default class EditorTileManipulationState {
     }
 
 
-    handleEditorContainerMouseDown(caller_id) {
-        this.is_mouse_pressed_inside_editor_area = true;
+    handleEditorContainerMouseDown(callerId) {
+        this.isMousePressedInsideEditorArea = true;
     }
 
 
-    handleEditorContainerMouseUp(caller_id) {
-        this.is_mouse_pressed_inside_editor_area = false;
+    handleEditorContainerMouseUp(callerId) {
+        this.isMousePressedInsideEditorArea = false;
     }
 
 
-    handleEditorContainerMouseLeave(caller_id) {
-        this.is_mouse_pressed_inside_editor_area = false;
+    handleEditorContainerMouseLeave(callerId) {
+        this.isMousePressedInsideEditorArea = false;
     }
 
 
-    handleEditorTileClick(caller_id) {
-        let styleclass = `editor_tile ${this.selector_tile_type}`;
-        document.getElementById(caller_id).setAttribute('class', styleclass);
-        this.editor.updateInternalBoard(caller_id, this.selector_tile_type);
+    handleEditorTileClick(callerId) {
+        let styleclass = `editor_tile ${this.selectorTileType}`;
+        document.getElementById(callerId).setAttribute('class', styleclass);
+        this.editor.updateInternalBoard(callerId, this.selectorTileType);
         this.manageScatterSpawnControlVisibility();
-        this.manageOverwriteOfSpawnScatterWithInaccessibleElement(caller_id);
+        this.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
     }
 
 
-    handleEditorTileMouseOver(caller_id) {
-        if (this.is_mouse_pressed_inside_editor_area) {
-            this.handleEditorTileClick(caller_id);
+    handleEditorTileMouseOver(callerId) {
+        if (this.isMousePressedInsideEditorArea) {
+            this.handleEditorTileClick(callerId);
         }
     }
 
 
-    handleEditorTileMouseEnter(caller_id) {}
+    handleEditorTileMouseEnter(callerId) {}
 
 
-    handleEditorTileMouseLeave(caller_id) {}
+    handleEditorTileMouseLeave(callerId) {}
 
 
     exit() {
@@ -64,87 +64,87 @@ export default class EditorTileManipulationState {
 
     highlightChosenSelectorTile() {
         let radios = document.querySelectorAll('input[name="selectors"]');
-        let selected_radio_id = document.querySelector('input[name="selectors"]:checked').id;
+        let selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         for (let radio of radios) {
-            let radio_label = document.querySelector(`label[for="${radio.id}"]`);
-            if (selected_radio_id === radio.id) {
-                radio_label.style.borderColor = Configuration.EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX;
+            let radioLabel = document.querySelector(`label[for="${radio.id}"]`);
+            if (selectedRadioId === radio.id) {
+                radioLabel.style.borderColor = Configuration.EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX;
             } else {
-                radio_label.setAttribute('style', '');
+                radioLabel.setAttribute('style', '');
             }
         }
     }
 
 
     resetHighlighOfChosenSelectorTile() {
-        let selected_radio_id = document.querySelector('input[name="selectors"]:checked').id;
-        let selected_radio_label = document.querySelector(`label[for="${selected_radio_id}"]`);
-        selected_radio_label.setAttribute('style', '');
+        let selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
+        let selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
+        selectedRadioLabel.setAttribute('style', '');
     }
 
 
     manageScatterSpawnControlVisibility() {
-        let ghost_type_counter = 0;
-        let is_control_displayed = false;
-        let ghost_type_control_ids = [];
+        let ghostTypeCounter = 0;
+        let isControlDisplayed = false;
+        let ghostTypeControlIds = [];
 
-        for (let ghost_character of Configuration.GHOST_CHARACTERS) {
-            ghost_type_counter = this.editor.getCounterForGhostType(ghost_character);
-            ghost_type_control_ids = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character];
-            is_control_displayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghost_character);
+        for (let ghostCharacter of Configuration.GHOST_CHARACTERS) {
+            ghostTypeCounter = this.editor.getCounterForGhostType(ghostCharacter);
+            ghostTypeControlIds = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter];
+            isControlDisplayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
     
             // display invisible controls
-            if ((ghost_type_counter > 0) && (is_control_displayed === false)) {
-                for (let control_id of ghost_type_control_ids) {
-                    document.getElementById(control_id).style = null;
+            if ((ghostTypeCounter > 0) && (isControlDisplayed === false)) {
+                for (let controlId of ghostTypeControlIds) {
+                    document.getElementById(controlId).style = null;
                 }
-                this.editor.setSpawnScatterControlDisplayStatus(ghost_character, true);
+                this.editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
             }
     
             // hide visible controls
-            if ((ghost_type_counter === 0) && (is_control_displayed === true)) {
-                for (let control_id of ghost_type_control_ids) {
-                    document.getElementById(control_id).style = "display:none";
-                    let input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[control_id];
-                    document.getElementById(input_id).value = "";
-                    this.editor.removeScatterPositionFor(ghost_character);
-                    this.editor.removeSpawnPositionFor(ghost_character);
+            if ((ghostTypeCounter === 0) && (isControlDisplayed === true)) {
+                for (let controlId of ghostTypeControlIds) {
+                    document.getElementById(controlId).style = "display:none";
+                    let inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[controlId];
+                    document.getElementById(inputId).value = "";
+                    this.editor.removeScatterPositionFor(ghostCharacter);
+                    this.editor.removeSpawnPositionFor(ghostCharacter);
                 }
-                this.editor.setSpawnScatterControlDisplayStatus(ghost_character, false);
+                this.editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
             }
 
         }
     }
 
 
-    manageOverwriteOfSpawnScatterWithInaccessibleElement(caller_id) {
-        let character = EditorElementMapper.mapTileTypeToInternalElement[this.selector_tile_type];
-        let is_tile_inaccessible = Configuration.ACTORS_INACCESSIBLE_TILES.includes(character);
-        let ghost_characters_scatter = this.editor.getGhostCharactersForScatterPosition(caller_id);
-        let ghost_characters_spawn = this.editor.getGhostCharactersForSpawnPosition(caller_id);
-        let is_tile_scatter_or_spawn = (ghost_characters_scatter.length > 0) || (ghost_characters_spawn.length > 0);
-        if (is_tile_inaccessible && is_tile_scatter_or_spawn) {
-            this.editor.removeScatterAndSpawnPosition(caller_id);           
-            this.clearScatterInputFor(ghost_characters_scatter);
-            this.clearSpawnInputFor(ghost_characters_spawn);
+    manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
+        let character = EditorElementMapper.mapTileTypeToInternalElement[this.selectorTileType];
+        let isTileInaccessible = Configuration.ACTORS_INACCESSIBLE_TILES.includes(character);
+        let ghostCharactersScatter = this.editor.getGhostCharactersForScatterPosition(callerId);
+        let ghostCharactersSpawn = this.editor.getGhostCharactersForSpawnPosition(callerId);
+        let isTileScatterOrSpawn = (ghostCharactersScatter.length > 0) || (ghostCharactersSpawn.length > 0);
+        if (isTileInaccessible && isTileScatterOrSpawn) {
+            this.editor.removeScatterAndSpawnPosition(callerId);           
+            this.clearScatterInputFor(ghostCharactersScatter);
+            this.clearSpawnInputFor(ghostCharactersSpawn);
         } 
     }
 
 
-    clearScatterInputFor(ghost_characters) {
-        for (let ghost_character of ghost_characters) {
-            let input_id = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character][0];
-            input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[input_id];
-            document.getElementById(input_id).value = "";
+    clearScatterInputFor(ghostCharacters) {
+        for (let ghostCharacter of ghostCharacters) {
+            let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][0];
+            inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
+            document.getElementById(inputId).value = "";
         }
     }
 
 
-    clearSpawnInputFor(ghost_characters) {
-        for (let ghost_character of ghost_characters) {
-            let input_id = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghost_character][1];
-            input_id = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[input_id];
-            document.getElementById(input_id).value = "";
+    clearSpawnInputFor(ghostCharacters) {
+        for (let ghostCharacter of ghostCharacters) {
+            let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][1];
+            inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
+            document.getElementById(inputId).value = "";
         }
     }
 

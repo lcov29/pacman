@@ -11,19 +11,19 @@ export default class Actor {
 
    constructor(level, position) {
       this.level = level;
-      this.current_position = position;
-      this.next_position = position;
+      this.currentPosition = position;
+      this.nextPosition = position;
       this.character = "";
-      this.movement_direction_name = "";
-      this.base_movement_style_class = "";
-      this.has_teleported_in_previous_turn = false;
-      this.update_flag_current_position = true;
-      this.update_flag_next_position = true;
+      this.movementDirectionName = "";
+      this.baseMovementStyleClass = "";
+      this.hasTeleportedInPreviousTurn = false;
+      this.updateFlagCurrentPosition = true;
+      this.updateFlagNextPosition = true;
    }
 
 
    setNextPosition(position) {
-      this.next_position = position;
+      this.nextPosition = position;
    }
 
 
@@ -32,44 +32,44 @@ export default class Actor {
    }
 
 
-   setMovementDirectionName(direction_name) {
-      this.movement_direction_name = direction_name;
+   setMovementDirectionName(directionName) {
+      this.movementDirectionName = directionName;
    }
 
 
-   setBaseMovementStyleClass(style_class_name) {
-      this.base_movement_style_class = style_class_name;
+   setBaseMovementStyleClass(styleClassName) {
+      this.baseMovementStyleClass = styleClassName;
    }
 
 
    setTeleportationStatus(status) {
-      this.has_teleported_in_previous_turn = status;
+      this.hasTeleportedInPreviousTurn = status;
    }
 
 
    setUpdateFlagCurrentPosition(status) {
-      this.update_flag_current_position = status;
+      this.updateFlagCurrentPosition = status;
    }
 
 
    setUpdateFlagNextPosition(status) {
-      this.update_flag_next_position = status;
+      this.updateFlagNextPosition = status;
    }
 
 
    resetUpdateFlags() {
-      this.update_flag_current_position = true;
-      this.update_flag_next_position = true;
+      this.updateFlagCurrentPosition = true;
+      this.updateFlagNextPosition = true;
    }
 
 
    getCurrentPosition() {
-      return this.current_position;
+      return this.currentPosition;
    }
 
 
    getNextPosition() {
-      return this.next_position;
+      return this.nextPosition;
    }
 
 
@@ -79,53 +79,53 @@ export default class Actor {
 
 
    getCurrentMovementDirectionName() {
-      return this.movement_direction_name;
+      return this.movementDirectionName;
    }
 
 
    getCurrentMovementDirection() {
-      return Directions.getDirectionByName(this.movement_direction_name);
+      return Directions.getDirectionByName(this.movementDirectionName);
    }
 
 
    getBaseMovementStyleClass() {
-      return this.base_movement_style_class;
+      return this.baseMovementStyleClass;
    }
 
 
    getTeleportDestinationForCurrentPosition() {
-      return this.level.getTeleportDestination(this.current_position);
+      return this.level.getTeleportDestination(this.currentPosition);
    }
 
 
    isCurrentPositionActorCharacter(character) {
-      return this.current_position.getActorCharacter() === character;
+      return this.currentPosition.getActorCharacter() === character;
    }
 
 
    isCurrentPositionElementCharacter(character) {
-      return this.current_position.getElementCharacter() === character;
+      return this.currentPosition.getElementCharacter() === character;
    }
 
 
    isNextPositionActorCharacter(character) {
-      return this.next_position.getActorCharacter() === character;
+      return this.nextPosition.getActorCharacter() === character;
    }
 
 
    isNextPositionElementCharacter(character) {
-      return this.next_position.getElementCharacter() === character;
+      return this.nextPosition.getElementCharacter() === character;
    }
 
 
    isCurrentPositionTeleporter() {
-      let current_position_element = this.current_position.getElementCharacter();
-      return Configuration.TELEPORTER_CHARACTERS.includes(current_position_element);
+      let currentPositionElement = this.currentPosition.getElementCharacter();
+      return Configuration.TELEPORTER_CHARACTERS.includes(currentPositionElement);
    }
 
 
    isMovementDirectionSet() {
-      return this.movement_direction_name !== '';
+      return this.movementDirectionName !== '';
    }
 
 
@@ -134,9 +134,9 @@ export default class Actor {
    }
 
 
-   updateBoard(styleclass_next_position, sprite_priority = Infinity) {
+   updateBoard(styleclassNextPosition, spritePriority = Infinity) {
       this.sendLevelUpdateRequestForCurrentPosition();
-      this.sendLevelUpdateRequestForNextPosition(styleclass_next_position, sprite_priority);
+      this.sendLevelUpdateRequestForNextPosition(styleclassNextPosition, spritePriority);
       this.level.updateBoard();
       this.resetUpdateFlags();
    }
@@ -145,57 +145,57 @@ export default class Actor {
    // TODO: CHECK IMPLEMENTATION
    // NOTE: FOR PACMAN MOVEMENT STYLECLASS CAN ALWAYS BE EMPTY_FOREGROUND_CSS_CLASS ?
    sendLevelUpdateRequestForCurrentPosition() {
-      if (this.update_flag_current_position) {
+      if (this.updateFlagCurrentPosition) {
          let actor = Configuration.EMPTY_TILE_CHARACTER;
-         let element = this.current_position.getElementCharacter();
+         let element = this.currentPosition.getElementCharacter();
          let styleclass = StyleClassMapper.getForegroundStyleClass(actor, element);
-         this.current_position.setActorCharacter(actor);
-         this.level.addUpdateRequest(new UpdateRequest(this.current_position, styleclass));
+         this.currentPosition.setActorCharacter(actor);
+         this.level.addUpdateRequest(new UpdateRequest(this.currentPosition, styleclass));
 
       }
    }
 
 
-   sendLevelUpdateRequestForNextPosition(styleclass, sprite_priority) {
-      if (this.update_flag_next_position) {
-         this.next_position.setActorCharacter(this.character);
-         this.level.addUpdateRequest(new UpdateRequest(this.next_position, styleclass, sprite_priority));
+   sendLevelUpdateRequestForNextPosition(styleclass, spritePriority) {
+      if (this.updateFlagNextPosition) {
+         this.nextPosition.setActorCharacter(this.character);
+         this.level.addUpdateRequest(new UpdateRequest(this.nextPosition, styleclass, spritePriority));
       }
    }
 
 
    loadCurrentPositionFromBoard() {
-      let current_x = this.current_position.getX();
-      let current_y = this.current_position.getY();
-      this.current_position = this.level.getBoardPositionAt(current_x, current_y); 
+      let currentX = this.currentPosition.getX();
+      let currentY = this.currentPosition.getY();
+      this.currentPosition = this.level.getBoardPositionAt(currentX, currentY); 
    }
 
 
    loadNextPositionFromBoard() {
-      let next_x = this.next_position.getX();
-      let next_y = this.next_position.getY();
-      this.next_position = this.level.getBoardPositionAt(next_x, next_y);
+      let nextX = this.nextPosition.getX();
+      let nextY = this.nextPosition.getY();
+      this.nextPosition = this.level.getBoardPositionAt(nextX, nextY);
    }
 
 
    updateCurrentPosition() {
-      this.current_position = this.next_position;
-      this.next_position = null;
+      this.currentPosition = this.nextPosition;
+      this.nextPosition = null;
    }
 
 
    calculateNextPositionByCurrentDirection() {
       let direction = this.getCurrentMovementDirection();
-      let next_x = this.getCurrentPosition().getX() + direction.x;
-      let next_y = this.getCurrentPosition().getY() + direction.y;
-      let next_position = null;
+      let nextX = this.getCurrentPosition().getX() + direction.x;
+      let nextY = this.getCurrentPosition().getY() + direction.y;
+      let nextPosition = null;
       try {
-         next_position =  this.level.getBoardPositionAt(next_x, next_y);
+         nextPosition =  this.level.getBoardPositionAt(nextX, nextY);
       } catch(e) {
          // prevent actor from leaving the board
-         next_position = this.getCurrentPosition();
+         nextPosition = this.getCurrentPosition();
       }
-      return next_position;
+      return nextPosition;
    }
 
 

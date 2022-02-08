@@ -8,13 +8,13 @@ export default class EditorInternalLevel {
 
 
     constructor() {
-        this.internal_board = [[]];
-        this.scatter_positions = [];
-        this.optional_spawn_positions = [];
-        this.coordinates_ghost_blinky = [];
-        this.coordinates_ghost_pinky = [];
-        this.coordinates_ghost_clyde = [];
-        this.coordinates_ghost_inky = [];
+        this.internalBoard = [[]];
+        this.scatterPositions = [];
+        this.optionalSpawnPositions = [];
+        this.coordinatesGhostBlinky = [];
+        this.coordinatesGhostPinky = [];
+        this.coordinatesGhostClyde = [];
+        this.coordinatesGhostInky = [];
         this.mapCharacterToCoordinateList = null;
     }
 
@@ -23,36 +23,36 @@ export default class EditorInternalLevel {
         this.reset();
         this.buildEmptyMap(width, height);
         this.mapCharacterToCoordinateList = {
-            [Configuration.GHOST_BLINKY_CHARACTER]:     this.coordinates_ghost_blinky,
-            [Configuration.GHOST_PINKY_CHARACTER]:      this.coordinates_ghost_pinky,
-            [Configuration.GHOST_CLYDE_CHARACTER]:      this.coordinates_ghost_clyde,
-            [Configuration.GHOST_INKY_CHARACTER]:       this.coordinates_ghost_inky
+            [Configuration.GHOST_BLINKY_CHARACTER]:     this.coordinatesGhostBlinky,
+            [Configuration.GHOST_PINKY_CHARACTER]:      this.coordinatesGhostPinky,
+            [Configuration.GHOST_CLYDE_CHARACTER]:      this.coordinatesGhostClyde,
+            [Configuration.GHOST_INKY_CHARACTER]:       this.coordinatesGhostInky
         };
     }
 
 
-    getBoardCharacterAt(coordinates_string) {
-        let coordinates = this.parseCoordinates(coordinates_string);
-        return this.internal_board[coordinates.y][coordinates.x];
+    getBoardCharacterAt(coordinatesString) {
+        let coordinates = this.parseCoordinates(coordinatesString);
+        return this.internalBoard[coordinates.y][coordinates.x];
     }
 
 
-    getGhostCoordinatesListFor(ghost_character) {
-        let coordinates = this.mapCharacterToCoordinateList[ghost_character];
+    getGhostCoordinatesListFor(ghostCharacter) {
+        let coordinates = this.mapCharacterToCoordinateList[ghostCharacter];
         return [...coordinates];
     }
 
 
-    getGhostCounterFor(ghost_character) {
-        let coordinates = this.mapCharacterToCoordinateList[ghost_character];
+    getGhostCounterFor(ghostCharacter) {
+        let coordinates = this.mapCharacterToCoordinateList[ghostCharacter];
         return coordinates.length;
     }
 
 
-    getGhostCharactersForScatterPosition(coordinate_string) {
+    getGhostCharactersForScatterPosition(coordinateString) {
         let output = [];
-        let parsedCoordinates = this.parseCoordinates(coordinate_string);
-        for (let scatterPosition of this.scatter_positions) {
+        let parsedCoordinates = this.parseCoordinates(coordinateString);
+        for (let scatterPosition of this.scatterPositions) {
             if (scatterPosition.x === parsedCoordinates.x && scatterPosition.y === parsedCoordinates.y) {
                 output.push(scatterPosition.ghost);
             }
@@ -61,10 +61,10 @@ export default class EditorInternalLevel {
     }
 
 
-    getGhostCharactersForSpawnPosition(coordinate_string) {
+    getGhostCharactersForSpawnPosition(coordinateString) {
         let output = [];
-        let parsedCoordinates = this.parseCoordinates(coordinate_string);
-        for (let spawnPosition of this.optional_spawn_positions) {
+        let parsedCoordinates = this.parseCoordinates(coordinateString);
+        for (let spawnPosition of this.optionalSpawnPositions) {
             if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
                 output.push(spawnPosition.ghost);
             }
@@ -74,153 +74,153 @@ export default class EditorInternalLevel {
 
 
     setBoardCharacter(coordinates, character) {
-        this.internal_board[coordinates.y][coordinates.x] = character;
+        this.internalBoard[coordinates.y][coordinates.x] = character;
     }
 
 
     buildEmptyMap(width, height) {
-        this.internal_board = [];
+        this.internalBoard = [];
         let row = [];
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 row.push(Configuration.UNDEFINED_TILE_CHARACTER);
             }
-            this.internal_board.push(row);
+            this.internalBoard.push(row);
             row = [];
         }
     }
 
 
     reset() {
-        this.internal_board = [[]];
-        this.scatter_positions = [];
-        this.optional_spawn_positions = [];
-        this.coordinates_ghost_blinky = [];
-        this.coordinates_ghost_pinky = [];
-        this.coordinates_ghost_clyde = [];
-        this.coordinates_ghost_inky = [];
+        this.internalBoard = [[]];
+        this.scatterPositions = [];
+        this.optionalSpawnPositions = [];
+        this.coordinatesGhostBlinky = [];
+        this.coordinatesGhostPinky = [];
+        this.coordinatesGhostClyde = [];
+        this.coordinatesGhostInky = [];
     }
 
 
-    update(coordinates_string, character) {
-        let parsed_coordinates = this.parseCoordinates(coordinates_string);
-        let current_board_character = this.getBoardCharacterAt(coordinates_string);
-        this.updateGhostCoordinateLists(coordinates_string, current_board_character, character);
-        this.setBoardCharacter(parsed_coordinates, character);
+    update(coordinatesString, character) {
+        let parsedCoordinates = this.parseCoordinates(coordinatesString);
+        let currentBoardCharacter = this.getBoardCharacterAt(coordinatesString);
+        this.updateGhostCoordinateLists(coordinatesString, currentBoardCharacter, character);
+        this.setBoardCharacter(parsedCoordinates, character);
     }
 
 
-    updateGhostCoordinateLists(coordinates_string, current_board_character, new_character) {
-        if (Configuration.GHOST_CHARACTERS.includes(current_board_character)) {
-            this.removeCoordinatesFromGhostList(coordinates_string, current_board_character);
+    updateGhostCoordinateLists(coordinatesString, currentBoardCharacter, newCharacter) {
+        if (Configuration.GHOST_CHARACTERS.includes(currentBoardCharacter)) {
+            this.removeCoordinatesFromGhostList(coordinatesString, currentBoardCharacter);
         }
 
-        if (Configuration.GHOST_CHARACTERS.includes(new_character)) {
-            this.addCoordinatesToGhostList(coordinates_string, new_character);
+        if (Configuration.GHOST_CHARACTERS.includes(newCharacter)) {
+            this.addCoordinatesToGhostList(coordinatesString, newCharacter);
         }
     }
 
 
-    addCoordinatesToGhostList(coordinates, ghost_character) {
-        let ghost_coordinates = this.mapCharacterToCoordinateList[ghost_character];
-        ghost_coordinates.push(coordinates);
+    addCoordinatesToGhostList(coordinates, ghostCharacter) {
+        let ghostCoordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        ghostCoordinates.push(coordinates);
     }
 
 
-    addScatterPosition(ghost_character, coordinates) {
-        this.removeScatterPositionFor(ghost_character);
-        let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
-        this.scatter_positions.push(position_object);
+    addScatterPosition(ghostCharacter, coordinates) {
+        this.removeScatterPositionFor(ghostCharacter);
+        let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinates);
+        this.scatterPositions.push(positionObject);
     }
 
 
-    addOptionalSpawnPosition(ghost_character, coordinates) {
-        this.removeSpawnPositionFor(ghost_character);
-        let position_object = this.buildScatterSpawnPositionObject(ghost_character, coordinates);
-        this.optional_spawn_positions.push(position_object);
+    addOptionalSpawnPosition(ghostCharacter, coordinates) {
+        this.removeSpawnPositionFor(ghostCharacter);
+        let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinates);
+        this.optionalSpawnPositions.push(positionObject);
     }
 
 
-    removeScatterPositionFor(ghost_character) {
-        for (let scatter_position of this.scatter_positions) {
-            if (scatter_position.ghost === ghost_character) {
-                Utility.removeElementFrom(this.scatter_positions, scatter_position);
+    removeScatterPositionFor(ghostCharacter) {
+        for (let scatterPosition of this.scatterPositions) {
+            if (scatterPosition.ghost === ghostCharacter) {
+                Utility.removeElementFrom(this.scatterPositions, scatterPosition);
             }
         }
     }
 
 
-    removeSpawnPositionFor(ghost_character) {
-        for (let optional_spawn_position of this.optional_spawn_positions) {
-            if (optional_spawn_position.ghost === ghost_character) {
-                Utility.removeElementFrom(this.optional_spawn_positions, optional_spawn_position);
+    removeSpawnPositionFor(ghostCharacter) {
+        for (let optionalSpawnPosition of this.optionalSpawnPositions) {
+            if (optionalSpawnPosition.ghost === ghostCharacter) {
+                Utility.removeElementFrom(this.optionalSpawnPositions, optionalSpawnPosition);
             }
         }
     }
 
 
-    removeScatterPosition(coordinate_string) {
-        let elements_to_remove = [];
-        let parsed_coordinate = this.parseCoordinates(coordinate_string);
-        for (let scatter_position of this.scatter_positions) {
-            if (scatter_position.x === parsed_coordinate.x && scatter_position.y === parsed_coordinate.y) {
-                elements_to_remove.push(scatter_position);
+    removeScatterPosition(coordinateString) {
+        let elementsToRemove = [];
+        let parsedCoordinate = this.parseCoordinates(coordinateString);
+        for (let scatterPosition of this.scatterPositions) {
+            if (scatterPosition.x === parsedCoordinate.x && scatterPosition.y === parsedCoordinate.y) {
+                elementsToRemove.push(scatterPosition);
             }
         }
-        this.removeElementsFromArray(this.scatter_positions, elements_to_remove);
+        this.removeElementsFromArray(this.scatterPositions, elementsToRemove);
     }
 
 
-    removeSpawnPosition(coordinate_string) {
-        let elements_to_remove = [];
-        let parseCoordinates = this.parseCoordinates(coordinate_string);
-        for (let spawn_position of this.optional_spawn_positions) {
-            if (spawn_position.x === parseCoordinates.x && spawn_position.y === parseCoordinates.y) {
-                elements_to_remove.push(spawn_position);
+    removeSpawnPosition(coordinateString) {
+        let elementsToRemove = [];
+        let parseCoordinates = this.parseCoordinates(coordinateString);
+        for (let spawnPosition of this.optionalSpawnPositions) {
+            if (spawnPosition.x === parseCoordinates.x && spawnPosition.y === parseCoordinates.y) {
+                elementsToRemove.push(spawnPosition);
             }
         }
-        this.removeElementsFromArray(this.optional_spawn_positions, elements_to_remove);
+        this.removeElementsFromArray(this.optionalSpawnPositions, elementsToRemove);
     }
 
 
-    removeElementsFromArray(array, elements_to_remove) {
-        for (let element of elements_to_remove) {
+    removeElementsFromArray(array, elementsToRemove) {
+        for (let element of elementsToRemove) {
             Utility.removeElementFrom(array, element);
         }
     }
 
 
-    buildScatterSpawnPositionObject(ghost_character, coordinates) {
-        let parsed_coordinates = this.parseCoordinates(coordinates);
-        let output_object = {};
-        output_object.ghost = ghost_character;
-        output_object.x = parsed_coordinates.x;
-        output_object.y = parsed_coordinates.y;
-        return output_object;
+    buildScatterSpawnPositionObject(ghostCharacter, coordinates) {
+        let parsedCoordinates = this.parseCoordinates(coordinates);
+        let outputObject = {};
+        outputObject.ghost = ghostCharacter;
+        outputObject.x = parsedCoordinates.x;
+        outputObject.y = parsedCoordinates.y;
+        return outputObject;
     }
 
 
     buildLevelJSONString() {
-        let json_object = {};
-        json_object.board = this.internal_board;
-        json_object.scatter_positions = this.scatter_positions;
-        json_object.optional_spawns = this.optional_spawn_positions;
-        return JSON.stringify(json_object);
+        let jsonObject = {};
+        jsonObject.board = this.internalBoard;
+        jsonObject.scatterPositions = this.scatterPositions;
+        jsonObject.optionalSpawns = this.optionalSpawnPositions;
+        return JSON.stringify(jsonObject);
     }
 
 
-    removeCoordinatesFromGhostList(coordinates, ghost_character) {
-        let ghost_coordinates = this.mapCharacterToCoordinateList[ghost_character];
-        Utility.removeElementFrom(ghost_coordinates, coordinates);
+    removeCoordinatesFromGhostList(coordinates, ghostCharacter) {
+        let ghostCoordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        Utility.removeElementFrom(ghostCoordinates, coordinates);
     }
 
 
     parseCoordinates(coordinates) {
-        let parsed_input = coordinates.replace('(', '');
-        parsed_input = parsed_input.replace(')', '');
-        parsed_input = parsed_input.split(',');
-        let x = parseInt(parsed_input[0]);
-        let y = parseInt(parsed_input[1]);
+        let parsedInput = coordinates.replace('(', '');
+        parsedInput = parsedInput.replace(')', '');
+        parsedInput = parsedInput.split(',');
+        let x = parseInt(parsedInput[0]);
+        let y = parseInt(parsedInput[1]);
         return {'x': x, 'y': y};
     }
 

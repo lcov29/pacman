@@ -7,53 +7,53 @@ import Configuration from "../Configuration.mjs";
 export default class BoardParser {
 
 
-    constructor(board_reference) {
-        this.board_ref = board_reference;
+    constructor(boardReference) {
+        this.boardRef = boardReference;
     }
 
 
-    parse(level_json) {
-        let parsed_level_json = JSON.parse(level_json);
-        let board = this.buildBoardPositionArray(parsed_level_json.board);
+    parse(levelJson) {
+        let parsedLevelJson = JSON.parse(levelJson);
+        let board = this.buildBoardPositionArray(parsedLevelJson.board);
         this.indexAccessiblePositions(board);
-        this.initializeGhostScatterPositionList(board, parsed_level_json);
-        this.initializeOptionalGhostSpawnPositionLists(board, parsed_level_json);
+        this.initializeGhostScatterPositionList(board, parsedLevelJson);
+        this.initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
         this.initializeOtherPositionLists(board);
-        this.board_ref.setBoard(board);
+        this.boardRef.setBoard(board);
     }
 
 
     buildBoardPositionArray(board) {
         let output = [...board];
-        let current_character = "";
-        let current_actor_character = "";
-        let current_element_character = "";
+        let currentCharacter = "";
+        let currentActorCharacter = "";
+        let currentElementCharacter = "";
 
         for (let y = 0; y < output.length; y++) {
             for (let x = 0; x < output[y].length; x++) {
-                current_character = output[y][x];
-                if (this.isActor(current_character)) {
-                    current_actor_character = current_character;
-                    current_element_character = Configuration.EMPTY_TILE_CHARACTER;
+                currentCharacter = output[y][x];
+                if (this.isActor(currentCharacter)) {
+                    currentActorCharacter = currentCharacter;
+                    currentElementCharacter = Configuration.EMPTY_TILE_CHARACTER;
                 } else {
-                    current_actor_character = Configuration.EMPTY_TILE_CHARACTER;
-                    current_element_character = current_character;
+                    currentActorCharacter = Configuration.EMPTY_TILE_CHARACTER;
+                    currentElementCharacter = currentCharacter;
                 }
-                output[y][x] = new BoardPosition(x, y, current_actor_character, current_element_character);
+                output[y][x] = new BoardPosition(x, y, currentActorCharacter, currentElementCharacter);
             }
         }
         return output;
     }
 
 
-    indexAccessiblePositions(position_array) {
+    indexAccessiblePositions(positionArray) {
         let id = 0;
         let character = "";
-        for (let y = 0; y < position_array.length; y++) {
-            for (let x = 0; x < position_array[y].length; x++) {
-                character = position_array[y][x].getElementCharacter();
+        for (let y = 0; y < positionArray.length; y++) {
+            for (let x = 0; x < positionArray[y].length; x++) {
+                character = positionArray[y][x].getElementCharacter();
                 if (this.isAccessibleByActor(character)) {
-                    position_array[y][x].setID(id);
+                    positionArray[y][x].setID(id);
                     id++;
                 }
              }
@@ -61,63 +61,63 @@ export default class BoardParser {
     }
 
 
-    initializeGhostScatterPositionList(board, parsed_json) {
+    initializeGhostScatterPositionList(board, parsedJson) {
         let positions = [];
-        for (let position of parsed_json.scatter_positions) {
-            let board_position_clone = board[position.y][position.x].clone();
-            board_position_clone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
-            board_position_clone.setElementCharacter(position.ghost);
-            positions.push(board_position_clone);
+        for (let position of parsedJson.scatterPositions) {
+            let boardPositionClone = board[position.y][position.x].clone();
+            boardPositionClone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
+            boardPositionClone.setElementCharacter(position.ghost);
+            positions.push(boardPositionClone);
         }
-        this.board_ref.setGhostScatterPositions(positions);
+        this.boardRef.setGhostScatterPositions(positions);
     }
 
 
-    initializeOptionalGhostSpawnPositionLists(board, parsed_json) {
+    initializeOptionalGhostSpawnPositionLists(board, parsedJson) {
         let positions = [];
-        for (let position of parsed_json.optional_spawns) {
-            let board_position_clone = board[position.y][position.x].clone();
-            board_position_clone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
-            board_position_clone.setElementCharacter(position.ghost);
-            positions.push(board_position_clone);
+        for (let position of parsedJson.optionalSpawns) {
+            let boardPositionClone = board[position.y][position.x].clone();
+            boardPositionClone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
+            boardPositionClone.setElementCharacter(position.ghost);
+            positions.push(boardPositionClone);
         }
-        this.board_ref.setGhostOptionalSpawnPositions(positions);
+        this.boardRef.setGhostOptionalSpawnPositions(positions);
     }
 
 
     initializeOtherPositionLists(board) {
-        let initial_pacman_positions = [];
-        let initial_ghost_positions = [];
-        let teleporter_positions = [];
-        let ghost_door_positions = [];
+        let initialPacmanPositions = [];
+        let initialGhostPositions = [];
+        let teleporterPositions = [];
+        let ghostDoorPositions = [];
 
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
-              let current_position = board[y][x];
-              let current_actor_character = current_position.getActorCharacter();
-              let current_element_character = current_position.getElementCharacter();
+              let currentPosition = board[y][x];
+              let currentActorCharacter = currentPosition.getActorCharacter();
+              let currentElementCharacter = currentPosition.getElementCharacter();
   
-              if (current_actor_character === Configuration.PACMAN_CHARACTER) {
-                 initial_pacman_positions.push(current_position);
+              if (currentActorCharacter === Configuration.PACMAN_CHARACTER) {
+                 initialPacmanPositions.push(currentPosition);
               }
 
-              if (Configuration.GHOST_CHARACTERS.includes(current_actor_character)) {
-                 initial_ghost_positions.push(current_position);
+              if (Configuration.GHOST_CHARACTERS.includes(currentActorCharacter)) {
+                 initialGhostPositions.push(currentPosition);
               }
   
-              if (Configuration.TELEPORTER_CHARACTERS.includes(current_element_character)) {
-                 teleporter_positions.push(current_position);
+              if (Configuration.TELEPORTER_CHARACTERS.includes(currentElementCharacter)) {
+                 teleporterPositions.push(currentPosition);
               }
   
-              if (current_element_character === Configuration.GHOST_DOOR_CHARACTER) {
-                 ghost_door_positions.push(current_position);
+              if (currentElementCharacter === Configuration.GHOST_DOOR_CHARACTER) {
+                 ghostDoorPositions.push(currentPosition);
               }   
            }
         }
-        this.board_ref.setInitialPacmanPositions(initial_pacman_positions);
-        this.board_ref.setInitialGhostPositions(initial_ghost_positions);
-        this.board_ref.setTeleporterPositions(teleporter_positions);
-        this.board_ref.setGhostDoorPositions(ghost_door_positions);
+        this.boardRef.setInitialPacmanPositions(initialPacmanPositions);
+        this.boardRef.setInitialGhostPositions(initialGhostPositions);
+        this.boardRef.setTeleporterPositions(teleporterPositions);
+        this.boardRef.setGhostDoorPositions(ghostDoorPositions);
     }
 
 

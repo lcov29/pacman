@@ -22,25 +22,25 @@ export default class Level {
     constructor(game) {
         this.game = game;
         this.board = null;
-        this.update_manager = null;
+        this.updateManager = null;
         this.teleporters = [];
         this.pacmans = [];
         this.ghosts = [];
-        this.available_points = 0;
-        this.total_pacman_lifes = 0;
+        this.availablePoints = 0;
+        this.totalPacmanLifes = 0;
         this.score = 0;
-        this.update_requests = [];
+        this.updateRequests = [];
     }
 
 
-    initialize(level_json) {
-        this.board = new Board(level_json);
-        this.update_manager = new UpdateManager(this, this.board);
+    initialize(levelJson) {
+        this.board = new Board(levelJson);
+        this.updateManager = new UpdateManager(this, this.board);
         this.teleporters = LevelInitializer.initializeTeleporters(this.board);
         this.pacmans = LevelInitializer.initializePacmans(this.board, this);
         this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
-        this.available_points = this.countAvailablePoints();
-        this.total_pacman_lifes = this.countInitialPacmanLifes();
+        this.availablePoints = this.countAvailablePoints();
+        this.totalPacmanLifes = this.countInitialPacmanLifes();
     }
 
 
@@ -49,7 +49,7 @@ export default class Level {
         if (this.isWon() === false && this.isLost() === false) {
             this.moveGhosts();
         }
-        this.update_manager.updateView();
+        this.updateManager.updateView();
     }
 
 
@@ -61,13 +61,13 @@ export default class Level {
     }
 
 
-    killGhost(position_id) {
-        this.killActor(this.ghosts, position_id);
+    killGhost(positionId) {
+        this.killActor(this.ghosts, positionId);
     }
 
 
-    killPacman(position_id) {
-        this.killActor(this.pacmans, position_id);
+    killPacman(positionId) {
+        this.killActor(this.pacmans, positionId);
     }
 
 
@@ -77,28 +77,28 @@ export default class Level {
 
     
     decrementAvailablePoints() {
-        this.available_points--;
+        this.availablePoints--;
     }
 
 
     decrementTotalPacmanLifes() {
-        this.total_pacman_lifes--;
+        this.totalPacmanLifes--;
     }
 
 
-    sendViewUpdate(position, style_class) {
-        this.game.updateView(position, style_class, this.score, this.total_pacman_lifes);
+    sendViewUpdate(position, styleClass) {
+        this.game.updateView(position, styleClass, this.score, this.totalPacmanLifes);
     }
 
 
     updateBoard() {
-        this.update_manager.updateBoard();
+        this.updateManager.updateBoard();
     }
 
 
-    setNextPacmanDirection(direction_name) {
+    setNextPacmanDirection(directionName) {
         for (let pacman of this.pacmans) {
-           pacman.setMovementDirectionName(direction_name);
+           pacman.setMovementDirectionName(directionName);
         }
     } 
 
@@ -129,10 +129,10 @@ export default class Level {
     }
 
 
-    isPositionOccupiedByHostileGhost(position_id) {
+    isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === position_id) {
+            if (ghost.getCurrentPosition().getID() === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
             }
@@ -141,10 +141,10 @@ export default class Level {
     }
 
 
-    isPositionOccupiedByKillableGhost(position_id) {
+    isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === position_id) {
+            if (ghost.getCurrentPosition().getID() === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
             }
@@ -153,10 +153,10 @@ export default class Level {
     }
 
 
-    getTurnCompletionStatusForPacmanAt(position_id) {
+    getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === position_id) {
+            if (pacman.getCurrentPosition().getID() === positionId) {
                 status = pacman.getTurnCompletionStatus();
                 break;
             }
@@ -178,23 +178,23 @@ export default class Level {
 
 
     isWon() {
-        return this.available_points === 0;
+        return this.availablePoints === 0;
     }
 
 
     isLost() {
-        return this.total_pacman_lifes === 0;
+        return this.totalPacmanLifes === 0;
     }
 
 
     addUpdateRequest(request) {
-        this.update_manager.addRequest(request);
+        this.updateManager.addRequest(request);
     }
 
 
-    removeDeadPacmanAt(position_id) {
+    removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === position_id) {
+            if (pacman.getCurrentPosition().getID() === positionId) {
                 Utility.removeElementFrom(this.pacmans, pacman);
             }
         }  
@@ -228,12 +228,12 @@ export default class Level {
 
 
     movePacmans() {
-        let unmoved_pacmans = [...this.pacmans];
-        while (unmoved_pacmans.length > 0) {
-            for (let pacman of unmoved_pacmans) {
+        let unmovedPacmans = [...this.pacmans];
+        while (unmovedPacmans.length > 0) {
+            for (let pacman of unmovedPacmans) {
                 if (pacman.getTurnCompletionStatus() == false) {
                     if (pacman.move()) {
-                        Utility.removeElementFrom(unmoved_pacmans, pacman);
+                        Utility.removeElementFrom(unmovedPacmans, pacman);
                     }
                 }
             }
@@ -250,9 +250,9 @@ export default class Level {
     }
 
 
-    killActor(actors, position_id) {
+    killActor(actors, positionId) {
         for (let actor of actors) {
-            if (actor.getCurrentPosition().getID() === position_id) {
+            if (actor.getCurrentPosition().getID() === positionId) {
                 actor.kill();
             }
         }

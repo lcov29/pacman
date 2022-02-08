@@ -10,228 +10,228 @@ export default class Editor {
 
 
     constructor() {
-        this.editor_container = null;
-        this.input_map_width = null;
-        this.input_map_height = null;
-        this.internal_level = new EditorInternalLevel();
-        this.is_ghost_blinky_scatter_spawn_control_displayed = false;
-        this.is_ghost_pinky_scatter_spawn_control_displayed = false;
-        this.is_ghost_clyde_scatter_spawn_control_displayed = false;
-        this.is_ghost_inky_scatter_spawn_control_displayed = false;
+        this.editorContainer = null;
+        this.inputMapWidth = null;
+        this.inputMapHeight = null;
+        this.internalLevel = new EditorInternalLevel();
+        this.isGhostBlinkyScatterSpawnControlDisplayed = false;
+        this.isGhostPinkyScatterSpawnControlDisplayed = false;
+        this.isGhostClydeScatterSpawnControlDisplayed = false;
+        this.isGhostInkyScatterSpawnControlDisplayed = false;
         this.mapGhostCharacterToDisplayStatus = null;
-        this.current_state = null;
+        this.currentState = null;
     }
 
 
     initialize() {
         let width = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
         let height = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
-        this.internal_level.initialize(width, height);
+        this.internalLevel.initialize(width, height);
         this.initializeDimensionInput();
-        this.current_state = new EditorDefaultState();
+        this.currentState = new EditorDefaultState();
         this.mapGhostCharacterToDisplayStatusName = {
-            [Configuration.GHOST_BLINKY_CHARACTER]:     'is_ghost_blinky_scatter_spawn_control_displayed',
-            [Configuration.GHOST_PINKY_CHARACTER]:      'is_ghost_pinky_scatter_spawn_control_displayed',
-            [Configuration.GHOST_CLYDE_CHARACTER]:      'is_ghost_clyde_scatter_spawn_control_displayed',
-            [Configuration.GHOST_INKY_CHARACTER]:       'is_ghost_inky_scatter_spawn_control_displayed'
+            [Configuration.GHOST_BLINKY_CHARACTER]:     'isGhostBlinkyScatterSpawnControlDisplayed',
+            [Configuration.GHOST_PINKY_CHARACTER]:      'isGhostPinkyScatterSpawnControlDisplayed',
+            [Configuration.GHOST_CLYDE_CHARACTER]:      'isGhostClydeScatterSpawnControlDisplayed',
+            [Configuration.GHOST_INKY_CHARACTER]:       'isGhostInkyScatterSpawnControlDisplayed'
         };
     }
 
 
     initializeDimensionInput() {
-        this.input_map_height.setAttribute("min", Configuration.EDITOR_BOARD_MIN_HEIGHT);
-        this.input_map_width.setAttribute("min", Configuration.EDITOR_BOARD_MIN_WIDTH);
+        this.inputMapHeight.setAttribute("min", Configuration.EDITOR_BOARD_MIN_HEIGHT);
+        this.inputMapWidth.setAttribute("min", Configuration.EDITOR_BOARD_MIN_WIDTH);
 
-        this.input_map_height.setAttribute("max", Configuration.EDITOR_BOARD_MAX_HEIGHT);
-        this.input_map_width.setAttribute("max", Configuration.EDITOR_BOARD_MAX_WIDTH);
+        this.inputMapHeight.setAttribute("max", Configuration.EDITOR_BOARD_MAX_HEIGHT);
+        this.inputMapWidth.setAttribute("max", Configuration.EDITOR_BOARD_MAX_WIDTH);
 
-        this.input_map_height.value = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
-        this.input_map_width.value = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
+        this.inputMapHeight.value = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
+        this.inputMapWidth.value = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
     }
 
 
     setState(state) {
-        this.current_state.exit();
-        this.current_state = state;
-        this.current_state.initialize(this);
+        this.currentState.exit();
+        this.currentState = state;
+        this.currentState.initialize(this);
     }
 
 
     setEditorContainer(id) {
-        this.editor_container = document.getElementById(id);
+        this.editorContainer = document.getElementById(id);
     }
 
 
     setEditorContainerDimension(width, height) {
-        this.editor_container.style.width = `${width * 32}px`;
-        this.editor_container.style.height = `${height * 32}px`;
+        this.editorContainer.style.width = `${width * 32}px`;
+        this.editorContainer.style.height = `${height * 32}px`;
     }
 
 
     setReferenceInputMapWidth(id) {
-        this.input_map_width = document.getElementById(id);
+        this.inputMapWidth = document.getElementById(id);
     }
 
 
     setReferenceInputMapHeight(id) {
-        this.input_map_height = document.getElementById(id);
+        this.inputMapHeight = document.getElementById(id);
     }
 
 
-    setSpawnScatterControlDisplayStatus(ghost_character, status) {
-        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghost_character];
+    setSpawnScatterControlDisplayStatus(ghostCharacter, status) {
+        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghostCharacter];
         this[displayVariableName] = status;
     }
 
 
     resetSpawnScatterControlDisplayStatus() {
-        this.is_ghost_blinky_scatter_spawn_control_displayed = false;
-        this.is_ghost_pinky_scatter_spawn_control_displayed = false;
-        this.is_ghost_clyde_scatter_spawn_control_displayed = false;
-        this.is_ghost_inky_scatter_spawn_control_displayed = false;
+        this.isGhostBlinkyScatterSpawnControlDisplayed = false;
+        this.isGhostPinkyScatterSpawnControlDisplayed = false;
+        this.isGhostClydeScatterSpawnControlDisplayed = false;
+        this.isGhostInkyScatterSpawnControlDisplayed = false;
     }
 
 
     resetInternalLevel(width, height) {
-        this.internal_level.initialize(width, height);
+        this.internalLevel.initialize(width, height);
     }
 
 
     getBoardCharacterAt(coordinates) {
-        return this.internal_level.getBoardCharacterAt(coordinates);
+        return this.internalLevel.getBoardCharacterAt(coordinates);
     }
 
 
-    getCounterForGhostType(ghost_character) {
-        return this.internal_level.getGhostCounterFor(ghost_character);
+    getCounterForGhostType(ghostCharacter) {
+        return this.internalLevel.getGhostCounterFor(ghostCharacter);
     }
 
 
-    getGhostCoordinatesListFor(ghost_character) {
-        return this.internal_level.getGhostCoordinatesListFor(ghost_character);
+    getGhostCoordinatesListFor(ghostCharacter) {
+        return this.internalLevel.getGhostCoordinatesListFor(ghostCharacter);
     }
 
 
-    getScatterSpawnControlDisplayStatusForGhostType(ghost_character) {
-        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghost_character];
+    getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter) {
+        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghostCharacter];
         return this[displayVariableName];
     }
 
 
     getMapWidthInput() {
-        return this.input_map_width.value;
+        return this.inputMapWidth.value;
     }
 
 
     getMapHeightInput() {
-        return this.input_map_height.value;
+        return this.inputMapHeight.value;
     }
 
 
-    getGhostCharactersForScatterPosition(coordinate_string) {
-        return this.internal_level.getGhostCharactersForScatterPosition(coordinate_string);
+    getGhostCharactersForScatterPosition(coordinateString) {
+        return this.internalLevel.getGhostCharactersForScatterPosition(coordinateString);
     }
 
 
-    getGhostCharactersForSpawnPosition(coordinate_string) {
-        return this.internal_level.getGhostCharactersForSpawnPosition(coordinate_string);
+    getGhostCharactersForSpawnPosition(coordinateString) {
+        return this.internalLevel.getGhostCharactersForSpawnPosition(coordinateString);
     }
 
 
     // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
     
 
-    handleEditorContainerMouseDown(caller_id) {
-        this.current_state.handleEditorContainerMouseDown(caller_id);
+    handleEditorContainerMouseDown(callerId) {
+        this.currentState.handleEditorContainerMouseDown(callerId);
     }
 
 
-    handleEditorContainerMouseUp(caller_id) {
-        this.current_state.handleEditorContainerMouseUp(caller_id);
+    handleEditorContainerMouseUp(callerId) {
+        this.currentState.handleEditorContainerMouseUp(callerId);
     }
 
 
-    handleEditorContainerMouseLeave(caller_id) {
-        this.current_state.handleEditorContainerMouseLeave(caller_id);
+    handleEditorContainerMouseLeave(callerId) {
+        this.currentState.handleEditorContainerMouseLeave(callerId);
     }
 
 
-    handleEditorTileClick(caller_id) {
-        this.current_state.handleEditorTileClick(caller_id);
+    handleEditorTileClick(callerId) {
+        this.currentState.handleEditorTileClick(callerId);
     }
 
 
-    handleEditorTileMouseOver(caller_id) {
-        this.current_state.handleEditorTileMouseOver(caller_id);
+    handleEditorTileMouseOver(callerId) {
+        this.currentState.handleEditorTileMouseOver(callerId);
     }
 
 
-    handleEditorTileMouseEnter(caller_id) {
-        this.current_state.handleEditorTileMouseEnter(caller_id);
+    handleEditorTileMouseEnter(callerId) {
+        this.currentState.handleEditorTileMouseEnter(callerId);
     }
 
 
-    handleEditorTileMouseLeave(caller_id) {
-        this.current_state.handleEditorTileMouseLeave(caller_id);
+    handleEditorTileMouseLeave(callerId) {
+        this.currentState.handleEditorTileMouseLeave(callerId);
     }
 
 
-    updateInternalBoard(tile_coordinates, element) {
-        let internal_element = EditorElementMapper.mapTileTypeToInternalElement[element];
-        this.internal_level.update(tile_coordinates, internal_element);
+    updateInternalBoard(tileCoordinates, element) {
+        let internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
+        this.internalLevel.update(tileCoordinates, internalElement);
     }
 
 
-    addEditorTile(new_tile) {
-        this.editor_container.appendChild(new_tile);
+    addEditorTile(newTile) {
+        this.editorContainer.appendChild(newTile);
     }
 
 
-    addScatterPosition(button_id, coordinates) {
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
-        this.internal_level.addScatterPosition(ghost_character, coordinates);
+    addScatterPosition(buttonId, coordinates) {
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        this.internalLevel.addScatterPosition(ghostCharacter, coordinates);
     }
 
 
-    addSpawnPosition(button_id, coordinates) {
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
-        this.internal_level.addOptionalSpawnPosition(ghost_character, coordinates);
+    addSpawnPosition(buttonId, coordinates) {
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        this.internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinates);
     }
 
 
-    removeScatterPositionFor(button_id) {
-        let ghost_character = button_id;
-        if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
-            ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
+    removeScatterPositionFor(buttonId) {
+        let ghostCharacter = buttonId;
+        if (Configuration.GHOST_CHARACTERS.includes(buttonId) === false) {
+            ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
-        this.internal_level.removeScatterPositionFor(ghost_character);
+        this.internalLevel.removeScatterPositionFor(ghostCharacter);
     }
 
 
-    removeSpawnPositionFor(button_id) {
-        let ghost_character = button_id;
-        if (Configuration.GHOST_CHARACTERS.includes(button_id) === false) {
-            ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[button_id];
+    removeSpawnPositionFor(buttonId) {
+        let ghostCharacter = buttonId;
+        if (Configuration.GHOST_CHARACTERS.includes(buttonId) === false) {
+            ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
-        this.internal_level.removeSpawnPositionFor(ghost_character);
+        this.internalLevel.removeSpawnPositionFor(ghostCharacter);
     }
 
 
-    removeScatterAndSpawnPosition(coordinate_string) {
-        this.internal_level.removeScatterPosition(coordinate_string);
-        this.internal_level.removeSpawnPosition(coordinate_string);
+    removeScatterAndSpawnPosition(coordinateString) {
+        this.internalLevel.removeScatterPosition(coordinateString);
+        this.internalLevel.removeSpawnPosition(coordinateString);
     }
 
 
     clearMap() {
-        while (this.editor_container.firstChild) {
-           this.editor_container.removeChild(this.editor_container.firstChild);
+        while (this.editorContainer.firstChild) {
+           this.editorContainer.removeChild(this.editorContainer.firstChild);
         }
     }
 
 
     sendLevelJson() {
-        let levelJSONString = this.internal_level.buildLevelJSONString();
+        let levelJSONString = this.internalLevel.buildLevelJSONString();
         sessionStorage.setItem("customLevel", levelJSONString);
     }
 

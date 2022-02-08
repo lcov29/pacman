@@ -6,61 +6,61 @@ import Utility from "../Utility.mjs";
 export default class RoutingAlgorithm {
      
    
-   calculateRoutingTable(routing_table, neighbor_id_list) {
-      let start_node_id = 0;
-      while (start_node_id < routing_table.length) {
-         this.calculateShortestPathsFrom(routing_table, neighbor_id_list, start_node_id);
-         start_node_id++;
+   calculateRoutingTable(routingTable, neighborIdList) {
+      let startNodeId = 0;
+      while (startNodeId < routingTable.length) {
+         this.calculateShortestPathsFrom(routingTable, neighborIdList, startNodeId);
+         startNodeId++;
       }
-      return routing_table;
+      return routingTable;
    }
    
    
-   calculateShortestPathsFrom(routing_table, neighbor_id_list, id_start_node) {
+   calculateShortestPathsFrom(routingTable, neighborIdList, idStartNode) {
       
-      //phase 1: initialize all neighboring nodes of start_node
-      let unused_nodes = routing_table[id_start_node].slice();
-      let current_node = routing_table[id_start_node][id_start_node];
-      let routing_node = null;
-      Utility.removeElementFrom(unused_nodes, current_node);
+      //phase 1: initialize all neighboring nodes of start node
+      let unusedNodes = routingTable[idStartNode].slice();
+      let currentNode = routingTable[idStartNode][idStartNode];
+      let routingNode = null;
+      Utility.removeElementFrom(unusedNodes, currentNode);
       
-      for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
-         routing_node = routing_table[id_start_node][neighbor_id];
-         routing_node.setPathCost(1);
-         routing_node.setPredecessorId(current_node.getID());
+      for (let neighborId of this.getNeighborsFor(currentNode, neighborIdList)) {
+         routingNode = routingTable[idStartNode][neighborId];
+         routingNode.setPathCost(1);
+         routingNode.setPredecessorId(currentNode.getID());
       }
       
       //phase 2: iterate through all unused nodes
-      while (unused_nodes.length > 0) {
-         current_node = this.searchLowestCostNode(unused_nodes);
-         for (let neighbor_id of this.getNeighborsFor(current_node, neighbor_id_list)) {
-            routing_node = routing_table[id_start_node][neighbor_id];           
-            if (unused_nodes.indexOf(routing_node) !== -1) {
-               if (routing_node.getPathCost() > current_node.getPathCost() + 1) {
-                  routing_node.setPathCost(current_node.getPathCost() + 1);
-                  routing_node.setPredecessorId(current_node.getID());
+      while (unusedNodes.length > 0) {
+         currentNode = this.searchLowestCostNode(unusedNodes);
+         for (let neighborId of this.getNeighborsFor(currentNode, neighborIdList)) {
+            routingNode = routingTable[idStartNode][neighborId];           
+            if (unusedNodes.indexOf(routingNode) !== -1) {
+               if (routingNode.getPathCost() > currentNode.getPathCost() + 1) {
+                  routingNode.setPathCost(currentNode.getPathCost() + 1);
+                  routingNode.setPredecessorId(currentNode.getID());
                }
             }
          }
-         Utility.removeElementFrom(unused_nodes, current_node);
+         Utility.removeElementFrom(unusedNodes, currentNode);
       }
       
    }
    
    
    searchLowestCostNode(nodes) {
-      let min_cost_node = nodes[0];
+      let minCostNode = nodes[0];
       for (let i = 1; i < nodes.length; i++) {
-         if (nodes[i].getPathCost() < min_cost_node.getPathCost()) {
-            min_cost_node = nodes[i];
+         if (nodes[i].getPathCost() < minCostNode.getPathCost()) {
+            minCostNode = nodes[i];
          }
       }
-      return min_cost_node;
+      return minCostNode;
    }
 
 
-   getNeighborsFor(node, neighbor_id_list) {
-      return neighbor_id_list[node.getID()];
+   getNeighborsFor(node, neighborIdList) {
+      return neighborIdList[node.getID()];
    }
    
    

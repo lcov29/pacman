@@ -31,44 +31,45 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter(Configuration.PACMAN_CHARACTER);
       super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
-      this.has_completed_current_turn = false;
-      this.has_changed_movement_direction = false;
+      this.hasCompletedCurrentTurn = false;
+      this.hasChangedMovementDirection = false;
    }
 
 
    setTurnCompletionStatus(status) {
-      this.has_completed_current_turn = status;
+      this.hasCompletedCurrentTurn = status;
    }
 
 
    setMovementDirectionChangeStatus(status) {
-      this.has_changed_movement_direction = status;
+      this.hasChangedMovementDirection = status;
    }
 
 
-   setMovementDirectionName(direction_name) {
-      let change_status = (direction_name !== super.getCurrentMovementDirectionName());
-      this.setMovementDirectionChangeStatus(change_status);
-      super.setMovementDirectionName(direction_name);
+   setMovementDirectionName(directionName) {
+      let changeStatus = (directionName !== super.getCurrentMovementDirectionName());
+      this.setMovementDirectionChangeStatus(changeStatus);
+      super.setMovementDirectionName(directionName);
    }
 
 
    getTurnCompletionStatus() {
-      return this.has_completed_current_turn;
+      return this.hasCompletedCurrentTurn;
    }
 
 
    getStyleClass() {
-      let base_style_class = super.getBaseMovementStyleClass();
-      let direction_name = super.getCurrentMovementDirectionName();
-      return `${base_style_class}_${direction_name}`;
+      let baseStyleClass = super.getBaseMovementStyleClass();
+      let directionName = super.getCurrentMovementDirectionName();
+      return `${baseStyleClass}_${directionName}`;
    }
 
 
+   // TODO: CHECK IF NECESSARY
    updatePositionChangeFlag() {
-      let current_position_id = super.getCurrentPosition().getID();
-      let next_Position_id = super.getNextPosition().getID();
-      this.has_changed_position_in_previous_turn = (current_position_id !== next_Position_id);
+      let currentPositionId = super.getCurrentPosition().getID();
+      let nextPositionId = super.getNextPosition().getID();
+      this.hasChangedPositionInPreviousTurn = (currentPositionId !== nextPositionId);
    }
 
 
@@ -86,13 +87,13 @@ export default class Pacman extends Actor {
 
          if (this.getTurnCompletionStatus() === false) {
             super.loadCurrentPositionFromBoard();
-            let next_position = super.calculateNextPositionByCurrentDirection();
-            super.setNextPosition(next_position);
+            let nextPosition = super.calculateNextPositionByCurrentDirection();
+            super.setNextPosition(nextPosition);
             super.loadNextPositionFromBoard();
-            let teleportation_status = this.handleTeleportation();  
+            let teleportationStatus = this.handleTeleportation();  
             this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
-               super.setTeleportationStatus(teleportation_status);
+               super.setTeleportationStatus(teleportationStatus);
                this.handlePointCollision();
                this.handlePowerUpCollision();
                this.handleGhostCollision();
@@ -117,23 +118,23 @@ export default class Pacman extends Actor {
 
 
    handleTeleportation() {
-      let teleportation_executed = false;
+      let teleportationExecuted = false;
       // check teleportation flag to prevent teleportation loop
-      if (super.isCurrentPositionTeleporter() && this.has_teleported_in_previous_turn === false) {
+      if (super.isCurrentPositionTeleporter() && this.hasTeleportedInPreviousTurn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
          super.setNextPosition(destination);
-         teleportation_executed = true;
+         teleportationExecuted = true;
       }
-      return teleportation_executed;
+      return teleportationExecuted;
    }
 
 
    handleInaccessibleTileCollision() {
-      let next_element = super.getNextPosition().getElementCharacter();
-      if (Configuration.PACMAN_INACCESSIBLE_TILES.includes(next_element)) {
+      let nextElement = super.getNextPosition().getElementCharacter();
+      if (Configuration.PACMAN_INACCESSIBLE_TILES.includes(nextElement)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
-         if (this.has_changed_movement_direction === false) {
+         if (this.hasChangedMovementDirection === false) {
             super.setUpdateFlagNextPosition(false);
          }
       }
@@ -143,11 +144,11 @@ export default class Pacman extends Actor {
    handleOtherPacmanCollision() {
       let result = true;
       if (super.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
-         let this_pacman_position_id = this.getCurrentPosition().getID();
-         let other_pacman_position_id = this.getNextPosition().getID();
-         if (this_pacman_position_id !== other_pacman_position_id) {
-            let other_completed_turn = this.level.getTurnCompletionStatusForPacmanAt(other_pacman_position_id);
-            if (other_completed_turn) {
+         let thisPacmanPositionId = this.getCurrentPosition().getID();
+         let otherPacmanPositionId = this.getNextPosition().getID();
+         if (thisPacmanPositionId !== otherPacmanPositionId) {
+            let otherCompletedTurn = this.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
+            if (otherCompletedTurn) {
                super.setNextPosition(super.getCurrentPosition());
             } else {
                result = false;
@@ -178,8 +179,8 @@ export default class Pacman extends Actor {
 
 
    handleGhostCollision() {
-      let next_position_actor_character = super.getNextPosition().getActorCharacter();
-      if (Configuration.GHOST_CHARACTERS.includes(next_position_actor_character)) {
+      let nextPositionActorCharacter = super.getNextPosition().getActorCharacter();
+      if (Configuration.GHOST_CHARACTERS.includes(nextPositionActorCharacter)) {
          if (this.handleHostileGhostCollision() === false) {
             this.handleKillableGhostCollision();
          }
@@ -189,8 +190,8 @@ export default class Pacman extends Actor {
 
    handleHostileGhostCollision() {
       let result = false;
-      let position_id = super.getNextPosition().getID();
-      if (this.level.isPositionOccupiedByHostileGhost(position_id)) {
+      let positionId = super.getNextPosition().getID();
+      if (this.level.isPositionOccupiedByHostileGhost(positionId)) {
          this.kill();
          result = true;
       }
@@ -199,9 +200,9 @@ export default class Pacman extends Actor {
 
 
    handleKillableGhostCollision() {
-      let position_id = super.getNextPosition().getID();
-      if (this.level.isPositionOccupiedByKillableGhost(position_id)) {
-         this.level.killGhost(position_id);
+      let positionId = super.getNextPosition().getID();
+      if (this.level.isPositionOccupiedByKillableGhost(positionId)) {
+         this.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.SCORE_VALUE_PER_EATEN_GHOST);
       }
    }

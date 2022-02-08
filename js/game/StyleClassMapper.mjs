@@ -6,7 +6,7 @@ import Configuration from "../Configuration.mjs";
 export default class StyleClassMapper {
 
 
-    static background_class_map = {
+    static backgroundClassMap = {
         [Configuration.WALL_CHARACTER]:                     Configuration.WALL_BACKGROUND_CSS_CLASS,
         [Configuration.EMPTY_TILE_CHARACTER]:               Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS,
         [Configuration.GHOST_DOOR_CROSSING_CHARACTER]:      Configuration.GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS,
@@ -26,7 +26,7 @@ export default class StyleClassMapper {
     };
   
   
-    static foreground_class_map = {
+    static foregroundClassMap = {
         [Configuration.WALL_CHARACTER]:                     Configuration.EMPTY_FOREGROUND_CSS_CLASS,
         [Configuration.EMPTY_TILE_CHARACTER]:               Configuration.EMPTY_FOREGROUND_CSS_CLASS,
         [Configuration.GHOST_DOOR_CROSSING_CHARACTER]:      Configuration.EMPTY_FOREGROUND_CSS_CLASS,
@@ -47,18 +47,18 @@ export default class StyleClassMapper {
 
 
     static getBackgroundStyleClass(character) {
-        return StyleClassMapper.background_class_map[character];
+        return StyleClassMapper.backgroundClassMap[character];
     }
 
 
-    static getForegroundStyleClass(actor_character, element_character) {
-        let character = StyleClassMapper.chooseBoardPositionLayerElementForForegroundMapping(actor_character, element_character);
-        return StyleClassMapper.foreground_class_map[character];
+    static getForegroundStyleClass(actorCharacter, elementCharacter) {
+        let character = StyleClassMapper.chooseBoardPositionLayerElementForForegroundMapping(actorCharacter, elementCharacter);
+        return StyleClassMapper.foregroundClassMap[character];
     }
 
 
-    static chooseBoardPositionLayerElementForForegroundMapping(actor_character, element_character) {
-        return (actor_character === Configuration.EMPTY_TILE_CHARACTER) ? element_character : actor_character;
+    static chooseBoardPositionLayerElementForForegroundMapping(actorCharacter, elementCharacter) {
+        return (actorCharacter === Configuration.EMPTY_TILE_CHARACTER) ? elementCharacter : actorCharacter;
     }
 
   

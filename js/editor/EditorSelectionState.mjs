@@ -8,10 +8,10 @@ import EditorElementMapper from "./EditorElementMapper.mjs";
 export default class EditorSelectionState {
 
     
-    constructor(button_id) {
+    constructor(buttonId) {
         this.editor = null;
-        this.position_input = null;
-        this.button_id = button_id;
+        this.positionInput = null;
+        this.buttonId = buttonId;
     }
 
 
@@ -26,46 +26,46 @@ export default class EditorSelectionState {
 
 
     getButtonId() {
-        return this.button_id;
+        return this.buttonId;
     }
 
 
-    handleEditorContainerMouseDown(caller_id) {}
+    handleEditorContainerMouseDown(callerId) {}
 
 
-    handleEditorContainerMouseUp(caller_id) {}
+    handleEditorContainerMouseUp(callerId) {}
 
 
-    handleEditorContainerMouseLeave(caller_id) {
+    handleEditorContainerMouseLeave(callerId) {
         this.editor.setState(new EditorDefaultState());
-        this.position_input.value = "";
+        this.positionInput.value = "";
     }
 
 
-    handleEditorTileMouseOver(caller_id) {}
+    handleEditorTileMouseOver(callerId) {}
 
 
-    handleEditorTileMouseEnter(caller_id) {
-        let border_color = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
-        let tile_character = this.editor.getBoardCharacterAt(caller_id);
-        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
-        let is_tile_accessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tile_character) === false);
-        let is_tile_selected_ghost_type = ghost_coordinates.includes(caller_id);
+    handleEditorTileMouseEnter(callerId) {
+        let borderColor = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        let tileCharacter = this.editor.getBoardCharacterAt(callerId);
+        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        let isTileAccessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tileCharacter) === false);
+        let isTileSelectedGhostType = ghostCoordinates.includes(callerId);
 
-        if (is_tile_accessible && !is_tile_selected_ghost_type) {
-            document.getElementById(caller_id).style.borderColor = border_color;
-            document.getElementById(caller_id).style.borderWidth = "5px";
+        if (isTileAccessible && !isTileSelectedGhostType) {
+            document.getElementById(callerId).style.borderColor = borderColor;
+            document.getElementById(callerId).style.borderWidth = "5px";
         }
-        this.position_input.value = (is_tile_accessible) ? caller_id : "";
+        this.positionInput.value = (isTileAccessible) ? callerId : "";
     }
 
 
-    handleEditorTileMouseLeave(caller_id) {
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
-        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
-        if (ghost_coordinates.includes(caller_id) === false) {
-            document.getElementById(caller_id).style = null;
+    handleEditorTileMouseLeave(callerId) {
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        if (ghostCoordinates.includes(callerId) === false) {
+            document.getElementById(callerId).style = null;
         }
     }
 
@@ -76,26 +76,26 @@ export default class EditorSelectionState {
 
 
     initializeInputReference() {
-        let input_id = EditorElementMapper.mapButtonIdToInputId[this.button_id];
-        this.position_input = document.getElementById(input_id);
+        let inputId = EditorElementMapper.mapButtonIdToInputId[this.buttonId];
+        this.positionInput = document.getElementById(inputId);
     }
 
 
     highlightPlacedGhosts() {
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
-        let ghost_highlight_color = EditorElementMapper.mapGhostCharacterToHighlightColor[ghost_character];
-        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
-        for (let coordinate of ghost_coordinates) {
-            document.getElementById(coordinate).style.borderColor = ghost_highlight_color;
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        let ghostHighlightColor = EditorElementMapper.mapGhostCharacterToHighlightColor[ghostCharacter];
+        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        for (let coordinate of ghostCoordinates) {
+            document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
     }
 
 
     resetHighlightPlacedGhosts() {
-        let ghost_character = EditorElementMapper.mapButtonIdToGhostCharacter[this.button_id];
-        let ghost_coordinates = this.editor.getGhostCoordinatesListFor(ghost_character);
-        for (let coordinate of ghost_coordinates) {
+        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style = null;
         }
     } 

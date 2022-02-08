@@ -9,8 +9,8 @@ export default class Utility {
     }
 
 
-    static getRandomIntegerBetweenInclusive(min_int, max_int) {
-        return Math.floor(min_int + (max_int - min_int + 1) * Math.random());
+    static getRandomIntegerBetweenInclusive(minInt, maxInt) {
+        return Math.floor(minInt + (maxInt - minInt + 1) * Math.random());
     }
 
 }

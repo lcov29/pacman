@@ -26,8 +26,8 @@ import GhostStateChase from "./GhostStateChase.mjs";
 export default class GhostStateScared extends GhostState {
 
 
-    constructor(duration_in_turns, ghost) {
-        super(duration_in_turns, ghost);
+    constructor(durationInTurns, ghost) {
+        super(durationInTurns, ghost);
         super.setBaseStyleClass(Configuration.GHOST_SCARED_FOREGROUND_CSS_CLASS);
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY);
         super.getGhost().reverseCurrentMovementDirection();
@@ -40,9 +40,9 @@ export default class GhostStateScared extends GhostState {
 
 
     getStyleClass() {
-        let base_style_class = super.getBaseStyleClass();
-        let direction_name = super.getGhost().getCurrentMovementDirectionName();
-        return `${base_style_class}_${direction_name}`;
+        let baseStyleClass = super.getBaseStyleClass();
+        let directionName = super.getGhost().getCurrentMovementDirectionName();
+        return `${baseStyleClass}_${directionName}`;
     }
 
 
@@ -57,8 +57,8 @@ export default class GhostStateScared extends GhostState {
 
 
     executeMovementPattern() {
-        let next_position = this.calculateNextPosition();
-        super.getGhost().setNextPosition(next_position);
+        let nextPosition = this.calculateNextPosition();
+        super.getGhost().setNextPosition(nextPosition);
     }
 
 

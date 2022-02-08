@@ -4,37 +4,37 @@ export default class Teleporter {
 
     
     constructor() {
-        this.position_teleporter_1 = null;
-        this.position_teleporter_2 = null;
+        this.positionTeleporter1 = null;
+        this.positionTeleporter2 = null;
     }
 
 
     add(position) {
-        if (this.position_teleporter_1 === null) {
-            this.position_teleporter_1 = position;
+        if (this.positionTeleporter1 === null) {
+            this.positionTeleporter1 = position;
         } else {
-            this.position_teleporter_2 = position;
+            this.positionTeleporter2 = position;
         }
     }
 
     
     getIDPosition1() {
-        return this.position_teleporter_1.getID();
+        return this.positionTeleporter1.getID();
     }
 
 
     getIDPosition2() {
-        return this.position_teleporter_2.getID();
+        return this.positionTeleporter2.getID();
     }
 
 
     getDestinationPositionFor(position) {
         let destination = null;
-        if (position.getID() === this.position_teleporter_1.getID()) {
-            destination = this.position_teleporter_2.clone();
+        if (position.getID() === this.positionTeleporter1.getID()) {
+            destination = this.positionTeleporter2.clone();
         } else {
-            if (position.getID() === this.position_teleporter_2.getID()) {
-                destination = this.position_teleporter_1.clone();
+            if (position.getID() === this.positionTeleporter2.getID()) {
+                destination = this.positionTeleporter1.clone();
             }
         }
         return destination; 
@@ -42,14 +42,14 @@ export default class Teleporter {
 
     
     isInitialized() {
-        return this.position_teleporter_1 !== null &&
-               this.position_teleporter_2 !== null;
+        return this.positionTeleporter1 !== null &&
+               this.positionTeleporter2 !== null;
     }
 
     
     isTeleporterFor(position) {
-        return position.getID() === this.position_teleporter_1.getID() ||
-               position.getID() === this.position_teleporter_2.getID();
+        return position.getID() === this.positionTeleporter1.getID() ||
+               position.getID() === this.positionTeleporter2.getID();
     }
 
 

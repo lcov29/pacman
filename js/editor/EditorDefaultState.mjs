@@ -14,25 +14,25 @@ export default class EditorDefaultState {
     }
 
 
-    handleEditorContainerMouseDown(caller_id) {}
+    handleEditorContainerMouseDown(callerId) {}
 
 
-    handleEditorContainerMouseUp(caller_id) {}
+    handleEditorContainerMouseUp(callerId) {}
 
 
-    handleEditorContainerMouseLeave(caller_id) {}
+    handleEditorContainerMouseLeave(callerId) {}
 
 
-    handleEditorTileClick(caller_id) {}
+    handleEditorTileClick(callerId) {}
 
 
-    handleEditorTileMouseOver(caller_id) {}
+    handleEditorTileMouseOver(callerId) {}
 
 
-    handleEditorTileMouseEnter(caller_id) {}
+    handleEditorTileMouseEnter(callerId) {}
 
 
-    handleEditorTileMouseLeave(caller_id) {}
+    handleEditorTileMouseLeave(callerId) {}
 
 
     exit() {}

@@ -9,8 +9,8 @@ import GhostStateChase from "./GhostStateChase.mjs";
 export default class GhostStateScatter extends GhostState {
 
 
-    constructor(duration_in_turns, ghost) {
-        super(duration_in_turns, ghost);
+    constructor(durationInTurns, ghost) {
+        super(durationInTurns, ghost);
         super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
         super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY);
     }
@@ -22,9 +22,9 @@ export default class GhostStateScatter extends GhostState {
 
 
     getStyleClass() {
-        let base_style_class = super.getBaseStyleClass();
-        let direction_name = super.getGhost().getCurrentMovementDirectionName();
-        return `${base_style_class}_${direction_name}`;
+        let baseStyleClass = super.getBaseStyleClass();
+        let directionName = super.getGhost().getCurrentMovementDirectionName();
+        return `${baseStyleClass}_${directionName}`;
     }
 
 
@@ -40,9 +40,9 @@ export default class GhostStateScatter extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        let current_position_id = ghost.getCurrentPosition().getID();
-        let next_position = this.calculateNextPosition(current_position_id);
-        ghost.setNextPosition(next_position);
+        let currentPositionId = ghost.getCurrentPosition().getID();
+        let nextPosition = this.calculateNextPosition(currentPositionId);
+        ghost.setNextPosition(nextPosition);
     }
 
 
@@ -58,11 +58,11 @@ export default class GhostStateScatter extends GhostState {
 
 
     // scatter state movement pattern
-    calculateNextPosition(current_position_id) {
+    calculateNextPosition(currentPositionId) {
         let ghost = super.getGhost();
         let routing = ghost.getRouting();
-        let scatter_position_id = ghost.getScatterID();
-        return routing.calculateNextPositionOnShortestPath(current_position_id, scatter_position_id);
+        let scatterPositionId = ghost.getScatterID();
+        return routing.calculateNextPositionOnShortestPath(currentPositionId, scatterPositionId);
     }
 
 
@@ -80,9 +80,9 @@ export default class GhostStateScatter extends GhostState {
             if (ghost.isNextPositionEqualToTeleportDestination()) {
 
                 // after teleportation ghost sprite should display the direction of the next move
-                let after_teleportation_position_id = ghost.getNextPosition().getID();
-                let next__after_teleportation_position = this.calculateNextPosition(after_teleportation_position_id);
-                ghost.updateMovementDirection(ghost.getNextPosition(), next__after_teleportation_position);
+                let afterTeleportationPositionId = ghost.getNextPosition().getID();
+                let nextAfterTeleportationPosition = this.calculateNextPosition(afterTeleportationPositionId);
+                ghost.updateMovementDirection(ghost.getNextPosition(), nextAfterTeleportationPosition);
                 ghost.setTeleportationStatus(true);
             } 
 

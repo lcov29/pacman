@@ -6,86 +6,86 @@ export default class EditorMapDimensionChangeState {
     
     constructor() {
         this.editor = null;
-        this.input_map_width = null;
-        this.input_map_height = null;
-        this.callback_click = null;
-        this.callback_mouseover = null;
-        this.callback_mouseenter = null;
-        this.callback_mouseleave = null;
+        this.inputMapWidth = null;
+        this.inputMapHeight = null;
+        this.callbackClick = null;
+        this.callbackMouseover = null;
+        this.callbackMouseenter = null;
+        this.callbackMouseleave = null;
     }
 
 
     setEditorTileClickCallback(callback) {
-        this.callback_click = callback;
+        this.callbackClick = callback;
     }
 
 
     setEditorTileMouseOverCallback(callback) {
-        this.callback_mouseover = callback;
+        this.callbackMouseover = callback;
     }
 
 
     setEditorTileMouseEnterCallback(callback) {
-        this.callback_mouseenter = callback;
+        this.callbackMouseenter = callback;
     }
 
 
     setEditorTileMouseLeaveCallback(callback) {
-        this.callback_mouseleave = callback;
+        this.callbackMouseleave = callback;
     }
 
 
     initialize(editor) {
         this.editor = editor;
-        this.input_map_width = document.getElementById("map_width");
-        this.input_map_height = document.getElementById("map_height");
+        this.inputMapWidth = document.getElementById("map_width");
+        this.inputMapHeight = document.getElementById("map_height");
         this.editor.resetSpawnScatterControlDisplayStatus();
-        this.editor.resetInternalLevel(this.input_map_width.value, this.input_map_height.value);
+        this.editor.resetInternalLevel(this.inputMapWidth.value, this.inputMapHeight.value);
         this.editor.clearMap();
         this.resetScatterSpawnInputs();
         this.initializeEditingArea();
     }
 
 
-    handleEditorContainerMouseDown(caller_id) {}
+    handleEditorContainerMouseDown(callerId) {}
 
 
-    handleEditorContainerMouseUp(caller_id) {}
+    handleEditorContainerMouseUp(callerId) {}
 
 
-    handleEditorContainerMouseLeave(caller_id) {}
+    handleEditorContainerMouseLeave(callerId) {}
 
 
-    handleEditorTileClick(caller_id) {}
+    handleEditorTileClick(callerId) {}
 
 
-    handleEditorTileMouseOver(caller_id) {}
+    handleEditorTileMouseOver(callerId) {}
 
 
-    handleEditorTileMouseEnter(caller_id) {}
+    handleEditorTileMouseEnter(callerId) {}
 
 
-    handleEditorTileMouseLeave(caller_id) {}
+    handleEditorTileMouseLeave(callerId) {}
 
 
     exit() {}
 
 
     resetScatterSpawnInputs() {
-        let input_ids = ["scatter_position_ghost_blinky", "scatter_position_ghost_pinky",
+        let inputIds = ["scatter_position_ghost_blinky", "scatter_position_ghost_pinky",
                          "scatter_position_ghost_clyde", "scatter_position_ghost_inky",
                          "spawn_position_ghost_blinky", "spawn_position_ghost_pinky",
                          "spawn_position_ghost_clyde", "spawn_position_ghost_inky"];
-        for (let input_id of input_ids) {
-            document.getElementById(input_id).value = "";
+        for (let inputId of inputIds) {
+            document.getElementById(inputId).value = "";
         }
 
-        let control_ids = ["scatter_control_ghost_blinky", "scatter_control_ghost_pinky",
+        let controlIds = ["scatter_control_ghost_blinky", "scatter_control_ghost_pinky",
                                  "scatter_control_ghost_clyde", "scatter_control_ghost_inky",
                                  "spawn_control_ghost_blinky", "spawn_control_ghost_pinky",
                                  "spawn_control_ghost_clyde", "spawn_control_ghost_inky"];
-        for (let control_id of control_ids) {
-            document.getElementById(control_id).style = "display:none";
+        for (let controlId of controlIds) {
+            document.getElementById(controlId).style = "display:none";
         }
     }
 
@@ -97,16 +97,16 @@ export default class EditorMapDimensionChangeState {
         
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
-                let new_div = document.createElement('div');
-                let new_id = `(${x},${y})`;
-                new_div.setAttribute('id', new_id);
-                new_div.setAttribute('title', new_id);
-                new_div.setAttribute('class', 'editor_tile undefined_tile');
-                new_div.addEventListener('mouseover', this.callback_mouseover);
-                new_div.addEventListener('mouseenter', this.callback_mouseenter);
-                new_div.addEventListener('mouseleave', this.callback_mouseleave);
-                new_div.addEventListener('click', this.callback_click);
-                this.editor.addEditorTile(new_div);
+                let newDiv = document.createElement('div');
+                let newId = `(${x},${y})`;
+                newDiv.setAttribute('id', newId);
+                newDiv.setAttribute('title', newId);
+                newDiv.setAttribute('class', 'editor_tile undefined_tile');
+                newDiv.addEventListener('mouseover', this.callbackMouseover);
+                newDiv.addEventListener('mouseenter', this.callbackMouseenter);
+                newDiv.addEventListener('mouseleave', this.callbackMouseleave);
+                newDiv.addEventListener('click', this.callbackClick);
+                this.editor.addEditorTile(newDiv);
             }
         }
     }

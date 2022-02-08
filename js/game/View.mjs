@@ -7,25 +7,25 @@ import StyleClassMapper from "./StyleClassMapper.mjs";
 export default class View {
    
    
-   constructor(board_container_id, score_id, life_id) {
-      this.board_container = document.getElementById(board_container_id);
-      this.score_display = document.getElementById(score_id);
-      this.life_display = document.getElementById(life_id);
+   constructor(boardContainerId, scoreId, lifeId) {
+      this.boardContainer = document.getElementById(boardContainerId);
+      this.scoreDisplay = document.getElementById(scoreId);
+      this.lifeDisplay = document.getElementById(lifeId);
    }
 
 
-   initialize(board_position_array) {
+   initialize(boardPositionArray) {
       this.clearBoard();
-      this.initializeContainerDimension(board_position_array);
-      this.initializeBackgroundElements(board_position_array);
-      this.initializeForegroundElements(board_position_array);
+      this.initializeContainerDimension(boardPositionArray);
+      this.initializeBackgroundElements(boardPositionArray);
+      this.initializeForegroundElements(boardPositionArray);
    }
 
 
-   update(board_position, style_class, score, number_of_lifes) {
-      this.updateBoard(board_position, style_class);
+   update(boardPosition, styleClass, score, numberOfLifes) {
+      this.updateBoard(boardPosition, styleClass);
       this.updateScore(score);
-      this.updateLifeBar(number_of_lifes);
+      this.updateLifeBar(numberOfLifes);
    }
    
 
@@ -35,77 +35,77 @@ export default class View {
 
 
    clearBoard() {
-      this.score_display.innerHTML = "";
-      this.life_display.innerHTML = "";
-      while (this.board_container.firstChild) {
-         this.board_container.removeChild(this.board_container.firstChild);
+      this.scoreDisplay.innerHTML = "";
+      this.lifeDisplay.innerHTML = "";
+      while (this.boardContainer.firstChild) {
+         this.boardContainer.removeChild(this.boardContainer.firstChild);
       }
    }
 
 
    // requires the same column count for all rows!
    initializeContainerDimension(board) {
-      this.board_container.style.height = `${board.length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
-      this.board_container.style.width = `${board[0].length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
+      this.boardContainer.style.height = `${board.length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
+      this.boardContainer.style.width = `${board[0].length * Configuration.DIMENSION_BACKGROUND_DIV_IN_PX}px`;
    }
 
 
    initializeBackgroundElements(board) {
-      let outer_div = null;
-      let id_div = '';
-      let style_class = '';
-      let current_position = null;
+      let outerDiv = null;
+      let idDiv = '';
+      let styleClass = '';
+      let currentPosition = null;
 
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
-            current_position = board[y][x];
-            id_div = this.getDivID(current_position, Configuration.SUFFIX_BACKGROUND_DIV);
-            outer_div = this.createDiv(id_div);
-            style_class = StyleClassMapper.getBackgroundStyleClass(current_position.getElementCharacter(),
-                                                                   current_position.getID());
-            outer_div.setAttribute('class', style_class);
-            this.board_container.appendChild(outer_div);
+            currentPosition = board[y][x];
+            idDiv = this.getDivID(currentPosition, Configuration.SUFFIX_BACKGROUND_DIV);
+            outerDiv = this.createDiv(idDiv);
+            styleClass = StyleClassMapper.getBackgroundStyleClass(currentPosition.getElementCharacter(),
+                                                                   currentPosition.getID());
+            outerDiv.setAttribute('class', styleClass);
+            this.boardContainer.appendChild(outerDiv);
          }
       }
    }
 
 
    initializeForegroundElements(board) {
-      let outer_div = null;
-      let inner_div = null;
-      let id_div = '';
-      let style_class = '';
-      let current_position = null;
+      let outerDiv = null;
+      let innerDiv = null;
+      let idDiv = '';
+      let styleClass = '';
+      let currentPosition = null;
       
       for (let y = 0; y < board.length; y++) {
          for (let x = 0; x < board[y].length; x++) {
-            current_position = board[y][x];
-            id_div = this.getDivID(current_position, Configuration.SUFFIX_BACKGROUND_DIV);
-            outer_div = document.getElementById(id_div);
-            id_div = this.getDivID(current_position, Configuration.SUFFIX_FOREGROUND_DIV);
-            inner_div = this.createDiv(id_div);
-            style_class = StyleClassMapper.getForegroundStyleClass(current_position.getActorCharacter(),
-                                                                   current_position.getElementCharacter());
-            inner_div.setAttribute('class', style_class);
-            outer_div.appendChild(inner_div);
+            currentPosition = board[y][x];
+            idDiv = this.getDivID(currentPosition, Configuration.SUFFIX_BACKGROUND_DIV);
+            outerDiv = document.getElementById(idDiv);
+            idDiv = this.getDivID(currentPosition, Configuration.SUFFIX_FOREGROUND_DIV);
+            innerDiv = this.createDiv(idDiv);
+            styleClass = StyleClassMapper.getForegroundStyleClass(currentPosition.getActorCharacter(),
+                                                                   currentPosition.getElementCharacter());
+            innerDiv.setAttribute('class', styleClass);
+            outerDiv.appendChild(innerDiv);
          }
       }
    }
 
 
-   updateBoard(position, style_class) {
-         let id_div = this.getDivID(position, Configuration.SUFFIX_FOREGROUND_DIV);
-         document.getElementById(id_div).setAttribute('class', style_class);
+   updateBoard(position, styleClass) {
+         let idDiv = this.getDivID(position, Configuration.SUFFIX_FOREGROUND_DIV);
+         document.getElementById(idDiv).setAttribute('class', styleClass);
    }
 
    
    updateScore(score) {
-      this.score_display.innerHTML = `score: ${score}`;
+      this.scoreDisplay.innerHTML = `score: ${score}`;
    }
    
    
-   updateLifeBar(number_of_lifes) {
-      this.life_display.innerHTML = `lifes: ${number_of_lifes}`;
+   updateLifeBar(numberOfLifes) {
+      this.lifeDisplay.innerHTML = `lifes: ${numberOfLifes}`;
    }
    
    

@@ -46,52 +46,52 @@ export default class LevelInitializer {
 
 
 
-    static initializePacmans(board, level_reference) {
+    static initializePacmans(board, levelReference) {
         let pacmans = [];
         for (let position of board.getInitialPacmanPositions()) {
-            pacmans.push(new Pacman(level_reference, position));
+            pacmans.push(new Pacman(levelReference, position));
         }
         return pacmans;
     }
 
 
-    static initializeGhosts(board, teleporter_list, level_reference) {
-        let accessible_position_list = board.buildAccessibleBoardPositionList();
-        let neighbor_id_list = LevelInitializer.buildAccessibleNeighborIdList(board, teleporter_list);
-        let routing = new Routing(accessible_position_list, neighbor_id_list);
-        let ghosts = LevelInitializer.initializeGhostObjects(board, routing, level_reference);
+    static initializeGhosts(board, teleporterList, levelReference) {
+        let accessiblePositionList = board.buildAccessibleBoardPositionList();
+        let neighborIdList = LevelInitializer.buildAccessibleNeighborIdList(board, teleporterList);
+        let routing = new Routing(accessiblePositionList, neighborIdList);
+        let ghosts = LevelInitializer.initializeGhostObjects(board, routing, levelReference);
         LevelInitializer.initializeGhostScatterPositions(board, ghosts);
         LevelInitializer.initializeOptionalGhostSpawnPositions(board, ghosts);
         return ghosts;
     }
 
 
-    static buildAccessibleNeighborIdList(board, teleporter_list) {
-        let neighbor_id_list = board.buildAccessibleNeighborIdList();
+    static buildAccessibleNeighborIdList(board, teleporterList) {
+        let neighborIdList = board.buildAccessibleNeighborIdList();
         // mark connected teleporters as neighbors
-        for (let teleporter of teleporter_list) {
-            neighbor_id_list[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
-            neighbor_id_list[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
+        for (let teleporter of teleporterList) {
+            neighborIdList[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
+            neighborIdList[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
         }
-        return neighbor_id_list;
+        return neighborIdList;
     }
 
 
-    static initializeGhostObjects(board, routing, level_reference) {
+    static initializeGhostObjects(board, routing, levelReference) {
         let ghosts = [];
         for (let position of board.getInitialGhostPositions()) {
             switch (position.getActorCharacter()) {
                 case Configuration.GHOST_BLINKY_CHARACTER:
-                    ghosts.push(new GhostBlinky(level_reference, position, routing));
+                    ghosts.push(new GhostBlinky(levelReference, position, routing));
                     break;
                 case Configuration.GHOST_PINKY_CHARACTER:
-                    ghosts.push(new GhostPinky(level_reference, position, routing));
+                    ghosts.push(new GhostPinky(levelReference, position, routing));
                     break;
                 case Configuration.GHOST_INKY_CHARACTER:
-                    ghosts.push(new GhostInky(level_reference, position, routing));
+                    ghosts.push(new GhostInky(levelReference, position, routing));
                     break;
                 case Configuration.GHOST_CLYDE_CHARACTER:
-                    ghosts.push(new GhostClyde(level_reference, position, routing));
+                    ghosts.push(new GhostClyde(levelReference, position, routing));
                     break;
             }
         }
@@ -100,10 +100,10 @@ export default class LevelInitializer {
 
 
     static initializeGhostScatterPositions(board, ghosts) {
-        for (let scatter_position of board.getGhostScatterPositions()) {
+        for (let scatterPosition of board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getCharacter() === scatter_position.getElementCharacter()) {
-                    ghost.setScatterID(scatter_position.getID());
+                if (ghost.getCharacter() === scatterPosition.getElementCharacter()) {
+                    ghost.setScatterID(scatterPosition.getID());
                 }
             }
         }
@@ -111,10 +111,10 @@ export default class LevelInitializer {
 
 
     static initializeOptionalGhostSpawnPositions(board, ghosts) {
-        for (let spawn_position of board.getOptionalGhostSpawnPositions()) {
+        for (let spawnPosition of board.getOptionalGhostSpawnPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getCharacter() === spawn_position.getElementCharacter()) {
-                    ghost.setSpawnID(spawn_position.getID());
+                if (ghost.getCharacter() === spawnPosition.getElementCharacter()) {
+                    ghost.setSpawnID(spawnPosition.getID());
                 }
             }
         }    

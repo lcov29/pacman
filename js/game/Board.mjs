@@ -8,15 +8,15 @@ import Directions from "./Directions.mjs";
 export default class Board {
 
    
-   constructor(level_json) {
+   constructor(levelJson) {
       this.board = [];
-      this.initial_pacman_positions = [];
-      this.initial_ghost_positions = [];
-      this.teleporter_positions = [];
-      this.ghost_door_positions = [];
-      this.ghost_scatter_positions = [];
-      this.ghost_optional_spawn_positions = [];
-      new BoardParser(this).parse(level_json);
+      this.initialPacmanPositions = [];
+      this.initialGhostPositions = [];
+      this.teleporterPositions = [];
+      this.ghostDoorPositions = [];
+      this.ghostScatterPositions = [];
+      this.ghostOptionalSpawnPositions = [];
+      new BoardParser(this).parse(levelJson);
    }
 
 
@@ -26,39 +26,39 @@ export default class Board {
 
 
    setInitialPacmanPositions(positions) {
-      this.initial_pacman_positions = positions;
+      this.initialPacmanPositions = positions;
    }
 
 
    setInitialGhostPositions(positions) {
-      this.initial_ghost_positions = positions;
+      this.initialGhostPositions = positions;
    }
 
 
    setTeleporterPositions(positions) {
-      this.teleporter_positions = positions;
+      this.teleporterPositions = positions;
    }
 
    
    setGhostDoorPositions(positions) {
-      this.ghost_door_positions = positions;
+      this.ghostDoorPositions = positions;
    }
 
 
    setGhostScatterPositions(positions) {
-      this.ghost_scatter_positions = positions;
+      this.ghostScatterPositions = positions;
    }
 
 
    setGhostOptionalSpawnPositions(positions) {
-      this.ghost_optional_spawn_positions = positions;
+      this.ghostOptionalSpawnPositions = positions;
    }
 
 
    setPosition(position) {
-      let internal_position = this.board[position.getY()][position.getX()];
-      internal_position.setActorCharacter(position.getActorCharacter());
-      internal_position.setElementCharacter(position.getElementCharacter());
+      let internalPosition = this.board[position.getY()][position.getX()];
+      internalPosition.setActorCharacter(position.getActorCharacter());
+      internalPosition.setElementCharacter(position.getElementCharacter());
    }
    
 
@@ -68,32 +68,32 @@ export default class Board {
 
 
    getInitialPacmanPositions() {
-      return this.initial_pacman_positions;
+      return this.initialPacmanPositions;
    }
 
 
    getInitialGhostPositions() {
-      return this.initial_ghost_positions;
+      return this.initialGhostPositions;
    }
 
 
    getTeleporterPositions() {
-      return this.teleporter_positions;
+      return this.teleporterPositions;
    }
 
 
    getGhostDoorPositions() {
-      return this.ghost_door_positions;
+      return this.ghostDoorPositions;
    }
 
 
    getGhostScatterPositions() {
-      return this.ghost_scatter_positions;
+      return this.ghostScatterPositions;
    }
 
 
    getOptionalGhostSpawnPositions() {
-      return this.ghost_optional_spawn_positions;
+      return this.ghostOptionalSpawnPositions;
    }
 
 
@@ -143,20 +143,20 @@ export default class Board {
 
 
    buildAccessibleNeighborList(xPosition, yPosition) {
-      let neighbor_positions = [];
+      let neighborPositions = [];
       let direction = null;
-      let neighbor_x = -1;
-      let neighbor_y = -1;
+      let neighborX = -1;
+      let neighborY = -1;
 
       for (let i = Directions.getMinDirectionID(); i <= Directions.getMaxDirectionID(); i++) {
          direction = Directions.getDirectionByID(i);
-         neighbor_x = xPosition + direction.x;
-         neighbor_y = yPosition + direction.y;
-         if (this.isIndexOnBoard(neighbor_x, neighbor_y) && this.isAccessibleAt(neighbor_x, neighbor_y)) {
-            neighbor_positions.push(this.getPosition(neighbor_x, neighbor_y));
+         neighborX = xPosition + direction.x;
+         neighborY = yPosition + direction.y;
+         if (this.isIndexOnBoard(neighborX, neighborY) && this.isAccessibleAt(neighborX, neighborY)) {
+            neighborPositions.push(this.getPosition(neighborX, neighborY));
          }
       }
-      return neighbor_positions;
+      return neighborPositions;
    }
 
 

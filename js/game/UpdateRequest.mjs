@@ -3,15 +3,15 @@
 export default class UpdateRequest {
 
 
-    constructor(board_position, styleclass, priority = 0) {
-        this.board_position = board_position;
+    constructor(boardPosition, styleclass, priority = 0) {
+        this.boardPosition = boardPosition;
         this.styleclass = styleclass;
         this.priority = priority;
     }
 
 
     getPosition() {
-        return this.board_position;
+        return this.boardPosition;
     }
 
 

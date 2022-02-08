@@ -15,7 +15,7 @@ export default class Directions {
     static MAX_DIRECTION_ID = 3;
 
 
-    static direction_map_name_to_direction = {
+    static directionMapNameToDirection = {
         [Configuration.DIRECTION_NAME_UP]:    this.DIRECTION_UP,
         [Configuration.DIRECTION_NAME_RIGHT]: this.DIRECTION_RIGHT,
         [Configuration.DIRECTION_NAME_DOWN]:  this.DIRECTION_DOWN,
@@ -23,7 +23,7 @@ export default class Directions {
     };
 
 
-    static direction_map_inverse = {
+    static directionMapInverse = {
         [Configuration.DIRECTION_NAME_UP]:      Configuration.DIRECTION_NAME_DOWN,
         [Configuration.DIRECTION_NAME_RIGHT]:   Configuration.DIRECTION_NAME_LEFT,
         [Configuration.DIRECTION_NAME_DOWN]:    Configuration.DIRECTION_NAME_UP,
@@ -31,7 +31,7 @@ export default class Directions {
     };
 
 
-    static direction_map_direction_to_name = {
+    static directionMapDirectionToName = {
         '(0,-1)': Configuration.DIRECTION_NAME_UP,
         '(1,0)':  Configuration.DIRECTION_NAME_RIGHT,
         '(0,1)':  Configuration.DIRECTION_NAME_DOWN,
@@ -39,7 +39,7 @@ export default class Directions {
     };
 
 
-    static direction_map_id_to_name = {
+    static directionMapIdToName = {
         0:  Configuration.DIRECTION_NAME_UP,
         1:  Configuration.DIRECTION_NAME_RIGHT,
         2:  Configuration.DIRECTION_NAME_DOWN,
@@ -47,7 +47,7 @@ export default class Directions {
     }
 
 
-    static direction_map_id_to_direction = {
+    static directionMapIdToDirection = {
         0: this.DIRECTION_UP,
         1: this.DIRECTION_RIGHT,
         2: this.DIRECTION_DOWN,
@@ -66,29 +66,29 @@ export default class Directions {
 
 
     static getDirectionByName(name) {
-        return this.direction_map_name_to_direction[name];
+        return this.directionMapNameToDirection[name];
     }
 
 
     static getDirectionNameByIndex(x, y) {
         let index = `(${x},${y})`;
-        return this.direction_map_direction_to_name[index];
+        return this.directionMapDirectionToName[index];
     }
 
 
     static getReversedDirectionName(name) {
-        return this.direction_map_inverse[name];
+        return this.directionMapInverse[name];
     }
 
 
-    static getDirectionByID(direction_id) {
-        return this.direction_map_id_to_direction[direction_id];
+    static getDirectionByID(directionId) {
+        return this.directionMapIdToDirection[directionId];
     }
 
 
     static getRandomDirectionName() {
-        let direction_id = Utility.getRandomIntegerBetweenInclusive(this.MIN_DIRECTION_ID, this.MAX_DIRECTION_ID);
-        return this.direction_map_id_to_name[direction_id];
+        let directionId = Utility.getRandomIntegerBetweenInclusive(this.MIN_DIRECTION_ID, this.MAX_DIRECTION_ID);
+        return this.directionMapIdToName[directionId];
     }
 
     

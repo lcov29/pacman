@@ -9,8 +9,8 @@ export default class UpdateManager {
     constructor(level, board) {
         this.level = level;
         this.board = board;
-        this.board_update_requests = [];
-        this.view_update_requests = [];
+        this.boardUpdateRequests = [];
+        this.viewUpdateRequests = [];
     }
 
 
@@ -21,39 +21,39 @@ export default class UpdateManager {
 
 
     addBoardRequest(request) {
-        this.board_update_requests.push(request);
+        this.boardUpdateRequests.push(request);
     }
 
 
     addViewRequest(request) {
-        let position_id = request.getPosition().getID();
-        if (this.getPriorityOfExistingViewRequestFor(position_id) < request.getPriority()) {
-            this.removeExistingViewRequestFor(position_id);
-            this.view_update_requests.push(request);
+        let positionId = request.getPosition().getID();
+        if (this.getPriorityOfExistingViewRequestFor(positionId) < request.getPriority()) {
+            this.removeExistingViewRequestFor(positionId);
+            this.viewUpdateRequests.push(request);
         }
     }
 
 
     updateBoard() {
-        for (let request of this.board_update_requests) {
+        for (let request of this.boardUpdateRequests) {
             this.board.setPosition(request.getPosition());
         }
-        this.board_update_requests = [];
+        this.boardUpdateRequests = [];
     }
 
 
     updateView() {
-        for (let request of this.view_update_requests) {
+        for (let request of this.viewUpdateRequests) {
             this.level.sendViewUpdate(request.getPosition(), request.getStyleClass());
         }
-        this.view_update_requests = [];
+        this.viewUpdateRequests = [];
     }
 
 
-    getPriorityOfExistingViewRequestFor(position_id) {
+    getPriorityOfExistingViewRequestFor(positionId) {
         let result = -1;
-        for (let request of this.view_update_requests) {
-            if (request.getPosition().getID() === position_id) {
+        for (let request of this.viewUpdateRequests) {
+            if (request.getPosition().getID() === positionId) {
                 result = request.getPriority();
                 break;
             }
@@ -62,10 +62,10 @@ export default class UpdateManager {
     }
 
 
-    removeExistingViewRequestFor(position_id) {
-        for (let request of this.view_update_requests) {
-            if (request.getPosition().getID() === position_id) {
-                Utility.removeElementFrom(this.view_update_requests, request);
+    removeExistingViewRequestFor(positionId) {
+        for (let request of this.viewUpdateRequests) {
+            if (request.getPosition().getID() === positionId) {
+                Utility.removeElementFrom(this.viewUpdateRequests, request);
                 break;
             }
         }
