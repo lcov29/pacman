@@ -182,7 +182,8 @@ function buttonPlayCallback() {
 }
 
 
+// workaround to make loading of index.html on github pages possible
 function loadIndexPage() {
     let url = location.href;
-    location.href = url.replace('editor.html', 'index.html');
+    location.href = url.replace(Configuration.FILE_NAME_EDITOR, Configuration.FILE_NAME_INDEX);
 }
