@@ -15,6 +15,8 @@ export default class Configuration {
       static SCORE_VALUE_PER_BONUS_GALAXIAN = 2000;
       static SCORE_VALUE_PER_BONUS_BELL = 3000;
       static SCORE_VALUE_PER_BONUS_KEY = 5000;
+      static NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_FIRST_BONUS_ELEMENT = 70;
+      static NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_SECOND_BONUS_ELEMENT = 170;
       static GHOST_MAX_RESPAWN_STAGE = 4;
       static SCORE_VALUE_PER_EATEN_GHOST = 200;
       static INTERVAL_DELAY_IN_MILLISECONDS = 500;
@@ -114,7 +116,7 @@ export default class Configuration {
       static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_cherry";
       static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_strawberry";
       static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = "bonus_spawn_peach";
-      static BONUS_ELEMENT_APPEL_FOREGROUND_CSS_CLASS = "bonus_spawn_apple";
+      static BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS = "bonus_spawn_apple";
       static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = "bonus_spawn_grape";
       static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = "bonus_spawn_galaxian";
       static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = "bonus_spawn_bell";
@@ -143,6 +145,7 @@ export default class Configuration {
       static GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY = 1;
 
 
+
    // Editor Settings
       static FILE_NAME_INDEX = "index.html";
       static FILE_NAME_EDITOR = "editor.html";
@@ -162,6 +165,7 @@ export default class Configuration {
       
       static EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX = "#289D10";
       static EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX = "#fdfdfd";
+
 
 
    // Definition of element lists 
@@ -192,6 +196,9 @@ export default class Configuration {
       // Tiles that are inaccessible for both ghosts and pacmans
       static ACTORS_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
                                           Configuration.UNDEFINED_TILE_CHARACTER];
+
+      static POINT_LIMIT_FOR_BONUS_SPAWN = [Configuration.NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_FIRST_BONUS_ELEMENT,
+                                            Configuration.NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_SECOND_BONUS_ELEMENT];
 
    
 
