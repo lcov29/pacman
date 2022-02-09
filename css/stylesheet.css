@@ -117,6 +117,64 @@ body {
 }
 
 
+
+.bonus_spawn_cherry {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/cherry.png');
+}
+
+
+.bonus_spawn_strawberry {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/strawberry.png'); 
+}
+
+
+.bonus_spawn_peach {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/peach.png');
+}
+
+
+.bonus_spawn_apple {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/apple.png');
+}
+
+
+.bonus_spawn_grape {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/grape.png');
+}
+
+
+.bonus_spawn_galaxian {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/galaxian.png');
+}
+
+
+.bonus_spawn_bell {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/bell.png');
+}
+
+
+.bonus_spawn_key {
+   width: 30px;
+   height: 30px;
+   background-image: url('../sprites/bonus_elements/key.png');
+}
+
+
+
 /* Pacman */
 .pacman_up {
    width: 30px;
