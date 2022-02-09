@@ -17,6 +17,7 @@ export default class EditorElementMapper {
         'teleporter_1_tile':            Configuration.TELEPORTER_1_CHARACTER,
         'teleporter_2_tile':            Configuration.TELEPORTER_2_CHARACTER,
         'teleporter_3_tile':            Configuration.TELEPORTER_3_CHARACTER,
+        'bonus_spawn_tile':             Configuration.EMPTY_TILE_CHARACTER,
         'pacman_tile':                  Configuration.PACMAN_CHARACTER,
         'ghost_blinky_tile':            Configuration.GHOST_BLINKY_CHARACTER,
         'ghost_pinky_tile':             Configuration.GHOST_PINKY_CHARACTER,
