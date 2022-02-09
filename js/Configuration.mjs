@@ -75,10 +75,12 @@ export default class Configuration {
       static TELEPORTER_1_CHARACTER= "1";
       static TELEPORTER_2_CHARACTER = "2";
       static TELEPORTER_3_CHARACTER = "3";
+      static BONUS_ELEMENT_CHARACTER = "*";
       static UNDEFINED_TILE_CHARACTER = ".";
       static GHOST_DOOR_CROSSING_CHARACTER = "+";
       static GHOST_DOOR_VERTICAL_CHARACTER = "|";
       static GHOST_DOOR_HORIZONTAL_CHARACTER = "-";
+
 
 
    // Definition of directions
