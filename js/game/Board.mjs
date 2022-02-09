@@ -88,6 +88,11 @@ export default class Board {
    }
 
 
+   getBonusSpawnPositions() {
+      return this.bonusSpawnPositions;
+   }
+
+
    getGhostDoorPositions() {
       return this.ghostDoorPositions;
    }
