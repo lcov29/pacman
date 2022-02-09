@@ -5,6 +5,7 @@ import UpdateManager from "./UpdateManager.mjs";
 import Configuration from "../Configuration.mjs";
 import Utility from "../Utility.mjs";
 import Board from "./Board.mjs";
+import BonusElementSpawner from "./BonusElementSpawner.mjs";
 
 /*  
     =================================================================================================================
@@ -23,10 +24,12 @@ export default class Level {
         this.game = game;
         this.board = null;
         this.updateManager = null;
+        this.bonusElementSpawner = null;
         this.teleporters = [];
         this.pacmans = [];
         this.ghosts = [];
         this.availablePoints = 0;
+        this.consumedPoints = 0;
         this.totalPacmanLifes = 0;
         this.score = 0;
         this.updateRequests = [];
@@ -36,6 +39,8 @@ export default class Level {
     initialize(levelJson) {
         this.board = new Board(levelJson);
         this.updateManager = new UpdateManager(this, this.board);
+        this.bonusElementSpawner = new BonusElementSpawner();
+        this.bonusElementSpawner.initialize(this.board.getBonusSpawnPositions(), 1, this);
         this.teleporters = LevelInitializer.initializeTeleporters(this.board);
         this.pacmans = LevelInitializer.initializePacmans(this.board, this);
         this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
@@ -49,6 +54,7 @@ export default class Level {
         if (this.isWon() === false && this.isLost() === false) {
             this.moveGhosts();
         }
+        this.bonusElementSpawner.handleSpawn(this.consumedPoints);
         this.updateManager.updateView();
     }
 
@@ -75,6 +81,11 @@ export default class Level {
         this.score += value;
     }
 
+
+    incrementConsumedPoints() {
+        this.consumedPoints++;
+    }
+
     
     decrementAvailablePoints() {
         this.availablePoints--;
@@ -93,6 +104,11 @@ export default class Level {
 
     updateBoard() {
         this.updateManager.updateBoard();
+    }
+
+
+    updateView() {
+        this.updateManager.updateView();
     }
 
 
@@ -126,6 +142,11 @@ export default class Level {
             ids.push(pacman.getCurrentPosition().getID());
         }
         return ids;
+    }
+
+
+    getBonusScoreValue() {
+        return this.bonusElementSpawner.getScoreValue();
     }
 
 
