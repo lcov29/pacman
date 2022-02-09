@@ -13,6 +13,7 @@ export default class Board {
       this.initialPacmanPositions = [];
       this.initialGhostPositions = [];
       this.teleporterPositions = [];
+      this.bonusSpawnPositions = [];
       this.ghostDoorPositions = [];
       this.ghostScatterPositions = [];
       this.ghostOptionalSpawnPositions = [];
@@ -37,6 +38,11 @@ export default class Board {
 
    setTeleporterPositions(positions) {
       this.teleporterPositions = positions;
+   }
+
+
+   setBonusSpawnPositions(positions) {
+      this.bonusSpawnPositions = positions;
    }
 
    
