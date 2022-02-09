@@ -36,14 +36,11 @@ export default class EditorTileManipulationState {
 
 
     handleEditorTileClick(callerId) {
-        let styleclass = `editor_tile ${this.selectorTileType}`;
-        document.getElementById(callerId).setAttribute('class', styleclass);
         this.editor.updateInternalBoard(callerId, this.selectorTileType);
-        if (this.selectorTileType === 'bonus_spawn_tile') {
-            this.editor.addBonusSpawnPosition(callerId);
-        }
+        this.updateBonusSpawnList(callerId, this.selectorTileType);
         this.manageScatterSpawnControlVisibility();
         this.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
+        this.updateEditingTileTo(callerId, this.selectorTileType);
     }
 
 
@@ -75,6 +72,23 @@ export default class EditorTileManipulationState {
             } else {
                 radioLabel.setAttribute('style', '');
             }
+        }
+    }
+
+
+    updateEditingTileTo(coordinateString, tileType) {
+        let styleclass = `editor_tile ${tileType}`;
+        document.getElementById(coordinateString).setAttribute('class', styleclass);
+    }
+
+
+    updateBonusSpawnList(coordinateString, nextTileType) {
+        // handle overwriting a spawn position
+        if (this.editor.isCoordinateBonusSpawnPosition(coordinateString)) {
+            this.editor.removeBonusSpawnPositionAt(coordinateString);
+        }
+        if (nextTileType === 'bonus_spawn_tile') {
+            this.editor.addBonusSpawnPosition(coordinateString);
         }
     }
 
