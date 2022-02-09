@@ -79,6 +79,19 @@ export default class EditorInternalLevel {
     }
 
 
+    isCoordinateBonusSpawnPosition(coordinateString) {
+        let result = false;
+        let parsedCoordinates = this.parseCoordinates(coordinateString);
+        for (let spawnPosition of this.bonusSpawnPositions) {
+            if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+
     buildEmptyMap(width, height) {
         this.internalBoard = [];
         let row = [];
