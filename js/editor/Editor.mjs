@@ -138,6 +138,11 @@ export default class Editor {
     }
 
 
+    isCoordinateBonusSpawnPosition(coordinateString) {
+        return this.internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
+    }
+
+
     // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
     
 
@@ -225,6 +230,11 @@ export default class Editor {
     removeScatterAndSpawnPosition(coordinateString) {
         this.internalLevel.removeScatterPosition(coordinateString);
         this.internalLevel.removeSpawnPosition(coordinateString);
+    }
+
+
+    removeBonusSpawnPositionAt(coordinateString) {
+        this.internalLevel.removeBonusSpawnPositionAt(coordinateString);
     }
 
 
