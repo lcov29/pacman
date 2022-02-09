@@ -96,6 +96,7 @@ export default class Pacman extends Actor {
                super.setTeleportationStatus(teleportationStatus);
                this.handlePointCollision();
                this.handlePowerUpCollision();
+               this.handleBonusElementCollision();
                this.handleGhostCollision();
                this.updatePositionChangeFlag();
                super.updateBoard(this.getStyleClass());
@@ -162,6 +163,7 @@ export default class Pacman extends Actor {
    handlePointCollision() {
       if (super.isNextPositionElementCharacter(Configuration.POINT_CHARACTER)) {
          super.incrementScoreBy(Configuration.SCORE_VALUE_PER_POINT);
+         this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
       }
@@ -171,8 +173,17 @@ export default class Pacman extends Actor {
    handlePowerUpCollision() {
       if (super.isNextPositionElementCharacter(Configuration.POWERUP_CHARACTER)) {
          super.incrementScoreBy(Configuration.SCORE_VALUE_PER_POWERUP);
+         this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
+         super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+      }
+   }
+
+
+   handleBonusElementCollision() {
+      if (super.isNextPositionElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER)) {
+         super.incrementScoreBy(this.level.getBonusScoreValue());
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
       }
    }
