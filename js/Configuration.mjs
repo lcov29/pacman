@@ -98,6 +98,15 @@ export default class Configuration {
       static POINT_FOREGROUND_CSS_CLASS = "point";
       static PACMAN_FOREGROUND_CSS_CLASS = "pacman";
       static POWERUP_FOREGROUND_CSS_CLASS = "powerup";
+
+      static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_cherry";
+      static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_strawberry";
+      static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = "bonus_spawn_peach";
+      static BONUS_ELEMENT_APPEL_FOREGROUND_CSS_CLASS = "bonus_spawn_apple";
+      static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = "bonus_spawn_grape";
+      static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = "bonus_spawn_galaxian";
+      static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = "bonus_spawn_bell";
+      static BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS = "bonus_spawn_key";   
    
       static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_inky_respawn";
       static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_pinky_respawn";
