@@ -199,6 +199,11 @@ export default class Editor {
     }
 
 
+    addBonusSpawnPosition(coordinates) {
+        this.internalLevel.addBonusSpawnPosition(coordinates);
+    }
+
+
     removeScatterPositionFor(buttonId) {
         let ghostCharacter = buttonId;
         if (Configuration.GHOST_CHARACTERS.includes(buttonId) === false) {
