@@ -2,7 +2,7 @@
 
 export default class Configuration {
  
-   
+
    // Game settings
       static INITIAL_PACMAN_LIFES = 1;
       static SCORE_VALUE_PER_POINT = 10;
@@ -44,7 +44,9 @@ export default class Configuration {
                                  '"optionalSpawns":[{"ghost":"b","x":"10","y":"10"},' +
                                                    '{"ghost":"y","x":"11","y":"10"},' +
                                                    '{"ghost":"i","x":"15","y":"10"},' +
-                                                   '{"ghost":"c","x":"16","y":"10"}]}';
+                                                   '{"ghost":"c","x":"16","y":"10"}],' +
+
+                                 '"bonusSpawnPositions":[{"x":"13","y":"12"}]}';
 
 
 
