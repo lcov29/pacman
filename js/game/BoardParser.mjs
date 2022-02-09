@@ -19,6 +19,7 @@ export default class BoardParser {
         this.initializeGhostScatterPositionList(board, parsedLevelJson);
         this.initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
         this.initializeOtherPositionLists(board);
+        this.boardRef.setBonusSpawnPositions(parsedLevelJson.bonusSpawnPositions);
         this.boardRef.setBoard(board);
     }
 
