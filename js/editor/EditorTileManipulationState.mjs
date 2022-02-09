@@ -39,6 +39,9 @@ export default class EditorTileManipulationState {
         let styleclass = `editor_tile ${this.selectorTileType}`;
         document.getElementById(callerId).setAttribute('class', styleclass);
         this.editor.updateInternalBoard(callerId, this.selectorTileType);
+        if (this.selectorTileType === 'bonus_spawn_tile') {
+            this.editor.addBonusSpawnPosition(callerId);
+        }
         this.manageScatterSpawnControlVisibility();
         this.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
     }
