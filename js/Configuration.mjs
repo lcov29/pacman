@@ -7,6 +7,14 @@ export default class Configuration {
       static INITIAL_PACMAN_LIFES = 1;
       static SCORE_VALUE_PER_POINT = 10;
       static SCORE_VALUE_PER_POWERUP = 50;
+      static SCORE_VALUE_PER_BONUS_CHERRY = 100;
+      static SCORE_VALUE_PER_BONUS_STRAWBERRY = 300;
+      static SCORE_VALUE_PER_BONUS_PEACH = 500;
+      static SCORE_VALUE_PER_BONUS_APPLE = 700;
+      static SCORE_VALUE_PER_BONUS_GRAPE = 1000;
+      static SCORE_VALUE_PER_BONUS_GALAXIAN = 2000;
+      static SCORE_VALUE_PER_BONUS_BELL = 3000;
+      static SCORE_VALUE_PER_BONUS_KEY = 5000;
       static GHOST_MAX_RESPAWN_STAGE = 4;
       static SCORE_VALUE_PER_EATEN_GHOST = 200;
       static INTERVAL_DELAY_IN_MILLISECONDS = 500;
