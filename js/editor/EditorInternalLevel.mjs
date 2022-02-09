@@ -11,6 +11,7 @@ export default class EditorInternalLevel {
         this.internalBoard = [[]];
         this.scatterPositions = [];
         this.optionalSpawnPositions = [];
+        this.bonusSpawnPositions = [];
         this.coordinatesGhostBlinky = [];
         this.coordinatesGhostPinky = [];
         this.coordinatesGhostClyde = [];
@@ -141,6 +142,13 @@ export default class EditorInternalLevel {
     }
 
 
+    addBonusSpawnPosition(coordinates) {
+        this.removeBonusSpawnPositionAt(coordinates);
+        let positionObject = this.buildBonusSpawnPositionObject(coordinates);
+        this.bonusSpawnPositions.push(positionObject);
+    }
+
+
     removeScatterPositionFor(ghostCharacter) {
         for (let scatterPosition of this.scatterPositions) {
             if (scatterPosition.ghost === ghostCharacter) {
@@ -155,6 +163,17 @@ export default class EditorInternalLevel {
             if (optionalSpawnPosition.ghost === ghostCharacter) {
                 Utility.removeElementFrom(this.optionalSpawnPositions, optionalSpawnPosition);
             }
+        }
+    }
+
+
+    removeBonusSpawnPositionAt(coordinates) {
+        let parsedCoordinates = this.parseCoordinates(coordinates);
+        for (let bonusSpawnPosition of this.bonusSpawnPositions) {
+            if (bonusSpawnPosition.x === parsedCoordinates.x &&
+                bonusSpawnPosition.y === parsedCoordinates.y) {
+                    Utility.removeElementFrom(this.bonusSpawnPositions, bonusSpawnPosition);
+                }
         }
     }
 
@@ -194,6 +213,15 @@ export default class EditorInternalLevel {
         let parsedCoordinates = this.parseCoordinates(coordinates);
         let outputObject = {};
         outputObject.ghost = ghostCharacter;
+        outputObject.x = parsedCoordinates.x;
+        outputObject.y = parsedCoordinates.y;
+        return outputObject;
+    }
+
+
+    buildBonusSpawnPositionObject(coordinates) {
+        let parsedCoordinates = this.parseCoordinates(coordinates);
+        let outputObject = {};
         outputObject.x = parsedCoordinates.x;
         outputObject.y = parsedCoordinates.y;
         return outputObject;
