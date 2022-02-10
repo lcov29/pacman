@@ -19,6 +19,7 @@ export default class Configuration {
       static NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_SECOND_BONUS_ELEMENT = 170;
       static GHOST_MAX_RESPAWN_STAGE = 4;
       static GHOST_CLYDE_MIN_TILE_DISTANCE_TO_PACMAN = 8;
+      static GHOST_PINKY_MAX_TILE_OFFSET_TO_PACMAN_DIRECTION_POSITION = 4;
       static SCORE_VALUE_PER_EATEN_GHOST = 200;
       static INTERVAL_DELAY_IN_MILLISECONDS = 500;
       static INITIAL_PACMAN_SPRITE_DIRECTION = "right";
@@ -34,7 +35,7 @@ export default class Configuration {
                                           '["#","#","#","#","#","#","o","#","#","#","#","#","o","#","o","#","#","#","#","#","o","#","#","#","#","#","#"],' + 
                                           '["#","#","#","#","#","#","o","#","x","x","x","x","x","b","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
                                           '["#","#","#","#","#","#","o","#","x","#","#","#","#","-","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
-                                          '["1","x","x","x","x","x","o","x","x","#","x","x","x","x","x","x","c","#","x","x","o","x","x","x","x","x","1"],' +  
+                                          '["1","x","x","x","x","x","o","x","x","#","x","x","x","x","x","y","c","#","x","x","o","x","x","x","x","x","1"],' +  
                                           '["#","#","#","#","#","#","o","#","x","#","#","#","#","#","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +
                                           '["#","#","#","#","#","#","o","#","x","x","x","x","x","x","x","x","x","x","x","#","o","#","#","#","#","#","#"],' +
                                           '["#","#","#","#","#","#","o","#","x","#","#","#","#","#","#","#","#","#","x","#","o","#","#","#","#","#","#"],' +  
