@@ -183,8 +183,8 @@ export default class Pacman extends Actor {
 
    handleBonusElementCollision() {
       if (super.isNextPositionElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER)) {
-         super.incrementScoreBy(this.level.getBonusScoreValue());
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         this.level.handleBonusConsumption();
       }
    }
 
