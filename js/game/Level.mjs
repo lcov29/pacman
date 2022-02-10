@@ -151,6 +151,31 @@ export default class Level {
     }
 
 
+    getPacmanMovementDirectionFor(positionId) {
+        let movementDirection = null;
+        for (let pacman of this.pacmans) {
+            if (pacman.getCurrentPosition().getID() === positionId) {
+                movementDirection =  pacman.getCurrentMovementDirection();
+                break;
+            }
+        }
+        return movementDirection;
+    }
+
+
+    getPacmanPositionFor(positionId) {
+        let pacmanPosition = null;
+        for (let pacman of this.pacmans) {
+            let position = pacman.getCurrentPosition();
+            if (position.getID() === positionId) {
+                pacmanPosition = position;
+                break;
+            }
+        }
+        return pacmanPosition;
+    }
+
+
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
