@@ -13,6 +13,7 @@ export default class BonusElementSpawner {
         this.bonusStyleClass = "";
         this.scoreValue = 0;
         this.level = null;
+        this.isBonusElementSpawned = false;
     }
 
 
@@ -62,13 +63,19 @@ export default class BonusElementSpawner {
     }
 
 
+    setBonusSpawnStatus(status) {
+        this.isBonusElementSpawned = status;
+    }
+
+
     getScoreValue() {
         return this.scoreValue;
     }
 
 
     handleSpawn(numberOfConsumedPoints) {
-        if (Configuration.POINT_LIMIT_FOR_BONUS_SPAWN.includes(numberOfConsumedPoints)) {
+        let isConsumedPointLimitReached = Configuration.POINT_LIMIT_FOR_BONUS_SPAWN.includes(numberOfConsumedPoints);
+        if (isConsumedPointLimitReached && this.isBonusElementSpawned === false) {
             let spawnPosition = this.chooseRandomSpawnPositionFromList();
             let boardPosition = this.level.getBoardPositionAt(spawnPosition.x, spawnPosition.y);
             boardPosition.setElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER);
@@ -76,6 +83,7 @@ export default class BonusElementSpawner {
             this.level.addUpdateRequest(updateRequest);
             this.level.updateBoard();
             this.level.updateView();
+            this.setBonusSpawnStatus(true);
         }
     }
 
