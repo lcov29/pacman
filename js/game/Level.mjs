@@ -119,6 +119,12 @@ export default class Level {
     } 
 
 
+    handleBonusConsumption() {
+        this.incrementScoreBy(this.bonusElementSpawner.getScoreValue());
+        this.bonusElementSpawner.setBonusSpawnStatus(false);
+    }
+
+
     resetTurnCompletionStatusOfPacmans() {
         for (let pacman of this.pacmans) {
             pacman.setTurnCompletionStatus(false);
@@ -142,11 +148,6 @@ export default class Level {
             ids.push(pacman.getCurrentPosition().getID());
         }
         return ids;
-    }
-
-
-    getBonusScoreValue() {
-        return this.bonusElementSpawner.getScoreValue();
     }
 
 
