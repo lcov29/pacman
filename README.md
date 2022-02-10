@@ -13,7 +13,6 @@ Play the game via github-pages or upload it to a webserver.
 * add visual representation of the change from state scared to normal
 * add sound effects
 * add ability to play on mobile devices
-* add bonus elements
 * add level rotation
 * add instruction page
 * add highscore counter
@@ -23,6 +22,12 @@ Play the game via github-pages or upload it to a webserver.
 
 
 ## Version history
+
+*Version 0.05*
+* add bonus element
+* implement chase pattern for ghost pinky
+* implement chase pattern for ghost clyde
+
 
 *Version 0.04*
 * add visual level editor with basic functions:
