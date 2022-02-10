@@ -17,7 +17,6 @@ export default class GhostClyde extends Ghost {
 
 
     // chase movement pattern implementation; is used by GhostStateChase
-    // Pattern: chase pacman when distance is over minimum distance, else head to scatter position
     calculateNextChasePosition(positionId) {
         let targetTileId = -1;
         let pacmanId = super.selectClosestPacmanID();
