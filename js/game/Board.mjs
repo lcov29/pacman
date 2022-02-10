@@ -66,10 +66,14 @@ export default class Board {
       internalPosition.setActorCharacter(position.getActorCharacter());
       internalPosition.setElementCharacter(position.getElementCharacter());
    }
-   
+
 
    getPosition(x, y) {
-      return this.board[y][x].clone();
+      let output = null;
+      try {
+         output = this.board[y][x].clone();
+      } catch(e) {}
+      return output;
    }
 
 
