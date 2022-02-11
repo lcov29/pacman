@@ -142,6 +142,11 @@ export default class Level {
     }
 
 
+    getBonusElementStyleClass() {
+        return this.bonusElementSpawner.getStyleClass();
+    }
+
+
     getPacmanIDs() {
         let ids = [];
         for (let pacman of this.pacmans) {
