@@ -68,6 +68,11 @@ export default class BonusElementSpawner {
     }
 
 
+    getStyleClass() {
+        return this.bonusStyleClass;
+    }
+    
+
     getScoreValue() {
         return this.scoreValue;
     }
