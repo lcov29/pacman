@@ -76,7 +76,7 @@ export default class Configuration {
       static POINT_CHARACTER = "o";
       static POWERUP_CHARACTER = "O";
       static EMPTY_TILE_CHARACTER = "x";
-      static TELEPORTER_1_CHARACTER= "1";
+      static TELEPORTER_1_CHARACTER = "1";
       static TELEPORTER_2_CHARACTER = "2";
       static TELEPORTER_3_CHARACTER = "3";
       static BONUS_ELEMENT_CHARACTER = "*";
@@ -186,8 +186,8 @@ export default class Configuration {
                                  Configuration.GHOST_INKY_CHARACTER];
 
       static TELEPORTER_CHARACTERS = [Configuration.TELEPORTER_1_CHARACTER,
-                                    Configuration.TELEPORTER_2_CHARACTER,
-                                    Configuration.TELEPORTER_3_CHARACTER];
+                                      Configuration.TELEPORTER_2_CHARACTER,
+                                      Configuration.TELEPORTER_3_CHARACTER];
 
       static PACMAN_INACCESSIBLE_TILES = [Configuration.WALL_CHARACTER, 
                                           Configuration.UNDEFINED_TILE_CHARACTER,
