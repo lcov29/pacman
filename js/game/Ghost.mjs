@@ -2,6 +2,8 @@
 
 import GhostStateScatter from "./GhostStateScatter.mjs";
 import GhostStateScared from "./GhostStateScared.mjs";
+import StyleClassMapper from "./StyleClassMapper.mjs";
+import Configuration from "../Configuration.mjs";
 import Directions from "./Directions.mjs";
 import Actor from "./Actor.mjs";
 
@@ -71,6 +73,19 @@ export default class Ghost extends Actor {
    }
 
 
+   getCurrentPositionStyleClass() {
+      let styleclass = '';
+      let currentPositionElementCharacter = super.getCurrentPosition().getElementCharacter();
+      if (currentPositionElementCharacter === Configuration.BONUS_ELEMENT_CHARACTER) {
+         styleclass = this.level.getBonusElementStyleClass();
+      } else {
+         styleclass = StyleClassMapper.getForegroundStyleClass(Configuration.EMPTY_TILE_CHARACTER,
+                                                               currentPositionElementCharacter);
+      }
+      return styleclass;
+   }
+   
+
    isNextPositionEqualToTeleportDestination() {
       return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
    }
@@ -105,7 +120,9 @@ export default class Ghost extends Actor {
          if (this.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
-         super.updateBoard(this.state.getStyleClass(), this.state.getSpriteDisplayPriority());
+         super.updateBoard(this.getCurrentPositionStyleClass(), 
+                           this.state.getStyleClass(), 
+                           this.state.getSpriteDisplayPriority());
          super.updateCurrentPosition();
          this.state.decrementRemainingTurns();
      } else {
