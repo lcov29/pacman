@@ -69,11 +69,7 @@ export default class Board {
 
 
    getPosition(x, y) {
-      let output = null;
-      try {
-         output = this.board[y][x].clone();
-      } catch(e) {}
-      return output;
+      return this.board[y][x].clone();
    }
 
 
