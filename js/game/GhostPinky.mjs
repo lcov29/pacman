@@ -35,13 +35,13 @@ export default class GhostPinky extends Ghost {
         for (let i = 0; i < Configuration.GHOST_PINKY_MAX_TILE_OFFSET_TO_PACMAN_DIRECTION_POSITION; i++) {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
-            let calculatedPosition = this.level.getBoardPositionAt(x, y);
-            if (calculatedPosition === null) {
-                break;  // calculated position is outside of the board
-            } else {
+            try {
+                let calculatedPosition = this.level.getBoardPositionAt(x, y);
                 if (this.isPositionAccessible(calculatedPosition)) {
                     currentTargetTileId = calculatedPosition.getID();
                 }
+            } catch(e) {
+                break;   // calculated position is outside of the board
             }
         }
 
