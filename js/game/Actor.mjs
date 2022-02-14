@@ -3,7 +3,6 @@
 import Directions from "./Directions.mjs";
 import UpdateRequest from "./UpdateRequest.mjs";
 import Configuration from "../Configuration.mjs";
-import StyleClassMapper from "./StyleClassMapper.mjs";
 
 
 export default class Actor {
@@ -134,22 +133,17 @@ export default class Actor {
    }
 
 
-   updateBoard(styleclassNextPosition, spritePriority = Infinity) {
-      this.sendLevelUpdateRequestForCurrentPosition();
+   updateBoard(styleclassCurrentPosition, styleclassNextPosition, spritePriority = Infinity) {
+      this.sendLevelUpdateRequestForCurrentPosition(styleclassCurrentPosition);
       this.sendLevelUpdateRequestForNextPosition(styleclassNextPosition, spritePriority);
       this.level.updateBoard();
       this.resetUpdateFlags();
    }
 
 
-   // TODO: CHECK IMPLEMENTATION
-   // NOTE: FOR PACMAN MOVEMENT STYLECLASS CAN ALWAYS BE EMPTY_FOREGROUND_CSS_CLASS ?
-   sendLevelUpdateRequestForCurrentPosition() {
+   sendLevelUpdateRequestForCurrentPosition(styleclass) {
       if (this.updateFlagCurrentPosition) {
-         let actor = Configuration.EMPTY_TILE_CHARACTER;
-         let element = this.currentPosition.getElementCharacter();
-         let styleclass = StyleClassMapper.getForegroundStyleClass(actor, element);
-         this.currentPosition.setActorCharacter(actor);
+         this.currentPosition.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
          this.level.addUpdateRequest(new UpdateRequest(this.currentPosition, styleclass));
 
       }
