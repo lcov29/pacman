@@ -99,7 +99,7 @@ export default class Pacman extends Actor {
                this.handleBonusElementCollision();
                this.handleGhostCollision();
                this.updatePositionChangeFlag();
-               super.updateBoard(Configuration.EMPTY_TILE_BACKGROUND_CSS_CLASS, this.getStyleClass());
+               super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
                this.setMovementDirectionChangeStatus(false);
