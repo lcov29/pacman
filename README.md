@@ -6,10 +6,12 @@ The movement patterns of the ghosts and other aspects are only loosely based on 
 For all information about the original game i used [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman.
 <br>
 <br>
+
 ## How to play
 Play the game via github-pages or upload it to a webserver. 
 <br>
 <br>
+
 ## Ideas for improvements and additional features
 * animate pacmans mouth
 * improve movement animation for ghosts and pacman to be smoother
@@ -25,6 +27,7 @@ Play the game via github-pages or upload it to a webserver.
 * represent level counter with fruits
 <br>
 <br>
+
 ## Version history
 <br>
 ##### Version 0.05
@@ -34,6 +37,7 @@ Play the game via github-pages or upload it to a webserver.
 * implement chase pattern for ghost inky
 <br>
 <br>
+
 ##### Version 0.04
 * add visual level editor with basic functions:
     * set width and height
@@ -43,6 +47,7 @@ Play the game via github-pages or upload it to a webserver.
     * send and parse custom level
 <br>
 <br>
+
 ##### Version 0.03
 * add powerups
 * add ghost doors (only accessible by ghosts)
@@ -58,6 +63,7 @@ Play the game via github-pages or upload it to a webserver.
 * add sprites for bonus elements
 <br>
 <br>
+
 ##### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
@@ -65,6 +71,7 @@ Play the game via github-pages or upload it to a webserver.
 * implement collision handling for ghosts
 <br>
 <br>
+
 ##### Version 0.01
 * build basic level from user input
 * implement basic pacman behavior
