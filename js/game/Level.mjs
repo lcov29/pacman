@@ -156,6 +156,17 @@ export default class Level {
     }
 
 
+    getGhostBlinkyIDs() {
+        let ids = [];
+        for (let ghost of this.ghosts) {
+            if (ghost.getCharacter() === Configuration.GHOST_BLINKY_CHARACTER) {
+                ids.push(ghost.getCurrentPosition().getID());
+            }
+        }
+        return ids;
+    }
+
+
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
         for (let pacman of this.pacmans) {
