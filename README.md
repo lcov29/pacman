@@ -4,12 +4,12 @@ This is an attempt to build a variant of the game pacman using HTML, CSS and Jav
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behaviour.
 
 For all information about the original game i used [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman.
-\
-\  
+<br>
+<br>
 ## How to play
 Play the game via github-pages or upload it to a webserver. 
-\
-\ 
+<br>
+<br>
 ## Ideas for improvements and additional features
 * animate pacmans mouth
 * improve movement animation for ghosts and pacman to be smoother
@@ -23,17 +23,17 @@ Play the game via github-pages or upload it to a webserver.
 * add spawn stack for respawning multiple ghosts of the same type
 * represent number of lifes with visual pacman characters
 * represent level counter with fruits
-\
-\
+<br>
+<br>
 ## Version history
-\
+<br>
 ##### Version 0.05
 * add bonus element
 * implement chase pattern for ghost pinky
 * implement chase pattern for ghost clyde
 * implement chase pattern for ghost inky
-\
-\
+<br>
+<br>
 ##### Version 0.04
 * add visual level editor with basic functions:
     * set width and height
@@ -41,8 +41,8 @@ Play the game via github-pages or upload it to a webserver.
     * set scatter positions for ghosts
     * set optional spawn positions for ghosts
     * send and parse custom level
-\
-\
+<br>
+<br>
 ##### Version 0.03
 * add powerups
 * add ghost doors (only accessible by ghosts)
@@ -56,15 +56,15 @@ Play the game via github-pages or upload it to a webserver.
 * add sprites for movement state dead
 * add sprites for movement state respawn
 * add sprites for bonus elements
-\
-\
+<br>
+<br>
 ##### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
 * implement collision handling for pacmans
 * implement collision handling for ghosts
-\
-\
+<br>
+<br>
 ##### Version 0.01
 * build basic level from user input
 * implement basic pacman behavior
