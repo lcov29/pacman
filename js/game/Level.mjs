@@ -156,14 +156,14 @@ export default class Level {
     }
 
 
-    getGhostBlinkyIDs() {
-        let ids = [];
+    getGhostBlinkyPositions() {
+        let positions = [];
         for (let ghost of this.ghosts) {
             if (ghost.getCharacter() === Configuration.GHOST_BLINKY_CHARACTER) {
-                ids.push(ghost.getCurrentPosition().getID());
+                positions.push(ghost.getCurrentPosition());
             }
         }
-        return ids;
+        return positions;
     }
 
 
