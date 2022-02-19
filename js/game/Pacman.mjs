@@ -31,6 +31,7 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter(Configuration.PACMAN_CHARACTER);
       super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
+      this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.hasChangedMovementDirection = false;
    }
@@ -77,6 +78,7 @@ export default class Pacman extends Actor {
       super.setUpdateFlagNextPosition(false);
       this.level.decrementTotalPacmanLifes();
       this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
+      this.isAlive = false;
    }
 
 
@@ -94,10 +96,12 @@ export default class Pacman extends Actor {
             this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
                super.setTeleportationStatus(teleportationStatus);
-               this.handlePointCollision();
-               this.handlePowerUpCollision();
-               this.handleBonusElementCollision();
                this.handleGhostCollision();
+               if (this.isAlive) {
+                  this.handlePointCollision();
+                  this.handlePowerUpCollision();
+                  this.handleBonusElementCollision();
+               }
                this.updatePositionChangeFlag();
                super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
                super.updateCurrentPosition();
@@ -192,27 +196,22 @@ export default class Pacman extends Actor {
    handleGhostCollision() {
       let nextPositionActorCharacter = super.getNextPosition().getActorCharacter();
       if (Configuration.GHOST_CHARACTERS.includes(nextPositionActorCharacter)) {
-         if (this.handleHostileGhostCollision() === false) {
-            this.handleKillableGhostCollision();
-         }
+         let nextPositionId = super.getNextPosition().getID();
+         this.handleHostileGhostCollision(nextPositionId);
+         this.handleKillableGhostCollision(nextPositionId);
       }
    }
 
 
-   handleHostileGhostCollision() {
-      let result = false;
-      let positionId = super.getNextPosition().getID();
+   handleHostileGhostCollision(positionId) {
       if (this.level.isPositionOccupiedByHostileGhost(positionId)) {
          this.kill();
-         result = true;
       }
-      return result;
    }
 
 
-   handleKillableGhostCollision() {
-      let positionId = super.getNextPosition().getID();
-      if (this.level.isPositionOccupiedByKillableGhost(positionId)) {
+   handleKillableGhostCollision(positionId) {
+      if (this.isAlive && this.level.isPositionOccupiedByKillableGhost(positionId)) {
          this.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.SCORE_VALUE_PER_EATEN_GHOST);
       }
