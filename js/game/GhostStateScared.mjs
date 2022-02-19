@@ -86,7 +86,7 @@ export default class GhostStateScared extends GhostState {
             let destination = ghost.getTeleportDestinationForCurrentPosition();
             ghost.setNextPosition(destination);
             ghost.setTeleportationStatus(true);
-        } else {
+        } else if (ghost.isCurrentPositionTeleporter() === false) {
             ghost.setTeleportationStatus(false);
         }
     }
