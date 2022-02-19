@@ -1,8 +1,8 @@
 "use strict";
 
 import Ghost from "./Ghost.mjs";
-import Configuration from "../Configuration.mjs";
 import Directions from "./Directions.mjs";
+import Configuration from "../Configuration.mjs";
 
 
 export default class GhostInky extends Ghost {
@@ -27,8 +27,8 @@ export default class GhostInky extends Ghost {
     calculateChaseTargetTileId() {
         let pacmanPositionId = super.selectClosestPacmanID();
         let pacmanOffsetPosition = this.calculatePacmanOffsetPosition(pacmanPositionId);
-        let closestBlinkyPosition = this.selectClosestBlinkyPosition();
-        let targetTileId = this.calculateGhostBlinkyOffsetPositionId(pacmanOffsetPosition, closestBlinkyPosition);
+        let closestGhostPosition = this.selectClosestPositionOfGhostTypeWithHighestReferencePriority();
+        let targetTileId = (closestGhostPosition === null) ? pacmanPositionId : this.calculateTargetTileId(pacmanOffsetPosition, closestGhostPosition);
         return targetTileId;
     }
 
@@ -57,10 +57,9 @@ export default class GhostInky extends Ghost {
     }
 
 
-    // TODO: RENAME METHOD TO A MORE DESCRIPTIVE NAME
-    calculateGhostBlinkyOffsetPositionId(pacmanOffsetPosition, ghostBlinkyPosition) {
-        let xDifference = pacmanOffsetPosition.getX() - ghostBlinkyPosition.getX();
-        let yDifference = pacmanOffsetPosition.getY() - ghostBlinkyPosition.getY();
+    calculateTargetTileId(pacmanOffsetPosition, ghostPosition) {
+        let xDifference = pacmanOffsetPosition.getX() - ghostPosition.getX();
+        let yDifference = pacmanOffsetPosition.getY() - ghostPosition.getY();
         let xOriginalDifference = xDifference;
         let potentialTargetTilePosition = this.calculatePotentialTargetTilePosition(pacmanOffsetPosition,
                                                                                     xDifference,
@@ -103,23 +102,32 @@ export default class GhostInky extends Ghost {
     }
 
 
-    // TODO: HANDLE CASE WHERE NO BLINKY EXISTS IN LEVEL
-    selectClosestBlinkyPosition() {
-        let minCostPosition = null;
-        let minPathCost = Infinity;
-        let ghostInkyId = super.getCurrentPosition().getID();;
-        
-        for (let ghostBlinkyPosition of this.level.getGhostBlinkyPositions()) {   
-           let currentPathCost =  this.routing.getShortestDistanceBetween(ghostInkyId, ghostBlinkyPosition.getID());
-           if (currentPathCost < minPathCost) {
-              minPathCost = currentPathCost;
-              minCostPosition = ghostBlinkyPosition;
-           }
+    selectClosestPositionOfGhostTypeWithHighestReferencePriority() {
+       let minCostPosition = null;
+       let minPathCost = Infinity;
+       let ghostInkyId = super.getCurrentPosition().getID();
+       let ghostReferencePositions = this.selectPositionsOfGhostTypeWithHighestReferencePriority();
+       for (let ghostPosition of ghostReferencePositions) {   
+          let currentPathCost =  this.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.getID());
+          if (currentPathCost < minPathCost) {
+             minPathCost = currentPathCost;
+             minCostPosition = ghostPosition;
+          }
+       }
+       return minCostPosition;
+    }
+
+
+    selectPositionsOfGhostTypeWithHighestReferencePriority() {
+        let ghostPositions = [];
+        for (let ghostCharacter of Configuration.GHOST_REFERENCE_PRIORITY_LIST_FOR_CHASE_PATTERN_OF_GHOST_INKY) {
+            ghostPositions = this.level.getGhostPositionsFor(ghostCharacter);
+            if (ghostPositions.length > 0) { break; }
         }
-        return minCostPosition;
-     }
+        return ghostPositions;
+    }
 
-
+    
     isPositionAccessible(position) {
         return (Configuration.ACTORS_INACCESSIBLE_TILES.includes(position.getElementCharacter()) === false);
     }
