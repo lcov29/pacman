@@ -37,6 +37,7 @@ Play the game via github-pages or upload it to a webserver.
 * implement chase pattern for ghost clyde
 * implement chase pattern for ghost inky
 <br>
+<br>
 
 ##### Version 0.04
 * add visual level editor with basic functions:
@@ -45,6 +46,7 @@ Play the game via github-pages or upload it to a webserver.
     * set scatter positions for ghosts
     * set optional spawn positions for ghosts
     * send and parse custom level
+<br>
 <br>
 
 ##### Version 0.03
@@ -61,12 +63,14 @@ Play the game via github-pages or upload it to a webserver.
 * add sprites for movement state respawn
 * add sprites for bonus elements
 <br>
+<br>
 
 ##### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
 * implement collision handling for pacmans
 * implement collision handling for ghosts
+<br>
 <br>
 
 ##### Version 0.01
