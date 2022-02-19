@@ -203,6 +203,10 @@ export default class Configuration {
       static POINT_LIMIT_FOR_BONUS_SPAWN = [Configuration.NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_FIRST_BONUS_ELEMENT,
                                             Configuration.NUMBER_OF_CONSUMED_POINTS_FOR_SPAWNING_SECOND_BONUS_ELEMENT];
 
+      static GHOST_REFERENCE_PRIORITY_LIST_FOR_CHASE_PATTERN_OF_GHOST_INKY = [Configuration.GHOST_BLINKY_CHARACTER,
+                                                                              Configuration.GHOST_PINKY_CHARACTER,
+                                                                              Configuration.GHOST_CLYDE_CHARACTER];
+
    
 
    // Key Codes for user commands (Source: https://keycode.info/)
