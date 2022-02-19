@@ -156,15 +156,15 @@ export default class Level {
     }
 
 
-    getGhostBlinkyPositions() {
+    getGhostPositionsFor(ghostCharacter) {
         let positions = [];
         for (let ghost of this.ghosts) {
-            if (ghost.getCharacter() === Configuration.GHOST_BLINKY_CHARACTER) {
-                positions.push(ghost.getCurrentPosition());
+            if (ghost.getCharacter() === ghostCharacter) {
+                positions.push(ghost.getCurrentPosition().clone());
             }
         }
         return positions;
-    }
+    }    
 
 
     getPacmanMovementDirectionFor(positionId) {
