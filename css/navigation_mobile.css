@@ -1,0 +1,75 @@
+@media screen and (max-width: 599px) {
+
+
+    .menuBar {
+        background-color: black;
+        padding: 0;
+        position: static;
+    }
+
+
+    .menuBar ul {
+        list-style: none;
+        margin: 0;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+
+
+    .menuBar a {
+        color: white;
+        display: block;
+        margin-right: -1rem;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+    }
+
+
+    .menuBar a:hover,
+    .menuBar a:focus {
+        background: #252121;
+    }
+
+
+    .buttonMobileMenu {
+        align-items: center;
+        background: inherit;
+        border: 0;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        font: inherit;
+        margin: 0;
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+
+    .buttonMobileMenu::before {
+        content: url(../icon/iconOpenMenu.svg);
+        height: 1rem;
+        margin-right: 0.25rem;
+        width: 1rem;
+    }
+
+
+    .mobileMenuVisible + ul {
+        max-height: 100rem;
+        overflow: initial;
+        transition: max-height 600ms;
+    }
+
+
+    .mobileMenuVisible.buttonMobileMenu::before {
+        content: url(../icon/iconCloseMenu.svg);
+    }
+
+
+    .currentSite a:hover,
+    .currentSite a:focus {
+        background: transparent;
+    }
+
+
+}
