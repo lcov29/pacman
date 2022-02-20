@@ -1,67 +1,65 @@
+@import url(./boardSprites.css);
+
+
 body {
+    background-color: #1c1c1a;
     font-family: 'Lucida Console', monospace;
-    background-color: black;
 }
 
 
-.inline_block {
-    display: inline-block;
-}
-
-
-.main_container {
-    display: grid;
-    grid-template-columns: 1.5fr 10fr 3fr;
+.mainContainer {
     column-gap: 1rem;
+    display: grid;
+    grid-template-columns: 1.5fr 10fr 3fr;;
     margin: 2em;
 }
 
 
-.selector_container {
+.selectorContainer {
     background-color: #1c1c1a;
+    border: 2px solid white;
+    column-gap: 0.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     padding-left: 0.5em;
     padding-right:0.5em;
     padding-bottom: 1em;
-    column-gap: 0.5em;
-    border: 2px solid white;
 }
 
 
-.editor_container {
-    margin: auto;
+.editorContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, 32px);
+    margin: auto;
 }
 
 
-.control_container {
+.controlContainer {
     background-color: #1c1c1a;
+    border: 2px solid white;
+    color: white;
     display: flex;
     flex-direction: column;
     padding: 0.5em;
     row-gap: 1.5em;
-    border: 2px solid white;
-    color: white;
 }
 
 
-.selection_bar {
+.selectionBar {
     display: flex;
     flex-direction: column;
 }
 
 
-.control_group {
+.controlGroup {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 
-.control_group label {
+.controlGroup label {
     margin-left: 0.5em;
 }
 
@@ -71,127 +69,57 @@ input[type=radio] {
 }
 
 
-.input_map_dimension {
-    width: 3em;
+.inputMapDimension {
     margin: auto;
+    width: 3em;
 }
 
 
-.input_position {
-    width: 4em;
-    text-align: center;
+.inputPosition {
     padding: 0.4em;
+    text-align: center;
+    width: 4em; 
 }
 
 
 .selector {
-    width: 30px;
-    height: 30px;
-    margin-top: 1em;
     border: 5px solid;
     display: inline-block;
+    height: 30px;
+    margin-top: 1em;
+    width: 30px;
 }
 
 
-.selector_wall_tile {
-    border-color: blue;
+.selectorWallTile {
     background-color: blue;
+    border-color: blue;
 }
 
 
-.editor_tile {
-    width: 32px;
-    height: 32px;
-    box-sizing: border-box;
+.editorTile {
     border: 1px solid white;
+    box-sizing: border-box;
+    height: 32px;
+    width: 32px;
 }
 
 
-.undefined_tile {
+.undefinedTile {
     background-color: rgb(99, 93, 93);
 }
 
 
-.wall_tile {
-    background-color: blue;
-}
-
-
-.empty_tile {
-    background-color: black;
-}
-
-
-.bonus_spawn_tile {
+.bonusSpawnTile {
     background-image: url('../sprites/bonus_elements/cherry.png');
 }
 
 
-.point_tile {
+.pointTile {
     background-image: url('../sprites/consumables/point.png');
 }
 
 
-.powerup_tile {
+.powerupTile {
     background-image: url('../sprites/consumables/powerup.png');
-}
-
-
-.teleporter_1_tile {
-    background-image: url('../sprites/teleporters/teleporter_1.png');
-}
-
-
-.teleporter_2_tile {
-    background-image: url('../sprites/teleporters/teleporter_2.png');
-}
-
-
-.teleporter_3_tile {
-    background-image: url('../sprites/teleporters/teleporter_3.png');
-}
-
-
-.ghost_door_vertical_tile {
-    background-image: url('../sprites/door/ghost_door_vertical.png');
-}
-
-
-.ghost_door_horizontal_tile {
-    background-image: url('../sprites/door/ghost_door_horizontal.png');
-}
-
-
-.ghost_door_crossing_tile {
-    background-image: url('../sprites/door/ghost_door_crossing.png');
-}
-
-
-.bonus_spawn_tile {
-    background-image: url('../sprites/bonus_elements/cherry.png');
-}
-
-
-.pacman_tile {
-    background-image: url('../sprites/pacman/pacman_right.png');
-}
-
-
-.ghost_blinky_tile {
-    background-image: url('../sprites/ghost_blinky/movement/blinky_down.png');
-}
-
-
-.ghost_pinky_tile {
-    background-image: url('../sprites/ghost_pinky/movement/pinky_down.png');
-}
-
-
-.ghost_inky_tile {
-    background-image: url('../sprites/ghost_inky/movement/inky_down.png');
-}
-
-
-.ghost_clyde_tile {
-    background-image: url('../sprites/ghost_clyde/movement/clyde_down.png');
 }
