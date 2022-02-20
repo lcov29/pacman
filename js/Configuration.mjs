@@ -23,8 +23,8 @@ export default class Configuration {
       static GHOST_INKY_MAX_TILE_OFFSET_TO_PACMAN_DIRECTION_POSITION = 2;
       static SCORE_VALUE_PER_EATEN_GHOST = 200;
       static INTERVAL_DELAY_IN_MILLISECONDS = 500;
-      static INITIAL_PACMAN_SPRITE_DIRECTION = "right";
-      static INITIAL_GHOST_SPRITES_DIRECTION = "down";
+      static INITIAL_PACMAN_SPRITE_DIRECTION = 'Right';
+      static INITIAL_GHOST_SPRITES_DIRECTION = 'Down';
 
       static DEFAULT_LEVEL_JSON = '{"board":[["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"],' + 
                                           '["#","o","o","o","o","o","o","o","o","o","o","o","o","#","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
@@ -91,52 +91,54 @@ export default class Configuration {
    // Definition of directions
 
       // Direction names
-      static DIRECTION_NAME_UP = "up";
-      static DIRECTION_NAME_DOWN = "down";
-      static DIRECTION_NAME_LEFT = "left";
-      static DIRECTION_NAME_RIGHT = "right";
+      static DIRECTION_NAME_UP = "Up";
+      static DIRECTION_NAME_LEFT = "Left";
+      static DIRECTION_NAME_DOWN = "Down";
+      static DIRECTION_NAME_RIGHT = "Right";
    
    
    // Definition of css class names
 
+      static BOARD_TILE_BASE_CSS_CLASS = "boardTile";
+
       // Background
-      static WALL_BACKGROUND_CSS_CLASS = "wall_tile";
-      static EMPTY_TILE_BACKGROUND_CSS_CLASS = "empty_tile";
-      static TELEPORTER_1_BACKGROUND_CSS_CLASS = "teleporter_1_tile";
-      static TELEPORTER_2_BACKGROUND_CSS_CLASS = "teleporter_2_tile";
-      static TELEPORTER_3_BACKGROUND_CSS_CLASS = "teleporter_3_tile";
-      static UNDEFINED_TILE_BACKGROUND_CSS_CLASS = "undefined_tile";
-      static GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS = "ghost_door_crossing";
-      static GHOST_DOOR_VERTICAL_BACKGROUND_CSS_CLASS = "ghost_door_vertical";
-      static GHOST_DOOR_HORIZONTAL_BACKGROUND_CSS_CLASS = "ghost_door_horizontal";
+      static WALL_BACKGROUND_CSS_CLASS = "wallTile";
+      static EMPTY_TILE_BACKGROUND_CSS_CLASS = "emptyTile";
+      static TELEPORTER_1_BACKGROUND_CSS_CLASS = "teleporter1Tile";
+      static TELEPORTER_2_BACKGROUND_CSS_CLASS = "teleporter2Tile";
+      static TELEPORTER_3_BACKGROUND_CSS_CLASS = "teleporter3Tile";
+      static UNDEFINED_TILE_BACKGROUND_CSS_CLASS = "undefinedTile";
+      static GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS = "ghostDoorCrossingTile";
+      static GHOST_DOOR_VERTICAL_BACKGROUND_CSS_CLASS = "ghostDoorVerticalTile";
+      static GHOST_DOOR_HORIZONTAL_BACKGROUND_CSS_CLASS = "ghostDoorHorizontalTile";
 
       // Foreground
-      static EMPTY_FOREGROUND_CSS_CLASS = "empty_foreground";
-      static POINT_FOREGROUND_CSS_CLASS = "point";
-      static PACMAN_FOREGROUND_CSS_CLASS = "pacman";
-      static POWERUP_FOREGROUND_CSS_CLASS = "powerup";
+      static EMPTY_FOREGROUND_CSS_CLASS = "emptyForegroundTile";
+      static POINT_FOREGROUND_CSS_CLASS = "pointTile";
+      static PACMAN_FOREGROUND_CSS_CLASS = "pacmanTile";
+      static POWERUP_FOREGROUND_CSS_CLASS = "powerupTile";
 
-      static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_cherry";
-      static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = "bonus_spawn_strawberry";
-      static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = "bonus_spawn_peach";
-      static BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS = "bonus_spawn_apple";
-      static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = "bonus_spawn_grape";
-      static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = "bonus_spawn_galaxian";
-      static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = "bonus_spawn_bell";
-      static BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS = "bonus_spawn_key";   
+      static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = "bonusSpawnCherryTile";
+      static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = "bonusSpawnStrawberryTile";
+      static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = "bonusSpawnPeachTile";
+      static BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS = "bonusSpawnAppleTile";
+      static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = "bonusSpawnGrapeTile";
+      static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = "bonusSpawnGalaxianTile";
+      static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = "bonusSpawnBellTile";
+      static BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS = "bonusSpawnKeyTile";   
    
-      static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_inky_respawn";
-      static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_pinky_respawn";
-      static GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS = "ghost_clyde_respawn";
-      static GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS = "ghost_blinky_respawn";      
+      static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostInkyRespawnTile";
+      static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostPinkyRespawnTile";
+      static GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostClydeRespawnTile";
+      static GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS = "ghostBlinkyRespawnTile";      
 
-      static GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_inky_movement";
-      static GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_pinky_movement";
-      static GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_clyde_movement";
-      static GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghost_blinky_movement";
+      static GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostInkyMovementTile";
+      static GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostPinkyMovementTile";
+      static GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostClydeMovementTile";
+      static GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostBlinkyMovementTile";
 
-      static GHOST_DEAD_FOREGROUND_CSS_CLASS = "ghost_dead";
-      static GHOST_SCARED_FOREGROUND_CSS_CLASS = "ghost_scared";
+      static GHOST_DEAD_FOREGROUND_CSS_CLASS = "ghostDeadTile";
+      static GHOST_SCARED_FOREGROUND_CSS_CLASS = "ghostScaredTile";
  
    
 
