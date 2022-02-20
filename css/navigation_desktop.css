@@ -1,0 +1,44 @@
+@media screen and (min-width: 600px) {
+
+
+    .menuBar ul {
+        background-color: black;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+    }
+    
+
+    .menuBar li {
+        flex: 1;
+        list-style: none;
+        text-align: center;
+    }
+    
+
+    .menuBar a {
+        color: white;
+        display: block;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+    }
+ 
+    
+    .menuBar a:hover,
+    .menuBar a:focus  {
+        background: #252121; 
+    }
+
+
+    .currentSite a:hover,
+    .currentSite a:focus {
+        background: transparent;
+    }
+
+
+    .buttonMobileMenu {
+        display: none !important
+    }
+
+}
