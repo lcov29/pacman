@@ -100,12 +100,12 @@ export default class View {
 
    
    updateScore(score) {
-      this.scoreDisplay.innerHTML = `score: ${score}`;
+      this.scoreDisplay.innerHTML = `Score: ${score}`;
    }
    
    
    updateLifeBar(numberOfLifes) {
-      this.lifeDisplay.innerHTML = `lifes: ${numberOfLifes}`;
+      this.lifeDisplay.innerHTML = `Lifes: ${numberOfLifes}`;
    }
    
    
