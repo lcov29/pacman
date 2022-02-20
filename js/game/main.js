@@ -13,7 +13,7 @@ let game = new Game('levelContainer', 'score', 'life');
 game.loadLevel();   
 
 document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
-document.getElementById('levelContainer').addEventListener('click', callBackStartButton);
+document.getElementById('levelContainer').addEventListener('click', callBackGameStart);
 document.addEventListener('keydown', callBackKeyDown, true);
 
 
@@ -25,10 +25,8 @@ function callBackMobileMenuButton() {
 }
 
 
-function callBackStartButton() {
-   if (!game.isInProgress()) {
-      game.start();
-   }
+function callBackGameStart() {
+   game.start();
 }
 
 
