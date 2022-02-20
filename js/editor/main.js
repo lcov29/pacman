@@ -38,7 +38,7 @@ document.getElementById('button_map_sizer').addEventListener('click', buttonMapD
 
 
 // add handlers to scatter spawn control group
-let scatterSpawnInputs = document.querySelectorAll('input[class="input_position"]');
+let scatterSpawnInputs = document.querySelectorAll('input[class="inputPosition"]');
 for (let scatterSpawnInput of scatterSpawnInputs) {
     scatterSpawnInput.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
     scatterSpawnInput.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
