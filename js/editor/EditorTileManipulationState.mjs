@@ -77,7 +77,7 @@ export default class EditorTileManipulationState {
 
 
     updateEditingTileTo(coordinateString, tileType) {
-        let styleclass = `editor_tile ${tileType}`;
+        let styleclass = `editorTile ${tileType}`;
         document.getElementById(coordinateString).setAttribute('class', styleclass);
     }
 
