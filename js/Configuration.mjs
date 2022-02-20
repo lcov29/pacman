@@ -212,14 +212,16 @@ export default class Configuration {
    
 
    // Key Codes for user commands (Source: https://keycode.info/)
-      static KEY_CODE_LEFT_ARROW = 37;
-      static KEY_CODE_UP_ARROW = 38;
       static KEY_CODE_RIGHT_ARROW = 39;
       static KEY_CODE_DOWN_ARROW = 40;
-      static KEY_CODE_A = 65;
-      static KEY_CODE_D = 68;
-      static KEY_CODE_S = 83;
+      static KEY_CODE_LEFT_ARROW = 37;
+      static KEY_CODE_UP_ARROW = 38;
+      static KEY_CODE_ENTER = 13;
+      static KEY_CODE_SPACE = 32;
       static KEY_CODE_W = 87;
+      static KEY_CODE_A = 65;
+      static KEY_CODE_S = 83;
+      static KEY_CODE_D = 68;
 
 
 
