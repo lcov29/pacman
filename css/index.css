@@ -9,11 +9,23 @@
 
 
 body {
-   position: absolute;
-   left: 30%;
-   margin: 0 auto;
+   background-color: #1c1c1a;
+   color: white;
    font-family: 'Lucida Console', monospace;
-   background-color: lightgray;
+}
+
+main {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-evenly;
+   margin: auto;
+}
+
+
+.upperStatusBar {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
 }
 
 
