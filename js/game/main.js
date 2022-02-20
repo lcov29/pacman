@@ -9,11 +9,11 @@ import Game from "./Game.mjs";
 */
 
 
-let game = new Game('level_container', 'score', 'life');
+let game = new Game('levelContainer', 'score', 'life');
 game.loadLevel();   
 
 document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
-document.getElementById('button_start').addEventListener('click', callBackStartButton);
+document.getElementById('levelContainer').addEventListener('click', callBackStartButton);
 document.addEventListener('keydown', callBackKeyDown, true);
 
 
