@@ -11,16 +11,28 @@
    </head>
    
    <body id='body_id'>
-      <h3>Pacman</h3>
-      <div id='game_container'>
-         <p id='life'></p>
-         <p id='score'></p>
-         <div id='level_container'></div>
-         <br>
-         <button id='button_start'>start level</button>
-      </div>
-      <br>
-      <a href="./editor.html">Level Editor</a>
+
+      <nav class="menuBar">
+         <button class="buttonMobileMenu">Menu</button>
+         <ul>
+            <li class="currentSite"><a href="#">Game</a></li>
+            <li><a href="./editor.html">Level Editor</a></li>
+            <li><a href="#">Instructions</a></li>
+            <li><a href="#">About</a></li>
+         </ul>
+      </nav>
+
+      <main>
+         <h3>Pacman</h3>
+         <div id='game_container'>
+            <p id='life'></p>
+            <p id='score'></p>
+            <div id='level_container'></div>
+            <br>
+            <button id='button_start'>start level</button>
+         </div>
+      </main>
+      
    </body>
    
 </html>
