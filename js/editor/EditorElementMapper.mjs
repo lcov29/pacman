@@ -7,22 +7,22 @@ export default class EditorElementMapper {
 
         
     static mapTileTypeToInternalElement = {
-        'wall_tile':                    Configuration.WALL_CHARACTER,
-        'empty_tile':                   Configuration.EMPTY_TILE_CHARACTER,
-        'point_tile':                   Configuration.POINT_CHARACTER,
-        'powerup_tile':                 Configuration.POWERUP_CHARACTER,
-        'ghost_door_horizontal_tile':   Configuration.GHOST_DOOR_HORIZONTAL_CHARACTER,
-        'ghost_door_vertical_tile':     Configuration.GHOST_DOOR_VERTICAL_CHARACTER,
-        'ghost_door_crossing_tile':     Configuration.GHOST_DOOR_CROSSING_CHARACTER,
-        'teleporter_1_tile':            Configuration.TELEPORTER_1_CHARACTER,
-        'teleporter_2_tile':            Configuration.TELEPORTER_2_CHARACTER,
-        'teleporter_3_tile':            Configuration.TELEPORTER_3_CHARACTER,
-        'bonus_spawn_tile':             Configuration.EMPTY_TILE_CHARACTER,
-        'pacman_tile':                  Configuration.PACMAN_CHARACTER,
-        'ghost_blinky_tile':            Configuration.GHOST_BLINKY_CHARACTER,
-        'ghost_pinky_tile':             Configuration.GHOST_PINKY_CHARACTER,
-        'ghost_inky_tile':              Configuration.GHOST_INKY_CHARACTER,
-        'ghost_clyde_tile':             Configuration.GHOST_CLYDE_CHARACTER
+        'wallTile':                     Configuration.WALL_CHARACTER,
+        'emptyTile':                    Configuration.EMPTY_TILE_CHARACTER,
+        'pointTile':                    Configuration.POINT_CHARACTER,
+        'powerupTile':                  Configuration.POWERUP_CHARACTER,
+        'ghostDoorHorizontalTile':      Configuration.GHOST_DOOR_HORIZONTAL_CHARACTER,
+        'ghostDoorVerticalTile':        Configuration.GHOST_DOOR_VERTICAL_CHARACTER,
+        'ghostDoorCrossingTile':        Configuration.GHOST_DOOR_CROSSING_CHARACTER,
+        'teleporter1Tile':              Configuration.TELEPORTER_1_CHARACTER,
+        'teleporter2Tile':              Configuration.TELEPORTER_2_CHARACTER,
+        'teleporter3Tile':              Configuration.TELEPORTER_3_CHARACTER,
+        'bonusSpawnTile':               Configuration.EMPTY_TILE_CHARACTER,
+        'pacmanTileRight':              Configuration.PACMAN_CHARACTER,
+        'ghostBlinkyMovementTileDown':  Configuration.GHOST_BLINKY_CHARACTER,
+        'ghostPinkyMovementTileDown':   Configuration.GHOST_PINKY_CHARACTER,
+        'ghostInkyMovementTileDown':    Configuration.GHOST_INKY_CHARACTER,
+        'ghostClydeMovementTileDown':   Configuration.GHOST_CLYDE_CHARACTER
     };
 
 
