@@ -62,7 +62,7 @@ export default class Pacman extends Actor {
    getStyleClass() {
       let baseStyleClass = super.getBaseMovementStyleClass();
       let directionName = super.getCurrentMovementDirectionName();
-      return `${baseStyleClass}_${directionName}`;
+      return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
    }
 
 
