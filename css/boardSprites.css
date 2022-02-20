@@ -1,0 +1,157 @@
+.wallTile { background-color: blue; }
+
+.emptyTile { background-color: black; }
+
+
+
+/* Teleporter tiles */
+.teleporter1Tile { background-image: url('../sprites/teleporters/teleporter_1.png'); }
+
+.teleporter2Tile { background-image: url('../sprites/teleporters/teleporter_2.png'); }
+
+.teleporter3Tile { background-image: url('../sprites/teleporters/teleporter_3.png'); }
+
+
+
+/* Ghost door tiles */
+.ghostDoorVerticalTile { background-image: url('../sprites/door/ghost_door_vertical.png'); }
+
+.ghostDoorHorizontalTile { background-image: url('../sprites/door/ghost_door_horizontal.png'); }
+
+.ghostDoorCrossingTile { background-image: url('../sprites/door/ghost_door_crossing.png'); }
+
+
+
+/* Bonus spawn tiles */
+.bonusSpawnCherryTile { background-image: url('../sprites/bonus_elements/cherry.png'); }
+ 
+.bonusSpawnStrawberryTile { background-image: url('../sprites/bonus_elements/strawberry.png'); }
+ 
+.bonusSpawnPeachTile { background-image: url('../sprites/bonus_elements/peach.png'); }
+ 
+.bonusSpawnAppleTile { background-image: url('../sprites/bonus_elements/apple.png'); }
+
+.bonusSpawnGrapeTile { background-image: url('../sprites/bonus_elements/grape.png'); }
+
+.bonusSpawnGalaxianTile { background-image: url('../sprites/bonus_elements/galaxian.png'); }
+
+.bonusSpawnBellTile { background-image: url('../sprites/bonus_elements/bell.png'); }
+
+.bonusSpawnKeyTile { background-image: url('../sprites/bonus_elements/key.png'); }
+
+
+
+/* Pacman tiles */
+.pacmanTileUp { background-image: url('../sprites/pacman/pacman_up.png'); }
+ 
+.pacmanTileRight { background-image: url('../sprites/pacman/pacman_right.png'); }
+
+.pacmanTileDown { background-image: url('../sprites/pacman/pacman_down.png'); }
+
+.pacmanTileLeft { background-image: url('../sprites/pacman/pacman_left.png'); }
+
+
+
+/* Ghost Blinky tiles */
+.ghostBlinkyMovementTileUp { background-image: url('../sprites/ghost_blinky/movement/blinky_up.png'); }
+ 
+.ghostBlinkyMovementTileRight { background-image: url('../sprites/ghost_blinky/movement/blinky_right.png'); }
+
+.ghostBlinkyMovementTileDown { background-image: url('../sprites/ghost_blinky/movement/blinky_down.png'); }
+
+.ghostBlinkyMovementTileLeft { background-image: url('../sprites/ghost_blinky/movement/blinky_left.png'); }
+
+.ghostBlinkyRespawnTileStage0 { background-image: url('../sprites/ghost_dead/ghost_dead_down.png'); }
+
+.ghostBlinkyRespawnTileStage1 { background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_1.png'); }
+
+.ghostBlinkyRespawnTileStage2 { background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_2.png'); }
+
+.ghostBlinkyRespawnTileStage3 { background-image: url('../sprites/ghost_blinky/respawn/blinky_respawn_stage_3.png'); }
+
+.ghostBlinkyRespawnTileStage4 { background-image: url('../sprites/ghost_blinky/movement/blinky_down.png'); }
+
+
+
+/* Ghost Pinky tiles */
+.ghostPinkyMovementTileUp { background-image: url('../sprites/ghost_pinky/movement/pinky_up.png'); }
+
+.ghostPinkyMovementTileRight { background-image: url('../sprites/ghost_pinky/movement/pinky_right.png'); }
+
+.ghostPinkyMovementTileDown { background-image: url('../sprites/ghost_pinky/movement/pinky_down.png'); }
+
+.ghostPinkyMovementTileLeft { background-image: url('../sprites/ghost_pinky/movement/pinky_left.png'); }
+
+.ghostPinkyRespawnTileStage0 { background-image: url('../sprites/ghost_dead/ghost_dead_down.png'); }
+
+.ghostPinkyRespawnTileStage1 { background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_1.png'); }
+
+.ghostPinkyRespawnTileStage2 { background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_2.png'); }
+
+.ghostPinkyRespawnTileStage3 { background-image: url('../sprites/ghost_pinky/respawn/pinky_respawn_stage_3.png'); }
+
+.ghostPinkyRespawnTileStage4 { background-image: url('../sprites/ghost_pinky/movement/pinky_down.png'); }
+
+
+
+/* Ghost Inky tiles */
+.ghostInkyMovementTileUp { background-image: url('../sprites/ghost_inky/movement/inky_up.png'); }
+
+.ghostInkyMovementTileRight { background-image: url('../sprites/ghost_inky/movement/inky_right.png'); }
+
+.ghostInkyMovementTileDown { background-image: url('../sprites/ghost_inky/movement/inky_down.png'); }
+
+.ghostInkyMovementTileLeft { background-image: url('../sprites/ghost_inky/movement/inky_left.png'); }
+
+.ghostInkyRespawnTileStage0 { background-image: url('../sprites/ghost_dead/ghost_dead_down.png'); }
+
+.ghostInkyRespawnTileStage1 { background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_1.png'); }
+
+.ghostInkyRespawnTileStage2 { background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_2.png'); }
+
+.ghostInkyRespawnTileStage3 { background-image: url('../sprites/ghost_inky/respawn/inky_respawn_stage_3.png'); }
+
+.ghostInkyRespawnTileStage4 { background-image: url('../sprites/ghost_inky/movement/inky_down.png'); }
+ 
+
+
+/* Ghost Clyde tiles */
+.ghostClydeMovementTileUp { background-image: url('../sprites/ghost_clyde/movement/clyde_up.png'); }
+
+.ghostClydeMovementTileRight { background-image: url('../sprites/ghost_clyde/movement/clyde_right.png'); }
+
+.ghostClydeMovementTileDown { background-image: url('../sprites/ghost_clyde/movement/clyde_down.png'); }
+
+.ghostClydeMovementTileLeft { background-image: url('../sprites/ghost_clyde/movement/clyde_left.png'); }
+
+.ghostClydeRespawnTileStage0 { background-image: url('../sprites/ghost_dead/ghost_dead_down.png'); }
+
+.ghostClydeRespawnTileStage1 { background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_1.png'); }
+
+.ghostClydeRespawnTileStage2 { background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_2.png'); }
+
+.ghostClydeRespawnTileStage3 { background-image: url('../sprites/ghost_clyde/respawn/clyde_respawn_stage_3.png'); }
+
+.ghostClydeRespawnTileStage4 { background-image: url('../sprites/ghost_clyde/movement/clyde_down.png'); }
+
+
+
+/* Dead ghost tiles */
+.ghostDeadTileUp { background-image: url('../sprites/ghost_dead/ghost_dead_up.png'); }
+
+.ghostDeadTileRight { background-image: url('../sprites/ghost_dead/ghost_dead_right.png'); }
+
+.ghostDeadTileDown { background-image: url('../sprites/ghost_dead/ghost_dead_down.png'); }
+
+.ghostDeadTileLeft { background-image: url('../sprites/ghost_dead/ghost_dead_left.png'); }
+
+
+
+/* Scared ghost tiles */
+.ghostScaredTileUp { background-image: url('../sprites/ghost_scared/ghost_scared_up.png'); }
+
+.ghostScaredTileRight { background-image: url('../sprites/ghost_scared/ghost_scared_right.png'); }
+
+.ghostScaredTileDown { background-image: url('../sprites/ghost_scared/ghost_scared_down.png'); }
+
+.ghostScaredTileLeft { background-image: url('../sprites/ghost_scared/ghost_scared_left.png'); }
