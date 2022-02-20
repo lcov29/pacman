@@ -24,7 +24,7 @@ export default class GhostStateDead extends GhostState {
     getStyleClass() {
         let baseStyleClass = super.getBaseStyleClass();
         let directionName = super.getGhost().getCurrentMovementDirectionName();
-        return `${baseStyleClass}_${directionName}`;
+        return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
     }
 
 
