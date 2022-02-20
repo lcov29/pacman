@@ -101,7 +101,7 @@ export default class EditorMapDimensionChangeState {
                 let newId = `(${x},${y})`;
                 newDiv.setAttribute('id', newId);
                 newDiv.setAttribute('title', newId);
-                newDiv.setAttribute('class', 'editor_tile undefined_tile');
+                newDiv.setAttribute('class', 'editorTile undefinedTile');
                 newDiv.addEventListener('mouseover', this.callbackMouseover);
                 newDiv.addEventListener('mouseenter', this.callbackMouseenter);
                 newDiv.addEventListener('mouseleave', this.callbackMouseleave);
