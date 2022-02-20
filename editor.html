@@ -6,84 +6,84 @@
       <meta name='viewport' content='width=device-width, initial-scale=1.0, shrink-to-fit=no'>
       <title>Level Editor</title>
       <link rel='stylesheet' href='./css/editor.css'>
-      <link rel="icon" type="image/png" href="favicon.png">
+      <link rel="icon" type="image/png" href="./icon/favicon.png">
       <script type="module" src="./js/editor/main.js"></script>
    </head>
 
     <body>
 
-        <main class="main_container">
+        <main class="mainContainer">
   
-           <section class="selector_container">
+           <section class="selectorContainer">
   
-              <div class='selection_bar' >
-                 <label id="wall_label" class='selector selector_wall_tile' for='wall_tile' title='Wall Tile'></label>
-                 <input type='radio' id='wall_tile' name='selectors'>
+              <div class='selectionBar' >
+                 <label id="wall_label" class='selector selectorWallTile' for='wallTile' title='Wall Tile'></label>
+                 <input type='radio' id='wallTile' name='selectors'>
      
-                 <label id="empty_tile_label" class='selector empty_tile' for='empty_tile' title='Empty Tile (accessible)'></label>
-                 <input type='radio' id='empty_tile' name='selectors'>
+                 <label id="empty_tile_label" class='selector emptyTile' for='emptyTile' title='Empty Tile (accessible)'></label>
+                 <input type='radio' id='emptyTile' name='selectors'>
 
-                 <label id="point_tile_label" class='selector point_tile' for='point_tile' title='Point Tile (consumable)'></label>
-                 <input type='radio' id='point_tile' name='selectors'>
+                 <label id="point_tile_label" class='selector pointTile' for='pointTile' title='Point Tile (consumable)'></label>
+                 <input type='radio' id='pointTile' name='selectors'>
      
-                 <label id="powerup_tile_label" class='selector powerup_tile' for='powerup_tile' title='Powerup Tile (consumable)'></label>
-                 <input type='radio' id='powerup_tile' name='selectors'>
+                 <label id="powerup_tile_label" class='selector powerupTile' for='powerupTile' title='Powerup Tile (consumable)'></label>
+                 <input type='radio' id='powerupTile' name='selectors'>
      
-                 <label id='ghost_door_horizontal_label' class='selector ghost_door_horizontal_tile' for='ghost_door_horizontal_tile' title='Ghost Door (unaccessible for Pacman)'></label>
-                 <input type='radio' id='ghost_door_horizontal_tile' name='selectors'>
+                 <label id='ghost_door_horizontal_label' class='selector ghostDoorHorizontalTile' for='ghostDoorHorizontalTile' title='Ghost Door (unaccessible for Pacman)'></label>
+                 <input type='radio' id='ghostDoorHorizontalTile' name='selectors'>
      
-                 <label id='ghost_door_vertical_label' class='selector ghost_door_vertical_tile' for='ghost_door_vertical_tile' title='Ghost Door (unaccessible for Pacman)''></label>
-                 <input type='radio' id='ghost_door_vertical_tile' name='selectors'>
+                 <label id='ghost_door_vertical_label' class='selector ghostDoorVerticalTile' for='ghostDoorVerticalTile' title='Ghost Door (unaccessible for Pacman)''></label>
+                 <input type='radio' id='ghostDoorVerticalTile' name='selectors'>
      
-                 <label id='ghost_door_crossing_label' class='selector ghost_door_crossing_tile' for='ghost_door_crossing_tile' title='Ghost Door (unaccessible for Pacman)'></label>
-                 <input type='radio' id='ghost_door_crossing_tile' name='selectors'>
+                 <label id='ghost_door_crossing_label' class='selector ghostDoorCrossingTile' for='ghostDoorCrossingTile' title='Ghost Door (unaccessible for Pacman)'></label>
+                 <input type='radio' id='ghostDoorCrossingTile' name='selectors'>
      
-                 <label id='teleporter_1_label' class='selector teleporter_1_tile' for='teleporter_1_tile' title='Teleporter 1 Tile (requires destination of same type)'></label>
-                 <input type='radio' id='teleporter_1_tile' name='selectors'>
+                 <label id='teleporter_1_label' class='selector teleporter1Tile' for='teleporter1Tile' title='Teleporter 1 Tile (requires destination of same type)'></label>
+                 <input type='radio' id='teleporter1Tile' name='selectors'>
      
-                 <label id='teleporter_2_label' class='selector teleporter_2_tile' for='teleporter_2_tile' title='Teleporter 2 Tile (requires destination of same type)'></label>
-                 <input type='radio' id='teleporter_2_tile' name='selectors'>
+                 <label id='teleporter_2_label' class='selector teleporter2Tile' for='teleporter2Tile' title='Teleporter 2 Tile (requires destination of same type)'></label>
+                 <input type='radio' id='teleporter2Tile' name='selectors'>
      
-                 <label id='teleporter_3_label' class='selector teleporter_3_tile' for='teleporter_3_tile' title='Teleporter 3 Tile (requires destination of same type)'></label>
-                 <input type='radio' id='teleporter_3_tile' name='selectors'>
+                 <label id='teleporter_3_label' class='selector teleporter3Tile' for='teleporter3Tile' title='Teleporter 3 Tile (requires destination of same type)'></label>
+                 <input type='radio' id='teleporter3Tile' name='selectors'>
      
-                 <label id='bonus_spawn_label' class='selector bonus_spawn_tile' for='bonus_spawn_tile' title='Spawn Tile For Bonus (consumable)'></label>
-                 <input type='radio' id='bonus_spawn_tile' name='selectors'>
+                 <label id='bonus_spawn_label' class='selector bonusSpawnTile' for='bonusSpawnTile' title='Spawn Tile For Bonus (consumable)'></label>
+                 <input type='radio' id='bonusSpawnTile' name='selectors'>
               </div>
   
-              <div class='selection_bar'>
-                 <label id="pacman_label" class="selector pacman_tile" for="pacman_tile" title="Pacman"></label>
-                 <input type="radio" id="pacman_tile" name="selectors">
+              <div class='selectionBar'>
+                 <label id="pacman_label" class="selector pacmanTileRight" for="pacmanTileRight" title="Pacman"></label>
+                 <input type="radio" id="pacmanTileRight" name="selectors">
 
-                 <label id="ghost_blinky_label" class="selector ghost_blinky_tile" for="ghost_blinky_tile" title="Ghost Blinky"></label>            
-                 <input type="radio" id="ghost_blinky_tile" name="selectors">
+                 <label id="ghost_blinky_label" class="selector ghostBlinkyMovementTileDown" for="ghostBlinkyMovementTileDown" title="Ghost Blinky"></label>            
+                 <input type="radio" id="ghostBlinkyMovementTileDown" name="selectors">
 
-                 <label id="ghost_pinky_label" class="selector ghost_pinky_tile" for="ghost_pinky_tile" title="Ghost Pinky"></label>                       
-                 <input type="radio" id="ghost_pinky_tile" name="selectors">
+                 <label id="ghost_pinky_label" class="selector ghostPinkyMovementTileDown" for="ghostPinkyMovementTileDown" title="Ghost Pinky"></label>                       
+                 <input type="radio" id="ghostPinkyMovementTileDown" name="selectors">
 
-                 <label id="ghost_inky_label" class="selector ghost_inky_tile" for="ghost_inky_tile" title="Ghost Inky"></label>                                 
-                 <input type="radio" id="ghost_inky_tile" name="selectors">
+                 <label id="ghost_inky_label" class="selector ghostInkyMovementTileDown" for="ghostInkyMovementTileDown" title="Ghost Inky"></label>                                 
+                 <input type="radio" id="ghostInkyMovementTileDown" name="selectors">
 
-                 <label id="ghost_clyde_label" class="selector ghost_clyde_tile" for="ghost_clyde_tile" title="Ghost Clyde"></label>                                            
-                 <input type="radio" id="ghost_clyde_tile" name="selectors">
+                 <label id="ghost_clyde_label" class="selector ghostClydeMovementTileDown" for="ghostClydeMovementTileDown" title="Ghost Clyde"></label>                                            
+                 <input type="radio" id="ghostClydeMovementTileDown" name="selectors">
               </div>
               
            </section>
   
-           <section id="editor_container" class="editor_container"></section>
+           <section id="editor_container" class="editorContainer"></section>
   
-           <section class="control_container">
+           <section class="controlContainer">
   
-              <fieldset class="control_group">
+              <fieldset class="controlGroup">
                  <legend>Map Dimension</legend>
-                 <div class="control_group">
+                 <div class="controlGroup">
                     <div>
                        <label for="map_width">X:</label>
-                       <input id="map_width" class="input_map_dimension" type="number">
+                       <input id="map_width" class="inputMapDimension" type="number">
                     </div>
                     <div>
                        <label for="map_height">Y:</label>
-                       <input id="map_height" class="input_map_dimension" type="number">
+                       <input id="map_height" class="inputMapDimension" type="number">
                     </div>
                  </div>
                  <button id="button_map_sizer">Apply</button>
@@ -91,48 +91,48 @@
   
               <fieldset  id="scatter_position_container" control="control_group">
                  <legend>Scatter Positions</legend>
-                 <div id="scatter_control_ghost_blinky" class="control_group" style="display:none">
+                 <div id="scatter_control_ghost_blinky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_blinky/movement/blinky_down.png">
-                    <input id="scatter_position_ghost_blinky" class="input_position" type="text" readonly>
+                    <input id="scatter_position_ghost_blinky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_blinky" name="button_scatter_position">Select</button>
                  </div>
-                 <div id="scatter_control_ghost_pinky" class="control_group" style="display:none">
+                 <div id="scatter_control_ghost_pinky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_pinky/movement/pinky_down.png">
-                    <input id="scatter_position_ghost_pinky" class="input_position" type="text" readonly>
+                    <input id="scatter_position_ghost_pinky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_pinky" name="button_scatter_position">Select</button>
                  </div>
-                 <div id="scatter_control_ghost_inky" class="control_group" style="display:none">
+                 <div id="scatter_control_ghost_inky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_inky/movement/inky_down.png">
-                    <input id="scatter_position_ghost_inky" class="input_position" type="text" readonly>
+                    <input id="scatter_position_ghost_inky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_inky" name="button_scatter_position">Select</button>
                  </div>
-                 <div id="scatter_control_ghost_clyde" class="control_group" style="display:none">
+                 <div id="scatter_control_ghost_clyde" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_clyde/movement/clyde_down.png">
-                    <input id="scatter_position_ghost_clyde" class="input_position" type="text" readonly>
+                    <input id="scatter_position_ghost_clyde" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_clyde" name="button_scatter_position">Select</button>
                  </div>
               </fieldset>
   
               <fieldset id="spawn_position_container" control="control_group">
                  <legend>Spawn Positions</legend>
-                 <div id="spawn_control_ghost_blinky" class="control_group" style="display:none">
+                 <div id="spawn_control_ghost_blinky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_blinky/movement/blinky_down.png">
-                    <input id="spawn_position_ghost_blinky" class="input_position" type="text" readonly>
+                    <input id="spawn_position_ghost_blinky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_blinky" name="button_spawn_position">Select</button>
                  </div>
-                 <div id="spawn_control_ghost_pinky" class="control_group" style="display:none">
+                 <div id="spawn_control_ghost_pinky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_pinky/movement/pinky_down.png">
-                    <input id="spawn_position_ghost_pinky" class="input_position" type="text" readonly>
+                    <input id="spawn_position_ghost_pinky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_pinky" name="button_spawn_position">Select</button>
                  </div>
-                 <div id="spawn_control_ghost_inky" class="control_group" style="display:none">
+                 <div id="spawn_control_ghost_inky" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_inky/movement/inky_down.png">
-                    <input id="spawn_position_ghost_inky" class="input_position" type="text" readonly>
+                    <input id="spawn_position_ghost_inky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_inky" name="button_spawn_position">Select</button>
                  </div>
-                 <div id="spawn_control_ghost_clyde" class="control_group" style="display:none">
+                 <div id="spawn_control_ghost_clyde" class="controlGroup" style="display:none">
                     <img src="./sprites/ghost_clyde/movement/clyde_down.png">
-                    <input id="spawn_position_ghost_clyde" class="input_position" type="text" readonly>
+                    <input id="spawn_position_ghost_clyde" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_clyde" name="button_spawn_position">Select</button>
                  </div>
               </fieldset>
