@@ -81,7 +81,6 @@ export default class Game {
 
 
    processUserCommand(keycode) {
-      if (this.inProgress) {
          switch(keycode) {
          
             case Configuration.KEY_CODE_UP_ARROW:
@@ -103,8 +102,12 @@ export default class Game {
             case Configuration.KEY_CODE_A:
                this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_LEFT);
                break;
+
+            case Configuration.KEY_CODE_ENTER:
+            case Configuration.KEY_CODE_SPACE:
+               this.start();
+               break;
          }         
-      }
    }
    
    
