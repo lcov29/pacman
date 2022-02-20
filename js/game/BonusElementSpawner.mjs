@@ -69,7 +69,7 @@ export default class BonusElementSpawner {
 
 
     getStyleClass() {
-        return this.bonusStyleClass;
+        return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${this.bonusStyleClass}`;
     }
     
 
@@ -84,7 +84,7 @@ export default class BonusElementSpawner {
             let spawnPosition = this.chooseRandomSpawnPositionFromList();
             let boardPosition = this.level.getBoardPositionAt(spawnPosition.x, spawnPosition.y);
             boardPosition.setElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER);
-            let updateRequest = new UpdateRequest(boardPosition, this.bonusStyleClass);
+            let updateRequest = new UpdateRequest(boardPosition, this.getStyleClass());
             this.level.addUpdateRequest(updateRequest);
             this.level.updateBoard();
             this.level.updateView();
