@@ -1,6 +1,6 @@
 /* TODO: THINK ABOUT BINDING STYLECLASSES TO DIV ELEMENTS: div.styleclassname */
-@import url(./navigation_mobile.css);
-@import url(./navigation_desktop.css);
+@import url(./navigationMobile.css);
+@import url(./navigationDesktop.css);
 
 
 /* use border-box-model */
