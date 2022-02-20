@@ -12,12 +12,18 @@ import Game from "./Game.mjs";
 let game = new Game('level_container', 'score', 'life');
 game.loadLevel();   
 
+document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
 document.getElementById('button_start').addEventListener('click', callBackStartButton);
 document.addEventListener('keydown', callBackKeyDown, true);
 
 
 
 // HELPER FUNCTIONS
+
+function callBackMobileMenuButton() {
+   this.classList.toggle('mobileMenuVisible');
+}
+
 
 function callBackStartButton() {
    if (!game.isInProgress()) {
