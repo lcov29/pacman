@@ -8,7 +8,7 @@ For all information about the original game i used [The Pac-Man Dossier](https:/
 <br>
 
 ## How to play
-Play the game via github-pages or upload it to a webserver. 
+Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it to a webserver. 
 <br>
 <br>
 
