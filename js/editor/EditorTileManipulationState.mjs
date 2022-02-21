@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import EditorElementMapper from "./EditorElementMapper.mjs";
+import Configuration from '../Configuration.mjs';
+import EditorElementMapper from './EditorElementMapper.mjs';
 
 
 export default class EditorTileManipulationState {
@@ -121,9 +121,9 @@ export default class EditorTileManipulationState {
             // hide visible controls
             if ((ghostTypeCounter === 0) && (isControlDisplayed === true)) {
                 for (let controlId of ghostTypeControlIds) {
-                    document.getElementById(controlId).style = "display:none";
+                    document.getElementById(controlId).style = 'display:none';
                     let inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[controlId];
-                    document.getElementById(inputId).value = "";
+                    document.getElementById(inputId).value = '';
                     this.editor.removeScatterPositionFor(ghostCharacter);
                     this.editor.removeSpawnPositionFor(ghostCharacter);
                 }
@@ -152,7 +152,7 @@ export default class EditorTileManipulationState {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][0];
             inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
-            document.getElementById(inputId).value = "";
+            document.getElementById(inputId).value = '';
         }
     }
 
@@ -161,7 +161,7 @@ export default class EditorTileManipulationState {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][1];
             inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
-            document.getElementById(inputId).value = "";
+            document.getElementById(inputId).value = '';
         }
     }
 

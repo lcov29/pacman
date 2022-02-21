@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import EditorDefaultState from "./EditorDefaultState.mjs";
-import EditorElementMapper from "./EditorElementMapper.mjs";
+import Configuration from '../Configuration.mjs';
+import EditorDefaultState from './EditorDefaultState.mjs';
+import EditorElementMapper from './EditorElementMapper.mjs';
 
 
 export default class EditorSelectionState {
@@ -38,7 +38,7 @@ export default class EditorSelectionState {
 
     handleEditorContainerMouseLeave(callerId) {
         this.editor.setState(new EditorDefaultState());
-        this.positionInput.value = "";
+        this.positionInput.value = '';
     }
 
 
@@ -55,9 +55,9 @@ export default class EditorSelectionState {
 
         if (isTileAccessible && !isTileSelectedGhostType) {
             document.getElementById(callerId).style.borderColor = borderColor;
-            document.getElementById(callerId).style.borderWidth = "5px";
+            document.getElementById(callerId).style.borderWidth = '5px';
         }
-        this.positionInput.value = (isTileAccessible) ? callerId : "";
+        this.positionInput.value = (isTileAccessible) ? callerId : '';
     }
 
 

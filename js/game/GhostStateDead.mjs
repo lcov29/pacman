@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import GhostState from "./GhostState.mjs";
-import Configuration from "../Configuration.mjs";
-import GhostStateRespawn from "./GhostStateRespawn.mjs";
+import GhostState from './GhostState.mjs';
+import Configuration from '../Configuration.mjs';
+import GhostStateRespawn from './GhostStateRespawn.mjs';
 
 
 export default class GhostStateDead extends GhostState {

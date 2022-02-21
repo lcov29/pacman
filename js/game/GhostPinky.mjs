@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Ghost from "./Ghost.mjs";
-import Configuration from "../Configuration.mjs";
-import Directions from "./Directions.mjs";
+import Ghost from './Ghost.mjs';
+import Configuration from '../Configuration.mjs';
+import Directions from './Directions.mjs';
 
 
 export default class GhostPinky extends Ghost {

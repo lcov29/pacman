@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-import GhostState from "./GhostState.mjs";
-import Configuration from "../Configuration.mjs";
-import GhostStateDead from "./GhostStateDead.mjs";
-import GhostStateChase from "./GhostStateChase.mjs";
+import GhostState from './GhostState.mjs';
+import Configuration from '../Configuration.mjs';
+import GhostStateDead from './GhostStateDead.mjs';
+import GhostStateChase from './GhostStateChase.mjs';
 
 /*  
    =================================================================================================================

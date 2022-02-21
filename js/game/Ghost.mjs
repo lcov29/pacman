@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-import GhostStateScatter from "./GhostStateScatter.mjs";
-import GhostStateScared from "./GhostStateScared.mjs";
-import StyleClassMapper from "./StyleClassMapper.mjs";
-import Configuration from "../Configuration.mjs";
-import Directions from "./Directions.mjs";
-import Actor from "./Actor.mjs";
+import GhostStateScatter from './GhostStateScatter.mjs';
+import GhostStateScared from './GhostStateScared.mjs';
+import StyleClassMapper from './StyleClassMapper.mjs';
+import Configuration from '../Configuration.mjs';
+import Directions from './Directions.mjs';
+import Actor from './Actor.mjs';
 
 
 export default class Ghost extends Actor {
@@ -14,7 +14,7 @@ export default class Ghost extends Actor {
    constructor(level, position, routing) {
       super(level, position); 
       this.routing = routing;
-      this.baseRespawnStyleClass = "";
+      this.baseRespawnStyleClass = '';
       this.scatterPositionId = -1;
       this.spawnPositionId = position.getID();
       this.state = null;

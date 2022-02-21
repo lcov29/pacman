@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import UpdateRequest from "./UpdateRequest.mjs";
-import Utility from "../Utility.mjs";
+import Configuration from '../Configuration.mjs';
+import UpdateRequest from './UpdateRequest.mjs';
+import Utility from '../Utility.mjs';
 
 
 export default class BonusElementSpawner {
@@ -10,7 +10,7 @@ export default class BonusElementSpawner {
 
     constructor() {
         this.bonusSpawnPositions = null;
-        this.bonusStyleClass = "";
+        this.bonusStyleClass = '';
         this.scoreValue = 0;
         this.level = null;
         this.isBonusElementSpawned = false;

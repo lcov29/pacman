@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import StyleClassMapper from "./StyleClassMapper.mjs";
+import Configuration from '../Configuration.mjs';
+import StyleClassMapper from './StyleClassMapper.mjs';
 
 
 export default class View {
@@ -35,8 +35,8 @@ export default class View {
 
 
    clearBoard() {
-      this.scoreDisplay.innerHTML = "";
-      this.lifeDisplay.innerHTML = "";
+      this.scoreDisplay.innerHTML = '';
+      this.lifeDisplay.innerHTML = '';
       while (this.boardContainer.firstChild) {
          this.boardContainer.removeChild(this.boardContainer.firstChild);
       }

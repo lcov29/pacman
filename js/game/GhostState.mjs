@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
 
 export default class GhostState {
 
 
     constructor(durationInTurns, ghost) {
-        this.baseStyleClass = "";
+        this.baseStyleClass = '';
         this.remainingTurns = durationInTurns;
         this.spriteDisplayPriority = 0;
         this.ghost = ghost;

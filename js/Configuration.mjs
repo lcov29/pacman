@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 export default class Configuration {
  
@@ -66,79 +66,79 @@ export default class Configuration {
    // Definition of level characters
 
       // Actor characters
-      static PACMAN_CHARACTER = "p";
-      static GHOST_INKY_CHARACTER = "i";
-      static GHOST_PINKY_CHARACTER = "y";
-      static GHOST_CLYDE_CHARACTER = "c";
-      static GHOST_BLINKY_CHARACTER = "b";
+      static PACMAN_CHARACTER = 'p';
+      static GHOST_INKY_CHARACTER = 'i';
+      static GHOST_PINKY_CHARACTER = 'y';
+      static GHOST_CLYDE_CHARACTER = 'c';
+      static GHOST_BLINKY_CHARACTER = 'b';
 
       // Element characters
-      static WALL_CHARACTER = "#";
-      static POINT_CHARACTER = "o";
-      static POWERUP_CHARACTER = "O";
-      static EMPTY_TILE_CHARACTER = "x";
-      static TELEPORTER_1_CHARACTER = "1";
-      static TELEPORTER_2_CHARACTER = "2";
-      static TELEPORTER_3_CHARACTER = "3";
-      static BONUS_ELEMENT_CHARACTER = "*";
-      static UNDEFINED_TILE_CHARACTER = ".";
-      static GHOST_DOOR_CROSSING_CHARACTER = "+";
-      static GHOST_DOOR_VERTICAL_CHARACTER = "|";
-      static GHOST_DOOR_HORIZONTAL_CHARACTER = "-";
+      static WALL_CHARACTER = '#';
+      static POINT_CHARACTER = 'o';
+      static POWERUP_CHARACTER = 'O';
+      static EMPTY_TILE_CHARACTER = 'x';
+      static TELEPORTER_1_CHARACTER = '1';
+      static TELEPORTER_2_CHARACTER = '2';
+      static TELEPORTER_3_CHARACTER = '3';
+      static BONUS_ELEMENT_CHARACTER = '*';
+      static UNDEFINED_TILE_CHARACTER = '.';
+      static GHOST_DOOR_CROSSING_CHARACTER = '+';
+      static GHOST_DOOR_VERTICAL_CHARACTER = '|';
+      static GHOST_DOOR_HORIZONTAL_CHARACTER = '-';
 
 
 
    // Definition of directions
 
       // Direction names
-      static DIRECTION_NAME_UP = "Up";
-      static DIRECTION_NAME_LEFT = "Left";
-      static DIRECTION_NAME_DOWN = "Down";
-      static DIRECTION_NAME_RIGHT = "Right";
+      static DIRECTION_NAME_UP = 'Up';
+      static DIRECTION_NAME_LEFT = 'Left';
+      static DIRECTION_NAME_DOWN = 'Down';
+      static DIRECTION_NAME_RIGHT = 'Right';
    
    
    // Definition of css class names
 
-      static BOARD_TILE_BASE_CSS_CLASS = "boardTile";
+      static BOARD_TILE_BASE_CSS_CLASS = 'boardTile';
 
       // Background
-      static WALL_BACKGROUND_CSS_CLASS = "wallTile";
-      static EMPTY_TILE_BACKGROUND_CSS_CLASS = "emptyTile";
-      static TELEPORTER_1_BACKGROUND_CSS_CLASS = "teleporter1Tile";
-      static TELEPORTER_2_BACKGROUND_CSS_CLASS = "teleporter2Tile";
-      static TELEPORTER_3_BACKGROUND_CSS_CLASS = "teleporter3Tile";
-      static UNDEFINED_TILE_BACKGROUND_CSS_CLASS = "undefinedTile";
-      static GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS = "ghostDoorCrossingTile";
-      static GHOST_DOOR_VERTICAL_BACKGROUND_CSS_CLASS = "ghostDoorVerticalTile";
-      static GHOST_DOOR_HORIZONTAL_BACKGROUND_CSS_CLASS = "ghostDoorHorizontalTile";
+      static WALL_BACKGROUND_CSS_CLASS = 'wallTile';
+      static EMPTY_TILE_BACKGROUND_CSS_CLASS = 'emptyTile';
+      static TELEPORTER_1_BACKGROUND_CSS_CLASS = 'teleporter1Tile';
+      static TELEPORTER_2_BACKGROUND_CSS_CLASS = 'teleporter2Tile';
+      static TELEPORTER_3_BACKGROUND_CSS_CLASS = 'teleporter3Tile';
+      static UNDEFINED_TILE_BACKGROUND_CSS_CLASS = 'undefinedTile';
+      static GHOST_DOOR_CROSSING_BACKGROUND_CSS_CLASS = 'ghostDoorCrossingTile';
+      static GHOST_DOOR_VERTICAL_BACKGROUND_CSS_CLASS = 'ghostDoorVerticalTile';
+      static GHOST_DOOR_HORIZONTAL_BACKGROUND_CSS_CLASS = 'ghostDoorHorizontalTile';
 
       // Foreground
-      static EMPTY_FOREGROUND_CSS_CLASS = "emptyForegroundTile";
-      static POINT_FOREGROUND_CSS_CLASS = "pointTile";
-      static PACMAN_FOREGROUND_CSS_CLASS = "pacmanTile";
-      static POWERUP_FOREGROUND_CSS_CLASS = "powerupTile";
+      static EMPTY_FOREGROUND_CSS_CLASS = 'emptyForegroundTile';
+      static POINT_FOREGROUND_CSS_CLASS = 'pointTile';
+      static PACMAN_FOREGROUND_CSS_CLASS = 'pacmanTile';
+      static POWERUP_FOREGROUND_CSS_CLASS = 'powerupTile';
 
-      static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = "bonusSpawnCherryTile";
-      static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = "bonusSpawnStrawberryTile";
-      static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = "bonusSpawnPeachTile";
-      static BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS = "bonusSpawnAppleTile";
-      static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = "bonusSpawnGrapeTile";
-      static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = "bonusSpawnGalaxianTile";
-      static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = "bonusSpawnBellTile";
-      static BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS = "bonusSpawnKeyTile";   
+      static BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS = 'bonusSpawnCherryTile';
+      static BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS = 'bonusSpawnStrawberryTile';
+      static BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS = 'bonusSpawnPeachTile';
+      static BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS = 'bonusSpawnAppleTile';
+      static BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS = 'bonusSpawnGrapeTile';
+      static BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS = 'bonusSpawnGalaxianTile';
+      static BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS = 'bonusSpawnBellTile';
+      static BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS = 'bonusSpawnKeyTile';   
    
-      static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostInkyRespawnTile";
-      static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostPinkyRespawnTile";
-      static GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS = "ghostClydeRespawnTile";
-      static GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS = "ghostBlinkyRespawnTile";      
+      static GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS = 'ghostInkyRespawnTile';
+      static GHOST_PINKY_RESPAWN_FOREGROUNG_CSS_CLASS = 'ghostPinkyRespawnTile';
+      static GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS = 'ghostClydeRespawnTile';
+      static GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS = 'ghostBlinkyRespawnTile';      
 
-      static GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostInkyMovementTile";
-      static GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostPinkyMovementTile";
-      static GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostClydeMovementTile";
-      static GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS = "ghostBlinkyMovementTile";
+      static GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS = 'ghostInkyMovementTile';
+      static GHOST_PINKY_MOVEMENT_FOREGROUND_CSS_CLASS = 'ghostPinkyMovementTile';
+      static GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS = 'ghostClydeMovementTile';
+      static GHOST_BLINKY_MOVEMENT_FOREGROUND_CSS_CLASS = 'ghostBlinkyMovementTile';
 
-      static GHOST_DEAD_FOREGROUND_CSS_CLASS = "ghostDeadTile";
-      static GHOST_SCARED_FOREGROUND_CSS_CLASS = "ghostScaredTile";
+      static GHOST_DEAD_FOREGROUND_CSS_CLASS = 'ghostDeadTile';
+      static GHOST_SCARED_FOREGROUND_CSS_CLASS = 'ghostScaredTile';
  
    
 
@@ -152,8 +152,8 @@ export default class Configuration {
 
 
    // Editor Settings
-      static FILE_NAME_INDEX = "index.html";
-      static FILE_NAME_EDITOR = "editor.html";
+      static FILE_NAME_INDEX = 'index.html';
+      static FILE_NAME_EDITOR = 'editor.html';
 
       static EDITOR_BOARD_MIN_HEIGHT = 4;
       static EDITOR_BOARD_MAX_HEIGHT = 30;
@@ -163,13 +163,13 @@ export default class Configuration {
       static EDITOR_BOARD_MAX_WIDTH = 30;
       static EDITOR_BOARD_DEFAULT_WIDTH = 20;
 
-      static EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX = "#dd1717";
-      static EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX = "#ee45bc";
-      static EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX = "#ee810d";
-      static EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX = "#08e6db";
+      static EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX = '#dd1717';
+      static EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX = '#ee45bc';
+      static EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX = '#ee810d';
+      static EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX = '#08e6db';
       
-      static EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX = "#289D10";
-      static EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX = "#fdfdfd";
+      static EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX = '#289D10';
+      static EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX = '#fdfdfd';
 
 
 
@@ -226,8 +226,8 @@ export default class Configuration {
 
 
    // Settings for view.js
-      static SUFFIX_FOREGROUND_DIV = "fg";
-      static SUFFIX_BACKGROUND_DIV = "bg";
+      static SUFFIX_FOREGROUND_DIV = 'fg';
+      static SUFFIX_BACKGROUND_DIV = 'bg';
       static DIMENSION_BACKGROUND_DIV_IN_PX = 30;
 
 

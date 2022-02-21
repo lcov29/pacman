@@ -1,17 +1,17 @@
-"use strict";
+'use strict';
 
-import Editor from "./Editor.mjs";
-import EditorTileManipulationState from "./EditorTileManipulationState.mjs";
-import EditorScatterSelectionState from "./EditorScatterSelectionState.mjs";
-import EditorMapDimensionChangeState from "./EditorMapDimensionChangeState.mjs";
-import EditorSpawnSelectionState from "./EditorSpawnSelectionState.mjs";
-import Configuration from "../Configuration.mjs";
+import Editor from './Editor.mjs';
+import EditorTileManipulationState from './EditorTileManipulationState.mjs';
+import EditorScatterSelectionState from './EditorScatterSelectionState.mjs';
+import EditorMapDimensionChangeState from './EditorMapDimensionChangeState.mjs';
+import EditorSpawnSelectionState from './EditorSpawnSelectionState.mjs';
+import Configuration from '../Configuration.mjs';
 
 
 let editor = new Editor();
-editor.setEditorContainer("editor_container");
-editor.setReferenceInputMapHeight("map_height");
-editor.setReferenceInputMapWidth("map_width");
+editor.setEditorContainer('editor_container');
+editor.setReferenceInputMapHeight('map_height');
+editor.setReferenceInputMapWidth('map_width');
 editor.initialize();
 buttonMapDimensionChangeCallback();
                                 
@@ -112,10 +112,10 @@ function validateMapWidthInput() {
         let inputNumber = parseInt(input.value);
         if ((inputNumber < Configuration.EDITOR_BOARD_MIN_WIDTH) ||
             (inputNumber > Configuration.EDITOR_BOARD_MAX_WIDTH)) {
-            input.value = "";
+            input.value = '';
         }
     } catch(e) {
-        input.value = "";
+        input.value = '';
     }
 }
 
@@ -126,10 +126,10 @@ function validateMapHeightInput() {
         let inputNumber = parseInt(input.value);
         if ((inputNumber < Configuration.EDITOR_BOARD_MIN_HEIGHT) ||
             (inputNumber > Configuration.EDITOR_BOARD_MAX_HEIGHT)) {
-            input.value = "";
+            input.value = '';
         }
     } catch(e) {
-        input.value = "";
+        input.value = '';
     }
 }
 
@@ -137,7 +137,7 @@ function validateMapHeightInput() {
 function inputScatterSpawnMouseEnterCallback() {
     let borderColor = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
     let coordinateString = document.getElementById(this.id).value;
-    if (coordinateString !== "") {
+    if (coordinateString !== '') {
         document.getElementById(coordinateString).style.borderColor = borderColor;
         document.getElementById(coordinateString).style.borderWidth = '5px';
     }
@@ -146,16 +146,16 @@ function inputScatterSpawnMouseEnterCallback() {
 
 function inputScatterSpawnMouseLeaveCallback() {
     let coordinateString = document.getElementById(this.id).value;
-    if (coordinateString !== "") {
+    if (coordinateString !== '') {
         document.getElementById(coordinateString).style = null;
     }
 }
 
 
 function buttonMapDimensionChangeCallback() {
-    let inputHeight = document.getElementById("map_height").value;
-    let inputWidth = document.getElementById("map_width").value;
-    if (inputHeight !== "" && inputWidth !== "") {
+    let inputHeight = document.getElementById('map_height').value;
+    let inputWidth = document.getElementById('map_width').value;
+    if (inputHeight !== '' && inputWidth !== '') {
         let newState = new EditorMapDimensionChangeState();
         newState.setEditorTileClickCallback(editorTileClickCallback);
         newState.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);

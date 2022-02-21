@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import BoardPosition from "./BoardPosition.mjs";
-import Configuration from "../Configuration.mjs";
+import BoardPosition from './BoardPosition.mjs';
+import Configuration from '../Configuration.mjs';
 
 
 export default class BoardParser {
@@ -26,9 +26,9 @@ export default class BoardParser {
 
     buildBoardPositionArray(board) {
         let output = [...board];
-        let currentCharacter = "";
-        let currentActorCharacter = "";
-        let currentElementCharacter = "";
+        let currentCharacter = '';
+        let currentActorCharacter = '';
+        let currentElementCharacter = '';
 
         for (let y = 0; y < output.length; y++) {
             for (let x = 0; x < output[y].length; x++) {
@@ -49,7 +49,7 @@ export default class BoardParser {
 
     indexAccessiblePositions(positionArray) {
         let id = 0;
-        let character = "";
+        let character = '';
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
                 character = positionArray[y][x].getElementCharacter();

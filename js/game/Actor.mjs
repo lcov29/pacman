@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Directions from "./Directions.mjs";
-import UpdateRequest from "./UpdateRequest.mjs";
-import Configuration from "../Configuration.mjs";
+import Directions from './Directions.mjs';
+import UpdateRequest from './UpdateRequest.mjs';
+import Configuration from '../Configuration.mjs';
 
 
 export default class Actor {
@@ -12,9 +12,9 @@ export default class Actor {
       this.level = level;
       this.currentPosition = position;
       this.nextPosition = position;
-      this.character = "";
-      this.movementDirectionName = "";
-      this.baseMovementStyleClass = "";
+      this.character = '';
+      this.movementDirectionName = '';
+      this.baseMovementStyleClass = '';
       this.hasTeleportedInPreviousTurn = false;
       this.updateFlagCurrentPosition = true;
       this.updateFlagNextPosition = true;

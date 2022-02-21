@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import EditorInternalLevel from "./EditorInternalLevel.mjs";
-import EditorDefaultState from "./EditorDefaultState.mjs";
-import EditorElementMapper from "./EditorElementMapper.mjs";
+import Configuration from '../Configuration.mjs';
+import EditorInternalLevel from './EditorInternalLevel.mjs';
+import EditorDefaultState from './EditorDefaultState.mjs';
+import EditorElementMapper from './EditorElementMapper.mjs';
 
 
 export default class Editor {
@@ -39,11 +39,11 @@ export default class Editor {
 
 
     initializeDimensionInput() {
-        this.inputMapHeight.setAttribute("min", Configuration.EDITOR_BOARD_MIN_HEIGHT);
-        this.inputMapWidth.setAttribute("min", Configuration.EDITOR_BOARD_MIN_WIDTH);
+        this.inputMapHeight.setAttribute('min', Configuration.EDITOR_BOARD_MIN_HEIGHT);
+        this.inputMapWidth.setAttribute('min', Configuration.EDITOR_BOARD_MIN_WIDTH);
 
-        this.inputMapHeight.setAttribute("max", Configuration.EDITOR_BOARD_MAX_HEIGHT);
-        this.inputMapWidth.setAttribute("max", Configuration.EDITOR_BOARD_MAX_WIDTH);
+        this.inputMapHeight.setAttribute('max', Configuration.EDITOR_BOARD_MAX_HEIGHT);
+        this.inputMapWidth.setAttribute('max', Configuration.EDITOR_BOARD_MAX_WIDTH);
 
         this.inputMapHeight.value = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
         this.inputMapWidth.value = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
@@ -247,7 +247,7 @@ export default class Editor {
 
     sendLevelJson() {
         let levelJSONString = this.internalLevel.buildLevelJSONString();
-        sessionStorage.setItem("customLevel", levelJSONString);
+        sessionStorage.setItem('customLevel', levelJSONString);
     }
 
 

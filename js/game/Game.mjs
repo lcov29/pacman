@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Level from "./Level.mjs";
-import View from "./View.mjs";
-import Configuration from "../Configuration.mjs";
+import Level from './Level.mjs';
+import View from './View.mjs';
+import Configuration from '../Configuration.mjs';
 
 
 export default class Game {
@@ -24,8 +24,8 @@ export default class Game {
 
 
    readLevelJson() {
-      let level = sessionStorage.getItem("customLevel");
-      sessionStorage.removeItem("customLevel");
+      let level = sessionStorage.getItem('customLevel');
+      sessionStorage.removeItem('customLevel');
       if (level === null) {
          level = Configuration.DEFAULT_LEVEL_JSON;
       }

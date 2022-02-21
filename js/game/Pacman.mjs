@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-import Actor from "./Actor.mjs";
-import Configuration from "../Configuration.mjs";
+import Actor from './Actor.mjs';
+import Configuration from '../Configuration.mjs';
 
 /*  
    =================================================================================================================

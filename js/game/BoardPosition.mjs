@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
+import Configuration from '../Configuration.mjs';
 
 /*  
     =================================================================================================================

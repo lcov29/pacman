@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
-import EditorDefaultState from "./EditorDefaultState.mjs";
-import EditorSelectionState from "./EditorSelectionState.mjs";
+import Configuration from '../Configuration.mjs';
+import EditorDefaultState from './EditorDefaultState.mjs';
+import EditorSelectionState from './EditorSelectionState.mjs';
 
 
 export default class EditorScatterSelectionState extends EditorSelectionState {

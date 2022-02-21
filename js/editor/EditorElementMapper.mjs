@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-import Configuration from "../Configuration.mjs";
+import Configuration from '../Configuration.mjs';
 
 
 export default class EditorElementMapper {
@@ -51,10 +51,10 @@ export default class EditorElementMapper {
 
 
     static mapInternalElementToScatterSpawnControlIds = {
-        [Configuration.GHOST_BLINKY_CHARACTER]: ["scatter_control_ghost_blinky", "spawn_control_ghost_blinky"],
-        [Configuration.GHOST_PINKY_CHARACTER]:  ["scatter_control_ghost_pinky", "spawn_control_ghost_pinky"],
-        [Configuration.GHOST_CLYDE_CHARACTER]:  ["scatter_control_ghost_clyde", "spawn_control_ghost_clyde"],
-        [Configuration.GHOST_INKY_CHARACTER]:   ["scatter_control_ghost_inky", "spawn_control_ghost_inky"]
+        [Configuration.GHOST_BLINKY_CHARACTER]: ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky'],
+        [Configuration.GHOST_PINKY_CHARACTER]:  ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky'],
+        [Configuration.GHOST_CLYDE_CHARACTER]:  ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde'],
+        [Configuration.GHOST_INKY_CHARACTER]:   ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']
     };
 
 
