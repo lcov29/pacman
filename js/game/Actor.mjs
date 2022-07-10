@@ -3,6 +3,7 @@
 import Directions from './Directions.mjs';
 import UpdateRequest from './UpdateRequest.mjs';
 import Configuration from '../Configuration.mjs';
+import MovementRequest from '../MovementRequest.mjs';
 
 
 export default class Actor {
@@ -162,6 +163,36 @@ export default class Actor {
          this.level.addUpdateRequest(new UpdateRequest(this.nextPosition, styleclass, spritePriority));
       }
    }
+
+
+   // NEW
+
+   sendLevelMovementRequest() {
+      const isPositionChanged = this.nextPosition.getID() !== this.currentPosition.getID();
+
+      if (isPositionChanged) {
+         const request = this.createMovementRequest();
+         this.level.processMovementRequest(request);
+      }
+   }
+
+
+   createMovementRequest() {
+      const request = new MovementRequest();
+      request.xPositionStart = this.currentPosition.getX();
+      request.yPositionStart = this.currentPosition.getY();
+      request.xPositionDestination = this.nextPosition.getX();
+      request.yPositionDestination = this.nextPosition.getY();
+
+      const direction = this.getCurrentMovementDirection();
+      request.xDirection = direction.x;
+      request.yDirection = direction.y;
+
+      request.directionName = this.movementDirectionName;
+      request.actorCharacter = this.character;
+      request.spriteDisplayPriority = this.spriteDisplayPriority;
+   }
+
 
 
    loadCurrentPositionFromBoard() {
