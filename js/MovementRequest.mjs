@@ -15,6 +15,7 @@ export default class MovementRequest {
     #yDirection = -2;
     #directionName = '';
     #actorCharacter = '';
+    #spriteDisplayPriority = -1;
 
 
     constructor() {}
@@ -172,6 +173,26 @@ export default class MovementRequest {
             this.#actorCharacter = character;
         } else {
             throw new RangeError(`${character} is not a valid actor`);
+        }
+    }
+
+
+    get spriteDisplayPriority() {
+        return this.#spriteDisplayPriority;
+    }
+
+
+    set spriteDisplayPriority(value) {
+        const isAlreadyInitialized = this.#spriteDisplayPriority !== -1;
+        if (isAlreadyInitialized) {
+            throw new Error('Can not change already initialized property spriteDisplayPriority');
+        }
+
+        const isInputValid = value > -1;
+        if (isInputValid) {
+            this.#spriteDisplayPriority = value;
+        } else {
+            throw new RangeError(`spriteDisplayPriority ${value} must be greater than -1`);
         }
     }
 
