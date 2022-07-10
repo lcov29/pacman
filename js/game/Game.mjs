@@ -11,7 +11,8 @@ export default class Game {
    constructor(boardContainerId, scoreId, lifeId) {
       this.animationInterval = null;
       this.level = null;
-      this.view = new View(boardContainerId, scoreId, lifeId);
+      // this.view = new View(boardContainerId, scoreId, lifeId);
+      this.view = [];
       this.inProgress = false;
    }
 
