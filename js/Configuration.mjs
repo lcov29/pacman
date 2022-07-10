@@ -142,7 +142,8 @@ export default class Configuration {
  
    
 
-   // Definition of ghost sprite display priority for handling collisions between ghosts
+   // Display priority for overlapping sprites
+      static PACMAN_SPRITE_DISPLAY_PRIORITY = 6;
       static GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY = 5;
       static GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY = 4;
       static GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY = 3;
