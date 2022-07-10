@@ -61,10 +61,23 @@ export default class Board {
    }
 
 
+   /*
    setPosition(position) {
       let internalPosition = this.board[position.getY()][position.getX()];
       internalPosition.setActorCharacter(position.getActorCharacter());
       internalPosition.setElementCharacter(position.getElementCharacter());
+   } */
+
+
+   updateActorLayerPosition(x, y, character) {
+      const internalPosition = this.board[y][x];
+      internalPosition.setActorCharacter(character);
+   }
+
+
+   updateElementLayerPosition(x, y, character) {
+      const internalPosition = this.board[y][x];
+      internalPosition.setElementCharacter(character);
    }
 
 
