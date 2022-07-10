@@ -2,6 +2,7 @@
 
 import Actor from './Actor.mjs';
 import Configuration from '../Configuration.mjs';
+import BackgroundRequest from '../BackgroundRequest.mjs'
 
 /*  
    =================================================================================================================
@@ -107,6 +108,7 @@ export default class Pacman extends Actor {
                this.updatePositionChangeFlag();
                //super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
                super.sendLevelMovementRequest();
+               this.sendLevelBackgroundRequest();
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
                this.setMovementDirectionChangeStatus(false);
@@ -122,6 +124,16 @@ export default class Pacman extends Actor {
 
       }
       return this.getTurnCompletionStatus();
+   }
+
+
+   sendLevelBackgroundRequest() {
+      if (this.isBackgroundUpdateNeeded) {
+         const nextPosition = super.getNextPosition();
+         const request = new BackgroundRequest(nextPosition.getX(), nextPosition.getY(), nextPosition.getElementCharacter());
+         super.sendLevelBackgroundRequest(request);
+      }
+      this.isBackgroundUpdateNeeded = false;
    }
 
 
