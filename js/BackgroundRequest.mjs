@@ -6,13 +6,13 @@ export default class BackgroundRequest {
 
     #xPosition = 0;
     #yPosition = 0;
-    #character = '';
+    #elementCharacter = '';
 
 
-    constructor(xPosition, yPosition, character) {
+    constructor(xPosition, yPosition, elementCharacter) {
         this.#xPosition = xPosition;
         this.#yPosition = yPosition;
-        this.#character = character;
+        this.#elementCharacter = elementCharacter;
     }
 
 
@@ -26,8 +26,8 @@ export default class BackgroundRequest {
     }
 
 
-    get character() {
-        return this.#character;
+    get elementCharacter() {
+        return this.#elementCharacter;
     }
 
 
