@@ -177,6 +177,11 @@ export default class Actor {
    }
 
 
+   sendLevelBackgroundRequest(request) {
+      this.level.processBackgroundRequest(request);
+   }
+
+
    createMovementRequest() {
       const request = new MovementRequest();
       request.xPositionStart = this.currentPosition.getX();
