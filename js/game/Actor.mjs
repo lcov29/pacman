@@ -18,6 +18,12 @@ export default class Actor {
       this.hasTeleportedInPreviousTurn = false;
       this.updateFlagCurrentPosition = true;
       this.updateFlagNextPosition = true;
+      this.spriteDisplayPriority = -1;
+   }
+
+
+   setSpriteDisplayPriority(priority) {
+      this.spriteDisplayPriority = priority;
    }
 
 
