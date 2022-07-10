@@ -12,7 +12,7 @@ export default class Game {
       this.animationInterval = null;
       this.level = null;
       // this.view = new View(boardContainerId, scoreId, lifeId);
-      this.view = [];
+      this.viewList = [];
       this.inProgress = false;
    }
 
