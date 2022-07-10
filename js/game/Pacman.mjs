@@ -35,6 +35,7 @@ export default class Pacman extends Actor {
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.hasChangedMovementDirection = false;
+      this.isBackgroundUpdateNeeded = false;
    }
 
 
@@ -172,6 +173,7 @@ export default class Pacman extends Actor {
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         this.isBackgroundUpdateNeeded = true;
       }
    }
 
@@ -183,6 +185,7 @@ export default class Pacman extends Actor {
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         this.isBackgroundUpdateNeeded = true;
       }
    }
 
@@ -191,6 +194,7 @@ export default class Pacman extends Actor {
       if (super.isNextPositionElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER)) {
          super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
          this.level.handleBonusConsumption();
+         this.isBackgroundUpdateNeeded = true;
       }
    }
 
