@@ -255,6 +255,16 @@ export default class Level {
     }
 
 
+    // NEW
+    // TODO: THINK ABOUT SITUATION WHERE A GHOST LEAVING A POSITION OVERWRITES BOARD INFORMATION ABOUT ANOTHER GHOST THAT PREVIOUSLY 
+    //       ENTERED THE POSITION IN THE SAME TURN
+    processMovementRequest(request) {
+        this.board.updateActorLayerPosition(request.xPositionStart, request.yPositionStart, '');
+        this.board.updateActorLayerPosition(request.xPositionDestination, request.yPositionDestination, request.actorCharacter);
+        this.game.addMovementRequest(request);
+    }
+
+
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === positionId) {
