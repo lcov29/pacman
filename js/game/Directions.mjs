@@ -14,6 +14,10 @@ export default class Directions {
     static MIN_DIRECTION_ID = 0;
     static MAX_DIRECTION_ID = 3;
     static validDirectionValues = [-1, 0, 1];
+    static validDirectionNames = [Configuration.DIRECTION_NAME_UP,
+                                  Configuration.DIRECTION_NAME_RIGHT,
+                                  Configuration.DIRECTION_NAME_DOWN,
+                                  Configuration.DIRECTION_NAME_LEFT];
 
 
     static directionMapNameToDirection = {
