@@ -24,6 +24,11 @@ export default class Game {
    }
 
 
+   addMovementRequest(request) {
+      this.viewList.forEach((view) => { view.addMovementRequest(request); });
+   }
+
+
    readLevelJson() {
       let level = sessionStorage.getItem('customLevel');
       sessionStorage.removeItem('customLevel');
