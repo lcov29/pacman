@@ -29,6 +29,11 @@ export default class Game {
    }
 
 
+   addBackgroundRequest(request) {
+      this.viewList.forEach((view) => { view.addBackgroundRequest(request); });
+   }
+
+
    readLevelJson() {
       let level = sessionStorage.getItem('customLevel');
       sessionStorage.removeItem('customLevel');
