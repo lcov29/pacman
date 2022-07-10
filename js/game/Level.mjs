@@ -265,6 +265,13 @@ export default class Level {
     }
 
 
+    // NEW
+    processBackgroundRequest(request) {
+        this.board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
+        this.game.addBackgroundRequest(request);
+    }
+
+
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
             if (pacman.getCurrentPosition().getID() === positionId) {
