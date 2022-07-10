@@ -13,6 +13,7 @@ export default class Directions {
     static DIRECTION_LEFT = {x:-1, y:0};
     static MIN_DIRECTION_ID = 0;
     static MAX_DIRECTION_ID = 3;
+    static validDirectionValues = [-1, 0, 1];
 
 
     static directionMapNameToDirection = {
