@@ -231,6 +231,8 @@ export default class Configuration {
       static SUFFIX_BACKGROUND_DIV = 'bg';
       static DIMENSION_BACKGROUND_DIV_IN_PX = 30;
 
+      static spriteAlternationIntervalLength = 5;
+
 
 
    // Others
