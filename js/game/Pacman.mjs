@@ -31,6 +31,7 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter(Configuration.PACMAN_CHARACTER);
       super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
+      super.setSpriteDisplayPriority(Configuration.PACMAN_SPRITE_DISPLAY_PRIORITY);
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.hasChangedMovementDirection = false;
@@ -103,7 +104,8 @@ export default class Pacman extends Actor {
                   this.handleBonusElementCollision();
                }
                this.updatePositionChangeFlag();
-               super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
+               //super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
+               super.sendLevelMovementRequest();
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
                this.setMovementDirectionChangeStatus(false);
