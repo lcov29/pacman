@@ -108,7 +108,7 @@ export default class MainCanvas {
     }
 
 
-    animateMovement() {
+    drawCurrentLevelState() {
         this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
         this.#context.drawImage(this.#backgroundCanvas, 0, 0);
 
@@ -117,8 +117,13 @@ export default class MainCanvas {
             this.#context.translate(animationObject.xPosition, animationObject.yPosition);
             this.#context.drawImage(animationObject.sprite, 0, 0, this.#tileWidth, this.#tileHeight);
             this.#context.restore();
-            animationObject.move(Configuration.actorMovementSpeedInPixel);
         }
     }
+
+
+    moveAnimationObjectsBy(distanceInPixel) {
+        this.#animationObjectList.forEach((animationObject) => { animationObject.move(distanceInPixel); });
+    }
     
+
 }
