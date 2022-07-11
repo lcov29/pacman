@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 import Configuration from '../Configuration.mjs';
@@ -122,3 +123,5 @@ export default class View {
    
    
 }
+
+*/
