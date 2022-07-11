@@ -1,7 +1,7 @@
 'use strict';
 
 import Level from './Level.mjs';
-import View from './View.mjs';
+import CanvasView from './views/canvas/CanvasView.mjs';
 import Configuration from '../Configuration.mjs';
 
 
@@ -11,8 +11,7 @@ export default class Game {
    constructor(boardContainerId, scoreId, lifeId) {
       this.animationInterval = null;
       this.level = null;
-      // this.view = new View(boardContainerId, scoreId, lifeId);
-      this.viewList = [];
+      this.viewList = [new CanvasView()];
       this.inProgress = false;
    }
 
@@ -20,7 +19,30 @@ export default class Game {
    loadLevel() {
       this.level = new Level(this);
       this.level.initialize(this.readLevelJson());
-      this.view.initialize(this.level.getBoardPositionArray());
+      this.initializeViews();
+   }
+
+
+   initializeViews() {
+      this.sendInitialBackgroundRequests();
+      this.sendInitialMovementRequests();
+      this.viewList.forEach((view) => { view.initialize(); });
+   }
+
+
+   sendInitialBackgroundRequests() {
+      const requestList = this.level.getInitialBackgroundRequestList();
+      for (let request of requestList) {
+         this.addBackgroundRequest(request);
+      }
+   }
+
+
+   sendInitialMovementRequests() {
+      const requestList = this.level.getInitialActorMovementRequestList();
+      for (let request of requestList) {
+         this.addMovementRequest(request);
+      }
    }
 
 
