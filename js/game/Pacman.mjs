@@ -106,7 +106,6 @@ export default class Pacman extends Actor {
                   this.handleBonusElementCollision();
                }
                this.updatePositionChangeFlag();
-               //super.updateBoard(Configuration.EMPTY_FOREGROUND_CSS_CLASS, this.getStyleClass());
                super.sendLevelMovementRequest();
                this.sendLevelBackgroundRequest();
                super.updateCurrentPosition();
