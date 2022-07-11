@@ -5,13 +5,14 @@ import Configuration from '../../../Configuration.mjs';
 
 export default class CanvasView {
 
-
+    #game = null;
     #backgroundCanvas = null;
     #mainCanvas = null;
     #animationFrameId;
 
 
-    constructor() {
+    constructor(game) {
+        this.#game = game;
         this.#backgroundCanvas = new BackgroundCanvas();
         this.#mainCanvas = new MainCanvas();
     }
@@ -71,7 +72,10 @@ export default class CanvasView {
 
     callBackAnimation() {
         this.#mainCanvas.drawCurrentLevelState();
-        this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
+        const isAnimationComplete = this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
+        if (isAnimationComplete) {
+            this.#game.notifyAnimationComplete();
+        }
         this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
     }
 
