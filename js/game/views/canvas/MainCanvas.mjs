@@ -10,6 +10,7 @@ export default class MainCanvas {
     #context = null;
     #movementRequestStack = [];
     #animationObjectList = [];
+    #animationsInProgress = 0;
     #spriteMapper = null;
     #tileWidth = -1;
     #tileHeight = -1;
@@ -96,6 +97,7 @@ export default class MainCanvas {
     processRequestStack() {
         this.#movementRequestStack.forEach(this.loadMovementRequestIntoAnimationObject, this);
         this.#movementRequestStack = [];
+        this.#animationsInProgress = this.#animationObjectList.length;
     }
 
     
@@ -122,7 +124,19 @@ export default class MainCanvas {
 
 
     moveAnimationObjectsBy(distanceInPixel) {
-        this.#animationObjectList.forEach((animationObject) => { animationObject.move(distanceInPixel); });
+
+        for (let animationObject of this.#animationObjectList) {
+
+            animationObject.move(distanceInPixel);
+
+            if (animationObject.isAnimationComplete()) {
+                this.#animationsInProgress--;
+            }
+            
+        }
+        
+        const isAnimationComplete = this.#animationsInProgress === 0;
+        return isAnimationComplete;
     }
     
 
