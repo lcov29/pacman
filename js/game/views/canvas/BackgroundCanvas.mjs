@@ -19,7 +19,6 @@ export default class BackgroundCanvas {
         this.#context = this.#canvas.getContext('2d');
         this.#backgroundRequestStack = [];
         this.#initializeSpriteMapper();
-        
     }
 
 
