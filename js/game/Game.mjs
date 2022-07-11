@@ -8,11 +8,10 @@ import Configuration from '../Configuration.mjs';
 export default class Game {
 
 
-   constructor(boardContainerId, scoreId, lifeId) {
-      this.animationInterval = null;
+   constructor() {
       this.level = null;
-      this.viewList = [new CanvasView()];
-      this.inProgress = false;
+      this.mainView = new CanvasView(this);
+      this.viewList = [this.mainCanvas];
    }
 
 
@@ -64,21 +63,34 @@ export default class Game {
       }
       return level;
    }
-   
 
-   start() {
-      if (this.inProgress === false) {  
-         this.animationInterval = setInterval(function(ref) {ref.nextTurn();}, Configuration.INTERVAL_DELAY_IN_MILLISECONDS, this);
-         this.inProgress = true; 
-      }
+
+   notifyTurnComplete() {
+      this.viewList.forEach((view) => { view.processRequestStacks(); })
    }
 
 
+   notifyAnimationComplete() {
+      this.level.executeTurn();
+   }
+   
+
+   start() {
+      this.mainView.startAnimationLoop();
+   }
+
+
+   end() {
+      this.mainView.stopAnimationLoop();
+   }
+
+
+   /*
    nextTurn() {
       this.level.executeTurn();
       this.handleWin();
       this.handleDefeat();
-   }
+   }*/
 
 
    handleWin() {
@@ -97,20 +109,10 @@ export default class Game {
    }
 
 
-   end() {
-      clearInterval(this.animationInterval);
-      this.inProgress = false;
-   }
-
-
+   /*
    updateView(boardPositions, styleClass, score, numberOfLifes) {
       this.view.update(boardPositions, styleClass, score, numberOfLifes);
-   }
-
-
-   isInProgress() {
-      return this.inProgress;
-   }
+   }*/
 
 
    processUserCommand(keycode) {
