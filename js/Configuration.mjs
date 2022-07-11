@@ -232,6 +232,7 @@ export default class Configuration {
       static DIMENSION_BACKGROUND_DIV_IN_PX = 30;
 
       static spriteAlternationIntervalLength = 5;
+      static actorMovementSpeedInPixel = 1;
 
 
 
