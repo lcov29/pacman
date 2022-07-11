@@ -71,19 +71,6 @@ export default class Ghost extends Actor {
    getTeleportationStatus() {
       return this.hasTeleportedInPreviousTurn;
    }
-
-
-   getCurrentPositionStyleClass() {
-      let styleclass = '';
-      let currentPositionElementCharacter = super.getCurrentPosition().getElementCharacter();
-      if (currentPositionElementCharacter === Configuration.BONUS_ELEMENT_CHARACTER) {
-         styleclass = this.level.getBonusElementStyleClass();
-      } else {
-         styleclass = StyleClassMapper.getForegroundStyleClass(Configuration.EMPTY_TILE_CHARACTER,
-                                                               currentPositionElementCharacter);
-      }
-      return styleclass;
-   }
    
 
    isNextPositionEqualToTeleportDestination() {
