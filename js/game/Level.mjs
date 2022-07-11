@@ -40,8 +40,7 @@ export default class Level {
 
     initialize(levelJson) {
         this.board = new Board(levelJson);
-        this.bonusElementSpawner = new BonusElementSpawner();
-        this.bonusElementSpawner.initialize(this.board.getBonusSpawnPositions(), 1, this);
+        this.bonusElementSpawner = new BonusElementSpawner(this.board.getBonusSpawnPositions(), 1, this);
         this.teleporters = LevelInitializer.initializeTeleporters(this.board);
         this.pacmans = LevelInitializer.initializePacmans(this.board, this);
         this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
@@ -183,11 +182,6 @@ export default class Level {
 
     getBoardPositionAt(x, y) {
         return this.board.getPosition(x, y);
-    }
-
-
-    getBonusElementStyleClass() {
-        return this.bonusElementSpawner.getStyleClass();
     }
 
 
