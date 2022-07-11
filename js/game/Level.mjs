@@ -6,6 +6,8 @@ import Configuration from '../Configuration.mjs';
 import Utility from '../Utility.mjs';
 import Board from './Board.mjs';
 import BonusElementSpawner from './BonusElementSpawner.mjs';
+import BackgroundRequest from '../BackgroundRequest.mjs';
+import MovementRequest from '../MovementRequest.mjs';
 
 /*  
     =================================================================================================================
@@ -38,7 +40,6 @@ export default class Level {
 
     initialize(levelJson) {
         this.board = new Board(levelJson);
-        this.updateManager = new UpdateManager(this, this.board);
         this.bonusElementSpawner = new BonusElementSpawner();
         this.bonusElementSpawner.initialize(this.board.getBonusSpawnPositions(), 1, this);
         this.teleporters = LevelInitializer.initializeTeleporters(this.board);
@@ -47,6 +48,54 @@ export default class Level {
         this.availablePoints = this.countAvailablePoints();
         this.totalPacmanLifes = this.countInitialPacmanLifes();
     }
+
+
+    getInitialBackgroundRequestList() {
+        const boardPositionArray = this.board.buildBoardPositionArray();
+        const requestList = [];
+
+        for (let row of boardPositionArray) {
+            for (let element of row) {
+                const request = new BackgroundRequest(element.getX(), element.getY(), element.getElementLayerCharacter());
+                requestList.push(request);
+            }
+        }
+
+        return requestList;
+    }
+
+
+    getInitialActorMovementRequestList() {
+        const initialPacmanPositionList = this.board.getInitialPacmanPositions();
+        const initialGhostPositionList = this.board.getInitialGhostPositions();
+        const initialActorPositionList = [...initialPacmanPositionList, ...initialGhostPositionList];
+        const requestList = [];
+
+        for (let position of initialActorPositionList) {
+            const request = new MovementRequest();
+
+            request.xPositionStart = position.getX();
+            request.yPositionStart = position.getY();
+            request.xPositionDestination = position.getX();
+            request.yPositionDestination = position.getY();
+
+            const actorCharacter = position.getActorCharacter();
+            request.actorCharacter =  actorCharacter;
+
+            const isGhostCharacter = Configuration.GHOST_CHARACTERS.includes(actorCharacter);
+            if (isGhostCharacter) {
+                request.directionName = Configuration.INITIAL_GHOST_SPRITES_DIRECTION;
+            } else {
+                request.directionName = Configuration.INITIAL_PACMAN_SPRITE_DIRECTION;
+            }
+            
+            requestList.push(request);
+        }
+
+        return requestList;
+    }
+
+
 
 
     executeTurn() {
@@ -134,11 +183,6 @@ export default class Level {
 
     getBoardPositionAt(x, y) {
         return this.board.getPosition(x, y);
-    }
-
-
-    getBoardPositionArray() {
-        return this.board.buildBoardPositionArray();
     }
 
 
