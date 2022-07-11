@@ -10,7 +10,6 @@ export default class MainCanvas {
     #context = null;
     #movementRequestStack = [];
     #animationObjectList = [];
-    #animationFrameId = -1;
     #spriteMapper = null;
     #tileWidth = -1;
     #tileHeight = -1;
@@ -94,7 +93,7 @@ export default class MainCanvas {
     }
 
 
-    processMovementRequestStack() {
+    processRequestStack() {
         this.#movementRequestStack.forEach(this.loadMovementRequestIntoAnimationObject, this);
         this.#movementRequestStack = [];
     }
@@ -120,8 +119,6 @@ export default class MainCanvas {
             this.#context.restore();
             animationObject.move(Configuration.actorMovementSpeedInPixel);
         }
-
-        this.#animationFrameId = requestAnimationFrame(this.animateMovement.bind(this));
     }
     
 }
