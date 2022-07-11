@@ -17,7 +17,14 @@ export default class CanvasView {
     }
 
 
-    initializeCanvasSize() {
+    initialize() {
+        this.#initializeCanvasSize();
+        this.processRequestStacks();
+        this.#mainCanvas.drawCurrentLevelState();
+    }
+
+
+    #initializeCanvasSize() {
         const tileWidth = 30 * devicePixelRatio;
         const tileHeight = 30 * devicePixelRatio;
         const columnNumber = 27;
@@ -43,7 +50,7 @@ export default class CanvasView {
     }
 
 
-    animateNextStep() {
+    processRequestStacks() {
         this.#backgroundCanvas.processRequestStack();
         this.#mainCanvas.processRequestStack();
     }
