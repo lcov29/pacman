@@ -11,8 +11,8 @@ export default class GhostStateDead extends GhostState {
     constructor(ghost) {
         // set duration to infinite; state ends when spawn is reached
         super(Infinity, ghost);   
-        super.setBaseStyleClass(Configuration.GHOST_DEAD_FOREGROUND_CSS_CLASS);
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_DEAD_SPRITE_DISPLAY_PRIORITY);
+        // super.setBaseStyleClass(Configuration.GHOST_DEAD_FOREGROUND_CSS_CLASS);
+        super.setSpriteDisplayPriority(Configuration.ghostStateDeadSpriteDisplayPriority);
     }
 
 
@@ -21,11 +21,12 @@ export default class GhostStateDead extends GhostState {
     }
 
 
+    /*
     getStyleClass() {
         let baseStyleClass = super.getBaseStyleClass();
         let directionName = super.getGhost().getCurrentMovementDirectionName();
         return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-    }
+    }*/
 
 
     isHostileTowardsPacman() {
@@ -92,7 +93,7 @@ export default class GhostStateDead extends GhostState {
 
     handlePacmanCollisionOnCurrentPosition() {
         let ghost = super.getGhost();
-        if (ghost.isCurrentPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+        if (ghost.isCurrentPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.setUpdateFlagCurrentPosition(false);
         } 
     }
@@ -100,7 +101,7 @@ export default class GhostStateDead extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.setUpdateFlagNextPosition(false);
         }
     }

@@ -68,7 +68,7 @@ export default class EditorTileManipulationState {
         for (let radio of radios) {
             let radioLabel = document.querySelector(`label[for="${radio.id}"]`);
             if (selectedRadioId === radio.id) {
-                radioLabel.style.borderColor = Configuration.EDITOR_TILE_SELECTION_HIGHLIGHT_COLOR_HEX;
+                radioLabel.style.borderColor = Configuration.editorTileSelectionHighlightColorHex;
             } else {
                 radioLabel.setAttribute('style', '');
             }
@@ -105,7 +105,7 @@ export default class EditorTileManipulationState {
         let isControlDisplayed = false;
         let ghostTypeControlIds = [];
 
-        for (let ghostCharacter of Configuration.GHOST_CHARACTERS) {
+        for (let ghostCharacter of Configuration.ghostCharacterList) {
             ghostTypeCounter = this.editor.getCounterForGhostType(ghostCharacter);
             ghostTypeControlIds = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter];
             isControlDisplayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
@@ -136,7 +136,7 @@ export default class EditorTileManipulationState {
 
     manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
         let character = EditorElementMapper.mapTileTypeToInternalElement[this.selectorTileType];
-        let isTileInaccessible = Configuration.ACTORS_INACCESSIBLE_TILES.includes(character);
+        let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
         let ghostCharactersScatter = this.editor.getGhostCharactersForScatterPosition(callerId);
         let ghostCharactersSpawn = this.editor.getGhostCharactersForSpawnPosition(callerId);
         let isTileScatterOrSpawn = (ghostCharactersScatter.length > 0) || (ghostCharactersSpawn.length > 0);

@@ -10,9 +10,9 @@ export default class GhostInky extends Ghost {
 
     constructor(level, position, routing) {
         super(level, position, routing);
-        super.setCharacter(Configuration.GHOST_INKY_CHARACTER);
-        super.setBaseMovementStyleClass(Configuration.GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS);
-        super.setBaseRespawnStyleClass(Configuration.GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS);
+        super.setCharacter(Configuration.ghostInkyCharacter);
+        // super.setBaseMovementStyleClass(Configuration.GHOST_INKY_MOVEMENT_FOREGROUND_CSS_CLASS);
+        // super.setBaseRespawnStyleClass(Configuration.GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS);
         super.setInitialState();
     }
 
@@ -40,7 +40,7 @@ export default class GhostInky extends Ghost {
         let x = pacmanPosition.getX();
         let y =  pacmanPosition.getY();
 
-        for (let i = 0; i < Configuration.GHOST_INKY_MAX_TILE_OFFSET_TO_PACMAN_DIRECTION_POSITION; i++) {
+        for (let i = 0; i < Configuration.ghostInkyMaxTileOffsetToPacmanDirectionPosition; i++) {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
             try {
@@ -120,7 +120,7 @@ export default class GhostInky extends Ghost {
 
     selectPositionsOfGhostTypeWithHighestReferencePriority() {
         let ghostPositions = [];
-        for (let ghostCharacter of Configuration.GHOST_REFERENCE_PRIORITY_LIST_FOR_CHASE_PATTERN_OF_GHOST_INKY) {
+        for (let ghostCharacter of Configuration.chasePatternGhostInkyGhostPriorityList) {
             ghostPositions = this.level.getGhostPositionsFor(ghostCharacter);
             if (ghostPositions.length > 0) { break; }
         }
@@ -129,7 +129,7 @@ export default class GhostInky extends Ghost {
 
     
     isPositionAccessible(position) {
-        return (Configuration.ACTORS_INACCESSIBLE_TILES.includes(position.getElementCharacter()) === false);
+        return (Configuration.actorsInaccessibleTileCharacterList.includes(position.getElementCharacter()) === false);
     }
 
 
@@ -142,7 +142,7 @@ export default class GhostInky extends Ghost {
         let pacmanMovementDirection = this.level.getPacmanMovementDirectionFor(pacmanPositionId);
         if (pacmanMovementDirection === undefined) {
             // handle case when pacman has not yet moved at the start of the game
-            pacmanMovementDirection = Directions.getDirectionByName(Configuration.INITIAL_PACMAN_SPRITE_DIRECTION);
+            pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);
         }
         return pacmanMovementDirection;
     }

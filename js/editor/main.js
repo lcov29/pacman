@@ -110,8 +110,8 @@ function validateMapWidthInput() {
     try {
         let input = document.getElementById(this.id);
         let inputNumber = parseInt(input.value);
-        if ((inputNumber < Configuration.EDITOR_BOARD_MIN_WIDTH) ||
-            (inputNumber > Configuration.EDITOR_BOARD_MAX_WIDTH)) {
+        if ((inputNumber < Configuration.editorBoardMinWidth) ||
+            (inputNumber > Configuration.editorBoardMaxWidth)) {
             input.value = '';
         }
     } catch(e) {
@@ -124,8 +124,8 @@ function validateMapHeightInput() {
     try {
         let input = document.getElementById(this.id);
         let inputNumber = parseInt(input.value);
-        if ((inputNumber < Configuration.EDITOR_BOARD_MIN_HEIGHT) ||
-            (inputNumber > Configuration.EDITOR_BOARD_MAX_HEIGHT)) {
+        if ((inputNumber < Configuration.editorBoardMinHeight) ||
+            (inputNumber > Configuration.editorBoardMaxHeight)) {
             input.value = '';
         }
     } catch(e) {
@@ -135,7 +135,7 @@ function validateMapHeightInput() {
 
 
 function inputScatterSpawnMouseEnterCallback() {
-    let borderColor = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
+    let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
     let coordinateString = document.getElementById(this.id).value;
     if (coordinateString !== '') {
         document.getElementById(coordinateString).style.borderColor = borderColor;
@@ -185,5 +185,5 @@ function buttonPlayCallback() {
 // workaround to make loading of index.html on github pages possible
 function loadIndexPage() {
     let url = location.href;
-    location.href = url.replace(Configuration.FILE_NAME_EDITOR, Configuration.FILE_NAME_INDEX);
+    location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
 }

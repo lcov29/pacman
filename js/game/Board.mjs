@@ -185,7 +185,7 @@ export default class Board {
 
 
    isAccessibleAt(x, y) {
-      return this.board[y][x].getID() !== Configuration.ID_UNACCESSIBLE_BOARD_TILES;
+      return this.board[y][x].getID() !== Configuration.idInaccessibleBoardTiles;
    }
 
 

@@ -13,7 +13,7 @@ export default class GhostStateChase extends GhostState {
     constructor(durationInTurns, ghost) {
         super(durationInTurns, ghost);
         super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_CHASE_SPRITE_DISPLAY_PRIORITY);
+        super.setSpriteDisplayPriority(Configuration.ghostStateChaseSpriteDisplayPriority);
     }
 
 
@@ -22,11 +22,12 @@ export default class GhostStateChase extends GhostState {
     }
 
 
+    /*
     getStyleClass() {
         let baseStyleClass = super.getBaseStyleClass();
         let directionName = super.getGhost().getCurrentMovementDirectionName();
         return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-    }
+    }*/
 
 
     isHostileTowardsPacman() {
@@ -91,7 +92,7 @@ export default class GhostStateChase extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.killPacman(ghost.getNextPosition().getID());
         }
     }

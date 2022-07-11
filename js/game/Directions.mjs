@@ -14,33 +14,33 @@ export default class Directions {
     static MIN_DIRECTION_ID = 0;
     static MAX_DIRECTION_ID = 3;
     static validDirectionValues = [-1, 0, 1];
-    static validDirectionNames = [Configuration.DIRECTION_NAME_UP,
-                                  Configuration.DIRECTION_NAME_RIGHT,
-                                  Configuration.DIRECTION_NAME_DOWN,
-                                  Configuration.DIRECTION_NAME_LEFT];
+    static validDirectionNames = [Configuration.directionNameUp,
+                                  Configuration.directionNameRight,
+                                  Configuration.directionNameDown,
+                                  Configuration.directionNameLeft];
 
 
     static directionMapNameToDirection = {
-        [Configuration.DIRECTION_NAME_UP]:    this.DIRECTION_UP,
-        [Configuration.DIRECTION_NAME_RIGHT]: this.DIRECTION_RIGHT,
-        [Configuration.DIRECTION_NAME_DOWN]:  this.DIRECTION_DOWN,
-        [Configuration.DIRECTION_NAME_LEFT]:  this.DIRECTION_LEFT
+        [Configuration.directionNameUp]:    this.DIRECTION_UP,
+        [Configuration.directionNameRight]: this.DIRECTION_RIGHT,
+        [Configuration.directionNameDown]:  this.DIRECTION_DOWN,
+        [Configuration.directionNameLeft]:  this.DIRECTION_LEFT
     };
 
 
     static directionMapInverse = {
-        [Configuration.DIRECTION_NAME_UP]:      Configuration.DIRECTION_NAME_DOWN,
-        [Configuration.DIRECTION_NAME_RIGHT]:   Configuration.DIRECTION_NAME_LEFT,
-        [Configuration.DIRECTION_NAME_DOWN]:    Configuration.DIRECTION_NAME_UP,
-        [Configuration.DIRECTION_NAME_LEFT]:    Configuration.DIRECTION_NAME_RIGHT
+        [Configuration.directionNameUp]:      Configuration.DirectionNameDown,
+        [Configuration.directionNameRight]:   Configuration.directionNameLeft,
+        [Configuration.directionNameDown]:    Configuration.directionNameUp,
+        [Configuration.directionNameLeft]:    Configuration.directionNameRight
     };
 
 
     static directionMapDirectionToName = {
-        '(0,-1)': Configuration.DIRECTION_NAME_UP,
-        '(1,0)':  Configuration.DIRECTION_NAME_RIGHT,
-        '(0,1)':  Configuration.DIRECTION_NAME_DOWN,
-        '(-1,0)': Configuration.DIRECTION_NAME_LEFT
+        '(0,-1)': Configuration.directionNameUp,
+        '(1,0)':  Configuration.directionNameRight,
+        '(0,1)':  Configuration.directionNameDown,
+        '(-1,0)': Configuration.directionNameLeft
     };
 
 

@@ -126,7 +126,7 @@ export default class Actor {
 
    isCurrentPositionTeleporter() {
       let currentPositionElement = this.currentPosition.getElementCharacter();
-      return Configuration.TELEPORTER_CHARACTERS.includes(currentPositionElement);
+      return Configuration.teleporterCharacterList.includes(currentPositionElement);
    }
 
 

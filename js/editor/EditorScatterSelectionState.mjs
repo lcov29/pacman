@@ -24,7 +24,7 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
     handleEditorTileClick(callerId) {
         let editor = super.getEditor();
         let tileCharacter = editor.getBoardCharacterAt(callerId);
-        let isTileAccessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tileCharacter) === false);
+        let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
         if (isTileAccessible) {
             editor.addScatterPosition(super.getButtonId(), callerId);
             editor.setState(new EditorDefaultState());

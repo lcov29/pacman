@@ -35,9 +35,9 @@ export default class BoardParser {
                 currentCharacter = output[y][x];
                 if (this.isActor(currentCharacter)) {
                     currentActorCharacter = currentCharacter;
-                    currentElementCharacter = Configuration.EMPTY_TILE_CHARACTER;
+                    currentElementCharacter = Configuration.emptyTileCharacter;
                 } else {
-                    currentActorCharacter = Configuration.EMPTY_TILE_CHARACTER;
+                    currentActorCharacter = Configuration.emptyTileCharacter;
                     currentElementCharacter = currentCharacter;
                 }
                 output[y][x] = new BoardPosition(x, y, currentActorCharacter, currentElementCharacter);
@@ -66,7 +66,7 @@ export default class BoardParser {
         let positions = [];
         for (let position of parsedJson.scatterPositions) {
             let boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
+            boardPositionClone.setActorCharacter(Configuration.emptyTileCharacter);
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
@@ -78,7 +78,7 @@ export default class BoardParser {
         let positions = [];
         for (let position of parsedJson.optionalSpawns) {
             let boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
+            boardPositionClone.setActorCharacter(Configuration.emptyTileCharacter);
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
@@ -98,15 +98,15 @@ export default class BoardParser {
               let currentActorCharacter = currentPosition.getActorCharacter();
               let currentElementCharacter = currentPosition.getElementCharacter();
   
-              if (currentActorCharacter === Configuration.PACMAN_CHARACTER) {
+              if (currentActorCharacter === Configuration.pacmanCharacter) {
                  initialPacmanPositions.push(currentPosition);
               }
 
-              if (Configuration.GHOST_CHARACTERS.includes(currentActorCharacter)) {
+              if (Configuration.ghostCharacterList.includes(currentActorCharacter)) {
                  initialGhostPositions.push(currentPosition);
               }
   
-              if (Configuration.TELEPORTER_CHARACTERS.includes(currentElementCharacter)) {
+              if (Configuration.teleporterCharacterList.includes(currentElementCharacter)) {
                  teleporterPositions.push(currentPosition);
               }
   
@@ -123,12 +123,12 @@ export default class BoardParser {
 
 
     isActor(character) {
-        return Configuration.ACTOR_CHARACTERS.includes(character);
+        return Configuration.actorCharacterList.includes(character);
     }
 
 
     isAccessibleByActor(character) {
-        return (Configuration.ACTORS_INACCESSIBLE_TILES.includes(character) === false)
+        return (Configuration.actorsInaccessibleTileCharacterList.includes(character) === false)
     }
 
 

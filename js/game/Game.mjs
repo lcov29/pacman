@@ -59,7 +59,7 @@ export default class Game {
       let level = sessionStorage.getItem('customLevel');
       sessionStorage.removeItem('customLevel');
       if (level === null) {
-         level = Configuration.DEFAULT_LEVEL_JSON;
+         level = Configuration.jsonDefaultLevel;
       }
       return level;
    }
@@ -118,28 +118,28 @@ export default class Game {
    processUserCommand(keycode) {
          switch(keycode) {
          
-            case Configuration.KEY_CODE_UP_ARROW:
-            case Configuration.KEY_CODE_W:
-               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_UP);
+            case Configuration.keyCodeUpArrow:
+            case Configuration.keyCodeW:
+               this.level.setNextPacmanDirection(Configuration.directionNameUp);
                break;
             
-            case Configuration.KEY_CODE_RIGHT_ARROW:
-            case Configuration.KEY_CODE_D:
-               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_RIGHT);
+            case Configuration.keyCodeRightArrow:
+            case Configuration.keyCodeD:
+               this.level.setNextPacmanDirection(Configuration.directionNameRight);
                break;
             
-            case Configuration.KEY_CODE_DOWN_ARROW:
-            case Configuration.KEY_CODE_S:
-               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_DOWN);
+            case Configuration.keyCodeDownArrow:
+            case Configuration.keyCodeS:
+               this.level.setNextPacmanDirection(Configuration.directionNameDown);
                break;
       
-            case Configuration.KEY_CODE_LEFT_ARROW:
-            case Configuration.KEY_CODE_A:
-               this.level.setNextPacmanDirection(Configuration.DIRECTION_NAME_LEFT);
+            case Configuration.keyCodeLeftArrow:
+            case Configuration.keyCodeA:
+               this.level.setNextPacmanDirection(Configuration.directionNameLeft);
                break;
 
-            case Configuration.KEY_CODE_ENTER:
-            case Configuration.KEY_CODE_SPACE:
+            case Configuration.keyCodeEnter:
+            case Configuration.keyCodeSpace:
                this.start();
                break;
          }         

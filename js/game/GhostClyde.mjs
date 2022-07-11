@@ -9,9 +9,9 @@ export default class GhostClyde extends Ghost {
 
     constructor(level, position, routing) {
         super(level, position, routing);
-        super.setCharacter(Configuration.GHOST_CLYDE_CHARACTER);
-        super.setBaseMovementStyleClass(Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS);
-        super.setBaseRespawnStyleClass(Configuration.GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS);
+        super.setCharacter(Configuration.ghostClydeCharacter);
+        // super.setBaseMovementStyleClass(Configuration.GHOST_CLYDE_MOVEMENT_FOREGROUND_CSS_CLASS);
+        // super.setBaseRespawnStyleClass(Configuration.GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS);
         super.setInitialState();
     }
 
@@ -21,7 +21,7 @@ export default class GhostClyde extends Ghost {
         let targetTileId = -1;
         let pacmanId = super.selectClosestPacmanID();
         let minDistanceToClosestPacman = super.getRouting().getShortestDistanceBetween(positionId, pacmanId);
-        if (minDistanceToClosestPacman >= Configuration.GHOST_CLYDE_MIN_TILE_DISTANCE_TO_PACMAN) {
+        if (minDistanceToClosestPacman >= Configuration.ghostClydeMinTileDistanceToPacman) {
             targetTileId = pacmanId;
         } else {
             targetTileId = super.getScatterID();

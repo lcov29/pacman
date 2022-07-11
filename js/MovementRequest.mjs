@@ -208,7 +208,7 @@ export default class MovementRequest {
 
 
     #isActorCharacterValid(character) {
-        return Configuration.ACTOR_CHARACTERS.includes(character);
+        return Configuration.actorCharacterList.includes(character);
     }
 
 

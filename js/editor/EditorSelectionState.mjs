@@ -46,11 +46,11 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        let borderColor = Configuration.EDITOR_SCATTER_SPAWN_SELECTION_POINTER_HIGHTLIGHT_COLOR_HEX;
+        let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
         let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
         let tileCharacter = this.editor.getBoardCharacterAt(callerId);
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        let isTileAccessible = (Configuration.ACTORS_INACCESSIBLE_TILES.includes(tileCharacter) === false);
+        let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
         let isTileSelectedGhostType = ghostCoordinates.includes(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {

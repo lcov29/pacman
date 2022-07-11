@@ -24,10 +24,10 @@ export default class EditorInternalLevel {
         this.reset();
         this.buildEmptyMap(width, height);
         this.mapCharacterToCoordinateList = {
-            [Configuration.GHOST_BLINKY_CHARACTER]:     this.coordinatesGhostBlinky,
-            [Configuration.GHOST_PINKY_CHARACTER]:      this.coordinatesGhostPinky,
-            [Configuration.GHOST_CLYDE_CHARACTER]:      this.coordinatesGhostClyde,
-            [Configuration.GHOST_INKY_CHARACTER]:       this.coordinatesGhostInky
+            [Configuration.ghostBlinkyCharacter]:     this.coordinatesGhostBlinky,
+            [Configuration.ghostPinkyCharacter]:      this.coordinatesGhostPinky,
+            [Configuration.ghostClydeCharacter]:      this.coordinatesGhostClyde,
+            [Configuration.ghostInkyCharacter]:       this.coordinatesGhostInky
         };
     }
 
@@ -97,7 +97,7 @@ export default class EditorInternalLevel {
         let row = [];
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
-                row.push(Configuration.UNDEFINED_TILE_CHARACTER);
+                row.push(Configuration.undefinedTileCharacter);
             }
             this.internalBoard.push(row);
             row = [];
@@ -125,11 +125,11 @@ export default class EditorInternalLevel {
 
 
     updateGhostCoordinateLists(coordinatesString, currentBoardCharacter, newCharacter) {
-        if (Configuration.GHOST_CHARACTERS.includes(currentBoardCharacter)) {
+        if (Configuration.ghostCharacterList.includes(currentBoardCharacter)) {
             this.removeCoordinatesFromGhostList(coordinatesString, currentBoardCharacter);
         }
 
-        if (Configuration.GHOST_CHARACTERS.includes(newCharacter)) {
+        if (Configuration.ghostCharacterList.includes(newCharacter)) {
             this.addCoordinatesToGhostList(coordinatesString, newCharacter);
         }
     }

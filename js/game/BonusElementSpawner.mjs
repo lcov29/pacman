@@ -72,7 +72,7 @@ export default class BonusElementSpawner {
 
 
     handleSpawn(numberOfConsumedPoints) {
-        const isConsumedPointLimitReached = Configuration.POINT_LIMIT_FOR_BONUS_SPAWN.includes(numberOfConsumedPoints);
+        const isConsumedPointLimitReached = Configuration.pointLimitForBonusSpawn.includes(numberOfConsumedPoints);
 
         if (!this.isBonusElementSpawned && isConsumedPointLimitReached) {
             const spawnPosition = this.chooseRandomSpawnPositionFromList();

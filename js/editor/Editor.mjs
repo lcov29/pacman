@@ -24,29 +24,29 @@ export default class Editor {
 
 
     initialize() {
-        let width = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
-        let height = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
+        let width = Configuration.editorBoardDefaultWidth;
+        let height = Configuration.editorBoardDefaultHeight;
         this.internalLevel.initialize(width, height);
         this.initializeDimensionInput();
         this.currentState = new EditorDefaultState();
         this.mapGhostCharacterToDisplayStatusName = {
-            [Configuration.GHOST_BLINKY_CHARACTER]:     'isGhostBlinkyScatterSpawnControlDisplayed',
-            [Configuration.GHOST_PINKY_CHARACTER]:      'isGhostPinkyScatterSpawnControlDisplayed',
-            [Configuration.GHOST_CLYDE_CHARACTER]:      'isGhostClydeScatterSpawnControlDisplayed',
-            [Configuration.GHOST_INKY_CHARACTER]:       'isGhostInkyScatterSpawnControlDisplayed'
+            [Configuration.ghostBlinkyCharacter]:     'isGhostBlinkyScatterSpawnControlDisplayed',
+            [Configuration.ghostPinkyCharacter]:      'isGhostPinkyScatterSpawnControlDisplayed',
+            [Configuration.ghostClydeCharacter]:      'isGhostClydeScatterSpawnControlDisplayed',
+            [Configuration.ghostInkyCharacter]:       'isGhostInkyScatterSpawnControlDisplayed'
         };
     }
 
 
     initializeDimensionInput() {
-        this.inputMapHeight.setAttribute('min', Configuration.EDITOR_BOARD_MIN_HEIGHT);
-        this.inputMapWidth.setAttribute('min', Configuration.EDITOR_BOARD_MIN_WIDTH);
+        this.inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
+        this.inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
 
-        this.inputMapHeight.setAttribute('max', Configuration.EDITOR_BOARD_MAX_HEIGHT);
-        this.inputMapWidth.setAttribute('max', Configuration.EDITOR_BOARD_MAX_WIDTH);
+        this.inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
+        this.inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
 
-        this.inputMapHeight.value = Configuration.EDITOR_BOARD_DEFAULT_HEIGHT;
-        this.inputMapWidth.value = Configuration.EDITOR_BOARD_DEFAULT_WIDTH;
+        this.inputMapHeight.value = Configuration.editorBoardDefaultHeight;
+        this.inputMapWidth.value = Configuration.editorBoardDefaultWidth;
     }
 
 
@@ -211,7 +211,7 @@ export default class Editor {
 
     removeScatterPositionFor(buttonId) {
         let ghostCharacter = buttonId;
-        if (Configuration.GHOST_CHARACTERS.includes(buttonId) === false) {
+        if (Configuration.ghostCharacterList.includes(buttonId) === false) {
             ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
         this.internalLevel.removeScatterPositionFor(ghostCharacter);
@@ -220,7 +220,7 @@ export default class Editor {
 
     removeSpawnPositionFor(buttonId) {
         let ghostCharacter = buttonId;
-        if (Configuration.GHOST_CHARACTERS.includes(buttonId) === false) {
+        if (Configuration.ghostCharacterList.includes(buttonId) === false) {
             ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
         this.internalLevel.removeSpawnPositionFor(ghostCharacter);

@@ -7,22 +7,22 @@ export default class EditorElementMapper {
 
         
     static mapTileTypeToInternalElement = {
-        'wallTile':                     Configuration.WALL_CHARACTER,
-        'emptyTile':                    Configuration.EMPTY_TILE_CHARACTER,
-        'pointTile':                    Configuration.POINT_CHARACTER,
-        'powerupTile':                  Configuration.POWERUP_CHARACTER,
-        'ghostDoorHorizontalTile':      Configuration.GHOST_DOOR_HORIZONTAL_CHARACTER,
-        'ghostDoorVerticalTile':        Configuration.GHOST_DOOR_VERTICAL_CHARACTER,
-        'ghostDoorCrossingTile':        Configuration.GHOST_DOOR_CROSSING_CHARACTER,
-        'teleporter1Tile':              Configuration.TELEPORTER_1_CHARACTER,
-        'teleporter2Tile':              Configuration.TELEPORTER_2_CHARACTER,
-        'teleporter3Tile':              Configuration.TELEPORTER_3_CHARACTER,
-        'bonusSpawnTile':               Configuration.EMPTY_TILE_CHARACTER,
-        'pacmanTileRight':              Configuration.PACMAN_CHARACTER,
-        'ghostBlinkyMovementTileDown':  Configuration.GHOST_BLINKY_CHARACTER,
-        'ghostPinkyMovementTileDown':   Configuration.GHOST_PINKY_CHARACTER,
-        'ghostInkyMovementTileDown':    Configuration.GHOST_INKY_CHARACTER,
-        'ghostClydeMovementTileDown':   Configuration.GHOST_CLYDE_CHARACTER
+        'wallTile':                     Configuration.wallCharacter,
+        'emptyTile':                    Configuration.emptyTileCharacter,
+        'pointTile':                    Configuration.pointCharacter,
+        'powerupTile':                  Configuration.powerUpCharacter,
+        'ghostDoorHorizontalTile':      Configuration.ghostDoorHorizontalCharacter,
+        'ghostDoorVerticalTile':        Configuration.ghostDoorVerticalCharacter,
+        'ghostDoorCrossingTile':        Configuration.ghostDoorCrossingCharacter,
+        'teleporter1Tile':              Configuration.teleporter1Character,
+        'teleporter2Tile':              Configuration.teleporter2Character,
+        'teleporter3Tile':              Configuration.teleporter3Character,
+        'bonusSpawnTile':               Configuration.emptyTileCharacter,
+        'pacmanTileRight':              Configuration.pacmanCharacter,
+        'ghostBlinkyMovementTileDown':  Configuration.ghostBlinkyCharacter,
+        'ghostPinkyMovementTileDown':   Configuration.ghostPinkyCharacter,
+        'ghostInkyMovementTileDown':    Configuration.ghostInkyCharacter,
+        'ghostClydeMovementTileDown':   Configuration.ghostClydeCharacter
     };
 
 
@@ -39,22 +39,22 @@ export default class EditorElementMapper {
 
 
     static mapButtonIdToGhostCharacter = {
-        'select_scatter_position_ghost_blinky':     Configuration.GHOST_BLINKY_CHARACTER,
-        'select_scatter_position_ghost_pinky':      Configuration.GHOST_PINKY_CHARACTER,
-        'select_scatter_position_ghost_inky':       Configuration.GHOST_INKY_CHARACTER,
-        'select_scatter_position_ghost_clyde':      Configuration.GHOST_CLYDE_CHARACTER,
-        'select_spawn_position_ghost_blinky':       Configuration.GHOST_BLINKY_CHARACTER,
-        'select_spawn_position_ghost_pinky':        Configuration.GHOST_PINKY_CHARACTER,
-        'select_spawn_position_ghost_inky':         Configuration.GHOST_INKY_CHARACTER,
-        'select_spawn_position_ghost_clyde':        Configuration.GHOST_CLYDE_CHARACTER
+        'select_scatter_position_ghost_blinky':     Configuration.ghostBlinkyCharacter,
+        'select_scatter_position_ghost_pinky':      Configuration.ghostPinkyCharacter,
+        'select_scatter_position_ghost_inky':       Configuration.ghostInkyCharacter,
+        'select_scatter_position_ghost_clyde':      Configuration.ghostClydeCharacter,
+        'select_spawn_position_ghost_blinky':       Configuration.ghostBlinkyCharacter,
+        'select_spawn_position_ghost_pinky':        Configuration.ghostPinkyCharacter,
+        'select_spawn_position_ghost_inky':         Configuration.ghostInkyCharacter,
+        'select_spawn_position_ghost_clyde':        Configuration.ghostClydeCharacter
     }
 
 
     static mapInternalElementToScatterSpawnControlIds = {
-        [Configuration.GHOST_BLINKY_CHARACTER]: ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky'],
-        [Configuration.GHOST_PINKY_CHARACTER]:  ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky'],
-        [Configuration.GHOST_CLYDE_CHARACTER]:  ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde'],
-        [Configuration.GHOST_INKY_CHARACTER]:   ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']
+        [Configuration.ghostBlinkyCharacter]: ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky'],
+        [Configuration.ghostPinkyCharacter]:  ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky'],
+        [Configuration.ghostClydeCharacter]:  ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde'],
+        [Configuration.ghostInkyCharacter]:   ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']
     };
 
 
@@ -71,10 +71,10 @@ export default class EditorElementMapper {
 
 
     static mapGhostCharacterToHighlightColor = {
-        [Configuration.GHOST_BLINKY_CHARACTER]:     Configuration.EDITOR_GHOST_BLINKY_HIGHLIGHT_COLOR_HEX,
-        [Configuration.GHOST_PINKY_CHARACTER]:      Configuration.EDITOR_GHOST_PINKY_HIGHLIGHT_COLOR_HEX,
-        [Configuration.GHOST_CLYDE_CHARACTER]:      Configuration.EDITOR_GHOST_CLYDE_HIGHLIGHT_COLOR_HEX,
-        [Configuration.GHOST_INKY_CHARACTER]:       Configuration.EDITOR_GHOST_INKY_HIGHLIGHT_COLOR_HEX
+        [Configuration.ghostBlinkyCharacter]:     Configuration.editorGhostBlinkyHighlightColorHex,
+        [Configuration.ghostPinkyCharacter]:      Configuration.editorGhostPinkyHighlightColorHex,
+        [Configuration.ghostClydeCharacter]:      Configuration.editorGhostClydeHighlightColorHex,
+        [Configuration.ghostInkyCharacter]:       Configuration.editorGhostInkyHighlightColorHex
     }
 
 
