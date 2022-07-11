@@ -140,33 +140,6 @@ export default class Actor {
    }
 
 
-   updateBoard(styleclassCurrentPosition, styleclassNextPosition, spritePriority = Infinity) {
-      this.sendLevelUpdateRequestForCurrentPosition(styleclassCurrentPosition);
-      this.sendLevelUpdateRequestForNextPosition(styleclassNextPosition, spritePriority);
-      this.level.updateBoard();
-      this.resetUpdateFlags();
-   }
-
-
-   sendLevelUpdateRequestForCurrentPosition(styleclass) {
-      if (this.updateFlagCurrentPosition) {
-         this.currentPosition.setActorCharacter(Configuration.EMPTY_TILE_CHARACTER);
-         this.level.addUpdateRequest(new UpdateRequest(this.currentPosition, styleclass));
-
-      }
-   }
-
-
-   sendLevelUpdateRequestForNextPosition(styleclass, spritePriority) {
-      if (this.updateFlagNextPosition) {
-         this.nextPosition.setActorCharacter(this.character);
-         this.level.addUpdateRequest(new UpdateRequest(this.nextPosition, styleclass, spritePriority));
-      }
-   }
-
-
-   // NEW
-
    sendLevelMovementRequest() {
       const isPositionChanged = this.nextPosition.getID() !== this.currentPosition.getID();
 
