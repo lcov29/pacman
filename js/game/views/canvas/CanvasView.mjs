@@ -1,5 +1,6 @@
 import BackgroundCanvas from './BackgroundCanvas.mjs';
 import MainCanvas from './MainCanvas.mjs';
+import Configuration from '../../../Configuration.mjs';
 
 
 export default class CanvasView {
@@ -62,7 +63,8 @@ export default class CanvasView {
 
 
     callBackAnimation() {
-        this.#mainCanvas.animateMovement();
+        this.#mainCanvas.drawCurrentLevelState();
+        this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
         this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
     }
 
