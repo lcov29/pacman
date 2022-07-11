@@ -1,5 +1,6 @@
 export default class AnimationObject {
     
+    
     #xPosition = 0;
     #yPosition = 0;
     #xDestination = 0;
@@ -35,7 +36,7 @@ export default class AnimationObject {
 
 
     move(distanceInPx) {
-        if (!this.#isAnimationComplete()) {
+        if (!this.isAnimationComplete()) {
             this.#updateSpriteAlternation();
             let calculatedXPosition = this.#xPosition + this.#xDirection * distanceInPx;
             let calculatedYPosition = this.#yPosition + this.#yDirection * distanceInPx;
@@ -79,7 +80,7 @@ export default class AnimationObject {
     }
 
 
-    #isAnimationComplete() {
+    isAnimationComplete() {
         const isXDestinationReached = this.#xPosition === this.#xDestination;
         const isYDestinationReached = this.#yPosition === this.#yDestination;
         return isXDestinationReached && isYDestinationReached;
