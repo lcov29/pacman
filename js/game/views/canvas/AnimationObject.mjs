@@ -45,11 +45,11 @@ export default class AnimationObject {
     }
 
 
-    load(movementRequest, mainSprite, alternateSprite) {
-        this.#xPosition = movementRequest.xPositionStart;
-        this.#yPosition = movementRequest.yPositionStart;
-        this.#xDestination = movementRequest.xPositionDestination;
-        this.#yDestination = movementRequest.yPositionDestination;
+    load(movementRequest, mainSprite, alternateSprite, tileWidth, tileHeight) {
+        this.#xPosition = movementRequest.xPositionStart * tileWidth;
+        this.#yPosition = movementRequest.yPositionStart * tileHeight;
+        this.#xDestination = movementRequest.xPositionDestination * tileWidth;
+        this.#yDestination = movementRequest.yPositionDestination * tileHeight;
         this.#xDirection = movementRequest.xDirection;
         this.#yDirection = movementRequest.yDirection;
         this.#mainSprite = mainSprite;
