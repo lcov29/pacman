@@ -1,63 +1,61 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
-import UpdateRequest from './UpdateRequest.mjs';
 import Utility from '../Utility.mjs';
+import Configuration from '../Configuration.mjs';
+import BackgroundRequest from '../BackgroundRequest.mjs'
 
 
 export default class BonusElementSpawner {
 
 
-    constructor() {
-        this.bonusSpawnPositions = null;
-        this.bonusStyleClass = '';
-        this.scoreValue = 0;
-        this.level = null;
+    constructor(bonusSpawnPositionList, levelNumber, level) {
+        this.level = level;
+        this.bonusSpawnPositionList = bonusSpawnPositionList;
+        this.bonusCharacter = '';
+        this.bonusScoreValue = 0;
         this.isBonusElementSpawned = false;
+        this.mapBonusCharacterAndScore(levelNumber);
     }
 
 
-    initialize(bonusSpawnPositions, levelNumber, level) {
-        this.bonusSpawnPositions = bonusSpawnPositions;
-        this.level = level;
-
+    mapBonusCharacterAndScore(levelNumber) {
         switch (levelNumber) {
             case 1:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_CHERRY_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_CHERRY;
+                this.bonusCharacter = Configuration.bonusCherryCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusCherry;
                 break;
             case 2:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_STRAWBERRY_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_STRAWBERRY;
+                this.bonusCharacter = Configuration.bonusStrawberryCharacter
+                this.bonusScoreValue = Configuration.scoreValuePerBonusStrawberry;
                 break;
             case 3:
             case 4:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_PEACH_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_PEACH;
+                this.bonusCharacter = Configuration.bonusPeachCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusPeach;
                 break;
             case 5:
             case 6:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_APPLE_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_APPLE;
+                this.bonusCharacter = Configuration.bonusAppleCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusApple;
                 break;
             case 7:
             case 8:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_GRAPE_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_GRAPE;
+                this.bonusCharacter = Configuration.bonusGrapeCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusGrape;
                 break;
             case 9:
             case 10:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_GALAXIAN_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_GALAXIAN;
+                this.bonusCharacter = Configuration.bonusGalaxianCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusGalaxian;
                 break;
             case 11:
             case 12:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_BELL_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_BELL;
+                this.bonusCharacter = Configuration.bonusBellCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusBell;
                 break;
             default:
-                this.bonusStyleClass = Configuration.BONUS_ELEMENT_KEY_FOREGROUND_CSS_CLASS;
-                this.scoreValue = Configuration.SCORE_VALUE_PER_BONUS_KEY;
+                this.bonusCharacter = Configuration.bonusKeyCharacter;
+                this.bonusScoreValue = Configuration.scoreValuePerBonusKey;
                 break;
         }
     }
@@ -66,37 +64,29 @@ export default class BonusElementSpawner {
     setBonusSpawnStatus(status) {
         this.isBonusElementSpawned = status;
     }
-
-
-    getStyleClass() {
-        return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${this.bonusStyleClass}`;
-    }
     
 
     getScoreValue() {
-        return this.scoreValue;
+        return this.bonusScoreValue;
     }
 
 
     handleSpawn(numberOfConsumedPoints) {
-        let isConsumedPointLimitReached = Configuration.POINT_LIMIT_FOR_BONUS_SPAWN.includes(numberOfConsumedPoints);
-        if (isConsumedPointLimitReached && this.isBonusElementSpawned === false) {
-            let spawnPosition = this.chooseRandomSpawnPositionFromList();
-            let boardPosition = this.level.getBoardPositionAt(spawnPosition.x, spawnPosition.y);
-            boardPosition.setElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER);
-            let updateRequest = new UpdateRequest(boardPosition, this.getStyleClass());
-            this.level.addUpdateRequest(updateRequest);
-            this.level.updateBoard();
-            this.level.updateView();
-            this.setBonusSpawnStatus(true);
+        const isConsumedPointLimitReached = Configuration.POINT_LIMIT_FOR_BONUS_SPAWN.includes(numberOfConsumedPoints);
+
+        if (!this.isBonusElementSpawned && isConsumedPointLimitReached) {
+            const spawnPosition = this.chooseRandomSpawnPositionFromList();
+            const request = new BackgroundRequest(spawnPosition.getX(), spawnPosition.getY(), this.bonusCharacter);
+            this.level.processBackgroundRequest(request);
+            this.isBonusElementSpawned = true;
         }
     }
 
 
     chooseRandomSpawnPositionFromList() {
-        let maxId = this.bonusSpawnPositions.length - 1;
-        let randomId = Utility.getRandomIntegerBetweenInclusive(0, maxId);
-        return this.bonusSpawnPositions[randomId];
+        const maxId = this.bonusSpawnPositionList.length - 1;
+        const randomId = Utility.getRandomIntegerBetweenInclusive(0, maxId);
+        return this.bonusSpawnPositionList[randomId];
     }
 
 
