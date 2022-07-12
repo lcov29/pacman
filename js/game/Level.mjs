@@ -1,7 +1,6 @@
 'use strict';
 
 import LevelInitializer from './LevelInitializer.mjs';
-import UpdateManager from './UpdateManager.mjs';
 import Configuration from '../Configuration.mjs';
 import Utility from '../Utility.mjs';
 import Board from './Board.mjs';
