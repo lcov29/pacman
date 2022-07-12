@@ -114,7 +114,10 @@ export default class Canvas {
     }
 
 
-    drawSprite(x, y, sprite) {
+    drawSprite(xPosition, yPosition, sprite) {
+        const x = xPosition * this.#tileWidth;
+        const y = yPosition * this.#tileHeight;
+        
         this.#context.save();
         this.#context.translate(x, y);
         this.#context.clearRect(0, 0, this.#tileWidth, this.#tileHeight);
