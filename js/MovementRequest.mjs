@@ -15,6 +15,7 @@ export default class MovementRequest {
     #yDirection = -2;
     #directionName = '';
     #actorCharacter = '';
+    #actorStateName = '';
     #spriteDisplayPriority = -1;
 
 
@@ -177,6 +178,25 @@ export default class MovementRequest {
     }
 
 
+    get actorStateName() {
+        return this.#actorStateName;
+    }
+
+
+    set actorStateName(name) {
+        const isAlreadyInitialized = this.#actorStateName !== '';
+        if (isAlreadyInitialized) {
+            throw new Error('Can not change already initialized property actorCharacter');
+        }
+
+        if (this.#isActorStateNameValid(name)) {
+            this.#actorStateName = name;
+        } else {
+            throw new Error(`${name} is not a valid ghost state`);
+        }
+    }
+
+
     get spriteDisplayPriority() {
         return this.#spriteDisplayPriority;
     }
@@ -209,6 +229,11 @@ export default class MovementRequest {
 
     #isActorCharacterValid(character) {
         return Configuration.actorCharacterList.includes(character);
+    }
+
+
+    #isActorStateNameValid(name) {
+        return Configuration.ghostStateNameList.includes(name);
     }
 
 
