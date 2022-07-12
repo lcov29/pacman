@@ -34,7 +34,6 @@ export default class Level {
         this.consumedPoints = 0;
         this.totalPacmanLifes = 0;
         this.score = 0;
-        this.updateRequests = [];
     }
 
 
@@ -145,9 +144,10 @@ export default class Level {
     }
 
 
+    /*
     sendViewUpdate(position, styleClass) {
         this.game.updateView(position, styleClass, this.score, this.totalPacmanLifes);
-    }
+    } */
 
 
     updateBoard() {
