@@ -96,7 +96,7 @@ export default class Ghost extends Actor {
          if (this.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
          }
-         super.sendLevelMovementRequest();
+         super.sendLevelMovementRequest(this.state.getName());
          super.updateCurrentPosition();
          this.state.decrementRemainingTurns();
      } else {
