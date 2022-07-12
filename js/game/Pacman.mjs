@@ -121,7 +121,7 @@ export default class Pacman extends Actor {
    sendLevelBackgroundRequest() {
       if (this.isBackgroundUpdateNeeded) {
          const nextPosition = super.getNextPosition();
-         const request = new BackgroundRequest(nextPosition.getX(), nextPosition.getY(), nextPosition.getElementCharacter());
+         const request = new BackgroundRequest(nextPosition.getX(), nextPosition.getY(), nextPosition.getElementLayerCharacter());
          super.sendLevelBackgroundRequest(request);
       }
       this.isBackgroundUpdateNeeded = false;
@@ -141,7 +141,7 @@ export default class Pacman extends Actor {
 
 
    handleInaccessibleTileCollision() {
-      let nextElement = super.getNextPosition().getElementCharacter();
+      let nextElement = super.getNextPosition().getElementLayerCharacter();
       if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
@@ -194,7 +194,7 @@ export default class Pacman extends Actor {
 
    
    handleBonusElementCollision() {
-      const nextElementCharacter = super.getNextPosition().getElementCharacter();
+      const nextElementCharacter = super.getNextPosition().getElementLayerCharacter();
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
       if (isNextPositionBonusElement) {
@@ -206,7 +206,7 @@ export default class Pacman extends Actor {
 
 
    handleGhostCollision() {
-      let nextPositionActorCharacter = super.getNextPosition().getActorCharacter();
+      let nextPositionActorCharacter = super.getNextPosition().getActorLayerCharacter();
       if (Configuration.ghostCharacterList.includes(nextPositionActorCharacter)) {
          let nextPositionId = super.getNextPosition().getID();
          this.handleHostileGhostCollision(nextPositionId);

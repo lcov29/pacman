@@ -181,8 +181,8 @@ export default class Board {
       for (let y = 0; y < this.board.length; y++) {
          for (let x = 0; x < this.board[y].length; x++) {
             for (let character of characters) {
-               if (this.board[y][x].getActorCharacter() === character ||
-                   this.board[y][x].getElementCharacter() === character) {
+               if (this.board[y][x].getActorLayerCharacter() === character ||
+                   this.board[y][x].getElementLayerCharacter() === character) {
                   counter++;
                   break;
                }

@@ -52,7 +52,7 @@ export default class BoardParser {
         let character = '';
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
-                character = positionArray[y][x].getElementCharacter();
+                character = positionArray[y][x].getElementLayerCharacter();
                 if (this.isAccessibleByActor(character)) {
                     positionArray[y][x].setID(id);
                     id++;
@@ -94,8 +94,8 @@ export default class BoardParser {
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
               let currentPosition = board[y][x];
-              let currentActorCharacter = currentPosition.getActorCharacter();
-              let currentElementCharacter = currentPosition.getElementCharacter();
+              let currentActorCharacter = currentPosition.getActorLayerCharacter();
+              let currentElementCharacter = currentPosition.getElementLayerCharacter();
   
               if (currentActorCharacter === Configuration.pacmanCharacter) {
                  initialPacmanPositions.push(currentPosition);

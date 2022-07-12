@@ -24,7 +24,7 @@ export default class LevelInitializer {
         let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
         let output = [];
         for (let position of board.getTeleporterPositions()) {
-            switch (position.getElementCharacter()) {
+            switch (position.getElementLayerCharacter()) {
                 case Configuration.teleporter1Character:
                     teleporters[0].add(position);
                     break;
@@ -80,7 +80,7 @@ export default class LevelInitializer {
     static initializeGhostObjects(board, routing, levelReference) {
         let ghosts = [];
         for (let position of board.getInitialGhostPositions()) {
-            switch (position.getActorCharacter()) {
+            switch (position.getActorLayerCharacter()) {
                 case Configuration.ghostBlinkyCharacter:
                     ghosts.push(new GhostBlinky(levelReference, position, routing));
                     break;
@@ -102,7 +102,7 @@ export default class LevelInitializer {
     static initializeGhostScatterPositions(board, ghosts) {
         for (let scatterPosition of board.getGhostScatterPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getCharacter() === scatterPosition.getElementCharacter()) {
+                if (ghost.getCharacter() === scatterPosition.getElementLayerCharacter()) {
                     ghost.setScatterID(scatterPosition.getID());
                 }
             }
@@ -113,7 +113,7 @@ export default class LevelInitializer {
     static initializeOptionalGhostSpawnPositions(board, ghosts) {
         for (let spawnPosition of board.getOptionalGhostSpawnPositions()) {
             for (let ghost of ghosts) {
-                if (ghost.getCharacter() === spawnPosition.getElementCharacter()) {
+                if (ghost.getCharacter() === spawnPosition.getElementLayerCharacter()) {
                     ghost.setSpawnID(spawnPosition.getID());
                 }
             }

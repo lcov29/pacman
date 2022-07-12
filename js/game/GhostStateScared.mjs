@@ -108,7 +108,7 @@ export default class GhostStateScared extends GhostState {
 
     handleInaccessibleTileCollision() {
         let ghost = super.getGhost();
-        let nextPositionCharacter = ghost.getNextPosition().getElementCharacter();
+        let nextPositionCharacter = ghost.getNextPosition().getElementLayerCharacter();
         if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
             ghost.setNextPosition(ghost.getCurrentPosition());
             ghost.randomizeMovementDirection();

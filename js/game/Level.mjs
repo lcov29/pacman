@@ -75,7 +75,7 @@ export default class Level {
             request.xPositionDestination = position.getX();
             request.yPositionDestination = position.getY();
 
-            const actorCharacter = position.getActorCharacter();
+            const actorCharacter = position.getActorLayerCharacter();
             request.actorCharacter =  actorCharacter;
 
             const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);
