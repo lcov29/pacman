@@ -143,12 +143,6 @@ export default class Level {
     }
 
 
-    /*
-    sendViewUpdate(position, styleClass) {
-        this.game.updateView(position, styleClass, this.score, this.totalPacmanLifes);
-    } */
-
-
     setNextPacmanDirection(directionName) {
         for (let pacman of this.pacmans) {
            pacman.setMovementDirectionName(directionName);
