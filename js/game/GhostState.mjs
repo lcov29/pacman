@@ -6,8 +6,19 @@ export default class GhostState {
 
     constructor(durationInTurns, ghost) {
         this.remainingTurns = durationInTurns;
-        this.spriteDisplayPriority = 0;
         this.ghost = ghost;
+        this.spriteDisplayPriority = 0;
+        this.name = '';
+    }
+
+
+    setName(name) {
+        this.name = name;
+    }
+
+
+    getName() {
+        return this.name;
     }
 
 
