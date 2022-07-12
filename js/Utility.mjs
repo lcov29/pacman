@@ -13,4 +13,10 @@ export default class Utility {
         return Math.floor(minInt + (maxInt - minInt + 1) * Math.random());
     }
 
+
+    static getSpriteName(actorCharacter, actorStateName, directionName) {
+        return `${actorCharacter}_${actorStateName}_${directionName}`;
+    }
+
+    
 }
