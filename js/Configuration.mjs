@@ -60,7 +60,7 @@ export default class Configuration {
                                  '"bonusSpawnPositions":[{"x":"13","y":"12"}]}';
 
 
-                                 
+
    // Ghost state settings
 
       static nameGhostStateDead = 'dead';
@@ -189,6 +189,12 @@ export default class Configuration {
       static chasePatternGhostInkyGhostPriorityList = [Configuration.ghostBlinkyCharacter,
                                                        Configuration.ghostPinkyCharacter,
                                                        Configuration.ghostClydeCharacter];
+
+      static ghostStateNameList = [Configuration.nameGhostStateChase,
+                                   Configuration.nameGhostStateDead,
+                                   Configuration.nameGhostStateRespawn,
+                                   Configuration.nameGhostStateScared,
+                                   Configuration.nameGhostStateScatter];
 
    
 
