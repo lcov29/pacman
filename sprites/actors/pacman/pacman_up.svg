@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   sodipodi:docname="pacman_up.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.41176471"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="7.8816614"
+     inkscape:cx="62.042757"
+     inkscape:cy="49.799145"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false">
+    <sodipodi:guide
+       position="139.00511,34.813844"
+       orientation="0,-1"
+       id="guide16"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="139.00511,34.813844"
+       orientation="0,-1"
+       id="guide18"
+       inkscape:locked="false" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid76" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffff00;fill-opacity:1;stroke-width:1.00157;stroke-dasharray:none"
+       id="path3756"
+       sodipodi:type="arc"
+       sodipodi:cx="-48.110107"
+       sodipodi:cy="48.345524"
+       sodipodi:rx="39.901764"
+       sodipodi:ry="39.901764"
+       sodipodi:start="0.41996733"
+       sodipodi:end="5.8689879"
+       sodipodi:arc-type="slice"
+       d="M -11.675717,64.614695 A 39.901764,39.901764 0 0 1 -56.483672,87.35878 39.901764,39.901764 0 0 1 -88.011705,48.230409 39.901764,39.901764 0 0 1 -56.258431,9.2846023 39.901764,39.901764 0 0 1 -11.582452,32.286846 l -36.527655,16.058678 z"
+       transform="rotate(-90)" />
+  </g>
+  <metadata
+     id="metadata8993">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:identifier>pacman_up</dc:identifier>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>
