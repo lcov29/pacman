@@ -38,6 +38,16 @@ export default class AnimationObject {
     }
 
 
+    set mainSprite(sprite) {
+        this.mainSprite = sprite;
+    }
+
+
+    set alternateSprite(sprite) {
+        this.alternateSprite = sprite;
+    }
+
+
     move(distanceInPx) {
         if (!this.isAnimationComplete()) {
             this.#updateSpriteAlternation();
