@@ -8,9 +8,9 @@ import Configuration from '../Configuration.mjs';
 export default class Game {
 
 
-   constructor(boardContainerId, scoreId, lifeId) {
+   constructor(mainCanvas, backgroundCanvas) {
       this.level = null;
-      this.mainView = new CanvasView(this);
+      this.mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
       this.viewList = [this.mainCanvas];
    }
 
