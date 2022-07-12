@@ -98,11 +98,7 @@ export default class Canvas {
 
 
     processUpdateRequestStack(processFunction, thisArgument) {
-        this.#movementRequestStack.forEach(processFunction, thisArgument);
-    }
-
-
-    truncateUpdateRequestStack() {
+        this.#updateRequestStack.forEach(processFunction, thisArgument);
         this.#updateRequestStack = [];
     }
 
