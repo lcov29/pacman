@@ -1,32 +1,36 @@
 import Configuration from "../../../Configuration.mjs";
 import AnimationObject from "./AnimationObject.mjs";
+import Canvas from "./Canvas.mjs";
 
 
-export default class MainCanvas {
+export default class MainCanvas extends Canvas {
 
 
-    #canvas = null;
+    // #canvas = null;
     #backgroundCanvas = null;
     #context = null;
-    #movementRequestStack = [];
-    #animationObjectList = [];
+    // #movementRequestStack = [];
+    #actorAnimationObjectList = [];
     #animationsInProgress = 0;
-    #spriteMapper = null;
+    /* #spriteMapper = null;
     #tileWidth = -1;
     #tileHeight = -1;
     #columnNumber = -1;
     #rowNumber = -1;
+    */
 
 
-    constructor() {
-        this.#canvas = document.getElementById('gameCanvas');
-        this.#backgroundCanvas = document.getElementById('backgroundCanvas');
-        this.#context = this.#canvas.getContext('2d');
-        this.#movementRequestStack = [];
-        this.#initializeSpriteMapper();
+    constructor(mainCanvas, backgroundCanvas, spriteMapper) {
+        super(mainCanvas, spriteMapper);
+        //this.#canvas = document.getElementById('gameCanvas');
+        //this.#backgroundCanvas = document.getElementById('backgroundCanvas');
+        this.#backgroundCanvas = backgroundCanvas;
+        //this.#context = this.#canvas.getContext('2d');
+        //this.#movementRequestStack = [];
+        //this.#initializeSpriteMapper();
     }
 
-
+    /*
     set tileWidth(width) {
         if (width < 1) {
             throw new RangeError(`tileWidth must be greater than zero`);
@@ -73,17 +77,18 @@ export default class MainCanvas {
 
     addRequest(movementRequest) {
         this.#movementRequestStack.push(movementRequest);
-    }
+    } */
 
 
     initializeAnimationObjectList(numberOfActors) {
         for (let i = 0; i < numberOfActors; i++) {
             const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
-            this.#animationObjectList.push(animationObject);
+            this.#actorAnimationObjectList.push(animationObject);
         }
     }
 
 
+    /*
     #initializeSpriteMapper() {
         this.#spriteMapper = new Map();
         this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameUp}`, document.getElementById('pacmanUp'));
@@ -91,23 +96,32 @@ export default class MainCanvas {
         this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameDown}`, document.getElementById('pacmanDown'));
         this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameLeft}`, document.getElementById('pacmanLeft'));
         this.#spriteMapper.set(Configuration.pacmanCharacter, document.getElementById('pacmanMouthClosed'));
-    }
+    }*/
 
 
-    processRequestStack() {
-        this.#movementRequestStack.forEach(this.loadMovementRequestIntoAnimationObject, this);
-        this.#movementRequestStack = [];
+    processUpdateRequestStack() {
+        super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
         this.#animationsInProgress = this.#animationObjectList.length;
     }
 
+
+    loadMovementRequestIntoAnimationObject(request, index) {
+        const animationObject = this.#animationObjectList[index];
+        //const spriteString = `${request.actorCharacter}_${request.directionName}`;
+        //const mainSprite = this.#spriteMapper.get(spriteString);
+        //const alternateSprite = this.#spriteMapper.get(request.actorCharacter);
+        animationObject.load(request, mainSprite, alternateSprite, this.#tileWidth, this.#tileHeight);
+    }
+
     
+    /*
     loadMovementRequestIntoAnimationObject(request, index) {
         const animationObject = this.#animationObjectList[index];
         const spriteString = `${request.actorCharacter}_${request.directionName}`;
         const mainSprite = this.#spriteMapper.get(spriteString);
         const alternateSprite = this.#spriteMapper.get(request.actorCharacter);
         animationObject.load(request, mainSprite, alternateSprite, this.#tileWidth, this.#tileHeight);
-    }
+    }*/
 
 
     drawCurrentLevelState() {
