@@ -109,12 +109,6 @@ export default class Game {
    }
 
 
-   /*
-   updateView(boardPositions, styleClass, score, numberOfLifes) {
-      this.view.update(boardPositions, styleClass, score, numberOfLifes);
-   }*/
-
-
    processUserCommand(keycode) {
          switch(keycode) {
          
