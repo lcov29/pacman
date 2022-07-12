@@ -21,12 +21,6 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    /*
-    getStyleClass() {
-        return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${super.getBaseStyleClass()}Stage${this.respawnStage}`;
-    }*/
-
-
     isHostileTowardsPacman() {
         return false;
     }
