@@ -15,7 +15,6 @@ export default class Actor {
       this.nextPosition = position;
       this.character = '';
       this.movementDirectionName = '';
-      this.baseMovementStyleClass = '';
       this.hasTeleportedInPreviousTurn = false;
       this.updateFlagCurrentPosition = true;
       this.updateFlagNextPosition = true;
@@ -40,11 +39,6 @@ export default class Actor {
 
    setMovementDirectionName(directionName) {
       this.movementDirectionName = directionName;
-   }
-
-
-   setBaseMovementStyleClass(styleClassName) {
-      this.baseMovementStyleClass = styleClassName;
    }
 
 
@@ -91,11 +85,6 @@ export default class Actor {
 
    getCurrentMovementDirection() {
       return Directions.getDirectionByName(this.movementDirectionName);
-   }
-
-
-   getBaseMovementStyleClass() {
-      return this.baseMovementStyleClass;
    }
 
 

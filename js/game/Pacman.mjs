@@ -31,7 +31,6 @@ export default class Pacman extends Actor {
    constructor(level, position) {
       super(level, position);
       super.setCharacter(Configuration.pacmanCharacter);
-      // super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
       super.setSpriteDisplayPriority(Configuration.pacmanSpriteDisplayPriority);
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
@@ -60,14 +59,6 @@ export default class Pacman extends Actor {
    getTurnCompletionStatus() {
       return this.hasCompletedCurrentTurn;
    }
-
-   
-   /*
-   getStyleClass() {
-      let baseStyleClass = super.getBaseMovementStyleClass();
-      let directionName = super.getCurrentMovementDirectionName();
-      return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-   }*/
 
 
    // TODO: CHECK IF NECESSARY

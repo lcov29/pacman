@@ -12,7 +12,6 @@ export default class GhostStateChase extends GhostState {
 
     constructor(durationInTurns, ghost) {
         super(durationInTurns, ghost);
-        super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
         super.setSpriteDisplayPriority(Configuration.ghostStateChaseSpriteDisplayPriority);
     }
 
@@ -20,14 +19,6 @@ export default class GhostStateChase extends GhostState {
     getSubsequentState() {
         return new GhostStateScatter(7, super.getGhost());
     }
-
-
-    /*
-    getStyleClass() {
-        let baseStyleClass = super.getBaseStyleClass();
-        let directionName = super.getGhost().getCurrentMovementDirectionName();
-        return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-    }*/
 
 
     isHostileTowardsPacman() {
