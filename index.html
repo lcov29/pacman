@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
       <title>Pacman</title>
       <link rel="stylesheet" href="./css/index.css">
-      <link rel="icon" type="image/png" href="./icon/favicon.png">
+      <link rel="icon" type="image/svg+xml" href="./sprites/actors/pacman/pacman_right.svg">
       <script type="module" src="./js/game/main.js"></script>
    </head>
    
@@ -25,13 +25,65 @@
       <br>
 
       <main>
-         <div id="gameContainer">
-            <div id="upperStatusBar" class="upperStatusBar">
-               <p id="score"></p>
-               <p id="life"></p>
-            </div>
-            <div id="levelContainer"></div>
+
+         <canvas id="gameCanvas"></canvas>
+
+         <canvas id="backgroundCanvas" class="invisible"></canvas>
+
+
+          <!-- svg sprites to prevent pre-loading issues in canvas -->
+         <div class="invisible">
+            <img id="emptySpace" src="./sprites/background/emptySpace.svg">
+            <img id="wall" src="./sprites/background/wall.svg">
+            <img id="teleporter1" src="./sprites/background/teleporters/teleporter1.svg">
+            <img id="teleporter2" src="./sprites/background/teleporters/teleporter2.svg">
+            <img id="teleporter3" src="./sprites/background/teleporters/teleporter3.svg">
+
+            <img id="point" src="./sprites/background/consumables/point.svg">
+            <img id="powerUp" src="./sprites/background/consumables/powerUp.svg">
+
+            <img id="pacmanUp" src="./sprites/actors/pacman/pacman_up.svg">
+            <img id="pacmanRight" src="./sprites/actors/pacman/pacman_right.svg">
+            <img id="pacmanDown" src="./sprites/actors/pacman/pacman_down.svg">
+            <img id="pacmanLeft" src="./sprites/actors/pacman/pacman_left.svg">
+            <img id="pacmanMouthClosed" src="./sprites/actors/pacman/pacman_mouth_closed.svg">
+
+            <img id="blinkyUp" src="./sprites/actors/ghost_blinky/movement/blinky_up.svg">
+            <img id="blinkyRight" src="./sprites/actors/ghost_blinky/movement/blinky_right.svg">
+            <img id="blinkyDown" src="./sprites/actors/ghost_blinky/movement/blinky_down.svg">
+            <img id="blinkyLeft" src="./sprites/actors/ghost_blinky/movement/blinky_left.svg">
+
+            <img id="inkyUp" src="./sprites/actors/ghost_inky/movement/inky_up.svg">
+            <img id="inkyRight" src="./sprites/actors/ghost_inky/movement/inky_right.svg">
+            <img id="inkyDown" src="./sprites/actors/ghost_inky/movement/inky_down.svg">
+            <img id="inkyLeft" src="./sprites/actors/ghost_inky/movement/inky_left.svg">
+
+            <img id="pinkyUp" src="./sprites/actors/ghost_pinky/movement/pinky_up.svg">
+            <img id="pinkyRight" src="./sprites/actors/ghost_pinky/movement/pinky_right.svg">
+            <img id="pinkyDown" src="./sprites/actors/ghost_pinky/movement/pinky_down.svg">
+            <img id="pinkyLeft" src="./sprites/actors/ghost_pinky/movement/pinky_left.svg">
+
+            <img id="clydeUp" src="./sprites/actors/ghost_clyde/movement/clyde_up.svg">
+            <img id="clydeRight" src="./sprites/actors/ghost_clyde/movement/clyde_right.svg">
+            <img id="clydeDown" src="./sprites/actors/ghost_clyde/movement/clyde_down.svg">
+            <img id="clydeLeft" src="./sprites/actors/ghost_clyde/movement/clyde_left.svg">
+
+            <img id="scaredUp" src="./sprites/actors/ghost_scared/ghost_scared_up.svg">
+            <img id="scaredRight" src="./sprites/actors/ghost_scared/ghost_scared_right.svg">
+            <img id="scaredDown" src="./sprites/actors/ghost_scared/ghost_scared_down.svg">
+            <img id="scaredLeft" src="./sprites/actors/ghost_scared/ghost_scared_left.svg">
+
+            <img id="transitionUp" src="./sprites/actors/ghost_transition_end_scared/ghost_transition_up.svg">
+            <img id="transitionRight" src="./sprites/actors/ghost_transition_end_scared/ghost_transition_right.svg">
+            <img id="transitionDown" src="./sprites/actors/ghost_transition_end_scared/ghost_transition_down.svg">
+            <img id="transitionLeft" src="./sprites/actors/ghost_transition_end_scared/ghost_transition_left.svg">
+
+            <img id="deadUp" src="./sprites/actors/ghost_dead/ghost_dead_up.svg">
+            <img id="deadRight" src="./sprites/actors/ghost_dead/ghost_dead_right.svg">
+            <img id="deadDown" src="./sprites/actors/ghost_dead/ghost_dead_down.svg">
+            <img id="deadLeft" src="./sprites/actors/ghost_dead/ghost_dead_left.svg">
          </div>
+
       </main>
 
    </body>
