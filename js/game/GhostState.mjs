@@ -21,11 +21,6 @@ export default class GhostState {
     }
 
 
-    getBaseStyleClass() {
-        return this.baseStyleClass;
-    }
-
-
     getSpriteDisplayPriority() {
         return this.spriteDisplayPriority;
     }
