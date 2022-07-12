@@ -25,7 +25,6 @@ export default class Level {
     constructor(game) {
         this.game = game;
         this.board = null;
-        this.updateManager = null;
         this.bonusElementSpawner = null;
         this.teleporters = [];
         this.pacmans = [];
@@ -148,16 +147,6 @@ export default class Level {
     sendViewUpdate(position, styleClass) {
         this.game.updateView(position, styleClass, this.score, this.totalPacmanLifes);
     } */
-
-
-    updateBoard() {
-        this.updateManager.updateBoard();
-    }
-
-
-    updateView() {
-        this.updateManager.updateView();
-    }
 
 
     setNextPacmanDirection(directionName) {
@@ -285,11 +274,6 @@ export default class Level {
 
     isLost() {
         return this.totalPacmanLifes === 0;
-    }
-
-
-    addUpdateRequest(request) {
-        this.updateManager.addRequest(request);
     }
 
 
