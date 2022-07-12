@@ -192,10 +192,12 @@ export default class Pacman extends Actor {
       }
    }
 
-
-   // TODO: CHANGE IMPLEMENTATION TO CHECK FOR ANY BONUS ELEMENT!
+   
    handleBonusElementCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER)) {
+      const nextElementCharacter = super.getNextPosition().getElementCharacter();
+      const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
+
+      if (isNextPositionBonusElement) {
          super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
          this.level.handleBonusConsumption();
          this.isBackgroundUpdateNeeded = true;
