@@ -21,11 +21,6 @@ export default class Configuration {
       static numberOfConsumedPointsForSpawningFirstBonusElement = 70;
       static numberOfConsumedPointsForSpawningSecondBonusElement = 170;
 
-      static ghostMaxRespawnStage = 4;
-      static ghostClydeMinTileDistanceToPacman = 8;
-      static ghostPinkyMaxTileOffsetToPacmanDirectionPosition = 4;
-      static ghostInkyMaxTileOffsetToPacmanDirectionPosition = 2;
-
       static initialPacmanSpriteDirection = 'Right';
       static initialGhostSpriteDirection = 'Down';
 
@@ -63,6 +58,21 @@ export default class Configuration {
                                                    '{"ghost":"c","x":"16","y":"10"}],' +
 
                                  '"bonusSpawnPositions":[{"x":"13","y":"12"}]}';
+
+
+                                 
+   // Ghost state settings
+
+      static nameGhostStateDead = 'dead';
+      static nameGhostStateChase = 'chase';
+      static nameGhostStateScared = 'scared';
+      static nameGhostStateScatter = 'scatter';
+      static nameGhostStateRespawn = 'respawn';
+
+      static ghostMaxRespawnStage = 4;
+      static ghostClydeMinTileDistanceToPacman = 8;
+      static ghostPinkyMaxTileOffsetToPacmanDirectionPosition = 4;
+      static ghostInkyMaxTileOffsetToPacmanDirectionPosition = 2;
 
 
 
