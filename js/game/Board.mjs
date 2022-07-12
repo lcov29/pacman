@@ -14,7 +14,6 @@ export default class Board {
       this.initialGhostPositions = [];
       this.teleporterPositions = [];
       this.bonusSpawnPositions = [];
-      this.ghostDoorPositions = [];
       this.ghostScatterPositions = [];
       this.ghostOptionalSpawnPositions = [];
       new BoardParser(this).parse(levelJson);
@@ -43,11 +42,6 @@ export default class Board {
 
    setBonusSpawnPositions(positions) {
       this.bonusSpawnPositions = positions;
-   }
-
-   
-   setGhostDoorPositions(positions) {
-      this.ghostDoorPositions = positions;
    }
 
 
@@ -103,11 +97,6 @@ export default class Board {
 
    getBonusSpawnPositions() {
       return this.bonusSpawnPositions;
-   }
-
-
-   getGhostDoorPositions() {
-      return this.ghostDoorPositions;
    }
 
 
