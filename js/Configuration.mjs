@@ -155,8 +155,6 @@ export default class Configuration {
 
 
    // Definition of element lists 
-      static pointCharacterList = [Configuration.pointCharacter, 
-                                   Configuration.powerUpCharacter];
 
       static actorCharacterList = [Configuration.pacmanCharacter,
                                    Configuration.ghostBlinkyCharacter,
@@ -168,6 +166,18 @@ export default class Configuration {
                                    Configuration.ghostPinkyCharacter,
                                    Configuration.ghostClydeCharacter,
                                    Configuration.ghostInkyCharacter];
+
+      static pointCharacterList = [Configuration.pointCharacter, 
+                                   Configuration.powerUpCharacter];
+
+      static bonusCharacterList = [Configuration.bonusCherryCharacter,
+                                   Configuration.bonusStrawberryCharacter,
+                                   Configuration.bonusPeachCharacter,
+                                   Configuration.bonusAppleCharacter,
+                                   Configuration.bonusGrapeCharacter,
+                                   Configuration.bonusGalaxianCharacter,
+                                   Configuration.bonusBellCharacter,
+                                   Configuration.bonusKeyCharacter];
 
       static teleporterCharacterList = [Configuration.teleporter1Character,
                                         Configuration.teleporter2Character,
