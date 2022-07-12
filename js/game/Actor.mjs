@@ -129,11 +129,11 @@ export default class Actor {
    }
 
 
-   sendLevelMovementRequest() {
+   sendLevelMovementRequest(ghostStateName) {
       const isPositionChanged = this.nextPosition.getID() !== this.currentPosition.getID();
 
       if (isPositionChanged) {
-         const request = this.createMovementRequest();
+         const request = this.createMovementRequest(ghostStateName);
          this.level.processMovementRequest(request);
       }
    }
@@ -144,7 +144,7 @@ export default class Actor {
    }
 
 
-   createMovementRequest() {
+   createMovementRequest(ghostStateName) {
       const request = new MovementRequest();
       request.xPositionStart = this.currentPosition.getX();
       request.yPositionStart = this.currentPosition.getY();
@@ -158,6 +158,10 @@ export default class Actor {
       request.directionName = this.movementDirectionName;
       request.actorCharacter = this.character;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
+
+      if (ghostStateName) {
+         request.actorStateName = ghostStateName;
+      }
    }
 
 
