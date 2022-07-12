@@ -1,3 +1,5 @@
+/*
+
 'use strict';
 
 export default class UpdateRequest {
@@ -26,3 +28,5 @@ export default class UpdateRequest {
 
 
 }
+
+*/
