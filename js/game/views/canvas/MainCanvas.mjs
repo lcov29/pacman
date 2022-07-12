@@ -6,78 +6,15 @@ import Canvas from "./Canvas.mjs";
 export default class MainCanvas extends Canvas {
 
 
-    // #canvas = null;
     #backgroundCanvas = null;
-    #context = null;
-    // #movementRequestStack = [];
-    #actorAnimationObjectList = [];
     #animationsInProgress = 0;
-    /* #spriteMapper = null;
-    #tileWidth = -1;
-    #tileHeight = -1;
-    #columnNumber = -1;
-    #rowNumber = -1;
-    */
+    #actorAnimationObjectList = [];
 
 
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
         super(mainCanvas, spriteMapper);
-        //this.#canvas = document.getElementById('gameCanvas');
-        //this.#backgroundCanvas = document.getElementById('backgroundCanvas');
         this.#backgroundCanvas = backgroundCanvas;
-        //this.#context = this.#canvas.getContext('2d');
-        //this.#movementRequestStack = [];
-        //this.#initializeSpriteMapper();
     }
-
-    /*
-    set tileWidth(width) {
-        if (width < 1) {
-            throw new RangeError(`tileWidth must be greater than zero`);
-        } else {
-            this.#tileWidth = width;
-        }
-    }
-
-
-    set tileHeight(height) {
-        if (height < 1) {
-            throw new RangeError(`tileHeight must be greater than zero`);
-        } else {
-            this.#tileHeight = height;
-        }
-    }
-
-
-    set columnNumber(number) {
-        if (number < 1) {
-            throw new RangeError(`columnNumber must be greater than zero`);
-        } else {
-            this.#columnNumber = number;
-        }
-    }
-
-
-    set rowNumber(number) {
-        if (number < 1) {
-            throw new RangeError(`rowNumber must be greater than zero`);
-        } else {
-            this.#rowNumber = number;
-        }
-    }
-
-
-    resize() {
-        const canvasWidth = this.#tileWidth * this.#columnNumber;
-        const canvasHeight = this.#tileHeight * this.#rowNumber;
-        this.#canvas.width = canvasWidth;
-        this.#canvas.height = canvasHeight;
-    }
-
-
-    addRequest(movementRequest) {
-        this.#movementRequestStack.push(movementRequest);
-    } */
 
 
     initializeAnimationObjectList(numberOfActors) {
@@ -88,65 +25,43 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    /*
-    #initializeSpriteMapper() {
-        this.#spriteMapper = new Map();
-        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameUp}`, document.getElementById('pacmanUp'));
-        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameRight}`, document.getElementById('pacmanRight'));
-        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameDown}`, document.getElementById('pacmanDown'));
-        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameLeft}`, document.getElementById('pacmanLeft'));
-        this.#spriteMapper.set(Configuration.pacmanCharacter, document.getElementById('pacmanMouthClosed'));
-    }*/
-
-
     processUpdateRequestStack() {
         super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
-        this.#animationsInProgress = this.#animationObjectList.length;
+        this.#animationsInProgress = this.#actorAnimationObjectList.length;
     }
 
 
     loadMovementRequestIntoAnimationObject(request, index) {
-        const animationObject = this.#animationObjectList[index];
-        //const spriteString = `${request.actorCharacter}_${request.directionName}`;
-        //const mainSprite = this.#spriteMapper.get(spriteString);
-        //const alternateSprite = this.#spriteMapper.get(request.actorCharacter);
-        animationObject.load(request, mainSprite, alternateSprite, this.#tileWidth, this.#tileHeight);
-    }
+        const argumentObject = {
+            actorCharacter: request.actorCharacter,
+            actorStateName: request.actorStateName,
+            directionName: request.directionName
+        };
 
-    
-    /*
-    loadMovementRequestIntoAnimationObject(request, index) {
-        const animationObject = this.#animationObjectList[index];
-        const spriteString = `${request.actorCharacter}_${request.directionName}`;
-        const mainSprite = this.#spriteMapper.get(spriteString);
-        const alternateSprite = this.#spriteMapper.get(request.actorCharacter);
-        animationObject.load(request, mainSprite, alternateSprite, this.#tileWidth, this.#tileHeight);
-    }*/
+        const mainSprite = super.mapActorToMainSprite(argumentObject);
+        const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
+        const animationObject = this.#actorAnimationObjectList[index];
+
+        animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
+    }
 
 
     drawCurrentLevelState() {
-        this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
-        this.#context.drawImage(this.#backgroundCanvas, 0, 0);
+        super.setBackgroundTo(this.#backgroundCanvas);
 
-        for (let animationObject of this.#animationObjectList) {
-            this.#context.save();
-            this.#context.translate(animationObject.xPosition, animationObject.yPosition);
-            this.#context.drawImage(animationObject.sprite, 0, 0, this.#tileWidth, this.#tileHeight);
-            this.#context.restore();
+        for (let animationObject of this.#actorAnimationObjectList) {
+            super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
         }
     }
 
 
     moveAnimationObjectsBy(distanceInPixel) {
 
-        for (let animationObject of this.#animationObjectList) {
-
+        for (let animationObject of this.#actorAnimationObjectList) {
             animationObject.move(distanceInPixel);
-
             if (animationObject.isAnimationComplete()) {
                 this.#animationsInProgress--;
-            }
-            
+            } 
         }
         
         const isAnimationComplete = this.#animationsInProgress === 0;
