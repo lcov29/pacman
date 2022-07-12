@@ -106,4 +106,20 @@ export default class Canvas {
         this.#updateRequestStack = [];
     }
 
+
+    setBackgroundTo(backgroundCanvas) {
+        this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
+        this.#context.drawImage(backgroundCanvas, 0, 0);
+    }
+
+
+    drawSprite(x, y, sprite) {
+        this.#context.save();
+        this.#context.translate(x, y);
+        this.#context.clearRect(0, 0, this.#tileWidth, this.#tileHeight);
+        this.#context.drawImage(sprite, 0, 0, this.#tileWidth, this.#tileHeight);
+        this.#context.restore();
+    }
+
+
 }
