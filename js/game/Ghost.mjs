@@ -2,8 +2,6 @@
 
 import GhostStateScatter from './GhostStateScatter.mjs';
 import GhostStateScared from './GhostStateScared.mjs';
-import StyleClassMapper from './StyleClassMapper.mjs';
-import Configuration from '../Configuration.mjs';
 import Directions from './Directions.mjs';
 import Actor from './Actor.mjs';
 
