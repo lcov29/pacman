@@ -10,7 +10,6 @@ export default class GhostBlinky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.setCharacter(Configuration.ghostBlinkyCharacter);
-        // super.setBaseRespawnStyleClass(Configuration.GHOST_BLINKY_RESPAWN_FOREGROUND_CSS_CLASS);
         super.setInitialState();
     }
 

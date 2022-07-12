@@ -11,7 +11,6 @@ export default class GhostInky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.setCharacter(Configuration.ghostInkyCharacter);
-        // super.setBaseRespawnStyleClass(Configuration.GHOST_INKY_RESPAWN_FOREGROUNG_CSS_CLASS);
         super.setInitialState();
     }
 

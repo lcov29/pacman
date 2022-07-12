@@ -14,15 +14,9 @@ export default class Ghost extends Actor {
    constructor(level, position, routing) {
       super(level, position); 
       this.routing = routing;
-      this.baseRespawnStyleClass = '';
       this.scatterPositionId = -1;
       this.spawnPositionId = position.getID();
       this.state = null;
-   }
-
-
-   setBaseRespawnStyleClass(styleClassName) {
-      this.baseRespawnStyleClass = styleClassName;
    }
 
 
@@ -50,11 +44,6 @@ export default class Ghost extends Actor {
 
    getRouting() {
       return this.routing;
-   }
-
-
-   getBaseRespawnStyleClass() {
-      return this.baseRespawnStyleClass;
    }
 
 

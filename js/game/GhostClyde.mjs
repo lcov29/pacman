@@ -10,7 +10,6 @@ export default class GhostClyde extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.setCharacter(Configuration.ghostClydeCharacter);
-        // super.setBaseRespawnStyleClass(Configuration.GHOST_CLYDE_RESPAWN_FOREGROUNG_CSS_CLASS);
         super.setInitialState();
     }
 
