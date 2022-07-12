@@ -183,7 +183,7 @@ export default class Configuration {
                                         Configuration.teleporter2Character,
                                         Configuration.teleporter3Character];
 
-      static pacmanInaccessibleTileCharacterList = [Configuration.wallCharacter, 
+      static pacmanInaccessibleTileCharacterList = [Configuration.wallCharacter,
                                                     Configuration.undefinedTileCharacter,
                                                     Configuration.ghostDoorCrossingCharacter,
                                                     Configuration.ghostDoorVerticalCharacter,
