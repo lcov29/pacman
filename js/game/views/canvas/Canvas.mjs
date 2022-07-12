@@ -82,13 +82,13 @@ export default class Canvas {
     }
 
 
-    mapActorToMainSprite(actorCharacter, actorDirectionName, actorStateName) {
-        return this.#spriteMapper.mapActorToMainSprite(actorCharacter, actorDirectionName, actorStateName);
+    mapActorToMainSprite(argumentObject) {
+        return this.#spriteMapper.mapActorToMainSprite(argumentObject);
     }
 
 
-    mapActorToAlternateSprite(actorCharacter, actorDirectionName, actorStateName) {
-        return this.#spriteMapper.mapActorToAlternateSprite(actorCharacter, actorDirectionName, actorStateName);
+    mapActorToAlternateSprite(argumentObject) {
+        return this.#spriteMapper.mapActorToAlternateSprite(argumentObject);
     }
 
 
