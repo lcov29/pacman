@@ -5,15 +5,9 @@ export default class GhostState {
 
 
     constructor(durationInTurns, ghost) {
-        this.baseStyleClass = '';
         this.remainingTurns = durationInTurns;
         this.spriteDisplayPriority = 0;
         this.ghost = ghost;
-    }
-
-
-    setBaseStyleClass(styleClass) {
-        this.baseStyleClass = styleClass;
     }
 
 

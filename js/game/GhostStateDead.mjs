@@ -11,7 +11,6 @@ export default class GhostStateDead extends GhostState {
     constructor(ghost) {
         // set duration to infinite; state ends when spawn is reached
         super(Infinity, ghost);   
-        // super.setBaseStyleClass(Configuration.GHOST_DEAD_FOREGROUND_CSS_CLASS);
         super.setSpriteDisplayPriority(Configuration.ghostStateDeadSpriteDisplayPriority);
     }
 

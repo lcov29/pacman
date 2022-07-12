@@ -28,7 +28,6 @@ export default class GhostStateScared extends GhostState {
 
     constructor(durationInTurns, ghost) {
         super(durationInTurns, ghost);
-        //super.setBaseStyleClass(Configuration.GHOST_SCARED_FOREGROUND_CSS_CLASS);
         super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
         super.getGhost().reverseCurrentMovementDirection();
     }
