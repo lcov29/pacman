@@ -17,7 +17,8 @@ export default class Game {
 
    loadLevel() {
       this.level = new Level(this);
-      this.level.initialize(this.readLevelJson());
+      const jsonLevel = this.readLevelJson();
+      this.level.initialize(jsonLevel);
       this.initializeViews();
    }
 
