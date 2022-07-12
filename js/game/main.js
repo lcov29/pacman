@@ -9,12 +9,16 @@ import Game from './Game.mjs';
 */
 
 
-let game = new Game('levelContainer', 'score', 'life');
+const mainCanvas = document.getElementById('gameCanvas');
+const backgroundCanvas = document.getElementById('backgroundCanvas');
+
+const game = new Game(mainCanvas, backgroundCanvas);
 game.loadLevel();   
 
-document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
-document.getElementById('levelContainer').addEventListener('click', callBackGameStart);
+mainCanvas.addEventListener('click', callBackGameStart);
 document.addEventListener('keydown', callBackKeyDown, true);
+document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
+
 
 
 
