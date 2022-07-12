@@ -54,8 +54,8 @@ export default class CanvasView {
 
 
     processRequestStacks() {
-        this.#backgroundCanvas.processRequestStack();
-        this.#mainCanvas.processRequestStack();
+        this.#backgroundCanvas.processUpdateRequestStack();
+        this.#mainCanvas.processUpdateRequestStack();
     }
 
 
