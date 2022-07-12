@@ -45,10 +45,10 @@ export default class Directions {
 
 
     static directionMapIdToName = {
-        0:  Configuration.DIRECTION_NAME_UP,
-        1:  Configuration.DIRECTION_NAME_RIGHT,
-        2:  Configuration.DIRECTION_NAME_DOWN,
-        3:  Configuration.DIRECTION_NAME_LEFT
+        0:  Configuration.directionNameUp,
+        1:  Configuration.directionNameRight,
+        2:  Configuration.directionNameDown,
+        3:  Configuration.directionNameLeft
     }
 
 
