@@ -30,8 +30,11 @@ export default class AnimationObject {
 
 
     get sprite() {
-        const currentSprite = (this.#useMainSprite) ? this.#mainSprite : this.#alternateSprite;
-        return currentSprite;
+        if (this.#useMainSprite) {
+            return this.#mainSprite;
+        } else {
+            return this.#alternateSprite
+        }
     }
 
 
