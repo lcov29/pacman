@@ -25,13 +25,13 @@ export default class LevelInitializer {
         let output = [];
         for (let position of board.getTeleporterPositions()) {
             switch (position.getElementCharacter()) {
-                case Configuration.TELEPORTER_1_CHARACTER:
+                case Configuration.teleporter1Character:
                     teleporters[0].add(position);
                     break;
-                case Configuration.TELEPORTER_2_CHARACTER:
+                case Configuration.teleporter2Character:
                     teleporters[1].add(position);
                     break;
-                case Configuration.TELEPORTER_3_CHARACTER:
+                case Configuration.teleporter3Character:
                     teleporters[2].add(position);
                     break;
             }
@@ -81,16 +81,16 @@ export default class LevelInitializer {
         let ghosts = [];
         for (let position of board.getInitialGhostPositions()) {
             switch (position.getActorCharacter()) {
-                case Configuration.GHOST_BLINKY_CHARACTER:
+                case Configuration.ghostBlinkyCharacter:
                     ghosts.push(new GhostBlinky(levelReference, position, routing));
                     break;
-                case Configuration.GHOST_PINKY_CHARACTER:
+                case Configuration.ghostPinkyCharacter:
                     ghosts.push(new GhostPinky(levelReference, position, routing));
                     break;
-                case Configuration.GHOST_INKY_CHARACTER:
+                case Configuration.ghostInkyCharacter:
                     ghosts.push(new GhostInky(levelReference, position, routing));
                     break;
-                case Configuration.GHOST_CLYDE_CHARACTER:
+                case Configuration.ghostClydeCharacter:
                     ghosts.push(new GhostClyde(levelReference, position, routing));
                     break;
             }

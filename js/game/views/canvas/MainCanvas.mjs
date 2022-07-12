@@ -86,11 +86,11 @@ export default class MainCanvas {
 
     #initializeSpriteMapper() {
         this.#spriteMapper = new Map();
-        this.#spriteMapper.set(`${Configuration.PACMAN_CHARACTER}_${Configuration.DIRECTION_NAME_UP}`, document.getElementById('pacmanUp'));
-        this.#spriteMapper.set(`${Configuration.PACMAN_CHARACTER}_${Configuration.DIRECTION_NAME_RIGHT}`, document.getElementById('pacmanRight'));
-        this.#spriteMapper.set(`${Configuration.PACMAN_CHARACTER}_${Configuration.DIRECTION_NAME_DOWN}`, document.getElementById('pacmanDown'));
-        this.#spriteMapper.set(`${Configuration.PACMAN_CHARACTER}_${Configuration.DIRECTION_NAME_LEFT}`, document.getElementById('pacmanLeft'));
-        this.#spriteMapper.set(Configuration.PACMAN_CHARACTER, document.getElementById('pacmanMouthClosed'));
+        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameUp}`, document.getElementById('pacmanUp'));
+        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameRight}`, document.getElementById('pacmanRight'));
+        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameDown}`, document.getElementById('pacmanDown'));
+        this.#spriteMapper.set(`${Configuration.pacmanCharacter}_${Configuration.directionNameLeft}`, document.getElementById('pacmanLeft'));
+        this.#spriteMapper.set(Configuration.pacmanCharacter, document.getElementById('pacmanMouthClosed'));
     }
 
 

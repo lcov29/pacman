@@ -12,7 +12,7 @@ export default class GhostStateScatter extends GhostState {
     constructor(durationInTurns, ghost) {
         super(durationInTurns, ghost);
         super.setBaseStyleClass(ghost.getBaseMovementStyleClass());
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCATTER_SPRITE_DISPLAY_PRIORITY);
+        super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
     }
 
 
@@ -20,12 +20,13 @@ export default class GhostStateScatter extends GhostState {
         return new GhostStateChase(20, super.getGhost());
     }
 
-
+    
+    /*
     getStyleClass() {
         let baseStyleClass = super.getBaseStyleClass();
         let directionName = super.getGhost().getCurrentMovementDirectionName();
         return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-    }
+    }*/
 
 
     isHostileTowardsPacman() {
@@ -96,14 +97,14 @@ export default class GhostStateScatter extends GhostState {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getScatterID()) {
             ghost.setNextPosition(ghost.getCurrentPosition());
-            ghost.setMovementDirectionName(Configuration.DIRECTION_NAME_DOWN);
+            ghost.setMovementDirectionName(Configuration.directionNameDown);
         }
     }
 
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.killPacman(ghost.getNextPosition().getID());
         }
     }

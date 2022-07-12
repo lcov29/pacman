@@ -81,11 +81,11 @@ export default class Level {
             const actorCharacter = position.getActorCharacter();
             request.actorCharacter =  actorCharacter;
 
-            const isGhostCharacter = Configuration.GHOST_CHARACTERS.includes(actorCharacter);
+            const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);
             if (isGhostCharacter) {
-                request.directionName = Configuration.INITIAL_GHOST_SPRITES_DIRECTION;
+                request.directionName = Configuration.initialGhostSpriteDirection;
             } else {
-                request.directionName = Configuration.INITIAL_PACMAN_SPRITE_DIRECTION;
+                request.directionName = Configuration.initialPacmanSpriteDirection;
             }
             
             requestList.push(request);
@@ -325,12 +325,12 @@ export default class Level {
 
 
     countAvailablePoints() {
-        return this.board.countOccurrencesOfCharacters(Configuration.POINT_CHARACTERS);
+        return this.board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
     }
 
 
     countInitialPacmanLifes() {
-        return this.pacmans.length * Configuration.INITIAL_PACMAN_LIFES;
+        return this.pacmans.length * Configuration.initialPacmanLifes;
     } 
 
 

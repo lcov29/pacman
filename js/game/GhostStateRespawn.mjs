@@ -12,7 +12,7 @@ export default class GhostStateRespawn extends GhostState {
         // set duration to infinite; state ends when all respawn stages are completed
         super(Infinity, ghost);
         super.setBaseStyleClass(ghost.getBaseRespawnStyleClass());
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_RESPAWN_SPRITE_DISPLAY_PRIORITY);
+        super.setSpriteDisplayPriority(Configuration.ghostStateRespawnSpriteDisplayPriority);
         this.respawnStage = 0;
     }
 
@@ -22,9 +22,10 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
+    /*
     getStyleClass() {
         return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${super.getBaseStyleClass()}Stage${this.respawnStage}`;
-    }
+    }*/
 
 
     isHostileTowardsPacman() {
@@ -84,7 +85,7 @@ export default class GhostStateRespawn extends GhostState {
     handleSpawnCollision() {
         let ghost = super.getGhost();
         if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
-            if (this.respawnStage < Configuration.GHOST_MAX_RESPAWN_STAGE) {
+            if (this.respawnStage < Configuration.ghostMaxRespawnStage) {
                 this.respawnStage++;
             } else {
                 // prevent ghost from leaving the spawn while pacman still has scared ghost to chase

@@ -92,13 +92,13 @@ export default class BackgroundCanvas {
 
     #initializeSpriteMapper() {
         this.#spriteMapper = new Map();
-        this.#spriteMapper.set(Configuration.WALL_CHARACTER, document.getElementById('wall'));
-        this.#spriteMapper.set(Configuration.EMPTY_TILE_CHARACTER, document.getElementById('emptySpace'));
-        this.#spriteMapper.set(Configuration.TELEPORTER_1_CHARACTER, document.getElementById('teleporter1'));
-        this.#spriteMapper.set(Configuration.TELEPORTER_2_CHARACTER, document.getElementById('teleporter2'))
-        this.#spriteMapper.set(Configuration.TELEPORTER_3_CHARACTER, document.getElementById('teleporter3'))
-        this.#spriteMapper.set(Configuration.POINT_CHARACTER, document.getElementById('point'));
-        this.#spriteMapper.set(Configuration.POWERUP_CHARACTER, document.getElementById('powerUp'));
+        this.#spriteMapper.set(Configuration.wallCharacter, document.getElementById('wall'));
+        this.#spriteMapper.set(Configuration.emptyTileCharacter, document.getElementById('emptySpace'));
+        this.#spriteMapper.set(Configuration.teleporter1Character, document.getElementById('teleporter1'));
+        this.#spriteMapper.set(Configuration.teleporter2Character, document.getElementById('teleporter2'))
+        this.#spriteMapper.set(Configuration.teleporter3Character, document.getElementById('teleporter3'))
+        this.#spriteMapper.set(Configuration.pointCharacter, document.getElementById('point'));
+        this.#spriteMapper.set(Configuration.powerUpCharacter, document.getElementById('powerUp'));
     }
 
 

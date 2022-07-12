@@ -30,9 +30,9 @@ export default class Pacman extends Actor {
 
    constructor(level, position) {
       super(level, position);
-      super.setCharacter(Configuration.PACMAN_CHARACTER);
-      super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
-      super.setSpriteDisplayPriority(Configuration.PACMAN_SPRITE_DISPLAY_PRIORITY);
+      super.setCharacter(Configuration.pacmanCharacter);
+      // super.setBaseMovementStyleClass(Configuration.PACMAN_FOREGROUND_CSS_CLASS);
+      super.setSpriteDisplayPriority(Configuration.pacmanSpriteDisplayPriority);
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.hasChangedMovementDirection = false;
@@ -61,12 +61,13 @@ export default class Pacman extends Actor {
       return this.hasCompletedCurrentTurn;
    }
 
-
+   
+   /*
    getStyleClass() {
       let baseStyleClass = super.getBaseMovementStyleClass();
       let directionName = super.getCurrentMovementDirectionName();
       return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-   }
+   }*/
 
 
    // TODO: CHECK IF NECESSARY
@@ -150,7 +151,7 @@ export default class Pacman extends Actor {
 
    handleInaccessibleTileCollision() {
       let nextElement = super.getNextPosition().getElementCharacter();
-      if (Configuration.PACMAN_INACCESSIBLE_TILES.includes(nextElement)) {
+      if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
          super.setNextPosition(super.getCurrentPosition());
          super.setUpdateFlagCurrentPosition(false);
          if (this.hasChangedMovementDirection === false) {
@@ -162,7 +163,7 @@ export default class Pacman extends Actor {
 
    handleOtherPacmanCollision() {
       let result = true;
-      if (super.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {
+      if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
          let thisPacmanPositionId = this.getCurrentPosition().getID();
          let otherPacmanPositionId = this.getNextPosition().getID();
          if (thisPacmanPositionId !== otherPacmanPositionId) {
@@ -179,31 +180,32 @@ export default class Pacman extends Actor {
    
    
    handlePointCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.POINT_CHARACTER)) {
-         super.incrementScoreBy(Configuration.SCORE_VALUE_PER_POINT);
+      if (super.isNextPositionElementCharacter(Configuration.pointCharacter)) {
+         super.incrementScoreBy(Configuration.scoreValuePerPoint);
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
-         super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
          this.isBackgroundUpdateNeeded = true;
       }
    }
 
 
    handlePowerUpCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.POWERUP_CHARACTER)) {
-         super.incrementScoreBy(Configuration.SCORE_VALUE_PER_POWERUP);
+      if (super.isNextPositionElementCharacter(Configuration.powerUpCharacter)) {
+         super.incrementScoreBy(Configuration.scoreValuePerPowerUp);
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
-         super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
          this.isBackgroundUpdateNeeded = true;
       }
    }
 
 
+   // TODO: CHANGE IMPLEMENTATION TO CHECK FOR ANY BONUS ELEMENT!
    handleBonusElementCollision() {
       if (super.isNextPositionElementCharacter(Configuration.BONUS_ELEMENT_CHARACTER)) {
-         super.getNextPosition().setElementCharacter(Configuration.EMPTY_TILE_CHARACTER);
+         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
          this.level.handleBonusConsumption();
          this.isBackgroundUpdateNeeded = true;
       }
@@ -212,7 +214,7 @@ export default class Pacman extends Actor {
 
    handleGhostCollision() {
       let nextPositionActorCharacter = super.getNextPosition().getActorCharacter();
-      if (Configuration.GHOST_CHARACTERS.includes(nextPositionActorCharacter)) {
+      if (Configuration.ghostCharacterList.includes(nextPositionActorCharacter)) {
          let nextPositionId = super.getNextPosition().getID();
          this.handleHostileGhostCollision(nextPositionId);
          this.handleKillableGhostCollision(nextPositionId);
@@ -230,7 +232,7 @@ export default class Pacman extends Actor {
    handleKillableGhostCollision(positionId) {
       if (this.isAlive && this.level.isPositionOccupiedByKillableGhost(positionId)) {
          this.level.killGhost(positionId);
-         super.incrementScoreBy(Configuration.SCORE_VALUE_PER_EATEN_GHOST);
+         super.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
       }
    }
 

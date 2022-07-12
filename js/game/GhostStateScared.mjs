@@ -28,8 +28,8 @@ export default class GhostStateScared extends GhostState {
 
     constructor(durationInTurns, ghost) {
         super(durationInTurns, ghost);
-        super.setBaseStyleClass(Configuration.GHOST_SCARED_FOREGROUND_CSS_CLASS);
-        super.setSpriteDisplayPriority(Configuration.GHOST_STATE_SCARED_SPRITE_DISPLAY_PRIORITY);
+        //super.setBaseStyleClass(Configuration.GHOST_SCARED_FOREGROUND_CSS_CLASS);
+        super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
         super.getGhost().reverseCurrentMovementDirection();
     }
 
@@ -39,11 +39,12 @@ export default class GhostStateScared extends GhostState {
     }
 
 
+    /*
     getStyleClass() {
         let baseStyleClass = super.getBaseStyleClass();
         let directionName = super.getGhost().getCurrentMovementDirectionName();
         return `${Configuration.BOARD_TILE_BASE_CSS_CLASS} ${baseStyleClass}${directionName}`;
-    }
+    }*/
 
 
     isHostileTowardsPacman() {
@@ -105,10 +106,10 @@ export default class GhostStateScared extends GhostState {
 
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.PACMAN_CHARACTER)) {            
+        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {            
             ghost.kill();
             ghost.setUpdateFlagNextPosition(false);
-            ghost.incrementScoreBy(Configuration.SCORE_VALUE_PER_EATEN_GHOST);
+            ghost.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
         }
     }
 
@@ -116,7 +117,7 @@ export default class GhostStateScared extends GhostState {
     handleInaccessibleTileCollision() {
         let ghost = super.getGhost();
         let nextPositionCharacter = ghost.getNextPosition().getElementCharacter();
-        if (Configuration.ACTORS_INACCESSIBLE_TILES.includes(nextPositionCharacter)) {
+        if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
             ghost.setNextPosition(ghost.getCurrentPosition());
             ghost.randomizeMovementDirection();
         }
