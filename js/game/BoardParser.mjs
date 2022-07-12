@@ -90,7 +90,6 @@ export default class BoardParser {
         let initialPacmanPositions = [];
         let initialGhostPositions = [];
         let teleporterPositions = [];
-        let ghostDoorPositions = [];
 
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
@@ -109,16 +108,11 @@ export default class BoardParser {
               if (Configuration.teleporterCharacterList.includes(currentElementCharacter)) {
                  teleporterPositions.push(currentPosition);
               }
-  
-              if (currentElementCharacter === Configuration.GHOST_DOOR_CHARACTER) {
-                 ghostDoorPositions.push(currentPosition);
-              }   
            }
         }
         this.boardRef.setInitialPacmanPositions(initialPacmanPositions);
         this.boardRef.setInitialGhostPositions(initialGhostPositions);
         this.boardRef.setTeleporterPositions(teleporterPositions);
-        this.boardRef.setGhostDoorPositions(ghostDoorPositions);
     }
 
 
