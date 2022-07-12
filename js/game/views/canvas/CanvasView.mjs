@@ -1,5 +1,6 @@
-import BackgroundCanvas from './BackgroundCanvas.mjs';
 import MainCanvas from './MainCanvas.mjs';
+import BackgroundCanvas from './BackgroundCanvas.mjs';
+import SpriteMapper from './SpriteMapper.mjs';
 import Configuration from '../../../Configuration.mjs';
 
 
@@ -11,10 +12,11 @@ export default class CanvasView {
     #animationFrameId;
 
 
-    constructor(game) {
+    constructor(mainCanvas, backgroundCanvas, game) {
+        const spriteMapper = new SpriteMapper();
+        this.#mainCanvas = new MainCanvas(mainCanvas, backgroundCanvas, spriteMapper);
+        this.#backgroundCanvas = new BackgroundCanvas(backgroundCanvas, spriteMapper);
         this.#game = game;
-        this.#backgroundCanvas = new BackgroundCanvas();
-        this.#mainCanvas = new MainCanvas();
     }
 
 
