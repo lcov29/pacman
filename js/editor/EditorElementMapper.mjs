@@ -13,7 +13,7 @@ export default class EditorElementMapper {
         'powerupTile':                  Configuration.powerUpCharacter,
         'ghostDoorHorizontalTile':      Configuration.ghostDoorHorizontalCharacter,
         'ghostDoorVerticalTile':        Configuration.ghostDoorVerticalCharacter,
-        'ghostDoorCrossingTile':        Configuration.ghostDoorCrossingCharacter,
+        'ghostDoorCrossingTile':        Configuration.ghostDoorDiagonalCharacter,
         'teleporter1Tile':              Configuration.teleporter1Character,
         'teleporter2Tile':              Configuration.teleporter2Character,
         'teleporter3Tile':              Configuration.teleporter3Character,
