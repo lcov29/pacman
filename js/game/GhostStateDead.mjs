@@ -89,10 +89,7 @@ export default class GhostStateDead extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.getGhost();
-        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-            ghost.setUpdateFlagNextPosition(false);
-        }
+        // dead ghost can neither kill pacman nor get killed by pacman
     }
 
 
