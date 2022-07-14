@@ -144,9 +144,6 @@ export default class Pacman extends Actor {
       let nextElement = super.getNextPosition().getElementLayerCharacter();
       if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
          super.setNextPosition(super.getCurrentPosition());
-         if (this.hasChangedMovementDirection === false) {
-            super.setUpdateFlagNextPosition(false);
-         }
       }
    }
 
