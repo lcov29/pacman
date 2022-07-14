@@ -22,6 +22,7 @@ export default class CanvasView {
 
     initialize() {
         this.#initializeCanvasSize();
+        this.#mainCanvas.initializeAnimationObjectList();
         this.processRequestStacks();
         this.#mainCanvas.drawCurrentLevelState();
     }
