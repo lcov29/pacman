@@ -15,10 +15,10 @@ export default class BackgroundCanvas extends Canvas {
 
 
     drawBackgroundRequest(request) {
-        const xPosition = request.xPosition * super.tileWidth;
-        const yPosition = request.yPosition * super.tileHeight;
+        const xCanvasPosition = request.xPosition * super.tileWidth;
+        const yCanvasPosition = request.yPosition * super.tileHeight;
         const sprite = super.mapBackgroundToSprite(request.elementCharacter);
-        super.drawSprite(xPosition, yPosition, sprite);
+        super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
     }
 
 
