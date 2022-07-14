@@ -106,7 +106,6 @@ export default class Pacman extends Actor {
             } else {
                // next position is blocked by another pacman that has not completed the current turn, 
                // so this pacman has to abort its movement and wait for the other to complete the turn
-               super.resetUpdateFlags();
                super.setNextPosition(null);
                this.setTurnCompletionStatus(false);
             }
