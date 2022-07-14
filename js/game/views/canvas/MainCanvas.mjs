@@ -17,8 +17,10 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    initializeAnimationObjectList(numberOfActors) {
-        for (let i = 0; i < numberOfActors; i++) {
+    initializeAnimationObjectList() {
+        const numberOfActorRequests = this.#numberOfPendingUpdateRequests;
+
+        for (let i = 0; i < numberOfActorRequests; i++) {
             const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
             this.#actorAnimationObjectList.push(animationObject);
         }
