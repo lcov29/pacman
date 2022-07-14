@@ -69,6 +69,8 @@ export default class Configuration {
       static nameGhostStateScatter = 'scatter';
       static nameGhostStateRespawn = 'respawn';
 
+      static initialGhostStateName = Configuration.nameGhostStateScatter;
+
       static ghostMaxRespawnStage = 4;
       static ghostClydeMinTileDistanceToPacman = 8;
       static ghostPinkyMaxTileOffsetToPacmanDirectionPosition = 4;
