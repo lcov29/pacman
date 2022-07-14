@@ -15,7 +15,6 @@ export default class Actor {
       this.character = '';
       this.movementDirectionName = '';
       this.hasTeleportedInPreviousTurn = false;
-      this.updateFlagCurrentPosition = true;
       this.updateFlagNextPosition = true;
       this.spriteDisplayPriority = -1;
    }
@@ -46,18 +45,12 @@ export default class Actor {
    }
 
 
-   setUpdateFlagCurrentPosition(status) {
-      this.updateFlagCurrentPosition = status;
-   }
-
-
    setUpdateFlagNextPosition(status) {
       this.updateFlagNextPosition = status;
    }
 
 
    resetUpdateFlags() {
-      this.updateFlagCurrentPosition = true;
       this.updateFlagNextPosition = true;
    }
 
