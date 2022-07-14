@@ -35,7 +35,6 @@ export default class Pacman extends Actor {
       super.setMovementDirectionName(Configuration.initialPacmanSpriteDirection);
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
-      this.hasChangedMovementDirection = false;
       this.isBackgroundUpdateNeeded = false;
    }
 
@@ -45,14 +44,8 @@ export default class Pacman extends Actor {
    }
 
 
-   setMovementDirectionChangeStatus(status) {
-      this.hasChangedMovementDirection = status;
-   }
-
-
    setMovementDirectionName(directionName) {
       let changeStatus = (directionName !== super.getCurrentMovementDirectionName());
-      this.setMovementDirectionChangeStatus(changeStatus);
       super.setMovementDirectionName(directionName);
    }
 
@@ -102,7 +95,6 @@ export default class Pacman extends Actor {
                this.sendLevelBackgroundRequest();
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
-               this.setMovementDirectionChangeStatus(false);
             } else {
                // next position is blocked by another pacman that has not completed the current turn, 
                // so this pacman has to abort its movement and wait for the other to complete the turn
