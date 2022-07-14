@@ -32,6 +32,7 @@ export default class Pacman extends Actor {
       super(level, position);
       super.setCharacter(Configuration.pacmanCharacter);
       super.setSpriteDisplayPriority(Configuration.pacmanSpriteDisplayPriority);
+      super.setMovementDirectionName(Configuration.initialPacmanSpriteDirection);
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.hasChangedMovementDirection = false;
