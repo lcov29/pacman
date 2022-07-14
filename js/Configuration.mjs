@@ -95,9 +95,9 @@ export default class Configuration {
       static teleporter2Character = '2';
       static teleporter3Character = '3';
 
-      static ghostDoorCrossingCharacter = '+';
-      static ghostDoorVerticalCharacter = '|';
       static ghostDoorHorizontalCharacter = '-';
+      static ghostDoorVerticalCharacter = '|';
+      static ghostDoorDiagonalCharacter = '+';
 
       static pointCharacter = 'o';
       static powerUpCharacter = 'O';
