@@ -7,7 +7,7 @@ export default class MainCanvas extends Canvas {
 
 
     #backgroundCanvas = null;
-    #animationsInProgress = 0;
+    #numberOfAnimationsRequiringMovement = 0;
     #actorAnimationObjectList = [];
 
 
@@ -29,7 +29,18 @@ export default class MainCanvas extends Canvas {
 
     processUpdateRequestStack() {
         super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
-        this.#animationsInProgress = this.#actorAnimationObjectList.length;
+        this.#countAnimationsRequiringMovement();
+    }
+
+
+    #countAnimationsRequiringMovement() {
+        let count = 0;
+        for (let animationObject of this.#actorAnimationObjectList) {
+            if (!animationObject.isAnimationComplete()) {
+                count++;
+            }
+        } 
+        this.#numberOfAnimationsRequiringMovement = count;
     }
 
 
@@ -62,11 +73,11 @@ export default class MainCanvas extends Canvas {
         for (let animationObject of this.#actorAnimationObjectList) {
             animationObject.move(distanceInPixel);
             if (animationObject.isAnimationComplete()) {
-                this.#animationsInProgress--;
+                this.#numberOfAnimationsRequiringMovement--;
             } 
         }
         
-        const isAnimationComplete = this.#animationsInProgress === 0;
+        const isAnimationComplete = this.#numberOfAnimationsRequiringMovement === 0;
         return isAnimationComplete;
     }
     
