@@ -136,7 +136,8 @@ export default class Actor {
       request.actorCharacter = this.character;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
-      if (ghostStateName) {
+      const isGhostStateNameSet = ghostStateName !== '';
+      if (isGhostStateNameSet) {
          request.actorStateName = ghostStateName;
       }
 
