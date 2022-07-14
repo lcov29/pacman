@@ -23,7 +23,8 @@ export default class CanvasView {
     initialize() {
         this.#initializeCanvasSize();
         this.#mainCanvas.initializeAnimationObjectList();
-        this.processRequestStacks();
+        this.#backgroundCanvas.processUpdateRequestStack();
+        this.#mainCanvas.processUpdateRequestStack();
         this.#mainCanvas.drawCurrentLevelState();
     }
 
@@ -54,8 +55,7 @@ export default class CanvasView {
     }
 
 
-    processRequestStacks() {
-        this.#backgroundCanvas.processUpdateRequestStack();
+    processUpdateRequestStack() {
         this.#mainCanvas.processUpdateRequestStack();
     }
 
@@ -77,6 +77,7 @@ export default class CanvasView {
         this.#mainCanvas.drawCurrentLevelState();
         const isAnimationComplete = this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
         if (isAnimationComplete) {
+            this.#backgroundCanvas.processUpdateRequestStack();
             this.#game.notifyAnimationComplete();
         }
         this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
