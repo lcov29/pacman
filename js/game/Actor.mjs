@@ -129,12 +129,8 @@ export default class Actor {
 
 
    sendLevelMovementRequest(ghostStateName) {
-      const isPositionChanged = this.nextPosition.getID() !== this.currentPosition.getID();
-
-      if (isPositionChanged) {
-         const request = this.createMovementRequest(ghostStateName);
-         this.level.processMovementRequest(request);
-      }
+      const request = this.createMovementRequest(ghostStateName);
+      this.level.processMovementRequest(request);
    }
 
 
