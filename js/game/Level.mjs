@@ -81,6 +81,7 @@ export default class Level {
             const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);
             if (isGhostCharacter) {
                 request.directionName = Configuration.initialGhostSpriteDirection;
+                request.actorStateName = Configuration.initialGhostStateName;
             } else {
                 request.directionName = Configuration.initialPacmanSpriteDirection;
             }
