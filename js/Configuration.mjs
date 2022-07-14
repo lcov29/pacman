@@ -185,7 +185,7 @@ export default class Configuration {
 
       static pacmanInaccessibleTileCharacterList = [Configuration.wallCharacter,
                                                     Configuration.undefinedTileCharacter,
-                                                    Configuration.ghostDoorCrossingCharacter,
+                                                    Configuration.ghostDoorDiagonalCharacter,
                                                     Configuration.ghostDoorVerticalCharacter,
                                                     Configuration.ghostDoorHorizontalCharacter];
 
