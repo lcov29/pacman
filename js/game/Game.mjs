@@ -66,7 +66,7 @@ export default class Game {
    }
 
 
-   notifyTurnComplete() {
+   notifyTurnCalculationComplete() {
       this.viewList.forEach((view) => { view.processRequestStacks(); })
    }
 
