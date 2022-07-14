@@ -21,6 +21,10 @@ main {
    margin: auto;
 }
 
+.invisible {
+   display: none;
+}
+
 
 /*
 .upperStatusBar {
