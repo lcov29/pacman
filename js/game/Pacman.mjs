@@ -49,14 +49,6 @@ export default class Pacman extends Actor {
    }
 
 
-   // TODO: CHECK IF NECESSARY
-   updatePositionChangeFlag() {
-      let currentPositionId = super.getCurrentPosition().getID();
-      let nextPositionId = super.getNextPosition().getID();
-      this.hasChangedPositionInPreviousTurn = (currentPositionId !== nextPositionId);
-   }
-
-
    kill() {
       this.level.decrementTotalPacmanLifes();
       this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
@@ -84,7 +76,6 @@ export default class Pacman extends Actor {
                   this.handlePowerUpCollision();
                   this.handleBonusElementCollision();
                }
-               this.updatePositionChangeFlag();
                super.sendLevelMovementRequest();
                this.sendLevelBackgroundRequest();
                super.updateCurrentPosition();
