@@ -110,7 +110,7 @@ export default class Actor {
    }
 
 
-   sendLevelMovementRequest(ghostStateName) {
+   sendLevelMovementRequest(ghostStateName = '') {
       const request = this.createMovementRequest(ghostStateName);
       this.level.processMovementRequest(request);
    }
