@@ -119,10 +119,17 @@ export default class Canvas {
     }
 
 
-    drawSprite(xCanvasPosition, yCanvasPosition, sprite) {      
+    clearTileAt(xCanvasPosition, yCanvasPosition) {
         this.#context.save();
         this.#context.translate(xCanvasPosition, yCanvasPosition);
         this.#context.clearRect(0, 0, this.#tileWidth, this.#tileHeight);
+        this.#context.restore();
+    }
+
+
+    drawSprite(xCanvasPosition, yCanvasPosition, sprite) {      
+        this.#context.save();
+        this.#context.translate(xCanvasPosition, yCanvasPosition);
         this.#context.drawImage(sprite, 0, 0, this.#tileWidth, this.#tileHeight);
         this.#context.restore();
     }
