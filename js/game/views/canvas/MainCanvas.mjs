@@ -44,6 +44,18 @@ export default class MainCanvas extends Canvas {
     }
 
 
+    #decrementNumberOfAnimationsRequiringMovement() {
+        if (this.#numberOfAnimationsRequiringMovement > 0) {
+            this.#numberOfAnimationsRequiringMovement--;
+        }
+    }
+
+
+    #isAnimationComplete() {
+        return this.#numberOfAnimationsRequiringMovement === 0;
+    }
+
+
     loadMovementRequestIntoAnimationObject(request, index) {
         const argumentObject = {
             actorCharacter: request.actorCharacter,
@@ -73,12 +85,11 @@ export default class MainCanvas extends Canvas {
         for (let animationObject of this.#actorAnimationObjectList) {
             animationObject.move(distanceInPixel);
             if (animationObject.isAnimationComplete()) {
-                this.#numberOfAnimationsRequiringMovement--;
+                this.#decrementNumberOfAnimationsRequiringMovement();
             } 
         }
-        
-        const isAnimationComplete = this.#numberOfAnimationsRequiringMovement === 0;
-        return isAnimationComplete;
+
+        return this.#isAnimationComplete();
     }
     
 
