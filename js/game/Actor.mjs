@@ -110,7 +110,7 @@ export default class Actor {
    }
 
 
-   sendLevelMovementRequest(ghostStateName = '') {
+   sendLevelMovementRequest(ghostStateName) {
       const request = this.createMovementRequest(ghostStateName);
       this.level.processMovementRequest(request);
    }
@@ -136,8 +136,7 @@ export default class Actor {
       request.actorCharacter = this.character;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
-      const isGhostStateNameSet = ghostStateName !== '';
-      if (isGhostStateNameSet) {
+      if (ghostStateName) {
          request.actorStateName = ghostStateName;
       }
 
