@@ -91,14 +91,18 @@ export default class AnimationObject {
 
 
     #updateSpriteAlternation() {
-        const isAlternationIntervalCompleted = this.#alternationCounter === this.#alternationIntervalLength;
 
-        if (isAlternationIntervalCompleted) {
-            this.#alternationCounter = 0;
-            this.#useMainSprite = !this.#useMainSprite;
-        } else {
-            this.#alternationCounter++;
+        if (this.#alternateSprite) {
+            const isAlternationIntervalCompleted = this.#alternationCounter === this.#alternationIntervalLength;
+
+            if (isAlternationIntervalCompleted) {
+                this.#alternationCounter = 0;
+                this.#useMainSprite = !this.#useMainSprite;
+            } else {
+                this.#alternationCounter++;
+            }
         }
+
     }
 
 
