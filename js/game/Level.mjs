@@ -95,7 +95,7 @@ export default class Level {
 
 
 
-    executeTurn() {
+    calculateNextTurn() {
         this.movePacmans();
         if (this.isWon() === false && this.isLost() === false) {
             this.moveGhosts();
