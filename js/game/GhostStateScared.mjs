@@ -100,7 +100,6 @@ export default class GhostStateScared extends GhostState {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {            
             ghost.kill();
-            ghost.setUpdateFlagNextPosition(false);
             ghost.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
         }
     }
