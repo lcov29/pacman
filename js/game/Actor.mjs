@@ -161,6 +161,8 @@ export default class Actor {
       if (ghostStateName) {
          request.actorStateName = ghostStateName;
       }
+
+      return request;
    }
 
 
