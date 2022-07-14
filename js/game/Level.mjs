@@ -101,7 +101,7 @@ export default class Level {
             this.moveGhosts();
         }
         this.bonusElementSpawner.handleSpawn(this.consumedPoints);
-        this.game.notifyTurnComplete();
+        this.game.notifyTurnCalculationComplete();
     }
 
 
