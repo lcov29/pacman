@@ -74,6 +74,11 @@ export default class Canvas {
     }
 
 
+    get numberOfPendingUpdateRequests() {
+        return this.#updateRequestStack.length;
+    }
+
+
     resize() {
         const canvasWidth = this.#tileWidth * this.#columnNumber;
         const canvasHeight = this.#tileHeight * this.#rowNumber;
