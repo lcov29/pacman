@@ -13,7 +13,9 @@ const mainCanvas = document.getElementById('gameCanvas');
 const backgroundCanvas = document.getElementById('backgroundCanvas');
 
 const game = new Game(mainCanvas, backgroundCanvas);
-game.loadLevel();   
+
+// ensure all resources are completely loaded 
+window.addEventListener('load', () => game.loadLevel() );
 
 mainCanvas.addEventListener('click', () => game.start() );
 document.addEventListener('keydown', callBackKeyDown, true);
