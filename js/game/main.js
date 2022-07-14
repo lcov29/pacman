@@ -15,7 +15,7 @@ const backgroundCanvas = document.getElementById('backgroundCanvas');
 const game = new Game(mainCanvas, backgroundCanvas);
 game.loadLevel();   
 
-mainCanvas.addEventListener('click', callBackGameStart);
+mainCanvas.addEventListener('click', () => game.start() );
 document.addEventListener('keydown', callBackKeyDown, true);
 document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
 
@@ -26,11 +26,6 @@ document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click',
 
 function callBackMobileMenuButton() {
    this.classList.toggle('mobileMenuVisible');
-}
-
-
-function callBackGameStart() {
-   game.start();
 }
 
 
