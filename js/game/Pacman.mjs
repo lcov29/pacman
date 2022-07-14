@@ -44,12 +44,6 @@ export default class Pacman extends Actor {
    }
 
 
-   setMovementDirectionName(directionName) {
-      let changeStatus = (directionName !== super.getCurrentMovementDirectionName());
-      super.setMovementDirectionName(directionName);
-   }
-
-
    getTurnCompletionStatus() {
       return this.hasCompletedCurrentTurn;
    }
