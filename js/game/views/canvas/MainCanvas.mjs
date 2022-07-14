@@ -78,17 +78,20 @@ export default class MainCanvas extends Canvas {
             super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
         }
     }
-
+    
 
     moveAnimationObjectsBy(distanceInPixel) {
 
         for (let animationObject of this.#actorAnimationObjectList) {
-            animationObject.move(distanceInPixel);
-            if (animationObject.isAnimationComplete()) {
-                this.#decrementNumberOfAnimationsRequiringMovement();
-            } 
-        }
 
+            if (!animationObject.isAnimationComplete()) {
+                animationObject.move(distanceInPixel);
+                if (animationObject.isAnimationComplete()) {
+                    this.#decrementNumberOfAnimationsRequiringMovement();
+                } 
+            }
+
+        }
         return this.#isAnimationComplete();
     }
     
