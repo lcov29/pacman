@@ -16,6 +16,7 @@ export default class MovementRequest {
     #directionName = '';
     #actorCharacter = '';
     #actorStateName = '';
+    #isTeleportation = false;
     #spriteDisplayPriority = -1;
 
 
@@ -194,6 +195,22 @@ export default class MovementRequest {
         } else {
             throw new Error(`${name} is not a valid ghost state`);
         }
+    }
+
+
+    get isTeleportation() {
+        return this.#isTeleportation;
+    }
+
+    
+    set isTeleportation(value) {
+
+        if (typeof value === 'boolean') {
+            this.#isTeleportation = value;
+        } else {
+            throw new Error('Parameter of setter isTeleportation() must be boolean');
+        }
+
     }
 
 
