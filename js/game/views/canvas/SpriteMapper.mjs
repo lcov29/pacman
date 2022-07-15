@@ -36,6 +36,8 @@ export default class SpriteMapper {
     }
 
 
+
+
     #initializeActorMainSpriteMap() {
         this.#actorMainSpriteMap = new Map();
 
@@ -578,6 +580,8 @@ export default class SpriteMapper {
     }
 
 
+
+
     #initializeActorAlternateSpriteMap() {
         this.#actorAlternateSpriteMap = new Map();
 
@@ -660,6 +664,8 @@ export default class SpriteMapper {
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
     }
 
+
+    
 
     #initializeBackgroundSpriteMap() {
         this.#backgroundSpriteMap = new Map();
