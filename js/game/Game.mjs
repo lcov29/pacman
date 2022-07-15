@@ -110,14 +110,14 @@ export default class Game {
 
    handleWin() {
       if (this.level.isWon()) {
-         window.alert('Victory');
+         window.alert('Victory');   // Placeholder, replace later
       }
    }
 
 
    handleDefeat() {
       if (this.level.isLost()) {
-         window.alert('Game over');
+         window.alert('Game over'); // Placeholder, replace later
       }
    }
 
