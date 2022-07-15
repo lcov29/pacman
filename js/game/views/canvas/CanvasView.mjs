@@ -75,12 +75,16 @@ export default class CanvasView {
 
     callBackAnimation() {
         this.#mainCanvas.drawCurrentLevelState();
+
         const isAnimationComplete = this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
         if (isAnimationComplete) {
             this.#backgroundCanvas.processUpdateRequestStack();
             this.#game.notifyAnimationComplete();
         }
-        this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
+
+        if (this.#game.isAnimationLoopContinuationNecessary()) {
+            this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
+        }
     }
 
 
