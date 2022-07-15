@@ -18,15 +18,15 @@ export default class SpriteMapper {
 
 
     mapActorToMainSprite(argumentObject) {
-        const {actorCharacter, actorStateName, directionName} = argumentObject;
-        const spriteName = Utility.getSpriteName(actorCharacter, actorStateName, directionName);
+        const {actorCharacter, actorStateName, teleportationStatus, directionName} = argumentObject;
+        const spriteName = Utility.getSpriteName(actorCharacter, actorStateName, teleportationStatus, directionName);
         return this.#actorMainSpriteMap.get(spriteName);        
     }
 
 
     mapActorToAlternateSprite(argumentObject) {
-        const {actorCharacter, actorStateName, directionName} = argumentObject;
-        const spriteName = Utility.getSpriteName(actorCharacter, actorStateName, directionName);
+        const {actorCharacter, actorStateName, teleportationStatus, directionName} = argumentObject;
+        const spriteName = Utility.getSpriteName(actorCharacter, actorStateName, teleportationStatus, directionName);
         return this.#actorAlternateSpriteMap.get(spriteName);
     }
 
