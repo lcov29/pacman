@@ -92,7 +92,6 @@ export default class MainCanvas extends Canvas {
             }
 
         }
-        return this.#isAnimationComplete();
     }
     
 
