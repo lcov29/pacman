@@ -66,18 +66,15 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleTeleportation() {
-        let ghost = super.getGhost();
+        const ghost = super.getGhost();
         if (ghost.isCurrentPositionTeleporter()) {
 
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {
-
-                // after teleportation ghost sprite should display the direction of the next move
-                let afterTeleportationPositionId = ghost.getNextPosition().getID();
-                let nextAfterTeleportationPosition = this.calculateNextPosition(afterTeleportationPositionId);
-                ghost.updateMovementDirection(ghost.getNextPosition(), nextAfterTeleportationPosition);
                 ghost.setTeleportationStatus(true);
-            } 
+            } else {
+                ghost.setTeleportationStatus(false);
+            }
 
         } else {
             ghost.setTeleportationStatus(false);
