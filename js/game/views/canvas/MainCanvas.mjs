@@ -51,7 +51,7 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    #isAnimationComplete() {
+    isAnimationComplete() {
         return this.#numberOfAnimationsRequiringMovement === 0;
     }
 
