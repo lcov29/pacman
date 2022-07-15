@@ -99,31 +99,6 @@ export default class Game {
    }
 
 
-   /*
-   nextTurn() {
-      this.level.executeTurn();
-      this.handleWin();
-      this.handleDefeat();
-   }*/
-
-
-   /*
-   handleWin() {
-      if (this.level.isWon()) {
-         this.view.printMessage('Victory')
-         this.end();
-      }
-   }
-   
-   
-   handleDefeat() {
-      if (this.level.isLost()) {
-         this.view.printMessage('Game over');
-         this.end();
-      }
-   }*/
-
-
    isGameInProgress() {
       const isNotWon = !this.level.isWon();
       const isNotLost = !this.level.isLost();
