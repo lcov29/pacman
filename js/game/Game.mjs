@@ -12,6 +12,7 @@ export default class Game {
       this.level = null;
       this.mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
       this.viewList = [this.mainView];
+      this.isAnimationLoopContinuationNeeded = true;
    }
 
 
@@ -72,7 +73,19 @@ export default class Game {
 
 
    notifyAnimationComplete() {
-      this.level.calculateNextTurn();
+      const isGameInProgress = this.isGameInProgress();
+
+      this.handleWin();
+      this.handleDefeat();
+      if (isGameInProgress) {
+         this.level.calculateNextTurn();
+      }
+      this.isAnimationLoopContinuationNeeded = isGameInProgress;
+   }
+
+
+   isAnimationLoopContinuationNecessary() {
+      return this.isAnimationLoopContinuationNeeded;
    }
    
 
@@ -94,6 +107,7 @@ export default class Game {
    }*/
 
 
+   /*
    handleWin() {
       if (this.level.isWon()) {
          this.view.printMessage('Victory')
@@ -106,6 +120,29 @@ export default class Game {
       if (this.level.isLost()) {
          this.view.printMessage('Game over');
          this.end();
+      }
+   }*/
+
+
+   isGameInProgress() {
+      const isNotWon = !this.level.isWon();
+      const isNotLost = !this.level.isLost();
+      return isNotWon && isNotLost;
+   }
+
+
+   handleWin() {
+      if (this.level.isWon()) {
+         this.end();
+         window.alert('Victory');
+      }
+   }
+
+
+   handleDefeat() {
+      if (this.level.isLost()) {
+         this.end();
+         window.alert('Game over');
       }
    }
 
