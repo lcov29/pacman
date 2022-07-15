@@ -134,6 +134,7 @@ export default class Actor {
 
       request.directionName = this.movementDirectionName;
       request.actorCharacter = this.character;
+      request.isTeleporation = this.hasTeleportedInPreviousTurn;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
       if (ghostStateName) {
