@@ -334,6 +334,72 @@ export default class SpriteMapper {
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
 
+         // Ghost Blinky (Respawn)
+         sprite = document.getElementById('blinkyDown');
+
+         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameUp);
+         this.#actorMainSpriteMap.set(spriteName, sprite);
+ 
+         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameRight);
+         this.#actorMainSpriteMap.set(spriteName, sprite);
+ 
+         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameDown);
+         this.#actorMainSpriteMap.set(spriteName, sprite);
+ 
+         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameLeft);
+         this.#actorMainSpriteMap.set(spriteName, sprite);
+
+
+        // Ghost Inky (Respawn)
+        sprite = document.getElementById('inkyDown');
+
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+
+        // Ghost Pinky (Respawn)
+        sprite = document.getElementById('pinkyDown');
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+
+        // Ghost Clyde (Respawn)
+        sprite = document.getElementById('clydeDown');
+
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateRespawn, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+
+
+
 
         // ==== TELEPORTATION ====
         // map all actors to undefined tile to prevent actors from immediately jumping to teleport destination
