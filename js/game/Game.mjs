@@ -79,6 +79,8 @@ export default class Game {
       this.handleDefeat();
       if (isGameInProgress) {
          this.level.calculateNextTurn();
+      } else {
+         this.end();
       }
       this.isAnimationLoopContinuationNeeded = isGameInProgress;
    }
@@ -108,7 +110,6 @@ export default class Game {
 
    handleWin() {
       if (this.level.isWon()) {
-         this.end();
          window.alert('Victory');
       }
    }
@@ -116,7 +117,6 @@ export default class Game {
 
    handleDefeat() {
       if (this.level.isLost()) {
-         this.end();
          window.alert('Game over');
       }
    }
