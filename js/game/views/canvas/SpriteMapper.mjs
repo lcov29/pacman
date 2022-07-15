@@ -39,21 +39,22 @@ export default class SpriteMapper {
     #initializeActorMainSpriteMap() {
         this.#actorMainSpriteMap = new Map();
 
-
         // Pacman
-        let spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, '', Configuration.directionNameUp);
+        const pacmanStandardState = '';
+
+        let spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, pacmanStandardState, Configuration.directionNameUp);
         let sprite = document.getElementById('pacmanUp');
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
-        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, '', Configuration.directionNameRight);
+        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, pacmanStandardState, Configuration.directionNameRight);
         sprite = document.getElementById('pacmanRight');
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
-        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, '', Configuration.directionNameDown);
+        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, pacmanStandardState, Configuration.directionNameDown);
         sprite = document.getElementById('pacmanDown');
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
-        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, '', Configuration.directionNameLeft);
+        spriteName = Utility.getSpriteName(Configuration.pacmanCharacter, pacmanStandardState, Configuration.directionNameLeft);
         sprite = document.getElementById('pacmanLeft');
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
