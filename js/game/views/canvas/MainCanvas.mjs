@@ -60,7 +60,8 @@ export default class MainCanvas extends Canvas {
         const argumentObject = {
             actorCharacter: request.actorCharacter,
             actorStateName: request.actorStateName,
-            directionName: request.directionName
+            teleportationStatus : request.isTeleportation,
+            directionName: request.directionName,
         };
 
         const mainSprite = super.mapActorToMainSprite(argumentObject);
