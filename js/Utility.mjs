@@ -14,8 +14,8 @@ export default class Utility {
     }
 
 
-    static getSpriteName(actorCharacter, actorStateName, directionName) {
-        return `${actorCharacter}_${actorStateName}_${directionName}`;
+    static getSpriteName(actorCharacter, actorStateName, teleportationStatus, directionName) {
+        return `${actorCharacter}_${actorStateName}_${teleportationStatus}_${directionName}`;
     }
 
     
