@@ -84,6 +84,7 @@ export default class GhostStateScared extends GhostState {
             ghost.setNextPosition(destination);
             ghost.setTeleportationStatus(true);
         } else if (ghost.getTeleportationStatus()) {
+            this.chooseRandomAccessibleNextBoardPosition();
             ghost.setTeleportationStatus(false);
         }
     }
@@ -132,24 +133,18 @@ export default class GhostStateScared extends GhostState {
             ghost.randomizeMovementDirection();
         }
     }
-
-    
-    randomizeMovementDirectionToLeaveTeleportationTile() {
+ 
+ 
+    chooseRandomAccessibleNextBoardPosition() {
         const ghost = super.getGhost();
         const currentBoardPosition = ghost.getCurrentPosition();
-        const nextBoardPosition = this.chooseRandomAccessibleNextBoardPosition(currentBoardPosition);
-        ghost.updateMovementDirection(currentBoardPosition, nextBoardPosition);
-     }
- 
- 
-     chooseRandomAccessibleNextBoardPosition(currentBoardPosition) {
-         const currentX = currentBoardPosition.getX();
-         const currentY = currentBoardPosition.getY();
-         const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
-         const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
-         const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
-         return chosenNextPosition;
-     }
+        const currentX = currentBoardPosition.getX();
+        const currentY = currentBoardPosition.getY();
+        const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
+        const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
+        const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
+        ghost.setNextPosition(chosenNextPosition);
+    }
 
 
 }
