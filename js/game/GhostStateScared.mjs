@@ -141,9 +141,16 @@ export default class GhostStateScared extends GhostState {
         const currentX = currentBoardPosition.getX();
         const currentY = currentBoardPosition.getY();
         const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
-        const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
-        const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
-        ghost.setNextPosition(chosenNextPosition);
+        
+        const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
+
+        if (isPossibleNextPositionListEmpty) {
+            ghost.setNextPosition(ghost.getCurrentPosition());
+        } else {
+            const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
+            const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
+            ghost.setNextPosition(chosenNextPosition);
+        }
     }
 
 
