@@ -669,6 +669,110 @@ export default class SpriteMapper {
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
 
 
+        // Alternate Blinky (State Chase & Scatter)
+        sprite = document.getElementById('blinkyUpAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('blinkyRightAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('blinkyDownAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('blinkyLeftAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+
+        // Alternate Inky (State Chase & Scatter)
+        sprite = document.getElementById('inkyUpAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('inkyRightAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('inkyDownAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('inkyLeftAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+
+        // Alternate Pinky (State Chase & Scatter)
+        sprite = document.getElementById('pinkyUpAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('pinkyRightAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('pinkyDownAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('pinkyLeftAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+
+        // Alternate Clyde (State Chase & Scatter)
+        sprite = document.getElementById('clydeUpAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameUp);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('clydeRightAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameRight);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('clydeDownAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameDown);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+        sprite = document.getElementById('clydeLeftAlternate');
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateChase, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScatter, statusNoTeleportation, Configuration.directionNameLeft);
+        this.#actorAlternateSpriteMap.set(spriteName, sprite);
+
+
         // Scared Ghost Transition To Normal
         sprite = document.getElementById('transitionUp');
 
