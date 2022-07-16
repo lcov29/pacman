@@ -18,6 +18,11 @@ export default class Ghost extends Actor {
    }
 
 
+   getAccessibleNeighborList(xBoardPosition, yBoardPosition) {
+      return this.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
+   }
+
+
    setScatterID(positionId) {
       this.scatterPositionId = positionId;
    }
