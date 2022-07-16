@@ -750,8 +750,10 @@ export default class SpriteMapper {
         this.#backgroundSpriteMap.set(Configuration.pointCharacter, document.getElementById('point'));
         this.#backgroundSpriteMap.set(Configuration.powerUpCharacter, document.getElementById('powerUp'));
 
+        this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('ghostDoorDiagonal'));
+
         /*
-            this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('bonusCherry'));
+            
             this.#backgroundSpriteMap.set(Configuration.bonusStrawberryCharacter, document.getElementById('bonusStrawberry'));
             this.#backgroundSpriteMap.set(Configuration.bonusPeachCharacter, document.getElementById('bonusPeach'));
             this.#backgroundSpriteMap.set(Configuration.bonusAppleCharacter, document.getElementById('bonusApple'));
