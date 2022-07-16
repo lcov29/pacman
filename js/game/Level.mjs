@@ -297,7 +297,7 @@ export default class Level {
     }
 
 
-    buildAccessibleNeighborList(xPosition, yPosition) {
+    getAccessibleNeighborList(xPosition, yPosition) {
         return this.board.buildAccessibleNeighborList(xPosition, yPosition);
     }
 
