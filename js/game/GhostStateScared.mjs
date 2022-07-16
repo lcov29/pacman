@@ -2,7 +2,6 @@
 
 import Utility from '../Utility.mjs';
 import GhostState from './GhostState.mjs';
-import Directions from './Directions.mjs'
 import Configuration from '../Configuration.mjs';
 import GhostStateDead from './GhostStateDead.mjs';
 import GhostStateChase from './GhostStateChase.mjs';
