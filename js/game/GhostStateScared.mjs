@@ -1,6 +1,8 @@
 'use strict';
 
+import Utility from '../Utility.mjs';
 import GhostState from './GhostState.mjs';
+import Directions from './Directions.mjs'
 import Configuration from '../Configuration.mjs';
 import GhostStateDead from './GhostStateDead.mjs';
 import GhostStateChase from './GhostStateChase.mjs';
@@ -74,12 +76,14 @@ export default class GhostStateScared extends GhostState {
 
 
     handleTeleportation() {
-        let ghost = super.getGhost();
-        if (ghost.isCurrentPositionTeleporter() && ghost.getTeleportationStatus() === false) {
-            let destination = ghost.getTeleportDestinationForCurrentPosition();
+        const ghost = super.getGhost();
+
+        const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.getTeleportationStatus();
+        if (isTeleportationNeeded) {
+            const destination = ghost.getTeleportDestinationForCurrentPosition();
             ghost.setNextPosition(destination);
             ghost.setTeleportationStatus(true);
-        } else if (ghost.isCurrentPositionTeleporter() === false) {
+        } else if (ghost.getTeleportationStatus()) {
             ghost.setTeleportationStatus(false);
         }
     }
