@@ -29,7 +29,7 @@ export default class Directions {
 
 
     static directionMapInverse = {
-        [Configuration.directionNameUp]:      Configuration.DirectionNameDown,
+        [Configuration.directionNameUp]:      Configuration.directionNameDown,
         [Configuration.directionNameRight]:   Configuration.directionNameLeft,
         [Configuration.directionNameDown]:    Configuration.directionNameUp,
         [Configuration.directionNameLeft]:    Configuration.directionNameRight
