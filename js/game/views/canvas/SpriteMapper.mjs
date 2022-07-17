@@ -774,7 +774,7 @@ export default class SpriteMapper {
 
 
         // Scared Ghost Transition To Normal
-        sprite = document.getElementById('transitionUp');
+        sprite = document.getElementById('scaredUpAlternate');
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusNoTeleportation, Configuration.directionNameUp);
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
@@ -789,7 +789,7 @@ export default class SpriteMapper {
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
 
 
-        sprite = document.getElementById('transitionRight');
+        sprite = document.getElementById('scaredRightAlternate');
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusNoTeleportation, Configuration.directionNameRight);
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
@@ -804,7 +804,7 @@ export default class SpriteMapper {
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
 
 
-        sprite = document.getElementById('transitionDown');
+        sprite = document.getElementById('scaredDownAlternate');
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusNoTeleportation, Configuration.directionNameDown);
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
@@ -819,7 +819,7 @@ export default class SpriteMapper {
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
 
 
-        sprite = document.getElementById('transitionLeft');
+        sprite = document.getElementById('scaredLeftAlternate');
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusNoTeleportation, Configuration.directionNameLeft);
         this.#actorAlternateSpriteMap.set(spriteName, sprite);
