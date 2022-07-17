@@ -138,7 +138,15 @@ export default class Actor {
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
       if (ghostStateName) {
-         request.actorStateName = ghostStateName;
+         const isStateScared = ghostStateName === Configuration.nameGhostStateScared;
+         if (isStateScared) {
+            const isTransitionWarningNecessary = this.state.getRemainingTurns();
+            request.actorStateName = (isTransitionWarningNecessary) ? ghostStateName + 'Transition' : ghostStateName;
+         } else {
+            request.actorStateName = ghostStateName;
+         }
+
+         
       }
 
       return request;
