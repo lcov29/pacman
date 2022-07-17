@@ -70,6 +70,7 @@ export default class Configuration {
       static nameGhostStateRespawn = 'respawn';
 
       static initialGhostStateName = Configuration.nameGhostStateScatter;
+      static ghostStateScaredRemainingTurnNumberToTriggerWarning = 5;
 
       static ghostMaxRespawnStage = 4;
       static ghostClydeMinTileDistanceToPacman = 8;
