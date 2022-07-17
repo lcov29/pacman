@@ -140,7 +140,7 @@ export default class Actor {
       if (ghostStateName) {
          const isStateScared = ghostStateName === Configuration.nameGhostStateScared;
          if (isStateScared) {
-            const isTransitionWarningNecessary = this.state.getRemainingTurns();
+            const isTransitionWarningNecessary = this.state.getRemainingTurns() <= Configuration.ghostStateScaredRemainingTurnNumberToTriggerWarning;
             request.actorStateName = (isTransitionWarningNecessary) ? ghostStateName + 'Transition' : ghostStateName;
          } else {
             request.actorStateName = ghostStateName;
