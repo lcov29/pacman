@@ -66,8 +66,15 @@ export default class Configuration {
       static nameGhostStateDead = 'dead';
       static nameGhostStateChase = 'chase';
       static nameGhostStateScared = 'scared';
+      static nameGhostStateScaredEnd = 'scaredEnd';
       static nameGhostStateScatter = 'scatter';
       static nameGhostStateRespawn = 'respawn';
+
+      static turnDurationGhostStateChase = 20;
+      static turnDurationGhostStateScared = 25;
+      static turnDurationGhostStateScaredEnd = 5;
+      static turnDurationGhostStateScatter = 7;
+      static turnDurationGhostStateRespawn = 4;
 
       static initialGhostStateName = Configuration.nameGhostStateScatter;
       static ghostStateScaredRemainingTurnNumberToTriggerWarning = 5;
