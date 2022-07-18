@@ -137,6 +137,14 @@ export default class Actor {
       request.isTeleportation = this.hasTeleportedInPreviousTurn;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
+      this.setActorStateName(request, ghostStateName);
+
+      return request;
+   }
+
+
+   setActorStateName(request, ghostStateName) {
+      // only ghosts have different behavior states
       if (ghostStateName) {
          const isStateScared = ghostStateName === Configuration.nameGhostStateScared;
          if (isStateScared) {
@@ -145,11 +153,7 @@ export default class Actor {
          } else {
             request.actorStateName = ghostStateName;
          }
-
-         
       }
-
-      return request;
    }
 
 
