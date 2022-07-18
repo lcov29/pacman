@@ -4,8 +4,8 @@
 export default class GhostState {
 
 
-    constructor(durationInTurns, ghost) {
-        this.remainingTurns = durationInTurns;
+    constructor(ghost) {
+        this.remainingTurns = 0;
         this.ghost = ghost;
         this.name = '';
     }
