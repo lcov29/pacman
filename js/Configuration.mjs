@@ -214,7 +214,7 @@ export default class Configuration {
                                    Configuration.nameGhostStateDead,
                                    Configuration.nameGhostStateRespawn,
                                    Configuration.nameGhostStateScared,
-                                   `${Configuration.nameGhostStateScared}Transition`,
+                                   Configuration.nameGhostStateScaredEnd,
                                    Configuration.nameGhostStateScatter];
 
    
