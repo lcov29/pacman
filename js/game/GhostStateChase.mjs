@@ -52,7 +52,7 @@ export default class GhostStateChase extends GhostState {
     }
 
 
-    handleTeleportation() {
+    handleTeleporterCollision() {
         const ghost = super.getGhost();
         if (ghost.isCurrentPositionTeleporter()) {
 

@@ -48,7 +48,7 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    handleTeleportation() {
+    handleTeleporterCollision() {
         // teleporter position can not be equal to spawn position
     }
 

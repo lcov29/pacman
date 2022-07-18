@@ -60,7 +60,7 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    handleTeleportation() {
+    handleTeleporterCollision() {
         const ghost = super.getGhost();
         if (ghost.isCurrentPositionTeleporter()) {
 

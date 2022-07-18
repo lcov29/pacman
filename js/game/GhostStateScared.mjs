@@ -66,7 +66,7 @@ export default class GhostStateScared extends GhostState {
     }
 
 
-    handleTeleportation() {
+    handleTeleporterCollision() {
         const ghost = super.getGhost();
 
         const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.getTeleportationStatus();

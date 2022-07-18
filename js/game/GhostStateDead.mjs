@@ -58,7 +58,7 @@ export default class GhostStateDead extends GhostState {
     }
 
     
-    handleTeleportation() {
+    handleTeleporterCollision() {
         const ghost = super.getGhost();
         if (ghost.isCurrentPositionTeleporter()) {
 
