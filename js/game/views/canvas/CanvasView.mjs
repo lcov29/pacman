@@ -33,7 +33,7 @@ export default class CanvasView {
         const tileWidth = 30 * devicePixelRatio;
         const tileHeight = 30 * devicePixelRatio;
         const columnNumber = 27;
-        const rowNumber = 22;
+        const rowNumber = 22 + 1;
 
         for (let canvas of [this.#backgroundCanvas, this.#mainCanvas]) {
             canvas.tileWidth = tileWidth;
@@ -46,11 +46,16 @@ export default class CanvasView {
 
 
     addBackgroundRequest(request) {
+        const canvasOffsetRowForScore = 1;
+        request.yPosition = request.yPosition + canvasOffsetRowForScore;
         this.#backgroundCanvas.addRequest(request);
     }
 
 
     addMovementRequest(request) {
+        const canvasOffsetRowForScore = 1;
+        request.yPositionStart = request.yPositionStart + canvasOffsetRowForScore;
+        request.yPositionDestination = request.yPositionDestination + canvasOffsetRowForScore;
         this.#mainCanvas.addRequest(request);
     }
 
