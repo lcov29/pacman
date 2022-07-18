@@ -137,25 +137,12 @@ export default class Actor {
       request.isTeleportation = this.hasTeleportedInPreviousTurn;
       request.spriteDisplayPriority = this.spriteDisplayPriority;
 
-      this.setActorStateName(request, ghostStateName);
+      if (ghostStateName) {
+         request.actorStateName = ghostStateName;
+      }
 
       return request;
    }
-
-
-   setActorStateName(request, ghostStateName) {
-      // only ghosts have different behavior states
-      if (ghostStateName) {
-         const isStateScared = ghostStateName === Configuration.nameGhostStateScared;
-         if (isStateScared) {
-            const isTransitionWarningNecessary = this.state.getRemainingTurns() <= Configuration.ghostStateScaredRemainingTurnNumberToTriggerWarning;
-            request.actorStateName = (isTransitionWarningNecessary) ? ghostStateName + 'Transition' : ghostStateName;
-         } else {
-            request.actorStateName = ghostStateName;
-         }
-      }
-   }
-
 
 
    loadCurrentPositionFromBoard() {
