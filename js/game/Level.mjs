@@ -271,7 +271,6 @@ export default class Level {
     }
 
 
-    // NEW
     // TODO: THINK ABOUT SITUATION WHERE A GHOST LEAVING A POSITION OVERWRITES BOARD INFORMATION ABOUT ANOTHER GHOST THAT PREVIOUSLY 
     //       ENTERED THE POSITION IN THE SAME TURN
     processMovementRequest(request) {
@@ -281,7 +280,6 @@ export default class Level {
     }
 
 
-    // NEW
     processBackgroundRequest(request) {
         this.board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
         this.addInformationToBackgroundRequest();
