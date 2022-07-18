@@ -4,7 +4,6 @@ import Utility from '../Utility.mjs';
 import GhostState from './GhostState.mjs';
 import Configuration from '../Configuration.mjs';
 import GhostStateDead from './GhostStateDead.mjs';
-import GhostStateChase from './GhostStateChase.mjs';
 
 /*  
    =================================================================================================================
@@ -29,15 +28,7 @@ export default class GhostStateScared extends GhostState {
 
     constructor(ghost) {
         super(ghost);
-        super.setName(Configuration.nameGhostStateScared);
         super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
-        super.setDurationInTurns(Configuration.turnDurationGhostStateScared);
-        super.getGhost().reverseCurrentMovementDirection();
-    }
-
-
-    getSubsequentState() {
-        return new GhostStateChase(super.getGhost());
     }
 
 
