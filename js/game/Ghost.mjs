@@ -92,7 +92,6 @@ export default class Ghost extends Actor {
          super.loadNextPositionFromBoard();
          this.state.handleTeleportation();
          this.state.handleScatterPositionCollision();
-         this.state.handlePacmanCollisionOnCurrentPosition();
          this.state.handlePacmanCollisionOnNextPosition();
          this.state.handleInaccessibleTileCollision();
          this.state.handleSpawnCollision();
