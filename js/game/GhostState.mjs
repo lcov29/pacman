@@ -31,6 +31,11 @@ export default class GhostState {
     }
 
 
+    setDurationInTurns(number) {
+        this.remainingTurns = number;
+    }
+
+
     getGhost() {
         return this.ghost;
     }
