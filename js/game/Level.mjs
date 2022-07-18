@@ -284,7 +284,14 @@ export default class Level {
     // NEW
     processBackgroundRequest(request) {
         this.board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
+        this.addInformationToBackgroundRequest();
         this.game.addBackgroundRequest(request);
+    }
+
+
+    addInformationToBackgroundRequest(request) {
+        request.score = this.score;
+        request.lifeCount = this.totalPacmanLifes;
     }
 
 
