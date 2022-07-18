@@ -28,6 +28,15 @@ export default class BackgroundRequest {
     }
 
 
+    set yPosition(value) {
+        if (value > 0) {
+            this.#yPosition = value;
+        } else {
+            throw new RangeError('yPosition must be greater than zero');
+        }
+    }
+
+
     get elementCharacter() {
         return this.#elementCharacter;
     }
