@@ -37,7 +37,7 @@ export default class GhostStateScared extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateChase(Configuration.turnDurationGhostStateChase, super.getGhost());
+        return new GhostStateChase(super.getGhost());
     }
 
 
@@ -60,7 +60,7 @@ export default class GhostStateScared extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateScared(30, ghost));
+        ghost.setState(new GhostStateScared(ghost));
     }
 
 

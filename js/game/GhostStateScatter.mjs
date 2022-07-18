@@ -18,7 +18,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateChase(20, super.getGhost());
+        return new GhostStateChase(super.getGhost());
     }
 
 
@@ -42,7 +42,7 @@ export default class GhostStateScatter extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateScared(30, ghost));
+        ghost.setState(new GhostStateScared(ghost));
     }
 
 
