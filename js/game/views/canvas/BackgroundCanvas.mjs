@@ -20,6 +20,7 @@ export default class BackgroundCanvas extends Canvas {
         const sprite = super.mapBackgroundToSprite(request.elementCharacter);
         super.clearTileAt(xCanvasPosition, yCanvasPosition);
         super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
+        super.drawText(0, 0, `Score: ${request.score}`, (request.xPosition + 4) * super.tileWidth);
     }
 
 
