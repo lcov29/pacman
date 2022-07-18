@@ -9,10 +9,10 @@ export default class GhostStateRespawn extends GhostState {
 
 
     constructor(ghost) {
-        // set duration to infinite; state ends when all respawn stages are completed
-        super(Infinity, ghost);
+        super(ghost);
         super.setName(Configuration.nameGhostStateRespawn);
         super.setSpriteDisplayPriority(Configuration.ghostStateRespawnSpriteDisplayPriority);
+        super.setDurationInTurns(Configuration.turnDurationGhostStateRespawn);
         this.respawnStage = 0;
     }
 

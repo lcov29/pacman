@@ -10,10 +10,11 @@ import GhostStateScatter from './GhostStateScatter.mjs';
 export default class GhostStateChase extends GhostState {
 
 
-    constructor(durationInTurns, ghost) {
-        super(durationInTurns, ghost);
+    constructor(ghost) {
+        super(ghost);
         super.setName(Configuration.nameGhostStateChase);
         super.setSpriteDisplayPriority(Configuration.ghostStateChaseSpriteDisplayPriority);
+        super.setDurationInTurns(Configuration.turnDurationGhostStateChase);
     }
 
 
