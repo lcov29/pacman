@@ -35,7 +35,7 @@ export default class Ghost extends Actor {
 
    setInitialState() {
       if (this.state === null) {
-         this.state = new GhostStateScatter(7, this);
+         this.state = new GhostStateScatter(this);
       }
    }
 
