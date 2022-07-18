@@ -49,11 +49,6 @@ export default class MovementRequest {
 
 
     set yPositionStart(y) {
-        const isAlreadyInitialized = this.#yPositionStart !== -1;
-        if (isAlreadyInitialized) {
-            throw new Error(`Can not change already initialized property yPositionStart`);
-        }
-
         const isInputValid = y > -1;
         if (isInputValid) {
             this.#yPositionStart = y;
@@ -89,11 +84,6 @@ export default class MovementRequest {
 
 
     set yPositionDestination(y) {
-        const isAlreadyInitialized = this.#yPositionDestination !== -1;
-        if (isAlreadyInitialized) {
-            throw new Error(`Can not change already initialized property yPositionDestination`);
-        }
-
         const isInputValid = y > -1;
         if (isInputValid) {
             this.#yPositionDestination = y;
