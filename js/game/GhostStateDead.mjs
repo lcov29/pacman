@@ -80,11 +80,6 @@ export default class GhostStateDead extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {
-        // dead ghost can neither kill pacman nor get killed by pacman
-    }
-
-
     handlePacmanCollisionOnNextPosition() {
         // dead ghost can neither kill pacman nor get killed by pacman
     }

@@ -48,12 +48,6 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {
-        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
-        // is handled by the method Pacman.handleGhostCollision()
-    }
-
-
     handleTeleportation() {
         // teleporter position can not be equal to spawn position
     }

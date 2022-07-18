@@ -86,12 +86,6 @@ export default class GhostStateScared extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {
-        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
-        // is handled by the method Pacman.handleGhostCollision()
-    }
-
-
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {            

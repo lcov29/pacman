@@ -60,12 +60,6 @@ export default class GhostStateScatter extends GhostState {
     }
 
 
-    handlePacmanCollisionOnCurrentPosition() {
-        // since pacmans move first, this collision (pacman moving to a position occupied by a ghost)
-        // is handled by the method Pacman.handleGhostCollision()
-    }
-
-
     handleTeleportation() {
         const ghost = super.getGhost();
         if (ghost.isCurrentPositionTeleporter()) {
