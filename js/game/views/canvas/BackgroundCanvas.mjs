@@ -29,9 +29,10 @@ export default class BackgroundCanvas extends Canvas {
     drawLifeCounterSpriteRepresentation(numberOfLifes) {
         for (let i = 1; i <= numberOfLifes; i++) {
             const xCanvasPosition = (this.columnNumber - i) * super.tileWidth;
+            const yCanvasPosition = 0;
             const sprite = super.mapBackgroundToSprite(Configuration.namePacmanLifeCounterSprite);
-            super.clearTileAt(xCanvasPosition, 0);
-            super.drawSprite(xCanvasPosition, 0, sprite);
+            super.clearTileAt(xCanvasPosition, yCanvasPosition);
+            super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
         }
     }
 
