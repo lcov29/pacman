@@ -42,7 +42,7 @@ export default class Level {
         this.pacmans = LevelInitializer.initializePacmans(this.board, this);
         this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
         this.availablePoints = this.countAvailablePoints();
-        this.totalPacmanLifes = this.countInitialPacmanLifes();
+        this.totalPacmanLifes = Configuration.initialPacmanLifes;
     }
 
 
@@ -311,11 +311,6 @@ export default class Level {
     countAvailablePoints() {
         return this.board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
     }
-
-
-    countInitialPacmanLifes() {
-        return this.pacmans.length * Configuration.initialPacmanLifes;
-    } 
 
 
     countScaredGhosts() {
