@@ -53,6 +53,7 @@ export default class Level {
         for (let row of boardPositionArray) {
             for (let element of row) {
                 const request = new BackgroundRequest(element.getX(), element.getY(), element.getElementLayerCharacter());
+                this.addInformationToBackgroundRequest(request);
                 requestList.push(request);
             }
         }
