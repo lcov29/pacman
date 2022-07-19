@@ -967,6 +967,8 @@ export default class SpriteMapper {
         this.#backgroundSpriteMap.set(Configuration.pointCharacter, document.getElementById('point'));
         this.#backgroundSpriteMap.set(Configuration.powerUpCharacter, document.getElementById('powerUp'));
 
+        this.#backgroundSpriteMap.set(Configuration.namePacmanLifeCounterSprite, document.getElementById('pacmanLeft'));
+
         this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('ghostDoorDiagonal'));
 
         /*
