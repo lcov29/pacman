@@ -5,7 +5,7 @@ export default class Configuration {
 
    // Game settings
       static initialPacmanLifes = 1;
-      static namePacmanLifeCounterSprite = 'pacmanSpriteRight';
+      static namePacmanLifeCounterSprite = 'pacmanSpriteLeft';
 
       static scoreValuePerPoint = 10;
       static scoreValuePerPowerUp = 50;
