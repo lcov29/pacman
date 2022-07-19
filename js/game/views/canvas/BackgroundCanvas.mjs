@@ -1,3 +1,4 @@
+import Configuration from "../../../Configuration.mjs";
 import Canvas from "./Canvas.mjs";
 
 
@@ -21,6 +22,17 @@ export default class BackgroundCanvas extends Canvas {
         super.clearTileAt(xCanvasPosition, yCanvasPosition);
         super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
         super.drawText(0, 0, `Score: ${request.score}`, (request.xPosition + 4) * super.tileWidth);
+        this.drawLifeCounterSpriteRepresentation(request.lifeCount);
+    }
+
+
+    drawLifeCounterSpriteRepresentation(numberOfLifes) {
+        for (let i = 1; i <= numberOfLifes; i++) {
+            const xCanvasPosition = (this.columnNumber - i) * super.tileWidth;
+            const sprite = super.mapBackgroundToSprite(Configuration.namePacmanLifeCounterSprite);
+            super.clearTileAt(xCanvasPosition, 0);
+            super.drawSprite(xCanvasPosition, 0, sprite);
+        }
     }
 
 
