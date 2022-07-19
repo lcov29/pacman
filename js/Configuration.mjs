@@ -57,7 +57,7 @@ export default class Configuration {
                                                    '{"ghost":"i","x":"15","y":"10"},' +
                                                    '{"ghost":"c","x":"16","y":"10"}],' +
 
-                                 '"bonusSpawnPositions":[{"x":"13","y":"12"}]}';
+                                 '"bonusSpawnPositions":[{"x":13,"y":12}]}';
 
 
 
