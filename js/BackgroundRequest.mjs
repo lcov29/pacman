@@ -7,8 +7,8 @@ export default class BackgroundRequest {
     #xPosition = 0;
     #yPosition = 0;
     #elementCharacter = '';
-    #score = -1;
-    #lifeCount = -1;
+    #score = 0;
+    #lifeCount = 0;
 
 
     constructor(xPosition, yPosition, elementCharacter) {
