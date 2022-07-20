@@ -88,12 +88,8 @@ input[type=radio] {
     height: 30px;
     margin-top: 1em;
     width: 30px;
-}
-
-
-.selectorWallTile {
-    background-color: blue;
-    border-color: blue;
+    background-color: black;
+    background-size: contain;
 }
 
 
@@ -102,6 +98,7 @@ input[type=radio] {
     box-sizing: border-box;
     height: 32px;
     width: 32px;
+    background-size: contain;
 }
 
 
@@ -110,16 +107,81 @@ input[type=radio] {
 }
 
 
-.bonusSpawnTile {
-    background-image: url('../sprites/bonus_elements/cherry.png');
+.wallTile {
+    background-image: url('../sprites/background/wall.svg');
+}
+
+
+.emptyTile {
+    background-image: url('../sprites/background/emptySpace.svg');
 }
 
 
 .pointTile {
-    background-image: url('../sprites/consumables/point.png');
+    background-image: url('../sprites/background/consumables/point.svg');
 }
 
 
 .powerupTile {
-    background-image: url('../sprites/consumables/powerup.png');
+    background-image: url('../sprites/background/consumables/powerUp.svg');
+}
+
+
+.ghostDoorHorizontalTile {
+    background-image: url('../sprites/background/door/ghost_door_horizontal.svg');
+}
+
+
+.ghostDoorVerticalTile {
+    background-image: url('../sprites/background/door/ghost_door_vertical.svg');
+}
+
+
+.ghostDoorCrossingTile {
+    background-image: url('../sprites/background/door/ghost_door_diagonal.svg');
+}
+
+
+.teleporter1Tile {
+    background-image: url('../sprites/background/teleporters/teleporter1.svg');
+}
+
+
+.teleporter2Tile {
+    background-image: url('../sprites/background/teleporters/teleporter2.svg');
+}
+
+
+.teleporter3Tile {
+    background-image: url('../sprites/background/teleporters/teleporter3.svg');
+}
+
+
+.bonusSpawnTile {
+    background-image: url('../sprites/background/consumables/bonus_elements/cherry.png');
+}
+
+
+.pacmanTile {
+    background-image: url('../sprites/actors/pacman/pacman_right.svg');
+}
+
+
+.ghostBlinkyTile {
+    background-image: url('../sprites/actors/ghost_blinky/movement/blinky_down.svg');
+}
+
+
+.ghostPinkyTile {
+    background-image: url('../sprites/actors/ghost_pinky/movement/pinky_down.svg');
+}
+
+
+.ghostInkyTile {
+    background-image: url('../sprites/actors/ghost_inky/movement/inky_down.svg');
+}
+
+
+.ghostClydeTile {
+    background-image: url('../sprites/actors/ghost_clyde/movement/clyde_down.svg');
 }
