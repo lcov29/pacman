@@ -18,11 +18,11 @@ export default class EditorElementMapper {
         'teleporter2Tile':              Configuration.teleporter2Character,
         'teleporter3Tile':              Configuration.teleporter3Character,
         'bonusSpawnTile':               Configuration.emptyTileCharacter,
-        'pacmanTileRight':              Configuration.pacmanCharacter,
-        'ghostBlinkyMovementTileDown':  Configuration.ghostBlinkyCharacter,
-        'ghostPinkyMovementTileDown':   Configuration.ghostPinkyCharacter,
-        'ghostInkyMovementTileDown':    Configuration.ghostInkyCharacter,
-        'ghostClydeMovementTileDown':   Configuration.ghostClydeCharacter
+        'pacmanTile':                   Configuration.pacmanCharacter,
+        'ghostBlinkyTile':              Configuration.ghostBlinkyCharacter,
+        'ghostPinkyTile':               Configuration.ghostPinkyCharacter,
+        'ghostInkyTile':                Configuration.ghostInkyCharacter,
+        'ghostClydeTile':               Configuration.ghostClydeCharacter
     };
 
 
