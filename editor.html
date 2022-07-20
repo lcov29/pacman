@@ -17,7 +17,7 @@
            <section class="selectorContainer">
   
               <div class="selectionBar">
-                 <label id="wall_label" class="selector selectorWallTile" for="wallTile" title="Wall Tile"></label>
+                 <label id="wall_label" class="selector wallTile" for="wallTile" title="Wall Tile"></label>
                  <input type="radio" id="wallTile" name="selectors">
      
                  <label id="empty_tile_label" class="selector emptyTile" for="emptyTile" title="Empty Tile (accessible)"></label>
@@ -52,20 +52,20 @@
               </div>
   
               <div class="selectionBar">
-                 <label id="pacman_label" class="selector pacmanTileRight" for="pacmanTileRight" title="Pacman"></label>
-                 <input type="radio" id="pacmanTileRight" name="selectors">
+                 <label id="pacman_label" class="selector pacmanTile" for="pacmanTile" title="Pacman"></label>
+                 <input type="radio" id="pacmanTile" name="selectors">
 
-                 <label id="ghost_blinky_label" class="selector ghostBlinkyMovementTileDown" for="ghostBlinkyMovementTileDown" title="Ghost Blinky"></label>            
-                 <input type="radio" id="ghostBlinkyMovementTileDown" name="selectors">
+                 <label id="ghost_blinky_label" class="selector ghostBlinkyTile" for="ghostBlinkyTile" title="Ghost Blinky"></label>            
+                 <input type="radio" id="ghostBlinkyTile" name="selectors">
 
-                 <label id="ghost_pinky_label" class="selector ghostPinkyMovementTileDown" for="ghostPinkyMovementTileDown" title="Ghost Pinky"></label>                       
-                 <input type="radio" id="ghostPinkyMovementTileDown" name="selectors">
+                 <label id="ghost_pinky_label" class="selector ghostPinkyTile" for="ghostPinkyTile" title="Ghost Pinky"></label>                       
+                 <input type="radio" id="ghostPinkyTile" name="selectors">
 
-                 <label id="ghost_inky_label" class="selector ghostInkyMovementTileDown" for="ghostInkyMovementTileDown" title="Ghost Inky"></label>                                 
-                 <input type="radio" id="ghostInkyMovementTileDown" name="selectors">
+                 <label id="ghost_inky_label" class="selector ghostInkyTile" for="ghostInkyTile" title="Ghost Inky"></label>                                 
+                 <input type="radio" id="ghostInkyTile" name="selectors">
 
-                 <label id="ghost_clyde_label" class="selector ghostClydeMovementTileDown" for="ghostClydeMovementTileDown" title="Ghost Clyde"></label>                                            
-                 <input type="radio" id="ghostClydeMovementTileDown" name="selectors">
+                 <label id="ghost_clyde_label" class="selector ghostClydeTile" for="ghostClydeTile" title="Ghost Clyde"></label>                                            
+                 <input type="radio" id="ghostClydeTile" name="selectors">
               </div>
               
            </section>
@@ -92,22 +92,22 @@
               <fieldset  id="scatter_position_container" control="control_group">
                  <legend>Scatter Positions</legend>
                  <div id="scatter_control_ghost_blinky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_blinky/movement/blinky_down.png">
+                    <img src="./sprites/actors/ghost_blinky/movement/blinky_down.svg">
                     <input id="scatter_position_ghost_blinky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_blinky" name="button_scatter_position">Select</button>
                  </div>
                  <div id="scatter_control_ghost_pinky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_pinky/movement/pinky_down.png">
+                    <img src="./sprites/actors/ghost_pinky/movement/pinky_down.svg">
                     <input id="scatter_position_ghost_pinky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_pinky" name="button_scatter_position">Select</button>
                  </div>
                  <div id="scatter_control_ghost_inky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_inky/movement/inky_down.png">
+                    <img src="./sprites/actors/ghost_inky/movement/inky_down.svg">
                     <input id="scatter_position_ghost_inky" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_inky" name="button_scatter_position">Select</button>
                  </div>
                  <div id="scatter_control_ghost_clyde" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_clyde/movement/clyde_down.png">
+                    <img src="./sprites/actors/ghost_clyde/movement/clyde_down.svg">
                     <input id="scatter_position_ghost_clyde" class="inputPosition" type="text" readonly>
                     <button id="select_scatter_position_ghost_clyde" name="button_scatter_position">Select</button>
                  </div>
@@ -116,22 +116,22 @@
               <fieldset id="spawn_position_container" control="control_group">
                  <legend>Spawn Positions</legend>
                  <div id="spawn_control_ghost_blinky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_blinky/movement/blinky_down.png">
+                    <img src="./sprites/actors/ghost_blinky/movement/blinky_down.svg">
                     <input id="spawn_position_ghost_blinky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_blinky" name="button_spawn_position">Select</button>
                  </div>
                  <div id="spawn_control_ghost_pinky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_pinky/movement/pinky_down.png">
+                    <img src="./sprites/actors/ghost_pinky/movement/pinky_down.svg">
                     <input id="spawn_position_ghost_pinky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_pinky" name="button_spawn_position">Select</button>
                  </div>
                  <div id="spawn_control_ghost_inky" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_inky/movement/inky_down.png">
+                    <img src="./sprites/actors/ghost_inky/movement/inky_down.svg">
                     <input id="spawn_position_ghost_inky" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_inky" name="button_spawn_position">Select</button>
                  </div>
                  <div id="spawn_control_ghost_clyde" class="controlGroup" style="display:none">
-                    <img src="./sprites/ghost_clyde/movement/clyde_down.png">
+                    <img src="./sprites/actors/ghost_clyde/movement/clyde_down.svg">
                     <input id="spawn_position_ghost_clyde" class="inputPosition" type="text" readonly>
                     <button id="select_spawn_position_ghost_clyde" name="button_spawn_position">Select</button>
                  </div>
