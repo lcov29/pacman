@@ -13,6 +13,7 @@ body {
    font-family: 'Lucida Console', monospace;
 }
 
+
 main {
    display: flex;
    flex-direction: row;
@@ -20,57 +21,7 @@ main {
    margin: auto;
 }
 
+
 .invisible {
    display: none;
 }
-
-
-/*
-.upperStatusBar {
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-}
-
-
-.boardTile {
-   width: 30px;
-   height: 30px;
-   float: left;
-}
-
-
-.undefinedTile {
-   opacity: 0.0;
-}
-
-
-.emptyForegroundTile {
-   width: 0px;
-   height: 0px;
-}
-
-
-.pointTile {
-   width: 8px;
-   height: 8px;
-   border-radius: 4px;
-   position: relative;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   background-color: orange;
-}
-
-
-.powerupTile {
-   width: 14px;
-   height: 14px;
-   border-radius: 7px;
-   position: relative;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   background-color: lightgray;
-}
-*/
