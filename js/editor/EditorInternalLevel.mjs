@@ -38,14 +38,6 @@ export default class EditorInternalLevel {
     }
 
 
-    #initializeCharacterToCoordinateListMap() {
-        this.#characterToCoordinateListMap.set(Configuration.ghostBlinkyCharacter, this.#ghostBlinkyCoordinateList);
-        this.#characterToCoordinateListMap.set(Configuration.ghostPinkyCharacter, this.#ghostPinkyCoordinateList);
-        this.#characterToCoordinateListMap.set(Configuration.ghostInkyCharacter, this.#ghostInkyCoordinateList);
-        this.#characterToCoordinateListMap.set(Configuration.ghostClydeCharacter, this.#ghostClydeCoordinateList);
-    }
-
-
     getBoardCharacterAt(coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         return this.#internalBoard[coordinate.y][coordinate.x];
@@ -74,24 +66,6 @@ export default class EditorInternalLevel {
     }
 
 
-    #getGhostCharacterListForPositionAt(positionList, coordinateString) {
-        const output = [];
-        const coordinate = this.#parseCoordinateString(coordinateString);
-        for (let position of positionList) {
-            const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
-            if (isSamePosition) {
-                output.push(position.ghost);
-            }
-        }
-        return output;
-    }
-
-
-    #setBoardCharacter(coordinates, character) {
-        this.#internalBoard[coordinates.y][coordinates.x] = character;
-    }
-
-
     isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
         const coordinate = this.#parseCoordinateString(coordinateString);
@@ -105,55 +79,11 @@ export default class EditorInternalLevel {
     }
 
 
-    #buildEmptyMap(width, height) {
-        this.#internalBoard = [];
-        const row = [];
-        for (let x = 0; x < width; x++) {
-            row.push(Configuration.undefinedTileCharacter);
-        }
-        for (let y = 0; y < height; y++) {
-            this.#internalBoard.push([...row]);
-        }
-    }
-
-
-    #reset() {
-        this.#internalBoard = [[]];
-        this.#scatterPositionList = [];
-        this.#optionalSpawnPositionList = [];
-        this.#bonusSpawnPositionList = [];
-        this.#ghostBlinkyCoordinateList = [];
-        this.#ghostPinkyCoordinateList = [];
-        this.#ghostInkyCoordinateList = [];
-        this.#ghostClydeCoordinateList = [];
-    }
-
-
     update(coordinateString, character) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
         this.#setBoardCharacter(coordinate, character);
-    }
-
-
-    #updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
-
-        const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
-        if (isCurrentCharacterGhost) {
-            this.#removeCoordinateStringFromGhostList(coordinateString, currentBoardCharacter);
-        }
-
-        const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
-        if (isNewCharacterGhost) {
-            this.#addCoordinateToGhostList(coordinateString, newCharacter);
-        }
-    }
-
-
-    #addCoordinateToGhostList(coordinate, ghostCharacter) {
-        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
-        ghostCoordinateList.push(coordinate);
     }
 
 
@@ -188,16 +118,6 @@ export default class EditorInternalLevel {
     }
 
 
-    #removeCharacterFromPositionList(positionList, ghostCharacter) {
-        for (let position of positionList) {
-            const isSameCharacter = position.ghost === ghostCharacter;
-            if (isSameCharacter) {
-                Utility.removeElementFrom(positionList, position);
-            }
-        }
-    }
-
-
     removeBonusSpawnPositionAt(coordinateString) {
         this.#removeCoordinateFromPositionList(this.#bonusSpawnPositionList, coordinateString);
     }
@@ -210,6 +130,96 @@ export default class EditorInternalLevel {
 
     removeSpawnPosition(coordinateString) {
        this.#removeCoordinateFromPositionList(this.#optionalSpawnPositionList, coordinateString)
+    }
+
+
+    buildLevelJSONString() {
+        const jsonObject = {};
+        jsonObject.board = this.#internalBoard;
+        jsonObject.scatterPositions = this.#scatterPositionList;
+        jsonObject.optionalSpawns = this.#optionalSpawnPositionList;
+        jsonObject.bonusSpawnPositions = this.#bonusSpawnPositionList;
+        return JSON.stringify(jsonObject);
+    }
+
+
+    #initializeCharacterToCoordinateListMap() {
+        this.#characterToCoordinateListMap.set(Configuration.ghostBlinkyCharacter, this.#ghostBlinkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostPinkyCharacter, this.#ghostPinkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostInkyCharacter, this.#ghostInkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostClydeCharacter, this.#ghostClydeCoordinateList);
+    }
+
+
+    #getGhostCharacterListForPositionAt(positionList, coordinateString) {
+        const output = [];
+        const coordinate = this.#parseCoordinateString(coordinateString);
+        for (let position of positionList) {
+            const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
+            if (isSamePosition) {
+                output.push(position.ghost);
+            }
+        }
+        return output;
+    }
+
+
+    #setBoardCharacter(coordinates, character) {
+        this.#internalBoard[coordinates.y][coordinates.x] = character;
+    }
+
+
+    #buildEmptyMap(width, height) {
+        this.#internalBoard = [];
+        const row = [];
+        for (let x = 0; x < width; x++) {
+            row.push(Configuration.undefinedTileCharacter);
+        }
+        for (let y = 0; y < height; y++) {
+            this.#internalBoard.push([...row]);
+        }
+    }
+
+
+    #reset() {
+        this.#internalBoard = [[]];
+        this.#scatterPositionList = [];
+        this.#optionalSpawnPositionList = [];
+        this.#bonusSpawnPositionList = [];
+        this.#ghostBlinkyCoordinateList = [];
+        this.#ghostPinkyCoordinateList = [];
+        this.#ghostInkyCoordinateList = [];
+        this.#ghostClydeCoordinateList = [];
+    }
+
+
+    #updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
+
+        const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
+        if (isCurrentCharacterGhost) {
+            this.#removeCoordinateStringFromGhostList(coordinateString, currentBoardCharacter);
+        }
+
+        const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
+        if (isNewCharacterGhost) {
+            this.#addCoordinateToGhostList(coordinateString, newCharacter);
+        }
+    }
+
+
+    #addCoordinateToGhostList(coordinate, ghostCharacter) {
+        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
+        ghostCoordinateList.push(coordinate);
+    }
+
+
+    #removeCharacterFromPositionList(positionList, ghostCharacter) {
+        for (let position of positionList) {
+            const isSameCharacter = position.ghost === ghostCharacter;
+            if (isSameCharacter) {
+                Utility.removeElementFrom(positionList, position);
+            }
+        }
     }
 
 
@@ -240,16 +250,6 @@ export default class EditorInternalLevel {
         positionObject.x = coordinate.x;
         positionObject.y = coordinate.y;
         return positionObject;
-    }
-
-
-    buildLevelJSONString() {
-        const jsonObject = {};
-        jsonObject.board = this.#internalBoard;
-        jsonObject.scatterPositions = this.#scatterPositionList;
-        jsonObject.optionalSpawns = this.#optionalSpawnPositionList;
-        jsonObject.bonusSpawnPositions = this.#bonusSpawnPositionList;
-        return JSON.stringify(jsonObject);
     }
 
 
