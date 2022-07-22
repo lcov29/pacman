@@ -54,9 +54,9 @@ export default class EditorInternalLevel {
     }
 
 
-    getBoardCharacterAt(coordinatesString) {
-        let coordinates = this.parseCoordinates(coordinatesString);
-        return this.#internalBoard[coordinates.y][coordinates.x];
+    getBoardCharacterAt(coordinateString) {
+        const coordinate = this.parseCoordinates(coordinateString);
+        return this.#internalBoard[coordinate.y][coordinate.x];
     }
 
 
