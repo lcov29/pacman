@@ -132,12 +132,12 @@ export default class EditorInternalLevel {
     update(coordinateString, character) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
-        this.updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
+        this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
         this.#setBoardCharacter(coordinate, character);
     }
 
 
-    updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
+    #updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
 
         const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
         if (isCurrentCharacterGhost) {
