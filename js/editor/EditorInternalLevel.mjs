@@ -141,7 +141,7 @@ export default class EditorInternalLevel {
 
         const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
         if (isCurrentCharacterGhost) {
-            this.removeCoordinateStringFromGhostList(coordinateString, currentBoardCharacter);
+            this.#removeCoordinateStringFromGhostList(coordinateString, currentBoardCharacter);
         }
 
         const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
@@ -253,7 +253,7 @@ export default class EditorInternalLevel {
     }
 
 
-    removeCoordinateStringFromGhostList(coordinateString, ghostCharacter) {
+    #removeCoordinateStringFromGhostList(coordinateString, ghostCharacter) {
         const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
         Utility.removeElementFrom(ghostCoordinateList, coordinateString);
     }
