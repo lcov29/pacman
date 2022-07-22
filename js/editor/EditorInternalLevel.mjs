@@ -33,7 +33,7 @@ export default class EditorInternalLevel {
 
     initialize(width, height) {
         this.reset();
-        this.buildEmptyMap(width, height);
+        this.#buildEmptyMap(width, height);
         this.#initializeCharacterToCoordinateListMap();
         /*
         this.mapCharacterToCoordinateList = {
@@ -113,15 +113,14 @@ export default class EditorInternalLevel {
     }
 
 
-    buildEmptyMap(width, height) {
+    #buildEmptyMap(width, height) {
         this.#internalBoard = [];
-        let row = [];
+        const row = [];
+        for (let x = 0; x < width; x++) {
+            row.push(Configuration.undefinedTileCharacter);
+        }
         for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                row.push(Configuration.undefinedTileCharacter);
-            }
-            this.#internalBoard.push(row);
-            row = [];
+            this.#internalBoard.push([...row]);
         }
     }
 
@@ -135,15 +134,6 @@ export default class EditorInternalLevel {
         this.#ghostPinkyCoordinateList = [];
         this.#ghostInkyCoordinateList = [];
         this.#ghostClydeCoordinateList = [];
-        /*
-        this.internalBoard = [[]];
-        this.scatterPositions = [];
-        this.optionalSpawnPositions = [];
-        this.coordinatesGhostBlinky = [];
-        this.coordinatesGhostPinky = [];
-        this.coordinatesGhostClyde = [];
-        this.coordinatesGhostInky = [];
-        */
     }
 
 
