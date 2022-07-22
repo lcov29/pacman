@@ -259,12 +259,12 @@ export default class EditorInternalLevel {
     }
 
 
-    parseCoordinates(coordinates) {
-        let parsedInput = coordinates.replace('(', '');
+    parseCoordinates(coordinateString) {
+        let parsedInput = coordinateString.replace('(', '');
         parsedInput = parsedInput.replace(')', '');
         parsedInput = parsedInput.split(',');
-        let x = parseInt(parsedInput[0]);
-        let y = parseInt(parsedInput[1]);
+        const x = parseInt(parsedInput[0]);
+        const y = parseInt(parsedInput[1]);
         return {'x': x, 'y': y};
     }
 
