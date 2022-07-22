@@ -67,8 +67,8 @@ export default class EditorInternalLevel {
 
 
     getGhostCounterFor(ghostCharacter) {
-        let coordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
-        return coordinates.length;
+        const coordinate = this.#characterToCoordinateListMap.get(ghostCharacter);
+        return coordinate.length;
     }
 
 
