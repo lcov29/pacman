@@ -129,11 +129,11 @@ export default class EditorInternalLevel {
     }
 
 
-    update(coordinatesString, character) {
-        let parsedCoordinates = this.parseCoordinates(coordinatesString);
-        let currentBoardCharacter = this.getBoardCharacterAt(coordinatesString);
-        this.updateGhostCoordinateLists(coordinatesString, currentBoardCharacter, character);
-        this.setBoardCharacter(parsedCoordinates, character);
+    update(coordinateString, character) {
+        const coordinate = this.parseCoordinates(coordinateString);
+        const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
+        this.updateGhostCoordinateLists(coordinateString, currentBoardCharacter, character);
+        this.setBoardCharacter(coordinate, character);
     }
 
 
