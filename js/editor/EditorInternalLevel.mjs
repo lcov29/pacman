@@ -164,9 +164,9 @@ export default class EditorInternalLevel {
     }
 
 
-    addOptionalSpawnPosition(ghostCharacter, coordinates) {
+    addOptionalSpawnPosition(ghostCharacter, coordinateString) {
         this.removeSpawnPositionFor(ghostCharacter);
-        let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinates);
+        let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
         this.#optionalSpawnPositionList.push(positionObject);
     }
 
