@@ -234,12 +234,12 @@ export default class EditorInternalLevel {
     }
 
 
-    buildBonusSpawnPositionObject(coordinates) {
-        let parsedCoordinates = this.parseCoordinates(coordinates);
-        let outputObject = {};
-        outputObject.x = parsedCoordinates.x;
-        outputObject.y = parsedCoordinates.y;
-        return outputObject;
+    buildBonusSpawnPositionObject(coordinateString) {
+        const coordinate = this.parseCoordinates(coordinateString);
+        const positionObject = {};
+        positionObject.x = coordinate.x;
+        positionObject.y = coordinate.y;
+        return positionObject;
     }
 
 
