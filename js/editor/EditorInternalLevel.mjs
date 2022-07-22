@@ -7,45 +7,67 @@ import Utility from '../Utility.mjs';
 export default class EditorInternalLevel {
 
 
+    #internalBoard = [[]];
+    #scatterPositionList = [];
+    #optionalSpawnPositionList = [];
+    #bonusSpawnPositionList = [];
+    #ghostBlinkyCoordinateList = [];
+    #ghostPinkyCoordinateList = [];
+    #ghostInkyCoordinateList = [];
+    #ghostClydeCoordinateList = [];
+    #characterToCoordinateListMap = null;
+
+
     constructor() {
-        this.internalBoard = [[]];
-        this.scatterPositions = [];
-        this.optionalSpawnPositions = [];
-        this.bonusSpawnPositions = [];
-        this.coordinatesGhostBlinky = [];
-        this.coordinatesGhostPinky = [];
-        this.coordinatesGhostClyde = [];
-        this.coordinatesGhostInky = [];
-        this.mapCharacterToCoordinateList = null;
+        this.#internalBoard = [[]];
+        this.#scatterPositionList = [];
+        this.#optionalSpawnPositionList = [];
+        this.#bonusSpawnPositionList = [];
+        this.#ghostBlinkyCoordinateList = [];
+        this.#ghostPinkyCoordinateList = [];
+        this.#ghostInkyCoordinateList = [];
+        this.#ghostClydeCoordinateList = [];
+        this.#characterToCoordinateListMap = new Map();
     }
 
 
     initialize(width, height) {
         this.reset();
         this.buildEmptyMap(width, height);
+        this.#initializeCharacterToCoordinateListMap();
+        /*
         this.mapCharacterToCoordinateList = {
             [Configuration.ghostBlinkyCharacter]:     this.coordinatesGhostBlinky,
             [Configuration.ghostPinkyCharacter]:      this.coordinatesGhostPinky,
             [Configuration.ghostClydeCharacter]:      this.coordinatesGhostClyde,
             [Configuration.ghostInkyCharacter]:       this.coordinatesGhostInky
         };
+        */
+    }
+
+
+    #initializeCharacterToCoordinateListMap() {
+        this.#characterToCoordinateListMap.set(Configuration.ghostBlinkyCharacter, this.#ghostBlinkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostPinkyCharacter, this.#ghostPinkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostInkyCharacter, this.#ghostInkyCoordinateList);
+        this.#characterToCoordinateListMap.set(Configuration.ghostClydeCharacter, this.#ghostClydeCoordinateList);
     }
 
 
     getBoardCharacterAt(coordinatesString) {
         let coordinates = this.parseCoordinates(coordinatesString);
-        return this.internalBoard[coordinates.y][coordinates.x];
+        return this.#internalBoard[coordinates.y][coordinates.x];
     }
 
 
     getGhostCoordinatesListFor(ghostCharacter) {
-        let coordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        let coordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
         return [...coordinates];
     }
 
 
     getGhostCounterFor(ghostCharacter) {
-        let coordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        let coordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
         return coordinates.length;
     }
 
@@ -53,7 +75,7 @@ export default class EditorInternalLevel {
     getGhostCharactersForScatterPosition(coordinateString) {
         let output = [];
         let parsedCoordinates = this.parseCoordinates(coordinateString);
-        for (let scatterPosition of this.scatterPositions) {
+        for (let scatterPosition of this.#scatterPositionList) {
             if (scatterPosition.x === parsedCoordinates.x && scatterPosition.y === parsedCoordinates.y) {
                 output.push(scatterPosition.ghost);
             }
@@ -65,7 +87,7 @@ export default class EditorInternalLevel {
     getGhostCharactersForSpawnPosition(coordinateString) {
         let output = [];
         let parsedCoordinates = this.parseCoordinates(coordinateString);
-        for (let spawnPosition of this.optionalSpawnPositions) {
+        for (let spawnPosition of this.#optionalSpawnPositionList) {
             if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
                 output.push(spawnPosition.ghost);
             }
@@ -75,14 +97,14 @@ export default class EditorInternalLevel {
 
 
     setBoardCharacter(coordinates, character) {
-        this.internalBoard[coordinates.y][coordinates.x] = character;
+        this.#internalBoard[coordinates.y][coordinates.x] = character;
     }
 
 
     isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
         let parsedCoordinates = this.parseCoordinates(coordinateString);
-        for (let spawnPosition of this.bonusSpawnPositions) {
+        for (let spawnPosition of this.#bonusSpawnPositionList) {
             if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
                 result = true;
                 break;
@@ -93,19 +115,28 @@ export default class EditorInternalLevel {
 
 
     buildEmptyMap(width, height) {
-        this.internalBoard = [];
+        this.#internalBoard = [];
         let row = [];
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 row.push(Configuration.undefinedTileCharacter);
             }
-            this.internalBoard.push(row);
+            this.#internalBoard.push(row);
             row = [];
         }
     }
 
 
     reset() {
+        this.#internalBoard = [[]];
+        this.#scatterPositionList = [];
+        this.#optionalSpawnPositionList = [];
+        this.#bonusSpawnPositionList = [];
+        this.#ghostBlinkyCoordinateList = [];
+        this.#ghostPinkyCoordinateList = [];
+        this.#ghostInkyCoordinateList = [];
+        this.#ghostClydeCoordinateList = [];
+        /*
         this.internalBoard = [[]];
         this.scatterPositions = [];
         this.optionalSpawnPositions = [];
@@ -113,6 +144,7 @@ export default class EditorInternalLevel {
         this.coordinatesGhostPinky = [];
         this.coordinatesGhostClyde = [];
         this.coordinatesGhostInky = [];
+        */
     }
 
 
@@ -136,7 +168,7 @@ export default class EditorInternalLevel {
 
 
     addCoordinatesToGhostList(coordinates, ghostCharacter) {
-        let ghostCoordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        let ghostCoordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
         ghostCoordinates.push(coordinates);
     }
 
@@ -144,37 +176,37 @@ export default class EditorInternalLevel {
     addScatterPosition(ghostCharacter, coordinates) {
         this.removeScatterPositionFor(ghostCharacter);
         let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinates);
-        this.scatterPositions.push(positionObject);
+        this.#scatterPositionList.push(positionObject);
     }
 
 
     addOptionalSpawnPosition(ghostCharacter, coordinates) {
         this.removeSpawnPositionFor(ghostCharacter);
         let positionObject = this.buildScatterSpawnPositionObject(ghostCharacter, coordinates);
-        this.optionalSpawnPositions.push(positionObject);
+        this.#optionalSpawnPositionList.push(positionObject);
     }
 
 
     addBonusSpawnPosition(coordinates) {
         this.removeBonusSpawnPositionAt(coordinates);
         let positionObject = this.buildBonusSpawnPositionObject(coordinates);
-        this.bonusSpawnPositions.push(positionObject);
+        this.#bonusSpawnPositionList.push(positionObject);
     }
 
 
     removeScatterPositionFor(ghostCharacter) {
-        for (let scatterPosition of this.scatterPositions) {
+        for (let scatterPosition of this.#scatterPositionList) {
             if (scatterPosition.ghost === ghostCharacter) {
-                Utility.removeElementFrom(this.scatterPositions, scatterPosition);
+                Utility.removeElementFrom(this.#scatterPositionList, scatterPosition);
             }
         }
     }
 
 
     removeSpawnPositionFor(ghostCharacter) {
-        for (let optionalSpawnPosition of this.optionalSpawnPositions) {
+        for (let optionalSpawnPosition of this.#optionalSpawnPositionList) {
             if (optionalSpawnPosition.ghost === ghostCharacter) {
-                Utility.removeElementFrom(this.optionalSpawnPositions, optionalSpawnPosition);
+                Utility.removeElementFrom(this.#optionalSpawnPositionList, optionalSpawnPosition);
             }
         }
     }
@@ -182,10 +214,10 @@ export default class EditorInternalLevel {
 
     removeBonusSpawnPositionAt(coordinates) {
         let parsedCoordinates = this.parseCoordinates(coordinates);
-        for (let bonusSpawnPosition of this.bonusSpawnPositions) {
+        for (let bonusSpawnPosition of this.#bonusSpawnPositionList) {
             if (bonusSpawnPosition.x === parsedCoordinates.x &&
                 bonusSpawnPosition.y === parsedCoordinates.y) {
-                    Utility.removeElementFrom(this.bonusSpawnPositions, bonusSpawnPosition);
+                    Utility.removeElementFrom(this.#bonusSpawnPositionList, bonusSpawnPosition);
                 }
         }
     }
@@ -194,24 +226,24 @@ export default class EditorInternalLevel {
     removeScatterPosition(coordinateString) {
         let elementsToRemove = [];
         let parsedCoordinate = this.parseCoordinates(coordinateString);
-        for (let scatterPosition of this.scatterPositions) {
+        for (let scatterPosition of this.#scatterPositionList) {
             if (scatterPosition.x === parsedCoordinate.x && scatterPosition.y === parsedCoordinate.y) {
                 elementsToRemove.push(scatterPosition);
             }
         }
-        this.removeElementsFromArray(this.scatterPositions, elementsToRemove);
+        this.removeElementsFromArray(this.#scatterPositionList, elementsToRemove);
     }
 
 
     removeSpawnPosition(coordinateString) {
         let elementsToRemove = [];
         let parseCoordinates = this.parseCoordinates(coordinateString);
-        for (let spawnPosition of this.optionalSpawnPositions) {
+        for (let spawnPosition of this.#optionalSpawnPositionList) {
             if (spawnPosition.x === parseCoordinates.x && spawnPosition.y === parseCoordinates.y) {
                 elementsToRemove.push(spawnPosition);
             }
         }
-        this.removeElementsFromArray(this.optionalSpawnPositions, elementsToRemove);
+        this.removeElementsFromArray(this.#optionalSpawnPositionList, elementsToRemove);
     }
 
 
@@ -243,16 +275,16 @@ export default class EditorInternalLevel {
 
     buildLevelJSONString() {
         let jsonObject = {};
-        jsonObject.board = this.internalBoard;
-        jsonObject.scatterPositions = this.scatterPositions;
-        jsonObject.optionalSpawns = this.optionalSpawnPositions;
-        jsonObject.bonusSpawnPositions = this.bonusSpawnPositions;
+        jsonObject.board = this.#internalBoard;
+        jsonObject.scatterPositions = this.#scatterPositionList;
+        jsonObject.optionalSpawns = this.#optionalSpawnPositionList;
+        jsonObject.bonusSpawnPositions = this.#bonusSpawnPositionList;
         return JSON.stringify(jsonObject);
     }
 
 
     removeCoordinatesFromGhostList(coordinates, ghostCharacter) {
-        let ghostCoordinates = this.mapCharacterToCoordinateList[ghostCharacter];
+        let ghostCoordinates = this.#characterToCoordinateListMap(ghostCharacter);
         Utility.removeElementFrom(ghostCoordinates, coordinates);
     }
 
