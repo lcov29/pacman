@@ -137,13 +137,16 @@ export default class EditorInternalLevel {
     }
 
 
-    updateGhostCoordinateLists(coordinatesString, currentBoardCharacter, newCharacter) {
-        if (Configuration.ghostCharacterList.includes(currentBoardCharacter)) {
-            this.removeCoordinatesFromGhostList(coordinatesString, currentBoardCharacter);
+    updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
+
+        const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
+        if (isCurrentCharacterGhost) {
+            this.removeCoordinatesFromGhostList(coordinateString, currentBoardCharacter);
         }
 
-        if (Configuration.ghostCharacterList.includes(newCharacter)) {
-            this.addCoordinatesToGhostList(coordinatesString, newCharacter);
+        const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
+        if (isNewCharacterGhost) {
+            this.addCoordinatesToGhostList(coordinateString, newCharacter);
         }
     }
 
