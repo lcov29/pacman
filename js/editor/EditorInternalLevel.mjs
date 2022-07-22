@@ -179,18 +179,20 @@ export default class EditorInternalLevel {
 
 
     removeScatterPositionFor(ghostCharacter) {
-        for (let scatterPosition of this.#scatterPositionList) {
-            if (scatterPosition.ghost === ghostCharacter) {
-                Utility.removeElementFrom(this.#scatterPositionList, scatterPosition);
-            }
-        }
+        this.#removeCharacterFromPositionList(this.#scatterPositionList, ghostCharacter);
     }
 
 
     removeSpawnPositionFor(ghostCharacter) {
-        for (let optionalSpawnPosition of this.#optionalSpawnPositionList) {
-            if (optionalSpawnPosition.ghost === ghostCharacter) {
-                Utility.removeElementFrom(this.#optionalSpawnPositionList, optionalSpawnPosition);
+        this.#removeCharacterFromPositionList(this.#optionalSpawnPositionList, ghostCharacter);
+    }
+
+
+    #removeCharacterFromPositionList(positionList, ghostCharacter) {
+        for (let position of positionList) {
+            const isSameCharacter = position.ghost === ghostCharacter;
+            if (isSameCharacter) {
+                Utility.removeElementFrom(positionList, position);
             }
         }
     }
