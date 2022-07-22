@@ -171,9 +171,9 @@ export default class EditorInternalLevel {
     }
 
 
-    addBonusSpawnPosition(coordinates) {
-        this.removeBonusSpawnPositionAt(coordinates);
-        let positionObject = this.buildBonusSpawnPositionObject(coordinates);
+    addBonusSpawnPosition(coordinateString) {
+        this.removeBonusSpawnPositionAt(coordinateString);
+        const positionObject = this.buildBonusSpawnPositionObject(coordinateString);
         this.#bonusSpawnPositionList.push(positionObject);
     }
 
