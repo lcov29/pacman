@@ -224,13 +224,13 @@ export default class EditorInternalLevel {
     }
 
 
-    buildScatterSpawnPositionObject(ghostCharacter, coordinates) {
-        let parsedCoordinates = this.parseCoordinates(coordinates);
-        let outputObject = {};
-        outputObject.ghost = ghostCharacter;
-        outputObject.x = parsedCoordinates.x;
-        outputObject.y = parsedCoordinates.y;
-        return outputObject;
+    buildScatterSpawnPositionObject(ghostCharacter, coordinateString) {
+        const coordinate = this.parseCoordinates(coordinateString);
+        const positionObject = {};
+        positionObject.ghost = ghostCharacter;
+        positionObject.x = coordinate.x;
+        positionObject.y = coordinate.y;
+        return positionObject;
     }
 
 
