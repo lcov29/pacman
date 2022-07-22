@@ -60,9 +60,9 @@ export default class EditorInternalLevel {
     }
 
 
-    getGhostCoordinatesListFor(ghostCharacter) {
-        let coordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
-        return [...coordinates];
+    getGhostCoordinateListFor(ghostCharacter) {
+        const coordinate = this.#characterToCoordinateListMap.get(ghostCharacter);
+        return [...coordinate];
     }
 
 
