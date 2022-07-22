@@ -32,7 +32,7 @@ export default class EditorInternalLevel {
 
 
     initialize(width, height) {
-        this.reset();
+        this.#reset();
         this.#buildEmptyMap(width, height);
         this.#initializeCharacterToCoordinateListMap();
     }
@@ -117,7 +117,7 @@ export default class EditorInternalLevel {
     }
 
 
-    reset() {
+    #reset() {
         this.#internalBoard = [[]];
         this.#scatterPositionList = [];
         this.#optionalSpawnPositionList = [];
