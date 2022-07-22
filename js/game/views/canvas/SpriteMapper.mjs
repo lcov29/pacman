@@ -955,6 +955,7 @@ export default class SpriteMapper {
 
         this.#backgroundSpriteMap.set(Configuration.wallCharacter, document.getElementById('wall'));
         this.#backgroundSpriteMap.set(Configuration.emptyTileCharacter, document.getElementById('emptySpace'));
+        this.#backgroundSpriteMap.set(Configuration.undefinedTileCharacter, document.getElementById('undefinedTile'));
 
         this.#backgroundSpriteMap.set(Configuration.ghostDoorHorizontalCharacter, document.getElementById('ghostDoorHorizontal'));
         this.#backgroundSpriteMap.set(Configuration.ghostDoorVerticalCharacter, document.getElementById('ghostDoorVertical'));
@@ -972,7 +973,6 @@ export default class SpriteMapper {
         this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('ghostDoorDiagonal'));
 
         /*
-            
             this.#backgroundSpriteMap.set(Configuration.bonusStrawberryCharacter, document.getElementById('bonusStrawberry'));
             this.#backgroundSpriteMap.set(Configuration.bonusPeachCharacter, document.getElementById('bonusPeach'));
             this.#backgroundSpriteMap.set(Configuration.bonusAppleCharacter, document.getElementById('bonusApple'));
