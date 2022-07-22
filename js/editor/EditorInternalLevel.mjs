@@ -198,44 +198,28 @@ export default class EditorInternalLevel {
     }
 
 
-    removeBonusSpawnPositionAt(coordinates) {
-        let parsedCoordinates = this.parseCoordinates(coordinates);
-        for (let bonusSpawnPosition of this.#bonusSpawnPositionList) {
-            if (bonusSpawnPosition.x === parsedCoordinates.x &&
-                bonusSpawnPosition.y === parsedCoordinates.y) {
-                    Utility.removeElementFrom(this.#bonusSpawnPositionList, bonusSpawnPosition);
-                }
-        }
+    removeBonusSpawnPositionAt(coordinateString) {
+        this.#removeCoordinateFromPositionList(this.#bonusSpawnPositionList, coordinateString);
     }
 
 
     removeScatterPosition(coordinateString) {
-        let elementsToRemove = [];
-        let parsedCoordinate = this.parseCoordinates(coordinateString);
-        for (let scatterPosition of this.#scatterPositionList) {
-            if (scatterPosition.x === parsedCoordinate.x && scatterPosition.y === parsedCoordinate.y) {
-                elementsToRemove.push(scatterPosition);
-            }
-        }
-        this.removeElementsFromArray(this.#scatterPositionList, elementsToRemove);
+       this.#removeCoordinateFromPositionList(this.#scatterPositionList, coordinateString);
     }
 
 
     removeSpawnPosition(coordinateString) {
-        let elementsToRemove = [];
-        let parseCoordinates = this.parseCoordinates(coordinateString);
-        for (let spawnPosition of this.#optionalSpawnPositionList) {
-            if (spawnPosition.x === parseCoordinates.x && spawnPosition.y === parseCoordinates.y) {
-                elementsToRemove.push(spawnPosition);
-            }
-        }
-        this.removeElementsFromArray(this.#optionalSpawnPositionList, elementsToRemove);
+       this.#removeCoordinateFromPositionList(this.#optionalSpawnPositionList, coordinateString)
     }
 
 
-    removeElementsFromArray(array, elementsToRemove) {
-        for (let element of elementsToRemove) {
-            Utility.removeElementFrom(array, element);
+    #removeCoordinateFromPositionList(positionList, coordinateString) {
+        const coordinate = this.parseCoordinates(coordinateString);
+        for (let position of positionList) {
+            const isSameCoordinate = position.x === coordinate.x && position.y === coordinate.y;
+            if (isSameCoordinate) {
+                Utility.removeElementFrom(positionList, position);
+            }
         }
     }
 
