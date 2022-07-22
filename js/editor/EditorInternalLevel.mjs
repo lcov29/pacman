@@ -146,14 +146,14 @@ export default class EditorInternalLevel {
 
         const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
         if (isNewCharacterGhost) {
-            this.addCoordinatesToGhostList(coordinateString, newCharacter);
+            this.addCoordinateToGhostList(coordinateString, newCharacter);
         }
     }
 
 
-    addCoordinatesToGhostList(coordinates, ghostCharacter) {
-        let ghostCoordinates = this.#characterToCoordinateListMap.get(ghostCharacter);
-        ghostCoordinates.push(coordinates);
+    addCoordinateToGhostList(coordinate, ghostCharacter) {
+        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
+        ghostCoordinateList.push(coordinate);
     }
 
 
