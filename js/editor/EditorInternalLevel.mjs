@@ -272,9 +272,9 @@ export default class EditorInternalLevel {
     }
 
 
-    removeCoordinatesFromGhostList(coordinates, ghostCharacter) {
-        let ghostCoordinates = this.#characterToCoordinateListMap(ghostCharacter);
-        Utility.removeElementFrom(ghostCoordinates, coordinates);
+    removeCoordinatesFromGhostList(coordinate, ghostCharacter) {
+        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
+        Utility.removeElementFrom(ghostCoordinateList, coordinate);
     }
 
 
