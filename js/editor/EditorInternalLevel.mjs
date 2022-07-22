@@ -47,7 +47,7 @@ export default class EditorInternalLevel {
 
 
     getBoardCharacterAt(coordinateString) {
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         return this.#internalBoard[coordinate.y][coordinate.x];
     }
 
@@ -76,7 +76,7 @@ export default class EditorInternalLevel {
 
     #getGhostCharacterListForPositionAt(positionList, coordinateString) {
         const output = [];
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         for (let position of positionList) {
             const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
             if (isSamePosition) {
@@ -94,7 +94,7 @@ export default class EditorInternalLevel {
 
     isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         for (let spawnPosition of this.#bonusSpawnPositionList) {
             if (spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y) {
                 result = true;
@@ -130,7 +130,7 @@ export default class EditorInternalLevel {
 
 
     update(coordinateString, character) {
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
         this.updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
         this.#setBoardCharacter(coordinate, character);
@@ -214,7 +214,7 @@ export default class EditorInternalLevel {
 
 
     #removeCoordinateFromPositionList(positionList, coordinateString) {
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         for (let position of positionList) {
             const isSameCoordinate = position.x === coordinate.x && position.y === coordinate.y;
             if (isSameCoordinate) {
@@ -225,7 +225,7 @@ export default class EditorInternalLevel {
 
 
     buildScatterSpawnPositionObject(ghostCharacter, coordinateString) {
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         const positionObject = {};
         positionObject.ghost = ghostCharacter;
         positionObject.x = coordinate.x;
@@ -235,7 +235,7 @@ export default class EditorInternalLevel {
 
 
     buildBonusSpawnPositionObject(coordinateString) {
-        const coordinate = this.#parseCoordinateStrings(coordinateString);
+        const coordinate = this.#parseCoordinateString(coordinateString);
         const positionObject = {};
         positionObject.x = coordinate.x;
         positionObject.y = coordinate.y;
