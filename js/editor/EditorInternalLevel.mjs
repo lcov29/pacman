@@ -87,7 +87,7 @@ export default class EditorInternalLevel {
     }
 
 
-    setBoardCharacter(coordinates, character) {
+    #setBoardCharacter(coordinates, character) {
         this.#internalBoard[coordinates.y][coordinates.x] = character;
     }
 
@@ -133,7 +133,7 @@ export default class EditorInternalLevel {
         const coordinate = this.#parseCoordinateStrings(coordinateString);
         const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
         this.updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
-        this.setBoardCharacter(coordinate, character);
+        this.#setBoardCharacter(coordinate, character);
     }
 
 
