@@ -173,7 +173,7 @@ export default class EditorInternalLevel {
 
     addBonusSpawnPosition(coordinateString) {
         this.removeBonusSpawnPositionAt(coordinateString);
-        const positionObject = this.buildBonusSpawnPositionObject(coordinateString);
+        const positionObject = this.#buildBonusSpawnPositionObject(coordinateString);
         this.#bonusSpawnPositionList.push(positionObject);
     }
 
@@ -234,7 +234,7 @@ export default class EditorInternalLevel {
     }
 
 
-    buildBonusSpawnPositionObject(coordinateString) {
+    #buildBonusSpawnPositionObject(coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         const positionObject = {};
         positionObject.x = coordinate.x;
