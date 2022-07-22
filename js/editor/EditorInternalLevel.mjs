@@ -35,14 +35,6 @@ export default class EditorInternalLevel {
         this.reset();
         this.#buildEmptyMap(width, height);
         this.#initializeCharacterToCoordinateListMap();
-        /*
-        this.mapCharacterToCoordinateList = {
-            [Configuration.ghostBlinkyCharacter]:     this.coordinatesGhostBlinky,
-            [Configuration.ghostPinkyCharacter]:      this.coordinatesGhostPinky,
-            [Configuration.ghostClydeCharacter]:      this.coordinatesGhostClyde,
-            [Configuration.ghostInkyCharacter]:       this.coordinatesGhostInky
-        };
-        */
     }
 
 
