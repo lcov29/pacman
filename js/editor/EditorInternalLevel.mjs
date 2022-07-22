@@ -73,23 +73,22 @@ export default class EditorInternalLevel {
 
 
     getGhostCharactersForScatterPosition(coordinateString) {
-        let output = [];
-        let parsedCoordinates = this.parseCoordinates(coordinateString);
-        for (let scatterPosition of this.#scatterPositionList) {
-            if (scatterPosition.x === parsedCoordinates.x && scatterPosition.y === parsedCoordinates.y) {
-                output.push(scatterPosition.ghost);
-            }
-        }
-        return output;
+        return this.#getGhostCharacterListForPositionAt(this.#scatterPositionList, coordinateString);
     }
 
 
     getGhostCharactersForSpawnPosition(coordinateString) {
-        let output = [];
-        let parsedCoordinates = this.parseCoordinates(coordinateString);
-        for (let spawnPosition of this.#optionalSpawnPositionList) {
-            if (spawnPosition.x === parsedCoordinates.x && spawnPosition.y === parsedCoordinates.y) {
-                output.push(spawnPosition.ghost);
+        return this.#getGhostCharacterListForPositionAt(this.#optionalSpawnPositionList, coordinateString);
+    }
+
+
+    #getGhostCharacterListForPositionAt(positionList, coordinateString) {
+        const output = [];
+        const coordinate = this.parseCoordinates(coordinateString);
+        for (let position of positionList) {
+            const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
+            if (isSamePosition) {
+                output.push(position.ghost);
             }
         }
         return output;
