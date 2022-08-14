@@ -58,8 +58,9 @@ export default class Game {
 
 
    readLevelJson() {
-      let level = sessionStorage.getItem('customLevel');
-      sessionStorage.removeItem('customLevel');
+      const itemName = Configuration.customLevelSessionStorageItemName;
+      let level = window.sessionStorage.getItem(itemName);
+      window.sessionStorage.removeItem(itemName);
       if (level === null) {
          level = Configuration.jsonDefaultLevel;
       }
