@@ -135,7 +135,7 @@ export default class EditorTileManipulationState {
 
 
     manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
-        let character = EditorElementMapper.mapTileTypeToInternalElement[this.selectorTileType];
+        const character = this.editor.getInternalElement(this.selectorTileType);
         let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
         let ghostCharacterListScatter = this.editor.getGhostCharacterListForScatterPosition(callerId);
         let ghostCharacterListSpawn = this.editor.getGhostCharacterListForSpawnPosition(callerId);
