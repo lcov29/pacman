@@ -122,7 +122,7 @@ export default class EditorTileManipulationState {
             if ((ghostTypeCounter === 0) && (isControlDisplayed === true)) {
                 for (let controlId of ghostTypeControlIdList) {
                     document.getElementById(controlId).style = 'display:none';
-                    let inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[controlId];
+                    const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
                     document.getElementById(inputId).value = '';
                     this.editor.removeScatterPositionFor(ghostCharacter);
                     this.editor.removeSpawnPositionFor(ghostCharacter);
@@ -151,7 +151,7 @@ export default class EditorTileManipulationState {
     clearScatterInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = this.#getScatterControlId(ghostCharacter);
-            inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
+            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
         }
     }
@@ -160,7 +160,7 @@ export default class EditorTileManipulationState {
     clearSpawnInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = this.#getSpawnControlId(ghostCharacter);
-            inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
+            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
         }
     }
@@ -173,6 +173,11 @@ export default class EditorTileManipulationState {
 
     #getSpawnControlId(ghostCharacter) {
         return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
+    }
+
+
+    #getScatterSpawnControlIdForInputId(inputId) {
+        return EditorElementMapper.scatterSpawnControlIdToInputIdMap.get(inputId);
     }
 
 
