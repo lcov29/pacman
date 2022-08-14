@@ -9,10 +9,6 @@ import Configuration from '../Configuration.mjs';
 
 
 let editor = new Editor();
-editor.setEditorContainer('editor_container');
-editor.setReferenceInputMapHeight('map_height');
-editor.setReferenceInputMapWidth('map_width');
-editor.initialize();
 buttonMapDimensionChangeCallback();
                                 
 
