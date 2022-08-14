@@ -76,7 +76,7 @@ export default class EditorSelectionState {
 
 
     initializeInputReference() {
-        let inputId = EditorElementMapper.mapButtonIdToInputId[this.buttonId];
+        const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.buttonId);
         this.positionInput = document.getElementById(inputId);
     }
 
