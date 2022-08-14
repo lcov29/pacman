@@ -185,11 +185,8 @@ export default class Editor {
 
 
     removeSpawnPositionFor(buttonId) {
-        let ghostCharacter = buttonId;
-        if (Configuration.ghostCharacterList.includes(buttonId) === false) {
-            ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
-        }
-        this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
+       const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+       this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
     }
 
 
