@@ -9,6 +9,7 @@ export default class EditorElementMapper {
     static tileTypeToInternalElementMap = null;
     static buttonIdToInputIdMap = null;
     static buttonIdToGhostCharacterMap = null;
+    static internalElementToScatterSpawnControlIdMap = null;
 
 
     static initializeMaps() {
@@ -52,15 +53,15 @@ export default class EditorElementMapper {
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_pinky', Configuration.ghostPinkyCharacter);
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_inky', Configuration.ghostInkyCharacter);
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_clyde', Configuration.ghostClydeCharacter);
+
+
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap = new Map();
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostBlinkyCharacter, ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostPinkyCharacter, ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostClydeCharacter, ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostInkyCharacter, ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']);
+
     }
-
-
-    static mapInternalElementToScatterSpawnControlIds = {
-        [Configuration.ghostBlinkyCharacter]: ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky'],
-        [Configuration.ghostPinkyCharacter]:  ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky'],
-        [Configuration.ghostClydeCharacter]:  ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde'],
-        [Configuration.ghostInkyCharacter]:   ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']
-    };
 
 
     static mapScatterSpawnControlIdsToInputIds = {
