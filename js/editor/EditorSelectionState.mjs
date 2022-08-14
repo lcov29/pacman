@@ -47,7 +47,7 @@ export default class EditorSelectionState {
 
     handleEditorTileMouseEnter(callerId) {
         let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         let tileCharacter = this.editor.getBoardCharacterAt(callerId);
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
@@ -62,7 +62,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseLeave(callerId) {
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         if (ghostCoordinates.includes(callerId) === false) {
             document.getElementById(callerId).style = null;
@@ -82,7 +82,7 @@ export default class EditorSelectionState {
 
 
     highlightPlacedGhosts() {
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         let ghostHighlightColor = EditorElementMapper.mapGhostCharacterToHighlightColor[ghostCharacter];
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
@@ -93,7 +93,7 @@ export default class EditorSelectionState {
 
 
     resetHighlightPlacedGhosts() {
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[this.buttonId];
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style = null;
