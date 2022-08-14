@@ -5,26 +5,6 @@ import Configuration from '../Configuration.mjs';
 
 export default class EditorElementMapper {
 
-        
-    static mapTileTypeToInternalElement = {
-        'wallTile':                     Configuration.wallCharacter,
-        'emptyTile':                    Configuration.emptyTileCharacter,
-        'pointTile':                    Configuration.pointCharacter,
-        'powerupTile':                  Configuration.powerUpCharacter,
-        'ghostDoorHorizontalTile':      Configuration.ghostDoorHorizontalCharacter,
-        'ghostDoorVerticalTile':        Configuration.ghostDoorVerticalCharacter,
-        'ghostDoorCrossingTile':        Configuration.ghostDoorDiagonalCharacter,
-        'teleporter1Tile':              Configuration.teleporter1Character,
-        'teleporter2Tile':              Configuration.teleporter2Character,
-        'teleporter3Tile':              Configuration.teleporter3Character,
-        'bonusSpawnTile':               Configuration.emptyTileCharacter,
-        'pacmanTile':                   Configuration.pacmanCharacter,
-        'ghostBlinkyTile':              Configuration.ghostBlinkyCharacter,
-        'ghostPinkyTile':               Configuration.ghostPinkyCharacter,
-        'ghostInkyTile':                Configuration.ghostInkyCharacter,
-        'ghostClydeTile':               Configuration.ghostClydeCharacter
-    };
-
 
     static mapButtonIdToInputId = {
         'select_scatter_position_ghost_blinky':     'scatter_position_ghost_blinky',
@@ -38,19 +18,40 @@ export default class EditorElementMapper {
     };
 
 
+    static tileTypeToInternalElementMap = null;
     static buttonIdToGhostCharacterMap = null;
 
 
     static initializeMaps() {
-        this.buttonIdToGhostCharacterMap = new Map();
-        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_pinky', Configuration.ghostPinkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_inky', Configuration.ghostInkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_clyde', Configuration.ghostClydeCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_pinky', Configuration.ghostPinkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_inky', Configuration.ghostInkyCharacter);
-        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_clyde', Configuration.ghostClydeCharacter);
+
+        EditorElementMapper.tileTypeToInternalElementMap = new Map();
+        EditorElementMapper.tileTypeToInternalElementMap.set('wallTile', Configuration.wallCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('emptyTile', Configuration.emptyTileCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('pointTile', Configuration.pointCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('powerupTile', Configuration.powerUpCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostDoorHorizontalTile', Configuration.ghostDoorHorizontalCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostDoorVerticalTile', Configuration.ghostDoorVerticalCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostDoorCrossingTile', Configuration.ghostDoorDiagonalCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('teleporter1Tile', Configuration.teleporter1Character);
+        EditorElementMapper.tileTypeToInternalElementMap.set('teleporter2Tile', Configuration.teleporter2Character);
+        EditorElementMapper.tileTypeToInternalElementMap.set('teleporter3Tile', Configuration.teleporter3Character);
+        EditorElementMapper.tileTypeToInternalElementMap.set('bonusSpawnTile', Configuration.emptyTileCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('pacmanTile', Configuration.pacmanCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostBlinkyTile', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostPinkyTile', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostInkyTile', Configuration.ghostInkyCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('ghostClydeTile', Configuration.ghostClydeCharacter);
+        
+
+        EditorElementMapper.buttonIdToGhostCharacterMap = new Map();
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_pinky', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_inky', Configuration.ghostInkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_clyde', Configuration.ghostClydeCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_pinky', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_inky', Configuration.ghostInkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_clyde', Configuration.ghostClydeCharacter);
     }
 
 
