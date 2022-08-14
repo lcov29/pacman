@@ -25,6 +25,7 @@ export default class Editor {
         this.#currentState = new EditorDefaultState();
         this.#initializeInternalLevel();
         this.#initializeDimensionInput();
+        EditorElementMapper.initializeMaps();
     }
 
 
@@ -158,13 +159,13 @@ export default class Editor {
 
 
     addScatterPosition(buttonId, coordinateString) {
-        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = this.getGhostCharacterFor(buttonId);
         this.#internalLevel.addScatterPosition(ghostCharacter, coordinateString);
     }
 
 
     addSpawnPosition(buttonId, coordinateString) {
-        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = this.getGhostCharacterFor(buttonId);
         this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinateString);
     }
 
@@ -175,13 +176,13 @@ export default class Editor {
 
 
     removeScatterPositionFor(buttonId) {
-        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = this.getGhostCharacterFor(buttonId);
         this.#internalLevel.removeScatterPositionFor(ghostCharacter);
     }
 
 
     removeSpawnPositionFor(buttonId) {
-        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = this.getGhostCharacterFor(buttonId);
         this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
     }
 
@@ -208,6 +209,11 @@ export default class Editor {
         const itemName = Configuration.customLevelSessionStorageItemName;
         const levelJSONString = this.#internalLevel.buildLevelJSONString();
         window.sessionStorage.setItem(itemName, levelJSONString);
+    }
+
+
+    getGhostCharacterFor(buttonId) {
+        return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
     }
 
 
