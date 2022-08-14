@@ -212,8 +212,9 @@ export default class Editor {
 
 
     sendLevelJson() {
-        let levelJSONString = this.#internalLevel.buildLevelJSONString();
-        sessionStorage.setItem('customLevel', levelJSONString);
+        const itemName = Configuration.customLevelSessionStorageItemName;
+        const levelJSONString = this.#internalLevel.buildLevelJSONString();
+        window.sessionStorage.setItem(itemName, levelJSONString);
     }
 
 
