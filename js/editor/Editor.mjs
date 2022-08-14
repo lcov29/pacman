@@ -148,7 +148,7 @@ export default class Editor {
 
     // ====== Start ======
     updateInternalBoard(coordinateString, element) {
-        let internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
+        const internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
         this.#internalLevel.update(coordinateString, internalElement);
     }
 
@@ -159,13 +159,13 @@ export default class Editor {
 
 
     addScatterPosition(buttonId, coordinateString) {
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         this.#internalLevel.addScatterPosition(ghostCharacter, coordinateString);
     }
 
 
     addSpawnPosition(buttonId, coordinateString) {
-        let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
+        const ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinateString);
     }
 
