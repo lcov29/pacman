@@ -9,137 +9,140 @@ import EditorElementMapper from './EditorElementMapper.mjs';
 export default class Editor {
 
 
+    #editorContainer = null;
+    #inputMapWidth = null;
+    #inputMapHeight = null;
+    #internalLevel = null;
+    #isGhostBlinkyScatterSpawnControlDisplayed = false;
+    #isGhostPinkyScatterSpawnControlDisplayed = false;
+    #isGhostClydeScatterSpawnControlDisplayed = false;
+    #isGhostInkyScatterSpawnControlDisplayed = false;
+    #currentState = null;
+
+
     constructor() {
-        this.editorContainer = null;
-        this.inputMapWidth = null;
-        this.inputMapHeight = null;
-        this.internalLevel = new EditorInternalLevel();
-        this.isGhostBlinkyScatterSpawnControlDisplayed = false;
-        this.isGhostPinkyScatterSpawnControlDisplayed = false;
-        this.isGhostClydeScatterSpawnControlDisplayed = false;
-        this.isGhostInkyScatterSpawnControlDisplayed = false;
-        this.mapGhostCharacterToDisplayStatus = null;
-        this.currentState = null;
+        this.#editorContainer = document.getElementById('editor_container');
+        this.#currentState = new EditorDefaultState();
+        this.#initializeInternalLevel();
+        this.#initializeDimensionInput();
     }
 
 
-    initialize() {
-        let width = Configuration.editorBoardDefaultWidth;
-        let height = Configuration.editorBoardDefaultHeight;
-        this.internalLevel.initialize(width, height);
-        this.initializeDimensionInput();
-        this.currentState = new EditorDefaultState();
-        this.mapGhostCharacterToDisplayStatusName = {
-            [Configuration.ghostBlinkyCharacter]:     'isGhostBlinkyScatterSpawnControlDisplayed',
-            [Configuration.ghostPinkyCharacter]:      'isGhostPinkyScatterSpawnControlDisplayed',
-            [Configuration.ghostClydeCharacter]:      'isGhostClydeScatterSpawnControlDisplayed',
-            [Configuration.ghostInkyCharacter]:       'isGhostInkyScatterSpawnControlDisplayed'
-        };
+    #initializeInternalLevel() {
+        this.#internalLevel = new EditorInternalLevel();
+
+        const width = Configuration.editorBoardDefaultWidth;
+        const height = Configuration.editorBoardDefaultHeight;
+        this.#internalLevel.initialize(width, height);
     }
 
 
-    initializeDimensionInput() {
-        this.inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
-        this.inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
+    #initializeDimensionInput() {
+        this.#inputMapWidth = document.getElementById('map_width');
+        this.#inputMapHeight = document.getElementById('map_height');
 
-        this.inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
-        this.inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
+        this.#inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
+        this.#inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
 
-        this.inputMapHeight.value = Configuration.editorBoardDefaultHeight;
-        this.inputMapWidth.value = Configuration.editorBoardDefaultWidth;
+        this.#inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
+        this.#inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
+
+        this.#inputMapWidth.value = Configuration.editorBoardDefaultWidth;
+        this.#inputMapHeight.value = Configuration.editorBoardDefaultHeight;
     }
 
 
     setState(state) {
-        this.currentState.exit();
-        this.currentState = state;
-        this.currentState.initialize(this);
-    }
-
-
-    setEditorContainer(id) {
-        this.editorContainer = document.getElementById(id);
+        this.#currentState.exit();
+        this.#currentState = state;
+        this.#currentState.initialize(this);
     }
 
 
     setEditorContainerDimension(width, height) {
-        this.editorContainer.style.width = `${width * 32}px`;
-        this.editorContainer.style.height = `${height * 32}px`;
+        this.#editorContainer.style.width = `${width * 32}px`;
+        this.#editorContainer.style.height = `${height * 32}px`;
     }
 
 
-    setReferenceInputMapWidth(id) {
-        this.inputMapWidth = document.getElementById(id);
-    }
-
-
-    setReferenceInputMapHeight(id) {
-        this.inputMapHeight = document.getElementById(id);
-    }
-
-
-    setSpawnScatterControlDisplayStatus(ghostCharacter, status) {
-        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghostCharacter];
-        this[displayVariableName] = status;
+    setSpawnScatterControlDisplayStatus(ghostCharacter, isDisplayed) {
+        switch(ghostCharacter) {
+            case Configuration.ghostBlinkyCharacter:
+                this.#isGhostBlinkyScatterSpawnControlDisplayed = isDisplayed;
+            case Configuration.ghostPinkyCharacter:
+                this.#isGhostPinkyScatterSpawnControlDisplayed = isDisplayed;
+            case Configuration.ghostInkyCharacter:
+                this.#isGhostInkyScatterSpawnControlDisplayed = isDisplayed;
+            case Configuration.ghostClydeCharacter:
+                this.#isGhostClydeScatterSpawnControlDisplayed = isDisplayed;
+        }
     }
 
 
     resetSpawnScatterControlDisplayStatus() {
-        this.isGhostBlinkyScatterSpawnControlDisplayed = false;
-        this.isGhostPinkyScatterSpawnControlDisplayed = false;
-        this.isGhostClydeScatterSpawnControlDisplayed = false;
-        this.isGhostInkyScatterSpawnControlDisplayed = false;
+        this.#isGhostBlinkyScatterSpawnControlDisplayed = false;
+        this.#isGhostPinkyScatterSpawnControlDisplayed = false;
+        this.#isGhostClydeScatterSpawnControlDisplayed = false;
+        this.#isGhostInkyScatterSpawnControlDisplayed = false;
     }
 
 
     resetInternalLevel(width, height) {
-        this.internalLevel.initialize(width, height);
+        this.#internalLevel.initialize(width, height);
     }
 
 
     getBoardCharacterAt(coordinates) {
-        return this.internalLevel.getBoardCharacterAt(coordinates);
+        return this.#internalLevel.getBoardCharacterAt(coordinates);
     }
 
 
     getCounterForGhostType(ghostCharacter) {
-        return this.internalLevel.getGhostCounterFor(ghostCharacter);
+        return this.#internalLevel.getGhostCounterFor(ghostCharacter);
     }
 
 
     getGhostCoordinatesListFor(ghostCharacter) {
-        return this.internalLevel.getGhostCoordinateListFor(ghostCharacter);
+        return this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
     }
 
 
     getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter) {
-        let displayVariableName = this.mapGhostCharacterToDisplayStatusName[ghostCharacter];
-        return this[displayVariableName];
+        switch(ghostCharacter) {
+            case Configuration.ghostBlinkyCharacter:
+                return this.#isGhostBlinkyScatterSpawnControlDisplayed;
+            case Configuration.ghostPinkyCharacter:
+                return this.#isGhostPinkyScatterSpawnControlDisplayed;
+            case Configuration.ghostInkyCharacter:
+                return this.#isGhostInkyScatterSpawnControlDisplayed;
+            case Configuration.ghostClydeCharacter:
+                return this.#isGhostClydeScatterSpawnControlDisplayed;
+        }
     }
 
 
     getMapWidthInput() {
-        return this.inputMapWidth.value;
+        return this.#inputMapWidth.value;
     }
 
 
     getMapHeightInput() {
-        return this.inputMapHeight.value;
+        return this.#inputMapHeight.value;
     }
 
 
     getGhostCharactersForScatterPosition(coordinateString) {
-        return this.internalLevel.getGhostCharactersForScatterPosition(coordinateString);
+        return this.#internalLevel.getGhostCharactersForScatterPosition(coordinateString);
     }
 
 
     getGhostCharactersForSpawnPosition(coordinateString) {
-        return this.internalLevel.getGhostCharactersForSpawnPosition(coordinateString);
+        return this.#internalLevel.getGhostCharactersForSpawnPosition(coordinateString);
     }
 
 
     isCoordinateBonusSpawnPosition(coordinateString) {
-        return this.internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
+        return this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
     }
 
 
@@ -147,65 +150,65 @@ export default class Editor {
     
 
     handleEditorContainerMouseDown(callerId) {
-        this.currentState.handleEditorContainerMouseDown(callerId);
+        this.#currentState.handleEditorContainerMouseDown(callerId);
     }
 
 
     handleEditorContainerMouseUp(callerId) {
-        this.currentState.handleEditorContainerMouseUp(callerId);
+        this.#currentState.handleEditorContainerMouseUp(callerId);
     }
 
 
     handleEditorContainerMouseLeave(callerId) {
-        this.currentState.handleEditorContainerMouseLeave(callerId);
+        this.#currentState.handleEditorContainerMouseLeave(callerId);
     }
 
 
     handleEditorTileClick(callerId) {
-        this.currentState.handleEditorTileClick(callerId);
+        this.#currentState.handleEditorTileClick(callerId);
     }
 
 
     handleEditorTileMouseOver(callerId) {
-        this.currentState.handleEditorTileMouseOver(callerId);
+        this.#currentState.handleEditorTileMouseOver(callerId);
     }
 
 
     handleEditorTileMouseEnter(callerId) {
-        this.currentState.handleEditorTileMouseEnter(callerId);
+        this.#currentState.handleEditorTileMouseEnter(callerId);
     }
 
 
     handleEditorTileMouseLeave(callerId) {
-        this.currentState.handleEditorTileMouseLeave(callerId);
+        this.#currentState.handleEditorTileMouseLeave(callerId);
     }
 
 
     updateInternalBoard(tileCoordinates, element) {
         let internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
-        this.internalLevel.update(tileCoordinates, internalElement);
+        this.#internalLevel.update(tileCoordinates, internalElement);
     }
 
 
     addEditorTile(newTile) {
-        this.editorContainer.appendChild(newTile);
+        this.#editorContainer.appendChild(newTile);
     }
 
 
     addScatterPosition(buttonId, coordinates) {
         let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
-        this.internalLevel.addScatterPosition(ghostCharacter, coordinates);
+        this.#internalLevel.addScatterPosition(ghostCharacter, coordinates);
     }
 
 
     addSpawnPosition(buttonId, coordinates) {
         let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
-        this.internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinates);
+        this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinates);
     }
 
 
     addBonusSpawnPosition(coordinates) {
-        this.internalLevel.addBonusSpawnPosition(coordinates);
+        this.#internalLevel.addBonusSpawnPosition(coordinates);
     }
 
 
@@ -214,7 +217,7 @@ export default class Editor {
         if (Configuration.ghostCharacterList.includes(buttonId) === false) {
             ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
-        this.internalLevel.removeScatterPositionFor(ghostCharacter);
+        this.#internalLevel.removeScatterPositionFor(ghostCharacter);
     }
 
 
@@ -223,30 +226,30 @@ export default class Editor {
         if (Configuration.ghostCharacterList.includes(buttonId) === false) {
             ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
         }
-        this.internalLevel.removeSpawnPositionFor(ghostCharacter);
+        this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
     }
 
 
     removeScatterAndSpawnPosition(coordinateString) {
-        this.internalLevel.removeScatterPosition(coordinateString);
-        this.internalLevel.removeSpawnPosition(coordinateString);
+        this.#internalLevel.removeScatterPosition(coordinateString);
+        this.#internalLevel.removeSpawnPosition(coordinateString);
     }
 
 
     removeBonusSpawnPositionAt(coordinateString) {
-        this.internalLevel.removeBonusSpawnPositionAt(coordinateString);
+        this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
     }
 
 
     clearMap() {
-        while (this.editorContainer.firstChild) {
-           this.editorContainer.removeChild(this.editorContainer.firstChild);
+        while (this.#editorContainer.firstChild) {
+           this.#editorContainer.removeChild(this.#editorContainer.firstChild);
         }
     }
 
 
     sendLevelJson() {
-        let levelJSONString = this.internalLevel.buildLevelJSONString();
+        let levelJSONString = this.#internalLevel.buildLevelJSONString();
         sessionStorage.setItem('customLevel', levelJSONString);
     }
 
