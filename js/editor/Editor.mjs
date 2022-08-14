@@ -131,8 +131,8 @@ export default class Editor {
     }
 
 
-    getGhostCharactersForScatterPosition(coordinateString) {
-        return this.#internalLevel.getGhostCharactersForScatterPosition(coordinateString);
+    getGhostCharacterListForScatterPosition(coordinateString) {
+        return this.#internalLevel.getGhostCharacterListForScatterPosition(coordinateString);
     }
 
 

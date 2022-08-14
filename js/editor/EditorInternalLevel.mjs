@@ -56,7 +56,7 @@ export default class EditorInternalLevel {
     }
 
 
-    getGhostCharactersForScatterPosition(coordinateString) {
+    getGhostCharacterListForScatterPosition(coordinateString) {
         return this.#getGhostCharacterListForPositionAt(this.#scatterPositionList, coordinateString);
     }
 
