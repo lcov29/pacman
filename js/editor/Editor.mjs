@@ -148,7 +148,7 @@ export default class Editor {
 
 
     updateInternalBoard(coordinateString, element) {
-        const internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
+        const internalElement = this.getInternalElement(element);
         this.#internalLevel.update(coordinateString, internalElement);
     }
 
@@ -214,6 +214,11 @@ export default class Editor {
 
     getGhostCharacterFor(buttonId) {
         return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
+    }
+
+
+    getInternalElement(tileType) {
+        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
     }
 
 
