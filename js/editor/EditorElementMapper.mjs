@@ -38,15 +38,19 @@ export default class EditorElementMapper {
     };
 
 
-    static mapButtonIdToGhostCharacter = {
-        'select_scatter_position_ghost_blinky':     Configuration.ghostBlinkyCharacter,
-        'select_scatter_position_ghost_pinky':      Configuration.ghostPinkyCharacter,
-        'select_scatter_position_ghost_inky':       Configuration.ghostInkyCharacter,
-        'select_scatter_position_ghost_clyde':      Configuration.ghostClydeCharacter,
-        'select_spawn_position_ghost_blinky':       Configuration.ghostBlinkyCharacter,
-        'select_spawn_position_ghost_pinky':        Configuration.ghostPinkyCharacter,
-        'select_spawn_position_ghost_inky':         Configuration.ghostInkyCharacter,
-        'select_spawn_position_ghost_clyde':        Configuration.ghostClydeCharacter
+    static buttonIdToGhostCharacterMap = null;
+
+
+    static initializeMaps() {
+        this.buttonIdToGhostCharacterMap = new Map();
+        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_pinky', Configuration.ghostPinkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_inky', Configuration.ghostInkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_clyde', Configuration.ghostClydeCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_pinky', Configuration.ghostPinkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_inky', Configuration.ghostInkyCharacter);
+        this.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_clyde', Configuration.ghostClydeCharacter);
     }
 
 
