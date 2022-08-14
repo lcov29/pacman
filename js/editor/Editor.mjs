@@ -146,7 +146,6 @@ export default class Editor {
     }
 
 
-    // ====== Start ======
     updateInternalBoard(coordinateString, element) {
         const internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
         this.#internalLevel.update(coordinateString, internalElement);
@@ -212,37 +211,7 @@ export default class Editor {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
-    
+    // ======== Delegate callback calls to implementatin in current state ===========
 
     handleEditorContainerMouseDown(callerId) {
         this.#currentState.handleEditorContainerMouseDown(callerId);
