@@ -83,7 +83,7 @@ export default class EditorSelectionState {
 
     highlightPlacedGhosts() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        let ghostHighlightColor = EditorElementMapper.mapGhostCharacterToHighlightColor[ghostCharacter];
+        const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
         let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
