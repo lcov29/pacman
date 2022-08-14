@@ -146,47 +146,10 @@ export default class Editor {
     }
 
 
-    // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
-    
-
-    handleEditorContainerMouseDown(callerId) {
-        this.#currentState.handleEditorContainerMouseDown(callerId);
-    }
-
-
-    handleEditorContainerMouseUp(callerId) {
-        this.#currentState.handleEditorContainerMouseUp(callerId);
-    }
-
-
-    handleEditorContainerMouseLeave(callerId) {
-        this.#currentState.handleEditorContainerMouseLeave(callerId);
-    }
-
-
-    handleEditorTileClick(callerId) {
-        this.#currentState.handleEditorTileClick(callerId);
-    }
-
-
-    handleEditorTileMouseOver(callerId) {
-        this.#currentState.handleEditorTileMouseOver(callerId);
-    }
-
-
-    handleEditorTileMouseEnter(callerId) {
-        this.#currentState.handleEditorTileMouseEnter(callerId);
-    }
-
-
-    handleEditorTileMouseLeave(callerId) {
-        this.#currentState.handleEditorTileMouseLeave(callerId);
-    }
-
-
-    updateInternalBoard(tileCoordinates, element) {
+    // ====== Start ======
+    updateInternalBoard(coordinateString, element) {
         let internalElement = EditorElementMapper.mapTileTypeToInternalElement[element];
-        this.#internalLevel.update(tileCoordinates, internalElement);
+        this.#internalLevel.update(coordinateString, internalElement);
     }
 
 
@@ -195,20 +158,20 @@ export default class Editor {
     }
 
 
-    addScatterPosition(buttonId, coordinates) {
+    addScatterPosition(buttonId, coordinateString) {
         let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
-        this.#internalLevel.addScatterPosition(ghostCharacter, coordinates);
+        this.#internalLevel.addScatterPosition(ghostCharacter, coordinateString);
     }
 
 
-    addSpawnPosition(buttonId, coordinates) {
+    addSpawnPosition(buttonId, coordinateString) {
         let ghostCharacter = EditorElementMapper.mapButtonIdToGhostCharacter[buttonId];
-        this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinates);
+        this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinateString);
     }
 
 
-    addBonusSpawnPosition(coordinates) {
-        this.#internalLevel.addBonusSpawnPosition(coordinates);
+    addBonusSpawnPosition(coordinateString) {
+        this.#internalLevel.addBonusSpawnPosition(coordinateString);
     }
 
 
@@ -251,6 +214,73 @@ export default class Editor {
     sendLevelJson() {
         let levelJSONString = this.#internalLevel.buildLevelJSONString();
         sessionStorage.setItem('customLevel', levelJSONString);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // ======== IMPLEMENTATION OF CALLBACK FUNCTIONS ===========
+    
+
+    handleEditorContainerMouseDown(callerId) {
+        this.#currentState.handleEditorContainerMouseDown(callerId);
+    }
+
+
+    handleEditorContainerMouseUp(callerId) {
+        this.#currentState.handleEditorContainerMouseUp(callerId);
+    }
+
+
+    handleEditorContainerMouseLeave(callerId) {
+        this.#currentState.handleEditorContainerMouseLeave(callerId);
+    }
+
+
+    handleEditorTileClick(callerId) {
+        this.#currentState.handleEditorTileClick(callerId);
+    }
+
+
+    handleEditorTileMouseOver(callerId) {
+        this.#currentState.handleEditorTileMouseOver(callerId);
+    }
+
+
+    handleEditorTileMouseEnter(callerId) {
+        this.#currentState.handleEditorTileMouseEnter(callerId);
+    }
+
+
+    handleEditorTileMouseLeave(callerId) {
+        this.#currentState.handleEditorTileMouseLeave(callerId);
     }
 
 
