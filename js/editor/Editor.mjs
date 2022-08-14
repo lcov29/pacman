@@ -136,8 +136,8 @@ export default class Editor {
     }
 
 
-    getGhostCharactersForSpawnPosition(coordinateString) {
-        return this.#internalLevel.getGhostCharactersForSpawnPosition(coordinateString);
+    getGhostCharacterListForSpawnPosition(coordinateString) {
+        return this.#internalLevel.getGhostCharacterListForSpawnPosition(coordinateString);
     }
 
 

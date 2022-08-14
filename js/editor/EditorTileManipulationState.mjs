@@ -138,12 +138,12 @@ export default class EditorTileManipulationState {
         let character = EditorElementMapper.mapTileTypeToInternalElement[this.selectorTileType];
         let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
         let ghostCharacterListScatter = this.editor.getGhostCharacterListForScatterPosition(callerId);
-        let ghostCharactersSpawn = this.editor.getGhostCharactersForSpawnPosition(callerId);
-        let isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharactersSpawn.length > 0);
+        let ghostCharacterListSpawn = this.editor.getGhostCharacterListForSpawnPosition(callerId);
+        let isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
         if (isTileInaccessible && isTileScatterOrSpawn) {
             this.editor.removeScatterAndSpawnPosition(callerId);           
             this.clearScatterInputFor(ghostCharacterListScatter);
-            this.clearSpawnInputFor(ghostCharactersSpawn);
+            this.clearSpawnInputFor(ghostCharacterListSpawn);
         } 
     }
 

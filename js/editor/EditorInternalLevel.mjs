@@ -61,7 +61,7 @@ export default class EditorInternalLevel {
     }
 
 
-    getGhostCharactersForSpawnPosition(coordinateString) {
+    getGhostCharacterListForSpawnPosition(coordinateString) {
         return this.#getGhostCharacterListForPositionAt(this.#optionalSpawnPositionList, coordinateString);
     }
 
