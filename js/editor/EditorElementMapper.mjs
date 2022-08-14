@@ -11,10 +11,10 @@ export default class EditorElementMapper {
     static buttonIdToGhostCharacterMap = null;
     static internalElementToScatterSpawnControlIdMap = null;
     static scatterSpawnControlIdToInputIdMap = null;
+    static ghostCharacterToHighlightColorMap = null;
 
 
     static initializeMaps() {
-
         EditorElementMapper.tileTypeToInternalElementMap = new Map();
         EditorElementMapper.tileTypeToInternalElementMap.set('wallTile', Configuration.wallCharacter);
         EditorElementMapper.tileTypeToInternalElementMap.set('emptyTile', Configuration.emptyTileCharacter);
@@ -72,14 +72,13 @@ export default class EditorElementMapper {
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_pinky', 'spawn_position_ghost_pinky');
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_clyde', 'spawn_position_ghost_clyde');
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_inky', 'spawn_position_ghost_inky');
-    }
 
 
-    static mapGhostCharacterToHighlightColor = {
-        [Configuration.ghostBlinkyCharacter]:     Configuration.editorGhostBlinkyHighlightColorHex,
-        [Configuration.ghostPinkyCharacter]:      Configuration.editorGhostPinkyHighlightColorHex,
-        [Configuration.ghostClydeCharacter]:      Configuration.editorGhostClydeHighlightColorHex,
-        [Configuration.ghostInkyCharacter]:       Configuration.editorGhostInkyHighlightColorHex
+        EditorElementMapper.ghostCharacterToHighlightColorMap = new Map();
+        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostBlinkyCharacter, Configuration.editorGhostBlinkyHighlightColorHex);
+        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostPinkyCharacter, Configuration.editorGhostPinkyHighlightColorHex);
+        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostClydeCharacter, Configuration.editorGhostClydeHighlightColorHex);
+        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostInkyCharacter, Configuration.editorGhostInkyHighlightColorHex);
     }
 
 
