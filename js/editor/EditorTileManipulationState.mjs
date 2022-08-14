@@ -103,16 +103,16 @@ export default class EditorTileManipulationState {
     manageScatterSpawnControlVisibility() {
         let ghostTypeCounter = 0;
         let isControlDisplayed = false;
-        let ghostTypeControlIds = [];
+        let ghostTypeControlIdList = [];
 
         for (let ghostCharacter of Configuration.ghostCharacterList) {
             ghostTypeCounter = this.editor.getCounterForGhostType(ghostCharacter);
-            ghostTypeControlIds = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter];
+            ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
             isControlDisplayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
     
             // display invisible controls
             if ((ghostTypeCounter > 0) && (isControlDisplayed === false)) {
-                for (let controlId of ghostTypeControlIds) {
+                for (let controlId of ghostTypeControlIdList) {
                     document.getElementById(controlId).style = null;
                 }
                 this.editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
@@ -120,7 +120,7 @@ export default class EditorTileManipulationState {
     
             // hide visible controls
             if ((ghostTypeCounter === 0) && (isControlDisplayed === true)) {
-                for (let controlId of ghostTypeControlIds) {
+                for (let controlId of ghostTypeControlIdList) {
                     document.getElementById(controlId).style = 'display:none';
                     let inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[controlId];
                     document.getElementById(inputId).value = '';
@@ -150,7 +150,8 @@ export default class EditorTileManipulationState {
 
     clearScatterInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
-            let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][0];
+            //let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][0];
+            let inputId = this.#getScatterControlId(ghostCharacter);
             inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
             document.getElementById(inputId).value = '';
         }
@@ -159,10 +160,21 @@ export default class EditorTileManipulationState {
 
     clearSpawnInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
-            let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][1];
+            //let inputId = EditorElementMapper.mapInternalElementToScatterSpawnControlIds[ghostCharacter][1];
+            let inputId = this.#getSpawnControlId(ghostCharacter);
             inputId = EditorElementMapper.mapScatterSpawnControlIdsToInputIds[inputId];
             document.getElementById(inputId).value = '';
         }
+    }
+
+
+    #getScatterControlId(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[0];
+    }
+
+
+    #getSpawnControlId(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
     }
 
 
