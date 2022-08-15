@@ -88,7 +88,7 @@ function validateMapHeightInput(event) {
         const isHeightInputBelowMinimum = inputNumber < Configuration.editorBoardMinHeight;
         const isHeightInputAboveMaximum = inputNumber > Configuration.editorBoardMaxHeight;
         const isHeightInputInvalid = isHeightInputBelowMinimum || isHeightInputAboveMaximum;
-        
+
         if (isHeightInputInvalid) {
             input.value = '';
         }
@@ -99,9 +99,10 @@ function validateMapHeightInput(event) {
 
 
 function inputScatterSpawnMouseEnterCallback(event) {
-    let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
-    let coordinateString = document.getElementById(event.target.id).value;
-    if (coordinateString !== '') {
+    const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
+    const coordinateString = document.getElementById(event.target.id).value;
+    const isCoordinateStringValid = coordinateString !== '';
+    if (isCoordinateStringValid) {
         document.getElementById(coordinateString).style.borderColor = borderColor;
         document.getElementById(coordinateString).style.borderWidth = '5px';
     }
