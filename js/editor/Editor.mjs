@@ -224,7 +224,7 @@ export default class Editor {
     }
 
 
-    // ======== Delegate callback calls to implementatin in current state ===========
+    // ======== Delegate callback calls to implementation in current state ===========
 
     handleEditorContainerMouseDown(event) {
         this.#currentState.handleEditorContainerMouseDown(event.target.id);
