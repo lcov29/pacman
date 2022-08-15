@@ -3,17 +3,18 @@
 
 export default class EditorMapDimensionChangeState {
 
+
+    #editor = null;
+
     
-    constructor() {
-        this.editor = null;
-    }
+    constructor() {}
 
 
     initialize(editor) {
-        this.editor = editor;
-        this.editor.resetSpawnScatterControlDisplayStatus();
-        this.editor.resetInternalLevel();
-        this.editor.clearMap();
+        this.#editor = editor;
+        this.#editor.resetSpawnScatterControlDisplayStatus();
+        this.#editor.resetInternalLevel();
+        this.#editor.clearMap();
         this.resetScatterSpawnInputs();
         this.initializeEditingArea();
     }
@@ -63,9 +64,9 @@ export default class EditorMapDimensionChangeState {
 
 
     initializeEditingArea() {
-        const width = this.editor.getMapWidthInput();
-        const height = this.editor.getMapHeightInput();
-        this.editor.setEditorContainerDimension(width, height);
+        const width = this.#editor.getMapWidthInput();
+        const height = this.#editor.getMapHeightInput();
+        this.#editor.setEditorContainerDimension(width, height);
         
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
@@ -74,11 +75,11 @@ export default class EditorMapDimensionChangeState {
                 newDiv.setAttribute('id', newId);
                 newDiv.setAttribute('title', newId);
                 newDiv.setAttribute('class', 'editorTile undefinedTile');
-                newDiv.addEventListener('mouseover', this.editor.handleEditorTileMouseOver.bind(this.editor));
-                newDiv.addEventListener('mouseenter', this.editor.handleEditorTileMouseEnter.bind(this.editor));
-                newDiv.addEventListener('mouseleave', this.editor.handleEditorTileMouseLeave.bind(this.editor));
-                newDiv.addEventListener('click', this.editor.handleEditorTileClick.bind(this.editor));
-                this.editor.addEditorTile(newDiv);
+                newDiv.addEventListener('mouseover', this.#editor.handleEditorTileMouseOver.bind(this.#editor));
+                newDiv.addEventListener('mouseenter', this.#editor.handleEditorTileMouseEnter.bind(this.#editor));
+                newDiv.addEventListener('mouseleave', this.#editor.handleEditorTileMouseLeave.bind(this.#editor));
+                newDiv.addEventListener('click', this.#editor.handleEditorTileClick.bind(this.#editor));
+                this.#editor.addEditorTile(newDiv);
             }
         }
     }
