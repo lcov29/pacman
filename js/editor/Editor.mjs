@@ -88,7 +88,9 @@ export default class Editor {
     }
 
 
-    resetInternalLevel(width, height) {
+    resetInternalLevel() {
+        const width = this.getMapWidthInput();
+        const height = this.getMapHeightInput();
         this.#internalLevel.initialize(width, height);
     }
 
@@ -239,23 +241,23 @@ export default class Editor {
     }
 
 
-    handleEditorTileClick(callerId) {
-        this.#currentState.handleEditorTileClick(callerId);
+    handleEditorTileClick(event) {
+        this.#currentState.handleEditorTileClick(event.target.id);
     }
 
 
-    handleEditorTileMouseOver(callerId) {
-        this.#currentState.handleEditorTileMouseOver(callerId);
+    handleEditorTileMouseOver(event) {
+        this.#currentState.handleEditorTileMouseOver(event.target.id);
     }
 
 
-    handleEditorTileMouseEnter(callerId) {
-        this.#currentState.handleEditorTileMouseEnter(callerId);
+    handleEditorTileMouseEnter(event) {
+        this.#currentState.handleEditorTileMouseEnter(event.target.id);
     }
 
 
-    handleEditorTileMouseLeave(callerId) {
-        this.#currentState.handleEditorTileMouseLeave(callerId);
+    handleEditorTileMouseLeave(event) {
+        this.#currentState.handleEditorTileMouseLeave(event.target.id);
     }
 
 
