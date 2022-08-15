@@ -226,18 +226,18 @@ export default class Editor {
 
     // ======== Delegate callback calls to implementatin in current state ===========
 
-    handleEditorContainerMouseDown(callerId) {
-        this.#currentState.handleEditorContainerMouseDown(callerId);
+    handleEditorContainerMouseDown(event) {
+        this.#currentState.handleEditorContainerMouseDown(event.target.id);
     }
 
 
-    handleEditorContainerMouseUp(callerId) {
-        this.#currentState.handleEditorContainerMouseUp(callerId);
+    handleEditorContainerMouseUp(event) {
+        this.#currentState.handleEditorContainerMouseUp(event.target.id);
     }
 
 
-    handleEditorContainerMouseLeave(callerId) {
-        this.#currentState.handleEditorContainerMouseLeave(callerId);
+    handleEditorContainerMouseLeave(event) {
+        this.#currentState.handleEditorContainerMouseLeave(event.target.id);
     }
 
 
