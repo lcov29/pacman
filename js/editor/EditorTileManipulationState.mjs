@@ -61,7 +61,7 @@ export default class EditorTileManipulationState {
 
 
     exit() {
-        this.#resetHighlighOfChosenSelectorTile();
+        this.#resetHighlightOfChosenSelectorTile();
     }
 
 
@@ -100,7 +100,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    #resetHighlighOfChosenSelectorTile() {
+    #resetHighlightOfChosenSelectorTile() {
         const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         const selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
         selectedRadioLabel.setAttribute('style', '');
