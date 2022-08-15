@@ -12,7 +12,6 @@ let editor = new Editor();
 buttonMapDimensionChangeCallback();
                                 
 
-
 // add handlers to level elements in selector bar
 const radioList = document.querySelectorAll('input[name="selectors"]');
 for (let radio of radioList) {
