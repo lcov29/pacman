@@ -22,9 +22,9 @@ for (let radio of radios) {
 
 // add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
 let editorContainer = document.getElementById('editor_container');
-editorContainer.addEventListener('mousedown', editorContainerMouseDownCallback);
-editorContainer.addEventListener('mouseup', editorContainerMouseUpCallback);
-editorContainer.addEventListener('mouseleave', editorContainerMouseLeaveCallback);
+editorContainer.addEventListener('mousedown', editor.handleEditorContainerMouseDown.bind(editor));
+editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.bind(editor));
+editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
 
 
 // add handler to map dimension apply button
@@ -59,32 +59,14 @@ for (let spawnButton of spawnButtons) {
 document.getElementById('play_level').addEventListener('click', buttonPlayCallback);
 
 
-
-
-// Callback wrappers
-function editorContainerMouseDownCallback() {
-    editor.handleEditorContainerMouseDown(this.id);
+function radioButtonTileSelectionCallback(event) {
+    editor.setState(new EditorTileManipulationState(event.target.id));
 }
 
 
-function editorContainerMouseUpCallback() {
-    editor.handleEditorContainerMouseUp(this.id);
-}
-
-
-function editorContainerMouseLeaveCallback() {
-    editor.handleEditorContainerMouseLeave(this.id);
-}
-
-
-function radioButtonTileSelectionCallback() {
-    editor.setState(new EditorTileManipulationState(this.id));
-}
-
-
-function validateMapWidthInput() {
+function validateMapWidthInput(event) {
     try {
-        let input = document.getElementById(this.id);
+        let input = document.getElementById(event.target.id);
         let inputNumber = parseInt(input.value);
         if ((inputNumber < Configuration.editorBoardMinWidth) ||
             (inputNumber > Configuration.editorBoardMaxWidth)) {
@@ -96,9 +78,9 @@ function validateMapWidthInput() {
 }
 
 
-function validateMapHeightInput() {
+function validateMapHeightInput(event) {
     try {
-        let input = document.getElementById(this.id);
+        let input = document.getElementById(event.target.id);
         let inputNumber = parseInt(input.value);
         if ((inputNumber < Configuration.editorBoardMinHeight) ||
             (inputNumber > Configuration.editorBoardMaxHeight)) {
@@ -110,9 +92,9 @@ function validateMapHeightInput() {
 }
 
 
-function inputScatterSpawnMouseEnterCallback() {
+function inputScatterSpawnMouseEnterCallback(event) {
     let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
-    let coordinateString = document.getElementById(this.id).value;
+    let coordinateString = document.getElementById(event.target.id).value;
     if (coordinateString !== '') {
         document.getElementById(coordinateString).style.borderColor = borderColor;
         document.getElementById(coordinateString).style.borderWidth = '5px';
@@ -120,8 +102,8 @@ function inputScatterSpawnMouseEnterCallback() {
 }
 
 
-function inputScatterSpawnMouseLeaveCallback() {
-    let coordinateString = document.getElementById(this.id).value;
+function inputScatterSpawnMouseLeaveCallback(event) {
+    let coordinateString = document.getElementById(event.target.id).value;
     if (coordinateString !== '') {
         document.getElementById(coordinateString).style = null;
     }
