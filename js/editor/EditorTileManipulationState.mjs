@@ -6,46 +6,49 @@ import EditorElementMapper from './EditorElementMapper.mjs';
 
 export default class EditorTileManipulationState {
 
+    
+    #selectorTileType = '';
+    #editor = null;
+    #isMousePressedInsideEditorArea = false;
+
 
     constructor(selectorTileType) {
-        this.selectorTileType = selectorTileType;
-        this.editor = null;
-        this.isMousePressedInsideEditorArea = false;
+        this.#selectorTileType = selectorTileType;
     }
 
 
     initialize(editor) {
-        this.editor = editor;
+        this.#editor = editor;
         this.highlightChosenSelectorTile();
     }
 
 
     handleEditorContainerMouseDown(callerId) {
-        this.isMousePressedInsideEditorArea = true;
+        this.#isMousePressedInsideEditorArea = true;
     }
 
 
     handleEditorContainerMouseUp(callerId) {
-        this.isMousePressedInsideEditorArea = false;
+        this.#isMousePressedInsideEditorArea = false;
     }
 
 
     handleEditorContainerMouseLeave(callerId) {
-        this.isMousePressedInsideEditorArea = false;
+        this.#isMousePressedInsideEditorArea = false;
     }
 
 
     handleEditorTileClick(callerId) {
-        this.editor.updateInternalBoard(callerId, this.selectorTileType);
-        this.updateBonusSpawnList(callerId, this.selectorTileType);
+        this.#editor.updateInternalBoard(callerId, this.#selectorTileType);
+        this.updateBonusSpawnList(callerId, this.#selectorTileType);
         this.manageScatterSpawnControlVisibility();
         this.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
-        this.updateEditingTileTo(callerId, this.selectorTileType);
+        this.updateEditingTileTo(callerId, this.#selectorTileType);
     }
 
 
     handleEditorTileMouseOver(callerId) {
-        if (this.isMousePressedInsideEditorArea) {
+        if (this.#isMousePressedInsideEditorArea) {
             this.handleEditorTileClick(callerId);
         }
     }
@@ -84,11 +87,11 @@ export default class EditorTileManipulationState {
 
     updateBonusSpawnList(coordinateString, nextTileType) {
         // handle overwriting a spawn position
-        if (this.editor.isCoordinateBonusSpawnPosition(coordinateString)) {
-            this.editor.removeBonusSpawnPositionAt(coordinateString);
+        if (this.#editor.isCoordinateBonusSpawnPosition(coordinateString)) {
+            this.#editor.removeBonusSpawnPositionAt(coordinateString);
         }
         if (nextTileType === 'bonus_spawn_tile') {
-            this.editor.addBonusSpawnPosition(coordinateString);
+            this.#editor.addBonusSpawnPosition(coordinateString);
         }
     }
 
@@ -106,16 +109,16 @@ export default class EditorTileManipulationState {
         let ghostTypeControlIdList = [];
 
         for (let ghostCharacter of Configuration.ghostCharacterList) {
-            ghostTypeCounter = this.editor.getCounterForGhostType(ghostCharacter);
+            ghostTypeCounter = this.#editor.getCounterForGhostType(ghostCharacter);
             ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
-            isControlDisplayed = this.editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
+            isControlDisplayed = this.#editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
     
             // display invisible controls
             if ((ghostTypeCounter > 0) && (isControlDisplayed === false)) {
                 for (let controlId of ghostTypeControlIdList) {
                     document.getElementById(controlId).style = null;
                 }
-                this.editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
+                this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
             }
     
             // hide visible controls
@@ -124,10 +127,10 @@ export default class EditorTileManipulationState {
                     document.getElementById(controlId).style = 'display:none';
                     const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
                     document.getElementById(inputId).value = '';
-                    this.editor.removeScatterPositionFor(ghostCharacter);
-                    this.editor.removeSpawnPositionFor(ghostCharacter);
+                    this.#editor.removeScatterPositionFor(ghostCharacter);
+                    this.#editor.removeSpawnPositionFor(ghostCharacter);
                 }
-                this.editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
+                this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
             }
 
         }
@@ -135,13 +138,13 @@ export default class EditorTileManipulationState {
 
 
     manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
-        const character = this.editor.getInternalElement(this.selectorTileType);
+        const character = this.#editor.getInternalElement(this.#selectorTileType);
         let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
-        let ghostCharacterListScatter = this.editor.getGhostCharacterListForScatterPosition(callerId);
-        let ghostCharacterListSpawn = this.editor.getGhostCharacterListForSpawnPosition(callerId);
+        let ghostCharacterListScatter = this.#editor.getGhostCharacterListForScatterPosition(callerId);
+        let ghostCharacterListSpawn = this.#editor.getGhostCharacterListForSpawnPosition(callerId);
         let isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
         if (isTileInaccessible && isTileScatterOrSpawn) {
-            this.editor.removeScatterAndSpawnPosition(callerId);           
+            this.#editor.removeScatterAndSpawnPosition(callerId);           
             this.clearScatterInputFor(ghostCharacterListScatter);
             this.clearSpawnInputFor(ghostCharacterListSpawn);
         } 
