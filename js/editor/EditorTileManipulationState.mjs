@@ -101,8 +101,8 @@ export default class EditorTileManipulationState {
 
 
     #resetHighlighOfChosenSelectorTile() {
-        let selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
-        let selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
+        const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
+        const selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
         selectedRadioLabel.setAttribute('style', '');
     }
 
