@@ -70,7 +70,7 @@ export default class EditorTileManipulationState {
         const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
 
         for (let radio of radioList) {
-            
+
             const radioLabel = document.querySelector(`label[for="${radio.id}"]`);
             const isCurrentRadioSelected = selectedRadioId === radio.id;
 
@@ -84,7 +84,7 @@ export default class EditorTileManipulationState {
 
 
     #updateEditingTileTo(coordinateString, tileType) {
-        let styleclass = `editorTile ${tileType}`;
+        const styleclass = `editorTile ${tileType}`;
         document.getElementById(coordinateString).setAttribute('class', styleclass);
     }
 
