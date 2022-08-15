@@ -7,26 +7,28 @@ import EditorElementMapper from './EditorElementMapper.mjs';
 
 export default class EditorSelectionState {
 
-    
+    #editor = null;
+    #positionInput = null;
+    #buttonId = null;
+
+
     constructor(buttonId) {
-        this.editor = null;
-        this.positionInput = null;
-        this.buttonId = buttonId;
+        this.#buttonId = buttonId;
     }
 
 
-    setEditor(editor) {
-        this.editor = editor;
+    set editor(editor) {
+        this.#editor = editor;
     }
 
 
-    getEditor() {
-        return this.editor;
+    get editor() {
+        return this.#editor;
     }
 
 
-    getButtonId() {
-        return this.buttonId;
+    get buttonId() {
+        return this.#buttonId;
     }
 
 
@@ -38,7 +40,7 @@ export default class EditorSelectionState {
 
     handleEditorContainerMouseLeave(callerId) {
         this.editor.setState(new EditorDefaultState());
-        this.positionInput.value = '';
+        this.#positionInput.value = '';
     }
 
 
@@ -57,7 +59,7 @@ export default class EditorSelectionState {
             document.getElementById(callerId).style.borderColor = borderColor;
             document.getElementById(callerId).style.borderWidth = '5px';
         }
-        this.positionInput.value = (isTileAccessible) ? callerId : '';
+        this.#positionInput.value = (isTileAccessible) ? callerId : '';
     }
 
 
@@ -77,7 +79,7 @@ export default class EditorSelectionState {
 
     initializeInputReference() {
         const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.buttonId);
-        this.positionInput = document.getElementById(inputId);
+        this.#positionInput = document.getElementById(inputId);
     }
 
 
