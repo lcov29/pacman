@@ -19,7 +19,7 @@ export default class EditorTileManipulationState {
 
     initialize(editor) {
         this.#editor = editor;
-        this.highlightChosenSelectorTile();
+        this.#highlightChosenSelectorTile();
     }
 
 
@@ -61,11 +61,11 @@ export default class EditorTileManipulationState {
 
 
     exit() {
-        this.resetHighlighOfChosenSelectorTile();
+        this.#resetHighlighOfChosenSelectorTile();
     }
 
 
-    highlightChosenSelectorTile() {
+    #highlightChosenSelectorTile() {
         let radios = document.querySelectorAll('input[name="selectors"]');
         let selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         for (let radio of radios) {
@@ -96,7 +96,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    resetHighlighOfChosenSelectorTile() {
+    #resetHighlighOfChosenSelectorTile() {
         let selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         let selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
         selectedRadioLabel.setAttribute('style', '');
@@ -145,13 +145,13 @@ export default class EditorTileManipulationState {
         let isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
         if (isTileInaccessible && isTileScatterOrSpawn) {
             this.#editor.removeScatterAndSpawnPosition(callerId);           
-            this.clearScatterInputFor(ghostCharacterListScatter);
-            this.clearSpawnInputFor(ghostCharacterListSpawn);
+            this.#clearScatterInputFor(ghostCharacterListScatter);
+            this.#clearSpawnInputFor(ghostCharacterListSpawn);
         } 
     }
 
 
-    clearScatterInputFor(ghostCharacters) {
+    #clearScatterInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = this.#getScatterControlId(ghostCharacter);
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
@@ -160,7 +160,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    clearSpawnInputFor(ghostCharacters) {
+    #clearSpawnInputFor(ghostCharacters) {
         for (let ghostCharacter of ghostCharacters) {
             let inputId = this.#getSpawnControlId(ghostCharacter);
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
