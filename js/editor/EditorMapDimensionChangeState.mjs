@@ -85,8 +85,8 @@ export default class EditorMapDimensionChangeState {
         
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
-                let newDiv = document.createElement('div');
-                let newId = `(${x},${y})`;
+                const newDiv = document.createElement('div');
+                const newId = `(${x},${y})`;
                 newDiv.setAttribute('id', newId);
                 newDiv.setAttribute('title', newId);
                 newDiv.setAttribute('class', 'editorTile undefinedTile');
