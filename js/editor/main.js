@@ -82,11 +82,14 @@ function validateMapWidthInput(event) {
 
 
 function validateMapHeightInput(event) {
+    const input = document.getElementById(event.target.id);
     try {
-        let input = document.getElementById(event.target.id);
-        let inputNumber = parseInt(input.value);
-        if ((inputNumber < Configuration.editorBoardMinHeight) ||
-            (inputNumber > Configuration.editorBoardMaxHeight)) {
+        const inputNumber = parseInt(input.value);
+        const isHeightInputBelowMinimum = inputNumber < Configuration.editorBoardMinHeight;
+        const isHeightInputAboveMaximum = inputNumber > Configuration.editorBoardMaxHeight;
+        const isHeightInputInvalid = isHeightInputBelowMinimum || isHeightInputAboveMaximum;
+        
+        if (isHeightInputInvalid) {
             input.value = '';
         }
     } catch(e) {
