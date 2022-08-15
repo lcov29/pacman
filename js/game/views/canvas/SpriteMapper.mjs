@@ -970,7 +970,7 @@ export default class SpriteMapper {
 
         this.#backgroundSpriteMap.set(Configuration.namePacmanLifeCounterSprite, document.getElementById('pacmanLeft'));
 
-        this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('ghostDoorDiagonal'));
+        this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('bonusCherry'));
 
         /*
             this.#backgroundSpriteMap.set(Configuration.bonusStrawberryCharacter, document.getElementById('bonusStrawberry'));
