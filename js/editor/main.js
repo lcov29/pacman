@@ -14,14 +14,14 @@ buttonMapDimensionChangeCallback();
 
 
 // add handlers to level elements in selector bar
-let radioList = document.querySelectorAll('input[name="selectors"]');
+const radioList = document.querySelectorAll('input[name="selectors"]');
 for (let radio of radioList) {
     radio.addEventListener('click', radioButtonTileSelectionCallback);
 }
 
 
 // add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
-let editorContainer = document.getElementById('editor_container');
+const editorContainer = document.getElementById('editor_container');
 editorContainer.addEventListener('mousedown', editor.handleEditorContainerMouseDown.bind(editor));
 editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.bind(editor));
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
