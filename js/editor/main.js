@@ -129,11 +129,10 @@ function inputScatterSpawnMouseLeaveCallback() {
 
 
 function buttonMapDimensionChangeCallback() {
-    let inputHeight = document.getElementById('map_height').value;
-    let inputWidth = document.getElementById('map_width').value;
-    if (inputHeight !== '' && inputWidth !== '') {
-        let newState = new EditorMapDimensionChangeState();
-        editor.setState(newState);
+    const isMapHeightSet = document.getElementById('map_height').value !== '';
+    const isMapWidthSet = document.getElementById('map_width').value !== '';
+    if (isMapHeightSet && isMapWidthSet) {
+        editor.setState(new EditorMapDimensionChangeState());
     }
 }
 
