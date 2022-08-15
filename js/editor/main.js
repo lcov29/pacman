@@ -137,13 +137,13 @@ function buttonMapDimensionChangeCallback() {
 }
 
 
-function buttonScatterSelectionCallback() {
-    editor.setState(new EditorScatterSelectionState(this.id));
+function buttonScatterSelectionCallback(event) {
+    editor.setState(new EditorScatterSelectionState(event.target.id));
 }
 
 
-function buttonSpawnSelectionCallback() {
-    editor.setState(new EditorSpawnSelectionState(this.id));
+function buttonSpawnSelectionCallback(event) {
+    editor.setState(new EditorSpawnSelectionState(event.target.id));
 }
 
 
