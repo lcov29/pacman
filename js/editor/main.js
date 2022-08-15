@@ -34,23 +34,23 @@ document.getElementById('button_map_sizer').addEventListener('click', buttonMapD
 
 
 // add handlers to scatter spawn control group
-let scatterSpawnInputs = document.querySelectorAll('input[class="inputPosition"]');
-for (let scatterSpawnInput of scatterSpawnInputs) {
+const scatterSpawnInputList = document.querySelectorAll('input[class="inputPosition"]');
+for (let scatterSpawnInput of scatterSpawnInputList) {
     scatterSpawnInput.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
     scatterSpawnInput.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
 }
 
 
 // add handlers to scatter select buttons
-let scatterButtons = document.querySelectorAll('button[name="button_scatter_position"]');
-for (let scatterButton of scatterButtons) {
+const scatterButtonList = document.querySelectorAll('button[name="button_scatter_position"]');
+for (let scatterButton of scatterButtonList) {
     scatterButton.addEventListener('click', buttonScatterSelectionCallback);
 }
 
 
 // add handlers to spawn select buttons
-let spawnButtons = document.querySelectorAll('button[name="button_spawn_position"]');
-for (let spawnButton of spawnButtons) {
+const spawnButtonList = document.querySelectorAll('button[name="button_spawn_position"]');
+for (let spawnButton of spawnButtonList) {
     spawnButton.addEventListener('click', buttonSpawnSelectionCallback);
 }
 
