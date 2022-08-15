@@ -17,7 +17,7 @@ export default class EditorMapDimensionChangeState {
         this.#editor.clearMap();
         this.#resetScatterInputs();
         this.#resetSpawnInputs();
-        this.initializeEditingArea();
+        this.#initializeEditingArea();
     }
 
 
@@ -78,7 +78,7 @@ export default class EditorMapDimensionChangeState {
     }
 
 
-    initializeEditingArea() {
+    #initializeEditingArea() {
         const width = this.#editor.getMapWidthInput();
         const height = this.#editor.getMapHeightInput();
         this.#editor.setEditorContainerDimension(width, height);
