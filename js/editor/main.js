@@ -65,13 +65,14 @@ function radioButtonTileSelectionCallback(event) {
 
 
 function validateMapWidthInput(event) {
+    const input = document.getElementById(event.target.id);
     try {
-        const input = document.getElementById(event.target.id);
         const inputNumber = parseInt(input.value);
-        const isWidthInputInvalid = inputNumber < Configuration.editorBoardMinWidth;
-        const isHeightInputInvalid = inputNumber > Configuration.editorBoardMaxWidth;
+        const isWidthInputBelowMinimum = inputNumber < Configuration.editorBoardMinWidth;
+        const isWidthInputAboveMaximum = inputNumber > Configuration.editorBoardMaxWidth;
+        const isWidthInputInvalid = isWidthInputBelowMinimum || isWidthInputAboveMaximum;
         
-        if (isWidthInputInvalid || isHeightInputInvalid) {
+        if (isWidthInputInvalid) {
             input.value = '';
         }
     } catch(e) {
