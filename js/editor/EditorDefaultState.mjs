@@ -4,13 +4,14 @@
 export default class EditorDefaultState {
 
     
-    constructor() {
-        this.editor = null;
-    }
+    #editor = null;
+
+    
+    constructor() {}
 
 
     initialize(editor) {
-        this.editor = editor;
+        this.#editor = editor;
     }
 
 
