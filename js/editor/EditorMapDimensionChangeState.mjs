@@ -6,41 +6,13 @@ export default class EditorMapDimensionChangeState {
     
     constructor() {
         this.editor = null;
-        this.inputMapWidth = null;
-        this.inputMapHeight = null;
-        this.callbackClick = null;
-        this.callbackMouseover = null;
-        this.callbackMouseenter = null;
-        this.callbackMouseleave = null;
-    }
-
-
-    setEditorTileClickCallback(callback) {
-        this.callbackClick = callback;
-    }
-
-
-    setEditorTileMouseOverCallback(callback) {
-        this.callbackMouseover = callback;
-    }
-
-
-    setEditorTileMouseEnterCallback(callback) {
-        this.callbackMouseenter = callback;
-    }
-
-
-    setEditorTileMouseLeaveCallback(callback) {
-        this.callbackMouseleave = callback;
     }
 
 
     initialize(editor) {
         this.editor = editor;
-        this.inputMapWidth = document.getElementById('map_width');
-        this.inputMapHeight = document.getElementById('map_height');
         this.editor.resetSpawnScatterControlDisplayStatus();
-        this.editor.resetInternalLevel(this.inputMapWidth.value, this.inputMapHeight.value);
+        this.editor.resetInternalLevel();
         this.editor.clearMap();
         this.resetScatterSpawnInputs();
         this.initializeEditingArea();
@@ -91,8 +63,8 @@ export default class EditorMapDimensionChangeState {
 
 
     initializeEditingArea() {
-        let width = this.editor.getMapWidthInput();
-        let height = this.editor.getMapHeightInput();
+        const width = this.editor.getMapWidthInput();
+        const height = this.editor.getMapHeightInput();
         this.editor.setEditorContainerDimension(width, height);
         
         for (let y = 0; y < height; y++) {
@@ -102,10 +74,10 @@ export default class EditorMapDimensionChangeState {
                 newDiv.setAttribute('id', newId);
                 newDiv.setAttribute('title', newId);
                 newDiv.setAttribute('class', 'editorTile undefinedTile');
-                newDiv.addEventListener('mouseover', this.callbackMouseover);
-                newDiv.addEventListener('mouseenter', this.callbackMouseenter);
-                newDiv.addEventListener('mouseleave', this.callbackMouseleave);
-                newDiv.addEventListener('click', this.callbackClick);
+                newDiv.addEventListener('mouseover', this.editor.handleEditorTileMouseOver.bind(this.editor));
+                newDiv.addEventListener('mouseenter', this.editor.handleEditorTileMouseEnter.bind(this.editor));
+                newDiv.addEventListener('mouseleave', this.editor.handleEditorTileMouseLeave.bind(this.editor));
+                newDiv.addEventListener('click', this.editor.handleEditorTileClick.bind(this.editor));
                 this.editor.addEditorTile(newDiv);
             }
         }
