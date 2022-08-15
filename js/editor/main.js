@@ -14,8 +14,8 @@ buttonMapDimensionChangeCallback();
 
 
 // add handlers to level elements in selector bar
-let radios = document.querySelectorAll('input[name="selectors"]');
-for (let radio of radios) {
+let radioList = document.querySelectorAll('input[name="selectors"]');
+for (let radio of radioList) {
     radio.addEventListener('click', radioButtonTileSelectionCallback);
 }
 
