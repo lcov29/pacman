@@ -14,19 +14,19 @@ export default class EditorSpawnSelectionState extends EditorSelectionState {
 
 
     initialize(editor) {
-        super.setEditor(editor);
-        super.getEditor().removeSpawnPositionFor(super.getButtonId());
+        super.editor = editor;
+        super.editor.removeSpawnPositionFor(super.buttonId);
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
 
 
     handleEditorTileClick(callerId) {
-        let editor = super.getEditor();
+        const editor = super.editor;
         let tileCharacter = editor.getBoardCharacterAt(callerId);
         let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
         if (isTileAccessible) {
-            editor.addSpawnPosition(super.getButtonId(), callerId);
+            editor.addSpawnPosition(super.buttonId, callerId);
             editor.setState(new EditorDefaultState());
             document.getElementById(callerId).style = null;
         }

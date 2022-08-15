@@ -14,19 +14,19 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
 
 
     initialize(editor) {
-        super.setEditor(editor);
-        super.getEditor().removeScatterPositionFor(super.getButtonId());
+        super.editor = editor;
+        super.editor.removeScatterPositionFor(super.buttonId);
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
 
 
     handleEditorTileClick(callerId) {
-        let editor = super.getEditor();
+        const editor = super.editor;
         let tileCharacter = editor.getBoardCharacterAt(callerId);
         let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
         if (isTileAccessible) {
-            editor.addScatterPosition(super.getButtonId(), callerId);
+            editor.addScatterPosition(super.buttonId, callerId);
             editor.setState(new EditorDefaultState());
             document.getElementById(callerId).style = null;
         }
