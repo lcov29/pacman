@@ -113,7 +113,7 @@ function inputScatterSpawnMouseEnterCallback(event) {
 function inputScatterSpawnMouseLeaveCallback(event) {
     const coordinateString = document.getElementById(event.target.id).value;
     const isCoordinateStringValid = coordinateString !== '';
-    
+
     if (isCoordinateStringValid) {
         document.getElementById(coordinateString).style = null;
     }
@@ -147,6 +147,6 @@ function buttonPlayCallback() {
 
 // workaround to make loading of index.html on github pages possible
 function loadIndexPage() {
-    let url = location.href;
+    const url = location.href;
     location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
 }
