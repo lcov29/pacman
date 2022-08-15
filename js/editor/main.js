@@ -77,26 +77,6 @@ function editorContainerMouseLeaveCallback() {
 }
 
 
-function editorTileClickCallback() {
-    editor.handleEditorTileClick(this.id);
-}
-
-
-function editorTileMouseOverCallback() {
-    editor.handleEditorTileMouseOver(this.id);
-}
-
-
-function editorTileMouseEnterCallback() {
-    editor.handleEditorTileMouseEnter(this.id);
-}
-
-
-function editorTileMouseLeaveCallback() {
-    editor.handleEditorTileMouseLeave(this.id);
-}
-
-
 function radioButtonTileSelectionCallback() {
     editor.setState(new EditorTileManipulationState(this.id));
 }
@@ -153,10 +133,6 @@ function buttonMapDimensionChangeCallback() {
     let inputWidth = document.getElementById('map_width').value;
     if (inputHeight !== '' && inputWidth !== '') {
         let newState = new EditorMapDimensionChangeState();
-        newState.setEditorTileClickCallback(editorTileClickCallback);
-        newState.setEditorTileMouseEnterCallback(editorTileMouseEnterCallback);
-        newState.setEditorTileMouseLeaveCallback(editorTileMouseLeaveCallback);
-        newState.setEditorTileMouseOverCallback(editorTileMouseOverCallback);
         editor.setState(newState);
     }
 }
