@@ -40,10 +40,10 @@ export default class EditorTileManipulationState {
 
     handleEditorTileClick(callerId) {
         this.#editor.updateInternalBoard(callerId, this.#selectorTileType);
-        this.updateBonusSpawnList(callerId, this.#selectorTileType);
-        this.manageScatterSpawnControlVisibility();
-        this.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
-        this.updateEditingTileTo(callerId, this.#selectorTileType);
+        this.#updateBonusSpawnList(callerId, this.#selectorTileType);
+        this.#manageScatterSpawnControlVisibility();
+        this.#manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
+        this.#updateEditingTileTo(callerId, this.#selectorTileType);
     }
 
 
@@ -79,13 +79,13 @@ export default class EditorTileManipulationState {
     }
 
 
-    updateEditingTileTo(coordinateString, tileType) {
+    #updateEditingTileTo(coordinateString, tileType) {
         let styleclass = `editorTile ${tileType}`;
         document.getElementById(coordinateString).setAttribute('class', styleclass);
     }
 
 
-    updateBonusSpawnList(coordinateString, nextTileType) {
+    #updateBonusSpawnList(coordinateString, nextTileType) {
         // handle overwriting a spawn position
         if (this.#editor.isCoordinateBonusSpawnPosition(coordinateString)) {
             this.#editor.removeBonusSpawnPositionAt(coordinateString);
@@ -103,7 +103,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    manageScatterSpawnControlVisibility() {
+    #manageScatterSpawnControlVisibility() {
         let ghostTypeCounter = 0;
         let isControlDisplayed = false;
         let ghostTypeControlIdList = [];
@@ -137,7 +137,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
+    #manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
         const character = this.#editor.getInternalElement(this.#selectorTileType);
         let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
         let ghostCharacterListScatter = this.#editor.getGhostCharacterListForScatterPosition(callerId);
