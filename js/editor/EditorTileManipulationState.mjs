@@ -143,10 +143,11 @@ export default class EditorTileManipulationState {
 
     #manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
         const character = this.#editor.getInternalElement(this.#selectorTileType);
-        let isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
-        let ghostCharacterListScatter = this.#editor.getGhostCharacterListForScatterPosition(callerId);
-        let ghostCharacterListSpawn = this.#editor.getGhostCharacterListForSpawnPosition(callerId);
-        let isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
+        const ghostCharacterListScatter = this.#editor.getGhostCharacterListForScatterPosition(callerId);
+        const ghostCharacterListSpawn = this.#editor.getGhostCharacterListForSpawnPosition(callerId);
+        const isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(character);
+        const isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
+        
         if (isTileInaccessible && isTileScatterOrSpawn) {
             this.#editor.removeScatterAndSpawnPosition(callerId);           
             this.#clearScatterInputFor(ghostCharacterListScatter);
