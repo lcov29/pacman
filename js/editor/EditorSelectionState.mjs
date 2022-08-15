@@ -46,12 +46,12 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        let borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
+        const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        let tileCharacter = this.editor.getBoardCharacterAt(callerId);
-        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        let isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
-        let isTileSelectedGhostType = ghostCoordinates.includes(callerId);
+        const tileCharacter = this.editor.getBoardCharacterAt(callerId);
+        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
+        const isTileSelectedGhostType = ghostCoordinates.includes(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
             document.getElementById(callerId).style.borderColor = borderColor;
@@ -63,7 +63,7 @@ export default class EditorSelectionState {
 
     handleEditorTileMouseLeave(callerId) {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         if (ghostCoordinates.includes(callerId) === false) {
             document.getElementById(callerId).style = null;
         }
@@ -84,7 +84,7 @@ export default class EditorSelectionState {
     highlightPlacedGhosts() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
-        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
@@ -94,7 +94,7 @@ export default class EditorSelectionState {
 
     resetHighlightPlacedGhosts() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        let ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style = null;
         }
