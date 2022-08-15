@@ -8,7 +8,7 @@ import EditorSpawnSelectionState from './EditorSpawnSelectionState.mjs';
 import Configuration from '../Configuration.mjs';
 
 
-let editor = new Editor();
+const editor = new Editor();
 buttonMapDimensionChangeCallback();
                                 
 
