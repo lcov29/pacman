@@ -15,7 +15,8 @@ export default class EditorMapDimensionChangeState {
         this.#editor.resetSpawnScatterControlDisplayStatus();
         this.#editor.resetInternalLevel();
         this.#editor.clearMap();
-        this.resetScatterSpawnInputs();
+        this.#resetScatterInputs();
+        this.#resetSpawnInputs();
         this.initializeEditingArea();
     }
 
@@ -44,20 +45,34 @@ export default class EditorMapDimensionChangeState {
     exit() {}
 
 
-    resetScatterSpawnInputs() {
-        let inputIds = ['scatter_position_ghost_blinky', 'scatter_position_ghost_pinky',
-                         'scatter_position_ghost_clyde', 'scatter_position_ghost_inky',
-                         'spawn_position_ghost_blinky', 'spawn_position_ghost_pinky',
-                         'spawn_position_ghost_clyde', 'spawn_position_ghost_inky'];
-        for (let inputId of inputIds) {
+    #resetScatterInputs() {
+        const inputIdList = ['scatter_position_ghost_blinky', 'scatter_position_ghost_pinky',
+                             'scatter_position_ghost_clyde', 'scatter_position_ghost_inky'];
+
+        const controlIdList = ['scatter_control_ghost_blinky', 'scatter_control_ghost_pinky',
+                               'scatter_control_ghost_clyde', 'scatter_control_ghost_inky'];
+
+        this.#resetInputs(inputIdList, controlIdList);
+    }
+
+
+    #resetSpawnInputs() {
+        const inputIdList = ['spawn_position_ghost_blinky', 'spawn_position_ghost_pinky',
+                             'spawn_position_ghost_clyde', 'spawn_position_ghost_inky'];
+
+        const controlIdList = ['spawn_control_ghost_blinky', 'spawn_control_ghost_pinky',
+                               'spawn_control_ghost_clyde', 'spawn_control_ghost_inky'];
+
+        this.#resetInputs(inputIdList, controlIdList);
+    }
+
+
+    #resetInputs(inputIdList, controlIdList) {
+        for (let inputId of inputIdList) {
             document.getElementById(inputId).value = '';
         }
 
-        let controlIds = ['scatter_control_ghost_blinky', 'scatter_control_ghost_pinky',
-                                 'scatter_control_ghost_clyde', 'scatter_control_ghost_inky',
-                                 'spawn_control_ghost_blinky', 'spawn_control_ghost_pinky',
-                                 'spawn_control_ghost_clyde', 'spawn_control_ghost_inky'];
-        for (let controlId of controlIds) {
+        for (let controlId of controlIdList) {
             document.getElementById(controlId).style = 'display:none';
         }
     }
