@@ -99,10 +99,11 @@ function validateMapHeightInput(event) {
 
 
 function inputScatterSpawnMouseEnterCallback(event) {
-    const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
     const coordinateString = document.getElementById(event.target.id).value;
     const isCoordinateStringValid = coordinateString !== '';
+
     if (isCoordinateStringValid) {
+        const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
         document.getElementById(coordinateString).style.borderColor = borderColor;
         document.getElementById(coordinateString).style.borderWidth = '5px';
     }
@@ -110,8 +111,10 @@ function inputScatterSpawnMouseEnterCallback(event) {
 
 
 function inputScatterSpawnMouseLeaveCallback(event) {
-    let coordinateString = document.getElementById(event.target.id).value;
-    if (coordinateString !== '') {
+    const coordinateString = document.getElementById(event.target.id).value;
+    const isCoordinateStringValid = coordinateString !== '';
+    
+    if (isCoordinateStringValid) {
         document.getElementById(coordinateString).style = null;
     }
 }
