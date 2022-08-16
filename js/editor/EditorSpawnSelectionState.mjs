@@ -22,7 +22,7 @@ export default class EditorSpawnSelectionState extends EditorSelectionState {
 
 
     handleEditorTileClick(callerId) {
-        const tileCharacter = editor.getBoardCharacterAt(callerId);
+        const tileCharacter = super.editor.getBoardCharacterAt(callerId);
         const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
 
         if (isTileAccessible) {
