@@ -89,14 +89,14 @@ export default class EditorInternalLevel {
 
     addScatterPosition(ghostCharacter, coordinateString) {
         this.removeScatterPositionFor(ghostCharacter);
-        let positionObject = this.#buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
+        const positionObject = this.#buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
         this.#scatterPositionList.push(positionObject);
     }
 
 
     addOptionalSpawnPosition(ghostCharacter, coordinateString) {
         this.removeSpawnPositionFor(ghostCharacter);
-        let positionObject = this.#buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
+        const positionObject = this.#buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
         this.#optionalSpawnPositionList.push(positionObject);
     }
 
