@@ -82,26 +82,27 @@ export default class EditorSelectionState {
     highlightPlacedGhosts() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
-        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
 
-        for (let coordinate of ghostCoordinateList) {
+        for (let coordinate of this.#getSelectedGhostCoordinateList()) {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
     }
 
 
-    #isTileSelectedGhostType(tileId) {
+    #getSelectedGhostCoordinateList() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        return ghostCoordinateList.includes(tileId);
+        return this.editor.getGhostCoordinatesListFor(ghostCharacter);    
+    }
+
+
+    #isTileSelectedGhostType(tileId) {
+        return this.#getSelectedGhostCoordinateList().includes(tileId);
     }
 
 
     #resetHighlightPlacedGhosts() {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        for (let coordinate of ghostCoordinates) {
+        for (let coordinate of this.#getSelectedGhostCoordinateList()) {
             document.getElementById(coordinate).style = null;
         }
     } 
