@@ -157,8 +157,8 @@ export default class EditorTileManipulationState {
     }
 
 
-    #clearScatterInputFor(ghostCharacters) {
-        for (let ghostCharacter of ghostCharacters) {
+    #clearScatterInputFor(ghostCharacterList) {
+        for (let ghostCharacter of ghostCharacterList) {
             let inputId = this.#getScatterControlId(ghostCharacter);
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
@@ -166,8 +166,8 @@ export default class EditorTileManipulationState {
     }
 
 
-    #clearSpawnInputFor(ghostCharacters) {
-        for (let ghostCharacter of ghostCharacters) {
+    #clearSpawnInputFor(ghostCharacterList) {
+        for (let ghostCharacter of ghostCharacterList) {
             let inputId = this.#getSpawnControlId(ghostCharacter);
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
