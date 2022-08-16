@@ -48,8 +48,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        const tileCharacter = this.#editor.getBoardCharacterAt(callerId);
-        const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
+        const isTileAccessible = this.isTileAccessible(callerId);
         const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
@@ -87,6 +86,12 @@ export default class EditorSelectionState {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
+    }
+
+
+    isTileAccessible(tileId) {
+        const tileCharacter = this.#editor.getBoardCharacterAt(tileId);
+        return !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
     }
 
 

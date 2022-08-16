@@ -22,12 +22,9 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
 
 
     handleEditorTileClick(callerId) {
-        const editor = super.editor;
-        const tileCharacter = editor.getBoardCharacterAt(callerId);
-        const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
-        if (isTileAccessible) {
-            editor.addScatterPosition(super.buttonId, callerId);
-            editor.setState(new EditorDefaultState());
+        if (super.isTileAccessible(callerId)) {
+            super.editor.addScatterPosition(super.buttonId, callerId);
+            super.editor.setState(new EditorDefaultState());
             document.getElementById(callerId).style = null;
         }
     }
