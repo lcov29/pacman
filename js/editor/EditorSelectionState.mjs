@@ -48,13 +48,9 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        const isTileSelectedGhostType = ghostCoordinateList.includes(callerId);
-        
         const tileCharacter = this.editor.getBoardCharacterAt(callerId);
         const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
-
+        const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
             const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
@@ -66,13 +62,16 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseLeave(callerId) {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        const isTileSelectedGhostType = ghostCoordinateList.includes(callerId);
-
-        if (!isTileSelectedGhostType) {
+        if (!this.#isTileSelectedGhostType(callerId)) {
             document.getElementById(callerId).style = null;
         }
+    }
+
+
+    #isTileSelectedGhostType(tileId) {
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
+        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        return ghostCoordinateList.includes(tileId);
     }
 
 
