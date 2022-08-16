@@ -105,7 +105,7 @@ export default class Editor {
     }
 
 
-    getGhostCoordinatesListFor(ghostCharacter) {
+    getGhostCoordinateListFor(ghostCharacter) {
         return this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
     }
 
