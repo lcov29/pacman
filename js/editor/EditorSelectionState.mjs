@@ -49,10 +49,12 @@ export default class EditorSelectionState {
 
     handleEditorTileMouseEnter(callerId) {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const isTileSelectedGhostType = ghostCoordinateList.includes(callerId);
+        
         const tileCharacter = this.editor.getBoardCharacterAt(callerId);
         const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
-        const isTileSelectedGhostType = ghostCoordinates.includes(callerId);
+
 
         if (isTileAccessible && !isTileSelectedGhostType) {
             const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
