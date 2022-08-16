@@ -92,7 +92,7 @@ export default class EditorSelectionState {
 
     #getSelectedGhostCoordinateList() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        return this.editor.getGhostCoordinatesListFor(ghostCharacter);    
+        return this.editor.getGhostCoordinateListFor(ghostCharacter);    
     }
 
 
