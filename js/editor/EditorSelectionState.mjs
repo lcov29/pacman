@@ -83,12 +83,12 @@ export default class EditorSelectionState {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
         const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+
         for (let coordinate of ghostCoordinates) {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
     }
-
 
 
     #isTileSelectedGhostType(tileId) {
