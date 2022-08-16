@@ -48,14 +48,14 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const tileCharacter = this.editor.getBoardCharacterAt(callerId);
         const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        const isTileAccessible = (Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter) === false);
+        const tileCharacter = this.editor.getBoardCharacterAt(callerId);
+        const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
         const isTileSelectedGhostType = ghostCoordinates.includes(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
+            const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
             document.getElementById(callerId).style.borderColor = borderColor;
             document.getElementById(callerId).style.borderWidth = '5px';
         }
