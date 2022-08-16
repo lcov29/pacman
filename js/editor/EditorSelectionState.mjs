@@ -68,13 +68,6 @@ export default class EditorSelectionState {
     }
 
 
-    #isTileSelectedGhostType(tileId) {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        return ghostCoordinateList.includes(tileId);
-    }
-
-
     exit() {
         this.resetHighlightPlacedGhosts();
     }
@@ -94,6 +87,14 @@ export default class EditorSelectionState {
             document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
             document.getElementById(coordinate).style.borderWidth = '5px';
         }
+    }
+
+
+
+    #isTileSelectedGhostType(tileId) {
+        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
+        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        return ghostCoordinateList.includes(tileId);
     }
 
 
