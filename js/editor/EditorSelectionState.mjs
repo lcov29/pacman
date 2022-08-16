@@ -69,7 +69,7 @@ export default class EditorSelectionState {
 
 
     exit() {
-        this.resetHighlightPlacedGhosts();
+        this.#resetHighlightPlacedGhosts();
     }
 
 
@@ -98,7 +98,7 @@ export default class EditorSelectionState {
     }
 
 
-    resetHighlightPlacedGhosts() {
+    #resetHighlightPlacedGhosts() {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
         const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
         for (let coordinate of ghostCoordinates) {
