@@ -39,7 +39,7 @@ export default class EditorSelectionState {
 
 
     handleEditorContainerMouseLeave(callerId) {
-        this.editor.setState(new EditorDefaultState());
+        this.#editor.setState(new EditorDefaultState());
         this.#positionInput.value = '';
     }
 
@@ -48,7 +48,7 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        const tileCharacter = this.editor.getBoardCharacterAt(callerId);
+        const tileCharacter = this.#editor.getBoardCharacterAt(callerId);
         const isTileAccessible = !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
         const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
 
@@ -74,13 +74,13 @@ export default class EditorSelectionState {
 
 
     initializeInputReference() {
-        const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.buttonId);
+        const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.#buttonId);
         this.#positionInput = document.getElementById(inputId);
     }
 
 
     highlightPlacedGhosts() {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
+        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
         const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
 
         for (let coordinate of this.#getSelectedGhostCoordinateList()) {
@@ -91,8 +91,8 @@ export default class EditorSelectionState {
 
 
     #getSelectedGhostCoordinateList() {
-        const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        return this.editor.getGhostCoordinateListFor(ghostCharacter);    
+        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
+        return this.#editor.getGhostCoordinateListFor(ghostCharacter);    
     }
 
 
