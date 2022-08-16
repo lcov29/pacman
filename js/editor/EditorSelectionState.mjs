@@ -65,8 +65,10 @@ export default class EditorSelectionState {
 
     handleEditorTileMouseLeave(callerId) {
         const ghostCharacter = this.editor.getGhostCharacterFor(this.buttonId);
-        const ghostCoordinates = this.editor.getGhostCoordinatesListFor(ghostCharacter);
-        if (ghostCoordinates.includes(callerId) === false) {
+        const ghostCoordinateList = this.editor.getGhostCoordinatesListFor(ghostCharacter);
+        const isTileSelectedGhostType = ghostCoordinateList.includes(callerId);
+
+        if (!isTileSelectedGhostType) {
             document.getElementById(callerId).style = null;
         }
     }
