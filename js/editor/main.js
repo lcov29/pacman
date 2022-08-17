@@ -1,10 +1,10 @@
 'use strict';
 
 import Editor from './Editor.mjs';
-import EditorTileManipulationState from './EditorTileManipulationState.mjs';
-import EditorScatterSelectionState from './EditorScatterSelectionState.mjs';
-import EditorMapDimensionChangeState from './EditorMapDimensionChangeState.mjs';
-import EditorSpawnSelectionState from './EditorSpawnSelectionState.mjs';
+import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
+import EditorScatterSelectionState from './editorStates/EditorScatterSelectionState.mjs';
+import EditorMapDimensionChangeState from './editorStates/EditorMapDimensionChangeState.mjs';
+import EditorSpawnSelectionState from './editorStates/EditorSpawnSelectionState.mjs';
 import Configuration from '../Configuration.mjs';
 
 
