@@ -1,13 +1,13 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
-import Teleporter from './Teleporter.mjs'
-import Routing from './Routing.mjs';
-import Pacman from './Pacman.mjs';
-import GhostBlinky from './GhostBlinky.mjs';
-import GhostPinky from './GhostPinky.mjs';
-import GhostClyde from './GhostClyde.mjs';
-import GhostInky from './GhostInky.mjs';
+import Configuration from '../../../global/Configuration.mjs';
+import Teleporter from '../boardElements/Teleporter.mjs'
+import Routing from '../routing/Routing.mjs';
+import Pacman from '../actors/Pacman.mjs';
+import GhostBlinky from '../actors/GhostBlinky.mjs';
+import GhostPinky from '../actors/GhostPinky.mjs';
+import GhostClyde from '../actors/GhostClyde.mjs';
+import GhostInky from '../actors/GhostInky.mjs';
 
 
 /*  
