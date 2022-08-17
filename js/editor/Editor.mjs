@@ -181,8 +181,7 @@ export default class Editor {
     }
 
 
-    removeScatterPositionFor(buttonId) {
-        const ghostCharacter = this.getGhostCharacterFor(buttonId);
+    removeScatterPositionFor(ghostCharacter) {
         this.#internalLevel.removeScatterPositionFor(ghostCharacter);
     }
 
