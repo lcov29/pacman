@@ -13,22 +13,30 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 <br>
 
 ## Ideas for improvements and additional features
-* animate pacmans mouth
-* improve movement animation for ghosts and pacman to be smoother
 * add death animation
-* add visual representation of the change from state scared to normal
 * add sound effects
 * add ability to play on mobile devices
 * add level rotation
 * add instruction page
 * add highscore counter
 * add spawn stack for respawning multiple ghosts of the same type
-* represent number of lifes with visual pacman characters
 * represent level counter with fruits
 <br>
 <br>
 
 ## Version history
+<br>
+
+##### Version 0.06
+* replace div-based game screen with canvas
+* replace png sprites with svg sprites
+* add animations for pacman and ghost movement
+* add animation for ghost transition from scared to scatter
+* add counter for number of lifes
+* refactor codebase
+* bugfixes
+* 
+<br>
 <br>
 
 ##### Version 0.05
