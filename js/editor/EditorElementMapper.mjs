@@ -1,6 +1,6 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
+import Configuration from '../global/Configuration.mjs';
 
 
 export default class EditorElementMapper {
