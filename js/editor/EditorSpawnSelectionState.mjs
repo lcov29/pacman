@@ -15,7 +15,8 @@ export default class EditorSpawnSelectionState extends EditorSelectionState {
 
     initialize(editor) {
         super.editor = editor;
-        super.editor.removeSpawnPositionFor(super.buttonId);
+        const ghostCharacter = super.editor.getGhostCharacterFor(super.buttonId);
+        super.editor.removeSpawnPositionFor(ghostCharacter);
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
