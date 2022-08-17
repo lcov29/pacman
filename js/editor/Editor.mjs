@@ -1,6 +1,6 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
+import Configuration from '../global/Configuration.mjs';
 import EditorInternalLevel from './EditorInternalLevel.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
