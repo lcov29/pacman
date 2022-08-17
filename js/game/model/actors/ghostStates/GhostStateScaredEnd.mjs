@@ -1,4 +1,4 @@
-import Configuration from "../Configuration.mjs";
+import Configuration from "../../../../global/Configuration.mjs";
 import GhostStateChase from "./GhostStateChase.mjs";
 import GhostStateScared from "./GhostStateScared.mjs";
 
