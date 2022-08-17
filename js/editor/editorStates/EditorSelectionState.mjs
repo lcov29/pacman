@@ -2,7 +2,7 @@
 
 import Configuration from '../../global/Configuration.mjs';
 import EditorDefaultState from './EditorDefaultState.mjs';
-import EditorElementMapper from './EditorElementMapper.mjs';
+import EditorElementMapper from '../EditorElementMapper.mjs';
 
 
 export default class EditorSelectionState {
