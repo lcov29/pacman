@@ -1,12 +1,12 @@
 'use strict';
 
 import LevelInitializer from './LevelInitializer.mjs';
-import Configuration from '../Configuration.mjs';
-import Utility from '../Utility.mjs';
-import Board from './Board.mjs';
-import BonusElementSpawner from './BonusElementSpawner.mjs';
-import BackgroundRequest from '../BackgroundRequest.mjs';
-import MovementRequest from '../MovementRequest.mjs';
+import Configuration from '../../../global/Configuration.mjs';
+import Utility from '../../../global/Utility.mjs';
+import Board from '../board/Board.mjs';
+import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
+import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
+import MovementRequest from '../../requests/MovementRequest.mjs';
 
 /*  
     =================================================================================================================
