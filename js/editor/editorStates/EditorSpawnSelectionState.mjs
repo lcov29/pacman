@@ -1,6 +1,5 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
 import EditorDefaultState from './EditorDefaultState.mjs';
 import EditorSelectionState from './EditorSelectionState.mjs';
 
