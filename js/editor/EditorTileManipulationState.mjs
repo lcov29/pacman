@@ -41,6 +41,7 @@ export default class EditorTileManipulationState {
     handleEditorTileClick(callerId) {
         this.#editor.updateInternalBoard(callerId, this.#selectorTileType);
         this.#updateBonusSpawnList(callerId, this.#selectorTileType);
+        this.#removeScatterSpawnForDeletedGhostType();
         this.#manageScatterSpawnControlVisibility();
         this.#manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
         this.#updateEditingTileTo(callerId, this.#selectorTileType);
@@ -107,37 +108,57 @@ export default class EditorTileManipulationState {
     }
 
 
-    #manageScatterSpawnControlVisibility() {
-        let ghostTypeCounter = 0;
-        let isControlDisplayed = false;
-        let ghostTypeControlIdList = [];
-
+    #removeScatterSpawnOfDeletedGhostTypes() {
         for (let ghostCharacter of Configuration.ghostCharacterList) {
-            ghostTypeCounter = this.#editor.getCounterForGhostType(ghostCharacter);
-            ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
-            isControlDisplayed = this.#editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
+            const isGhostTypeOnBoard = this.#editor.getCounterForGhostType(ghostCharacter) > 0;
+
+            if (!isGhostTypeOnBoard) {
+                this.#editor.removeScatterPositionFor(ghostCharacter);
+                this.#editor.removeSpawnPositionFor(ghostCharacter);
+            }
+        }
+    }
+
+
+    #manageScatterSpawnControlVisibility() {
+        for (let ghostCharacter of Configuration.ghostCharacterList) {
+
+            const isGhostTypeOnBoard = this.#editor.getCounterForGhostType(ghostCharacter) > 0;
+            const isGhostControlDisplayed = this.#editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
     
-            // display invisible controls
-            if ((ghostTypeCounter > 0) && (isControlDisplayed === false)) {
-                for (let controlId of ghostTypeControlIdList) {
-                    document.getElementById(controlId).style = null;
-                }
-                this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
+            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
+                this.#displayScatterSpawnControlsFor(ghostCharacter);
             }
     
-            // hide visible controls
-            if ((ghostTypeCounter === 0) && (isControlDisplayed === true)) {
-                for (let controlId of ghostTypeControlIdList) {
-                    document.getElementById(controlId).style = 'display:none';
-                    const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
-                    document.getElementById(inputId).value = '';
-                    this.#editor.removeScatterPositionFor(ghostCharacter);
-                    this.#editor.removeSpawnPositionFor(ghostCharacter);
-                }
-                this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
+            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
+                this.#hideScatterSpawnControlsFor(ghostCharacter);
             }
 
         }
+    }
+
+
+    #displayScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
+
+        for (let controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).style = null;
+        }
+
+        this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
+    }
+
+
+    #hideScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
+
+        for (let controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).style = 'display:none';
+            const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
+            document.getElementById(inputId).value = '';
+        }
+
+        this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
     }
 
 
