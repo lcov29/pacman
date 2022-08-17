@@ -186,8 +186,7 @@ export default class Editor {
     }
 
 
-    removeSpawnPositionFor(buttonId) {
-        const ghostCharacter = this.getGhostCharacterFor(buttonId);
+    removeSpawnPositionFor(ghostCharacter) {
         this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
     }
 
