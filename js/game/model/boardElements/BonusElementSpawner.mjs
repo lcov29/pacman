@@ -1,8 +1,8 @@
 'use strict';
 
-import Utility from '../../../Utility.mjs';
+import Utility from '../../../global/Utility.mjs';
 import Configuration from '../../../global/Configuration.mjs';
-import BackgroundRequest from '../../../BackgroundRequest.mjs'
+import BackgroundRequest from '../../requests/BackgroundRequest.mjs'
 
 
 export default class BonusElementSpawner {
