@@ -5,7 +5,7 @@ import EditorTileManipulationState from './editorStates/EditorTileManipulationSt
 import EditorScatterSelectionState from './editorStates/EditorScatterSelectionState.mjs';
 import EditorMapDimensionChangeState from './editorStates/EditorMapDimensionChangeState.mjs';
 import EditorSpawnSelectionState from './editorStates/EditorSpawnSelectionState.mjs';
-import Configuration from '../Configuration.mjs';
+import Configuration from '../global/Configuration.mjs';
 
 
 const editor = new Editor();
