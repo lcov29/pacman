@@ -1,8 +1,8 @@
 'use strict';
 
-import Utility from '../Utility.mjs';
+import Utility from '../../../../global/Utility.mjs';
 import GhostState from './GhostState.mjs';
-import Configuration from '../Configuration.mjs';
+import Configuration from '../../../../global/Configuration.mjs';
 import GhostStateDead from './GhostStateDead.mjs';
 import GhostStateScaredStart from './GhostStateScaredStart.mjs';
 
