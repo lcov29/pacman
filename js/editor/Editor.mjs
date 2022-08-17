@@ -2,7 +2,7 @@
 
 import Configuration from '../Configuration.mjs';
 import EditorInternalLevel from './EditorInternalLevel.mjs';
-import EditorDefaultState from './EditorDefaultState.mjs';
+import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 
 
