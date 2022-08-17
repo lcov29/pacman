@@ -1,5 +1,5 @@
-import Configuration from "../../../Configuration.mjs";
-import Utility from "../../../Utility.mjs";
+import Configuration from "../../../global/Configuration.mjs";
+import Utility from "../../../global/Utility.mjs";
 
 
 export default class SpriteMapper {
