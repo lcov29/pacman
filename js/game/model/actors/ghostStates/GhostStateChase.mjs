@@ -1,7 +1,7 @@
 'use strict';
 
 import GhostState from './GhostState.mjs';
-import Configuration from '../Configuration.mjs';
+import Configuration from '../../../../global/Configuration.mjs';
 import GhostStateScaredStart from './GhostStateScaredStart.mjs';
 import GhostStateScatter from './GhostStateScatter.mjs';
 
