@@ -1,7 +1,7 @@
 'use strict';
 
 import Configuration from '../../global/Configuration.mjs';
-import Utility from '../../Utility.mjs';
+import Utility from '../../global/Utility.mjs';
 
 
 export default class Directions {
