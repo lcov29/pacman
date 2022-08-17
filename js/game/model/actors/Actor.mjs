@@ -1,8 +1,8 @@
 'use strict';
 
-import Directions from './Directions.mjs';
-import Configuration from '../Configuration.mjs';
-import MovementRequest from '../MovementRequest.mjs';
+import Directions from '../Directions.mjs';
+import Configuration from '../../../global/Configuration.mjs';
+import MovementRequest from '../../requests/MovementRequest.mjs';
 
 
 export default class Actor {

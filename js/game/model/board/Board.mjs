@@ -1,8 +1,8 @@
 'use strict';
 
-import Configuration from '../Configuration.mjs';
+import Configuration from '../../../global/Configuration.mjs';
 import BoardParser from './BoardParser.mjs';
-import Directions from './Directions.mjs';
+import Directions from '../Directions.mjs';
 
 
 export default class Board {

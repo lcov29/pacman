@@ -1,7 +1,7 @@
 'use strict';
 
-import Directions from "./game/Directions.mjs";
-import Configuration from "./Configuration.mjs";
+import Directions from "../model/Directions.mjs";
+import Configuration from "../../global/Configuration.mjs";
 
 
 export default class MovementRequest {
