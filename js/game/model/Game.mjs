@@ -1,8 +1,8 @@
 'use strict';
 
-import Level from './Level.mjs';
-import CanvasView from './views/canvas/CanvasView.mjs';
-import Configuration from '../Configuration.mjs';
+import Level from './level/Level.mjs';
+import CanvasView from '../views/canvas/CanvasView.mjs';
+import Configuration from '../../global/Configuration.mjs';
 
 
 export default class Game {
