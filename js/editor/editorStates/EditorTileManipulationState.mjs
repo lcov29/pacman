@@ -1,7 +1,7 @@
 'use strict';
 
 import Configuration from '../../global/Configuration.mjs';
-import EditorElementMapper from './EditorElementMapper.mjs';
+import EditorElementMapper from '../EditorElementMapper.mjs';
 
 
 export default class EditorTileManipulationState {
