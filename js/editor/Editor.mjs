@@ -70,12 +70,16 @@ export default class Editor {
         switch(ghostCharacter) {
             case Configuration.ghostBlinkyCharacter:
                 this.#isGhostBlinkyScatterSpawnControlDisplayed = isDisplayed;
+                break;
             case Configuration.ghostPinkyCharacter:
                 this.#isGhostPinkyScatterSpawnControlDisplayed = isDisplayed;
+                break;
             case Configuration.ghostInkyCharacter:
                 this.#isGhostInkyScatterSpawnControlDisplayed = isDisplayed;
+                break;
             case Configuration.ghostClydeCharacter:
                 this.#isGhostClydeScatterSpawnControlDisplayed = isDisplayed;
+                break;
         }
     }
 
