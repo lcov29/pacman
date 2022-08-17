@@ -14,7 +14,8 @@ export default class EditorScatterSelectionState extends EditorSelectionState {
 
     initialize(editor) {
         super.editor = editor;
-        super.editor.removeScatterPositionFor(super.buttonId);
+        const ghostCharacter = super.editor.getGhostCharacterFor(super.buttonId);
+        super.editor.removeScatterPositionFor(ghostCharacter);
         super.initializeInputReference();
         super.highlightPlacedGhosts();
     }
