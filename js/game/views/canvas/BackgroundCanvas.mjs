@@ -1,4 +1,4 @@
-import Configuration from "../../../Configuration.mjs";
+import Configuration from "../../../global/Configuration.mjs";
 import Canvas from "./Canvas.mjs";
 
 

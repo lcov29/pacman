@@ -1,7 +1,7 @@
 import MainCanvas from './MainCanvas.mjs';
 import BackgroundCanvas from './BackgroundCanvas.mjs';
 import SpriteMapper from './SpriteMapper.mjs';
-import Configuration from '../../../Configuration.mjs';
+import Configuration from '../../../global/Configuration.mjs';
 
 
 export default class CanvasView {
