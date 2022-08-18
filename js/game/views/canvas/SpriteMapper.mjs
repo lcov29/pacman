@@ -972,16 +972,12 @@ export default class SpriteMapper {
 
         this.#backgroundSpriteMap.set(Configuration.bonusCherryCharacter, document.getElementById('bonusCherry'));
         this.#backgroundSpriteMap.set(Configuration.bonusStrawberryCharacter, document.getElementById('bonusStrawberry'));
-
-        
-        /*
-            this.#backgroundSpriteMap.set(Configuration.bonusPeachCharacter, document.getElementById('bonusPeach'));
-            this.#backgroundSpriteMap.set(Configuration.bonusAppleCharacter, document.getElementById('bonusApple'));
-            this.#backgroundSpriteMap.set(Configuration.bonusGrapeCharacter, document.getElementById('bonusGrape'));
-            this.#backgroundSpriteMap.set(Configuration.bonusGalaxianCharacter, document.getElementById('bonusGalaxian'));
-            this.#backgroundSpriteMap.set(Configuration.bonusBellCharacter, document.getElementById('bonusBell'));
-            this.#backgroundSpriteMap.set(Configuration.bonusKeyCharacter, document.getElementById('bonusKey'));
-        */
+        this.#backgroundSpriteMap.set(Configuration.bonusPeachCharacter, document.getElementById('bonusPeach'));
+        this.#backgroundSpriteMap.set(Configuration.bonusAppleCharacter, document.getElementById('bonusApple'));
+        this.#backgroundSpriteMap.set(Configuration.bonusGrapeCharacter, document.getElementById('bonusGrape'));
+        this.#backgroundSpriteMap.set(Configuration.bonusGalaxianCharacter, document.getElementById('bonusGalaxian'));
+        this.#backgroundSpriteMap.set(Configuration.bonusBellCharacter, document.getElementById('bonusBell'));
+        this.#backgroundSpriteMap.set(Configuration.bonusKeyCharacter, document.getElementById('bonusKey'));
     }
 
 }
