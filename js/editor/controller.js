@@ -26,7 +26,7 @@ editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
 
 
-// add handler to map dimension apply button
+// add handlers to map dimension controls
 document.getElementById('map_width').addEventListener('blur', validateMapWidthInput);
 document.getElementById('map_height').addEventListener('blur', validateMapHeightInput);
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
