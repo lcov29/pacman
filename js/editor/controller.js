@@ -102,9 +102,7 @@ function inputScatterSpawnMouseEnterCallback(event) {
     const isCoordinateStringValid = coordinateString !== '';
 
     if (isCoordinateStringValid) {
-        const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
-        document.getElementById(coordinateString).style.borderColor = borderColor;
-        document.getElementById(coordinateString).style.borderWidth = '5px';
+       document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
     }
 }
 
@@ -114,7 +112,7 @@ function inputScatterSpawnMouseLeaveCallback(event) {
     const isCoordinateStringValid = coordinateString !== '';
 
     if (isCoordinateStringValid) {
-        document.getElementById(coordinateString).style = null;
+        document.getElementById(coordinateString).classList.remove('scatterSpawnSelectionPointHighlight');
     }
 }
 
