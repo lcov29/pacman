@@ -4,6 +4,7 @@ import Configuration from '../../../global/Configuration.mjs';
 import BoardParser from './BoardParser.mjs';
 import Directions from '../Directions.mjs';
 
+// TODO: extract looping through board into new method
 
 export default class Board {
 
