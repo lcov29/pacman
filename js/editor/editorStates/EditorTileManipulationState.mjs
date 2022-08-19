@@ -71,15 +71,9 @@ export default class EditorTileManipulationState {
         const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
 
         for (let radio of radioList) {
-
             const radioLabel = document.querySelector(`label[for="${radio.id}"]`);
             const isCurrentRadioSelected = selectedRadioId === radio.id;
-
-            if (isCurrentRadioSelected) {
-                radioLabel.style.borderColor = Configuration.editorTileSelectionHighlightColorHex;
-            } else {
-                radioLabel.setAttribute('style', '');
-            }
+            radioLabel.classList.toggle('selectorSelected', isCurrentRadioSelected);
         }
     }
 
