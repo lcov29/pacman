@@ -104,65 +104,62 @@ export default class Board {
 
 
    buildBoardPositionArray() {
-      let output = [];
+      const outputList = [];
       let row = [];
       for (let y = 0; y < this.#board.length; y++) {
          for (let x = 0; x < this.#board[y].length; x++) {
             row.push(this.getPosition(x, y));
          }
-         output.push(row);
+         outputList.push(row);
          row = [];
       }
-      return output;
+      return outputList;
    }
 
 
    buildAccessibleBoardPositionList() {
-      let output = [];
+      const outputList = [];
       for (let y = 0; y < this.#board.length; y++) {
          for (let x = 0; x < this.#board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
-               output.push(this.getPosition(x, y));
+               outputList.push(this.getPosition(x, y));
             }
          }
       }
-      return output;
+      return outputList;
    }
 
 
    buildAccessibleNeighborIdList() {
-      let output = [];
-      let ids = [];
+      const outputList = [];
+      let idList = [];
       for (let y = 0; y < this.#board.length; y++) {
          for (let x = 0; x < this.#board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                for(let position of this.buildAccessibleNeighborList(x, y)) {
-                  ids.push(position.getID());
+                  idList.push(position.getID());
                }
-               output.push(ids);
-               ids = [];
+               outputList.push(idList);
+               idList = [];
             }
          }
       }
-      return output;
+      return outputList;
    }
 
 
    buildAccessibleNeighborList(xPosition, yPosition) {
-      let neighborPositions = [];
-      let direction = null;
-      let neighborX = -1;
-      let neighborY = -1;
+      const neighborPositionList = [];
 
       for (let i = Directions.getMinDirectionID(); i <= Directions.getMaxDirectionID(); i++) {
-         direction = Directions.getDirectionByID(i);
-         neighborX = xPosition + direction.x;
-         neighborY = yPosition + direction.y;
+         const direction = Directions.getDirectionByID(i);
+         const neighborX = xPosition + direction.x;
+         const neighborY = yPosition + direction.y;
          if (this.isIndexOnBoard(neighborX, neighborY) && this.isAccessibleAt(neighborX, neighborY)) {
-            neighborPositions.push(this.getPosition(neighborX, neighborY));
+            neighborPositionList.push(this.getPosition(neighborX, neighborY));
          }
       }
-      return neighborPositions;
+      return neighborPositionList;
    }
 
 
