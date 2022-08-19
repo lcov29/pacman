@@ -44,7 +44,7 @@ export default class EditorTileManipulationState {
         this.#removeScatterSpawnOfDeletedGhostTypes();
         this.#manageScatterSpawnControlVisibility();
         this.#manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
-        this.#updateEditingTileTo(callerId, this.#selectorTileType);
+        this.#updateEditorTileTo(callerId, this.#selectorTileType);
     }
 
 
@@ -78,7 +78,7 @@ export default class EditorTileManipulationState {
     }
 
 
-    #updateEditingTileTo(coordinateString, tileType) {
+    #updateEditorTileTo(coordinateString, tileType) {
         const styleclass = `editorTile ${tileType}`;
         document.getElementById(coordinateString).setAttribute('class', styleclass);
     }
@@ -98,7 +98,8 @@ export default class EditorTileManipulationState {
     #resetHighlightOfChosenSelectorTile() {
         const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         const selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
-        selectedRadioLabel.setAttribute('style', '');
+        selectedRadioLabel.classList.remove('selectorSelected');
+        //selectedRadioLabel.setAttribute('style', '');
     }
 
 
