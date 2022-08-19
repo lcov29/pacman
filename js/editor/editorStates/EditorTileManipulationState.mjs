@@ -99,7 +99,6 @@ export default class EditorTileManipulationState {
         const selectedRadioId = document.querySelector('input[name="selectors"]:checked').id;
         const selectedRadioLabel = document.querySelector(`label[for="${selectedRadioId}"]`);
         selectedRadioLabel.classList.remove('selectorSelected');
-        //selectedRadioLabel.setAttribute('style', '');
     }
 
 
