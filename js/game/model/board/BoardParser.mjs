@@ -36,7 +36,7 @@ export default class BoardParser {
             for (let x = 0; x < output[y].length; x++) {
                 const currentCharacter = output[y][x];
                 const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
-                
+
                 if (isActorCharacter) {
                     currentActorCharacter = currentCharacter;
                     currentElementCharacter = Configuration.emptyTileCharacter;
@@ -123,11 +123,6 @@ export default class BoardParser {
             bonusSpawnPositionList.push(spawnBoardPosition);
         }
         this.#boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
-    }
-
-
-    isActor(character) {
-        return Configuration.actorCharacterList.includes(character);
     }
 
     
