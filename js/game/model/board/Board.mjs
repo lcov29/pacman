@@ -7,106 +7,107 @@ import Directions from '../Directions.mjs';
 
 export default class Board {
 
-   
+   #board = [];
+   #initialPacmanPositions = [];
+   #initialGhostPositions = [];
+   #teleporterPositions = [];
+   #bonusSpawnPositions = [];
+   #ghostScatterPositions = [];
+   #ghostOptionalSpawnPositions = [];
+
+
    constructor(levelJson) {
-      this.board = [];
-      this.initialPacmanPositions = [];
-      this.initialGhostPositions = [];
-      this.teleporterPositions = [];
-      this.bonusSpawnPositions = [];
-      this.ghostScatterPositions = [];
-      this.ghostOptionalSpawnPositions = [];
       new BoardParser(this).parse(levelJson);
    }
 
 
    setBoard(board) {
-      this.board = board;
+      this.#board = board;
    }
 
 
    setInitialPacmanPositions(positions) {
-      this.initialPacmanPositions = positions;
+      this.#initialPacmanPositions = positions;
    }
 
 
    setInitialGhostPositions(positions) {
-      this.initialGhostPositions = positions;
+      this.#initialGhostPositions = positions;
    }
 
 
    setTeleporterPositions(positions) {
-      this.teleporterPositions = positions;
+      this.#teleporterPositions = positions;
    }
 
 
    setBonusSpawnPositions(positions) {
-      this.bonusSpawnPositions = positions;
+      this.#bonusSpawnPositions = positions;
    }
 
 
    setGhostScatterPositions(positions) {
-      this.ghostScatterPositions = positions;
+      this.#ghostScatterPositions = positions;
    }
 
 
    setGhostOptionalSpawnPositions(positions) {
-      this.ghostOptionalSpawnPositions = positions;
+      this.#ghostOptionalSpawnPositions = positions;
    }
 
 
    updateActorLayerPosition(x, y, character) {
-      const internalPosition = this.board[y][x];
+      const internalPosition = this.#board[y][x];
       internalPosition.setActorCharacter(character);
    }
 
 
    updateElementLayerPosition(x, y, character) {
-      const internalPosition = this.board[y][x];
+      const internalPosition = this.#board[y][x];
       internalPosition.setElementCharacter(character);
    }
 
 
    getPosition(x, y) {
-      return this.board[y][x].clone();
+      return this.#board[y][x].clone();
    }
 
 
    getInitialPacmanPositions() {
-      return this.initialPacmanPositions;
+      return this.#initialPacmanPositions;
    }
 
 
    getInitialGhostPositions() {
-      return this.initialGhostPositions;
+      return this.#initialGhostPositions;
    }
 
 
    getTeleporterPositions() {
-      return this.teleporterPositions;
+      return this.#teleporterPositions;
    }
 
 
    getBonusSpawnPositions() {
-      return this.bonusSpawnPositions;
+      return this.#bonusSpawnPositions;
    }
 
 
    getGhostScatterPositions() {
-      return this.ghostScatterPositions;
+      return this.#ghostScatterPositions;
    }
 
 
    getOptionalGhostSpawnPositions() {
-      return this.ghostOptionalSpawnPositions;
+      return this.#ghostOptionalSpawnPositions;
    }
 
 
    buildBoardPositionArray() {
       let output = [];
       let row = [];
-      for (let y = 0; y < this.board.length; y++) {
-         for (let x = 0; x < this.board[y].length; x++) {
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
             row.push(this.getPosition(x, y));
          }
          output.push(row);
@@ -118,8 +119,8 @@ export default class Board {
 
    buildAccessibleBoardPositionList() {
       let output = [];
-      for (let y = 0; y < this.board.length; y++) {
-         for (let x = 0; x < this.board[y].length; x++) {
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                output.push(this.getPosition(x, y));
             }
@@ -132,8 +133,8 @@ export default class Board {
    buildAccessibleNeighborIdList() {
       let output = [];
       let ids = [];
-      for (let y = 0; y < this.board.length; y++) {
-         for (let x = 0; x < this.board[y].length; x++) {
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                for(let position of this.buildAccessibleNeighborList(x, y)) {
                   ids.push(position.getID());
@@ -166,23 +167,23 @@ export default class Board {
 
 
    isAccessibleAt(x, y) {
-      return this.board[y][x].getID() !== Configuration.idInaccessibleBoardTiles;
+      return this.#board[y][x].getID() !== Configuration.idInaccessibleBoardTiles;
    }
 
 
    isIndexOnBoard(x, y) {
-      return 0 <= y && y < this.board.length &&
-             0 <= x && x < this.board[y].length;
+      return 0 <= y && y < this.#board.length &&
+             0 <= x && x < this.#board[y].length;
    }
 
 
    countOccurrencesOfCharacters(characters) {
       let counter = 0;
-      for (let y = 0; y < this.board.length; y++) {
-         for (let x = 0; x < this.board[y].length; x++) {
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
             for (let character of characters) {
-               if (this.board[y][x].getActorLayerCharacter() === character ||
-                   this.board[y][x].getElementLayerCharacter() === character) {
+               if (this.#board[y][x].getActorLayerCharacter() === character ||
+                   this.#board[y][x].getElementLayerCharacter() === character) {
                   counter++;
                   break;
                }
