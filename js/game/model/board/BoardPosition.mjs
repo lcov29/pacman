@@ -82,10 +82,7 @@ export default class BoardPosition {
 
 
     clone() {
-        let clone = new BoardPosition(this.#x, 
-                                      this.#y, 
-                                      this.#actorLayerCharacter,
-                                      this.#elementLayerCharacter);
+        const clone = new BoardPosition(this.#x, this.#y, this.#actorLayerCharacter, this.#elementLayerCharacter);
         clone.setID(this.#id);
         return clone;
     }
