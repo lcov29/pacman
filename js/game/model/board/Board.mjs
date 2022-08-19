@@ -21,37 +21,37 @@ export default class Board {
    }
 
 
-   setBoard(board) {
+   set board(board) {
       this.#board = board;
    }
 
 
-   setInitialPacmanPositions(positionList) {
+    set initialPacmanPositions(positionList) {
       this.#initialPacmanPositionList = positionList;
    }
 
 
-   setInitialGhostPositions(positionList) {
+   set initialGhostPositions(positionList) {
       this.#initialGhostPositionList = positionList;
    }
 
 
-   setTeleporterPositions(positionList) {
+   set teleporterPositions(positionList) {
       this.#teleporterPositionList = positionList;
    }
 
 
-   setBonusSpawnPositions(positionList) {
+   set bonusSpawnPositions(positionList) {
       this.#bonusSpawnPositionList = positionList;
    }
 
 
-   setGhostScatterPositions(positionList) {
+   set ghostScatterPositions(positionList) {
       this.#ghostScatterPositionList = positionList;
    }
 
 
-   setGhostOptionalSpawnPositions(positionList) {
+   set ghostOptionalSpawnPositions(positionList) {
       this.#ghostOptionalSpawnPositionList = positionList;
    }
 
@@ -73,32 +73,32 @@ export default class Board {
    }
 
 
-   getInitialPacmanPositions() {
+   get initialPacmanPositions() {
       return this.#initialPacmanPositionList;
    }
 
 
-   getInitialGhostPositions() {
+   get initialGhostPositions() {
       return this.#initialGhostPositionList;
    }
 
 
-   getTeleporterPositions() {
+   get teleporterPositions() {
       return this.#teleporterPositionList;
    }
 
 
-   getBonusSpawnPositions() {
+   get bonusSpawnPositions() {
       return this.#bonusSpawnPositionList;
    }
 
 
-   getGhostScatterPositions() {
+   get ghostScatterPositions() {
       return this.#ghostScatterPositionList;
    }
 
 
-   getOptionalGhostSpawnPositions() {
+   get optionalGhostSpawnPositions() {
       return this.#ghostOptionalSpawnPositionList;
    }
 
@@ -169,7 +169,7 @@ export default class Board {
 
 
    isIndexOnBoard(x, y) {
-      return 0 <= y && y < this.#board.length &&
+      return 0 <= y && y < this.#board.length && 
              0 <= x && x < this.#board[y].length;
    }
 
