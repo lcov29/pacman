@@ -69,8 +69,10 @@ export default class EditorInternalLevel {
     isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
         const coordinate = this.#parseCoordinateString(coordinateString);
+
         for (let spawnPosition of this.#bonusSpawnPositionList) {
-            if (spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y) {
+            const isSamePosition = spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y;
+            if (isSamePosition) {
                 result = true;
                 break;
             }
