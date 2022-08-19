@@ -61,8 +61,9 @@ export default class Editor {
 
 
     setEditorContainerDimension(width, height) {
-        this.#editorContainer.style.width = `${width * 32}px`;
-        this.#editorContainer.style.height = `${height * 32}px`;
+        const rootElement = document.querySelector(':root');
+        rootElement.style.setProperty('--editorContainerWidthInTiles', width);
+        rootElement.style.setProperty('--editorContainerHeightInTiles', height);
     }
 
 
