@@ -140,7 +140,7 @@ export default class EditorInternalLevel {
         jsonObject.board = this.#internalBoard;
         jsonObject.scatterPositions = this.#scatterPositionList;
         jsonObject.optionalSpawns = this.#optionalSpawnPositionList;
-        jsonObject.bonusSpawnPositions = this.#bonusSpawnPositionList;
+        jsonObject.bonusSpawnPositionList = this.#bonusSpawnPositionList;
         return JSON.stringify(jsonObject);
     }
 

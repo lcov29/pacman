@@ -70,7 +70,7 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.ghostScatterPositions = positions;
+        this.boardRef.ghostScatterPositionList = positions;
     }
 
 
@@ -82,14 +82,15 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.ghostOptionalSpawnPositions = positions;
+        this.boardRef.ghostOptionalSpawnPositionList = positions;
     }
 
 
+    // TODO: Eliminate local variable for position lists
     initializeOtherPositionLists(board) {
-        let initialPacmanPositions = [];
-        let initialGhostPositions = [];
-        let teleporterPositions = [];
+        let initialPacmanPositionList = [];
+        let initialGhostPositionList = [];
+        let teleporterPositionList = [];
 
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
@@ -98,21 +99,21 @@ export default class BoardParser {
               let currentElementCharacter = currentPosition.getElementLayerCharacter();
   
               if (currentActorCharacter === Configuration.pacmanCharacter) {
-                 initialPacmanPositions.push(currentPosition);
+                 initialPacmanPositionList.push(currentPosition);
               }
 
               if (Configuration.ghostCharacterList.includes(currentActorCharacter)) {
-                 initialGhostPositions.push(currentPosition);
+                initialGhostPositionList.push(currentPosition);
               }
   
               if (Configuration.teleporterCharacterList.includes(currentElementCharacter)) {
-                 teleporterPositions.push(currentPosition);
+                teleporterPositionList.push(currentPosition);
               }
            }
         }
-        this.boardRef.initialPacmanPositions = initialPacmanPositions;
-        this.boardRef.initialGhostPositions = initialGhostPositions;
-        this.boardRef.teleporterPositions = teleporterPositions;
+        this.boardRef.initialPacmanPositionList = initialPacmanPositionList;
+        this.boardRef.initialGhostPositionList = initialGhostPositionList;
+        this.boardRef.teleporterPositionList = teleporterPositionList;
     }
 
 
@@ -122,7 +123,7 @@ export default class BoardParser {
             const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
             bonusSpawnPositionList.push(spawnBoardPosition);
         }
-        this.boardRef.bonusSpawnPositions = bonusSpawnPositionList;
+        this.boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
     }
 
 
