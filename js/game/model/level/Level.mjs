@@ -37,7 +37,7 @@ export default class Level {
 
     initialize(levelJson) {
         this.board = new Board(levelJson);
-        this.bonusElementSpawner = new BonusElementSpawner(this.board.getBonusSpawnPositions(), 1, this);
+        this.bonusElementSpawner = new BonusElementSpawner(this.board.bonusSpawnPositions, 1, this);
         this.teleporters = LevelInitializer.initializeTeleporters(this.board);
         this.pacmans = LevelInitializer.initializePacmans(this.board, this);
         this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
@@ -63,8 +63,8 @@ export default class Level {
 
 
     getInitialActorMovementRequestList() {
-        const initialPacmanPositionList = this.board.getInitialPacmanPositions();
-        const initialGhostPositionList = this.board.getInitialGhostPositions();
+        const initialPacmanPositionList = this.board.initialPacmanPositions;
+        const initialGhostPositionList = this.board.initialGhostPositions;
         const initialActorPositionList = [...initialPacmanPositionList, ...initialGhostPositionList];
         const requestList = [];
 

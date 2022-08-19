@@ -20,7 +20,7 @@ export default class BoardParser {
         this.initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
         this.initializeOtherPositionLists(board);
         this.initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositions);
-        this.boardRef.setBoard(board);
+        this.boardRef.board = board;
     }
 
 
@@ -70,7 +70,7 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.setGhostScatterPositions(positions);
+        this.boardRef.ghostScatterPositions = positions;
     }
 
 
@@ -82,7 +82,7 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.setGhostOptionalSpawnPositions(positions);
+        this.boardRef.ghostOptionalSpawnPositions = positions;
     }
 
 
@@ -110,9 +110,9 @@ export default class BoardParser {
               }
            }
         }
-        this.boardRef.setInitialPacmanPositions(initialPacmanPositions);
-        this.boardRef.setInitialGhostPositions(initialGhostPositions);
-        this.boardRef.setTeleporterPositions(teleporterPositions);
+        this.boardRef.initialPacmanPositions = initialPacmanPositions;
+        this.boardRef.initialGhostPositions = initialGhostPositions;
+        this.boardRef.teleporterPositions = teleporterPositions;
     }
 
 
@@ -122,7 +122,7 @@ export default class BoardParser {
             const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
             bonusSpawnPositionList.push(spawnBoardPosition);
         }
-        this.boardRef.setBonusSpawnPositions(bonusSpawnPositionList);
+        this.boardRef.bonusSpawnPositions = bonusSpawnPositionList;
     }
 
 

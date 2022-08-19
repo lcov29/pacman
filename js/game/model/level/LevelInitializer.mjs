@@ -23,7 +23,7 @@ export default class LevelInitializer {
     static initializeTeleporters(board) {
         let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
         let output = [];
-        for (let position of board.getTeleporterPositions()) {
+        for (let position of board.teleporterPositions) {
             switch (position.getElementLayerCharacter()) {
                 case Configuration.teleporter1Character:
                     teleporters[0].add(position);
@@ -48,7 +48,7 @@ export default class LevelInitializer {
 
     static initializePacmans(board, levelReference) {
         let pacmans = [];
-        for (let position of board.getInitialPacmanPositions()) {
+        for (let position of board.initialPacmanPositions) {
             pacmans.push(new Pacman(levelReference, position));
         }
         return pacmans;
@@ -79,7 +79,7 @@ export default class LevelInitializer {
 
     static initializeGhostObjects(board, routing, levelReference) {
         let ghosts = [];
-        for (let position of board.getInitialGhostPositions()) {
+        for (let position of board.initialGhostPositions) {
             switch (position.getActorLayerCharacter()) {
                 case Configuration.ghostBlinkyCharacter:
                     ghosts.push(new GhostBlinky(levelReference, position, routing));
@@ -100,7 +100,7 @@ export default class LevelInitializer {
 
 
     static initializeGhostScatterPositions(board, ghosts) {
-        for (let scatterPosition of board.getGhostScatterPositions()) {
+        for (let scatterPosition of board.ghostScatterPositions) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === scatterPosition.getElementLayerCharacter()) {
                     ghost.setScatterID(scatterPosition.getID());
@@ -111,7 +111,7 @@ export default class LevelInitializer {
 
 
     static initializeOptionalGhostSpawnPositions(board, ghosts) {
-        for (let spawnPosition of board.getOptionalGhostSpawnPositions()) {
+        for (let spawnPosition of board.otionalGhostSpawnPositions) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === spawnPosition.getElementLayerCharacter()) {
                     ghost.setSpawnID(spawnPosition.getID());
