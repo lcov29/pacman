@@ -41,7 +41,8 @@ export default class BoardPosition {
 
     setID(id) {
         // prevent id of accessible elements to change after initialisation
-        this.#id = (this.#id === Configuration.idInaccessibleBoardTiles) ? id : this.#id;
+        const isBoardTileInaccessible = this.#id === Configuration.idInaccessibleBoardTiles;
+        this.#id = (isBoardTileInaccessible) ? id : this.#id;
     }
 
 
