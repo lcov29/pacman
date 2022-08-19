@@ -28,15 +28,16 @@ export default class BoardParser {
 
 
     #buildBoardPositionArray(board) {
-        let output = [...board];
-        let currentCharacter = '';
+        const output = [...board];
         let currentActorCharacter = '';
         let currentElementCharacter = '';
 
         for (let y = 0; y < output.length; y++) {
             for (let x = 0; x < output[y].length; x++) {
-                currentCharacter = output[y][x];
-                if (this.isActor(currentCharacter)) {
+                const currentCharacter = output[y][x];
+                const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
+                
+                if (isActorCharacter) {
                     currentActorCharacter = currentCharacter;
                     currentElementCharacter = Configuration.emptyTileCharacter;
                 } else {
