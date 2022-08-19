@@ -78,11 +78,10 @@ export default class EditorSelectionState {
 
     highlightPlacedGhosts() {
         const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
-        const ghostHighlightColor = EditorElementMapper.ghostCharacterToHighlightColorMap.get(ghostCharacter);
+        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
 
         for (let coordinate of this.#getSelectedGhostCoordinateList()) {
-            document.getElementById(coordinate).style.borderColor = ghostHighlightColor;
-            document.getElementById(coordinate).style.borderWidth = '5px';
+            document.getElementById(coordinate).classList.add(ghostHighlightClass);
         }
     }
 
@@ -105,8 +104,11 @@ export default class EditorSelectionState {
 
 
     #resetHighlightPlacedGhosts() {
+        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
+        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
+
         for (let coordinate of this.#getSelectedGhostCoordinateList()) {
-            document.getElementById(coordinate).style = null;
+            document.getElementById(coordinate).classList.remove(ghostHighlightClass);
         }
     } 
 
