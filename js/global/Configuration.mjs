@@ -155,8 +155,6 @@ export default class Configuration {
       static editorBoardMaxWidth = 30;
       static editorBoardDefaultWidth = 20;
       
-      static editorTileSelectionHighlightColorHex = '#fdfdfd';
-
 
 
    // Definition of element lists 
