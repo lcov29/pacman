@@ -11,7 +11,7 @@ export default class EditorElementMapper {
     static buttonIdToGhostCharacterMap = null;
     static internalElementToScatterSpawnControlIdMap = null;
     static scatterSpawnControlIdToInputIdMap = null;
-    static ghostCharacterToHighlightColorMap = null;
+    static ghostCharacterToCSSHighlightClassMap = null;
 
 
     static initializeMaps() {
@@ -74,11 +74,11 @@ export default class EditorElementMapper {
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_inky', 'spawn_position_ghost_inky');
 
 
-        EditorElementMapper.ghostCharacterToHighlightColorMap = new Map();
-        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostBlinkyCharacter, Configuration.editorGhostBlinkyHighlightColorHex);
-        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostPinkyCharacter, Configuration.editorGhostPinkyHighlightColorHex);
-        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostClydeCharacter, Configuration.editorGhostClydeHighlightColorHex);
-        EditorElementMapper.ghostCharacterToHighlightColorMap.set(Configuration.ghostInkyCharacter, Configuration.editorGhostInkyHighlightColorHex);
+        EditorElementMapper.ghostCharacterToCSSHighlightClassMap = new Map();
+        EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostBlinkyCharacter, 'ghostBlinkyHighlight');
+        EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostPinkyCharacter, 'ghostPinkyHighlight');
+        EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostInkyCharacter, 'ghostInkyHighlight');
+        EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostClydeCharacter, 'ghostClydeHighlight');
     }
 
 
