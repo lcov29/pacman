@@ -160,7 +160,6 @@ export default class Configuration {
       static editorGhostClydeHighlightColorHex = '#ee810d';
       static editorGhostInkyHighlightColorHex = '#08e6db';
       
-      static editorScatterSpawnSelectionPointerHighlightColorHex = '#289D10';
       static editorTileSelectionHighlightColorHex = '#fdfdfd';
 
 
