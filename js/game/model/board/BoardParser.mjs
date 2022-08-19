@@ -89,19 +89,21 @@ export default class BoardParser {
     initializeOtherPositionLists(board) {
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
-              let currentPosition = board[y][x];
-              let currentActorCharacter = currentPosition.getActorLayerCharacter();
-              let currentElementCharacter = currentPosition.getElementLayerCharacter();
+              const currentPosition = board[y][x];
+              const currentActorCharacter = currentPosition.getActorLayerCharacter();
   
-              if (currentActorCharacter === Configuration.pacmanCharacter) {
+              const isCurrentActorPacman = currentActorCharacter === Configuration.pacmanCharacter;
+              if (isCurrentActorPacman) {
                  this.boardRef.initialPacmanPositionList.push(currentPosition);
               }
 
-              if (Configuration.ghostCharacterList.includes(currentActorCharacter)) {
+              const isCurrentActorGhost = Configuration.ghostCharacterList.includes(currentActorCharacter);
+              if (isCurrentActorGhost) {
                 this.boardRef.initialGhostPositionList.push(currentPosition);
               }
   
-              if (Configuration.teleporterCharacterList.includes(currentElementCharacter)) {
+              const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(currentPosition.getElementLayerCharacter());
+              if (isCurrentElementTeleporter) {
                 this.boardRef.teleporterPositionList.push(currentPosition);
               }
            }
