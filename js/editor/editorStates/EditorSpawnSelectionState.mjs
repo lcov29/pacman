@@ -25,7 +25,7 @@ export default class EditorSpawnSelectionState extends EditorSelectionState {
         if (super.isTileAccessible(callerId)) {
             super.editor.addSpawnPosition(super.buttonId, callerId);
             super.editor.setState(new EditorDefaultState());
-            document.getElementById(callerId).style = null;
+            document.getElementById(callerId).classList.remove('scatterSpawnSelectionPointHighlight');
         }
     }
 
