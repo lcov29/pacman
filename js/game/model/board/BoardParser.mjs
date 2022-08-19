@@ -17,17 +17,17 @@ export default class BoardParser {
 
     parse(levelJson) {
         let parsedLevelJson = JSON.parse(levelJson);
-        let board = this.buildBoardPositionArray(parsedLevelJson.board);
-        this.indexAccessiblePositions(board);
-        this.initializeGhostScatterPositionList(board, parsedLevelJson);
-        this.initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
-        this.initializeOtherPositionLists(board);
-        this.initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositions);
+        let board = this.#buildBoardPositionArray(parsedLevelJson.board);
+        this.#indexAccessiblePositions(board);
+        this.#initializeGhostScatterPositionList(board, parsedLevelJson);
+        this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
+        this.#initializeOtherPositionLists(board);
+        this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositions);
         this.#boardRef.board = board;
     }
 
 
-    buildBoardPositionArray(board) {
+    #buildBoardPositionArray(board) {
         let output = [...board];
         let currentCharacter = '';
         let currentActorCharacter = '';
@@ -50,7 +50,7 @@ export default class BoardParser {
     }
 
 
-    indexAccessiblePositions(positionArray) {
+    #indexAccessiblePositions(positionArray) {
         let id = 0;
         let character = '';
         for (let y = 0; y < positionArray.length; y++) {
@@ -65,7 +65,7 @@ export default class BoardParser {
     }
 
 
-    initializeGhostScatterPositionList(board, parsedJson) {
+    #initializeGhostScatterPositionList(board, parsedJson) {
         let positions = [];
         for (let position of parsedJson.scatterPositions) {
             let boardPositionClone = board[position.y][position.x].clone();
@@ -77,7 +77,7 @@ export default class BoardParser {
     }
 
 
-    initializeOptionalGhostSpawnPositionLists(board, parsedJson) {
+    #initializeOptionalGhostSpawnPositionLists(board, parsedJson) {
         let positions = [];
         for (let position of parsedJson.optionalSpawns) {
             let boardPositionClone = board[position.y][position.x].clone();
@@ -89,7 +89,7 @@ export default class BoardParser {
     }
 
 
-    initializeOtherPositionLists(board) {
+    #initializeOtherPositionLists(board) {
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
               const currentPosition = board[y][x];
@@ -114,7 +114,7 @@ export default class BoardParser {
     }
 
 
-    initializeBonusSpawnPositionList(bonusSpawnCoordinateArray) {
+    #initializeBonusSpawnPositionList(bonusSpawnCoordinateArray) {
         const bonusSpawnPositionList = [];
         for (let coordinate of bonusSpawnCoordinateArray) {
             const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
