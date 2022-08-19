@@ -142,7 +142,7 @@ export default class EditorTileManipulationState {
         const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
 
         for (let controlId of ghostTypeControlIdList) {
-            document.getElementById(controlId).style = null;
+            document.getElementById(controlId).classList.remove('invisible');
         }
 
         this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
@@ -153,7 +153,7 @@ export default class EditorTileManipulationState {
         const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
 
         for (let controlId of ghostTypeControlIdList) {
-            document.getElementById(controlId).style = 'display:none';
+            document.getElementById(controlId).classList.add('invisible');
             const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
             document.getElementById(inputId).value = '';
         }
