@@ -137,6 +137,11 @@ input[type=radio] {
 }
 
 
+.selectorSelected {
+    border: 5px solid #fdfdfd;
+}
+
+
 .editorTile {
     border: 1px solid white;
     box-sizing: border-box;
