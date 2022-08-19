@@ -85,6 +85,12 @@ input[type=radio] {
 }
 
 
+.scatterSpawnSelectionPointHighlight {
+    /* prioritize border property over border property of css class editorTile */
+    border: 5px solid #289D10 !important
+}
+
+
 .selector {
     border: 5px solid;
     display: inline-block;
