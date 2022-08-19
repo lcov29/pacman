@@ -8,12 +8,12 @@ import Directions from '../Directions.mjs';
 export default class Board {
 
    #board = [];
-   #initialPacmanPositions = [];
-   #initialGhostPositions = [];
-   #teleporterPositions = [];
-   #bonusSpawnPositions = [];
-   #ghostScatterPositions = [];
-   #ghostOptionalSpawnPositions = [];
+   #initialPacmanPositionList = [];
+   #initialGhostPositionList = [];
+   #teleporterPositionList = [];
+   #bonusSpawnPositionList = [];
+   #ghostScatterPositionList = [];
+   #ghostOptionalSpawnPositionList = [];
 
 
    constructor(levelJson) {
@@ -27,32 +27,32 @@ export default class Board {
 
 
    setInitialPacmanPositions(positions) {
-      this.#initialPacmanPositions = positions;
+      this.#initialPacmanPositionList = positions;
    }
 
 
    setInitialGhostPositions(positions) {
-      this.#initialGhostPositions = positions;
+      this.#initialGhostPositionList = positions;
    }
 
 
    setTeleporterPositions(positions) {
-      this.#teleporterPositions = positions;
+      this.#teleporterPositionList = positions;
    }
 
 
    setBonusSpawnPositions(positions) {
-      this.#bonusSpawnPositions = positions;
+      this.#bonusSpawnPositionList = positions;
    }
 
 
    setGhostScatterPositions(positions) {
-      this.#ghostScatterPositions = positions;
+      this.#ghostScatterPositionList = positions;
    }
 
 
    setGhostOptionalSpawnPositions(positions) {
-      this.#ghostOptionalSpawnPositions = positions;
+      this.#ghostOptionalSpawnPositionList = positions;
    }
 
 
@@ -74,32 +74,32 @@ export default class Board {
 
 
    getInitialPacmanPositions() {
-      return this.#initialPacmanPositions;
+      return this.#initialPacmanPositionList;
    }
 
 
    getInitialGhostPositions() {
-      return this.#initialGhostPositions;
+      return this.#initialGhostPositionList;
    }
 
 
    getTeleporterPositions() {
-      return this.#teleporterPositions;
+      return this.#teleporterPositionList;
    }
 
 
    getBonusSpawnPositions() {
-      return this.#bonusSpawnPositions;
+      return this.#bonusSpawnPositionList;
    }
 
 
    getGhostScatterPositions() {
-      return this.#ghostScatterPositions;
+      return this.#ghostScatterPositionList;
    }
 
 
    getOptionalGhostSpawnPositions() {
-      return this.#ghostOptionalSpawnPositions;
+      return this.#ghostOptionalSpawnPositionList;
    }
 
 
