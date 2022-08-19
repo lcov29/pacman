@@ -18,9 +18,18 @@ export default class BackgroundCanvas extends Canvas {
     drawBackgroundRequest(request) {
         const xCanvasPosition = request.xPosition * super.tileWidth;
         const yCanvasPosition = request.yPosition * super.tileHeight;
-        const sprite = super.mapBackgroundToSprite(request.elementCharacter);
+
         super.clearTileAt(xCanvasPosition, yCanvasPosition);
-        super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
+
+        const isBackgroundTileDefined = (request.elementCharacter !== Configuration.undefinedTileCharacter);
+        if (isBackgroundTileDefined) {
+            const blackBackgroundSprite = super.mapBackgroundToSprite(Configuration.emptyTileCharacter);
+            super.drawSprite(xCanvasPosition, yCanvasPosition, blackBackgroundSprite);
+
+            const currentElementSprite = super.mapBackgroundToSprite(request.elementCharacter);
+            super.drawSprite(xCanvasPosition, yCanvasPosition, currentElementSprite);
+        }
+
         super.drawText(0, 0, `Score: ${request.score}`, (request.xPosition + 4) * super.tileWidth);
         this.drawLifeCounterSpriteRepresentation(request.lifeCount);
     }
