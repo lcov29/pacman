@@ -1,3 +1,11 @@
+:root {
+    --baseWidth: 32px;
+    --baseHeight: 32px;
+    --editorContainerWidthInTiles: 4;
+    --editorContainerHeightInTiles: 4;
+}
+
+
 body {
     background-color: #1c1c1a;
     font-family: 'Lucida Console', monospace;
@@ -35,6 +43,8 @@ img {
     display: grid;
     grid-template-columns: repeat(auto-fit, 32px);
     margin: auto;
+    width: calc(var(--editorContainerWidthInTiles) * var(--baseWidth));
+    height: calc(var(--editorContainerHeightInTiles) * var(--baseHeight));
 }
 
 
