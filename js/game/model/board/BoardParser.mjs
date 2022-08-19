@@ -68,14 +68,14 @@ export default class BoardParser {
 
 
     #initializeGhostScatterPositionList(board, parsedJson) {
-        let positions = [];
+        const positionList = [];
         for (let position of parsedJson.scatterPositions) {
-            let boardPositionClone = board[position.y][position.x].clone();
+            const boardPositionClone = board[position.y][position.x].clone();
             boardPositionClone.setActorCharacter(Configuration.emptyTileCharacter);
             boardPositionClone.setElementCharacter(position.ghost);
-            positions.push(boardPositionClone);
+            positionList.push(boardPositionClone);
         }
-        this.#boardRef.ghostScatterPositionList = positions;
+        this.#boardRef.ghostScatterPositionList = positionList;
     }
 
 
