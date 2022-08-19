@@ -52,9 +52,7 @@ export default class EditorSelectionState {
         const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
-            const borderColor = Configuration.editorScatterSpawnSelectionPointerHighlightColorHex;
-            document.getElementById(callerId).style.borderColor = borderColor;
-            document.getElementById(callerId).style.borderWidth = '5px';
+           document.getElementById(callerId).classList.add('scatterSpawnSelectionPointHighlight');
         }
         this.#positionInput.value = (isTileAccessible) ? callerId : '';
     }
@@ -62,7 +60,7 @@ export default class EditorSelectionState {
 
     handleEditorTileMouseLeave(callerId) {
         if (!this.#isTileSelectedGhostType(callerId)) {
-            document.getElementById(callerId).style = null;
+            document.getElementById(callerId).classList.remove('scatterSpawnSelectionPointHighlight');
         }
     }
 
