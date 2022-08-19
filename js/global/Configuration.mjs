@@ -154,11 +154,6 @@ export default class Configuration {
       static editorBoardMinWidth = 4;
       static editorBoardMaxWidth = 30;
       static editorBoardDefaultWidth = 20;
-
-      static editorGhostBlinkyHighlightColorHex = '#dd1717';
-      static editorGhostPinkyHighlightColorHex = '#ee45bc';
-      static editorGhostClydeHighlightColorHex = '#ee810d';
-      static editorGhostInkyHighlightColorHex = '#08e6db';
       
       static editorTileSelectionHighlightColorHex = '#fdfdfd';
 
