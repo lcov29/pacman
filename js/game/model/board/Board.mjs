@@ -59,13 +59,13 @@ export default class Board {
 
    updateActorLayerPosition(x, y, character) {
       const internalPosition = this.#board[y][x];
-      internalPosition.setActorCharacter(character);
+      internalPosition.actorCharacter = character;
    }
 
 
    updateElementLayerPosition(x, y, character) {
       const internalPosition = this.#board[y][x];
-      internalPosition.setElementCharacter(character);
+      internalPosition.elementCharacter = character;
    }
 
 

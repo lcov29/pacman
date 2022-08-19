@@ -147,7 +147,7 @@ export default class Pacman extends Actor {
          super.incrementScoreBy(Configuration.scoreValuePerPoint);
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
-         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
+         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
    }
@@ -159,7 +159,7 @@ export default class Pacman extends Actor {
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
-         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
+         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
    }
@@ -170,7 +170,7 @@ export default class Pacman extends Actor {
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
       if (isNextPositionBonusElement) {
-         super.getNextPosition().setElementCharacter(Configuration.emptyTileCharacter);
+         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
          this.level.handleBonusConsumption();
          this.isBackgroundUpdateNeeded = true;
       }

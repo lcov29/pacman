@@ -71,8 +71,8 @@ export default class BoardParser {
         const positionList = [];
         for (let position of parsedJson.scatterPositions) {
             const boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.setActorCharacter(Configuration.emptyTileCharacter);
-            boardPositionClone.setElementCharacter(position.ghost);
+            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
+            boardPositionClone.elementCharacter = position.ghost;
             positionList.push(boardPositionClone);
         }
         this.#boardRef.ghostScatterPositionList = positionList;
@@ -83,8 +83,8 @@ export default class BoardParser {
         const positionList = [];
         for (let position of parsedJson.optionalSpawns) {
             const boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.setActorCharacter(Configuration.emptyTileCharacter);
-            boardPositionClone.setElementCharacter(position.ghost);
+            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
+            boardPositionClone.elementCharacter = position.ghost;
             positionList.push(boardPositionClone);
         }
         this.#boardRef.ghostOptionalSpawnPositionList = positionList;
