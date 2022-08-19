@@ -18,6 +18,11 @@ img {
 }
 
 
+.invisible {
+    display: none !important;
+}
+
+
 .mainContainer {
     column-gap: 1rem;
     display: grid;
