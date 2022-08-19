@@ -102,7 +102,27 @@ input[type=radio] {
 
 .scatterSpawnSelectionPointHighlight {
     /* prioritize border property over border property of css class editorTile */
-    border: 5px solid #289D10 !important
+    border: 5px solid #289D10 !important;
+}
+
+
+.ghostBlinkyHighlight {
+    border: 5px solid #dd1717 !important;
+}
+
+
+.ghostPinkyHighlight {
+    border: 5px solid #ee45bc !important;
+}
+
+
+.ghostInkyHighlight {
+    border: 5px solid #08e6db !important;
+}
+
+
+.ghostClydeHighlight {
+    border: 5px solid #ee810d !important;
 }
 
 
