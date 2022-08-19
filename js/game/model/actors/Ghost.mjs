@@ -2,6 +2,7 @@
 
 import GhostStateScatter from './ghostStates/GhostStateScatter.mjs';
 import GhostStateScared from './ghostStates/GhostStateScared.mjs';
+import Configuration from '../../../global/Configuration.mjs';
 import Directions from '../Directions.mjs';
 import Actor from './Actor.mjs';
 
@@ -10,11 +11,12 @@ export default class Ghost extends Actor {
 
 
    constructor(level, position, routing) {
-      super(level, position); 
+      super(level, position);
       this.routing = routing;
       this.scatterPositionId = -1;
       this.spawnPositionId = position.getID();
       this.state = null;
+      super.setMovementDirectionName(Configuration.directionNameDown); 
    }
 
 
