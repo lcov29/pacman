@@ -23,62 +23,69 @@ import Configuration from '../../../global/Configuration.mjs';
 export default class BoardPosition {
 
 
+    #x;
+    #y;
+    #id;
+    #actorLayerCharacter;
+    #elementLayerCharacter;
+
+
     constructor(x, y, actorCharacter, elementCharacter) {
-        this.x = x;
-        this.y = y;
-        this.id = Configuration.idInaccessibleBoardTiles;
-        this.actorLayerCharacter = actorCharacter;
-        this.elementLayerCharacter = elementCharacter;
+        this.#x = x;
+        this.#y = y;
+        this.#id = Configuration.idInaccessibleBoardTiles;
+        this.#actorLayerCharacter = actorCharacter;
+        this.#elementLayerCharacter = elementCharacter;
     }
 
 
     setID(id) {
         // prevent id of accessible elements to change after initialisation
-        this.id = (this.id === Configuration.idInaccessibleBoardTiles) ? id : this.id;
+        this.#id = (this.#id === Configuration.idInaccessibleBoardTiles) ? id : this.#id;
     }
 
 
     setActorCharacter(character) {
-        this.actorLayerCharacter = character;
+        this.#actorLayerCharacter = character;
     }
 
 
     setElementCharacter(character) {
-        this.elementLayerCharacter = character;
+        this.#elementLayerCharacter = character;
     }
 
 
     getX() {
-        return this.x;
+        return this.#x;
     }
 
 
     getY() {
-        return this.y;
+        return this.#y;
     }
 
 
     getID() {
-        return this.id;
+        return this.#id;
     }
 
 
     getActorLayerCharacter() {
-        return this.actorLayerCharacter;
+        return this.#actorLayerCharacter;
     }
 
 
     getElementLayerCharacter() {
-        return this.elementLayerCharacter;
+        return this.#elementLayerCharacter;
     }
 
 
     clone() {
-        let clone = new BoardPosition(this.x, 
-                                      this.y, 
-                                      this.actorLayerCharacter,
-                                      this.elementLayerCharacter);
-        clone.setID(this.id);
+        let clone = new BoardPosition(this.#x, 
+                                      this.#y, 
+                                      this.#actorLayerCharacter,
+                                      this.#elementLayerCharacter);
+        clone.setID(this.#id);
         return clone;
     }
 
