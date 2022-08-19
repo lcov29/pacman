@@ -52,11 +52,12 @@ export default class BoardParser {
 
     #indexAccessiblePositions(positionArray) {
         let id = 0;
-        let character = '';
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
-                character = positionArray[y][x].getElementLayerCharacter();
-                if (this.isAccessibleByActor(character)) {
+                const elementCharacter = positionArray[y][x].getElementLayerCharacter();
+                const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
+                
+                if (isAccessibleByActor) {
                     positionArray[y][x].setID(id);
                     id++;
                 }
