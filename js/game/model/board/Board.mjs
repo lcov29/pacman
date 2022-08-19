@@ -26,33 +26,33 @@ export default class Board {
    }
 
 
-   setInitialPacmanPositions(positions) {
-      this.#initialPacmanPositionList = positions;
+   setInitialPacmanPositions(positionList) {
+      this.#initialPacmanPositionList = positionList;
    }
 
 
-   setInitialGhostPositions(positions) {
-      this.#initialGhostPositionList = positions;
+   setInitialGhostPositions(positionList) {
+      this.#initialGhostPositionList = positionList;
    }
 
 
-   setTeleporterPositions(positions) {
-      this.#teleporterPositionList = positions;
+   setTeleporterPositions(positionList) {
+      this.#teleporterPositionList = positionList;
    }
 
 
-   setBonusSpawnPositions(positions) {
-      this.#bonusSpawnPositionList = positions;
+   setBonusSpawnPositions(positionList) {
+      this.#bonusSpawnPositionList = positionList;
    }
 
 
-   setGhostScatterPositions(positions) {
-      this.#ghostScatterPositionList = positions;
+   setGhostScatterPositions(positionList) {
+      this.#ghostScatterPositionList = positionList;
    }
 
 
-   setGhostOptionalSpawnPositions(positions) {
-      this.#ghostOptionalSpawnPositionList = positions;
+   setGhostOptionalSpawnPositions(positionList) {
+      this.#ghostOptionalSpawnPositionList = positionList;
    }
 
 
