@@ -73,7 +73,7 @@ export default class EditorMapDimensionChangeState {
         }
 
         for (let controlId of controlIdList) {
-            document.getElementById(controlId).style = 'display:none';
+            document.getElementById(controlId).classList.add('invisible');
         }
     }
 
