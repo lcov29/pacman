@@ -129,11 +129,5 @@ export default class BoardParser {
         return Configuration.actorCharacterList.includes(character);
     }
 
-
-    isAccessibleByActor(character) {
-        return (Configuration.actorsInaccessibleTileCharacterList.includes(character) === false)
-    }
-
-
     
 }
