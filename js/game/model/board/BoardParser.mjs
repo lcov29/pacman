@@ -86,12 +86,7 @@ export default class BoardParser {
     }
 
 
-    // TODO: Eliminate local variable for position lists
     initializeOtherPositionLists(board) {
-        let initialPacmanPositionList = [];
-        let initialGhostPositionList = [];
-        let teleporterPositionList = [];
-
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
               let currentPosition = board[y][x];
@@ -99,21 +94,18 @@ export default class BoardParser {
               let currentElementCharacter = currentPosition.getElementLayerCharacter();
   
               if (currentActorCharacter === Configuration.pacmanCharacter) {
-                 initialPacmanPositionList.push(currentPosition);
+                 this.boardRef.initialPacmanPositionList.push(currentPosition);
               }
 
               if (Configuration.ghostCharacterList.includes(currentActorCharacter)) {
-                initialGhostPositionList.push(currentPosition);
+                this.boardRef.initialGhostPositionList.push(currentPosition);
               }
   
               if (Configuration.teleporterCharacterList.includes(currentElementCharacter)) {
-                teleporterPositionList.push(currentPosition);
+                this.boardRef.teleporterPositionList.push(currentPosition);
               }
            }
         }
-        this.boardRef.initialPacmanPositionList = initialPacmanPositionList;
-        this.boardRef.initialGhostPositionList = initialGhostPositionList;
-        this.boardRef.teleporterPositionList = teleporterPositionList;
     }
 
 
