@@ -7,8 +7,11 @@ import Configuration from '../../../global/Configuration.mjs';
 export default class BoardParser {
 
 
+    #boardRef = null;
+
+
     constructor(boardReference) {
-        this.boardRef = boardReference;
+        this.#boardRef = boardReference;
     }
 
 
@@ -20,7 +23,7 @@ export default class BoardParser {
         this.initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
         this.initializeOtherPositionLists(board);
         this.initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositions);
-        this.boardRef.board = board;
+        this.#boardRef.board = board;
     }
 
 
@@ -70,7 +73,7 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.ghostScatterPositionList = positions;
+        this.#boardRef.ghostScatterPositionList = positions;
     }
 
 
@@ -82,7 +85,7 @@ export default class BoardParser {
             boardPositionClone.setElementCharacter(position.ghost);
             positions.push(boardPositionClone);
         }
-        this.boardRef.ghostOptionalSpawnPositionList = positions;
+        this.#boardRef.ghostOptionalSpawnPositionList = positions;
     }
 
 
@@ -94,17 +97,17 @@ export default class BoardParser {
   
               const isCurrentActorPacman = currentActorCharacter === Configuration.pacmanCharacter;
               if (isCurrentActorPacman) {
-                 this.boardRef.initialPacmanPositionList.push(currentPosition);
+                 this.#boardRef.initialPacmanPositionList.push(currentPosition);
               }
 
               const isCurrentActorGhost = Configuration.ghostCharacterList.includes(currentActorCharacter);
               if (isCurrentActorGhost) {
-                this.boardRef.initialGhostPositionList.push(currentPosition);
+                this.#boardRef.initialGhostPositionList.push(currentPosition);
               }
   
               const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(currentPosition.getElementLayerCharacter());
               if (isCurrentElementTeleporter) {
-                this.boardRef.teleporterPositionList.push(currentPosition);
+                this.#boardRef.teleporterPositionList.push(currentPosition);
               }
            }
         }
@@ -117,7 +120,7 @@ export default class BoardParser {
             const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
             bonusSpawnPositionList.push(spawnBoardPosition);
         }
-        this.boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
+        this.#boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
     }
 
 
