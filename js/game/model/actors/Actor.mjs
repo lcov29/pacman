@@ -118,37 +118,13 @@ export default class Actor {
 
 
    sendLevelMovementRequest(ghostStateName) {
-      const request = this.createMovementRequest(ghostStateName);
+      const request = this.#createMovementRequest(ghostStateName);
       this.#level.processMovementRequest(request);
    }
 
 
    sendLevelBackgroundRequest(request) {
       this.#level.processBackgroundRequest(request);
-   }
-
-
-   createMovementRequest(ghostStateName) {
-      const request = new MovementRequest();
-      request.xPositionStart = this.#currentPosition.x;
-      request.yPositionStart = this.#currentPosition.y;
-      request.xPositionDestination = this.#nextPosition.x;
-      request.yPositionDestination = this.#nextPosition.y;
-
-      const direction = this.getCurrentMovementDirection();
-      request.xDirection = direction.x;
-      request.yDirection = direction.y;
-
-      request.directionName = this.#movementDirectionName;
-      request.actorCharacter = this.#character;
-      request.isTeleportation = this.#hasTeleportedInPreviousTurn;
-      request.spriteDisplayPriority = this.#spriteDisplayPriority;
-
-      if (ghostStateName) {
-         request.actorStateName = ghostStateName;
-      }
-
-      return request;
    }
 
 
@@ -184,6 +160,30 @@ export default class Actor {
          nextPosition = this.#currentPosition;
       }
       return nextPosition;
+   }
+
+
+   #createMovementRequest(ghostStateName) {
+      const request = new MovementRequest();
+      request.xPositionStart = this.#currentPosition.x;
+      request.yPositionStart = this.#currentPosition.y;
+      request.xPositionDestination = this.#nextPosition.x;
+      request.yPositionDestination = this.#nextPosition.y;
+
+      const direction = this.getCurrentMovementDirection();
+      request.xDirection = direction.x;
+      request.yDirection = direction.y;
+
+      request.directionName = this.#movementDirectionName;
+      request.actorCharacter = this.#character;
+      request.isTeleportation = this.#hasTeleportedInPreviousTurn;
+      request.spriteDisplayPriority = this.#spriteDisplayPriority;
+
+      if (ghostStateName) {
+         request.actorStateName = ghostStateName;
+      }
+
+      return request;
    }
 
 
