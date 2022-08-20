@@ -22,7 +22,7 @@ export default class BoardParser {
         this.#initializeGhostScatterPositionList(board, parsedLevelJson);
         this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
         this.#initializeOtherPositionLists(board);
-        this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositions);
+        this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositionList);
         this.#boardRef.board = board;
     }
 
@@ -69,7 +69,7 @@ export default class BoardParser {
 
     #initializeGhostScatterPositionList(board, parsedJson) {
         const positionList = [];
-        for (let position of parsedJson.scatterPositions) {
+        for (let position of parsedJson.scatterPositionList) {
             const boardPositionClone = board[position.y][position.x].clone();
             boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
             boardPositionClone.elementCharacter = position.ghost;
@@ -81,7 +81,7 @@ export default class BoardParser {
 
     #initializeOptionalGhostSpawnPositionLists(board, parsedJson) {
         const positionList = [];
-        for (let position of parsedJson.optionalSpawns) {
+        for (let position of parsedJson.optionalSpawnList) {
             const boardPositionClone = board[position.y][position.x].clone();
             boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
             boardPositionClone.elementCharacter = position.ghost;

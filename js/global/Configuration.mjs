@@ -48,17 +48,17 @@ export default class Configuration {
                                           '["#","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","#"],' +
                                           '["#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#","#"]],'+
                                           
-                                 '"scatterPositions":[{"ghost":"b","x":25,"y":1},' +
-                                                     '{"ghost":"y","x":1,"y":1},' +
-                                                     '{"ghost":"i","x":1,"y":20},' +
-                                                     '{"ghost":"c","x":25,"y":20}],' +
+                                 '"scatterPositionList":[{"ghost":"b","x":25,"y":1},' +
+                                                        '{"ghost":"y","x":1,"y":1},' +
+                                                        '{"ghost":"i","x":1,"y":20},' +
+                                                        '{"ghost":"c","x":25,"y":20}],' +
                                                                   
-                                 '"optionalSpawns":[{"ghost":"b","x":10,"y":10},' +
-                                                   '{"ghost":"y","x":11,"y":10},' +
-                                                   '{"ghost":"i","x":15,"y":10},' +
-                                                   '{"ghost":"c","x":16,"y":10}],' +
+                                 '"optionalSpawnList":[{"ghost":"b","x":10,"y":10},' +
+                                                      '{"ghost":"y","x":11,"y":10},' +
+                                                      '{"ghost":"i","x":15,"y":10},' +
+                                                      '{"ghost":"c","x":16,"y":10}],' +
 
-                                 '"bonusSpawnPositions":[{"x":13,"y":12}]}';
+                                 '"bonusSpawnPositionList":[{"x":13,"y":12}]}';
 
 
 

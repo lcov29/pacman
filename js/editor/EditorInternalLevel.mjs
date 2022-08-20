@@ -138,8 +138,8 @@ export default class EditorInternalLevel {
     buildLevelJSONString() {
         const jsonObject = {};
         jsonObject.board = this.#internalBoard;
-        jsonObject.scatterPositions = this.#scatterPositionList;
-        jsonObject.optionalSpawns = this.#optionalSpawnPositionList;
+        jsonObject.scatterPositionList = this.#scatterPositionList;
+        jsonObject.optionalSpawnList = this.#optionalSpawnPositionList;
         jsonObject.bonusSpawnPositionList = this.#bonusSpawnPositionList;
         return JSON.stringify(jsonObject);
     }
