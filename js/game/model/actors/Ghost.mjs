@@ -169,10 +169,12 @@ export default class Ghost extends Actor {
 
 
    #updateMovementDirection(currentPosition, nextPosition) {
-      if (currentPosition.id !== nextPosition.id) {
-         let directionX = nextPosition.x - currentPosition.x;
-         let directionY = nextPosition.y - currentPosition.y;
-         let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
+      const isDifferentPositions = currentPosition.id !== nextPosition.id;
+
+      if (isDifferentPositions) {
+         const directionX = nextPosition.x - currentPosition.x;
+         const directionY = nextPosition.y - currentPosition.y;
+         const directionName = Directions.getDirectionNameByIndex(directionX, directionY);
          super.movementDirectionName = directionName;
       }
    }
