@@ -90,16 +90,6 @@ export default class Actor {
    }
 
 
-   isCurrentPositionActorCharacter(character) {
-      return this.#currentPosition.actorLayerCharacter === character;
-   }
-
-
-   isCurrentPositionElementCharacter(character) {
-      return this.#currentPosition.elementLayerCharacter === character;
-   }
-
-
    isNextPositionActorCharacter(character) {
       return this.#nextPosition.actorLayerCharacter === character;
    }
@@ -116,6 +106,7 @@ export default class Actor {
    }
 
 
+   // TODO: remove method and its use in Pacman.move()
    isMovementDirectionSet() {
       return this.#movementDirectionName !== '';
    }
