@@ -32,7 +32,7 @@ export default class GhostInky extends Ghost {
 
 
     calculatePacmanOffsetPosition(pacmanPositionId) {
-        let pacmanPosition = this.level.getPacmanPositionFor(pacmanPositionId);
+        let pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
         let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPosition.id);
         let pacmanOffsetPosition = pacmanPosition;
         let x = pacmanPosition.x;
@@ -42,7 +42,7 @@ export default class GhostInky extends Ghost {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
             try {
-                let calculatedPosition = this.level.getBoardPositionAt(x, y);
+                let calculatedPosition = super.level.getBoardPositionAt(x, y);
                 if (this.isPositionAccessible(calculatedPosition)) {
                     pacmanOffsetPosition = calculatedPosition;
                 }
@@ -94,7 +94,7 @@ export default class GhostInky extends Ghost {
         let yCalculated = pacmanOffsetPosition.y + yDifference;
         let targetTilePosition = null;
         try {
-            targetTilePosition = this.level.getBoardPositionAt(xCalculated, yCalculated);
+            targetTilePosition = super.level.getBoardPositionAt(xCalculated, yCalculated);
         } catch(e){}
         return targetTilePosition;
     }
@@ -119,7 +119,7 @@ export default class GhostInky extends Ghost {
     selectPositionsOfGhostTypeWithHighestReferencePriority() {
         let ghostPositions = [];
         for (let ghostCharacter of Configuration.chasePatternGhostInkyGhostPriorityList) {
-            ghostPositions = this.level.getGhostPositionsFor(ghostCharacter);
+            ghostPositions = super.level.getGhostPositionsFor(ghostCharacter);
             if (ghostPositions.length > 0) { break; }
         }
         return ghostPositions;
@@ -137,7 +137,7 @@ export default class GhostInky extends Ghost {
 
 
     getPacmanMovementDirectionFor(pacmanPositionId) {
-        let pacmanMovementDirection = this.level.getPacmanMovementDirectionFor(pacmanPositionId);
+        let pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
         if (pacmanMovementDirection === undefined) {
             // handle case when pacman has not yet moved at the start of the game
             pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);

@@ -21,7 +21,7 @@ export default class Ghost extends Actor {
 
 
    getAccessibleNeighborList(xBoardPosition, yBoardPosition) {
-      return this.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
+      return super.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
    }
 
 
@@ -128,7 +128,7 @@ export default class Ghost extends Actor {
 
 
    selectClosestPacmanID() {
-      let pacmanIds = this.level.getPacmanIDs();
+      let pacmanIds = super.level.getPacmanIDs();
       let minCostId = null;
       let minPathCost = Infinity;
       let currentId = -1;
@@ -167,12 +167,12 @@ export default class Ghost extends Actor {
 
 
    killPacman(pacmanId) {
-      this.level.killPacman(pacmanId);
+      super.level.killPacman(pacmanId);
    }
 
 
    countScaredGhosts() {
-      return this.level.countScaredGhosts();
+      return super.level.countScaredGhosts();
    }
 
    

@@ -50,8 +50,8 @@ export default class Pacman extends Actor {
 
 
    kill() {
-      this.level.decrementTotalPacmanLifes();
-      this.level.removeDeadPacmanAt(super.currentPosition.id);
+      super.level.decrementTotalPacmanLifes();
+      super.level.removeDeadPacmanAt(super.currentPosition.id);
       this.isAlive = false;
    }
 
@@ -130,7 +130,7 @@ export default class Pacman extends Actor {
          let thisPacmanPositionId = super.currentPosition.id;
          let otherPacmanPositionId = this.nextPosition.id;
          if (thisPacmanPositionId !== otherPacmanPositionId) {
-            let otherCompletedTurn = this.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
+            let otherCompletedTurn = super.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
             if (otherCompletedTurn) {
                super.nextPosition = super.currentPosition;
             } else {
@@ -145,8 +145,8 @@ export default class Pacman extends Actor {
    handlePointCollision() {
       if (super.isNextPositionElementCharacter(Configuration.pointCharacter)) {
          super.incrementScoreBy(Configuration.scoreValuePerPoint);
-         this.level.incrementConsumedPoints();
-         this.level.decrementAvailablePoints();
+         super.level.incrementConsumedPoints();
+         super.level.decrementAvailablePoints();
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
@@ -156,9 +156,9 @@ export default class Pacman extends Actor {
    handlePowerUpCollision() {
       if (super.isNextPositionElementCharacter(Configuration.powerUpCharacter)) {
          super.incrementScoreBy(Configuration.scoreValuePerPowerUp);
-         this.level.incrementConsumedPoints();
-         this.level.decrementAvailablePoints();
-         this.level.scareLivingGhosts();
+         super.level.incrementConsumedPoints();
+         super.level.decrementAvailablePoints();
+         super.level.scareLivingGhosts();
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
@@ -171,7 +171,7 @@ export default class Pacman extends Actor {
 
       if (isNextPositionBonusElement) {
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
-         this.level.handleBonusConsumption();
+         super.level.handleBonusConsumption();
          this.isBackgroundUpdateNeeded = true;
       }
    }
@@ -188,15 +188,15 @@ export default class Pacman extends Actor {
 
 
    handleHostileGhostCollision(positionId) {
-      if (this.level.isPositionOccupiedByHostileGhost(positionId)) {
+      if (super.level.isPositionOccupiedByHostileGhost(positionId)) {
          this.kill();
       }
    }
 
 
    handleKillableGhostCollision(positionId) {
-      if (this.isAlive && this.level.isPositionOccupiedByKillableGhost(positionId)) {
-         this.level.killGhost(positionId);
+      if (this.isAlive && super.level.isPositionOccupiedByKillableGhost(positionId)) {
+         super.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
       }
    }

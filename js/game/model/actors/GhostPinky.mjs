@@ -24,7 +24,7 @@ export default class GhostPinky extends Ghost {
 
     calculateChaseTargetTileId() {
         let pacmanPositionId = super.selectClosestPacmanID();
-        let pacmanPosition = this.level.getPacmanPositionFor(pacmanPositionId);
+        let pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
         let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPositionId);
         let currentTargetTileId = pacmanPositionId;
         let x = pacmanPosition.x;
@@ -34,7 +34,7 @@ export default class GhostPinky extends Ghost {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
             try {
-                let calculatedPosition = this.level.getBoardPositionAt(x, y);
+                let calculatedPosition = super.level.getBoardPositionAt(x, y);
                 if (this.isPositionAccessible(calculatedPosition)) {
                     currentTargetTileId = calculatedPosition.id;
                 }
@@ -53,7 +53,7 @@ export default class GhostPinky extends Ghost {
 
 
     getPacmanMovementDirectionFor(pacmanPositionId) {
-        let pacmanMovementDirection = this.level.getPacmanMovementDirectionFor(pacmanPositionId);
+        let pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
         if (pacmanMovementDirection === undefined) {
             // handle case when pacman has not yet moved at the start of the game
             pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);
