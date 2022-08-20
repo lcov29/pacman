@@ -20,7 +20,8 @@ export default class Ghost extends Actor {
       super(level, position);
       this.#routing = routing;
       this.#spawnPositionId = position.id;
-      super.movementDirectionName = Configuration.directionNameDown; 
+      super.movementDirectionName = Configuration.directionNameDown;
+      this.initializeState() 
    }
 
 
