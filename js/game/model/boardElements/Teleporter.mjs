@@ -46,10 +46,10 @@ export default class Teleporter {
 
 
     add(position) {
-        if (this.#positionTeleporter1 === null) {
-            this.#positionTeleporter1 = position;
-        } else {
+        if (this.#positionTeleporter1) {
             this.#positionTeleporter2 = position;
+        } else {
+            this.#positionTeleporter1 = position;
         }
     }
 
