@@ -76,7 +76,7 @@ export default class BonusElementSpawner {
 
         if (!this.isBonusElementSpawned && isConsumedPointLimitReached) {
             const spawnPosition = this.chooseRandomSpawnPositionFromList();
-            const request = new BackgroundRequest(spawnPosition.getX(), spawnPosition.getY(), this.bonusCharacter);
+            const request = new BackgroundRequest(spawnPosition.x, spawnPosition.y, this.bonusCharacter);
             this.level.processBackgroundRequest(request);
             this.isBonusElementSpawned = true;
         }

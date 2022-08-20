@@ -59,7 +59,7 @@ export default class BoardParser {
                 const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
                 
                 if (isAccessibleByActor) {
-                    positionArray[y][x].setID(id);
+                    positionArray[y][x].id = id;
                     id++;
                 }
              }

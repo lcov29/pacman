@@ -23,7 +23,7 @@ export default class Routing {
          output = new BoardPosition(startNode.xPosition, startNode.yPosition, startNodeId);
       } else {
          let nextNode = this.selectFirstNodeOfShortestPath(startNode, endNode);
-         output = new BoardPosition(nextNode.xPosition, nextNode.yPosition, nextNode.getID());
+         output = new BoardPosition(nextNode.xPosition, nextNode.yPosition, nextNode.id);
       }
       return output;
    }
@@ -48,7 +48,7 @@ export default class Routing {
       let routingNode = null;
 
       for (let position of accessiblePositionList) {
-         routingNode = new RoutingNode(position.getID(), position.getX(), position.getY());
+         routingNode = new RoutingNode(position.id, position.x, position.y);
          routingNodeRow.push(routingNode);
       }
 

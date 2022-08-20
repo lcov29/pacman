@@ -51,7 +51,7 @@ export default class Pacman extends Actor {
 
    kill() {
       this.level.decrementTotalPacmanLifes();
-      this.level.removeDeadPacmanAt(super.getCurrentPosition().getID());
+      this.level.removeDeadPacmanAt(super.getCurrentPosition().id);
       this.isAlive = false;
    }
 
@@ -97,7 +97,7 @@ export default class Pacman extends Actor {
    sendLevelBackgroundRequest() {
       if (this.isBackgroundUpdateNeeded) {
          const nextPosition = super.getNextPosition();
-         const request = new BackgroundRequest(nextPosition.getX(), nextPosition.getY(), nextPosition.getElementLayerCharacter());
+         const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.getElementLayerCharacter());
          super.sendLevelBackgroundRequest(request);
       }
       this.isBackgroundUpdateNeeded = false;
@@ -127,8 +127,8 @@ export default class Pacman extends Actor {
    handleOtherPacmanCollision() {
       let result = true;
       if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-         let thisPacmanPositionId = this.getCurrentPosition().getID();
-         let otherPacmanPositionId = this.getNextPosition().getID();
+         let thisPacmanPositionId = this.getCurrentPosition().id;
+         let otherPacmanPositionId = this.getNextPosition().id;
          if (thisPacmanPositionId !== otherPacmanPositionId) {
             let otherCompletedTurn = this.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
             if (otherCompletedTurn) {
@@ -180,7 +180,7 @@ export default class Pacman extends Actor {
    handleGhostCollision() {
       let nextPositionActorCharacter = super.getNextPosition().getActorLayerCharacter();
       if (Configuration.ghostCharacterList.includes(nextPositionActorCharacter)) {
-         let nextPositionId = super.getNextPosition().getID();
+         let nextPositionId = super.getNextPosition().id;
          this.handleHostileGhostCollision(nextPositionId);
          this.handleKillableGhostCollision(nextPositionId);
       }

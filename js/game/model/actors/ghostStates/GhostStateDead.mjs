@@ -33,7 +33,7 @@ export default class GhostStateDead extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        let currentPositionId = ghost.getCurrentPosition().getID();
+        let currentPositionId = ghost.getCurrentPosition().id;
         let nextPosition = this.calculateNextPosition(currentPositionId);
         ghost.setNextPosition(nextPosition);
     }
@@ -93,7 +93,7 @@ export default class GhostStateDead extends GhostState {
 
     handleSpawnCollision() {
         let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().getID() === ghost.getSpawnID()) {
+        if (ghost.getCurrentPosition().id === ghost.getSpawnID()) {
             super.end();
         }
     }

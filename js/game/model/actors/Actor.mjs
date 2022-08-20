@@ -123,10 +123,10 @@ export default class Actor {
 
    createMovementRequest(ghostStateName) {
       const request = new MovementRequest();
-      request.xPositionStart = this.currentPosition.getX();
-      request.yPositionStart = this.currentPosition.getY();
-      request.xPositionDestination = this.nextPosition.getX();
-      request.yPositionDestination = this.nextPosition.getY();
+      request.xPositionStart = this.currentPosition.x;
+      request.yPositionStart = this.currentPosition.y;
+      request.xPositionDestination = this.nextPosition.x;
+      request.yPositionDestination = this.nextPosition.y;
 
       const direction = this.getCurrentMovementDirection();
       request.xDirection = direction.x;
@@ -146,15 +146,15 @@ export default class Actor {
 
 
    loadCurrentPositionFromBoard() {
-      let currentX = this.currentPosition.getX();
-      let currentY = this.currentPosition.getY();
+      let currentX = this.currentPosition.x;
+      let currentY = this.currentPosition.y;
       this.currentPosition = this.level.getBoardPositionAt(currentX, currentY); 
    }
 
 
    loadNextPositionFromBoard() {
-      let nextX = this.nextPosition.getX();
-      let nextY = this.nextPosition.getY();
+      let nextX = this.nextPosition.x;
+      let nextY = this.nextPosition.y;
       this.nextPosition = this.level.getBoardPositionAt(nextX, nextY);
    }
 
@@ -167,8 +167,8 @@ export default class Actor {
 
    calculateNextPositionByCurrentDirection() {
       let direction = this.getCurrentMovementDirection();
-      let nextX = this.getCurrentPosition().getX() + direction.x;
-      let nextY = this.getCurrentPosition().getY() + direction.y;
+      let nextX = this.getCurrentPosition().x + direction.x;
+      let nextY = this.getCurrentPosition().y + direction.y;
       let nextPosition = null;
       try {
          nextPosition =  this.level.getBoardPositionAt(nextX, nextY);

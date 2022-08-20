@@ -33,10 +33,10 @@ export default class GhostInky extends Ghost {
 
     calculatePacmanOffsetPosition(pacmanPositionId) {
         let pacmanPosition = this.level.getPacmanPositionFor(pacmanPositionId);
-        let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPosition.getID());
+        let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPosition.id);
         let pacmanOffsetPosition = pacmanPosition;
-        let x = pacmanPosition.getX();
-        let y =  pacmanPosition.getY();
+        let x = pacmanPosition.x;
+        let y = pacmanPosition.y;
 
         for (let i = 0; i < Configuration.ghostInkyMaxTileOffsetToPacmanDirectionPosition; i++) {
             x += pacmanMovementDirection.x;
@@ -56,8 +56,8 @@ export default class GhostInky extends Ghost {
 
 
     calculateTargetTileId(pacmanOffsetPosition, ghostPosition) {
-        let xDifference = pacmanOffsetPosition.getX() - ghostPosition.getX();
-        let yDifference = pacmanOffsetPosition.getY() - ghostPosition.getY();
+        let xDifference = pacmanOffsetPosition.x - ghostPosition.x;
+        let yDifference = pacmanOffsetPosition.y - ghostPosition.y;
         let xOriginalDifference = xDifference;
         let potentialTargetTilePosition = this.calculatePotentialTargetTilePosition(pacmanOffsetPosition,
                                                                                     xDifference,
@@ -85,13 +85,13 @@ export default class GhostInky extends Ghost {
             }
         }
 
-        return potentialTargetTilePosition.getID();
+        return potentialTargetTilePosition.id;
     }
 
 
     calculatePotentialTargetTilePosition(pacmanOffsetPosition, xDifference, yDifference) {
-        let xCalculated = pacmanOffsetPosition.getX() + xDifference;
-        let yCalculated = pacmanOffsetPosition.getY() + yDifference;
+        let xCalculated = pacmanOffsetPosition.x + xDifference;
+        let yCalculated = pacmanOffsetPosition.y + yDifference;
         let targetTilePosition = null;
         try {
             targetTilePosition = this.level.getBoardPositionAt(xCalculated, yCalculated);
@@ -103,10 +103,10 @@ export default class GhostInky extends Ghost {
     selectClosestPositionOfGhostTypeWithHighestReferencePriority() {
        let minCostPosition = null;
        let minPathCost = Infinity;
-       let ghostInkyId = super.getCurrentPosition().getID();
+       let ghostInkyId = super.getCurrentPosition().id;
        let ghostReferencePositions = this.selectPositionsOfGhostTypeWithHighestReferencePriority();
        for (let ghostPosition of ghostReferencePositions) {   
-          let currentPathCost =  this.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.getID());
+          let currentPathCost =  this.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
           if (currentPathCost < minPathCost) {
              minPathCost = currentPathCost;
              minCostPosition = ghostPosition;

@@ -19,21 +19,21 @@ export default class Teleporter {
 
     
     getIDPosition1() {
-        return this.positionTeleporter1.getID();
+        return this.positionTeleporter1.id;
     }
 
 
     getIDPosition2() {
-        return this.positionTeleporter2.getID();
+        return this.positionTeleporter2.id;
     }
 
 
     getDestinationPositionFor(position) {
         let destination = null;
-        if (position.getID() === this.positionTeleporter1.getID()) {
+        if (position.id === this.positionTeleporter1.id) {
             destination = this.positionTeleporter2.clone();
         } else {
-            if (position.getID() === this.positionTeleporter2.getID()) {
+            if (position.id === this.positionTeleporter2.id) {
                 destination = this.positionTeleporter1.clone();
             }
         }
@@ -48,8 +48,8 @@ export default class Teleporter {
 
     
     isTeleporterFor(position) {
-        return position.getID() === this.positionTeleporter1.getID() ||
-               position.getID() === this.positionTeleporter2.getID();
+        return position.id === this.positionTeleporter1.id ||
+               position.id === this.positionTeleporter2.id;
     }
 
 

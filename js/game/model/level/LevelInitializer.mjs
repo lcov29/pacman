@@ -103,7 +103,7 @@ export default class LevelInitializer {
         for (let scatterPosition of board.ghostScatterPositionList) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === scatterPosition.getElementLayerCharacter()) {
-                    ghost.setScatterID(scatterPosition.getID());
+                    ghost.setScatterID(scatterPosition.id);
                 }
             }
         }
@@ -111,10 +111,10 @@ export default class LevelInitializer {
 
 
     static initializeOptionalGhostSpawnPositions(board, ghosts) {
-        for (let spawnPosition of board.otionalGhostSpawnPositions) {
+        for (let spawnPosition of board.ghostOptionalSpawnPositionList) {
             for (let ghost of ghosts) {
                 if (ghost.getCharacter() === spawnPosition.getElementLayerCharacter()) {
-                    ghost.setSpawnID(spawnPosition.getID());
+                    ghost.setSpawnID(spawnPosition.id);
                 }
             }
         }    

@@ -115,7 +115,7 @@ export default class GhostStateScared extends GhostState {
     handleLevelBorderCollision(nextPosition) {
         let ghost = super.getGhost();
         // when an actor moves out of the level its position is reset to current position 
-        if (nextPosition.getID() === ghost.getCurrentPosition().getID()) {
+        if (nextPosition.id === ghost.getCurrentPosition().id) {
             ghost.randomizeMovementDirection();
         }
     }
@@ -124,8 +124,8 @@ export default class GhostStateScared extends GhostState {
     chooseRandomAccessibleNextBoardPosition() {
         const ghost = super.getGhost();
         const currentBoardPosition = ghost.getCurrentPosition();
-        const currentX = currentBoardPosition.getX();
-        const currentY = currentBoardPosition.getY();
+        const currentX = currentBoardPosition.x;
+        const currentY = currentBoardPosition.y;
         const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
         
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;

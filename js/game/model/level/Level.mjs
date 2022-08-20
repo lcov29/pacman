@@ -52,7 +52,7 @@ export default class Level {
 
         for (let row of boardPositionArray) {
             for (let element of row) {
-                const request = new BackgroundRequest(element.getX(), element.getY(), element.getElementLayerCharacter());
+                const request = new BackgroundRequest(element.x, element.y, element.getElementLayerCharacter());
                 this.addInformationToBackgroundRequest(request);
                 requestList.push(request);
             }
@@ -71,10 +71,10 @@ export default class Level {
         for (let position of initialActorPositionList) {
             const request = new MovementRequest();
 
-            request.xPositionStart = position.getX();
-            request.yPositionStart = position.getY();
-            request.xPositionDestination = position.getX();
-            request.yPositionDestination = position.getY();
+            request.xPositionStart = position.x;
+            request.yPositionStart = position.y;
+            request.xPositionDestination = position.x;
+            request.yPositionDestination = position.y;
 
             const actorCharacter = position.getActorLayerCharacter();
             request.actorCharacter =  actorCharacter;
@@ -172,7 +172,7 @@ export default class Level {
     getPacmanIDs() {
         let ids = [];
         for (let pacman of this.pacmans) {
-            ids.push(pacman.getCurrentPosition().getID());
+            ids.push(pacman.getCurrentPosition().id);
         }
         return ids;
     }
@@ -192,7 +192,7 @@ export default class Level {
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === positionId) {
+            if (pacman.getCurrentPosition().id === positionId) {
                 movementDirection =  pacman.getCurrentMovementDirection();
                 break;
             }
@@ -205,7 +205,7 @@ export default class Level {
         let pacmanPosition = null;
         for (let pacman of this.pacmans) {
             let position = pacman.getCurrentPosition();
-            if (position.getID() === positionId) {
+            if (position.id === positionId) {
                 pacmanPosition = position;
                 break;
             }
@@ -217,7 +217,7 @@ export default class Level {
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === positionId) {
+            if (ghost.getCurrentPosition().id === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
             }
@@ -229,7 +229,7 @@ export default class Level {
     isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().getID() === positionId) {
+            if (ghost.getCurrentPosition().id === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
             }
@@ -241,7 +241,7 @@ export default class Level {
     getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === positionId) {
+            if (pacman.getCurrentPosition().id === positionId) {
                 status = pacman.getTurnCompletionStatus();
                 break;
             }
@@ -296,7 +296,7 @@ export default class Level {
 
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().getID() === positionId) {
+            if (pacman.getCurrentPosition().id === positionId) {
                 Utility.removeElementFrom(this.pacmans, pacman);
             }
         }  
@@ -349,7 +349,7 @@ export default class Level {
 
     killActor(actors, positionId) {
         for (let actor of actors) {
-            if (actor.getCurrentPosition().getID() === positionId) {
+            if (actor.getCurrentPosition().id === positionId) {
                 actor.kill();
             }
         }

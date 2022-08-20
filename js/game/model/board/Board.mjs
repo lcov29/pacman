@@ -99,7 +99,7 @@ export default class Board {
    }
 
 
-   get optionalGhostSpawnPositions() {
+   get ghostOptionalSpawnPositionList() {
       return this.#ghostOptionalSpawnPositionList;
    }
 
@@ -138,7 +138,7 @@ export default class Board {
          for (let x = 0; x < this.#board[y].length; x++) {
             if (this.isAccessibleAt(x, y)) {
                for(let position of this.buildAccessibleNeighborList(x, y)) {
-                  idList.push(position.getID());
+                  idList.push(position.id);
                }
                outputList.push(idList);
                idList = [];
@@ -165,7 +165,7 @@ export default class Board {
 
 
    isAccessibleAt(x, y) {
-      return this.#board[y][x].getID() !== Configuration.idInaccessibleBoardTiles;
+      return this.#board[y][x].id !== Configuration.idInaccessibleBoardTiles;
    }
 
 

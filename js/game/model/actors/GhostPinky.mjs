@@ -27,8 +27,8 @@ export default class GhostPinky extends Ghost {
         let pacmanPosition = this.level.getPacmanPositionFor(pacmanPositionId);
         let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPositionId);
         let currentTargetTileId = pacmanPositionId;
-        let x = pacmanPosition.getX();
-        let y =  pacmanPosition.getY();
+        let x = pacmanPosition.x;
+        let y = pacmanPosition.y;
 
         for (let i = 0; i < Configuration.ghostPinkyMaxTileOffsetToPacmanDirectionPosition; i++) {
             x += pacmanMovementDirection.x;
@@ -36,7 +36,7 @@ export default class GhostPinky extends Ghost {
             try {
                 let calculatedPosition = this.level.getBoardPositionAt(x, y);
                 if (this.isPositionAccessible(calculatedPosition)) {
-                    currentTargetTileId = calculatedPosition.getID();
+                    currentTargetTileId = calculatedPosition.id;
                 }
             } catch(e) {
                 break;   // calculated position is outside of the board

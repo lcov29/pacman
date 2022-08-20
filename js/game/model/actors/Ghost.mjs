@@ -14,7 +14,7 @@ export default class Ghost extends Actor {
       super(level, position);
       this.routing = routing;
       this.scatterPositionId = -1;
-      this.spawnPositionId = position.getID();
+      this.spawnPositionId = position.id;
       this.state = null;
       super.setMovementDirectionName(Configuration.directionNameDown); 
    }
@@ -68,7 +68,7 @@ export default class Ghost extends Actor {
    
 
    isNextPositionEqualToTeleportDestination() {
-      return super.getNextPosition().getID() === super.getTeleportDestinationForCurrentPosition().getID();
+      return super.getNextPosition().id === super.getTeleportDestinationForCurrentPosition().id;
    }
 
 
@@ -134,7 +134,7 @@ export default class Ghost extends Actor {
       let currentId = -1;
       
       for (let pacmanId of pacmanIds) {   
-         currentId = super.getCurrentPosition().getID();
+         currentId = super.getCurrentPosition().id;
          let currentPathCost =  this.routing.getShortestDistanceBetween(currentId, pacmanId);
          if (currentPathCost < minPathCost) {
             minPathCost = currentPathCost;
@@ -146,9 +146,9 @@ export default class Ghost extends Actor {
 
 
    updateMovementDirection(currentPosition, nextPosition) {
-      if (currentPosition.getID() !== nextPosition.getID()) {
-         let directionX = nextPosition.getX() - currentPosition.getX();
-         let directionY = nextPosition.getY() - currentPosition.getY();
+      if (currentPosition.id !== nextPosition.id) {
+         let directionX = nextPosition.x - currentPosition.x;
+         let directionY = nextPosition.y - currentPosition.y;
          let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
          super.setMovementDirectionName(directionName);
       }
