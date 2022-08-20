@@ -70,12 +70,12 @@ export default class GhostStateScared extends GhostState {
     handleTeleporterCollision() {
         const ghost = super.getGhost();
 
-        const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.getTeleportationStatus();
+        const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.hasTeleportedInPreviousTurn;
         if (isTeleportationNeeded) {
             const destination = ghost.getTeleportDestinationForCurrentPosition();
             ghost.nextPosition = destination;
             ghost.hasTeleportedInPreviousTurn = true;
-        } else if (ghost.getTeleportationStatus()) {
+        } else if (ghost.hasTeleportedInPreviousTurn) {
             this.chooseRandomAccessibleNextBoardPosition();
             ghost.hasTeleportedInPreviousTurn = false;
         }
