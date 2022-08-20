@@ -71,12 +71,12 @@ export default class BoardPosition {
     }
 
 
-    getActorLayerCharacter() {
+    get actorLayerCharacter() {
         return this.#actorLayerCharacter;
     }
 
 
-    getElementLayerCharacter() {
+    get elementLayerCharacter() {
         return this.#elementLayerCharacter;
     }
 
