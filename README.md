@@ -31,11 +31,10 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * replace div-based game screen with canvas
 * replace png sprites with svg sprites
 * add animations for pacman and ghost movement
-* add animation for ghost transition from scared to scatter
+* add animation for transition between ghost states scared and scatter
 * add counter for number of lifes
 * refactor codebase
-* bugfixes
-* 
+* fix bugs
 <br>
 <br>
 
