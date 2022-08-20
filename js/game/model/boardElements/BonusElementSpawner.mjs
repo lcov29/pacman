@@ -65,8 +65,8 @@ export default class BonusElementSpawner {
     }
 
 
-    setBonusSpawnStatus(status) {
-        this.#isBonusElementSpawned = status;
+    resetBonusSpawnStatus() {
+        this.#isBonusElementSpawned = false;
     }
     
 
