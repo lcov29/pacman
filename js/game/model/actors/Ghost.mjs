@@ -84,7 +84,7 @@ export default class Ghost extends Actor {
       const isStateChangeNecessary = this.#state.getRemainingTurns() === 0;
 
       if (isStateChangeNecessary) {
-         this.#state = this.#state.getSubsequentState();
+         this.#changeToSubsequentState();
          this.move();
       } else {
          super.loadCurrentPositionFromBoard();
@@ -165,6 +165,11 @@ export default class Ghost extends Actor {
       if (!this.#state) {
          this.#state = new GhostStateScatter(this);
       }
+   }
+
+
+   #changeToSubsequentState() {
+      this.#state = this.#state.getSubsequentState();
    }
 
 
