@@ -103,7 +103,7 @@ export default class LevelInitializer {
         for (let scatterPosition of board.ghostScatterPositionList) {
             for (let ghost of ghosts) {
                 if (ghost.character === scatterPosition.elementLayerCharacter) {
-                    ghost.setScatterID(scatterPosition.id);
+                    ghost.scatterID = scatterPosition.id;
                 }
             }
         }
