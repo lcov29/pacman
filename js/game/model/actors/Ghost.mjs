@@ -21,7 +21,7 @@ export default class Ghost extends Actor {
       this.#routing = routing;
       this.#spawnPositionId = position.id;
       super.movementDirectionName = Configuration.directionNameDown;
-      this.initializeState() 
+      this.#initializeState() 
    }
 
 
@@ -60,7 +60,7 @@ export default class Ghost extends Actor {
    }
 
 
-   initializeState() {
+   #initializeState() {
       if (this.#state === null) {
          this.#state = new GhostStateScatter(this);
       }
