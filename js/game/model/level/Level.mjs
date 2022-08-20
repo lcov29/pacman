@@ -253,7 +253,7 @@ export default class Level {
     getTeleportDestination(position) {
         let destination = null;
         for (let teleporter of this.teleporters) {
-            if (teleporter.isTeleporterFor(position)) {
+            if (teleporter.isTeleporter(position)) {
                 destination = teleporter.getDestinationPositionFor(position);
                 break;
             }
