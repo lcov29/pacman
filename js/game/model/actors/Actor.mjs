@@ -49,32 +49,23 @@ export default class Actor {
    }
 
 
-
-
-
-
-
-
-
-
-
-
-   getCurrentPosition() {
+   // TODO: Add a method like isCurrentPositionId(id)
+   get currentPosition() {
       return this.#currentPosition;
    }
 
 
-   getNextPosition() {
+   get nextPosition() {
       return this.#nextPosition;
    }
 
 
-   getCharacter() {
+   get character() {
       return this.#character;
    }
 
 
-   getCurrentMovementDirectionName() {
+   get movementDirectionName() {
       return this.#movementDirectionName;
    }
 
@@ -182,14 +173,14 @@ export default class Actor {
 
    calculateNextPositionByCurrentDirection() {
       let direction = this.getCurrentMovementDirection();
-      let nextX = this.getCurrentPosition().x + direction.x;
-      let nextY = this.getCurrentPosition().y + direction.y;
+      let nextX = this.#currentPosition.x + direction.x;
+      let nextY = this.#currentPosition.y + direction.y;
       let nextPosition = null;
       try {
          nextPosition =  this.#level.getBoardPositionAt(nextX, nextY);
       } catch(e) {
          // prevent actor from leaving the board
-         nextPosition = this.getCurrentPosition();
+         nextPosition = this.#currentPosition;
       }
       return nextPosition;
    }
