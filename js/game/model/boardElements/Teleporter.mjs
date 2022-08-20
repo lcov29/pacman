@@ -2,39 +2,40 @@
 
 export default class Teleporter {
 
+
+    #positionTeleporter1 = null;
+    #positionTeleporter2 = null;
+
     
-    constructor() {
-        this.positionTeleporter1 = null;
-        this.positionTeleporter2 = null;
-    }
+    constructor() {}
 
 
     add(position) {
-        if (this.positionTeleporter1 === null) {
-            this.positionTeleporter1 = position;
+        if (this.#positionTeleporter1 === null) {
+            this.#positionTeleporter1 = position;
         } else {
-            this.positionTeleporter2 = position;
+            this.#positionTeleporter2 = position;
         }
     }
 
     
     getIDPosition1() {
-        return this.positionTeleporter1.id;
+        return this.#positionTeleporter1.id;
     }
 
 
     getIDPosition2() {
-        return this.positionTeleporter2.id;
+        return this.#positionTeleporter2.id;
     }
 
 
     getDestinationPositionFor(position) {
         let destination = null;
-        if (position.id === this.positionTeleporter1.id) {
-            destination = this.positionTeleporter2.clone();
+        if (position.id === this.#positionTeleporter1.id) {
+            destination = this.#positionTeleporter2.clone();
         } else {
-            if (position.id === this.positionTeleporter2.id) {
-                destination = this.positionTeleporter1.clone();
+            if (position.id === this.#positionTeleporter2.id) {
+                destination = this.#positionTeleporter1.clone();
             }
         }
         return destination; 
@@ -42,14 +43,14 @@ export default class Teleporter {
 
     
     isInitialized() {
-        return this.positionTeleporter1 !== null &&
-               this.positionTeleporter2 !== null;
+        return this.#positionTeleporter1 !== null &&
+               this.#positionTeleporter2 !== null;
     }
 
     
     isTeleporterFor(position) {
-        return position.id === this.positionTeleporter1.id ||
-               position.id === this.positionTeleporter2.id;
+        return position.id === this.#positionTeleporter1.id ||
+               position.id === this.#positionTeleporter2.id;
     }
 
 
