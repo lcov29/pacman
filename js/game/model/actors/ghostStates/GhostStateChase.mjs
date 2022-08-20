@@ -58,13 +58,13 @@ export default class GhostStateChase extends GhostState {
 
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {
-                ghost.teleportationStatus = true;
+                ghost.hasTeleportedInPreviousTurn = true;
             } else {
-                ghost.teleportationStatus = false;
+                ghost.hasTeleportedInPreviousTurn = false;
             }
             
         } else {
-            ghost.teleportationStatus = false;
+            ghost.hasTeleportedInPreviousTurn = false;
         }
     }
 

@@ -69,7 +69,7 @@ export default class Pacman extends Actor {
             let teleportationStatus = this.handleTeleportation();  
             this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
-               super.teleportationStatus = teleportationStatus;
+               super.hasTeleportedInPreviousTurn = teleportationStatus;
                this.handleGhostCollision();
                if (this.isAlive) {
                   this.handlePointCollision();
@@ -107,7 +107,7 @@ export default class Pacman extends Actor {
    handleTeleportation() {
       let teleportationExecuted = false;
       // check teleportation flag to prevent teleportation loop
-      if (super.isCurrentPositionTeleporter() && this.hasTeleportedInPreviousTurn === false) {
+      if (super.isCurrentPositionTeleporter() && super.hasTeleportedInPreviousTurn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
          super.nextPosition = destination;
          teleportationExecuted = true;
