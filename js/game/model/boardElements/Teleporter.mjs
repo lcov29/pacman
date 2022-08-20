@@ -10,15 +10,6 @@ export default class Teleporter {
     constructor() {}
 
 
-    add(position) {
-        if (this.#positionTeleporter1 === null) {
-            this.#positionTeleporter1 = position;
-        } else {
-            this.#positionTeleporter2 = position;
-        }
-    }
-
-    
     get idPosition1() {
         return this.#positionTeleporter1.id;
     }
@@ -41,7 +32,7 @@ export default class Teleporter {
         return destination; 
     }
 
-    
+
     isInitialized() {
         return this.#positionTeleporter1 !== null &&
                this.#positionTeleporter2 !== null;
@@ -51,6 +42,15 @@ export default class Teleporter {
     isTeleporterFor(position) {
         return position.id === this.#positionTeleporter1.id ||
                position.id === this.#positionTeleporter2.id;
+    }
+
+
+    add(position) {
+        if (this.#positionTeleporter1 === null) {
+            this.#positionTeleporter1 = position;
+        } else {
+            this.#positionTeleporter2 = position;
+        }
     }
 
 
