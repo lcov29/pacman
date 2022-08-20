@@ -58,13 +58,6 @@ export default class Ghost extends Actor {
    getAccessibleNeighborList(xBoardPosition, yBoardPosition) {
       return super.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
    }
-
-
-   #initializeState() {
-      if (this.#state === null) {
-         this.#state = new GhostStateScatter(this);
-      }
-   }
    
 
    isNextPositionEqualToTeleportDestination() {
@@ -145,16 +138,6 @@ export default class Ghost extends Actor {
    }
 
 
-   #updateMovementDirection(currentPosition, nextPosition) {
-      if (currentPosition.id !== nextPosition.id) {
-         let directionX = nextPosition.x - currentPosition.x;
-         let directionY = nextPosition.y - currentPosition.y;
-         let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
-         super.movementDirectionName = directionName;
-      }
-   }
-
-
    randomizeMovementDirection() {
       while (true) {
          let randomDirectionName = Directions.getRandomDirectionName();
@@ -173,6 +156,23 @@ export default class Ghost extends Actor {
 
    countScaredGhosts() {
       return super.level.countScaredGhosts();
+   }
+
+
+   #initializeState() {
+      if (this.#state === null) {
+         this.#state = new GhostStateScatter(this);
+      }
+   }
+
+
+   #updateMovementDirection(currentPosition, nextPosition) {
+      if (currentPosition.id !== nextPosition.id) {
+         let directionX = nextPosition.x - currentPosition.x;
+         let directionY = nextPosition.y - currentPosition.y;
+         let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
+         super.movementDirectionName = directionName;
+      }
    }
 
    
