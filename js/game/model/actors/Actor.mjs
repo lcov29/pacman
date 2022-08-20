@@ -101,7 +101,7 @@ export default class Actor {
 
 
    isCurrentPositionTeleporter() {
-      let currentPositionElement = this.#currentPosition.elementLayerCharacter;
+      const currentPositionElement = this.#currentPosition.elementLayerCharacter;
       return Configuration.teleporterCharacterList.includes(currentPositionElement);
    }
 
@@ -129,16 +129,12 @@ export default class Actor {
 
 
    loadCurrentPositionFromBoard() {
-      let currentX = this.#currentPosition.x;
-      let currentY = this.#currentPosition.y;
-      this.#currentPosition = this.#level.getBoardPositionAt(currentX, currentY); 
+      this.#currentPosition = this.#level.getBoardPositionAt(this.#currentPosition.x, this.#currentPosition.y); 
    }
 
 
    loadNextPositionFromBoard() {
-      let nextX = this.#nextPosition.x;
-      let nextY = this.#nextPosition.y;
-      this.#nextPosition = this.#level.getBoardPositionAt(nextX, nextY);
+      this.#nextPosition = this.#level.getBoardPositionAt(this.#nextPosition.x, this.#nextPosition.y);
    }
 
 
@@ -149,22 +145,20 @@ export default class Actor {
 
 
    calculateNextPositionByCurrentDirection() {
-      let direction = this.getCurrentMovementDirection();
-      let nextX = this.#currentPosition.x + direction.x;
-      let nextY = this.#currentPosition.y + direction.y;
-      let nextPosition = null;
       try {
-         nextPosition =  this.#level.getBoardPositionAt(nextX, nextY);
+         const direction = this.getCurrentMovementDirection();
+         const nextX = this.#currentPosition.x + direction.x;
+         const nextY = this.#currentPosition.y + direction.y;
+         return this.#level.getBoardPositionAt(nextX, nextY);
       } catch(e) {
-         // prevent actor from leaving the board
-         nextPosition = this.#currentPosition;
+         return this.#currentPosition;
       }
-      return nextPosition;
    }
 
 
    #createMovementRequest(ghostStateName) {
       const request = new MovementRequest();
+      
       request.xPositionStart = this.#currentPosition.x;
       request.yPositionStart = this.#currentPosition.y;
       request.xPositionDestination = this.#nextPosition.x;
