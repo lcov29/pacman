@@ -70,8 +70,8 @@ export default class LevelInitializer {
         let neighborIdList = board.buildAccessibleNeighborIdList();
         // mark connected teleporters as neighbors
         for (let teleporter of teleporterList) {
-            neighborIdList[teleporter.getIDPosition1()].push(teleporter.getIDPosition2());
-            neighborIdList[teleporter.getIDPosition2()].push(teleporter.getIDPosition1());
+            neighborIdList[teleporter.idPosition1].push(teleporter.idPosition2);
+            neighborIdList[teleporter.idPosition2].push(teleporter.idPosition1);
         }
         return neighborIdList;
     }
