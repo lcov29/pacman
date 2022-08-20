@@ -61,12 +61,12 @@ export default class BoardPosition {
     }
 
 
-    getY() {
+    get y() {
         return this.#y;
     }
 
 
-    getID() {
+    get id() {
         return this.#id;
     }
 
