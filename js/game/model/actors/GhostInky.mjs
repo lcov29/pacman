@@ -14,25 +14,31 @@ export default class GhostInky extends Ghost {
     }
 
 
-    // chase movement pattern implementation; is used by GhostStateChase
+    // implementation of chase movement pattern for GhostStateChase
     calculateNextChasePosition(positionId) {
-        let targetTileId = this.calculateChaseTargetTileId();
+        const targetTileId = this.#calculateChaseTargetTileId();
         return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
     }
 
 
-    calculateChaseTargetTileId() {
-        let pacmanPositionId = super.selectClosestPacmanID();
-        let pacmanOffsetPosition = this.calculatePacmanOffsetPosition(pacmanPositionId);
-        let closestGhostPosition = this.selectClosestPositionOfGhostTypeWithHighestReferencePriority();
-        let targetTileId = (closestGhostPosition === null) ? pacmanPositionId : this.calculateTargetTileId(pacmanOffsetPosition, closestGhostPosition);
-        return targetTileId;
+    #calculateChaseTargetTileId() {
+        const pacmanPositionId = super.selectClosestPacmanID();
+        const closestGhostPosition = this.#selectClosestPositionOfGhostTypeWithHighestReferencePriority();
+
+        if (closestGhostPosition) {
+            return pacmanPositionId;
+        } else {
+            const pacmanOffsetPosition = this.#calculatePacmanOffsetPosition(pacmanPositionId);
+            const targetTileId = this.#calculateTargetTileId(pacmanOffsetPosition, closestGhostPosition);
+            return targetTileId;
+        }
     }
 
 
-    calculatePacmanOffsetPosition(pacmanPositionId) {
-        let pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
-        let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPosition.id);
+    #calculatePacmanOffsetPosition(pacmanPositionId) {
+        const pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
+        const pacmanMovementDirection = this.#getPacmanMovementDirectionFor(pacmanPosition.id);
+
         let pacmanOffsetPosition = pacmanPosition;
         let x = pacmanPosition.x;
         let y = pacmanPosition.y;
@@ -41,8 +47,8 @@ export default class GhostInky extends Ghost {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
             try {
-                let calculatedPosition = super.level.getBoardPositionAt(x, y);
-                if (this.isPositionAccessible(calculatedPosition)) {
+                const calculatedPosition = super.level.getBoardPositionAt(x, y);
+                if (this.#isPositionAccessible(calculatedPosition)) {
                     pacmanOffsetPosition = calculatedPosition;
                 }
             } catch(e) {
@@ -54,22 +60,22 @@ export default class GhostInky extends Ghost {
     }
 
 
-    calculateTargetTileId(pacmanOffsetPosition, ghostPosition) {
+    #calculateTargetTileId(pacmanOffsetPosition, ghostPosition) {
         let xDifference = pacmanOffsetPosition.x - ghostPosition.x;
         let yDifference = pacmanOffsetPosition.y - ghostPosition.y;
         let xOriginalDifference = xDifference;
-        let potentialTargetTilePosition = this.calculatePotentialTargetTilePosition(pacmanOffsetPosition,
+        let potentialTargetTilePosition = this.#calculatePotentialTargetTilePosition(pacmanOffsetPosition,
                                                                                     xDifference,
                                                                                     yDifference);
-        while (this.isPositionOnBoard(potentialTargetTilePosition) === false ||
-               this.isPositionAccessible(potentialTargetTilePosition) === false) {
+        while (!this.#isPositionOnBoard(potentialTargetTilePosition)||
+               !this.#isPositionAccessible(potentialTargetTilePosition)) {
             
             if (xDifference === 0) {
 
                 if (yDifference > 0) {
-                    yDifference = this.decrementTowardsZero(yDifference);
+                    yDifference = this.#decrementTowardsZero(yDifference);
                     xDifference = xOriginalDifference;
-                    potentialTargetTilePosition = this.calculatePotentialTargetTilePosition(pacmanOffsetPosition,
+                    potentialTargetTilePosition = this.#calculatePotentialTargetTilePosition(pacmanOffsetPosition,
                                                                                             xDifference,
                                                                                             yDifference);
                 } else {
@@ -77,8 +83,8 @@ export default class GhostInky extends Ghost {
                 }
                 
             } else {
-                xDifference = this.decrementTowardsZero(xDifference);
-                potentialTargetTilePosition = this.calculatePotentialTargetTilePosition(pacmanOffsetPosition,
+                xDifference = this.#decrementTowardsZero(xDifference);
+                potentialTargetTilePosition = this.#calculatePotentialTargetTilePosition(pacmanOffsetPosition,
                                                                                         xDifference,
                                                                                         yDifference);
             }
@@ -88,24 +94,28 @@ export default class GhostInky extends Ghost {
     }
 
 
-    calculatePotentialTargetTilePosition(pacmanOffsetPosition, xDifference, yDifference) {
-        let xCalculated = pacmanOffsetPosition.x + xDifference;
-        let yCalculated = pacmanOffsetPosition.y + yDifference;
-        let targetTilePosition = null;
+    #calculatePotentialTargetTilePosition(pacmanOffsetPosition, xDifference, yDifference) {
         try {
-            targetTilePosition = super.level.getBoardPositionAt(xCalculated, yCalculated);
-        } catch(e){}
-        return targetTilePosition;
+            const xCalculated = pacmanOffsetPosition.x + xDifference;
+            const yCalculated = pacmanOffsetPosition.y + yDifference;
+            const targetTilePosition = super.level.getBoardPositionAt(xCalculated, yCalculated);
+            return targetTilePosition;
+        } catch(e){
+            return null;
+        }
     }
 
 
-    selectClosestPositionOfGhostTypeWithHighestReferencePriority() {
+    #selectClosestPositionOfGhostTypeWithHighestReferencePriority() {
        let minCostPosition = null;
        let minPathCost = Infinity;
-       let ghostInkyId = super.currentPosition.id;
-       let ghostReferencePositions = this.selectPositionsOfGhostTypeWithHighestReferencePriority();
-       for (let ghostPosition of ghostReferencePositions) {   
-          let currentPathCost =  super.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
+       
+       const ghostReferencePositionList = this.#selectPositionsOfGhostTypeWithHighestReferencePriority();
+
+       for (let ghostPosition of ghostReferencePositionList) {  
+          const ghostInkyId = super.currentPosition.id;
+          const currentPathCost =  super.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
+
           if (currentPathCost < minPathCost) {
              minPathCost = currentPathCost;
              minCostPosition = ghostPosition;
@@ -115,29 +125,30 @@ export default class GhostInky extends Ghost {
     }
 
 
-    selectPositionsOfGhostTypeWithHighestReferencePriority() {
-        let ghostPositions = [];
+    #selectPositionsOfGhostTypeWithHighestReferencePriority() {
+        let ghostPositionList = [];
         for (let ghostCharacter of Configuration.chasePatternGhostInkyGhostPriorityList) {
-            ghostPositions = super.level.getGhostPositionsFor(ghostCharacter);
-            if (ghostPositions.length > 0) { break; }
+            ghostPositionList = super.level.getGhostPositionsFor(ghostCharacter);
+            if (ghostPositionList.length > 0) { break; }
         }
-        return ghostPositions;
+        return ghostPositionList;
     }
 
     
-    isPositionAccessible(position) {
+    #isPositionAccessible(position) {
         return (Configuration.actorsInaccessibleTileCharacterList.includes(position.elementLayerCharacter) === false);
     }
 
 
-    isPositionOnBoard(position) {
+    #isPositionOnBoard(position) {
         return position !== null;
     }
 
 
-    getPacmanMovementDirectionFor(pacmanPositionId) {
+    // TODO: check if still necessary
+    #getPacmanMovementDirectionFor(pacmanPositionId) {
         let pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
-        if (pacmanMovementDirection === undefined) {
+        if (!pacmanMovementDirection) {
             // handle case when pacman has not yet moved at the start of the game
             pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);
         }
@@ -145,7 +156,7 @@ export default class GhostInky extends Ghost {
     }
 
 
-    decrementTowardsZero(value) {
+    #decrementTowardsZero(value) {
         let result = value;
         if (value >= 0) {
             result--;

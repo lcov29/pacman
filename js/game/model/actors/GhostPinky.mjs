@@ -14,17 +14,18 @@ export default class GhostPinky extends Ghost {
     }
 
 
-    // chase movement pattern implementation; is used by GhostStateChase
+    // implementation of chase movement pattern for GhostStateChase
     calculateNextChasePosition(positionId) {
-        let targetTileId = this.calculateChaseTargetTileId();
+        const targetTileId = this.#calculateChaseTargetTileId();
         return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
     }
 
 
-    calculateChaseTargetTileId() {
-        let pacmanPositionId = super.selectClosestPacmanID();
-        let pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
-        let pacmanMovementDirection = this.getPacmanMovementDirectionFor(pacmanPositionId);
+    #calculateChaseTargetTileId() {
+        const pacmanPositionId = super.selectClosestPacmanID();
+        const pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
+        const pacmanMovementDirection = this.#getPacmanMovementDirectionFor(pacmanPositionId);
+
         let currentTargetTileId = pacmanPositionId;
         let x = pacmanPosition.x;
         let y = pacmanPosition.y;
@@ -33,8 +34,8 @@ export default class GhostPinky extends Ghost {
             x += pacmanMovementDirection.x;
             y += pacmanMovementDirection.y;
             try {
-                let calculatedPosition = super.level.getBoardPositionAt(x, y);
-                if (this.isPositionAccessible(calculatedPosition)) {
+                const calculatedPosition = super.level.getBoardPositionAt(x, y);
+                if (this.#isPositionAccessible(calculatedPosition)) {
                     currentTargetTileId = calculatedPosition.id;
                 }
             } catch(e) {
@@ -46,14 +47,15 @@ export default class GhostPinky extends Ghost {
     }
 
 
-    isPositionAccessible(position) {
-        return (Configuration.actorsInaccessibleTileCharacterList.includes(position.elementLayerCharacter) === false);
+    #isPositionAccessible(position) {
+        return !Configuration.actorsInaccessibleTileCharacterList.includes(position.elementLayerCharacter);
     }
 
 
-    getPacmanMovementDirectionFor(pacmanPositionId) {
+    // check if still necessary
+    #getPacmanMovementDirectionFor(pacmanPositionId) {
         let pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
-        if (pacmanMovementDirection === undefined) {
+        if (!pacmanMovementDirection) {
             // handle case when pacman has not yet moved at the start of the game
             pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);
         }
