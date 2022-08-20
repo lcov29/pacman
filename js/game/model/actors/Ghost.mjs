@@ -98,7 +98,7 @@ export default class Ghost extends Actor {
          this.#state.handleInaccessibleTileCollision();
          this.#state.handleSpawnCollision();
          if (super.hasTeleportedInPreviousTurn === false) {
-            this.updateMovementDirection(super.currentPosition, super.nextPosition);
+            this.#updateMovementDirection(super.currentPosition, super.nextPosition);
          }
          super.sendLevelMovementRequest(this.#state.getName());
          super.updateCurrentPosition();
@@ -145,7 +145,7 @@ export default class Ghost extends Actor {
    }
 
 
-   updateMovementDirection(currentPosition, nextPosition) {
+   #updateMovementDirection(currentPosition, nextPosition) {
       if (currentPosition.id !== nextPosition.id) {
          let directionX = nextPosition.x - currentPosition.x;
          let directionY = nextPosition.y - currentPosition.y;
