@@ -40,8 +40,9 @@ export default class Teleporter {
 
     
     isTeleporterFor(position) {
-        return position.id === this.#positionTeleporter1.id ||
-               position.id === this.#positionTeleporter2.id;
+        const isTeleporter1 = position.id === this.#positionTeleporter1.id;
+        const isTeleporter2 = position.id === this.#positionTeleporter2.id;
+        return  isTeleporter1 || isTeleporter2;    
     }
 
 
