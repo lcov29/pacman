@@ -10,12 +10,16 @@ import Actor from './Actor.mjs';
 export default class Ghost extends Actor {
 
 
+   #routing = null;
+   #scatterPositionId = -1
+   #spawnPositionId = -1;
+   #state = null;
+
+
    constructor(level, position, routing) {
       super(level, position);
-      this.routing = routing;
-      this.scatterPositionId = -1;
-      this.spawnPositionId = position.id;
-      this.state = null;
+      this.#routing = routing;
+      this.#spawnPositionId = position.id;
       super.movementDirectionName = Configuration.directionNameDown; 
    }
 
@@ -26,39 +30,39 @@ export default class Ghost extends Actor {
 
 
    setScatterID(positionId) {
-      this.scatterPositionId = positionId;
+      this.#scatterPositionId = positionId;
    }
 
 
    setSpawnID(positionId) {
-      this.spawnPositionId = positionId;
+      this.#spawnPositionId = positionId;
    }
 
 
    setInitialState() {
-      if (this.state === null) {
-         this.state = new GhostStateScatter(this);
+      if (this.#state === null) {
+         this.#state = new GhostStateScatter(this);
       }
    }
 
 
    setState(state) {
-      this.state = state;
+      this.#state = state;
    }
 
 
    getRouting() {
-      return this.routing;
+      return this.#routing;
    }
 
 
    getScatterID() {
-      return this.scatterPositionId;
+      return this.#scatterPositionId;
    }
 
 
    getSpawnID() {
-      return this.spawnPositionId;
+      return this.#spawnPositionId;
    }
 
 
@@ -73,50 +77,50 @@ export default class Ghost extends Actor {
 
 
    isHostile() {
-      return this.state.isHostileTowardsPacman();
+      return this.#state.isHostileTowardsPacman();
    }
 
 
    isKillable() {
-      return this.state.isKillable();
+      return this.#state.isKillable();
    }
 
 
    isScared() {
-      return (this.state instanceof GhostStateScared);
+      return (this.#state instanceof GhostStateScared);
    }
 
 
    move() {
-      if (this.state.getRemainingTurns() > 0) {
+      if (this.#state.getRemainingTurns() > 0) {
          super.loadCurrentPositionFromBoard();
-         this.state.executeMovementPattern();
+         this.#state.executeMovementPattern();
          super.loadNextPositionFromBoard();
-         this.state.handleTeleporterCollision();
-         this.state.handleScatterPositionCollision();
-         this.state.handlePacmanCollisionOnNextPosition();
-         this.state.handleInaccessibleTileCollision();
-         this.state.handleSpawnCollision();
+         this.#state.handleTeleporterCollision();
+         this.#state.handleScatterPositionCollision();
+         this.#state.handlePacmanCollisionOnNextPosition();
+         this.#state.handleInaccessibleTileCollision();
+         this.#state.handleSpawnCollision();
          if (super.hasTeleportedInPreviousTurn === false) {
             this.updateMovementDirection(super.currentPosition, super.nextPosition);
          }
-         super.sendLevelMovementRequest(this.state.getName());
+         super.sendLevelMovementRequest(this.#state.getName());
          super.updateCurrentPosition();
-         this.state.decrementRemainingTurns();
+         this.#state.decrementRemainingTurns();
      } else {
-         this.state = this.state.getSubsequentState();
+         this.#state = this.#state.getSubsequentState();
          this.move();
      }
    }
 
 
    scare() {
-      this.state.scare();
+      this.#state.scare();
    }
 
 
    kill() {
-      this.state.kill();
+      this.#state.kill();
    }
 
 
@@ -135,7 +139,7 @@ export default class Ghost extends Actor {
       
       for (let pacmanId of pacmanIds) {   
          currentId = super.currentPosition.id;
-         let currentPathCost =  this.routing.getShortestDistanceBetween(currentId, pacmanId);
+         let currentPathCost =  this.#routing.getShortestDistanceBetween(currentId, pacmanId);
          if (currentPathCost < minPathCost) {
             minPathCost = currentPathCost;
             minCostId = pacmanId;
