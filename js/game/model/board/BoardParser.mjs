@@ -18,12 +18,12 @@ export default class BoardParser {
     parse(levelJson) {
         const parsedLevelJson = JSON.parse(levelJson);
         const board = this.#buildBoardPositionArray(parsedLevelJson.board);
-        
+
         this.#indexAccessiblePositions(board);
         this.#initializeGhostScatterPositionList(board, parsedLevelJson.scatterPositionList);
-        this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson.optionalSpawnList);
-        this.#initializeOtherPositionLists(board);
+        this.#initializeOptionalGhostSpawnPositionList(board, parsedLevelJson.optionalSpawnList);
         this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositionList);
+        this.#initializeOtherPositionLists(board);
         this.#boardRef.board = board;
     }
 
@@ -80,7 +80,7 @@ export default class BoardParser {
     }
 
 
-    #initializeOptionalGhostSpawnPositionLists(board, optionalSpawnList) {
+    #initializeOptionalGhostSpawnPositionList(board, optionalSpawnList) {
         const positionList = [];
         for (let position of optionalSpawnList) {
             const boardPositionClone = board[position.y][position.x].clone();
@@ -89,6 +89,16 @@ export default class BoardParser {
             positionList.push(boardPositionClone);
         }
         this.#boardRef.ghostOptionalSpawnPositionList = positionList;
+    }
+
+
+    #initializeBonusSpawnPositionList(bonusSpawnCoordinateList) {
+        const bonusSpawnPositionList = [];
+        for (let coordinate of bonusSpawnCoordinateList) {
+            const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
+            bonusSpawnPositionList.push(spawnBoardPosition);
+        }
+        this.#boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
     }
 
 
@@ -114,16 +124,6 @@ export default class BoardParser {
               }
            }
         }
-    }
-
-
-    #initializeBonusSpawnPositionList(bonusSpawnCoordinateList) {
-        const bonusSpawnPositionList = [];
-        for (let coordinate of bonusSpawnCoordinateList) {
-            const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
-            bonusSpawnPositionList.push(spawnBoardPosition);
-        }
-        this.#boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
     }
 
     
