@@ -34,8 +34,9 @@ export default class Teleporter {
 
 
     isInitialized() {
-        return this.#positionTeleporter1 !== null &&
-               this.#positionTeleporter2 !== null;
+        const isTeleporter1Initialized = this.#positionTeleporter1 !== null;
+        const isTeleporter2Initialized = this.#positionTeleporter2 !== null;
+        return isTeleporter1Initialized && isTeleporter2Initialized;
     }
 
     
