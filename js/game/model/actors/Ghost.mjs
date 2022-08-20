@@ -81,7 +81,12 @@ export default class Ghost extends Actor {
 
 
    move() {
-      if (this.#state.getRemainingTurns() > 0) {
+      const isStateChangeNecessary = this.#state.getRemainingTurns() === 0;
+
+      if (isStateChangeNecessary) {
+         this.#state = this.#state.getSubsequentState();
+         this.move();
+      } else {
          super.loadCurrentPositionFromBoard();
          this.#state.executeMovementPattern();
          super.loadNextPositionFromBoard();
@@ -90,15 +95,10 @@ export default class Ghost extends Actor {
          this.#state.handlePacmanCollisionOnNextPosition();
          this.#state.handleInaccessibleTileCollision();
          this.#state.handleSpawnCollision();
-         if (super.hasTeleportedInPreviousTurn === false) {
-            this.#updateMovementDirection(super.currentPosition, super.nextPosition);
-         }
+         this.#updateMovementDirection(super.currentPosition, super.nextPosition);
          super.sendLevelMovementRequest(this.#state.getName());
          super.updateCurrentPosition();
          this.#state.decrementRemainingTurns();
-     } else {
-         this.#state = this.#state.getSubsequentState();
-         this.move();
      }
    }
 
@@ -169,13 +169,15 @@ export default class Ghost extends Actor {
 
 
    #updateMovementDirection(currentPosition, nextPosition) {
-      const isDifferentPositions = currentPosition.id !== nextPosition.id;
+      if (!super.hasTeleportedInPreviousTurn) {
+         const isDifferentPositions = currentPosition.id !== nextPosition.id;
 
-      if (isDifferentPositions) {
-         const directionX = nextPosition.x - currentPosition.x;
-         const directionY = nextPosition.y - currentPosition.y;
-         const directionName = Directions.getDirectionNameByIndex(directionX, directionY);
-         super.movementDirectionName = directionName;
+         if (isDifferentPositions) {
+            const directionX = nextPosition.x - currentPosition.x;
+            const directionY = nextPosition.y - currentPosition.y;
+            const directionName = Directions.getDirectionNameByIndex(directionX, directionY);
+            super.movementDirectionName = directionName;
+         }
       }
    }
 
