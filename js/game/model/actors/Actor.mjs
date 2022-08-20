@@ -24,29 +24,39 @@ export default class Actor {
    }
 
 
-   setSpriteDisplayPriority(priority) {
-      this.#spriteDisplayPriority = priority;
-   }
-
-
-   setNextPosition(position) {
+   set nextPosition(position) {
       this.#nextPosition = position;
    }
 
 
-   setCharacter(character) {
+   set character(character) {
       this.#character = character;
    }
 
 
-   setMovementDirectionName(directionName) {
+   set movementDirectionName(directionName) {
       this.#movementDirectionName = directionName;
    }
 
 
-   setTeleportationStatus(status) {
+   set teleportationStatus(status) {
       this.#hasTeleportedInPreviousTurn = status;
    }
+
+
+   set spriteDisplayPriority(priority) {
+      this.#spriteDisplayPriority = priority;
+   }
+
+
+
+
+
+
+
+
+
+
 
 
    getCurrentPosition() {
