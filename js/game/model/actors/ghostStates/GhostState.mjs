@@ -47,7 +47,9 @@ export default class GhostState {
 
 
     decrementRemainingTurns() {
-        this.remainingTurns--;
+        if (this.remainingTurns > 0) {
+            this.remainingTurns--;
+        }
     }
 
 
