@@ -2,7 +2,6 @@
 
 import Ghost from './Ghost.mjs';
 import Configuration from '../../../global/Configuration.mjs';
-import Directions from '../Directions.mjs';
 
 
 export default class GhostPinky extends Ghost {
