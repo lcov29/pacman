@@ -24,6 +24,11 @@ export default class Ghost extends Actor {
    }
 
 
+   get routing() {
+      return this.#routing;
+   }
+
+
    getAccessibleNeighborList(xBoardPosition, yBoardPosition) {
       return super.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
    }
@@ -48,11 +53,6 @@ export default class Ghost extends Actor {
 
    setState(state) {
       this.#state = state;
-   }
-
-
-   getRouting() {
-      return this.#routing;
    }
 
 
