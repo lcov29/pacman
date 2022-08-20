@@ -16,8 +16,9 @@ export default class BoardParser {
 
 
     parse(levelJson) {
-        let parsedLevelJson = JSON.parse(levelJson);
-        let board = this.#buildBoardPositionArray(parsedLevelJson.board);
+        const parsedLevelJson = JSON.parse(levelJson);
+        const board = this.#buildBoardPositionArray(parsedLevelJson.board);
+        
         this.#indexAccessiblePositions(board);
         this.#initializeGhostScatterPositionList(board, parsedLevelJson.scatterPositionList);
         this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson.optionalSpawnList);
