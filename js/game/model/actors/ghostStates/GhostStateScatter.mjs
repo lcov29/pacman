@@ -54,7 +54,7 @@ export default class GhostStateScatter extends GhostState {
     // scatter state movement pattern
     calculateNextPosition(currentPositionId) {
         let ghost = super.getGhost();
-        let routing = ghost.getRouting();
+        let routing = ghost.routing;
         let scatterPositionId = ghost.getScatterID();
         return routing.calculateNextPositionOnShortestPath(currentPositionId, scatterPositionId);
     }

@@ -17,7 +17,7 @@ export default class GhostBlinky extends Ghost {
     // chase movement pattern implementation; is used by GhostStateChase
     calculateNextChasePosition(positionId) {
         let pacmanId = super.selectClosestPacmanID();
-        return super.getRouting().calculateNextPositionOnShortestPath(positionId, pacmanId);
+        return super.routing.calculateNextPositionOnShortestPath(positionId, pacmanId);
     }
 
     

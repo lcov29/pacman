@@ -18,7 +18,7 @@ export default class GhostInky extends Ghost {
     // chase movement pattern implementation; is used by GhostStateChase
     calculateNextChasePosition(positionId) {
         let targetTileId = this.calculateChaseTargetTileId();
-        return super.getRouting().calculateNextPositionOnShortestPath(positionId, targetTileId);
+        return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
     }
 
 
@@ -106,7 +106,7 @@ export default class GhostInky extends Ghost {
        let ghostInkyId = super.currentPosition.id;
        let ghostReferencePositions = this.selectPositionsOfGhostTypeWithHighestReferencePriority();
        for (let ghostPosition of ghostReferencePositions) {   
-          let currentPathCost =  this.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
+          let currentPathCost =  super.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
           if (currentPathCost < minPathCost) {
              minPathCost = currentPathCost;
              minCostPosition = ghostPosition;

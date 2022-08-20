@@ -18,13 +18,13 @@ export default class GhostClyde extends Ghost {
     calculateNextChasePosition(positionId) {
         let targetTileId = -1;
         let pacmanId = super.selectClosestPacmanID();
-        let minDistanceToClosestPacman = super.getRouting().getShortestDistanceBetween(positionId, pacmanId);
+        let minDistanceToClosestPacman = super.routing.getShortestDistanceBetween(positionId, pacmanId);
         if (minDistanceToClosestPacman >= Configuration.ghostClydeMinTileDistanceToPacman) {
             targetTileId = pacmanId;
         } else {
             targetTileId = super.getScatterID();
         }
-        return super.getRouting().calculateNextPositionOnShortestPath(positionId, targetTileId);
+        return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
     }
 
     
