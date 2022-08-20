@@ -69,26 +69,12 @@ export default class BoardParser {
 
 
     #initializeGhostScatterPositionList(board, scatterPositionList) {
-        const positionList = [];
-        for (let position of scatterPositionList) {
-            const boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
-            boardPositionClone.elementCharacter = position.ghost;
-            positionList.push(boardPositionClone);
-        }
-        this.#boardRef.ghostScatterPositionList = positionList;
+       this.#boardRef.ghostScatterPositionList = this.#buildBoardPositionListFor(board, scatterPositionList);
     }
 
 
     #initializeOptionalGhostSpawnPositionList(board, optionalSpawnList) {
-        const positionList = [];
-        for (let position of optionalSpawnList) {
-            const boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
-            boardPositionClone.elementCharacter = position.ghost;
-            positionList.push(boardPositionClone);
-        }
-        this.#boardRef.ghostOptionalSpawnPositionList = positionList;
+        this.#boardRef.ghostOptionalSpawnPositionList = this.#buildBoardPositionListFor(board, optionalSpawnList);
     }
 
 
@@ -124,6 +110,18 @@ export default class BoardParser {
               }
            }
         }
+    }
+
+
+    #buildBoardPositionListFor(board, positionList) {
+        const boardPositionList = [];
+        for (let position of positionList) {
+            const boardPositionClone = board[position.y][position.x].clone();
+            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
+            boardPositionClone.elementCharacter = position.ghost;
+            boardPositionList.push(boardPositionClone);
+        }
+        return boardPositionList;
     }
 
     
