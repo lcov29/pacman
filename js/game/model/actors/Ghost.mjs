@@ -24,6 +24,11 @@ export default class Ghost extends Actor {
    }
 
 
+   set scatterID(positionId) {
+      this.#scatterPositionId = positionId;
+   }
+
+
    get routing() {
       return this.#routing;
    }
@@ -31,11 +36,6 @@ export default class Ghost extends Actor {
 
    getAccessibleNeighborList(xBoardPosition, yBoardPosition) {
       return super.level.getAccessibleNeighborList(xBoardPosition, yBoardPosition);
-   }
-
-
-   setScatterID(positionId) {
-      this.#scatterPositionId = positionId;
    }
 
 
