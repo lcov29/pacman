@@ -39,7 +39,7 @@ export default class Actor {
    }
 
 
-   set teleportationStatus(status) {
+   set hasTeleportedInPreviousTurn(status) {
       this.#hasTeleportedInPreviousTurn = status;
    }
 
@@ -72,6 +72,11 @@ export default class Actor {
 
    get movementDirectionName() {
       return this.#movementDirectionName;
+   }
+
+
+   get hasTeleportedInPreviousTurn() {
+      return this.#hasTeleportedInPreviousTurn;
    }
 
 
