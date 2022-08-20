@@ -75,27 +75,27 @@ export default class Actor {
 
 
    isCurrentPositionActorCharacter(character) {
-      return this.currentPosition.getActorLayerCharacter() === character;
+      return this.currentPosition.actorLayerCharacter === character;
    }
 
 
    isCurrentPositionElementCharacter(character) {
-      return this.currentPosition.getElementLayerCharacter() === character;
+      return this.currentPosition.elementLayerCharacter === character;
    }
 
 
    isNextPositionActorCharacter(character) {
-      return this.nextPosition.getActorLayerCharacter() === character;
+      return this.nextPosition.actorLayerCharacter === character;
    }
 
 
    isNextPositionElementCharacter(character) {
-      return this.nextPosition.getElementLayerCharacter() === character;
+      return this.nextPosition.elementLayerCharacter === character;
    }
 
 
    isCurrentPositionTeleporter() {
-      let currentPositionElement = this.currentPosition.getElementLayerCharacter();
+      let currentPositionElement = this.currentPosition.elementLayerCharacter;
       return Configuration.teleporterCharacterList.includes(currentPositionElement);
    }
 

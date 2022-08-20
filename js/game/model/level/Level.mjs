@@ -52,7 +52,7 @@ export default class Level {
 
         for (let row of boardPositionArray) {
             for (let element of row) {
-                const request = new BackgroundRequest(element.x, element.y, element.getElementLayerCharacter());
+                const request = new BackgroundRequest(element.x, element.y, element.elementLayerCharacter);
                 this.addInformationToBackgroundRequest(request);
                 requestList.push(request);
             }
@@ -76,7 +76,7 @@ export default class Level {
             request.xPositionDestination = position.x;
             request.yPositionDestination = position.y;
 
-            const actorCharacter = position.getActorLayerCharacter();
+            const actorCharacter = position.actorLayerCharacter;
             request.actorCharacter =  actorCharacter;
 
             const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);

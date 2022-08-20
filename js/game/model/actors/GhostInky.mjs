@@ -127,7 +127,7 @@ export default class GhostInky extends Ghost {
 
     
     isPositionAccessible(position) {
-        return (Configuration.actorsInaccessibleTileCharacterList.includes(position.getElementLayerCharacter()) === false);
+        return (Configuration.actorsInaccessibleTileCharacterList.includes(position.elementLayerCharacter) === false);
     }
 
 

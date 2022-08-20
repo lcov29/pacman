@@ -56,7 +56,7 @@ export default class BoardParser {
         let id = 0;
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
-                const elementCharacter = positionArray[y][x].getElementLayerCharacter();
+                const elementCharacter = positionArray[y][x].elementLayerCharacter;
                 const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
                 
                 if (isAccessibleByActor) {
@@ -92,7 +92,7 @@ export default class BoardParser {
         for (let y = 0; y < board.length; y++) {
            for (let x = 0; x < board[y].length; x++) {
               const currentPosition = board[y][x];
-              const currentActorCharacter = currentPosition.getActorLayerCharacter();
+              const currentActorCharacter = currentPosition.actorLayerCharacter;
   
               const isCurrentActorPacman = currentActorCharacter === Configuration.pacmanCharacter;
               if (isCurrentActorPacman) {
@@ -104,7 +104,7 @@ export default class BoardParser {
                 this.#boardRef.initialGhostPositionList.push(currentPosition);
               }
   
-              const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(currentPosition.getElementLayerCharacter());
+              const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(currentPosition.elementLayerCharacter);
               if (isCurrentElementTeleporter) {
                 this.#boardRef.teleporterPositionList.push(currentPosition);
               }
