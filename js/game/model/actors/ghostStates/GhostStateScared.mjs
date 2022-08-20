@@ -98,9 +98,9 @@ export default class GhostStateScared extends GhostState {
 
     handleInaccessibleTileCollision() {
         let ghost = super.getGhost();
-        let nextPositionCharacter = ghost.getNextPosition().elementLayerCharacter;
+        let nextPositionCharacter = ghost.nextPosition.elementLayerCharacter;
         if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
-            ghost.nextPosition = ghost.getCurrentPosition();
+            ghost.nextPosition = ghost.currentPosition;
             ghost.randomizeMovementDirection();
         }
     }
@@ -115,7 +115,7 @@ export default class GhostStateScared extends GhostState {
     handleLevelBorderCollision(nextPosition) {
         let ghost = super.getGhost();
         // when an actor moves out of the level its position is reset to current position 
-        if (nextPosition.id === ghost.getCurrentPosition().id) {
+        if (nextPosition.id === ghost.currentPosition.id) {
             ghost.randomizeMovementDirection();
         }
     }
@@ -123,7 +123,7 @@ export default class GhostStateScared extends GhostState {
  
     chooseRandomAccessibleNextBoardPosition() {
         const ghost = super.getGhost();
-        const currentBoardPosition = ghost.getCurrentPosition();
+        const currentBoardPosition = ghost.currentPosition;
         const currentX = currentBoardPosition.x;
         const currentY = currentBoardPosition.y;
         const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
@@ -131,7 +131,7 @@ export default class GhostStateScared extends GhostState {
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
 
         if (isPossibleNextPositionListEmpty) {
-            ghost.nextPosition = ghost.getCurrentPosition();
+            ghost.nextPosition = ghost.currentPosition;
         } else {
             const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
             const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];

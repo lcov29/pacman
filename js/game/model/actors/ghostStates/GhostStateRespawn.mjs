@@ -34,7 +34,7 @@ export default class GhostStateRespawn extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        ghost.nextPosition = ghost.getCurrentPosition();
+        ghost.nextPosition = ghost.currentPosition;
     }
 
 
@@ -72,7 +72,7 @@ export default class GhostStateRespawn extends GhostState {
 
     handleSpawnCollision() {
         let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().id === ghost.getSpawnID()) {
+        if (ghost.currentPosition.id === ghost.getSpawnID()) {
             if (this.respawnStage < Configuration.ghostMaxRespawnStage) {
                 this.respawnStage++;
             } else {

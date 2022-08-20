@@ -51,7 +51,7 @@ export default class Pacman extends Actor {
 
    kill() {
       this.level.decrementTotalPacmanLifes();
-      this.level.removeDeadPacmanAt(super.getCurrentPosition().id);
+      this.level.removeDeadPacmanAt(super.currentPosition.id);
       this.isAlive = false;
    }
 
@@ -96,7 +96,7 @@ export default class Pacman extends Actor {
 
    sendLevelBackgroundRequest() {
       if (this.isBackgroundUpdateNeeded) {
-         const nextPosition = super.getNextPosition();
+         const nextPosition = super.nextPosition;
          const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
          super.sendLevelBackgroundRequest(request);
       }
@@ -117,9 +117,9 @@ export default class Pacman extends Actor {
 
 
    handleInaccessibleTileCollision() {
-      let nextElement = super.getNextPosition().elementLayerCharacter;
+      let nextElement = super.nextPosition.elementLayerCharacter;
       if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
-         super.nextPosition = super.getCurrentPosition();
+         super.nextPosition = super.currentPosition;
       }
    }
 
@@ -127,12 +127,12 @@ export default class Pacman extends Actor {
    handleOtherPacmanCollision() {
       let result = true;
       if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-         let thisPacmanPositionId = this.getCurrentPosition().id;
-         let otherPacmanPositionId = this.getNextPosition().id;
+         let thisPacmanPositionId = super.currentPosition.id;
+         let otherPacmanPositionId = this.nextPosition.id;
          if (thisPacmanPositionId !== otherPacmanPositionId) {
             let otherCompletedTurn = this.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
             if (otherCompletedTurn) {
-               super.nextPosition = super.getCurrentPosition();
+               super.nextPosition = super.currentPosition;
             } else {
                result = false;
             }
@@ -147,7 +147,7 @@ export default class Pacman extends Actor {
          super.incrementScoreBy(Configuration.scoreValuePerPoint);
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
-         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
+         super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
    }
@@ -159,18 +159,18 @@ export default class Pacman extends Actor {
          this.level.incrementConsumedPoints();
          this.level.decrementAvailablePoints();
          this.level.scareLivingGhosts();
-         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
+         super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          this.isBackgroundUpdateNeeded = true;
       }
    }
 
    
    handleBonusElementCollision() {
-      const nextElementCharacter = super.getNextPosition().elementLayerCharacter;
+      const nextElementCharacter = super.nextPosition.elementLayerCharacter;
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
       if (isNextPositionBonusElement) {
-         super.getNextPosition().elementCharacter = Configuration.emptyTileCharacter;
+         super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          this.level.handleBonusConsumption();
          this.isBackgroundUpdateNeeded = true;
       }
@@ -178,9 +178,9 @@ export default class Pacman extends Actor {
 
 
    handleGhostCollision() {
-      let nextPositionActorCharacter = super.getNextPosition().actorLayerCharacter;
+      let nextPositionActorCharacter = super.nextPosition.actorLayerCharacter;
       if (Configuration.ghostCharacterList.includes(nextPositionActorCharacter)) {
-         let nextPositionId = super.getNextPosition().id;
+         let nextPositionId = super.nextPosition.id;
          this.handleHostileGhostCollision(nextPositionId);
          this.handleKillableGhostCollision(nextPositionId);
       }

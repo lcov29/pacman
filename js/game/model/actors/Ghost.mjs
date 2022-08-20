@@ -68,7 +68,7 @@ export default class Ghost extends Actor {
    
 
    isNextPositionEqualToTeleportDestination() {
-      return super.getNextPosition().id === super.getTeleportDestinationForCurrentPosition().id;
+      return super.nextPosition.id === super.getTeleportDestinationForCurrentPosition().id;
    }
 
 
@@ -98,7 +98,7 @@ export default class Ghost extends Actor {
          this.state.handleInaccessibleTileCollision();
          this.state.handleSpawnCollision();
          if (this.hasTeleportedInPreviousTurn === false) {
-            this.updateMovementDirection(super.getCurrentPosition(), super.getNextPosition());
+            this.updateMovementDirection(super.currentPosition, super.nextPosition);
          }
          super.sendLevelMovementRequest(this.state.getName());
          super.updateCurrentPosition();
@@ -121,7 +121,7 @@ export default class Ghost extends Actor {
 
 
    reverseCurrentMovementDirection() {
-      let directionName = super.getCurrentMovementDirectionName();
+      let directionName = super.movementDirectionName;
       let reverseDirectionName = Directions.getReversedDirectionName(directionName);
       super.movementDirectionName = reverseDirectionName;
    }
@@ -134,7 +134,7 @@ export default class Ghost extends Actor {
       let currentId = -1;
       
       for (let pacmanId of pacmanIds) {   
-         currentId = super.getCurrentPosition().id;
+         currentId = super.currentPosition.id;
          let currentPathCost =  this.routing.getShortestDistanceBetween(currentId, pacmanId);
          if (currentPathCost < minPathCost) {
             minPathCost = currentPathCost;
@@ -158,7 +158,7 @@ export default class Ghost extends Actor {
    randomizeMovementDirection() {
       while (true) {
          let randomDirectionName = Directions.getRandomDirectionName();
-         if (randomDirectionName !== super.getCurrentMovementDirectionName()) {
+         if (randomDirectionName !== super.movementDirectionName) {
             super.movementDirectionName = randomDirectionName;
             break;
          }

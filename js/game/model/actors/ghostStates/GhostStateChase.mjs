@@ -35,7 +35,7 @@ export default class GhostStateChase extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        let currentPositionId = ghost.getCurrentPosition().id;
+        let currentPositionId = ghost.currentPosition.id;
         let nextPosition = ghost.calculateNextChasePosition(currentPositionId);
         ghost.nextPosition = nextPosition;
     }
@@ -77,7 +77,7 @@ export default class GhostStateChase extends GhostState {
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-            ghost.killPacman(ghost.getNextPosition().id);
+            ghost.killPacman(ghost.nextPosition.id);
         }
     }
 

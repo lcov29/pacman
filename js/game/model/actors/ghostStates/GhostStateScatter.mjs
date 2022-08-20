@@ -34,7 +34,7 @@ export default class GhostStateScatter extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        let currentPositionId = ghost.getCurrentPosition().id;
+        let currentPositionId = ghost.currentPosition.id;
         let nextPosition = this.calculateNextPosition(currentPositionId);
         ghost.nextPosition = nextPosition;
     }
@@ -79,8 +79,8 @@ export default class GhostStateScatter extends GhostState {
 
     handleScatterPositionCollision() {
         let ghost = super.getGhost();
-        if (ghost.getCurrentPosition().id === ghost.getScatterID()) {
-            ghost.nextPosition = ghost.getCurrentPosition();
+        if (ghost.currentPosition.id === ghost.getScatterID()) {
+            ghost.nextPosition = ghost.currentPosition;
             ghost.movementDirectionName = Configuration.directionNameDown;
         }
     }
@@ -89,7 +89,7 @@ export default class GhostStateScatter extends GhostState {
     handlePacmanCollisionOnNextPosition() {
         let ghost = super.getGhost();
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-            ghost.killPacman(ghost.getNextPosition().id);
+            ghost.killPacman(ghost.nextPosition.id);
         }
     }
 

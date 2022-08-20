@@ -172,7 +172,7 @@ export default class Level {
     getPacmanIDs() {
         let ids = [];
         for (let pacman of this.pacmans) {
-            ids.push(pacman.getCurrentPosition().id);
+            ids.push(pacman.currentPosition.id);
         }
         return ids;
     }
@@ -181,8 +181,8 @@ export default class Level {
     getGhostPositionsFor(ghostCharacter) {
         let positions = [];
         for (let ghost of this.ghosts) {
-            if (ghost.getCharacter() === ghostCharacter) {
-                positions.push(ghost.getCurrentPosition().clone());
+            if (ghost.character === ghostCharacter) {
+                positions.push(ghost.currentPosition.clone());
             }
         }
         return positions;
@@ -192,7 +192,7 @@ export default class Level {
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().id === positionId) {
+            if (pacman.currentPosition.id === positionId) {
                 movementDirection =  pacman.getCurrentMovementDirection();
                 break;
             }
@@ -204,7 +204,7 @@ export default class Level {
     getPacmanPositionFor(positionId) {
         let pacmanPosition = null;
         for (let pacman of this.pacmans) {
-            let position = pacman.getCurrentPosition();
+            let position = pacman.currentPosition;
             if (position.id === positionId) {
                 pacmanPosition = position;
                 break;
@@ -217,7 +217,7 @@ export default class Level {
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().id === positionId) {
+            if (ghost.currentPosition.id === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
             }
@@ -229,7 +229,7 @@ export default class Level {
     isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.getCurrentPosition().id === positionId) {
+            if (ghost.currentPosition.id === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
             }
@@ -241,7 +241,7 @@ export default class Level {
     getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().id === positionId) {
+            if (pacman.currentPosition.id === positionId) {
                 status = pacman.getTurnCompletionStatus();
                 break;
             }
@@ -296,7 +296,7 @@ export default class Level {
 
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
-            if (pacman.getCurrentPosition().id === positionId) {
+            if (pacman.currentPosition.id === positionId) {
                 Utility.removeElementFrom(this.pacmans, pacman);
             }
         }  
@@ -349,7 +349,7 @@ export default class Level {
 
     killActor(actors, positionId) {
         for (let actor of actors) {
-            if (actor.getCurrentPosition().id === positionId) {
+            if (actor.currentPosition.id === positionId) {
                 actor.kill();
             }
         }
