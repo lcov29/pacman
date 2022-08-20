@@ -19,8 +19,8 @@ export default class BoardParser {
         let parsedLevelJson = JSON.parse(levelJson);
         let board = this.#buildBoardPositionArray(parsedLevelJson.board);
         this.#indexAccessiblePositions(board);
-        this.#initializeGhostScatterPositionList(board, parsedLevelJson);
-        this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson);
+        this.#initializeGhostScatterPositionList(board, parsedLevelJson.scatterPositionList);
+        this.#initializeOptionalGhostSpawnPositionLists(board, parsedLevelJson.optionalSpawnList);
         this.#initializeOtherPositionLists(board);
         this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositionList);
         this.#boardRef.board = board;
@@ -67,9 +67,9 @@ export default class BoardParser {
     }
 
 
-    #initializeGhostScatterPositionList(board, parsedJson) {
+    #initializeGhostScatterPositionList(board, scatterPositionList) {
         const positionList = [];
-        for (let position of parsedJson.scatterPositionList) {
+        for (let position of scatterPositionList) {
             const boardPositionClone = board[position.y][position.x].clone();
             boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
             boardPositionClone.elementCharacter = position.ghost;
@@ -79,9 +79,9 @@ export default class BoardParser {
     }
 
 
-    #initializeOptionalGhostSpawnPositionLists(board, parsedJson) {
+    #initializeOptionalGhostSpawnPositionLists(board, optionalSpawnList) {
         const positionList = [];
-        for (let position of parsedJson.optionalSpawnList) {
+        for (let position of optionalSpawnList) {
             const boardPositionClone = board[position.y][position.x].clone();
             boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
             boardPositionClone.elementCharacter = position.ghost;
@@ -116,9 +116,9 @@ export default class BoardParser {
     }
 
 
-    #initializeBonusSpawnPositionList(bonusSpawnCoordinateArray) {
+    #initializeBonusSpawnPositionList(bonusSpawnCoordinateList) {
         const bonusSpawnPositionList = [];
-        for (let coordinate of bonusSpawnCoordinateArray) {
+        for (let coordinate of bonusSpawnCoordinateList) {
             const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
             bonusSpawnPositionList.push(spawnBoardPosition);
         }
