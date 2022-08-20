@@ -43,7 +43,7 @@ export default class GhostStateChase extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateScaredStart(ghost));
+        ghost.state = new GhostStateScaredStart(ghost);
     }
 
 

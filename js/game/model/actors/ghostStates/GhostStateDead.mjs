@@ -53,7 +53,7 @@ export default class GhostStateDead extends GhostState {
     calculateNextPosition(currentPositionId) {
         let ghost = super.getGhost();
         let routing = ghost.routing;
-        let spawnPositionId = ghost.getSpawnID();
+        let spawnPositionId = ghost.spawnID;
         return routing.calculateNextPositionOnShortestPath(currentPositionId, spawnPositionId);
     }
 
@@ -93,7 +93,7 @@ export default class GhostStateDead extends GhostState {
 
     handleSpawnCollision() {
         let ghost = super.getGhost();
-        if (ghost.currentPosition.id === ghost.getSpawnID()) {
+        if (ghost.currentPosition.id === ghost.spawnID) {
             super.end();
         }
     }

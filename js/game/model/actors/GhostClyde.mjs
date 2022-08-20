@@ -10,7 +10,7 @@ export default class GhostClyde extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.character = Configuration.ghostClydeCharacter;
-        super.setInitialState();
+        super.initializeState();
     }
 
 
@@ -22,7 +22,7 @@ export default class GhostClyde extends Ghost {
         if (minDistanceToClosestPacman >= Configuration.ghostClydeMinTileDistanceToPacman) {
             targetTileId = pacmanId;
         } else {
-            targetTileId = super.getScatterID();
+            targetTileId = super.scatterID;
         }
         return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
     }

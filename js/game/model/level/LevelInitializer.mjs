@@ -114,7 +114,7 @@ export default class LevelInitializer {
         for (let spawnPosition of board.ghostOptionalSpawnPositionList) {
             for (let ghost of ghosts) {
                 if (ghost.character === spawnPosition.elementLayerCharacter) {
-                    ghost.setSpawnID(spawnPosition.id);
+                    ghost.spawnID = spawnPosition.id;
                 }
             }
         }    

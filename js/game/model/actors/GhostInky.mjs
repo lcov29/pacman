@@ -11,7 +11,7 @@ export default class GhostInky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.character = Configuration.ghostInkyCharacter;
-        super.setInitialState();
+        super.initializeState();
     }
 
 

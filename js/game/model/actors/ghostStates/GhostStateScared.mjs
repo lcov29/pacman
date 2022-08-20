@@ -52,13 +52,13 @@ export default class GhostStateScared extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateScaredStart(ghost));
+        ghost.state = new GhostStateScaredStart(ghost);
     }
 
 
     kill() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateDead(ghost));
+        ghost.state = new GhostStateDead(ghost);
     }
 
 

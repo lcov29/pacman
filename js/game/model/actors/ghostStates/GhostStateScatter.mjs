@@ -42,7 +42,7 @@ export default class GhostStateScatter extends GhostState {
 
     scare() {
         let ghost = super.getGhost();
-        ghost.setState(new GhostStateScaredStart(ghost));
+        ghost.state = new GhostStateScaredStart(ghost);
     }
 
 
@@ -55,7 +55,7 @@ export default class GhostStateScatter extends GhostState {
     calculateNextPosition(currentPositionId) {
         let ghost = super.getGhost();
         let routing = ghost.routing;
-        let scatterPositionId = ghost.getScatterID();
+        let scatterPositionId = ghost.scatterID;
         return routing.calculateNextPositionOnShortestPath(currentPositionId, scatterPositionId);
     }
 
@@ -79,7 +79,7 @@ export default class GhostStateScatter extends GhostState {
 
     handleScatterPositionCollision() {
         let ghost = super.getGhost();
-        if (ghost.currentPosition.id === ghost.getScatterID()) {
+        if (ghost.currentPosition.id === ghost.scatterID) {
             ghost.nextPosition = ghost.currentPosition;
             ghost.movementDirectionName = Configuration.directionNameDown;
         }

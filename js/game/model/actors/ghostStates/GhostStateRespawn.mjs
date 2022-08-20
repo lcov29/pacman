@@ -72,7 +72,7 @@ export default class GhostStateRespawn extends GhostState {
 
     handleSpawnCollision() {
         let ghost = super.getGhost();
-        if (ghost.currentPosition.id === ghost.getSpawnID()) {
+        if (ghost.currentPosition.id === ghost.spawnID) {
             if (this.respawnStage < Configuration.ghostMaxRespawnStage) {
                 this.respawnStage++;
             } else {
