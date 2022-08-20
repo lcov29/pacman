@@ -45,7 +45,7 @@ export default class GhostStateScared extends GhostState {
 
     executeMovementPattern() {
         let nextPosition = this.calculateNextPosition();
-        super.getGhost().setNextPosition(nextPosition);
+        super.getGhost().nextPosition = nextPosition;
         this.handleLevelBorderCollision(nextPosition);
     }
 
@@ -73,11 +73,11 @@ export default class GhostStateScared extends GhostState {
         const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.getTeleportationStatus();
         if (isTeleportationNeeded) {
             const destination = ghost.getTeleportDestinationForCurrentPosition();
-            ghost.setNextPosition(destination);
-            ghost.setTeleportationStatus(true);
+            ghost.nextPosition = destination;
+            ghost.teleportationStatus = true;
         } else if (ghost.getTeleportationStatus()) {
             this.chooseRandomAccessibleNextBoardPosition();
-            ghost.setTeleportationStatus(false);
+            ghost.teleportationStatus = false;
         }
     }
 
@@ -100,7 +100,7 @@ export default class GhostStateScared extends GhostState {
         let ghost = super.getGhost();
         let nextPositionCharacter = ghost.getNextPosition().elementLayerCharacter;
         if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
-            ghost.setNextPosition(ghost.getCurrentPosition());
+            ghost.nextPosition = ghost.getCurrentPosition();
             ghost.randomizeMovementDirection();
         }
     }
@@ -131,11 +131,11 @@ export default class GhostStateScared extends GhostState {
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
 
         if (isPossibleNextPositionListEmpty) {
-            ghost.setNextPosition(ghost.getCurrentPosition());
+            ghost.nextPosition = ghost.getCurrentPosition();
         } else {
             const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
             const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
-            ghost.setNextPosition(chosenNextPosition);
+            ghost.nextPosition = chosenNextPosition;
         }
     }
 

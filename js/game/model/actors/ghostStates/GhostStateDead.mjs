@@ -35,7 +35,7 @@ export default class GhostStateDead extends GhostState {
         let ghost = super.getGhost();
         let currentPositionId = ghost.getCurrentPosition().id;
         let nextPosition = this.calculateNextPosition(currentPositionId);
-        ghost.setNextPosition(nextPosition);
+        ghost.nextPosition = nextPosition;
     }
 
 
@@ -64,13 +64,13 @@ export default class GhostStateDead extends GhostState {
 
             // ghost has the option to move over teleporters without teleporting
             if (ghost.isNextPositionEqualToTeleportDestination()) {
-                ghost.setTeleportationStatus(true);
+                ghost.teleportationStatus = true;
             } else {
-                ghost.setTeleportationStatus(false);
+                ghost.teleportationStatus = false;
             }
 
         } else {
-            ghost.setTeleportationStatus(false);
+            ghost.teleportationStatus = false;
         }
     }
 

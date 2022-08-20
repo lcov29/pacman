@@ -30,9 +30,9 @@ export default class Pacman extends Actor {
 
    constructor(level, position) {
       super(level, position);
-      super.setCharacter(Configuration.pacmanCharacter);
-      super.setSpriteDisplayPriority(Configuration.pacmanSpriteDisplayPriority);
-      super.setMovementDirectionName(Configuration.initialPacmanSpriteDirection);
+      super.character = Configuration.pacmanCharacter;
+      super.spriteDisplayPriority = Configuration.pacmanSpriteDisplayPriority;
+      super.movementDirectionName = Configuration.initialPacmanSpriteDirection;
       this.isAlive = true;
       this.hasCompletedCurrentTurn = false;
       this.isBackgroundUpdateNeeded = false;
@@ -64,12 +64,12 @@ export default class Pacman extends Actor {
          if (this.getTurnCompletionStatus() === false) {
             super.loadCurrentPositionFromBoard();
             let nextPosition = super.calculateNextPositionByCurrentDirection();
-            super.setNextPosition(nextPosition);
+            super.nextPosition = nextPosition;
             super.loadNextPositionFromBoard();
             let teleportationStatus = this.handleTeleportation();  
             this.handleInaccessibleTileCollision();       
             if (this.handleOtherPacmanCollision()) {
-               super.setTeleportationStatus(teleportationStatus);
+               super.teleportationStatus = teleportationStatus;
                this.handleGhostCollision();
                if (this.isAlive) {
                   this.handlePointCollision();
@@ -83,7 +83,7 @@ export default class Pacman extends Actor {
             } else {
                // next position is blocked by another pacman that has not completed the current turn, 
                // so this pacman has to abort its movement and wait for the other to complete the turn
-               super.setNextPosition(null);
+               super.nextPosition = null;
                this.setTurnCompletionStatus(false);
             }
             
@@ -109,7 +109,7 @@ export default class Pacman extends Actor {
       // check teleportation flag to prevent teleportation loop
       if (super.isCurrentPositionTeleporter() && this.hasTeleportedInPreviousTurn === false) {
          let destination = super.getTeleportDestinationForCurrentPosition();
-         super.setNextPosition(destination);
+         super.nextPosition = destination;
          teleportationExecuted = true;
       }
       return teleportationExecuted;
@@ -119,7 +119,7 @@ export default class Pacman extends Actor {
    handleInaccessibleTileCollision() {
       let nextElement = super.getNextPosition().elementLayerCharacter;
       if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
-         super.setNextPosition(super.getCurrentPosition());
+         super.nextPosition = super.getCurrentPosition();
       }
    }
 
@@ -132,7 +132,7 @@ export default class Pacman extends Actor {
          if (thisPacmanPositionId !== otherPacmanPositionId) {
             let otherCompletedTurn = this.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
             if (otherCompletedTurn) {
-               super.setNextPosition(super.getCurrentPosition());
+               super.nextPosition = super.getCurrentPosition();
             } else {
                result = false;
             }

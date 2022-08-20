@@ -146,7 +146,7 @@ export default class Level {
 
     setNextPacmanDirection(directionName) {
         for (let pacman of this.pacmans) {
-           pacman.setMovementDirectionName(directionName);
+           pacman.movementDirectionName = directionName;
         }
     } 
 

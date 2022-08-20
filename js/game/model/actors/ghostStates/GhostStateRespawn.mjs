@@ -34,7 +34,7 @@ export default class GhostStateRespawn extends GhostState {
 
     executeMovementPattern() {
         let ghost = super.getGhost();
-        ghost.setNextPosition(ghost.getCurrentPosition());
+        ghost.nextPosition = ghost.getCurrentPosition();
     }
 
 

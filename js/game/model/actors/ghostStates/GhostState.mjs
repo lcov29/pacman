@@ -22,7 +22,7 @@ export default class GhostState {
 
 
     setSpriteDisplayPriority(priority) {
-        this.ghost.setSpriteDisplayPriority(priority);
+        this.ghost.spriteDisplayPriority = priority;
     }
 
 

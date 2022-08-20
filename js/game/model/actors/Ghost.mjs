@@ -16,7 +16,7 @@ export default class Ghost extends Actor {
       this.scatterPositionId = -1;
       this.spawnPositionId = position.id;
       this.state = null;
-      super.setMovementDirectionName(Configuration.directionNameDown); 
+      super.movementDirectionName = Configuration.directionNameDown; 
    }
 
 
@@ -123,7 +123,7 @@ export default class Ghost extends Actor {
    reverseCurrentMovementDirection() {
       let directionName = super.getCurrentMovementDirectionName();
       let reverseDirectionName = Directions.getReversedDirectionName(directionName);
-      super.setMovementDirectionName(reverseDirectionName);
+      super.movementDirectionName = reverseDirectionName;
    }
 
 
@@ -150,7 +150,7 @@ export default class Ghost extends Actor {
          let directionX = nextPosition.x - currentPosition.x;
          let directionY = nextPosition.y - currentPosition.y;
          let directionName = Directions.getDirectionNameByIndex(directionX, directionY);
-         super.setMovementDirectionName(directionName);
+         super.movementDirectionName = directionName;
       }
    }
 
@@ -159,7 +159,7 @@ export default class Ghost extends Actor {
       while (true) {
          let randomDirectionName = Directions.getRandomDirectionName();
          if (randomDirectionName !== super.getCurrentMovementDirectionName()) {
-            super.setMovementDirectionName(randomDirectionName);
+            super.movementDirectionName = randomDirectionName;
             break;
          }
       }
