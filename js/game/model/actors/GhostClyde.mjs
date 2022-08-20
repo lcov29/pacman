@@ -18,14 +18,10 @@ export default class GhostClyde extends Ghost {
         const pacmanId = super.selectClosestPacmanID();
         const distanceToClosestPacman = super.routing.getShortestDistanceBetween(positionId, pacmanId);
         const isDistanceToPacmanBelowMinimum = distanceToClosestPacman < Configuration.ghostClydeMinTileDistanceToPacman
-
-        let targetTileId = -1;
-        if (isDistanceToPacmanBelowMinimum) {
-            targetTileId = super.scatterID;
-        } else {
-            targetTileId = pacmanId;
-        }
-        return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
+        
+        const targetTileId = (isDistanceToPacmanBelowMinimum) ? super.scatterID : pacmanId;
+        const nextPosition = super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
+        return nextPosition;
     }
 
     
