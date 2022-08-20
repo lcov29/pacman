@@ -21,15 +21,17 @@ export default class Teleporter {
 
 
     getDestinationPositionFor(position) {
-        let destination = null;
-        if (position.id === this.#positionTeleporter1.id) {
-            destination = this.#positionTeleporter2.clone();
-        } else {
-            if (position.id === this.#positionTeleporter2.id) {
-                destination = this.#positionTeleporter1.clone();
-            }
+        const isTeleporter1 = position.id === this.#positionTeleporter1.id;
+        if (isTeleporter1) {
+            return this.#positionTeleporter2.clone();
+        } 
+        
+        const isTeleporter2 = position.id === this.#positionTeleporter2.id;
+        if (isTeleporter2) {
+            return this.#positionTeleporter1.clone();
         }
-        return destination; 
+
+        return null;
     }
 
 
