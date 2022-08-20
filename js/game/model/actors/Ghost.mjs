@@ -140,8 +140,10 @@ export default class Ghost extends Actor {
 
    randomizeMovementDirection() {
       while (true) {
-         let randomDirectionName = Directions.getRandomDirectionName();
-         if (randomDirectionName !== super.movementDirectionName) {
+         const randomDirectionName = Directions.getRandomDirectionName();
+         const isDifferentDirection = randomDirectionName !== super.movementDirectionName;
+         
+         if (isDifferentDirection) {
             super.movementDirectionName = randomDirectionName;
             break;
          }
