@@ -153,7 +153,7 @@ export default class Level {
 
     handleBonusConsumption() {
         this.incrementScoreBy(this.bonusElementSpawner.getScoreValue());
-        this.bonusElementSpawner.setBonusSpawnStatus(false);
+        this.bonusElementSpawner.resetBonusSpawnStatus();
     }
 
 
