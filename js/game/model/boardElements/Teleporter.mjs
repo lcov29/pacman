@@ -19,12 +19,12 @@ export default class Teleporter {
     }
 
     
-    getIDPosition1() {
+    get idPosition1() {
         return this.#positionTeleporter1.id;
     }
 
 
-    getIDPosition2() {
+    get idPosition2() {
         return this.#positionTeleporter2.id;
     }
 
