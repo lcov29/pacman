@@ -29,8 +29,9 @@ export default class BonusElementSpawner {
 
     handleSpawn(numberOfConsumedPoints) {
         const isConsumedPointLimitReached = Configuration.pointLimitForBonusSpawn.includes(numberOfConsumedPoints);
+        const isSpawningNecessary = isConsumedPointLimitReached && !this.#isBonusElementSpawned;
 
-        if (!this.#isBonusElementSpawned && isConsumedPointLimitReached) {
+        if (isSpawningNecessary) {
             const spawnPosition = this.#chooseRandomSpawnPositionFromList();
             const request = new BackgroundRequest(spawnPosition.x, spawnPosition.y, this.#bonusCharacter);
             this.#level.processBackgroundRequest(request);
