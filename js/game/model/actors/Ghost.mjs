@@ -121,14 +121,14 @@ export default class Ghost extends Actor {
 
 
    selectClosestPacmanID() {
-      let pacmanIds = super.level.getPacmanIDs();
+      const pacmanIdList = super.level.getPacmanIDs();
       let minCostId = null;
       let minPathCost = Infinity;
-      let currentId = -1;
       
-      for (let pacmanId of pacmanIds) {   
-         currentId = super.currentPosition.id;
-         let currentPathCost =  this.#routing.getShortestDistanceBetween(currentId, pacmanId);
+      for (let pacmanId of pacmanIdList) {   
+         const currentId = super.currentPosition.id;
+         const currentPathCost =  this.#routing.getShortestDistanceBetween(currentId, pacmanId);
+         
          if (currentPathCost < minPathCost) {
             minPathCost = currentPathCost;
             minCostId = pacmanId;
