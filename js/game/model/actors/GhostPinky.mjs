@@ -11,7 +11,6 @@ export default class GhostPinky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.character = Configuration.ghostPinkyCharacter;
-        super.initializeState();
     }
 
 

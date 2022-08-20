@@ -10,7 +10,6 @@ export default class GhostBlinky extends Ghost {
     constructor(level, position, routing) {
         super(level, position, routing);
         super.character = Configuration.ghostBlinkyCharacter;
-        super.initializeState();
     }
 
 
