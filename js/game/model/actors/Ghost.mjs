@@ -142,7 +142,7 @@ export default class Ghost extends Actor {
       while (true) {
          const randomDirectionName = Directions.getRandomDirectionName();
          const isDifferentDirection = randomDirectionName !== super.movementDirectionName;
-         
+
          if (isDifferentDirection) {
             super.movementDirectionName = randomDirectionName;
             break;
@@ -162,7 +162,7 @@ export default class Ghost extends Actor {
 
 
    #initializeState() {
-      if (this.#state === null) {
+      if (!this.#state) {
          this.#state = new GhostStateScatter(this);
       }
    }
