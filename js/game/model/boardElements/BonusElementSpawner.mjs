@@ -22,6 +22,28 @@ export default class BonusElementSpawner {
     }
 
 
+    get scoreValue() {
+        return this.#bonusScoreValue;
+    }
+
+
+    handleSpawn(numberOfConsumedPoints) {
+        const isConsumedPointLimitReached = Configuration.pointLimitForBonusSpawn.includes(numberOfConsumedPoints);
+
+        if (!this.#isBonusElementSpawned && isConsumedPointLimitReached) {
+            const spawnPosition = this.#chooseRandomSpawnPositionFromList();
+            const request = new BackgroundRequest(spawnPosition.x, spawnPosition.y, this.#bonusCharacter);
+            this.#level.processBackgroundRequest(request);
+            this.#isBonusElementSpawned = true;
+        }
+    }
+
+
+    resetBonusSpawnStatus() {
+        this.#isBonusElementSpawned = false;
+    }
+
+
     #mapBonusCharacterAndScore(levelNumber) {
         switch (levelNumber) {
             case 1:
@@ -63,29 +85,7 @@ export default class BonusElementSpawner {
                 break;
         }
     }
-
-
-    resetBonusSpawnStatus() {
-        this.#isBonusElementSpawned = false;
-    }
     
-
-    getScoreValue() {
-        return this.#bonusScoreValue;
-    }
-
-
-    handleSpawn(numberOfConsumedPoints) {
-        const isConsumedPointLimitReached = Configuration.pointLimitForBonusSpawn.includes(numberOfConsumedPoints);
-
-        if (!this.#isBonusElementSpawned && isConsumedPointLimitReached) {
-            const spawnPosition = this.#chooseRandomSpawnPositionFromList();
-            const request = new BackgroundRequest(spawnPosition.x, spawnPosition.y, this.#bonusCharacter);
-            this.#level.processBackgroundRequest(request);
-            this.#isBonusElementSpawned = true;
-        }
-    }
-
 
     #chooseRandomSpawnPositionFromList() {
         const maxId = this.#bonusSpawnPositionList.length - 1;
