@@ -64,11 +64,6 @@ export default class Ghost extends Actor {
          this.#state = new GhostStateScatter(this);
       }
    }
-
-
-   getTeleportationStatus() {
-      return super.hasTeleportedInPreviousTurn;
-   }
    
 
    isNextPositionEqualToTeleportDestination() {
