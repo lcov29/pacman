@@ -29,8 +29,28 @@ export default class Ghost extends Actor {
    }
 
 
+   set spawnID(positionId) {
+      this.#spawnPositionId = positionId;
+   }
+
+
+   set state(state) {
+      this.#state = state;
+   }
+
+
    get routing() {
       return this.#routing;
+   }
+
+
+   get scatterID() {
+      return this.#scatterPositionId;
+   }
+
+
+   get spawnID() {
+      return this.#spawnPositionId;
    }
 
 
@@ -39,30 +59,10 @@ export default class Ghost extends Actor {
    }
 
 
-   setSpawnID(positionId) {
-      this.#spawnPositionId = positionId;
-   }
-
-
-   setInitialState() {
+   initializeState() {
       if (this.#state === null) {
          this.#state = new GhostStateScatter(this);
       }
-   }
-
-
-   setState(state) {
-      this.#state = state;
-   }
-
-
-   getScatterID() {
-      return this.#scatterPositionId;
-   }
-
-
-   getSpawnID() {
-      return this.#spawnPositionId;
    }
 
 
