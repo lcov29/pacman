@@ -49,6 +49,11 @@ export default class Actor {
    }
 
 
+   get level() {
+      return this.#level;
+   }
+
+
    // TODO: Add a method like isCurrentPositionId(id)
    get currentPosition() {
       return this.#currentPosition;
