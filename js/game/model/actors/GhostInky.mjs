@@ -37,7 +37,7 @@ export default class GhostInky extends Ghost {
 
     #calculatePacmanOffsetPosition(pacmanPositionId) {
         const pacmanPosition = super.level.getPacmanPositionFor(pacmanPositionId);
-        const pacmanMovementDirection = this.#getPacmanMovementDirectionFor(pacmanPosition.id);
+        const pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
 
         let pacmanOffsetPosition = pacmanPosition;
         let x = pacmanPosition.x;
@@ -142,17 +142,6 @@ export default class GhostInky extends Ghost {
 
     #isPositionOnBoard(position) {
         return position !== null;
-    }
-
-
-    // TODO: check if still necessary
-    #getPacmanMovementDirectionFor(pacmanPositionId) {
-        let pacmanMovementDirection = super.level.getPacmanMovementDirectionFor(pacmanPositionId);
-        if (!pacmanMovementDirection) {
-            // handle case when pacman has not yet moved at the start of the game
-            pacmanMovementDirection = Directions.getDirectionByName(Configuration.initialPacmanSpriteDirection);
-        }
-        return pacmanMovementDirection;
     }
 
 
