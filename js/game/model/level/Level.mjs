@@ -192,14 +192,13 @@ export default class Level {
 
 
     getPacmanMovementDirectionFor(positionId) {
-        let movementDirection = null;
         for (let pacman of this.#pacmanList) {
-            if (pacman.currentPositionId === positionId) {
-                movementDirection =  pacman.getCurrentMovementDirection();
-                break;
+            const isMatchingPacman = pacman.currentPositionId === positionId;
+            if (isMatchingPacman) {
+                return pacman.getCurrentMovementDirection();
             }
         }
-        return movementDirection;
+        return null;
     }
 
 
