@@ -4,51 +4,54 @@
 export default class GhostState {
 
 
+    #remainingTurns = 0;
+    #ghost = null;
+    #name = '';
+
+
     constructor(ghost) {
-        this.remainingTurns = 0;
-        this.ghost = ghost;
-        this.name = '';
+        this.#ghost = ghost;
     }
 
 
     setName(name) {
-        this.name = name;
+        this.#name = name;
     }
 
 
     getName() {
-        return this.name;
+        return this.#name;
     }
 
 
     setSpriteDisplayPriority(priority) {
-        this.ghost.spriteDisplayPriority = priority;
+        this.#ghost.spriteDisplayPriority = priority;
     }
 
 
     getRemainingTurns() {
-        return this.remainingTurns;
+        return this.#remainingTurns;
     }
 
 
     setDurationInTurns(number) {
-        this.remainingTurns = number;
+        this.#remainingTurns = number;
     }
 
 
     getGhost() {
-        return this.ghost;
+        return this.#ghost;
     }
 
 
     end() {
-        this.remainingTurns = 0;
+        this.#remainingTurns = 0;
     }
 
 
     decrementRemainingTurns() {
-        if (this.remainingTurns > 0) {
-            this.remainingTurns--;
+        if (this.#remainingTurns > 0) {
+            this.#remainingTurns--;
         }
     }
 
