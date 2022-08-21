@@ -162,7 +162,7 @@ export default class Ghost extends Actor {
 
 
    #changeToSubsequentState() {
-      this.#state = this.#state.getSubsequentState();
+      this.#state = this.#state.subsequentState;
    }
 
 
