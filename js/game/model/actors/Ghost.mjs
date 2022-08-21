@@ -123,7 +123,7 @@ export default class Ghost extends Actor {
 
 
    selectClosestPacmanID() {
-      const pacmanIdList = super.level.getPacmanIDs();
+      const pacmanIdList = super.level.getPacmanIdList();
       let minCostId = null;
       let minPathCost = Infinity;
       
