@@ -1,5 +1,6 @@
 'use strict';
 
+
 import LevelInitializer from './LevelInitializer.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import Utility from '../../../global/Utility.mjs';
@@ -7,6 +8,7 @@ import Board from '../board/Board.mjs';
 import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
 import MovementRequest from '../../requests/MovementRequest.mjs';
+
 
 /*  
     =================================================================================================================
@@ -85,40 +87,20 @@ export default class Level {
 
 
     getPacmanPositionFor(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPosition = pacman.currentPositionId === positionId
-
-            if (isMatchingPosition) {
-                return pacman.currentPosition;
-            }
-        }
-        return null;
+        const func = (pacman) => { return pacman.currentPosition; };
+        return this.#iterateList(positionId, this.#pacmanList, func, null);
     }
 
 
     getPacmanMovementDirectionFor(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPacman = pacman.currentPositionId === positionId;
-
-            if (isMatchingPacman) {
-                return pacman.getCurrentMovementDirection();
-            }
-        }
-        return null;
+        const func = (pacman) => { return pacman.getCurrentMovementDirection(); };
+        return this.#iterateList(positionId, this.#pacmanList, func, null);
     }
 
 
     getTurnCompletionStatusForPacmanAt(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPosition = pacman.currentPositionId === positionId;
-
-            if (isMatchingPosition) {
-                if (pacman.hasCompletedCurrentTurn) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        const func = (pacman) => { return pacman.hasCompletedCurrentTurn; };
+        return this.#iterateList(positionId, this.#pacmanList, func, false);
     }
 
 
@@ -185,30 +167,14 @@ export default class Level {
 
 
     isPositionOccupiedByHostileGhost(positionId) {
-        for (let ghost of this.#ghostList) {
-            const isMatchingPosition = ghost.currentPositionId === positionId
-
-            if (isMatchingPosition) {
-                if (ghost.isHostile()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        const func = (ghost) => { return ghost.isHostile(); };
+        return this.#iterateList(positionId, this.#ghostList, func, false);
     }
 
 
     isPositionOccupiedByKillableGhost(positionId) {
-        for (let ghost of this.#ghostList) {
-            const isMatchingPosition = ghost.currentPositionId === positionId;
-
-            if (isMatchingPosition) {
-                if (ghost.isKillable()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        const func = (ghost) => { return ghost.isKillable(); };
+        return this.#iterateList(positionId, this.#ghostList, func, false);
     }
 
 
@@ -297,19 +263,26 @@ export default class Level {
 
 
     removeDeadPacmanAt(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPacman = pacman.currentPositionId === positionId;
-
-            if (isMatchingPacman) {
-                Utility.removeElementFrom(this.#pacmanList, pacman);
-            }
-        }  
+        const func = (pacman) => { Utility.removeElementFrom(this.#pacmanList, pacman); };
+        this.#iterateList(positionId, this.#pacmanList, func, null);
     }
 
 
     handleBonusConsumption() {
         this.incrementScoreBy(this.#bonusElementSpawner.scoreValue);
         this.#bonusElementSpawner.resetBonusSpawnStatus();
+    }
+
+
+    #iterateList(positionId, elementList, func, defaultReturn) {
+        for (let element of elementList) {
+            const isMatchingPosition = element.currentPositionId === positionId;
+
+            if (isMatchingPosition) {
+                return func(element);
+            }
+        }
+        return defaultReturn;
     }
 
 
