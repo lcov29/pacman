@@ -34,7 +34,7 @@ export default class GhostState {
     }
 
 
-    getName() {
+    get name() {
         return this.#name;
     }
 
