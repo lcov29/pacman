@@ -8,7 +8,7 @@ export default class GhostStateScaredStart extends GhostStateScared {
 
     constructor(ghost) {
         super(ghost);
-        super.setName(Configuration.nameGhostStateScared);       
+        super.name = Configuration.nameGhostStateScared;       
         super.setDurationInTurns(Configuration.turnDurationGhostStateScared);
         ghost.reverseCurrentMovementDirection();
     }

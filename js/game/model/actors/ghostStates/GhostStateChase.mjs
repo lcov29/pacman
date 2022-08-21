@@ -12,7 +12,7 @@ export default class GhostStateChase extends GhostState {
 
     constructor(ghost) {
         super(ghost);
-        super.setName(Configuration.nameGhostStateChase);
+        super.name = Configuration.nameGhostStateChase;
         super.setSpriteDisplayPriority(Configuration.ghostStateChaseSpriteDisplayPriority);
         super.setDurationInTurns(Configuration.turnDurationGhostStateChase);
     }
