@@ -15,6 +15,7 @@ export default class BonusElementSpawner {
     #isBonusElementSpawned = false;
 
 
+    // TODO: Refactor and add method setLevelNumber()
     constructor(bonusSpawnPositionList, levelNumber, level) {
         this.#level = level;
         this.#bonusSpawnPositionList = bonusSpawnPositionList;
