@@ -38,9 +38,6 @@ export default class Pacman extends Actor {
       super.character = Configuration.pacmanCharacter;
       super.spriteDisplayPriority = Configuration.pacmanSpriteDisplayPriority;
       super.movementDirectionName = Configuration.initialPacmanSpriteDirection;
-      //this.isAlive = true;
-      //this.hasCompletedCurrentTurn = false;
-      //this.isBackgroundUpdateNeeded = false;
    }
 
 
@@ -71,18 +68,18 @@ export default class Pacman extends Actor {
             let nextPosition = super.calculateNextPositionByCurrentDirection();
             super.nextPosition = nextPosition;
             super.loadNextPositionFromBoard();
-            let teleportationStatus = this.handleTeleportation();  
-            this.handleInaccessibleTileCollision();       
-            if (this.handleOtherPacmanCollision()) {
+            let teleportationStatus = this.#handleTeleportation();  
+            this.#handleInaccessibleTileCollision();       
+            if (this.#handleOtherPacmanCollision()) {
                super.hasTeleportedInPreviousTurn = teleportationStatus;
-               this.handleGhostCollision();
+               this.#handleGhostCollision();
                if (this.#isAlive) {
-                  this.handlePointCollision();
-                  this.handlePowerUpCollision();
-                  this.handleBonusElementCollision();
+                  this.#handlePointCollision();
+                  this.#handlePowerUpCollision();
+                  this.#handleBonusElementCollision();
                }
                super.sendLevelMovementRequest();
-               this.sendLevelBackgroundRequest();
+               this.#sendLevelBackgroundRequest();
                super.updateCurrentPosition();
                this.setTurnCompletionStatus(true);
             } else {
@@ -99,7 +96,7 @@ export default class Pacman extends Actor {
    }
 
 
-   sendLevelBackgroundRequest() {
+   #sendLevelBackgroundRequest() {
       if (this.#isBackgroundUpdateNeeded) {
          const nextPosition = super.nextPosition;
          const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
@@ -109,7 +106,7 @@ export default class Pacman extends Actor {
    }
 
 
-   handleTeleportation() {
+   #handleTeleportation() {
       let teleportationExecuted = false;
       // check teleportation flag to prevent teleportation loop
       if (super.isCurrentPositionTeleporter() && super.hasTeleportedInPreviousTurn === false) {
@@ -121,7 +118,7 @@ export default class Pacman extends Actor {
    }
 
 
-   handleInaccessibleTileCollision() {
+   #handleInaccessibleTileCollision() {
       let nextElement = super.nextPosition.elementLayerCharacter;
       if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
          super.nextPosition = super.currentPosition;
@@ -129,7 +126,7 @@ export default class Pacman extends Actor {
    }
 
 
-   handleOtherPacmanCollision() {
+   #handleOtherPacmanCollision() {
       let result = true;
       if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
          let thisPacmanPositionId = super.currentPosition.id;
@@ -147,7 +144,7 @@ export default class Pacman extends Actor {
    }
    
    
-   handlePointCollision() {
+   #handlePointCollision() {
       if (super.isNextPositionElementCharacter(Configuration.pointCharacter)) {
          super.incrementScoreBy(Configuration.scoreValuePerPoint);
          super.level.incrementConsumedPoints();
@@ -158,7 +155,7 @@ export default class Pacman extends Actor {
    }
 
 
-   handlePowerUpCollision() {
+   #handlePowerUpCollision() {
       if (super.isNextPositionElementCharacter(Configuration.powerUpCharacter)) {
          super.incrementScoreBy(Configuration.scoreValuePerPowerUp);
          super.level.incrementConsumedPoints();
@@ -170,7 +167,7 @@ export default class Pacman extends Actor {
    }
 
    
-   handleBonusElementCollision() {
+   #handleBonusElementCollision() {
       const nextElementCharacter = super.nextPosition.elementLayerCharacter;
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
@@ -182,24 +179,24 @@ export default class Pacman extends Actor {
    }
 
 
-   handleGhostCollision() {
+   #handleGhostCollision() {
       let nextPositionActorCharacter = super.nextPosition.actorLayerCharacter;
       if (Configuration.ghostCharacterList.includes(nextPositionActorCharacter)) {
          let nextPositionId = super.nextPosition.id;
-         this.handleHostileGhostCollision(nextPositionId);
-         this.handleKillableGhostCollision(nextPositionId);
+         this.#handleHostileGhostCollision(nextPositionId);
+         this.#handleKillableGhostCollision(nextPositionId);
       }
    }
 
 
-   handleHostileGhostCollision(positionId) {
+   #handleHostileGhostCollision(positionId) {
       if (super.level.isPositionOccupiedByHostileGhost(positionId)) {
          this.kill();
       }
    }
 
 
-   handleKillableGhostCollision(positionId) {
+   #handleKillableGhostCollision(positionId) {
       if (this.#isAlive && super.level.isPositionOccupiedByKillableGhost(positionId)) {
          super.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
