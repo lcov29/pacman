@@ -117,10 +117,8 @@ export default class GhostStateScared extends GhostState {
  
  
     #chooseRandomAccessibleNextBoardPosition() {
-        const currentBoardPosition = super.ghost.currentPosition;
-        const currentX = currentBoardPosition.x;
-        const currentY = currentBoardPosition.y;
-        const possibleNextPositonList = super.ghost.getAccessibleNeighborList(currentX, currentY);
+        const currentPosition = super.ghost.currentPosition;
+        const possibleNextPositonList = super.ghost.getAccessibleNeighborList(currentPosition.x, currentPosition.y);
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
 
         if (isPossibleNextPositionListEmpty) {
