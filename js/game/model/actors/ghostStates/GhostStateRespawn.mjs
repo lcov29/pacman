@@ -15,7 +15,7 @@ export default class GhostStateRespawn extends GhostState {
         super(ghost);
         super.name = Configuration.nameGhostStateRespawn;
         super.spriteDisplayPriority = Configuration.ghostStateRespawnSpriteDisplayPriority;
-        super.remainingTurns = Configuration.turnDurationGhostStateRespawn;
+        super.remainingTurns = Infinity; // state ends when final respawnStage is reached and no ghost is scared
     }
 
 
@@ -72,14 +72,14 @@ export default class GhostStateRespawn extends GhostState {
 
 
     handleSpawnCollision() {
-        const isRespawnComplete = this.#respawnStage === Configuration.ghostMaxRespawnStage;
+        const isFinalRespawnStageReached = this.#respawnStage === Configuration.ghostMaxRespawnStage;
         const isNoScaredGhostsOnBoard = super.ghost.countScaredGhosts() === 0;
 
-        if (!isRespawnComplete) {
+        if (!isFinalRespawnStageReached) {
             this.#respawnStage++;
         }
 
-        if (isRespawnComplete && isNoScaredGhostsOnBoard) {
+        if (isFinalRespawnStageReached && isNoScaredGhostsOnBoard) {
             super.end();
         }
     }
