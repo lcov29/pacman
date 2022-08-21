@@ -61,18 +61,19 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleTeleporterCollision() {
-        const ghost = super.ghost;
-        if (ghost.isCurrentPositionTeleporter()) {
+        if (super.ghost.isCurrentPositionTeleporter()) {
 
-            // ghost has the option to move over teleporters without teleporting
-            if (ghost.isNextPositionEqualToTeleportDestination()) {
-                ghost.hasTeleportedInPreviousTurn = true;
+            const hasTeleported = super.ghost.isNextPositionEqualToTeleportDestination();
+
+            if (hasTeleported) {
+                super.ghost.hasTeleportedInPreviousTurn = true;
             } else {
-                ghost.hasTeleportedInPreviousTurn = false;
+                // ghost has the option to move over teleporters without teleporting
+                super.ghost.hasTeleportedInPreviousTurn = false;
             }
-
+            
         } else {
-            ghost.hasTeleportedInPreviousTurn = false;
+            super.ghost.hasTeleportedInPreviousTurn = false;
         }
     }
 
