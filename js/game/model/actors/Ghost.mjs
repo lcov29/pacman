@@ -1,7 +1,8 @@
 'use strict';
 
+import GhostStateScaredStart from './ghostStates/GhostStateScaredStart.mjs';
+import GhostStateScaredEnd from './ghostStates/GhostStateScaredEnd.mjs';
 import GhostStateScatter from './ghostStates/GhostStateScatter.mjs';
-import GhostStateScared from './ghostStates/GhostStateScared.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import Directions from '../Directions.mjs';
 import Actor from './Actor.mjs';
@@ -76,7 +77,8 @@ export default class Ghost extends Actor {
 
 
    isScared() {
-      return (this.#state instanceof GhostStateScared);
+      return (this.#state instanceof GhostStateScaredStart ||
+              this.#state instanceof GhostStateScaredEnd);
    }
 
 
