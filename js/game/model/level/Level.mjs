@@ -230,14 +230,16 @@ export default class Level {
 
 
     isPositionOccupiedByKillableGhost(positionId) {
-        let result = false;
         for (let ghost of this.#ghostList) {
-            if (ghost.currentPositionId === positionId) {
-                result = ghost.isKillable();
-                if (result === true) { break; }
+            const isMatchingPosition = ghost.currentPositionId === positionId;
+
+            if (isMatchingPosition) {
+                if (ghost.isKillable()) {
+                    return true;
+                }
             }
         }
-        return result;
+        return false;
     }
 
 
