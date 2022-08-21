@@ -110,8 +110,10 @@ export default class Pacman extends Actor {
 
 
    #handleInaccessibleTileCollision() {
-      let nextElement = super.nextPosition.elementLayerCharacter;
-      if (Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement)) {
+      const nextElement = super.nextPosition.elementLayerCharacter;
+      const isNextPositionInaccessible = Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement);
+
+      if (isNextPositionInaccessible) {
          super.nextPosition = super.currentPosition;
       }
    }
