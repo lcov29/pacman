@@ -4,6 +4,7 @@ import Actor from './Actor.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs'
 
+
 /*  
    =================================================================================================================
    Implements the movement of pacman and the interaction with other actors and other elements like points etc
@@ -88,16 +89,6 @@ export default class Pacman extends Actor {
    }
 
 
-   #sendLevelBackgroundRequest() {
-      if (this.#isBackgroundUpdateNeeded) {
-         const nextPosition = super.nextPosition;
-         const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
-         super.sendLevelBackgroundRequest(request);
-      }
-      this.#isBackgroundUpdateNeeded = false;
-   }
-
-
    #handleTeleportation() {
       let teleportationExecuted = false;
 
@@ -140,8 +131,19 @@ export default class Pacman extends Actor {
       }
       return result;
    }
-   
-   
+
+
+   #handleGhostCollision() {
+      const nextPositionActorCharacter = super.nextPosition.actorLayerCharacter;
+      const isNextPositionGhost = Configuration.ghostCharacterList.includes(nextPositionActorCharacter);
+
+      if (isNextPositionGhost) {
+         this.#handleHostileGhostCollision(super.nextPosition.id);
+         this.#handleKillableGhostCollision(super.nextPosition.id);
+      }
+   }
+
+
    #handlePointCollision() {
       const isNextPositionPoint = super.isNextPositionElementCharacter(Configuration.pointCharacter);
 
@@ -168,7 +170,7 @@ export default class Pacman extends Actor {
       }
    }
 
-   
+
    #handleBonusElementCollision() {
       const nextElementCharacter = super.nextPosition.elementLayerCharacter;
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
@@ -181,14 +183,13 @@ export default class Pacman extends Actor {
    }
 
 
-   #handleGhostCollision() {
-      const nextPositionActorCharacter = super.nextPosition.actorLayerCharacter;
-      const isNextPositionGhost = Configuration.ghostCharacterList.includes(nextPositionActorCharacter);
-
-      if (isNextPositionGhost) {
-         this.#handleHostileGhostCollision(super.nextPosition.id);
-         this.#handleKillableGhostCollision(super.nextPosition.id);
+   #sendLevelBackgroundRequest() {
+      if (this.#isBackgroundUpdateNeeded) {
+         const nextPosition = super.nextPosition;
+         const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
+         super.sendLevelBackgroundRequest(request);
       }
+      this.#isBackgroundUpdateNeeded = false;
    }
 
 
