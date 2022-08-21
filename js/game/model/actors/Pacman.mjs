@@ -100,6 +100,7 @@ export default class Pacman extends Actor {
 
    #handleTeleportation() {
       let teleportationExecuted = false;
+
       // check teleportation flag to prevent teleportation loop
       if (super.isCurrentPositionTeleporter() && !super.hasTeleportedInPreviousTurn) {
          super.nextPosition = super.getTeleportDestinationForCurrentPosition();
@@ -121,12 +122,16 @@ export default class Pacman extends Actor {
 
    #handleOtherPacmanCollision() {
       let result = true;
-      if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-         let thisPacmanPositionId = super.currentPosition.id;
-         let otherPacmanPositionId = super.nextPosition.id;
-         if (thisPacmanPositionId !== otherPacmanPositionId) {
-            let otherCompletedTurn = super.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
-            if (otherCompletedTurn) {
+      const isNextPositionPacman = super.isNextPositionActorCharacter(Configuration.pacmanCharacter);
+
+      if (isNextPositionPacman) {
+         const otherPacmanPositionId = super.nextPosition.id;
+         const isNextPositionOtherPacman = super.currentPosition.id !== otherPacmanPositionId;
+
+         if (isNextPositionOtherPacman) {
+            const isOtherPacmanTurnComplete = super.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
+
+            if (isOtherPacmanTurnComplete) {
                super.nextPosition = super.currentPosition;
             } else {
                result = false;
