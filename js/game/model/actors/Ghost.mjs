@@ -81,7 +81,7 @@ export default class Ghost extends Actor {
 
 
    move() {
-      const isStateChangeNecessary = this.#state.getRemainingTurns() === 0;
+      const isStateChangeNecessary = this.#state.remainingTurns === 0;
 
       if (isStateChangeNecessary) {
          this.#changeToSubsequentState();
