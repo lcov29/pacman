@@ -96,8 +96,6 @@ export default class Level {
     }
 
 
-
-
     calculateNextTurn() {
         this.#movePacmans();
         if (!this.isWon() && !this.isLost()) {
@@ -106,7 +104,6 @@ export default class Level {
         this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
         this.#game.notifyTurnCalculationComplete();
     }
-
 
 
     scareLivingGhosts() {
@@ -171,12 +168,12 @@ export default class Level {
     }
 
 
-    getPacmanIDs() {
-        let ids = [];
+    getPacmanIdList() {
+        let idList = [];
         for (let pacman of this.#pacmanList) {
-            ids.push(pacman.currentPositionId);
+            idList.push(pacman.currentPositionId);
         }
-        return ids;
+        return idList;
     }
 
 
