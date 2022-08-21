@@ -49,9 +49,8 @@ export default class GhostStateDead extends GhostState {
 
     // dead state movement pattern
     calculateNextPosition(currentPositionId) {
-        let ghost = super.ghost;
-        let routing = ghost.routing;
-        let spawnPositionId = ghost.spawnID;
+        const routing = super.ghost.routing;
+        const spawnPositionId = super.ghost.spawnID;
         return routing.calculateNextPositionOnShortestPath(currentPositionId, spawnPositionId);
     }
 
