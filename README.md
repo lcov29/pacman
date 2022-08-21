@@ -21,6 +21,7 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * add highscore counter
 * add spawn stack for respawning multiple ghosts of the same type
 * represent level counter with fruits
+* improve notification about victory and defeat
 <br>
 <br>
 
