@@ -80,7 +80,7 @@ export default class GhostStateScatter extends GhostState {
         const isNextPositionPacman = super.ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter);
 
         if (isNextPositionPacman) {
-            super.ghost.killPacman(super.ghost.nextPosition.id);
+            super.ghost.killPacman(super.ghost.nextPositionId);
         }
     }
 

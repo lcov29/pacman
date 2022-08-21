@@ -116,7 +116,7 @@ export default class Pacman extends Actor {
       const isNextPositionPacman = super.isNextPositionActorCharacter(Configuration.pacmanCharacter);
 
       if (isNextPositionPacman) {
-         const otherPacmanPositionId = super.nextPosition.id;
+         const otherPacmanPositionId = super.nextPositionId;
          const isNextPositionOtherPacman = super.currentPositionId !== otherPacmanPositionId;
 
          if (isNextPositionOtherPacman) {
@@ -138,8 +138,8 @@ export default class Pacman extends Actor {
       const isNextPositionGhost = Configuration.ghostCharacterList.includes(nextPositionActorCharacter);
 
       if (isNextPositionGhost) {
-         this.#handleHostileGhostCollision(super.nextPosition.id);
-         this.#handleKillableGhostCollision(super.nextPosition.id);
+         this.#handleHostileGhostCollision(super.nextPositionId);
+         this.#handleKillableGhostCollision(super.nextPositionId);
       }
    }
 

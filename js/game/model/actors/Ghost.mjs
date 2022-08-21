@@ -62,7 +62,7 @@ export default class Ghost extends Actor {
    
 
    isNextPositionEqualToTeleportDestination() {
-      return super.nextPosition.id === super.getTeleportDestinationForCurrentPosition().id;
+      return super.nextPositionId === super.getTeleportDestinationForCurrentPosition().id;
    }
 
 
