@@ -90,8 +90,9 @@ export default class GhostStateDead extends GhostState {
 
 
     handleSpawnCollision() {
-        let ghost = super.ghost;
-        if (ghost.currentPosition.id === ghost.spawnID) {
+        const hasReachedSpawnPosition = super.ghost.currentPosition.id === super.ghost.spawnID
+        
+        if (hasReachedSpawnPosition) {
             super.end();
         }
     }
