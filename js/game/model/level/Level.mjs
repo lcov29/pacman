@@ -43,7 +43,7 @@ export default class Level {
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board);
         this.#pacmanList = LevelInitializer.initializePacmans(this.#board, this);
         this.#ghostList = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
-        this.#availablePoints = this.countAvailablePoints();
+        this.#availablePoints = this.#countAvailablePoints();
         this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
 
@@ -55,7 +55,7 @@ export default class Level {
         for (let row of boardPositionArray) {
             for (let element of row) {
                 const request = new BackgroundRequest(element.x, element.y, element.elementLayerCharacter);
-                this.addInformationToBackgroundRequest(request);
+                this.#addInformationToBackgroundRequest(request);
                 requestList.push(request);
             }
         }
@@ -99,9 +99,9 @@ export default class Level {
 
 
     calculateNextTurn() {
-        this.movePacmans();
+        this.#movePacmans();
         if (this.isWon() === false && this.isLost() === false) {
-            this.moveGhosts();
+            this.#moveGhosts();
         }
         this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
         this.#game.notifyTurnCalculationComplete();
@@ -117,12 +117,12 @@ export default class Level {
 
 
     killGhost(positionId) {
-        this.killActor(this.#ghostList, positionId);
+        this.#killActor(this.#ghostList, positionId);
     }
 
 
     killPacman(positionId) {
-        this.killActor(this.#pacmanList, positionId);
+        this.#killActor(this.#pacmanList, positionId);
     }
 
 
@@ -159,7 +159,7 @@ export default class Level {
     }
 
 
-    resetTurnCompletionStatusOfPacmans() {
+    #resetTurnCompletionStatusOfPacmans() {
         for (let pacman of this.#pacmanList) {
             pacman.resetTurnCompletionStatus();
         }
@@ -285,12 +285,12 @@ export default class Level {
 
     processBackgroundRequest(request) {
         this.#board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
-        this.addInformationToBackgroundRequest(request);
+        this.#addInformationToBackgroundRequest(request);
         this.#game.addBackgroundRequest(request);
     }
 
 
-    addInformationToBackgroundRequest(request) {
+    #addInformationToBackgroundRequest(request) {
         request.score = this.#score;
         request.lifeCount = this.#totalPacmanLifes;
     }
@@ -310,7 +310,7 @@ export default class Level {
     }
 
 
-    countAvailablePoints() {
+    #countAvailablePoints() {
         return this.#board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
     }
 
@@ -326,7 +326,7 @@ export default class Level {
     }
 
 
-    movePacmans() {
+    #movePacmans() {
         let unmovedPacmans = [...this.#pacmanList];
         while (unmovedPacmans.length > 0) {
             for (let pacman of unmovedPacmans) {
@@ -337,11 +337,11 @@ export default class Level {
                 }
             }
         }
-        this.resetTurnCompletionStatusOfPacmans();
+        this.#resetTurnCompletionStatusOfPacmans();
     }
 
 
-    moveGhosts() {
+    #moveGhosts() {
         for (let ghost of this.#ghostList) {
             ghost.move();
             if (this.isLost()) { break; }
@@ -349,7 +349,7 @@ export default class Level {
     }
 
 
-    killActor(actors, positionId) {
+    #killActor(actors, positionId) {
         for (let actor of actors) {
             if (actor.currentPositionId === positionId) {
                 actor.kill();
