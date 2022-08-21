@@ -216,14 +216,16 @@ export default class Level {
 
 
     isPositionOccupiedByHostileGhost(positionId) {
-        let result = false;
         for (let ghost of this.#ghostList) {
-            if (ghost.currentPositionId === positionId) {
-                result = ghost.isHostile();
-                if (result === true) { break; }
+            const isMatchingPosition = ghost.currentPositionId === positionId
+
+            if (isMatchingPosition) {
+                if (ghost.isHostile()) {
+                    return true;
+                }
             }
         }
-        return result;
+        return false;
     }
 
 
