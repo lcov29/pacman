@@ -301,7 +301,9 @@ export default class Level {
 
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.#pacmanList) {
-            if (pacman.currentPositionId === positionId) {
+            const isMatchingPacman = pacman.currentPositionId === positionId;
+            
+            if (isMatchingPacman) {
                 Utility.removeElementFrom(this.#pacmanList, pacman);
             }
         }  
