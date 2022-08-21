@@ -48,6 +48,94 @@ export default class Level {
     }
 
 
+    setNextPacmanDirection(directionName) {
+        for (let pacman of this.#pacmanList) {
+           pacman.movementDirectionName = directionName;
+        }
+    }
+
+
+    getBoardPositionAt(x, y) {
+        return this.#board.getPosition(x, y);
+    }
+
+
+    getAccessibleNeighborList(xPosition, yPosition) {
+        return this.#board.buildAccessibleNeighborList(xPosition, yPosition);
+    }
+
+
+    getTeleportDestination(position) {
+        for (let teleporter of this.#teleporterList) {
+            if (teleporter.isTeleporter(position)) {
+                return teleporter.getDestinationPositionFor(position);
+            }
+        }
+        return null;
+    }
+
+
+    getPacmanIdList() {
+        const idList = [];
+        for (let pacman of this.#pacmanList) {
+            idList.push(pacman.currentPositionId);
+        }
+        return idList;
+    }
+
+
+    getPacmanPositionFor(positionId) {
+        for (let pacman of this.#pacmanList) {
+            const isMatchingPosition = pacman.currentPositionId === positionId
+
+            if (isMatchingPosition) {
+                return pacman.currentPosition;
+            }
+        }
+        return null;
+    }
+
+
+    getPacmanMovementDirectionFor(positionId) {
+        for (let pacman of this.#pacmanList) {
+            const isMatchingPacman = pacman.currentPositionId === positionId;
+
+            if (isMatchingPacman) {
+                return pacman.getCurrentMovementDirection();
+            }
+        }
+        return null;
+    }
+
+
+    getTurnCompletionStatusForPacmanAt(positionId) {
+        for (let pacman of this.#pacmanList) {
+            const isMatchingPosition = pacman.currentPositionId === positionId;
+
+            if (isMatchingPosition) {
+                if (pacman.hasCompletedCurrentTurn) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    getGhostPositionListFor(ghostCharacter) {
+        const positionList = [];
+
+        for (let ghost of this.#ghostList) {
+            const isGhostType = ghost.character === ghostCharacter;
+
+            if (isGhostType) {
+                positionList.push(ghost.currentPosition.clone());
+            }
+        }
+        return positionList;
+    }
+
+
     getInitialBackgroundRequestList() {
         const boardPositionArray = this.#board.buildBoardPositionArray();
         const requestList = [];
@@ -96,125 +184,6 @@ export default class Level {
     }
 
 
-    calculateNextTurn() {
-        this.#movePacmans();
-        if (!this.isWon() && !this.isLost()) {
-            this.#moveGhosts();
-        }
-        this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
-        this.#game.notifyTurnCalculationComplete();
-    }
-
-
-    scareLivingGhosts() {
-        for (let ghost of this.#ghostList) {
-            ghost.scare();
-        }
-    }
-
-
-    killGhost(positionId) {
-        this.#killActor(this.#ghostList, positionId);
-    }
-
-
-    killPacman(positionId) {
-        this.#killActor(this.#pacmanList, positionId);
-    }
-
-
-    incrementScoreBy(value) {
-        this.#score += value;
-    }
-
-
-    incrementConsumedPoints() {
-        this.#consumedPoints++;
-    }
-
-    
-    decrementAvailablePoints() {
-        this.#availablePoints--;
-    }
-
-
-    decrementTotalPacmanLifes() {
-        this.#totalPacmanLifes--;
-    }
-
-
-    setNextPacmanDirection(directionName) {
-        for (let pacman of this.#pacmanList) {
-           pacman.movementDirectionName = directionName;
-        }
-    } 
-
-
-    handleBonusConsumption() {
-        this.incrementScoreBy(this.#bonusElementSpawner.scoreValue);
-        this.#bonusElementSpawner.resetBonusSpawnStatus();
-    }
-
-
-    #resetTurnCompletionStatusOfPacmans() {
-        for (let pacman of this.#pacmanList) {
-            pacman.resetTurnCompletionStatus();
-        }
-    }
-
-
-    getBoardPositionAt(x, y) {
-        return this.#board.getPosition(x, y);
-    }
-
-
-    getPacmanIdList() {
-        const idList = [];
-        for (let pacman of this.#pacmanList) {
-            idList.push(pacman.currentPositionId);
-        }
-        return idList;
-    }
-
-
-    getGhostPositionListFor(ghostCharacter) {
-        const positionList = [];
-
-        for (let ghost of this.#ghostList) {
-            const isGhostType = ghost.character === ghostCharacter;
-
-            if (isGhostType) {
-                positionList.push(ghost.currentPosition.clone());
-            }
-        }
-        return positionList;
-    }    
-
-
-    getPacmanMovementDirectionFor(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPacman = pacman.currentPositionId === positionId;
-
-            if (isMatchingPacman) {
-                return pacman.getCurrentMovementDirection();
-            }
-        }
-        return null;
-    }
-
-
-    getPacmanPositionFor(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPosition = pacman.currentPositionId === positionId
-
-            if (isMatchingPosition) {
-                return pacman.currentPosition;
-            }
-        }
-        return null;
-    }
-
-
     isPositionOccupiedByHostileGhost(positionId) {
         for (let ghost of this.#ghostList) {
             const isMatchingPosition = ghost.currentPositionId === positionId
@@ -243,30 +212,6 @@ export default class Level {
     }
 
 
-    getTurnCompletionStatusForPacmanAt(positionId) {
-        for (let pacman of this.#pacmanList) {
-            const isMatchingPosition = pacman.currentPositionId === positionId;
-
-            if (isMatchingPosition) {
-                if (pacman.hasCompletedCurrentTurn) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
-    getTeleportDestination(position) {
-        for (let teleporter of this.#teleporterList) {
-            if (teleporter.isTeleporter(position)) {
-                return teleporter.getDestinationPositionFor(position);
-            }
-        }
-        return null;
-    }
-
-
     isWon() {
         return this.#availablePoints === 0;
     }
@@ -274,6 +219,26 @@ export default class Level {
 
     isLost() {
         return this.#totalPacmanLifes === 0;
+    }
+
+
+    incrementScoreBy(value) {
+        this.#score += value;
+    }
+
+
+    incrementConsumedPoints() {
+        this.#consumedPoints++;
+    }
+
+    
+    decrementAvailablePoints() {
+        this.#availablePoints--;
+    }
+
+
+    decrementTotalPacmanLifes() {
+        this.#totalPacmanLifes--;
     }
 
 
@@ -293,9 +258,41 @@ export default class Level {
     }
 
 
-    #addInformationToBackgroundRequest(request) {
-        request.score = this.#score;
-        request.lifeCount = this.#totalPacmanLifes;
+    calculateNextTurn() {
+        this.#movePacmans();
+        if (!this.isWon() && !this.isLost()) {
+            this.#moveGhosts();
+        }
+        this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
+        this.#game.notifyTurnCalculationComplete();
+    }
+
+
+    countScaredGhosts() {
+        let counter = 0;
+        for (let ghost of this.#ghostList) {
+            if (ghost.isScared()) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+
+    scareLivingGhosts() {
+        for (let ghost of this.#ghostList) {
+            ghost.scare();
+        }
+    }
+
+
+    killGhost(positionId) {
+        this.#killActor(this.#ghostList, positionId);
+    }
+
+
+    killPacman(positionId) {
+        this.#killActor(this.#pacmanList, positionId);
     }
 
 
@@ -310,24 +307,27 @@ export default class Level {
     }
 
 
-    getAccessibleNeighborList(xPosition, yPosition) {
-        return this.#board.buildAccessibleNeighborList(xPosition, yPosition);
+    handleBonusConsumption() {
+        this.incrementScoreBy(this.#bonusElementSpawner.scoreValue);
+        this.#bonusElementSpawner.resetBonusSpawnStatus();
+    }
+
+
+    #resetTurnCompletionStatusOfPacmans() {
+        for (let pacman of this.#pacmanList) {
+            pacman.resetTurnCompletionStatus();
+        }
+    }
+
+
+    #addInformationToBackgroundRequest(request) {
+        request.score = this.#score;
+        request.lifeCount = this.#totalPacmanLifes;
     }
 
 
     #countAvailablePoints() {
         return this.#board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
-    }
-
-
-    countScaredGhosts() {
-        let counter = 0;
-        for (let ghost of this.#ghostList) {
-            if (ghost.isScared()) {
-                counter++;
-            }
-        }
-        return counter;
     }
 
 
