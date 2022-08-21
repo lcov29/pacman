@@ -52,7 +52,7 @@ export default class GhostStateChase extends GhostState {
         if (super.ghost.isCurrentPositionTeleporter()) {
 
             const hasTeleported = super.ghost.isNextPositionEqualToTeleportDestination();
-            
+
             if (hasTeleported) {
                 super.ghost.hasTeleportedInPreviousTurn = true;
             } else {
@@ -72,9 +72,10 @@ export default class GhostStateChase extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.ghost;
-        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
-            ghost.killPacman(ghost.nextPosition.id);
+        const isNextPositionPacman = super.ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter);
+        
+        if (isNextPositionPacman) {
+            super.ghost.killPacman(super.ghost.nextPosition.id);
         }
     }
 
