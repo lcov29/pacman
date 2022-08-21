@@ -26,33 +26,38 @@ import BackgroundRequest from '../../requests/BackgroundRequest.mjs'
 
 
 export default class Pacman extends Actor {
-   
 
+
+   #isAlive = true;
+   #hasCompletedCurrentTurn = false;
+   #isBackgroundUpdateNeeded = false;
+
+   
    constructor(level, position) {
       super(level, position);
       super.character = Configuration.pacmanCharacter;
       super.spriteDisplayPriority = Configuration.pacmanSpriteDisplayPriority;
       super.movementDirectionName = Configuration.initialPacmanSpriteDirection;
-      this.isAlive = true;
-      this.hasCompletedCurrentTurn = false;
-      this.isBackgroundUpdateNeeded = false;
+      //this.isAlive = true;
+      //this.hasCompletedCurrentTurn = false;
+      //this.isBackgroundUpdateNeeded = false;
    }
 
 
    setTurnCompletionStatus(status) {
-      this.hasCompletedCurrentTurn = status;
+      this.#hasCompletedCurrentTurn = status;
    }
 
 
    getTurnCompletionStatus() {
-      return this.hasCompletedCurrentTurn;
+      return this.#hasCompletedCurrentTurn;
    }
 
 
    kill() {
       super.level.decrementTotalPacmanLifes();
       super.level.removeDeadPacmanAt(super.currentPosition.id);
-      this.isAlive = false;
+      this.#isAlive = false;
    }
 
 
@@ -71,7 +76,7 @@ export default class Pacman extends Actor {
             if (this.handleOtherPacmanCollision()) {
                super.hasTeleportedInPreviousTurn = teleportationStatus;
                this.handleGhostCollision();
-               if (this.isAlive) {
+               if (this.#isAlive) {
                   this.handlePointCollision();
                   this.handlePowerUpCollision();
                   this.handleBonusElementCollision();
@@ -95,12 +100,12 @@ export default class Pacman extends Actor {
 
 
    sendLevelBackgroundRequest() {
-      if (this.isBackgroundUpdateNeeded) {
+      if (this.#isBackgroundUpdateNeeded) {
          const nextPosition = super.nextPosition;
          const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
          super.sendLevelBackgroundRequest(request);
       }
-      this.isBackgroundUpdateNeeded = false;
+      this.#isBackgroundUpdateNeeded = false;
    }
 
 
@@ -128,7 +133,7 @@ export default class Pacman extends Actor {
       let result = true;
       if (super.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
          let thisPacmanPositionId = super.currentPosition.id;
-         let otherPacmanPositionId = this.nextPosition.id;
+         let otherPacmanPositionId = super.nextPosition.id;
          if (thisPacmanPositionId !== otherPacmanPositionId) {
             let otherCompletedTurn = super.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);
             if (otherCompletedTurn) {
@@ -148,7 +153,7 @@ export default class Pacman extends Actor {
          super.level.incrementConsumedPoints();
          super.level.decrementAvailablePoints();
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
-         this.isBackgroundUpdateNeeded = true;
+         this.#isBackgroundUpdateNeeded = true;
       }
    }
 
@@ -160,7 +165,7 @@ export default class Pacman extends Actor {
          super.level.decrementAvailablePoints();
          super.level.scareLivingGhosts();
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
-         this.isBackgroundUpdateNeeded = true;
+         this.#isBackgroundUpdateNeeded = true;
       }
    }
 
@@ -172,7 +177,7 @@ export default class Pacman extends Actor {
       if (isNextPositionBonusElement) {
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          super.level.handleBonusConsumption();
-         this.isBackgroundUpdateNeeded = true;
+         this.#isBackgroundUpdateNeeded = true;
       }
    }
 
@@ -195,7 +200,7 @@ export default class Pacman extends Actor {
 
 
    handleKillableGhostCollision(positionId) {
-      if (this.isAlive && super.level.isPositionOccupiedByKillableGhost(positionId)) {
+      if (this.#isAlive && super.level.isPositionOccupiedByKillableGhost(positionId)) {
          super.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
       }
