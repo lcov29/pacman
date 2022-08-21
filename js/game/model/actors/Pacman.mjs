@@ -101,9 +101,8 @@ export default class Pacman extends Actor {
    #handleTeleportation() {
       let teleportationExecuted = false;
       // check teleportation flag to prevent teleportation loop
-      if (super.isCurrentPositionTeleporter() && super.hasTeleportedInPreviousTurn === false) {
-         let destination = super.getTeleportDestinationForCurrentPosition();
-         super.nextPosition = destination;
+      if (super.isCurrentPositionTeleporter() && !super.hasTeleportedInPreviousTurn) {
+         super.nextPosition = super.getTeleportDestinationForCurrentPosition();
          teleportationExecuted = true;
       }
       return teleportationExecuted;
