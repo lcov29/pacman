@@ -128,7 +128,7 @@ export default class GhostInky extends Ghost {
     #selectPositionsOfGhostTypeWithHighestReferencePriority() {
         let ghostPositionList = [];
         for (let ghostCharacter of Configuration.chasePatternGhostInkyGhostPriorityList) {
-            ghostPositionList = super.level.getGhostPositionsFor(ghostCharacter);
+            ghostPositionList = super.level.getGhostPositionListFor(ghostCharacter);
             if (ghostPositionList.length > 0) { break; }
         }
         return ghostPositionList;
