@@ -24,8 +24,8 @@ export default class Level {
     #board = null;
     #bonusElementSpawner = null;
     #teleporterList = [];
-    #pacmans = [];
-    #ghosts = [];
+    #pacmanList = [];
+    #ghostList = [];
     #availablePoints = 0;
     #consumedPoints = 0;
     #totalPacmanLifes = 0;
@@ -41,8 +41,8 @@ export default class Level {
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board);
-        this.#pacmans = LevelInitializer.initializePacmans(this.#board, this);
-        this.#ghosts = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
+        this.#pacmanList = LevelInitializer.initializePacmans(this.#board, this);
+        this.#ghostList = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
         this.#availablePoints = this.countAvailablePoints();
         this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
@@ -110,19 +110,19 @@ export default class Level {
 
 
     scareLivingGhosts() {
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             ghost.scare();
         }
     }
 
 
     killGhost(positionId) {
-        this.killActor(this.#ghosts, positionId);
+        this.killActor(this.#ghostList, positionId);
     }
 
 
     killPacman(positionId) {
-        this.killActor(this.#pacmans, positionId);
+        this.killActor(this.#pacmanList, positionId);
     }
 
 
@@ -147,7 +147,7 @@ export default class Level {
 
 
     setNextPacmanDirection(directionName) {
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
            pacman.movementDirectionName = directionName;
         }
     } 
@@ -160,7 +160,7 @@ export default class Level {
 
 
     resetTurnCompletionStatusOfPacmans() {
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             pacman.resetTurnCompletionStatus();
         }
     }
@@ -173,7 +173,7 @@ export default class Level {
 
     getPacmanIDs() {
         let ids = [];
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             ids.push(pacman.currentPositionId);
         }
         return ids;
@@ -182,7 +182,7 @@ export default class Level {
 
     getGhostPositionsFor(ghostCharacter) {
         let positions = [];
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             if (ghost.character === ghostCharacter) {
                 positions.push(ghost.currentPosition.clone());
             }
@@ -193,7 +193,7 @@ export default class Level {
 
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             if (pacman.currentPositionId === positionId) {
                 movementDirection =  pacman.getCurrentMovementDirection();
                 break;
@@ -205,7 +205,7 @@ export default class Level {
 
     getPacmanPositionFor(positionId) {
         let pacmanPosition = null;
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             let position = pacman.currentPosition;
             if (position.id === positionId) {
                 pacmanPosition = position;
@@ -218,7 +218,7 @@ export default class Level {
 
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             if (ghost.currentPositionId === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
@@ -230,7 +230,7 @@ export default class Level {
 
     isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             if (ghost.currentPositionId === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
@@ -242,7 +242,7 @@ export default class Level {
 
     getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             if (pacman.currentPositionId === positionId) {
                 status = pacman.hasCompletedCurrentTurn;
                 break;
@@ -297,9 +297,9 @@ export default class Level {
 
 
     removeDeadPacmanAt(positionId) {
-        for (let pacman of this.#pacmans) {
+        for (let pacman of this.#pacmanList) {
             if (pacman.currentPositionId === positionId) {
-                Utility.removeElementFrom(this.#pacmans, pacman);
+                Utility.removeElementFrom(this.#pacmanList, pacman);
             }
         }  
     }
@@ -317,7 +317,7 @@ export default class Level {
 
     countScaredGhosts() {
         let counter = 0;
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             if (ghost.isScared()) {
                 counter++;
             }
@@ -327,7 +327,7 @@ export default class Level {
 
 
     movePacmans() {
-        let unmovedPacmans = [...this.#pacmans];
+        let unmovedPacmans = [...this.#pacmanList];
         while (unmovedPacmans.length > 0) {
             for (let pacman of unmovedPacmans) {
                 if (!pacman.hasCompletedCurrentTurn) {
@@ -342,7 +342,7 @@ export default class Level {
 
 
     moveGhosts() {
-        for (let ghost of this.#ghosts) {
+        for (let ghost of this.#ghostList) {
             ghost.move();
             if (this.isLost()) { break; }
         }
