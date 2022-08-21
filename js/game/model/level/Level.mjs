@@ -169,7 +169,7 @@ export default class Level {
 
 
     getPacmanIdList() {
-        let idList = [];
+        const idList = [];
         for (let pacman of this.#pacmanList) {
             idList.push(pacman.currentPositionId);
         }
@@ -177,14 +177,17 @@ export default class Level {
     }
 
 
-    getGhostPositionsFor(ghostCharacter) {
-        let positions = [];
+    getGhostPositionListFor(ghostCharacter) {
+        const positionList = [];
+
         for (let ghost of this.#ghostList) {
-            if (ghost.character === ghostCharacter) {
-                positions.push(ghost.currentPosition.clone());
+            const isGhostType = ghost.character === ghostCharacter;
+
+            if (isGhostType) {
+                positionList.push(ghost.currentPosition.clone());
             }
         }
-        return positions;
+        return positionList;
     }    
 
 
