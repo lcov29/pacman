@@ -116,12 +116,6 @@ export default class Actor {
    }
 
 
-   // TODO: remove method and its use in Pacman.move()
-   isMovementDirectionSet() {
-      return this.#movementDirectionName !== '';
-   }
-
-
    incrementScoreBy(value) {
       this.#level.incrementScoreBy(value);
    }
