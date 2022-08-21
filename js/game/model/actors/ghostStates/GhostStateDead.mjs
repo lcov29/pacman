@@ -33,7 +33,7 @@ export default class GhostStateDead extends GhostState {
 
     executeMovementPattern() {
         const currentPositionId = super.ghost.currentPosition.id;
-        super.ghost.nextPosition = this.calculateNextPosition(currentPositionId);
+        super.ghost.nextPosition = this.#calculateNextPosition(currentPositionId);
     }
 
 
@@ -44,14 +44,6 @@ export default class GhostStateDead extends GhostState {
 
     kill() {
         // dead ghosts can not be killed
-    }
-
-
-    // dead state movement pattern
-    calculateNextPosition(currentPositionId) {
-        const routing = super.ghost.routing;
-        const spawnPositionId = super.ghost.spawnID;
-        return routing.calculateNextPositionOnShortestPath(currentPositionId, spawnPositionId);
     }
 
 
@@ -91,10 +83,18 @@ export default class GhostStateDead extends GhostState {
 
     handleSpawnCollision() {
         const hasReachedSpawnPosition = super.ghost.currentPosition.id === super.ghost.spawnID
-        
+
         if (hasReachedSpawnPosition) {
             super.end();
         }
+    }
+
+
+    // dead state movement pattern
+    #calculateNextPosition(currentPositionId) {
+        const routing = super.ghost.routing;
+        const spawnPositionId = super.ghost.spawnID;
+        return routing.calculateNextPositionOnShortestPath(currentPositionId, spawnPositionId);
     }
 
 
