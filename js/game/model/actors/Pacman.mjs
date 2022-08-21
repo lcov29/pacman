@@ -202,7 +202,9 @@ export default class Pacman extends Actor {
 
 
    #handleKillableGhostCollision(positionId) {
-      if (this.#isAlive && super.level.isPositionOccupiedByKillableGhost(positionId)) {
+      const isPositionOccupiedByKillableGhost = super.level.isPositionOccupiedByKillableGhost(positionId);
+
+      if (this.#isAlive && isPositionOccupiedByKillableGhost) {
          super.level.killGhost(positionId);
          super.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
       }
