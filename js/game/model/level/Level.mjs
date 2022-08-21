@@ -244,14 +244,16 @@ export default class Level {
 
 
     getTurnCompletionStatusForPacmanAt(positionId) {
-        let status = false;
         for (let pacman of this.#pacmanList) {
-            if (pacman.currentPositionId === positionId) {
-                status = pacman.hasCompletedCurrentTurn;
-                break;
+            const isMatchingPosition = pacman.currentPositionId === positionId;
+
+            if (isMatchingPosition) {
+                if (pacman.hasCompletedCurrentTurn) {
+                    return true;
+                }
             }
         }
-        return status;
+        return false;
     }
 
 
