@@ -12,7 +12,7 @@ export default class GhostStateScatter extends GhostState {
     constructor(ghost) {
         super(ghost);
         super.name = Configuration.nameGhostStateScatter;
-        super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
+        super.spriteDisplayPriority = Configuration.ghostStateScaredSpriteDisplayPriority;
         super.remainingTurns = Configuration.turnDurationGhostStateScatter;
     }
 

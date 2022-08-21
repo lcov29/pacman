@@ -11,7 +11,7 @@ export default class GhostStateDead extends GhostState {
     constructor(ghost) {
         super(ghost);
         super.name = Configuration.nameGhostStateDead;
-        super.setSpriteDisplayPriority(Configuration.ghostStateDeadSpriteDisplayPriority);
+        super.spriteDisplayPriority = Configuration.ghostStateDeadSpriteDisplayPriority;
         super.remainingTurns = Infinity; // state ends when spawn is reached
     }
 

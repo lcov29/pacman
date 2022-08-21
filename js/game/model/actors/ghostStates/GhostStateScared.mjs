@@ -29,7 +29,7 @@ export default class GhostStateScared extends GhostState {
 
     constructor(ghost) {
         super(ghost);
-        super.setSpriteDisplayPriority(Configuration.ghostStateScaredSpriteDisplayPriority);
+        super.spriteDisplayPriority = Configuration.ghostStateScaredSpriteDisplayPriority;
     }
 
 
