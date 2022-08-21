@@ -24,6 +24,11 @@ export default class GhostState {
     }
 
 
+    set spriteDisplayPriority(priority) {
+        this.#ghost.spriteDisplayPriority = priority;
+    }
+
+
     get remainingTurns() {
         return this.#remainingTurns;
     }
@@ -36,11 +41,6 @@ export default class GhostState {
 
     get name() {
         return this.#name;
-    }
-
-
-    setSpriteDisplayPriority(priority) {
-        this.#ghost.spriteDisplayPriority = priority;
     }
 
 
