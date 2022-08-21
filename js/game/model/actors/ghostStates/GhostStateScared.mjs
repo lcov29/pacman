@@ -44,39 +44,32 @@ export default class GhostStateScared extends GhostState {
 
 
     executeMovementPattern() {
-        let nextPosition = this.calculateNextPosition();
+        const nextPosition = this.#calculateNextPosition();
         super.ghost.nextPosition = nextPosition;
-        this.handleLevelBorderCollision(nextPosition);
+        this.#handleLevelBorderCollision(nextPosition);
     }
 
 
     scare() {
-        let ghost = super.ghost;
-        ghost.state = new GhostStateScaredStart(ghost);
+        super.ghost.state = new GhostStateScaredStart(super.ghost);
     }
 
 
     kill() {
-        let ghost = super.ghost;
-        ghost.state = new GhostStateDead(ghost);
-    }
-
-
-    calculateNextPosition() {
-        return super.ghost.calculateNextPositionByCurrentDirection();
+        super.ghost.state = new GhostStateDead(super.ghost);
     }
 
 
     handleTeleporterCollision() {
         const ghost = super.ghost;
-
         const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.hasTeleportedInPreviousTurn;
+
         if (isTeleportationNeeded) {
             const destination = ghost.getTeleportDestinationForCurrentPosition();
             ghost.nextPosition = destination;
             ghost.hasTeleportedInPreviousTurn = true;
         } else if (ghost.hasTeleportedInPreviousTurn) {
-            this.chooseRandomAccessibleNextBoardPosition();
+            this.#chooseRandomAccessibleNextBoardPosition();
             ghost.hasTeleportedInPreviousTurn = false;
         }
     }
@@ -88,20 +81,22 @@ export default class GhostStateScared extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.ghost;
-        if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {            
-            ghost.kill();
-            ghost.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
+        const isNextPositionPacman = super.ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter);
+
+        if (isNextPositionPacman) {            
+            super.ghost.kill();
+            super.ghost.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
         }
     }
 
 
     handleInaccessibleTileCollision() {
-        let ghost = super.ghost;
-        let nextPositionCharacter = ghost.nextPosition.elementLayerCharacter;
-        if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
-            ghost.nextPosition = ghost.currentPosition;
-            ghost.randomizeMovementDirection();
+        const nextPositionElementCharacter = super.ghost.nextPosition.elementLayerCharacter;
+        const isNextPositionInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionElementCharacter);
+
+        if (isNextPositionInaccessible) {
+            super.ghost.nextPosition = super.ghost.currentPosition;
+            super.ghost.randomizeMovementDirection();
         }
     }
 
@@ -111,32 +106,35 @@ export default class GhostStateScared extends GhostState {
     }
 
 
-    // internal method
-    handleLevelBorderCollision(nextPosition) {
-        let ghost = super.ghost;
-        // when an actor moves out of the level its position is reset to current position 
-        if (nextPosition.id === ghost.currentPosition.id) {
-            ghost.randomizeMovementDirection();
+    #handleLevelBorderCollision(nextPosition) {     
+        const hasNotMoved = nextPosition.id === super.ghost.currentPosition.id;
+        // (when an actor moves out of the level its position is reset to current position)
+
+        if (hasNotMoved) {
+            super.ghost.randomizeMovementDirection();
         }
     }
  
  
-    chooseRandomAccessibleNextBoardPosition() {
-        const ghost = super.ghost;
-        const currentBoardPosition = ghost.currentPosition;
+    #chooseRandomAccessibleNextBoardPosition() {
+        const currentBoardPosition = super.ghost.currentPosition;
         const currentX = currentBoardPosition.x;
         const currentY = currentBoardPosition.y;
         const possibleNextPositonList = super.ghost.getAccessibleNeighborList(currentX, currentY);
-        
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
 
         if (isPossibleNextPositionListEmpty) {
-            ghost.nextPosition = ghost.currentPosition;
+            super.ghost.nextPosition = super.ghost.currentPosition;
         } else {
             const chosenNextPositionIndex = Utility.getRandomIntegerBetweenInclusive(0, possibleNextPositonList.length - 1);
             const chosenNextPosition = possibleNextPositonList[chosenNextPositionIndex];
-            ghost.nextPosition = chosenNextPosition;
+            super.ghost.nextPosition = chosenNextPosition;
         }
+    }
+
+
+    #calculateNextPosition() {
+        return super.ghost.calculateNextPositionByCurrentDirection();
     }
 
 
