@@ -302,7 +302,7 @@ export default class Level {
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.#pacmanList) {
             const isMatchingPacman = pacman.currentPositionId === positionId;
-            
+
             if (isMatchingPacman) {
                 Utility.removeElementFrom(this.#pacmanList, pacman);
             }
@@ -332,12 +332,12 @@ export default class Level {
 
 
     #movePacmans() {
-        let unmovedPacmans = [...this.#pacmanList];
-        while (unmovedPacmans.length > 0) {
-            for (let pacman of unmovedPacmans) {
+        const unmovedPacmanList = [...this.#pacmanList];
+        while (unmovedPacmanList.length > 0) {
+            for (let pacman of unmovedPacmanList) {
                 if (!pacman.hasCompletedCurrentTurn) {
                     if (pacman.move()) {
-                        Utility.removeElementFrom(unmovedPacmans, pacman);
+                        Utility.removeElementFrom(unmovedPacmanList, pacman);
                     }
                 }
             }
