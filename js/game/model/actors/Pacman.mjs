@@ -41,13 +41,13 @@ export default class Pacman extends Actor {
    }
 
 
-   resetTurnCompletionStatus() {
-      this.#hasCompletedCurrentTurn = false;
+   get hasCompletedCurrentTurn() {
+      return this.#hasCompletedCurrentTurn;
    }
 
 
-   getTurnCompletionStatus() {
-      return this.#hasCompletedCurrentTurn;
+   resetTurnCompletionStatus() {
+      this.#hasCompletedCurrentTurn = false;
    }
 
 
@@ -63,7 +63,7 @@ export default class Pacman extends Actor {
          this.#hasCompletedCurrentTurn = true;
       } else {
 
-         if (this.getTurnCompletionStatus() === false) {
+         if (!this.#hasCompletedCurrentTurn) {
             super.loadCurrentPositionFromBoard();
             let nextPosition = super.calculateNextPositionByCurrentDirection();
             super.nextPosition = nextPosition;
@@ -92,7 +92,7 @@ export default class Pacman extends Actor {
          }
 
       }
-      return this.getTurnCompletionStatus();
+      return this.#hasCompletedCurrentTurn;
    }
 
 
