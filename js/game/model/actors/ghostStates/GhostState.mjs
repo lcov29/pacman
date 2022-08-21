@@ -29,6 +29,11 @@ export default class GhostState {
     }
 
 
+    get ghost() {
+        return this.#ghost;
+    }
+
+
     getName() {
         return this.#name;
     }
@@ -36,11 +41,6 @@ export default class GhostState {
 
     setSpriteDisplayPriority(priority) {
         this.#ghost.spriteDisplayPriority = priority;
-    }
-
-
-    getGhost() {
-        return this.#ghost;
     }
 
 
