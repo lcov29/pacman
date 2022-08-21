@@ -6,7 +6,6 @@ import GhostStateScaredStart from './GhostStateScaredStart.mjs';
 import GhostStateScatter from './GhostStateScatter.mjs';
 
 
-
 export default class GhostStateChase extends GhostState {
 
 
@@ -18,7 +17,7 @@ export default class GhostStateChase extends GhostState {
     }
 
 
-    getSubsequentState() {
+    get subsequentState() {
         return new GhostStateScatter(super.ghost);
     }
 

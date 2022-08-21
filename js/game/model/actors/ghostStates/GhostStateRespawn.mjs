@@ -17,7 +17,7 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
-    getSubsequentState() {
+    get subsequentState() {
         return new GhostStateScatter(super.ghost);
     }
 
