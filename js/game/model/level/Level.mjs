@@ -159,7 +159,7 @@ export default class Level {
 
     resetTurnCompletionStatusOfPacmans() {
         for (let pacman of this.pacmans) {
-            pacman.setTurnCompletionStatus(false);
+            pacman.resetTurnCompletionStatus();
         }
     }
 
