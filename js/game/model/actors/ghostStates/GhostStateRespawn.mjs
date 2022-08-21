@@ -35,8 +35,7 @@ export default class GhostStateRespawn extends GhostState {
 
 
     executeMovementPattern() {
-        let ghost = super.ghost;
-        ghost.nextPosition = ghost.currentPosition;
+        super.ghost.nextPosition = super.ghost.currentPosition;
     }
 
 
@@ -75,8 +74,8 @@ export default class GhostStateRespawn extends GhostState {
     handleSpawnCollision() {
         let ghost = super.ghost;
         if (ghost.currentPosition.id === ghost.spawnID) {
-            if (this.respawnStage < Configuration.ghostMaxRespawnStage) {
-                this.respawnStage++;
+            if (this.#respawnStage < Configuration.ghostMaxRespawnStage) {
+                this.#respawnStage++;
             } else {
                 // prevent ghost from leaving the spawn while pacman still has scared ghost to chase
                 if (ghost.countScaredGhosts() === 0) {
