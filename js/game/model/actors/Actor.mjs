@@ -60,8 +60,18 @@ export default class Actor {
    }
 
 
+   get currentPositionId() {
+      return this.#currentPosition.id;
+   }
+
+
    get nextPosition() {
       return this.#nextPosition;
+   }
+
+
+   get nextPositionId() {
+      return this.#nextPosition.id;
    }
 
 
