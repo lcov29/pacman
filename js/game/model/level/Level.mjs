@@ -100,7 +100,7 @@ export default class Level {
 
     calculateNextTurn() {
         this.#movePacmans();
-        if (this.isWon() === false && this.isLost() === false) {
+        if (!this.isWon() && !this.isLost()) {
             this.#moveGhosts();
         }
         this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
