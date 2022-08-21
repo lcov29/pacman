@@ -17,7 +17,7 @@ export default class GhostStateDead extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateRespawn(super.getGhost());
+        return new GhostStateRespawn(super.ghost);
     }
 
 
@@ -32,7 +32,7 @@ export default class GhostStateDead extends GhostState {
 
 
     executeMovementPattern() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let currentPositionId = ghost.currentPosition.id;
         let nextPosition = this.calculateNextPosition(currentPositionId);
         ghost.nextPosition = nextPosition;
@@ -51,7 +51,7 @@ export default class GhostStateDead extends GhostState {
 
     // dead state movement pattern
     calculateNextPosition(currentPositionId) {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let routing = ghost.routing;
         let spawnPositionId = ghost.spawnID;
         return routing.calculateNextPositionOnShortestPath(currentPositionId, spawnPositionId);
@@ -59,7 +59,7 @@ export default class GhostStateDead extends GhostState {
 
     
     handleTeleporterCollision() {
-        const ghost = super.getGhost();
+        const ghost = super.ghost;
         if (ghost.isCurrentPositionTeleporter()) {
 
             // ghost has the option to move over teleporters without teleporting
@@ -92,7 +92,7 @@ export default class GhostStateDead extends GhostState {
 
 
     handleSpawnCollision() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         if (ghost.currentPosition.id === ghost.spawnID) {
             super.end();
         }

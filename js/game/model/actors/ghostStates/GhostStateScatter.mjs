@@ -18,7 +18,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateChase(super.getGhost());
+        return new GhostStateChase(super.ghost);
     }
 
 
@@ -33,7 +33,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     executeMovementPattern() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let currentPositionId = ghost.currentPosition.id;
         let nextPosition = this.calculateNextPosition(currentPositionId);
         ghost.nextPosition = nextPosition;
@@ -41,7 +41,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     scare() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         ghost.state = new GhostStateScaredStart(ghost);
     }
 
@@ -53,7 +53,7 @@ export default class GhostStateScatter extends GhostState {
 
     // scatter state movement pattern
     calculateNextPosition(currentPositionId) {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let routing = ghost.routing;
         let scatterPositionId = ghost.scatterID;
         return routing.calculateNextPositionOnShortestPath(currentPositionId, scatterPositionId);
@@ -61,7 +61,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleTeleporterCollision() {
-        const ghost = super.getGhost();
+        const ghost = super.ghost;
         if (ghost.isCurrentPositionTeleporter()) {
 
             // ghost has the option to move over teleporters without teleporting
@@ -78,7 +78,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleScatterPositionCollision() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         if (ghost.currentPosition.id === ghost.scatterID) {
             ghost.nextPosition = ghost.currentPosition;
             ghost.movementDirectionName = Configuration.directionNameDown;
@@ -87,7 +87,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.killPacman(ghost.nextPosition.id);
         }

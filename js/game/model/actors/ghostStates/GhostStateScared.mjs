@@ -45,30 +45,30 @@ export default class GhostStateScared extends GhostState {
 
     executeMovementPattern() {
         let nextPosition = this.calculateNextPosition();
-        super.getGhost().nextPosition = nextPosition;
+        super.ghost.nextPosition = nextPosition;
         this.handleLevelBorderCollision(nextPosition);
     }
 
 
     scare() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         ghost.state = new GhostStateScaredStart(ghost);
     }
 
 
     kill() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         ghost.state = new GhostStateDead(ghost);
     }
 
 
     calculateNextPosition() {
-        return super.getGhost().calculateNextPositionByCurrentDirection();
+        return super.ghost.calculateNextPositionByCurrentDirection();
     }
 
 
     handleTeleporterCollision() {
-        const ghost = super.getGhost();
+        const ghost = super.ghost;
 
         const isTeleportationNeeded = ghost.isCurrentPositionTeleporter() && !ghost.hasTeleportedInPreviousTurn;
         if (isTeleportationNeeded) {
@@ -88,7 +88,7 @@ export default class GhostStateScared extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {            
             ghost.kill();
             ghost.incrementScoreBy(Configuration.scoreValuePerEatenGhost);
@@ -97,7 +97,7 @@ export default class GhostStateScared extends GhostState {
 
 
     handleInaccessibleTileCollision() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let nextPositionCharacter = ghost.nextPosition.elementLayerCharacter;
         if (Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionCharacter)) {
             ghost.nextPosition = ghost.currentPosition;
@@ -113,7 +113,7 @@ export default class GhostStateScared extends GhostState {
 
     // internal method
     handleLevelBorderCollision(nextPosition) {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         // when an actor moves out of the level its position is reset to current position 
         if (nextPosition.id === ghost.currentPosition.id) {
             ghost.randomizeMovementDirection();
@@ -122,11 +122,11 @@ export default class GhostStateScared extends GhostState {
  
  
     chooseRandomAccessibleNextBoardPosition() {
-        const ghost = super.getGhost();
+        const ghost = super.ghost;
         const currentBoardPosition = ghost.currentPosition;
         const currentX = currentBoardPosition.x;
         const currentY = currentBoardPosition.y;
-        const possibleNextPositonList = super.getGhost().getAccessibleNeighborList(currentX, currentY);
+        const possibleNextPositonList = super.ghost.getAccessibleNeighborList(currentX, currentY);
         
         const isPossibleNextPositionListEmpty = possibleNextPositonList.length === 0;
 

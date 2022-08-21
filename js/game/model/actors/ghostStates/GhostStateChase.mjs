@@ -19,7 +19,7 @@ export default class GhostStateChase extends GhostState {
 
 
     getSubsequentState() {
-        return new GhostStateScatter(super.getGhost());
+        return new GhostStateScatter(super.ghost);
     }
 
 
@@ -34,7 +34,7 @@ export default class GhostStateChase extends GhostState {
 
 
     executeMovementPattern() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         let currentPositionId = ghost.currentPosition.id;
         let nextPosition = ghost.calculateNextChasePosition(currentPositionId);
         ghost.nextPosition = nextPosition;
@@ -42,7 +42,7 @@ export default class GhostStateChase extends GhostState {
 
 
     scare() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         ghost.state = new GhostStateScaredStart(ghost);
     }
 
@@ -53,7 +53,7 @@ export default class GhostStateChase extends GhostState {
 
 
     handleTeleporterCollision() {
-        const ghost = super.getGhost();
+        const ghost = super.ghost;
         if (ghost.isCurrentPositionTeleporter()) {
 
             // ghost has the option to move over teleporters without teleporting
@@ -75,7 +75,7 @@ export default class GhostStateChase extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        let ghost = super.getGhost();
+        let ghost = super.ghost;
         if (ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter)) {
             ghost.killPacman(ghost.nextPosition.id);
         }

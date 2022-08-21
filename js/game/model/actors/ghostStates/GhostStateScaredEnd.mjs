@@ -14,7 +14,7 @@ export default class GhostStateScaredEnd extends GhostStateScared {
 
 
     getSubsequentState() {
-        return new GhostStateChase(super.getGhost());
+        return new GhostStateChase(super.ghost);
     }
 
 
