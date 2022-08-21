@@ -14,6 +14,11 @@ export default class GhostState {
     }
 
 
+    set remainingTurns(number) {
+        this.#remainingTurns = number;
+    }
+
+
     set name(name) {
         this.#name = name;
     }
@@ -31,11 +36,6 @@ export default class GhostState {
 
     getRemainingTurns() {
         return this.#remainingTurns;
-    }
-
-
-    setDurationInTurns(number) {
-        this.#remainingTurns = number;
     }
 
 
