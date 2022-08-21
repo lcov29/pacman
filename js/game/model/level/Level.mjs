@@ -242,7 +242,7 @@ export default class Level {
         let status = false;
         for (let pacman of this.pacmans) {
             if (pacman.currentPosition.id === positionId) {
-                status = pacman.getTurnCompletionStatus();
+                status = pacman.hasCompletedCurrentTurn;
                 break;
             }
         }
@@ -328,7 +328,7 @@ export default class Level {
         let unmovedPacmans = [...this.pacmans];
         while (unmovedPacmans.length > 0) {
             for (let pacman of unmovedPacmans) {
-                if (pacman.getTurnCompletionStatus() == false) {
+                if (!pacman.hasCompletedCurrentTurn) {
                     if (pacman.move()) {
                         Utility.removeElementFrom(unmovedPacmans, pacman);
                     }
