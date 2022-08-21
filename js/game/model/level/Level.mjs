@@ -20,34 +20,45 @@ import MovementRequest from '../../requests/MovementRequest.mjs';
 
 export default class Level {
 
+    #game = null;
+    #board = null;
+    #bonusElementSpawner = null;
+    #teleporters = [];
+    #pacmans = [];
+    #ghosts = [];
+    #availablePoints = 0;
+    #consumedPoints = 0;
+    #totalPacmanLifes = 0;
+    #score = 0;
+
 
     constructor(game) {
-        this.game = game;
-        this.board = null;
-        this.bonusElementSpawner = null;
-        this.teleporters = [];
-        this.pacmans = [];
-        this.ghosts = [];
-        this.availablePoints = 0;
-        this.consumedPoints = 0;
-        this.totalPacmanLifes = 0;
-        this.score = 0;
+        this.#game = game;
+        this.#board = null;
+        this.#bonusElementSpawner = null;
+        this.#teleporters = [];
+        this.#pacmans = [];
+        this.#ghosts = [];
+        this.#availablePoints = 0;
+        this.#consumedPoints = 0;
+        this.#totalPacmanLifes = 0;
+        this.#score = 0;
     }
 
 
     initialize(levelJson) {
-        this.board = new Board(levelJson);
-        this.bonusElementSpawner = new BonusElementSpawner(this.board.bonusSpawnPositionList, 1, this);
-        this.teleporters = LevelInitializer.initializeTeleporters(this.board);
-        this.pacmans = LevelInitializer.initializePacmans(this.board, this);
-        this.ghosts = LevelInitializer.initializeGhosts(this.board, this.teleporters, this);
-        this.availablePoints = this.countAvailablePoints();
-        this.totalPacmanLifes = Configuration.initialPacmanLifes;
+        this.#board = new Board(levelJson);
+        this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
+        this.#teleporters = LevelInitializer.initializeTeleporters(this.#board);
+        this.#pacmans = LevelInitializer.initializePacmans(this.#board, this);
+        this.#ghosts = LevelInitializer.initializeGhosts(this.#board, this.#teleporters, this);
+        this.#availablePoints = this.countAvailablePoints();
+        this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
 
 
     getInitialBackgroundRequestList() {
-        const boardPositionArray = this.board.buildBoardPositionArray();
+        const boardPositionArray = this.#board.buildBoardPositionArray();
         const requestList = [];
 
         for (let row of boardPositionArray) {
@@ -63,8 +74,8 @@ export default class Level {
 
 
     getInitialActorMovementRequestList() {
-        const initialPacmanPositionList = this.board.initialPacmanPositionList;
-        const initialGhostPositionList = this.board.initialGhostPositionList;
+        const initialPacmanPositionList = this.#board.initialPacmanPositionList;
+        const initialGhostPositionList = this.#board.initialGhostPositionList;
         const initialActorPositionList = [...initialPacmanPositionList, ...initialGhostPositionList];
         const requestList = [];
 
@@ -101,77 +112,77 @@ export default class Level {
         if (this.isWon() === false && this.isLost() === false) {
             this.moveGhosts();
         }
-        this.bonusElementSpawner.handleSpawn(this.consumedPoints);
-        this.game.notifyTurnCalculationComplete();
+        this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
+        this.#game.notifyTurnCalculationComplete();
     }
 
 
 
     scareLivingGhosts() {
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             ghost.scare();
         }
     }
 
 
     killGhost(positionId) {
-        this.killActor(this.ghosts, positionId);
+        this.killActor(this.#ghosts, positionId);
     }
 
 
     killPacman(positionId) {
-        this.killActor(this.pacmans, positionId);
+        this.killActor(this.#pacmans, positionId);
     }
 
 
     incrementScoreBy(value) {
-        this.score += value;
+        this.#score += value;
     }
 
 
     incrementConsumedPoints() {
-        this.consumedPoints++;
+        this.#consumedPoints++;
     }
 
     
     decrementAvailablePoints() {
-        this.availablePoints--;
+        this.#availablePoints--;
     }
 
 
     decrementTotalPacmanLifes() {
-        this.totalPacmanLifes--;
+        this.#totalPacmanLifes--;
     }
 
 
     setNextPacmanDirection(directionName) {
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
            pacman.movementDirectionName = directionName;
         }
     } 
 
 
     handleBonusConsumption() {
-        this.incrementScoreBy(this.bonusElementSpawner.scoreValue);
-        this.bonusElementSpawner.resetBonusSpawnStatus();
+        this.incrementScoreBy(this.#bonusElementSpawner.scoreValue);
+        this.#bonusElementSpawner.resetBonusSpawnStatus();
     }
 
 
     resetTurnCompletionStatusOfPacmans() {
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             pacman.resetTurnCompletionStatus();
         }
     }
 
 
     getBoardPositionAt(x, y) {
-        return this.board.getPosition(x, y);
+        return this.#board.getPosition(x, y);
     }
 
 
     getPacmanIDs() {
         let ids = [];
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             ids.push(pacman.currentPositionId);
         }
         return ids;
@@ -180,7 +191,7 @@ export default class Level {
 
     getGhostPositionsFor(ghostCharacter) {
         let positions = [];
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             if (ghost.character === ghostCharacter) {
                 positions.push(ghost.currentPosition.clone());
             }
@@ -191,7 +202,7 @@ export default class Level {
 
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             if (pacman.currentPositionId === positionId) {
                 movementDirection =  pacman.getCurrentMovementDirection();
                 break;
@@ -203,7 +214,7 @@ export default class Level {
 
     getPacmanPositionFor(positionId) {
         let pacmanPosition = null;
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             let position = pacman.currentPosition;
             if (position.id === positionId) {
                 pacmanPosition = position;
@@ -216,7 +227,7 @@ export default class Level {
 
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             if (ghost.currentPositionId === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
@@ -228,7 +239,7 @@ export default class Level {
 
     isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             if (ghost.currentPositionId === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
@@ -240,7 +251,7 @@ export default class Level {
 
     getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             if (pacman.currentPositionId === positionId) {
                 status = pacman.hasCompletedCurrentTurn;
                 break;
@@ -252,7 +263,7 @@ export default class Level {
 
     getTeleportDestination(position) {
         let destination = null;
-        for (let teleporter of this.teleporters) {
+        for (let teleporter of this.#teleporters) {
             if (teleporter.isTeleporter(position)) {
                 destination = teleporter.getDestinationPositionFor(position);
                 break;
@@ -263,59 +274,59 @@ export default class Level {
 
 
     isWon() {
-        return this.availablePoints === 0;
+        return this.#availablePoints === 0;
     }
 
 
     isLost() {
-        return this.totalPacmanLifes === 0;
+        return this.#totalPacmanLifes === 0;
     }
 
 
     // TODO: THINK ABOUT SITUATION WHERE A GHOST LEAVING A POSITION OVERWRITES BOARD INFORMATION ABOUT ANOTHER GHOST THAT PREVIOUSLY 
     //       ENTERED THE POSITION IN THE SAME TURN
     processMovementRequest(request) {
-        this.board.updateActorLayerPosition(request.xPositionStart, request.yPositionStart, Configuration.emptyTileCharacter);
-        this.board.updateActorLayerPosition(request.xPositionDestination, request.yPositionDestination, request.actorCharacter);
-        this.game.addMovementRequest(request);
+        this.#board.updateActorLayerPosition(request.xPositionStart, request.yPositionStart, Configuration.emptyTileCharacter);
+        this.#board.updateActorLayerPosition(request.xPositionDestination, request.yPositionDestination, request.actorCharacter);
+        this.#game.addMovementRequest(request);
     }
 
 
     processBackgroundRequest(request) {
-        this.board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
+        this.#board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
         this.addInformationToBackgroundRequest(request);
-        this.game.addBackgroundRequest(request);
+        this.#game.addBackgroundRequest(request);
     }
 
 
     addInformationToBackgroundRequest(request) {
-        request.score = this.score;
-        request.lifeCount = this.totalPacmanLifes;
+        request.score = this.#score;
+        request.lifeCount = this.#totalPacmanLifes;
     }
 
 
     removeDeadPacmanAt(positionId) {
-        for (let pacman of this.pacmans) {
+        for (let pacman of this.#pacmans) {
             if (pacman.currentPositionId === positionId) {
-                Utility.removeElementFrom(this.pacmans, pacman);
+                Utility.removeElementFrom(this.#pacmans, pacman);
             }
         }  
     }
 
 
     getAccessibleNeighborList(xPosition, yPosition) {
-        return this.board.buildAccessibleNeighborList(xPosition, yPosition);
+        return this.#board.buildAccessibleNeighborList(xPosition, yPosition);
     }
 
 
     countAvailablePoints() {
-        return this.board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
+        return this.#board.countOccurrencesOfCharacters(Configuration.pointCharacterList);
     }
 
 
     countScaredGhosts() {
         let counter = 0;
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             if (ghost.isScared()) {
                 counter++;
             }
@@ -325,7 +336,7 @@ export default class Level {
 
 
     movePacmans() {
-        let unmovedPacmans = [...this.pacmans];
+        let unmovedPacmans = [...this.#pacmans];
         while (unmovedPacmans.length > 0) {
             for (let pacman of unmovedPacmans) {
                 if (!pacman.hasCompletedCurrentTurn) {
@@ -340,7 +351,7 @@ export default class Level {
 
 
     moveGhosts() {
-        for (let ghost of this.ghosts) {
+        for (let ghost of this.#ghosts) {
             ghost.move();
             if (this.isLost()) { break; }
         }
