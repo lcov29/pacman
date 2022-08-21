@@ -51,7 +51,9 @@ export default class GhostStateChase extends GhostState {
     handleTeleporterCollision() {
         if (super.ghost.isCurrentPositionTeleporter()) {
 
-            if (super.ghost.isNextPositionEqualToTeleportDestination()) {
+            const hasTeleported = super.ghost.isNextPositionEqualToTeleportDestination();
+            
+            if (hasTeleported) {
                 super.ghost.hasTeleportedInPreviousTurn = true;
             } else {
                 // ghost has the option to move over teleporters without teleporting
