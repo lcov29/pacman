@@ -8,12 +8,14 @@ import GhostStateScatter from './GhostStateScatter.mjs';
 export default class GhostStateRespawn extends GhostState {
 
 
+    #respawnStage = 0;
+
+
     constructor(ghost) {
         super(ghost);
         super.name = Configuration.nameGhostStateRespawn;
         super.spriteDisplayPriority = Configuration.ghostStateRespawnSpriteDisplayPriority;
         super.remainingTurns = Configuration.turnDurationGhostStateRespawn;
-        this.respawnStage = 0;
     }
 
 
