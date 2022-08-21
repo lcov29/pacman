@@ -32,10 +32,8 @@ export default class GhostStateDead extends GhostState {
 
 
     executeMovementPattern() {
-        let ghost = super.ghost;
-        let currentPositionId = ghost.currentPosition.id;
-        let nextPosition = this.calculateNextPosition(currentPositionId);
-        ghost.nextPosition = nextPosition;
+        const currentPositionId = super.ghost.currentPosition.id;
+        super.ghost.nextPosition = this.calculateNextPosition(currentPositionId);
     }
 
 
