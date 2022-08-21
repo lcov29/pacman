@@ -107,7 +107,7 @@ export default class GhostStateScared extends GhostState {
 
 
     #handleLevelBorderCollision(nextPosition) {     
-        const hasNotMoved = nextPosition.id === super.ghost.currentPosition.id;
+        const hasNotMoved = nextPosition.id === super.ghost.currentPositionId;
         // (when an actor moves out of the level its position is reset to current position)
 
         if (hasNotMoved) {

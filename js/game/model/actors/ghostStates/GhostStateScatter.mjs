@@ -33,7 +33,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     executeMovementPattern() {
-        const currentPositionId = super.ghost.currentPosition.id;
+        const currentPositionId = super.ghost.currentPositionId;
         super.ghost.nextPosition = this.#calculateNextPosition(currentPositionId);;
     }
 
@@ -67,7 +67,7 @@ export default class GhostStateScatter extends GhostState {
 
 
     handleScatterPositionCollision() {
-        const hasReachedScatterPosition = super.ghost.currentPosition.id === super.ghost.scatterID;
+        const hasReachedScatterPosition = super.ghost.currentPositionId === super.ghost.scatterID;
 
         if (hasReachedScatterPosition) {
             super.ghost.nextPosition = super.ghost.currentPosition;

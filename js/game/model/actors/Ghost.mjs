@@ -128,8 +128,7 @@ export default class Ghost extends Actor {
       let minPathCost = Infinity;
       
       for (let pacmanId of pacmanIdList) {   
-         const currentId = super.currentPosition.id;
-         const currentPathCost =  this.#routing.getShortestDistanceBetween(currentId, pacmanId);
+         const currentPathCost =  this.#routing.getShortestDistanceBetween(super.currentPositionId, pacmanId);
          
          if (currentPathCost < minPathCost) {
             minPathCost = currentPathCost;

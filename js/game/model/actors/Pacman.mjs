@@ -54,7 +54,7 @@ export default class Pacman extends Actor {
 
    kill() {
       super.level.decrementTotalPacmanLifes();
-      super.level.removeDeadPacmanAt(super.currentPosition.id);
+      super.level.removeDeadPacmanAt(super.currentPositionId);
       this.#isAlive = false;
    }
 
@@ -117,7 +117,7 @@ export default class Pacman extends Actor {
 
       if (isNextPositionPacman) {
          const otherPacmanPositionId = super.nextPosition.id;
-         const isNextPositionOtherPacman = super.currentPosition.id !== otherPacmanPositionId;
+         const isNextPositionOtherPacman = super.currentPositionId !== otherPacmanPositionId;
 
          if (isNextPositionOtherPacman) {
             const isOtherPacmanTurnComplete = super.level.getTurnCompletionStatusForPacmanAt(otherPacmanPositionId);

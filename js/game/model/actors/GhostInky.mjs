@@ -113,7 +113,7 @@ export default class GhostInky extends Ghost {
        const ghostReferencePositionList = this.#selectPositionsOfGhostTypeWithHighestReferencePriority();
 
        for (let ghostPosition of ghostReferencePositionList) {  
-          const ghostInkyId = super.currentPosition.id;
+          const ghostInkyId = super.currentPositionId
           const currentPathCost =  super.routing.getShortestDistanceBetween(ghostInkyId, ghostPosition.id);
 
           if (currentPathCost < minPathCost) {

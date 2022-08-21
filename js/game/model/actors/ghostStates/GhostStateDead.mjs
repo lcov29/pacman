@@ -32,7 +32,7 @@ export default class GhostStateDead extends GhostState {
 
 
     executeMovementPattern() {
-        const currentPositionId = super.ghost.currentPosition.id;
+        const currentPositionId = super.ghost.currentPositionId;
         super.ghost.nextPosition = this.#calculateNextPosition(currentPositionId);
     }
 
@@ -82,7 +82,7 @@ export default class GhostStateDead extends GhostState {
 
 
     handleSpawnCollision() {
-        const hasReachedSpawnPosition = super.ghost.currentPosition.id === super.ghost.spawnID
+        const hasReachedSpawnPosition = super.ghost.currentPositionId === super.ghost.spawnID
 
         if (hasReachedSpawnPosition) {
             super.end();

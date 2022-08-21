@@ -172,7 +172,7 @@ export default class Level {
     getPacmanIDs() {
         let ids = [];
         for (let pacman of this.pacmans) {
-            ids.push(pacman.currentPosition.id);
+            ids.push(pacman.currentPositionId);
         }
         return ids;
     }
@@ -192,7 +192,7 @@ export default class Level {
     getPacmanMovementDirectionFor(positionId) {
         let movementDirection = null;
         for (let pacman of this.pacmans) {
-            if (pacman.currentPosition.id === positionId) {
+            if (pacman.currentPositionId === positionId) {
                 movementDirection =  pacman.getCurrentMovementDirection();
                 break;
             }
@@ -217,7 +217,7 @@ export default class Level {
     isPositionOccupiedByHostileGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.currentPosition.id === positionId) {
+            if (ghost.currentPositionId === positionId) {
                 result = ghost.isHostile();
                 if (result === true) { break; }
             }
@@ -229,7 +229,7 @@ export default class Level {
     isPositionOccupiedByKillableGhost(positionId) {
         let result = false;
         for (let ghost of this.ghosts) {
-            if (ghost.currentPosition.id === positionId) {
+            if (ghost.currentPositionId === positionId) {
                 result = ghost.isKillable();
                 if (result === true) { break; }
             }
@@ -241,7 +241,7 @@ export default class Level {
     getTurnCompletionStatusForPacmanAt(positionId) {
         let status = false;
         for (let pacman of this.pacmans) {
-            if (pacman.currentPosition.id === positionId) {
+            if (pacman.currentPositionId === positionId) {
                 status = pacman.hasCompletedCurrentTurn;
                 break;
             }
@@ -296,7 +296,7 @@ export default class Level {
 
     removeDeadPacmanAt(positionId) {
         for (let pacman of this.pacmans) {
-            if (pacman.currentPosition.id === positionId) {
+            if (pacman.currentPositionId === positionId) {
                 Utility.removeElementFrom(this.pacmans, pacman);
             }
         }  
@@ -349,7 +349,7 @@ export default class Level {
 
     killActor(actors, positionId) {
         for (let actor of actors) {
-            if (actor.currentPosition.id === positionId) {
+            if (actor.currentPositionId === positionId) {
                 actor.kill();
             }
         }
