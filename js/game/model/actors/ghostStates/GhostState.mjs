@@ -14,7 +14,7 @@ export default class GhostState {
     }
 
 
-    setName(name) {
+    set name(name) {
         this.#name = name;
     }
 
