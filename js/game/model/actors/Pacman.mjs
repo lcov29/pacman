@@ -59,38 +59,30 @@ export default class Pacman extends Actor {
 
 
    move() {
-      if (super.isMovementDirectionSet() === false) {
-         this.#hasCompletedCurrentTurn = true;
-      } else {
+      if (!this.#hasCompletedCurrentTurn) {
+         super.loadCurrentPositionFromBoard();
+         super.nextPosition = super.calculateNextPositionByCurrentDirection();
 
-         if (!this.#hasCompletedCurrentTurn) {
-            super.loadCurrentPositionFromBoard();
-            let nextPosition = super.calculateNextPositionByCurrentDirection();
-            super.nextPosition = nextPosition;
-            super.loadNextPositionFromBoard();
-            let teleportationStatus = this.#handleTeleportation();  
-            this.#handleInaccessibleTileCollision();       
-            if (this.#handleOtherPacmanCollision()) {
-               super.hasTeleportedInPreviousTurn = teleportationStatus;
-               this.#handleGhostCollision();
-               if (this.#isAlive) {
-                  this.#handlePointCollision();
-                  this.#handlePowerUpCollision();
-                  this.#handleBonusElementCollision();
-               }
-               super.sendLevelMovementRequest();
-               this.#sendLevelBackgroundRequest();
-               super.updateCurrentPosition();
-               this.#hasCompletedCurrentTurn = true;
-            } else {
-               // next position is blocked by another pacman that has not completed the current turn, 
-               // so this pacman has to abort its movement and wait for the other to complete the turn
-               super.nextPosition = null;
-               this.resetTurnCompletionStatus();
-            }
-            
+         const hasTeleported = this.#handleTeleportation();  
+         this.#handleInaccessibleTileCollision();
+         const isMovementPossible = this.#handleOtherPacmanCollision();
+
+         if (isMovementPossible) {
+            super.hasTeleportedInPreviousTurn = hasTeleported;
+            this.#handleGhostCollision();
+            this.#handlePointCollision();
+            this.#handlePowerUpCollision();
+            this.#handleBonusElementCollision();
+            super.sendLevelMovementRequest();
+            this.#sendLevelBackgroundRequest();
+            super.updateCurrentPosition();
+            this.#hasCompletedCurrentTurn = true;
+         } else {
+            // next position is blocked by another pacman that has not completed the current turn, 
+            // so this pacman has to abort its movement and wait for the other to complete the turn
+            super.nextPosition = null;
+            this.resetTurnCompletionStatus();
          }
-
       }
       return this.#hasCompletedCurrentTurn;
    }
@@ -145,7 +137,9 @@ export default class Pacman extends Actor {
    
    
    #handlePointCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.pointCharacter)) {
+      const isNextPositionPoint = super.isNextPositionElementCharacter(Configuration.pointCharacter);
+
+      if (this.#isAlive && isNextPositionPoint) {
          super.incrementScoreBy(Configuration.scoreValuePerPoint);
          super.level.incrementConsumedPoints();
          super.level.decrementAvailablePoints();
@@ -156,7 +150,9 @@ export default class Pacman extends Actor {
 
 
    #handlePowerUpCollision() {
-      if (super.isNextPositionElementCharacter(Configuration.powerUpCharacter)) {
+      const isNextPositionPowerUp = super.isNextPositionElementCharacter(Configuration.powerUpCharacter);
+
+      if (this.#isAlive && isNextPositionPowerUp) {
          super.incrementScoreBy(Configuration.scoreValuePerPowerUp);
          super.level.incrementConsumedPoints();
          super.level.decrementAvailablePoints();
@@ -171,7 +167,7 @@ export default class Pacman extends Actor {
       const nextElementCharacter = super.nextPosition.elementLayerCharacter;
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
-      if (isNextPositionBonusElement) {
+      if (this.#isAlive && isNextPositionBonusElement) {
          super.nextPosition.elementCharacter = Configuration.emptyTileCharacter;
          super.level.handleBonusConsumption();
          this.#isBackgroundUpdateNeeded = true;
