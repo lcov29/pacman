@@ -258,14 +258,12 @@ export default class Level {
 
 
     getTeleportDestination(position) {
-        let destination = null;
         for (let teleporter of this.#teleporterList) {
             if (teleporter.isTeleporter(position)) {
-                destination = teleporter.getDestinationPositionFor(position);
-                break;
+                return teleporter.getDestinationPositionFor(position);
             }
         }
-        return destination;
+        return null;
     }
 
 
