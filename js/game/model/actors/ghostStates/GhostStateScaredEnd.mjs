@@ -9,7 +9,7 @@ export default class GhostStateScaredEnd extends GhostStateScared {
     constructor(ghost) {
         super(ghost);
         super.name = Configuration.nameGhostStateScaredEnd;
-        super.setDurationInTurns(Configuration.turnDurationGhostStateScaredEnd);
+        super.remainingTurns = Configuration.turnDurationGhostStateScaredEnd;
     }
 
 

@@ -12,7 +12,7 @@ export default class GhostStateRespawn extends GhostState {
         super(ghost);
         super.name = Configuration.nameGhostStateRespawn;
         super.setSpriteDisplayPriority(Configuration.ghostStateRespawnSpriteDisplayPriority);
-        super.setDurationInTurns(Configuration.turnDurationGhostStateRespawn);
+        super.remainingTurns = Configuration.turnDurationGhostStateRespawn;
         this.respawnStage = 0;
     }
 
