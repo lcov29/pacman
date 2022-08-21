@@ -23,7 +23,7 @@ export default class Level {
     #game = null;
     #board = null;
     #bonusElementSpawner = null;
-    #teleporters = [];
+    #teleporterList = [];
     #pacmans = [];
     #ghosts = [];
     #availablePoints = 0;
@@ -40,9 +40,9 @@ export default class Level {
     initialize(levelJson) {
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
-        this.#teleporters = LevelInitializer.initializeTeleporters(this.#board);
+        this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board);
         this.#pacmans = LevelInitializer.initializePacmans(this.#board, this);
-        this.#ghosts = LevelInitializer.initializeGhosts(this.#board, this.#teleporters, this);
+        this.#ghosts = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
         this.#availablePoints = this.countAvailablePoints();
         this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
@@ -254,7 +254,7 @@ export default class Level {
 
     getTeleportDestination(position) {
         let destination = null;
-        for (let teleporter of this.#teleporters) {
+        for (let teleporter of this.#teleporterList) {
             if (teleporter.isTeleporter(position)) {
                 destination = teleporter.getDestinationPositionFor(position);
                 break;
