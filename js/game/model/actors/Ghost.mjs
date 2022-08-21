@@ -96,7 +96,7 @@ export default class Ghost extends Actor {
          this.#state.handleInaccessibleTileCollision();
          this.#state.handleSpawnCollision();
          this.#updateMovementDirection(super.currentPosition, super.nextPosition);
-         super.sendLevelMovementRequest(this.#state.getName());
+         super.sendLevelMovementRequest(this.#state.name);
          super.updateCurrentPosition();
          this.#state.decrementRemainingTurns();
      }
