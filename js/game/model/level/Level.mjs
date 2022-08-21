@@ -34,15 +34,6 @@ export default class Level {
 
     constructor(game) {
         this.#game = game;
-        this.#board = null;
-        this.#bonusElementSpawner = null;
-        this.#teleporters = [];
-        this.#pacmans = [];
-        this.#ghosts = [];
-        this.#availablePoints = 0;
-        this.#consumedPoints = 0;
-        this.#totalPacmanLifes = 0;
-        this.#score = 0;
     }
 
 
