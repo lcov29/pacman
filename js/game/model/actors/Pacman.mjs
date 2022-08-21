@@ -41,8 +41,8 @@ export default class Pacman extends Actor {
    }
 
 
-   setTurnCompletionStatus(status) {
-      this.#hasCompletedCurrentTurn = status;
+   resetTurnCompletionStatus() {
+      this.#hasCompletedCurrentTurn = false;
    }
 
 
@@ -60,7 +60,7 @@ export default class Pacman extends Actor {
 
    move() {
       if (super.isMovementDirectionSet() === false) {
-         this.setTurnCompletionStatus(true);
+         this.#hasCompletedCurrentTurn = true;
       } else {
 
          if (this.getTurnCompletionStatus() === false) {
@@ -81,12 +81,12 @@ export default class Pacman extends Actor {
                super.sendLevelMovementRequest();
                this.#sendLevelBackgroundRequest();
                super.updateCurrentPosition();
-               this.setTurnCompletionStatus(true);
+               this.#hasCompletedCurrentTurn = true;
             } else {
                // next position is blocked by another pacman that has not completed the current turn, 
                // so this pacman has to abort its movement and wait for the other to complete the turn
                super.nextPosition = null;
-               this.setTurnCompletionStatus(false);
+               this.resetTurnCompletionStatus();
             }
             
          }
