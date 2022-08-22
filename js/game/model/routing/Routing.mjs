@@ -51,14 +51,14 @@ export default class Routing {
       const routingNodeRow = accessiblePositionList.map((position) => new RoutingNode(position.id, position.x, position.y));
 
       for (let i = 0; i < accessiblePositionList.length; i++) {
-         const clone = this.cloneRoutingTableRow(routingNodeRow);
+         const clone = this.#cloneRoutingTableRow(routingNodeRow);
          this.#routingTable.push(clone);
       }
    }
 
 
-   cloneRoutingTableRow(row) {
-      let clone = [];
+   #cloneRoutingTableRow(row) {
+      const clone = [];
       for (let i = 0; i < row.length; i++) {
          clone.push(row[i].clone());
       }
