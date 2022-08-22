@@ -20,28 +20,25 @@ import GhostInky from '../actors/GhostInky.mjs';
 export default class LevelInitializer {
 
 
-    static initializeTeleporters(board) {
-        let teleporters = [new Teleporter(), new Teleporter(), new Teleporter()];
-        let output = [];
-        for (let position of board.teleporterPositionList) {
+    static initializeTeleporters(teleporterPositionList) {
+        const teleporterList = [new Teleporter(), new Teleporter(), new Teleporter()];
+
+        for (let position of teleporterPositionList) {
             switch (position.elementLayerCharacter) {
                 case Configuration.teleporter1Character:
-                    teleporters[0].add(position);
+                    teleporterList[0].add(position);
                     break;
                 case Configuration.teleporter2Character:
-                    teleporters[1].add(position);
+                    teleporterList[1].add(position);
                     break;
                 case Configuration.teleporter3Character:
-                    teleporters[2].add(position);
+                    teleporterList[2].add(position);
                     break;
             }
         }
-        for (let teleporter of teleporters) {
-            if (teleporter.isInitialized()) {
-                output.push(teleporter);
-            }
-        }
-        return output;
+
+        const outputList = teleporterList.filter(teleporter => teleporter.isInitialized());
+        return outputList
     }
 
 
