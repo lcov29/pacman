@@ -8,6 +8,7 @@ import Board from '../board/Board.mjs';
 import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
 import MovementRequest from '../../requests/MovementRequest.mjs';
+import RequestInitializer from '../../requests/RequestInitializer.mjs';
 
 
 /*  
@@ -107,49 +108,15 @@ export default class Level {
 
     getInitialBackgroundRequestList() {
         const boardPositionArray = this.#board.buildBoardPositionArray();
-        const requestList = [];
-
-        for (let row of boardPositionArray) {
-            for (let element of row) {
-                const request = new BackgroundRequest(element.x, element.y, element.elementLayerCharacter);
-                this.#addInformationToBackgroundRequest(request);
-                requestList.push(request);
-            }
-        }
-
-        return requestList;
+        return RequestInitializer.buildInitialBackgroundRequestList(boardPositionArray, this.#score, this.#totalPacmanLifes);
     }
-
-
+    
+    
     getInitialActorMovementRequestList() {
         const initialPacmanPositionList = this.#board.initialPacmanPositionList;
         const initialGhostPositionList = this.#board.initialGhostPositionList;
         const initialActorPositionList = [...initialPacmanPositionList, ...initialGhostPositionList];
-        const requestList = [];
-
-        for (let position of initialActorPositionList) {
-            const request = new MovementRequest();
-
-            request.xPositionStart = position.x;
-            request.yPositionStart = position.y;
-            request.xPositionDestination = position.x;
-            request.yPositionDestination = position.y;
-
-            const actorCharacter = position.actorLayerCharacter;
-            request.actorCharacter =  actorCharacter;
-
-            const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);
-            if (isGhostCharacter) {
-                request.directionName = Configuration.initialGhostSpriteDirection;
-                request.actorStateName = Configuration.initialGhostStateName;
-            } else {
-                request.directionName = Configuration.initialPacmanSpriteDirection;
-            }
-            
-            requestList.push(request);
-        }
-
-        return requestList;
+        return RequestInitializer.buildInitialActorMovementRequestList(initialActorPositionList);
     }
 
 
