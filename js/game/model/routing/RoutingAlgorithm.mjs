@@ -19,10 +19,10 @@ export default class RoutingAlgorithm {
    #calculateShortestPathsFrom(routingTable, neighborIdList, idStartNode) {
       
       //phase 1: initialize all neighboring nodes of start node
-      let unusedNodes = routingTable[idStartNode].slice();
+      const unusedNodeList = routingTable[idStartNode].slice();
       let currentNode = routingTable[idStartNode][idStartNode];
       let routingNode = null;
-      Utility.removeElementFrom(unusedNodes, currentNode);
+      Utility.removeElementFrom(unusedNodeList, currentNode);
       
       for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
          routingNode = routingTable[idStartNode][neighborId];
@@ -31,18 +31,18 @@ export default class RoutingAlgorithm {
       }
       
       //phase 2: iterate through all unused nodes
-      while (unusedNodes.length > 0) {
-         currentNode = this.#searchLowestCostNode(unusedNodes);
+      while (unusedNodeList.length > 0) {
+         currentNode = this.#searchLowestCostNode(unusedNodeList);
          for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
             routingNode = routingTable[idStartNode][neighborId];           
-            if (unusedNodes.indexOf(routingNode) !== -1) {
+            if (unusedNodeList.indexOf(routingNode) !== -1) {
                if (routingNode.pathCost > currentNode.pathCost + 1) {
                   routingNode.pathCost = currentNode.pathCost + 1;
                   routingNode.predecessorId = currentNode.id;
                }
             }
          }
-         Utility.removeElementFrom(unusedNodes, currentNode);
+         Utility.removeElementFrom(unusedNodeList, currentNode);
       }
       
    }
@@ -55,7 +55,7 @@ export default class RoutingAlgorithm {
 
          const currentNode = nodeList[i];
          const isCurrentNodeCostLower = currentNode.pathCost < minCostNode.pathCost;
-         
+
          if (isCurrentNodeCostLower) {
             minCostNode = currentNode;
          }
