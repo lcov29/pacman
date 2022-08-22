@@ -74,7 +74,7 @@ export default class Directions {
 
 
     static getDirectionNameByIndex(x, y) {
-        let index = `(${x},${y})`;
+        const index = `(${x},${y})`;
         return this.directionMapDirectionToName[index];
     }
 
@@ -90,7 +90,7 @@ export default class Directions {
 
 
     static getRandomDirectionName() {
-        let directionId = Utility.getRandomIntegerBetweenInclusive(this.minDirectionId, this.maxDirectionId);
+        const directionId = Utility.getRandomIntegerBetweenInclusive(this.minDirectionId, this.maxDirectionId);
         return this.directionMapIdToName[directionId];
     }
 
