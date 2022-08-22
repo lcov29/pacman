@@ -18,16 +18,16 @@ export default class Routing {
 
 
    calculateNextPositionOnShortestPath(startNodeId, destinationNodeId) {
-      let output = null;
-      let startNode = this.getRoutingNodeForId(startNodeId, startNodeId);
-      let endNode = this.getRoutingNodeForId(startNodeId, destinationNodeId);
-      if (startNodeId === destinationNodeId) {
-         output = new BoardPosition(startNode.xPosition, startNode.yPosition, startNodeId);
+      const startNode = this.getRoutingNodeForId(startNodeId, startNodeId);
+      const endNode = this.getRoutingNodeForId(startNodeId, destinationNodeId);
+      const isDestinationNode = startNodeId === destinationNodeId;
+
+      if (isDestinationNode) {
+         return new BoardPosition(startNode.xPosition, startNode.yPosition, startNodeId);
       } else {
-         let nextNode = this.selectFirstNodeOfShortestPath(startNode, endNode);
-         output = new BoardPosition(nextNode.xPosition, nextNode.yPosition, nextNode.id);
+         const nextNode = this.selectFirstNodeOfShortestPath(startNode, endNode);
+         return new BoardPosition(nextNode.xPosition, nextNode.yPosition, nextNode.id);
       }
-      return output;
    }
 
 
