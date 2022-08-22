@@ -17,12 +17,12 @@ export default class RoutingNode {
    }
   
    
-   setPredecessorId(id) {
+   set predecessorId(id) {
       this.#predecessorNodeId = id;
    }
 
 
-   setPathCost(cost) {
+   set pathCost(cost) {
       this.#pathCost = cost;
    }
 
