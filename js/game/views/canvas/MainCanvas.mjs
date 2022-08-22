@@ -40,7 +40,7 @@ export default class MainCanvas extends Canvas {
 
 
     #decrementNumberOfAnimationsRequiringMovement() {
-        if (this.#numberOfAnimationsRequiringMovement > 0) {
+        if (!this.isAnimationComplete()) {
             this.#numberOfAnimationsRequiringMovement--;
         }
     }
