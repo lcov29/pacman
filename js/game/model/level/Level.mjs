@@ -6,8 +6,6 @@ import Configuration from '../../../global/Configuration.mjs';
 import Utility from '../../../global/Utility.mjs';
 import Board from '../board/Board.mjs';
 import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
-import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
-import MovementRequest from '../../requests/MovementRequest.mjs';
 import RequestInitializer from '../../requests/RequestInitializer.mjs';
 
 
