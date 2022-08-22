@@ -32,11 +32,14 @@ export default class Routing {
 
 
    getShortestDistanceBetween(startNodeId, endNodeId) {
-      let result = 0;
-      if (startNodeId !== endNodeId) {
-         result = this.#routingTable[startNodeId][endNodeId].pathCost;
+      const isSamePosition = startNodeId === endNodeId;
+
+      if (isSamePosition) {
+         return 0;
+      } else {
+         const routingNode = this.#routingTable[startNodeId][endNodeId];
+         return routingNode.pathCost;
       }
-      return result;
    }
 
 
