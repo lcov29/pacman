@@ -48,11 +48,16 @@ export default class RoutingAlgorithm {
    }
    
    
-   #searchLowestCostNode(nodes) {
-      let minCostNode = nodes[0];
-      for (let i = 1; i < nodes.length; i++) {
-         if (nodes[i].pathCost < minCostNode.pathCost) {
-            minCostNode = nodes[i];
+   #searchLowestCostNode(nodeList) {
+      let minCostNode = nodeList[0];
+
+      for (let i = 1; i < nodeList.length; i++) {
+
+         const currentNode = nodeList[i];
+         const isCurrentNodeCostLower = currentNode.pathCost < minCostNode.pathCost;
+         
+         if (isCurrentNodeCostLower) {
+            minCostNode = currentNode;
          }
       }
       return minCostNode;
