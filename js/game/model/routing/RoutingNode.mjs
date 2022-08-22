@@ -27,27 +27,27 @@ export default class RoutingNode {
    }
 
 
-   getID() {
+   get id() {
       return this.#id;
    }
 
 
-   getX() {
+   get xPosition() {
       return this.#xPosition;
    }
 
 
-   getY() {
+   get yPosition() {
       return this.#yPosition;
    }
 
 
-   getPredecessorId() {
+   get redecessorId() {
       return this.#predecessorNodeId;
    }
 
 
-   getPathCost() {
+   get pathCost() {
       return this.#pathCost;
    }
 
