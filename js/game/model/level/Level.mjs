@@ -68,12 +68,9 @@ export default class Level {
 
 
     getTeleportDestination(position) {
-        for (let teleporter of this.#teleporterList) {
-            if (teleporter.isTeleporter(position)) {
-                return teleporter.getDestinationPositionFor(position);
-            }
-        }
-        return null;
+        const matchingTeleporterList = this.#teleporterList.filter(teleporter => teleporter.isTeleporter(position));
+        const destination = matchingTeleporterList[0].getDestinationPositionFor(position);
+        return destination;
     }
 
 
@@ -99,21 +96,6 @@ export default class Level {
         const func = (pacman) => { return pacman.hasCompletedCurrentTurn; };
         return this.#iterateList(positionId, this.#pacmanList, func, false);
     }
-
-
-    /*
-    getGhostPositionListFor(ghostCharacter) {
-        const positionList = [];
-
-        for (let ghost of this.#ghostList) {
-            const isGhostType = ghost.character === ghostCharacter;
-
-            if (isGhostType) {
-                positionList.push(ghost.currentPosition.clone());
-            }
-        }
-        return positionList;
-    }*/
 
 
     getGhostPositionListFor(ghostCharacter) {
