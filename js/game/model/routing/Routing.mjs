@@ -37,8 +37,7 @@ export default class Routing {
       if (isSamePosition) {
          return 0;
       } else {
-         const routingNode = this.#routingTable[startNodeId][endNodeId];
-         return routingNode.pathCost;
+         return this.#getRoutingNodeForId(startNodeId, endNodeId).pathCost;
       }
    }
 
