@@ -18,8 +18,8 @@ export default class Routing {
 
 
    calculateNextPositionOnShortestPath(startNodeId, destinationNodeId) {
-      const startNode = this.getRoutingNodeForId(startNodeId, startNodeId);
-      const endNode = this.getRoutingNodeForId(startNodeId, destinationNodeId);
+      const startNode = this.#getRoutingNodeForId(startNodeId, startNodeId);
+      const endNode = this.#getRoutingNodeForId(startNodeId, destinationNodeId);
       const isDestinationNode = startNodeId === destinationNodeId;
 
       if (isDestinationNode) {
@@ -43,7 +43,7 @@ export default class Routing {
    }
 
 
-   getRoutingNodeForId(rowId, columnId) {
+   #getRoutingNodeForId(rowId, columnId) {
       return this.#routingTable[rowId][columnId];
    }
 
