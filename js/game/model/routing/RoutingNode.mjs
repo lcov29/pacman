@@ -42,7 +42,7 @@ export default class RoutingNode {
    }
 
 
-   get redecessorId() {
+   get predecessorId() {
       return this.#predecessorNodeId;
    }
 

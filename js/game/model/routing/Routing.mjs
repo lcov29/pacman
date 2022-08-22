@@ -70,8 +70,8 @@ export default class Routing {
    
    selectFirstNodeOfShortestPath(startNode, endNode) {   
       let currentEndNode = endNode;
-      while (currentEndNode.redecessorId != startNode.id) {
-         currentEndNode = this.routingTable[startNode.id][currentEndNode.redecessorId];
+      while (currentEndNode.predecessorId != startNode.id) {
+         currentEndNode = this.routingTable[startNode.id][currentEndNode.predecessorId];
       }
       return currentEndNode;
    }
