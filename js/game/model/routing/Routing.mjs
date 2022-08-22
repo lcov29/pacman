@@ -10,9 +10,8 @@ export default class Routing {
 
    #routingTable = [];
    
-   
+
    constructor(accessiblePositionList, neighborIdList) {
-      this.#routingTable = [];
       this.initializeRoutingTable(accessiblePositionList);
       this.#routingTable = new RoutingAlgorithm().calculateRoutingTable(this.#routingTable, neighborIdList);
    }
