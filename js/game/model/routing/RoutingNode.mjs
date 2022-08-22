@@ -2,55 +2,60 @@
 
 export default class RoutingNode {
    
+
+   #id = -1;
+   #xPosition = -1;
+   #yPosition = -1;
+   #predecessorNodeId = -1;
+   #pathCost = Infinity;
+
    
    constructor(id, xPosition, yPosition) {
-      this.id = id;
-      this.xPosition = xPosition;
-      this.yPosition = yPosition;
-      this.predecessorNodeId = -1;
-      this.pathCost = Infinity;
+      this.#id = id;
+      this.#xPosition = xPosition;
+      this.#yPosition = yPosition;
    }
   
    
    setPredecessorId(id) {
-      this.predecessorNodeId = id;
+      this.#predecessorNodeId = id;
    }
 
 
    setPathCost(cost) {
-      this.pathCost = cost;
+      this.#pathCost = cost;
    }
 
 
    getID() {
-      return this.id;
+      return this.#id;
    }
 
 
    getX() {
-      return this.xPosition;
+      return this.#xPosition;
    }
 
 
    getY() {
-      return this.yPosition;
+      return this.#yPosition;
    }
 
 
    getPredecessorId() {
-      return this.predecessorNodeId;
+      return this.#predecessorNodeId;
    }
 
 
    getPathCost() {
-      return this.pathCost;
+      return this.#pathCost;
    }
 
    
    clone() {
-      let clone = new RoutingNode(this.id, this.xPosition, this.yPosition);
-      clone.predecessorNodeId = this.predecessorNodeId;
-      clone.pathCost = this.pathCost;
+      let clone = new RoutingNode(this.#id, this.#xPosition, this.#yPosition);
+      clone.predecessorNodeId = this.#predecessorNodeId;
+      clone.pathCost = this.#pathCost;
       return clone;
    }
    
