@@ -12,7 +12,7 @@ export default class Routing {
    
 
    constructor(accessiblePositionList, neighborIdList) {
-      this.initializeRoutingTable(accessiblePositionList);
+      this.#initializeRoutingTable(accessiblePositionList);
       this.#routingTable = new RoutingAlgorithm().calculateRoutingTable(this.#routingTable, neighborIdList);
    }
 
@@ -47,17 +47,11 @@ export default class Routing {
    }
 
 
-   initializeRoutingTable(accessiblePositionList) {
-      let routingNodeRow = [];
-      let routingNode = null;
-
-      for (let position of accessiblePositionList) {
-         routingNode = new RoutingNode(position.id, position.x, position.y);
-         routingNodeRow.push(routingNode);
-      }
+   #initializeRoutingTable(accessiblePositionList) {
+      const routingNodeRow = accessiblePositionList.map((position) => new RoutingNode(position.id, position.x, position.y));
 
       for (let i = 0; i < accessiblePositionList.length; i++) {
-         let clone = this.cloneRoutingTableRow(routingNodeRow);
+         const clone = this.cloneRoutingTableRow(routingNodeRow);
          this.#routingTable.push(clone);
       }
    }
