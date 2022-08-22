@@ -7,28 +7,30 @@ export default class RoutingAlgorithm {
 
 
    #routingTable;
+   #neighborIdList;
    
    
    calculateRoutingTable(routingTable, neighborIdList) {
       this.#routingTable = routingTable;
+      this.#neighborIdList = neighborIdList;
 
       let startNodeId = 0;
       while (startNodeId < routingTable.length) {
-         this.#calculateShortestPathsFrom(neighborIdList, startNodeId);
+         this.#calculateShortestPathsFrom(startNodeId);
          startNodeId++;
       }
       return routingTable;
    }
    
    
-   #calculateShortestPathsFrom(neighborIdList, idStartNode) {
+   #calculateShortestPathsFrom(idStartNode) {
       
       //phase 1: initialize all neighboring nodes of start node
       const unusedNodeList = this.#routingTable[idStartNode].slice();
       let currentNode = this.#getRoutingNode(idStartNode, idStartNode);
       Utility.removeElementFrom(unusedNodeList, currentNode);
       
-      for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
+      for (let neighborId of this.#getNeighborIdListFor(currentNode)) {
          const routingNode = this.#getRoutingNode(idStartNode, neighborId);
          routingNode.pathCost = 1;
          routingNode.predecessorId = currentNode.id;
@@ -37,7 +39,7 @@ export default class RoutingAlgorithm {
       //phase 2: iterate through all unused nodes
       while (unusedNodeList.length > 0) {
          currentNode = this.#searchLowestCostNode(unusedNodeList);
-         const currentNodeNeighborIdList = this.#getNeighborIdListFor(currentNode, neighborIdList);
+         const currentNodeNeighborIdList = this.#getNeighborIdListFor(currentNode);
 
          for (let neighborId of currentNodeNeighborIdList) {
             const routingNode = this.#getRoutingNode(idStartNode, neighborId);
@@ -72,8 +74,8 @@ export default class RoutingAlgorithm {
    }
 
 
-   #getNeighborIdListFor(node, neighborIdList) {
-      return neighborIdList[node.id];
+   #getNeighborIdListFor(node) {
+      return this.#neighborIdList[node.id];
    }
 
 
