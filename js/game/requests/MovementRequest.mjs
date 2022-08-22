@@ -225,12 +225,12 @@ export default class MovementRequest {
 
 
     #isDirectionValueValid(value) {
-        return Directions.validDirectionValues.includes(value);
+        return Directions.validDirectionValueList.includes(value);
     }
 
 
     #isDirectionNameValid(name) {
-        return Directions.validDirectionNames.includes(name);
+        return Directions.validDirectionNameList.includes(name);
     }
 
 
