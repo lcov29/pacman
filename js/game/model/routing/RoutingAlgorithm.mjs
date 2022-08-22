@@ -37,13 +37,17 @@ export default class RoutingAlgorithm {
       //phase 2: iterate through all unused nodes
       while (unusedNodeList.length > 0) {
          currentNode = this.#searchLowestCostNode(unusedNodeList);
-         for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
-            const routingNode = this.#getRoutingNode(idStartNode, neighborId);          
-            if (unusedNodeList.indexOf(routingNode) !== -1) {
-               if (routingNode.pathCost > currentNode.pathCost + 1) {
-                  routingNode.pathCost = currentNode.pathCost + 1;
-                  routingNode.predecessorId = currentNode.id;
-               }
+         const currentNodeNeighborIdList = this.#getNeighborIdListFor(currentNode, neighborIdList);
+
+         for (let neighborId of currentNodeNeighborIdList) {
+            const routingNode = this.#getRoutingNode(idStartNode, neighborId);
+            const updatedPathCost = currentNode.pathCost + 1;
+            const isRoutingNodeUnused = unusedNodeList.indexOf(routingNode) !== -1;
+            const hasFoundLowerCostPath = routingNode.pathCost > updatedPathCost;
+
+            if (isRoutingNodeUnused && hasFoundLowerCostPath) {
+               routingNode.pathCost = updatedPathCost;
+               routingNode.predecessorId = currentNode.id;
             }
          }
          Utility.removeElementFrom(unusedNodeList, currentNode);
