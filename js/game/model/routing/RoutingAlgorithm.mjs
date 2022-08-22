@@ -24,7 +24,7 @@ export default class RoutingAlgorithm {
       let routingNode = null;
       Utility.removeElementFrom(unusedNodes, currentNode);
       
-      for (let neighborId of this.#getNeighborsFor(currentNode, neighborIdList)) {
+      for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
          routingNode = routingTable[idStartNode][neighborId];
          routingNode.pathCost = 1;
          routingNode.predecessorId = currentNode.id;
@@ -33,7 +33,7 @@ export default class RoutingAlgorithm {
       //phase 2: iterate through all unused nodes
       while (unusedNodes.length > 0) {
          currentNode = this.#searchLowestCostNode(unusedNodes);
-         for (let neighborId of this.#getNeighborsFor(currentNode, neighborIdList)) {
+         for (let neighborId of this.#getNeighborIdListFor(currentNode, neighborIdList)) {
             routingNode = routingTable[idStartNode][neighborId];           
             if (unusedNodes.indexOf(routingNode) !== -1) {
                if (routingNode.pathCost > currentNode.pathCost + 1) {
@@ -59,7 +59,7 @@ export default class RoutingAlgorithm {
    }
 
 
-   #getNeighborsFor(node, neighborIdList) {
+   #getNeighborIdListFor(node, neighborIdList) {
       return neighborIdList[node.id];
    }
    
