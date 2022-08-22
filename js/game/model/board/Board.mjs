@@ -104,6 +104,20 @@ export default class Board {
    }
 
 
+   buildBoardPositionArray() {
+      const outputList = [];
+      let row = [];
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
+            row.push(this.getPosition(x, y));
+         }
+         outputList.push(row);
+         row = [];
+      }
+      return outputList;
+   }
+
+
    buildAccessibleBoardPositionList() {
       const outputList = [];
 
