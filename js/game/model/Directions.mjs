@@ -7,24 +7,22 @@ import Utility from '../../global/Utility.mjs';
 export default class Directions {
 
 
-    static DIRECTION_UP = {x:0, y:-1};
-    static DIRECTION_RIGHT = {x:1, y:0};
-    static DIRECTION_DOWN = {x:0, y:1};
-    static DIRECTION_LEFT = {x:-1, y:0};
-    static MIN_DIRECTION_ID = 0;
-    static MAX_DIRECTION_ID = 3;
-    static validDirectionValues = [-1, 0, 1];
-    static validDirectionNames = [Configuration.directionNameUp,
-                                  Configuration.directionNameRight,
-                                  Configuration.directionNameDown,
-                                  Configuration.directionNameLeft];
+    static directionUp = {x:0, y:-1};
+    static directionRight = {x:1, y:0};
+    static directionDown = {x:0, y:1};
+    static directionLeft = {x:-1, y:0};
+    static minDirectionId = 0;
+    static maxDirectionId = 3;
+    static validDirectionValueList = [-1, 0, 1];
+    static validDirectionNameList = [Configuration.directionNameUp, Configuration.directionNameRight,
+                                     Configuration.directionNameDown, Configuration.directionNameLeft];
 
 
     static directionMapNameToDirection = {
-        [Configuration.directionNameUp]:    this.DIRECTION_UP,
-        [Configuration.directionNameRight]: this.DIRECTION_RIGHT,
-        [Configuration.directionNameDown]:  this.DIRECTION_DOWN,
-        [Configuration.directionNameLeft]:  this.DIRECTION_LEFT
+        [Configuration.directionNameUp]:    this.directionUp,
+        [Configuration.directionNameRight]: this.directionRight,
+        [Configuration.directionNameDown]:  this.directionDown,
+        [Configuration.directionNameLeft]:  this.directionLeft
     };
 
 
@@ -53,20 +51,20 @@ export default class Directions {
 
 
     static directionMapIdToDirection = {
-        0: this.DIRECTION_UP,
-        1: this.DIRECTION_RIGHT,
-        2: this.DIRECTION_DOWN,
-        3: this.DIRECTION_LEFT
+        0: this.directionUp,
+        1: this.directionRight,
+        2: this.directionDown,
+        3: this.directionLeft
     };
     
 
     static getMinDirectionID() {
-        return this.MIN_DIRECTION_ID;
+        return this.minDirectionId;
     }
 
 
     static getMaxDirectionID() {
-        return this.MAX_DIRECTION_ID;
+        return this.maxDirectionId;
     }
 
 
@@ -92,7 +90,7 @@ export default class Directions {
 
 
     static getRandomDirectionName() {
-        let directionId = Utility.getRandomIntegerBetweenInclusive(this.MIN_DIRECTION_ID, this.MAX_DIRECTION_ID);
+        let directionId = Utility.getRandomIntegerBetweenInclusive(this.minDirectionId, this.maxDirectionId);
         return this.directionMapIdToName[directionId];
     }
 
