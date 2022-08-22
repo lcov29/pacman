@@ -25,7 +25,7 @@ export default class Routing {
       if (isDestinationNode) {
          return new BoardPosition(startNode.xPosition, startNode.yPosition, startNodeId);
       } else {
-         const nextNode = this.selectFirstNodeOfShortestPath(startNode, endNode);
+         const nextNode = this.#selectFirstNodeOfShortestPath(startNode, endNode);
          return new BoardPosition(nextNode.xPosition, nextNode.yPosition, nextNode.id);
       }
    }
@@ -66,10 +66,11 @@ export default class Routing {
    }
 
    
-   selectFirstNodeOfShortestPath(startNode, endNode) {   
+   #selectFirstNodeOfShortestPath(startNode, endNode) {   
       let currentEndNode = endNode;
+      
       while (currentEndNode.predecessorId != startNode.id) {
-         currentEndNode = this.#routingTable[startNode.id][currentEndNode.predecessorId];
+         currentEndNode = this.#getRoutingNodeForId(startNode.id, currentEndNode.predecessorId);
       }
       return currentEndNode;
    }
