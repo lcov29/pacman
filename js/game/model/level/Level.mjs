@@ -41,7 +41,7 @@ export default class Level {
     initialize(levelJson) {
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
-        this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board);
+        this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board.teleporterPositionList);
         this.#pacmanList = LevelInitializer.initializePacmans(this.#board, this);
         this.#ghostList = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
         this.#availablePoints = this.#countAvailablePoints();
