@@ -43,7 +43,7 @@ export default class Level {
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board.teleporterPositionList);
         this.#pacmanList = LevelInitializer.initializePacmans(this.#board.initialPacmanPositionList, this);
-        this.#ghostList = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
+        this.#ghostList = this.#initializeGhosts();
         this.#availablePoints = this.#countAvailablePoints();
         this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
@@ -218,6 +218,20 @@ export default class Level {
     handleBonusConsumption() {
         this.incrementScoreBy(this.#bonusElementSpawner.scoreValue);
         this.#bonusElementSpawner.resetBonusSpawnStatus();
+    }
+
+
+    #initializeGhosts() {
+        const argumentObject = {};
+        argumentObject.initialGhostPositionList = this.#board.initialGhostPositionList;
+        argumentObject.ghostScatterPositionList = this.#board.ghostScatterPositionList;
+        argumentObject.ghostOptionalSpawnPositionList = this.#board.ghostOptionalSpawnPositionList;
+        argumentObject.teleporterList = this.#teleporterList;
+        argumentObject.accessibleBoardPositionList = this.#board.buildAccessibleBoardPositionList();
+        argumentObject.accessibleNeighborIdList = this.#board.buildAccessibleNeighborIdList();
+        argumentObject.levelReference = this;
+
+        return LevelInitializer.initializeGhosts(argumentObject);
     }
 
 
