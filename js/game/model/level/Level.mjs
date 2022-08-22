@@ -235,13 +235,8 @@ export default class Level {
 
 
     countScaredGhosts() {
-        let counter = 0;
-        for (let ghost of this.#ghostList) {
-            if (ghost.isScared()) {
-                counter++;
-            }
-        }
-        return counter;
+        const scaredGhostList = this.#ghostList.filter(ghost => ghost.isScared());
+        return scaredGhostList.length;
     }
 
 
