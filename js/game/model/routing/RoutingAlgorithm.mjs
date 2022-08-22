@@ -26,8 +26,8 @@ export default class RoutingAlgorithm {
       
       for (let neighborId of this.getNeighborsFor(currentNode, neighborIdList)) {
          routingNode = routingTable[idStartNode][neighborId];
-         routingNode.setPathCost(1);
-         routingNode.setPredecessorId(currentNode.id);
+         routingNode.pathCost = 1;
+         routingNode.predecessorId = currentNode.id;
       }
       
       //phase 2: iterate through all unused nodes
@@ -37,8 +37,8 @@ export default class RoutingAlgorithm {
             routingNode = routingTable[idStartNode][neighborId];           
             if (unusedNodes.indexOf(routingNode) !== -1) {
                if (routingNode.pathCost > currentNode.pathCost + 1) {
-                  routingNode.setPathCost(currentNode.pathCost + 1);
-                  routingNode.setPredecessorId(currentNode.id);
+                  routingNode.pathCost = currentNode.pathCost + 1;
+                  routingNode.predecessorId = currentNode.id;
                }
             }
          }
