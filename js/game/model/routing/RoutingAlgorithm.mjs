@@ -36,9 +36,9 @@ export default class RoutingAlgorithm {
          for (let neighborId of this.getNeighborsFor(currentNode, neighborIdList)) {
             routingNode = routingTable[idStartNode][neighborId];           
             if (unusedNodes.indexOf(routingNode) !== -1) {
-               if (routingNode.getPathCost() > currentNode.getPathCost() + 1) {
-                  routingNode.setPathCost(currentNode.getPathCost() + 1);
-                  routingNode.setPredecessorId(currentNode.getID());
+               if (routingNode.pathCost > currentNode.pathCost + 1) {
+                  routingNode.setPathCost(currentNode.pathCost + 1);
+                  routingNode.setPredecessorId(currentNode.id);
                }
             }
          }
@@ -51,7 +51,7 @@ export default class RoutingAlgorithm {
    searchLowestCostNode(nodes) {
       let minCostNode = nodes[0];
       for (let i = 1; i < nodes.length; i++) {
-         if (nodes[i].getPathCost() < minCostNode.getPathCost()) {
+         if (nodes[i].pathCost < minCostNode.pathCost) {
             minCostNode = nodes[i];
          }
       }
@@ -60,7 +60,7 @@ export default class RoutingAlgorithm {
 
 
    getNeighborsFor(node, neighborIdList) {
-      return neighborIdList[node.getID()];
+      return neighborIdList[node.id];
    }
    
    

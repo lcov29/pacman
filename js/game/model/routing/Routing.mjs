@@ -32,7 +32,7 @@ export default class Routing {
    getShortestDistanceBetween(startNodeId, endNodeId) {
       let result = 0;
       if (startNodeId !== endNodeId) {
-         result = this.routingTable[startNodeId][endNodeId].getPathCost();
+         result = this.routingTable[startNodeId][endNodeId].pathCost;
       }
       return result;
    }
@@ -70,8 +70,8 @@ export default class Routing {
    
    selectFirstNodeOfShortestPath(startNode, endNode) {   
       let currentEndNode = endNode;
-      while (currentEndNode.getPredecessorId() != startNode.id) {
-         currentEndNode = this.routingTable[startNode.id][currentEndNode.getPredecessorId()];
+      while (currentEndNode.redecessorId != startNode.id) {
+         currentEndNode = this.routingTable[startNode.id][currentEndNode.redecessorId];
       }
       return currentEndNode;
    }
