@@ -43,12 +43,9 @@ export default class LevelInitializer {
 
 
 
-    static initializePacmans(board, levelReference) {
-        let pacmans = [];
-        for (let position of board.initialPacmanPositionList) {
-            pacmans.push(new Pacman(levelReference, position));
-        }
-        return pacmans;
+    static initializePacmans(initialPacmanPositionList, levelReference) {
+        const pacmanList = initialPacmanPositionList.map(position => new Pacman(levelReference, position));
+        return pacmanList;
     }
 
 
