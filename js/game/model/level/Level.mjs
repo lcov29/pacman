@@ -78,10 +78,7 @@ export default class Level {
 
 
     getPacmanIdList() {
-        const idList = [];
-        for (let pacman of this.#pacmanList) {
-            idList.push(pacman.currentPositionId);
-        }
+        const idList = this.#pacmanList.map(pacman => pacman.currentPositionId);
         return idList;
     }
 
