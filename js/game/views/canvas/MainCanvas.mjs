@@ -34,14 +34,9 @@ export default class MainCanvas extends Canvas {
 
 
     #countAnimationsRequiringMovement() {
-        let count = 0;
-        for (let animationObject of this.#actorAnimationObjectList) {
-            if (!animationObject.isAnimationComplete()) {
-                count++;
-            }
-        } 
-        this.#numberOfAnimationsRequiringMovement = count;
-    }
+        const countList = this.#actorAnimationObjectList.filter(object => !object.isAnimationComplete());
+        this.#numberOfAnimationsRequiringMovement = countList.length;
+    } 
 
 
     #decrementNumberOfAnimationsRequiringMovement() {
