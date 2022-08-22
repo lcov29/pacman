@@ -7,11 +7,14 @@ import RoutingNode from './RoutingNode.mjs';
 
 export default class Routing {
    
+
+   #routingTable = [];
+   
    
    constructor(accessiblePositionList, neighborIdList) {
-      this.routingTable = [];
+      this.#routingTable = [];
       this.initializeRoutingTable(accessiblePositionList);
-      this.routingTable = new RoutingAlgorithm().calculateRoutingTable(this.routingTable, neighborIdList);
+      this.#routingTable = new RoutingAlgorithm().calculateRoutingTable(this.#routingTable, neighborIdList);
    }
 
 
@@ -32,14 +35,14 @@ export default class Routing {
    getShortestDistanceBetween(startNodeId, endNodeId) {
       let result = 0;
       if (startNodeId !== endNodeId) {
-         result = this.routingTable[startNodeId][endNodeId].pathCost;
+         result = this.#routingTable[startNodeId][endNodeId].pathCost;
       }
       return result;
    }
 
 
    getRoutingNodeForId(rowId, columnId) {
-      return this.routingTable[rowId][columnId];
+      return this.#routingTable[rowId][columnId];
    }
 
 
@@ -54,7 +57,7 @@ export default class Routing {
 
       for (let i = 0; i < accessiblePositionList.length; i++) {
          let clone = this.cloneRoutingTableRow(routingNodeRow);
-         this.routingTable.push(clone);
+         this.#routingTable.push(clone);
       }
    }
 
@@ -71,7 +74,7 @@ export default class Routing {
    selectFirstNodeOfShortestPath(startNode, endNode) {   
       let currentEndNode = endNode;
       while (currentEndNode.predecessorId != startNode.id) {
-         currentEndNode = this.routingTable[startNode.id][currentEndNode.predecessorId];
+         currentEndNode = this.#routingTable[startNode.id][currentEndNode.predecessorId];
       }
       return currentEndNode;
    }
