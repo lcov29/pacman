@@ -1,6 +1,7 @@
 'use strict';
 
 import Level from './level/Level.mjs';
+import Directions from './Directions.mjs';
 import CanvasView from '../views/canvas/CanvasView.mjs';
 import Configuration from '../../global/Configuration.mjs';
 
@@ -13,6 +14,7 @@ export default class Game {
       this.mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
       this.viewList = [this.mainView];
       this.isAnimationLoopContinuationNeeded = true;
+      Directions.initializeDirectionMaps();
    }
 
 
