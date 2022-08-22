@@ -104,29 +104,16 @@ export default class Board {
    }
 
 
-   buildBoardPositionArray() {
-      const outputList = [];
-      let row = [];
-      for (let y = 0; y < this.#board.length; y++) {
-         for (let x = 0; x < this.#board[y].length; x++) {
-            row.push(this.getPosition(x, y));
-         }
-         outputList.push(row);
-         row = [];
-      }
-      return outputList;
-   }
-
-
    buildAccessibleBoardPositionList() {
       const outputList = [];
-      for (let y = 0; y < this.#board.length; y++) {
-         for (let x = 0; x < this.#board[y].length; x++) {
-            if (this.isAccessibleAt(x, y)) {
-               outputList.push(this.getPosition(x, y));
-            }
+
+      const addAccessiblePosition = (x, y) => {
+         if (this.isAccessibleAt(x, y)) {
+            outputList.push(this.getPosition(x, y));
          }
       }
+
+      this.#forEachBoardPosition(addAccessiblePosition);
       return outputList;
    }
 
@@ -134,17 +121,18 @@ export default class Board {
    buildAccessibleNeighborIdList() {
       const outputList = [];
       let idList = [];
-      for (let y = 0; y < this.#board.length; y++) {
-         for (let x = 0; x < this.#board[y].length; x++) {
-            if (this.isAccessibleAt(x, y)) {
-               for(let position of this.buildAccessibleNeighborList(x, y)) {
-                  idList.push(position.id);
-               }
-               outputList.push(idList);
-               idList = [];
+
+      const addAccessibleNeighborId = (x, y) => {
+         if (this.isAccessibleAt(x, y)) {
+            for(let position of this.buildAccessibleNeighborList(x, y)) {
+               idList.push(position.id);
             }
+            outputList.push(idList);
+            idList = [];
          }
-      }
+      };
+
+      this.#forEachBoardPosition(addAccessibleNeighborId);
       return outputList;
    }
 
@@ -173,22 +161,32 @@ export default class Board {
       return 0 <= y && y < this.#board.length && 
              0 <= x && x < this.#board[y].length;
    }
+   
 
-
-   countOccurrencesOfCharacters(characters) {
+   countOccurrencesOfCharacters(characterList) {
       let counter = 0;
-      for (let y = 0; y < this.#board.length; y++) {
-         for (let x = 0; x < this.#board[y].length; x++) {
-            for (let character of characters) {
-               if (this.#board[y][x].actorLayerCharacter === character ||
-                   this.#board[y][x].elementLayerCharacter === character) {
-                  counter++;
-                  break;
-               }
+
+      const countCharacters = (x, y) => {
+         for (let character of characterList) {
+            if (this.#board[y][x].actorLayerCharacter === character ||
+                this.#board[y][x].elementLayerCharacter === character) {
+               counter++;
+               break;
             }
          }
-      }
+      };
+
+      this.#forEachBoardPosition(countCharacters);
       return counter;
+   }
+
+
+   #forEachBoardPosition(func) {
+      for (let y = 0; y < this.#board.length; y++) {
+         for (let x = 0; x < this.#board[y].length; x++) {
+            func(x, y);
+         }
+      }
    }
    
    
