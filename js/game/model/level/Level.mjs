@@ -101,6 +101,7 @@ export default class Level {
     }
 
 
+    /*
     getGhostPositionListFor(ghostCharacter) {
         const positionList = [];
 
@@ -111,6 +112,13 @@ export default class Level {
                 positionList.push(ghost.currentPosition.clone());
             }
         }
+        return positionList;
+    }*/
+
+
+    getGhostPositionListFor(ghostCharacter) {
+        const ghostList = this.#ghostList.filter(ghost => ghost.character === ghostCharacter);
+        const positionList = ghostList.map(ghost => ghost.currentPosition.clone());
         return positionList;
     }
 
