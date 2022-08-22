@@ -42,7 +42,7 @@ export default class Level {
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board.teleporterPositionList);
-        this.#pacmanList = LevelInitializer.initializePacmans(this.#board, this);
+        this.#pacmanList = LevelInitializer.initializePacmans(this.#board.initialPacmanPositionList, this);
         this.#ghostList = LevelInitializer.initializeGhosts(this.#board, this.#teleporterList, this);
         this.#availablePoints = this.#countAvailablePoints();
         this.#totalPacmanLifes = Configuration.initialPacmanLifes;
