@@ -207,6 +207,7 @@ input[type=radio] {
 
 
 .bonusSpawnTile {
+    background-color: black;
     background-image: url('../sprites/background/consumables/bonus_elements/bonusCherry.svg');
 }
 
