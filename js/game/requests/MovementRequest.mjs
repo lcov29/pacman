@@ -28,33 +28,8 @@ export default class MovementRequest {
     }
 
 
-    set xPositionStart(x) {
-        const isAlreadyInitialized = this.#xPositionStart !== -1;
-        if (isAlreadyInitialized) {
-            throw new Error(`Can not change already initialized property xPositionStart`);
-        }
-
-        const isInputValid = x > -1;
-        if (isInputValid) {
-            this.#xPositionStart = x;
-        } else {
-            throw new RangeError(`xPositionStart ${x} must be greater than -1`);
-        }
-    }
-
-
     get yPositionStart() {
         return this.#yPositionStart;
-    }
-
-
-    set yPositionStart(y) {
-        const isInputValid = y > -1;
-        if (isInputValid) {
-            this.#yPositionStart = y;
-        } else {
-            throw new RangeError(`yPositionStart ${y} must be greater than -1`);
-        }
     }
 
 
@@ -63,13 +38,83 @@ export default class MovementRequest {
     }
 
 
+    get yPositionDestination() {
+        return this.#yPositionDestination;
+    }
+
+
+    get xDirection() {
+        return this.#xDirection;
+    }
+
+
+    get yDirection() {
+        return this.#yDirection;
+    }
+
+
+    get directionName() {
+        return this.#directionName;
+    }
+
+
+    get actorCharacter() {
+        return this.#actorCharacter;
+    }
+
+
+    get actorStateName() {
+        return this.#actorStateName;
+    }
+
+
+    get isTeleportation() {
+        return this.#isTeleportation;
+    }
+
+
+    get spriteDisplayPriority() {
+        return this.#spriteDisplayPriority;
+    }
+
+
+    set xPositionStart(x) {
+        const isAlreadyInitialized = this.#xPositionStart !== -1;
+
+        if (isAlreadyInitialized) {
+            throw new Error(`Can not change already initialized property xPositionStart`);
+        }
+
+        const isInputValid = x > -1;
+
+        if (isInputValid) {
+            this.#xPositionStart = x;
+        } else {
+            throw new RangeError(`xPositionStart ${x} must be greater than -1`);
+        }
+    }
+
+
+    set yPositionStart(y) {
+        const isInputValid = y > -1;
+
+        if (isInputValid) {
+            this.#yPositionStart = y;
+        } else {
+            throw new RangeError(`yPositionStart ${y} must be greater than -1`);
+        }
+    }
+
+
     set xPositionDestination(x) {
         const isAlreadyInitialized = this.#xPositionDestination !== -1;
+
         if (isAlreadyInitialized) {
             throw new Error(`Can not change already initialized property xPositionDestination`);
         }
 
         const isInputValid = x > -1;
+
         if (isInputValid) {
             this.#xPositionDestination = x;
         } else {
@@ -78,13 +123,9 @@ export default class MovementRequest {
     }
 
 
-    get yPositionDestination() {
-        return this.#yPositionDestination;
-    }
-
-
     set yPositionDestination(y) {
         const isInputValid = y > -1;
+
         if (isInputValid) {
             this.#yPositionDestination = y;
         } else {
@@ -93,13 +134,9 @@ export default class MovementRequest {
     }
 
 
-    get xDirection() {
-        return this.#xDirection;
-    }
-    
-
     set xDirection(value) {
         const isAlreadyInitialized = this.#xDirection !== -2;
+
         if (isAlreadyInitialized) {
             throw new Error(`Can not change already initialized property xDirection`);
         }
@@ -112,13 +149,9 @@ export default class MovementRequest {
     }
 
 
-    get yDirection() {
-        return this.#yDirection;
-    }
-
-
     set yDirection(value) {
         const isAlreadyInitialized = this.#yDirection !== -2;
+
         if (isAlreadyInitialized) {
             throw new Error(`Can not change already initialized property yDirection`);
         }
@@ -131,13 +164,9 @@ export default class MovementRequest {
     }
 
 
-    get directionName() {
-        return this.#directionName;
-    }
-
-
     set directionName(name) {
         const isAlreadyInitialized = this.#directionName !== '';
+
         if (isAlreadyInitialized) {
             throw new Error(`Can not change already initialized property directionName`);
         }
@@ -150,13 +179,9 @@ export default class MovementRequest {
     }
 
 
-    get actorCharacter() {
-        return this.#actorCharacter;
-    }
-
-
     set actorCharacter(character) {
         const isAlreadyInitialized = this.#actorCharacter !== '';
+
         if (isAlreadyInitialized) {
             throw new Error(`Can not change already initialized property actorCharacter`);
         }
@@ -169,13 +194,9 @@ export default class MovementRequest {
     }
 
 
-    get actorStateName() {
-        return this.#actorStateName;
-    }
-
-
     set actorStateName(name) {
         const isAlreadyInitialized = this.#actorStateName !== '';
+
         if (isAlreadyInitialized) {
             throw new Error('Can not change already initialized property actorCharacter');
         }
@@ -188,34 +209,24 @@ export default class MovementRequest {
     }
 
 
-    get isTeleportation() {
-        return this.#isTeleportation;
-    }
-
-    
     set isTeleportation(value) {
-
         if (typeof value === 'boolean') {
             this.#isTeleportation = value;
         } else {
             throw new Error('Parameter of setter isTeleportation() must be boolean');
         }
-
-    }
-
-
-    get spriteDisplayPriority() {
-        return this.#spriteDisplayPriority;
     }
 
 
     set spriteDisplayPriority(value) {
         const isAlreadyInitialized = this.#spriteDisplayPriority !== -1;
+
         if (isAlreadyInitialized) {
             throw new Error('Can not change already initialized property spriteDisplayPriority');
         }
 
         const isInputValid = value > -1;
+        
         if (isInputValid) {
             this.#spriteDisplayPriority = value;
         } else {
