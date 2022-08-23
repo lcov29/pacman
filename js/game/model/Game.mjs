@@ -31,29 +31,6 @@ export default class Game {
    }
 
 
-   #initializeViews() {
-      this.#sendInitialBackgroundRequests();
-      this.#sendInitialMovementRequests();
-      this.#viewList.forEach((view) => { view.initialize(); });
-   }
-
-
-   #sendInitialBackgroundRequests() {
-      const requestList = this.#level.getInitialBackgroundRequestList();
-      for (let request of requestList) {
-         this.addBackgroundRequest(request);
-      }
-   }
-
-
-   #sendInitialMovementRequests() {
-      const requestList = this.#level.getInitialActorMovementRequestList();
-      for (let request of requestList) {
-         this.addMovementRequest(request);
-      }
-   }
-
-
    addMovementRequest(request) {
       this.#viewList.forEach((view) => { view.addMovementRequest(request); });
    }
@@ -64,14 +41,18 @@ export default class Game {
    }
 
 
-   #readLevelJson() {
-      const itemName = Configuration.customLevelSessionStorageItemName;
-      let level = window.sessionStorage.getItem(itemName);
-      window.sessionStorage.removeItem(itemName);
-      if (level === null) {
-         level = Configuration.jsonDefaultLevel;
-      }
-      return level;
+   start() {
+      this.#mainView.startAnimationLoop();
+   }
+
+
+   end() {
+      this.#mainView.stopAnimationLoop();
+   }
+
+
+   isAnimationLoopContinuationNecessary() {
+      return this.#isAnimationLoopContinuationNeeded;
    }
 
 
@@ -94,18 +75,21 @@ export default class Game {
    }
 
 
-   isAnimationLoopContinuationNecessary() {
-      return this.#isAnimationLoopContinuationNeeded;
+   #readLevelJson() {
+      const itemName = Configuration.customLevelSessionStorageItemName;
+      let level = window.sessionStorage.getItem(itemName);
+      window.sessionStorage.removeItem(itemName);
+      if (level === null) {
+         level = Configuration.jsonDefaultLevel;
+      }
+      return level;
    }
-   
-
-   start() {
-      this.#mainView.startAnimationLoop();
-   }
 
 
-   end() {
-      this.#mainView.stopAnimationLoop();
+   #initializeViews() {
+      this.#sendInitialBackgroundRequests();
+      this.#sendInitialMovementRequests();
+      this.#viewList.forEach((view) => { view.initialize(); });
    }
 
 
@@ -126,6 +110,22 @@ export default class Game {
    #handleDefeat() {
       if (this.#level.isLost()) {
          window.alert('Game over'); // Placeholder, replace later
+      }
+   }
+
+
+   #sendInitialBackgroundRequests() {
+      const requestList = this.#level.getInitialBackgroundRequestList();
+      for (let request of requestList) {
+         this.addBackgroundRequest(request);
+      }
+   }
+
+
+   #sendInitialMovementRequests() {
+      const requestList = this.#level.getInitialActorMovementRequestList();
+      for (let request of requestList) {
+         this.addMovementRequest(request);
       }
    }
 
