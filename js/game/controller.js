@@ -1,6 +1,8 @@
 'use strict';
 
 import Game from '../game/model/Game.mjs';
+import Configuration from '../global/Configuration.mjs';
+
 
 /*  
     =================================================================================================================
@@ -14,24 +16,49 @@ const backgroundCanvas = document.getElementById('backgroundCanvas');
 
 const game = new Game(mainCanvas, backgroundCanvas);
 
-// ensure all resources are completely loaded 
-window.addEventListener('load', () => game.loadLevel() );
+window.addEventListener('load', () => game.loadLevel() ); // ensure all resources are completely loaded 
 
 mainCanvas.addEventListener('click', () => game.start() );
 document.addEventListener('keydown', callBackKeyDown, true);
 document.getElementsByClassName('buttonMobileMenu')[0].addEventListener('click', callBackMobileMenuButton);
 
 
-
-
-// HELPER FUNCTIONS
-
 function callBackMobileMenuButton() {
    this.classList.toggle('mobileMenuVisible');
 }
 
 
-function callBackKeyDown(e) {
-   game.processUserCommand(e.keyCode);
-   e.preventDefault();
+function callBackKeyDown(event) {
+   switch(event.keyCode) {
+   
+      case Configuration.keyCodeUpArrow:
+      case Configuration.keyCodeW:
+         game.setNextPacmanDirection(Configuration.directionNameUp);
+         event.preventDefault();
+         break;
+      
+      case Configuration.keyCodeRightArrow:
+      case Configuration.keyCodeD:
+         game.setNextPacmanDirection(Configuration.directionNameRight);
+         event.preventDefault();
+         break;
+      
+      case Configuration.keyCodeDownArrow:
+      case Configuration.keyCodeS:
+         game.setNextPacmanDirection(Configuration.directionNameDown);
+         event.preventDefault();
+         break;
+
+      case Configuration.keyCodeLeftArrow:
+      case Configuration.keyCodeA:
+         game.setNextPacmanDirection(Configuration.directionNameLeft);
+         event.preventDefault();
+         break;
+
+      case Configuration.keyCodeEnter:
+      case Configuration.keyCodeSpace:
+         game.start();
+         event.preventDefault();
+         break;
+   }         
 }

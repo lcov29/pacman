@@ -31,6 +31,12 @@ export default class Game {
    }
 
 
+   setNextPacmanDirection(directionName) {
+      this.#level.setNextPacmanDirection(directionName);
+   }
+
+
+
    addMovementRequest(request) {
       this.#viewList.forEach((view) => { view.addMovementRequest(request); });
    }
@@ -129,37 +135,6 @@ export default class Game {
       for (let request of requestList) {
          this.addMovementRequest(request);
       }
-   }
-
-
-   processUserCommand(keycode) {
-         switch(keycode) {
-         
-            case Configuration.keyCodeUpArrow:
-            case Configuration.keyCodeW:
-               this.#level.setNextPacmanDirection(Configuration.directionNameUp);
-               break;
-            
-            case Configuration.keyCodeRightArrow:
-            case Configuration.keyCodeD:
-               this.#level.setNextPacmanDirection(Configuration.directionNameRight);
-               break;
-            
-            case Configuration.keyCodeDownArrow:
-            case Configuration.keyCodeS:
-               this.#level.setNextPacmanDirection(Configuration.directionNameDown);
-               break;
-      
-            case Configuration.keyCodeLeftArrow:
-            case Configuration.keyCodeA:
-               this.#level.setNextPacmanDirection(Configuration.directionNameLeft);
-               break;
-
-            case Configuration.keyCodeEnter:
-            case Configuration.keyCodeSpace:
-               this.start();
-               break;
-         }         
    }
    
    
