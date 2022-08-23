@@ -25,20 +25,20 @@ export default class Game {
 
    loadLevel() {
       this.#level = new Level(this);
-      const jsonLevel = this.readLevelJson();
+      const jsonLevel = this.#readLevelJson();
       this.#level.initialize(jsonLevel);
-      this.initializeViews();
+      this.#initializeViews();
    }
 
 
-   initializeViews() {
-      this.sendInitialBackgroundRequests();
-      this.sendInitialMovementRequests();
+   #initializeViews() {
+      this.#sendInitialBackgroundRequests();
+      this.#sendInitialMovementRequests();
       this.#viewList.forEach((view) => { view.initialize(); });
    }
 
 
-   sendInitialBackgroundRequests() {
+   #sendInitialBackgroundRequests() {
       const requestList = this.#level.getInitialBackgroundRequestList();
       for (let request of requestList) {
          this.addBackgroundRequest(request);
@@ -46,7 +46,7 @@ export default class Game {
    }
 
 
-   sendInitialMovementRequests() {
+   #sendInitialMovementRequests() {
       const requestList = this.#level.getInitialActorMovementRequestList();
       for (let request of requestList) {
          this.addMovementRequest(request);
@@ -64,7 +64,7 @@ export default class Game {
    }
 
 
-   readLevelJson() {
+   #readLevelJson() {
       const itemName = Configuration.customLevelSessionStorageItemName;
       let level = window.sessionStorage.getItem(itemName);
       window.sessionStorage.removeItem(itemName);
@@ -81,10 +81,10 @@ export default class Game {
 
 
    notifyAnimationComplete() {
-      const isGameInProgress = this.isGameInProgress();
+      const isGameInProgress = this.#isGameInProgress();
 
-      this.handleWin();
-      this.handleDefeat();
+      this.#handleWin();
+      this.#handleDefeat();
       if (isGameInProgress) {
          this.#level.calculateNextTurn();
       } else {
@@ -109,21 +109,21 @@ export default class Game {
    }
 
 
-   isGameInProgress() {
+   #isGameInProgress() {
       const isNotWon = !this.#level.isWon();
       const isNotLost = !this.#level.isLost();
       return isNotWon && isNotLost;
    }
 
 
-   handleWin() {
+   #handleWin() {
       if (this.#level.isWon()) {
          window.alert('Victory');   // Placeholder, replace later
       }
    }
 
 
-   handleDefeat() {
+   #handleDefeat() {
       if (this.#level.isLost()) {
          window.alert('Game over'); // Placeholder, replace later
       }
