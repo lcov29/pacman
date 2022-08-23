@@ -28,15 +28,6 @@ export default class BackgroundRequest {
     }
 
 
-    set yPosition(value) {
-        if (value > 0) {
-            this.#yPosition = value;
-        } else {
-            throw new RangeError('yPosition must be greater than zero');
-        }
-    }
-
-
     get elementCharacter() {
         return this.#elementCharacter;
     }
@@ -47,17 +38,26 @@ export default class BackgroundRequest {
     }
 
 
+    get lifeCount() {
+        return this.#lifeCount;
+    }
+
+
+    set yPosition(value) {
+        if (value > 0) {
+            this.#yPosition = value;
+        } else {
+            throw new RangeError('yPosition must be greater than zero');
+        }
+    }
+
+
     set score(value) {
         if (value > -1) {
             this.#score = value;
         } else {
             throw new RangeError('score must be greater or equal zero');
         }
-    }
-
-
-    get lifeCount() {
-        return this.#lifeCount;
     }
 
 
