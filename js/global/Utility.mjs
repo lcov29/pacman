@@ -5,7 +5,8 @@ export default class Utility {
 
     static removeElementFrom(array, element) {
         const numberOfElementsToDelete = 1;
-        array.splice(array.indexOf(element), numberOfElementsToDelete);
+        const elementIndex = array.indexOf(element);
+        array.splice(elementIndex, numberOfElementsToDelete);
     }
 
 
