@@ -9,19 +9,24 @@ import Configuration from '../../global/Configuration.mjs';
 export default class Game {
 
 
+   #level = null;
+   #mainView = null;
+   #viewList = [];
+   #isAnimationLoopContinuationNeeded = true;
+
+
    constructor(mainCanvas, backgroundCanvas) {
-      this.level = null;
-      this.mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
-      this.viewList = [this.mainView];
-      this.isAnimationLoopContinuationNeeded = true;
+      this.#mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
+      this.#viewList = [this.#mainView];
+      this.#isAnimationLoopContinuationNeeded = true;
       Directions.initializeDirectionMaps();
    }
 
 
    loadLevel() {
-      this.level = new Level(this);
+      this.#level = new Level(this);
       const jsonLevel = this.readLevelJson();
-      this.level.initialize(jsonLevel);
+      this.#level.initialize(jsonLevel);
       this.initializeViews();
    }
 
@@ -29,12 +34,12 @@ export default class Game {
    initializeViews() {
       this.sendInitialBackgroundRequests();
       this.sendInitialMovementRequests();
-      this.viewList.forEach((view) => { view.initialize(); });
+      this.#viewList.forEach((view) => { view.initialize(); });
    }
 
 
    sendInitialBackgroundRequests() {
-      const requestList = this.level.getInitialBackgroundRequestList();
+      const requestList = this.#level.getInitialBackgroundRequestList();
       for (let request of requestList) {
          this.addBackgroundRequest(request);
       }
@@ -42,7 +47,7 @@ export default class Game {
 
 
    sendInitialMovementRequests() {
-      const requestList = this.level.getInitialActorMovementRequestList();
+      const requestList = this.#level.getInitialActorMovementRequestList();
       for (let request of requestList) {
          this.addMovementRequest(request);
       }
@@ -50,12 +55,12 @@ export default class Game {
 
 
    addMovementRequest(request) {
-      this.viewList.forEach((view) => { view.addMovementRequest(request); });
+      this.#viewList.forEach((view) => { view.addMovementRequest(request); });
    }
 
 
    addBackgroundRequest(request) {
-      this.viewList.forEach((view) => { view.addBackgroundRequest(request); });
+      this.#viewList.forEach((view) => { view.addBackgroundRequest(request); });
    }
 
 
@@ -71,7 +76,7 @@ export default class Game {
 
 
    notifyTurnCalculationComplete() {
-      this.viewList.forEach((view) => { view.processUpdateRequestStack(); });
+      this.#viewList.forEach((view) => { view.processUpdateRequestStack(); });
    }
 
 
@@ -81,45 +86,45 @@ export default class Game {
       this.handleWin();
       this.handleDefeat();
       if (isGameInProgress) {
-         this.level.calculateNextTurn();
+         this.#level.calculateNextTurn();
       } else {
          this.end();
       }
-      this.isAnimationLoopContinuationNeeded = isGameInProgress;
+      this.#isAnimationLoopContinuationNeeded = isGameInProgress;
    }
 
 
    isAnimationLoopContinuationNecessary() {
-      return this.isAnimationLoopContinuationNeeded;
+      return this.#isAnimationLoopContinuationNeeded;
    }
    
 
    start() {
-      this.mainView.startAnimationLoop();
+      this.#mainView.startAnimationLoop();
    }
 
 
    end() {
-      this.mainView.stopAnimationLoop();
+      this.#mainView.stopAnimationLoop();
    }
 
 
    isGameInProgress() {
-      const isNotWon = !this.level.isWon();
-      const isNotLost = !this.level.isLost();
+      const isNotWon = !this.#level.isWon();
+      const isNotLost = !this.#level.isLost();
       return isNotWon && isNotLost;
    }
 
 
    handleWin() {
-      if (this.level.isWon()) {
+      if (this.#level.isWon()) {
          window.alert('Victory');   // Placeholder, replace later
       }
    }
 
 
    handleDefeat() {
-      if (this.level.isLost()) {
+      if (this.#level.isLost()) {
          window.alert('Game over'); // Placeholder, replace later
       }
    }
@@ -130,22 +135,22 @@ export default class Game {
          
             case Configuration.keyCodeUpArrow:
             case Configuration.keyCodeW:
-               this.level.setNextPacmanDirection(Configuration.directionNameUp);
+               this.#level.setNextPacmanDirection(Configuration.directionNameUp);
                break;
             
             case Configuration.keyCodeRightArrow:
             case Configuration.keyCodeD:
-               this.level.setNextPacmanDirection(Configuration.directionNameRight);
+               this.#level.setNextPacmanDirection(Configuration.directionNameRight);
                break;
             
             case Configuration.keyCodeDownArrow:
             case Configuration.keyCodeS:
-               this.level.setNextPacmanDirection(Configuration.directionNameDown);
+               this.#level.setNextPacmanDirection(Configuration.directionNameDown);
                break;
       
             case Configuration.keyCodeLeftArrow:
             case Configuration.keyCodeA:
-               this.level.setNextPacmanDirection(Configuration.directionNameLeft);
+               this.#level.setNextPacmanDirection(Configuration.directionNameLeft);
                break;
 
             case Configuration.keyCodeEnter:
