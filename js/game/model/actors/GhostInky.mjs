@@ -2,6 +2,7 @@
 
 import Ghost from './Ghost.mjs';
 import Configuration from '../../../global/Configuration.mjs';
+import GhostBlinky from './GhostBlinky.mjs';
 
 
 export default class GhostInky extends Ghost {
@@ -15,14 +16,22 @@ export default class GhostInky extends Ghost {
 
     // implementation of chase movement pattern for GhostStateChase
     calculateNextChasePosition(positionId) {
-        const targetTileId = this.#calculateChaseTargetTileId();
-        return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
+        const closestGhostPosition = this.#selectClosestPositionOfGhostTypeWithHighestReferencePriority();
+
+        if (closestGhostPosition) {
+            const targetTileId = this.#calculateChaseTargetTileId(closestGhostPosition);
+            return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
+        } else {
+            this.#fallbackChasePositionCalculation(positionId);
+        }
+
+
     }
 
 
-    #calculateChaseTargetTileId() {
+    #calculateChaseTargetTileId(closestGhostPosition) {
         const pacmanPositionId = super.selectClosestPacmanID();
-        const closestGhostPosition = this.#selectClosestPositionOfGhostTypeWithHighestReferencePriority();
+        // const closestGhostPosition = this.#selectClosestPositionOfGhostTypeWithHighestReferencePriority();
 
         if (closestGhostPosition) {
             return pacmanPositionId;
@@ -31,6 +40,12 @@ export default class GhostInky extends Ghost {
             const targetTileId = this.#calculateTargetTileId(pacmanOffsetPosition, closestGhostPosition);
             return targetTileId;
         }
+    }
+
+
+    #fallbackChasePositionCalculation(positionId) {
+        const ghostBlinkyChaseCalculation = new GhostBlinky().calculateNextChasePosition;
+        ghostBlinkyChaseCalculation(positionId);
     }
 
 
