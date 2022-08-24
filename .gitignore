@@ -2,3 +2,4 @@
 .vscode
 buglist.txt
 temp_notes.txt
+copyToLocalWebserver.sh
