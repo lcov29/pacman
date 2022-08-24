@@ -50,15 +50,18 @@ export default class AnimationObject {
 
 
     load(movementRequest, mainSprite, alternateSprite, tileWidth, tileHeight) {
+        this.#xPosition = movementRequest.xPositionStart * tileWidth;
+        this.#yPosition = movementRequest.yPositionStart * tileHeight;
+
         if (movementRequest.isTeleportation) {
-            this.#xPosition = movementRequest.xPositionDestination * tileWidth;
-            this.#yPosition = movementRequest.yPositionDestination * tileHeight;
+            // move undefined tile for one tile to improve animation of teleportation
+            this.#xDestination = (movementRequest.xPositionStart + movementRequest.xDirection) * tileWidth;
+            this.#yDestination = (movementRequest.yPositionStart + movementRequest.yDirection) * tileHeight;
         } else {
-            this.#xPosition = movementRequest.xPositionStart * tileWidth;
-            this.#yPosition = movementRequest.yPositionStart * tileHeight;
+            this.#xDestination = movementRequest.xPositionDestination * tileWidth;
+            this.#yDestination = movementRequest.yPositionDestination * tileHeight;
         }
-        this.#xDestination = movementRequest.xPositionDestination * tileWidth;
-        this.#yDestination = movementRequest.yPositionDestination * tileHeight;
+
         this.#xDirection = movementRequest.xDirection;
         this.#yDirection = movementRequest.yDirection;
         this.#mainSprite = mainSprite;
