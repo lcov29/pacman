@@ -2,7 +2,6 @@
 
 import Ghost from './Ghost.mjs';
 import Configuration from '../../../global/Configuration.mjs';
-import GhostBlinky from './GhostBlinky.mjs';
 
 
 export default class GhostInky extends Ghost {
@@ -22,7 +21,7 @@ export default class GhostInky extends Ghost {
             const targetTileId = this.#calculateChaseTargetTileId(closestGhostPosition);
             return super.routing.calculateNextPositionOnShortestPath(positionId, targetTileId);
         } else {
-            this.#fallbackChasePositionCalculation(positionId);
+            return this.#fallbackChasePositionCalculation(positionId);
         }
 
 
@@ -30,8 +29,8 @@ export default class GhostInky extends Ghost {
 
 
     #calculateChaseTargetTileId(closestGhostPosition) {
+        // default chase behavior when there is at least one other ghost type to base movement calculation upon
         const pacmanPositionId = super.selectClosestPacmanID();
-        // const closestGhostPosition = this.#selectClosestPositionOfGhostTypeWithHighestReferencePriority();
 
         if (closestGhostPosition) {
             return pacmanPositionId;
@@ -44,8 +43,10 @@ export default class GhostInky extends Ghost {
 
 
     #fallbackChasePositionCalculation(positionId) {
-        const ghostBlinkyChaseCalculation = new GhostBlinky().calculateNextChasePosition;
-        ghostBlinkyChaseCalculation(positionId);
+        // fallback chase behavior (equal to ghost blinky) in case there are no other ghost
+        // types to base movement calculation upon
+        const pacmanId = super.selectClosestPacmanID();
+        return super.routing.calculateNextPositionOnShortestPath(positionId, pacmanId);
     }
 
 
