@@ -80,6 +80,7 @@ export default class GhostStateScared extends GhostState {
     }
 
 
+    // TODO: Think about reimplementing detection of ghosts via level.ghostList to prevent overwrite issues with actorLayerCharacters
     handlePacmanCollisionOnNextPosition() {
         const isNextPositionPacman = super.ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter);
 
