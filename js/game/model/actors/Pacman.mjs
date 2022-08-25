@@ -134,13 +134,8 @@ export default class Pacman extends Actor {
 
 
    #handleGhostCollision() {
-      const nextPositionActorCharacter = super.nextPosition.actorLayerCharacter;
-      const isNextPositionGhost = Configuration.ghostCharacterList.includes(nextPositionActorCharacter);
-
-      if (isNextPositionGhost) {
-         this.#handleHostileGhostCollision(super.nextPositionId);
-         this.#handleKillableGhostCollision(super.nextPositionId);
-      }
+      this.#handleHostileGhostCollision(super.nextPositionId);
+      this.#handleKillableGhostCollision(super.nextPositionId);
    }
 
 
