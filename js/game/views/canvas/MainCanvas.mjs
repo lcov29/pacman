@@ -1,6 +1,7 @@
 import Configuration from "../../../global/Configuration.mjs";
 import AnimationObject from "./AnimationObject.mjs";
 import Canvas from "./Canvas.mjs";
+import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
 
 
 export default class MainCanvas extends Canvas {
@@ -9,11 +10,13 @@ export default class MainCanvas extends Canvas {
     #backgroundCanvas = null;
     #numberOfAnimationsRequiringMovement = 0;
     #actorAnimationObjectList = [];
+    #pseudoAnimationObject = null;
 
 
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
         super(mainCanvas, spriteMapper);
         this.#backgroundCanvas = backgroundCanvas;
+        this.#pseudoAnimationObject = new PseudoAnimationObject();
     }
 
 
@@ -24,11 +27,14 @@ export default class MainCanvas extends Canvas {
             const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
             this.#actorAnimationObjectList.push(animationObject);
         }
+
+        this.#actorAnimationObjectList.push(this.#pseudoAnimationObject);
     }
 
 
     processUpdateRequestStack() {
         super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
+        this.#pseudoAnimationObject.loadPseudoMovementData(super.tileWidth, super.tileHeight);
         this.#countAnimationsRequiringMovement();
     }
 
