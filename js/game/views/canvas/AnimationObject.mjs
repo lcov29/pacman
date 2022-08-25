@@ -71,6 +71,13 @@ export default class AnimationObject {
     }
 
 
+    isAnimationComplete() {
+        const isXDestinationReached = this.#xPosition === this.#xDestination;
+        const isYDestinationReached = this.#yPosition === this.#yDestination;
+        return isXDestinationReached && isYDestinationReached;
+    }
+
+
     #handleOverrunXDestination(calculatedXPosition) {
         const isMovingRight = this.#xDirection === 1;
         const isMovingLeft = this.#xDirection === -1;
@@ -88,13 +95,6 @@ export default class AnimationObject {
         const isDownOverrun = isMovingDown && calculatedYPosition > this.#yDestination;
         const calculatedPosition = (isTopOverrun || isDownOverrun) ? this.#yDestination : calculatedYPosition;
         return calculatedPosition;
-    }
-
-
-    isAnimationComplete() {
-        const isXDestinationReached = this.#xPosition === this.#xDestination;
-        const isYDestinationReached = this.#yPosition === this.#yDestination;
-        return isXDestinationReached && isYDestinationReached;
     }
 
 
