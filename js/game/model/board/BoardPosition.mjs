@@ -26,15 +26,13 @@ export default class BoardPosition {
     #x;
     #y;
     #id;
-    #actorLayerCharacter;
     #elementLayerCharacter;
 
 
-    constructor(x, y, actorCharacter, elementCharacter) {
+    constructor(x, y, elementCharacter) {
         this.#x = x;
         this.#y = y;
         this.#id = Configuration.idInaccessibleBoardTiles;
-        this.#actorLayerCharacter = actorCharacter;
         this.#elementLayerCharacter = elementCharacter;
     }
 
@@ -43,11 +41,6 @@ export default class BoardPosition {
         // prevent id of accessible elements to change after initialisation
         const isBoardTileInaccessible = this.#id === Configuration.idInaccessibleBoardTiles;
         this.#id = (isBoardTileInaccessible) ? id : this.#id;
-    }
-
-
-    set actorCharacter(character) {
-        this.#actorLayerCharacter = character;
     }
 
 
@@ -71,18 +64,13 @@ export default class BoardPosition {
     }
 
 
-    get actorLayerCharacter() {
-        return this.#actorLayerCharacter;
-    }
-
-
     get elementLayerCharacter() {
         return this.#elementLayerCharacter;
     }
 
 
     clone() {
-        const clone = new BoardPosition(this.#x, this.#y, this.#actorLayerCharacter, this.#elementLayerCharacter);
+        const clone = new BoardPosition(this.#x, this.#y, this.#elementLayerCharacter);
         clone.id = this.#id;
         return clone;
     }
