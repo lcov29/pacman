@@ -29,22 +29,6 @@ export default class CanvasView {
     }
 
 
-    #initializeCanvasSize() {
-        const tileWidth = 30 * devicePixelRatio;
-        const tileHeight = 30 * devicePixelRatio;
-        const columnNumber = 27;
-        const rowNumber = 22 + 1;
-
-        for (let canvas of [this.#backgroundCanvas, this.#mainCanvas]) {
-            canvas.tileWidth = tileWidth;
-            canvas.tileHeight = tileHeight;
-            canvas.columnNumber = columnNumber;
-            canvas.rowNumber = rowNumber;
-            canvas.resize();
-        }
-    }
-
-
     addBackgroundRequest(request) {
         const canvasOffsetRowForScore = 1;
         request.yPosition = request.yPosition + canvasOffsetRowForScore;
@@ -89,6 +73,22 @@ export default class CanvasView {
 
         if (this.#game.isAnimationLoopContinuationNecessary()) {
             this.#animationFrameId = requestAnimationFrame(this.callBackAnimation.bind(this));
+        }
+    }
+
+
+    #initializeCanvasSize() {
+        const tileWidth = 30 * devicePixelRatio;
+        const tileHeight = 30 * devicePixelRatio;
+        const columnNumber = 27;
+        const rowNumber = 22 + 1;
+
+        for (let canvas of [this.#backgroundCanvas, this.#mainCanvas]) {
+            canvas.tileWidth = tileWidth;
+            canvas.tileHeight = tileHeight;
+            canvas.columnNumber = columnNumber;
+            canvas.rowNumber = rowNumber;
+            canvas.resize();
         }
     }
 
