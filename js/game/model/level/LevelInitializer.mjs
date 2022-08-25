@@ -80,7 +80,7 @@ export default class LevelInitializer {
     static initializeGhostObjects(initialGhostPositionList, routing, levelReference) {
         const ghostList = [];
         for (let position of initialGhostPositionList) {
-            switch (position.actorLayerCharacter) {
+            switch (position.elementCharacter) {
                 case Configuration.ghostBlinkyCharacter:
                     ghostList.push(new GhostBlinky(levelReference, position, routing));
                     break;
