@@ -72,9 +72,7 @@ export default class GhostStateChase extends GhostState {
 
 
     handlePacmanCollisionOnNextPosition() {
-        const isNextPositionPacman = super.ghost.isNextPositionActorCharacter(Configuration.pacmanCharacter);
-        
-        if (isNextPositionPacman) {
+        if (super.ghost.isNextPositionOccupiedByPacman()) {
             super.ghost.killPacman(super.ghost.nextPositionId);
         }
     }
