@@ -136,7 +136,6 @@ export default class Canvas {
 
 
     drawText(xCanvasPosition, yCanvasPosition, text, maxWidthXPosition) {
-
         for (let i = xCanvasPosition; i <= maxWidthXPosition; i++) {
             this.clearTileAt(i, yCanvasPosition);
         }

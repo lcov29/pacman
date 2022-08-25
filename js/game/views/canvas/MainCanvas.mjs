@@ -70,7 +70,6 @@ export default class MainCanvas extends Canvas {
     
 
     moveAnimationObjectsBy(distanceInPixel) {
-
         for (let animationObject of this.#actorAnimationObjectList) {
 
             if (!animationObject.isAnimationComplete()) {
