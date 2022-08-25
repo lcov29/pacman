@@ -57,12 +57,6 @@ export default class Board {
    }
 
 
-   updateActorLayerPosition(x, y, character) {
-      const internalPosition = this.#board[y][x];
-      internalPosition.actorCharacter = character;
-   }
-
-
    updateElementLayerPosition(x, y, character) {
       const internalPosition = this.#board[y][x];
       internalPosition.elementCharacter = character;
@@ -182,8 +176,7 @@ export default class Board {
 
       const countCharacters = (x, y) => {
          for (let character of characterList) {
-            if (this.#board[y][x].actorLayerCharacter === character ||
-                this.#board[y][x].elementLayerCharacter === character) {
+            if (this.#board[y][x].elementLayerCharacter === character) {
                counter++;
                break;
             }
