@@ -41,8 +41,8 @@ export default class AnimationObject {
     move(distanceInPx) {
         if (!this.isAnimationComplete()) {
             this.#updateSpriteAlternation();
-            let calculatedXPosition = this.#xPosition + this.#xDirection * distanceInPx;
-            let calculatedYPosition = this.#yPosition + this.#yDirection * distanceInPx;
+            const calculatedXPosition = this.#xPosition + this.#xDirection * distanceInPx;
+            const calculatedYPosition = this.#yPosition + this.#yDirection * distanceInPx;
             this.#xPosition = this.#handleOverrunXDestination(calculatedXPosition);
             this.#yPosition = this.#handleOverrunYDestination(calculatedYPosition);
         }
@@ -76,18 +76,18 @@ export default class AnimationObject {
         const isMovingLeft = this.#xDirection === -1;
         const isRightOverrun = isMovingRight && calculatedXPosition > this.#xDestination;
         const isLeftOverrun = isMovingLeft && calculatedXPosition < this.#xDestination;
-        const result = (isLeftOverrun || isRightOverrun) ? this.#xDestination : calculatedXPosition;
-        return result;
+        const calculatedPosition = (isLeftOverrun || isRightOverrun) ? this.#xDestination : calculatedXPosition;
+        return calculatedPosition;
     }
 
 
     #handleOverrunYDestination(calculatedYPosition) {
-        const isMovingTop = this.#yDirection === -1;
+        const isMovingUp = this.#yDirection === -1;
         const isMovingDown = this.#yDirection === 1;
-        const isTopOverrun = isMovingTop && calculatedYPosition < this.#yDestination;
+        const isTopOverrun = isMovingUp && calculatedYPosition < this.#yDestination;
         const isDownOverrun = isMovingDown && calculatedYPosition > this.#yDestination;
-        const result = (isTopOverrun || isDownOverrun) ? this.#yDestination : calculatedYPosition;
-        return result;
+        const calculatedPosition = (isTopOverrun || isDownOverrun) ? this.#yDestination : calculatedYPosition;
+        return calculatedPosition;
     }
 
 
@@ -99,7 +99,6 @@ export default class AnimationObject {
 
 
     #updateSpriteAlternation() {
-
         if (this.#alternateSprite) {
             const isAlternationIntervalCompleted = this.#alternationCounter === this.#alternationIntervalLength;
 
