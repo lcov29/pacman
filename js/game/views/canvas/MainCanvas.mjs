@@ -39,19 +39,6 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    #countAnimationsRequiringMovement() {
-        const countList = this.#actorAnimationObjectList.filter(object => !object.isAnimationComplete());
-        this.#numberOfAnimationsRequiringMovement = countList.length;
-    } 
-
-
-    #decrementNumberOfAnimationsRequiringMovement() {
-        if (!this.isAnimationComplete()) {
-            this.#numberOfAnimationsRequiringMovement--;
-        }
-    }
-
-
     isAnimationComplete() {
         return this.#numberOfAnimationsRequiringMovement === 0;
     }
@@ -93,6 +80,19 @@ export default class MainCanvas extends Canvas {
                 } 
             }
 
+        }
+    }
+
+
+    #countAnimationsRequiringMovement() {
+        const countList = this.#actorAnimationObjectList.filter(object => !object.isAnimationComplete());
+        this.#numberOfAnimationsRequiringMovement = countList.length;
+    } 
+
+
+    #decrementNumberOfAnimationsRequiringMovement() {
+        if (!this.isAnimationComplete()) {
+            this.#numberOfAnimationsRequiringMovement--;
         }
     }
     
