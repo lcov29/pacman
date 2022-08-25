@@ -115,7 +115,7 @@ export default class LevelInitializer {
     static initializeOptionalGhostSpawnPositions(ghostOptionalSpawnPositionList, ghostList) {
         for (let spawnPosition of ghostOptionalSpawnPositionList) {
             for (let ghost of ghostList) {
-                const isMatchingSpawnPosition = ghost.character === spawnPosition.elementLayerCharacter
+                const isMatchingSpawnPosition = ghost.character === spawnPosition.elementCharacter
 
                 if (isMatchingSpawnPosition) {
                     ghost.spawnID = spawnPosition.id;
