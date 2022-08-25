@@ -17,21 +17,50 @@ export default class BoardParser {
 
     parse(levelJson) {
         const parsedLevelJson = JSON.parse(levelJson);
-        const board = this.#buildBoardPositionArray(parsedLevelJson.board);
 
+        this.#initializeBoardElementPositionList(parsedLevelJson.scatterPositionList, this.#boardRef.ghostScatterPositionList);
+        this.#initializeBoardElementPositionList(parsedLevelJson.optionalSpawnList, this.#boardRef.ghostOptionalSpawnPositionList);
+        this.#initializeBoardElementPositionList(parsedLevelJson.bonusSpawnPositionList, this.#boardRef.bonusSpawnPositionList);
+        this.#initializeOtherPositionLists(parsedLevelJson.board);
+
+        const board = this.#buildBoardPositionArray(parsedLevelJson.board);
         this.#indexAccessiblePositions(board);
-        this.#initializeGhostScatterPositionList(board, parsedLevelJson.scatterPositionList);
-        this.#initializeOptionalGhostSpawnPositionList(board, parsedLevelJson.optionalSpawnList);
-        this.#initializeBonusSpawnPositionList(parsedLevelJson.bonusSpawnPositionList);
-        this.#initializeOtherPositionLists(board);
         this.#boardRef.board = board;
+    }
+
+
+    #initializeBoardElementPositionList(initialList, boardRefList) {
+        const elementCharacter = (position.ghost) ? position.ghost : 'bonusSpawn';
+        boardRefList = initialList.map((position) => new BoardPosition(position.x, position.y, elementCharacter));
+    }
+
+
+    #initializeOtherPositionLists(board) {
+        for (let y = 0; y < board.length; y++) {
+           for (let x = 0; x < board[y].length; x++) {
+              const currentCharacter = board[y][x];
+  
+              const isCurrentCharacterPacman = currentCharacter === Configuration.pacmanCharacter;
+              if (isCurrentCharacterPacman) {
+                 this.#boardRef.initialPacmanPositionList.push(new BoardPosition(x, y, currentCharacter));
+              }
+
+              const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentCharacter);
+              if (isCurrentCharacterGhost) {
+                this.#boardRef.initialGhostPositionList.push(new BoardPosition(x, y, currentCharacter));
+              }
+  
+              const isCurrentCharacterTeleporter = Configuration.teleporterCharacterList.includes(currentCharacter);
+              if (isCurrentCharacterTeleporter) {
+                this.#boardRef.teleporterPositionList.push(new BoardPosition(x, y, currentCharacter));
+              }
+           }
+        }
     }
 
 
     #buildBoardPositionArray(board) {
         const output = [...board];
-        let currentActorCharacter = '';
-        let currentElementCharacter = '';
 
         for (let y = 0; y < output.length; y++) {
             for (let x = 0; x < output[y].length; x++) {
@@ -39,13 +68,10 @@ export default class BoardParser {
                 const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
 
                 if (isActorCharacter) {
-                    currentActorCharacter = currentCharacter;
-                    currentElementCharacter = Configuration.emptyTileCharacter;
+                    output[y][x] = new BoardPosition(x, y, Configuration.emptyTileCharacter);
                 } else {
-                    currentActorCharacter = Configuration.emptyTileCharacter;
-                    currentElementCharacter = currentCharacter;
+                    output[y][x] = new BoardPosition(x, y, currentCharacter);
                 }
-                output[y][x] = new BoardPosition(x, y, currentActorCharacter, currentElementCharacter);
             }
         }
         return output;
@@ -66,63 +92,5 @@ export default class BoardParser {
              }
         }
     }
-
-
-    #initializeGhostScatterPositionList(board, scatterPositionList) {
-       this.#boardRef.ghostScatterPositionList = this.#buildBoardPositionListFor(board, scatterPositionList);
-    }
-
-
-    #initializeOptionalGhostSpawnPositionList(board, optionalSpawnList) {
-        this.#boardRef.ghostOptionalSpawnPositionList = this.#buildBoardPositionListFor(board, optionalSpawnList);
-    }
-
-
-    #initializeBonusSpawnPositionList(bonusSpawnCoordinateList) {
-        const bonusSpawnPositionList = [];
-        for (let coordinate of bonusSpawnCoordinateList) {
-            const spawnBoardPosition = new BoardPosition(coordinate.x, coordinate.y);
-            bonusSpawnPositionList.push(spawnBoardPosition);
-        }
-        this.#boardRef.bonusSpawnPositionList = bonusSpawnPositionList;
-    }
-
-
-    #initializeOtherPositionLists(board) {
-        for (let y = 0; y < board.length; y++) {
-           for (let x = 0; x < board[y].length; x++) {
-              const currentPosition = board[y][x];
-              const currentActorCharacter = currentPosition.actorLayerCharacter;
-  
-              const isCurrentActorPacman = currentActorCharacter === Configuration.pacmanCharacter;
-              if (isCurrentActorPacman) {
-                 this.#boardRef.initialPacmanPositionList.push(currentPosition);
-              }
-
-              const isCurrentActorGhost = Configuration.ghostCharacterList.includes(currentActorCharacter);
-              if (isCurrentActorGhost) {
-                this.#boardRef.initialGhostPositionList.push(currentPosition);
-              }
-  
-              const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(currentPosition.elementLayerCharacter);
-              if (isCurrentElementTeleporter) {
-                this.#boardRef.teleporterPositionList.push(currentPosition);
-              }
-           }
-        }
-    }
-
-
-    #buildBoardPositionListFor(board, positionList) {
-        const boardPositionList = [];
-        for (let position of positionList) {
-            const boardPositionClone = board[position.y][position.x].clone();
-            boardPositionClone.actorCharacter = Configuration.emptyTileCharacter;
-            boardPositionClone.elementCharacter = position.ghost;
-            boardPositionList.push(boardPositionClone);
-        }
-        return boardPositionList;
-    }
-
     
 }
