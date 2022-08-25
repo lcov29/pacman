@@ -118,6 +118,12 @@ export default class Level {
     }
 
 
+    isPositionOccupiedByPacman(positionId) {
+        const func = function() { return true; };
+        return this.#iterateList(positionId, this.#pacmanList, func, false);
+    }
+
+
     // TODO: FIX: method can fail when multiple ghosts with different states are on same position
     isPositionOccupiedByHostileGhost(positionId) {
         const func = (ghost) => { return ghost.isHostile(); };
