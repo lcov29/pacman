@@ -32,9 +32,9 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    processUpdateRequestStack() {
+    processUpdateRequestStack(isLevelInitialization = false) {
         super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
-        this.#pseudoAnimationObject.loadPseudoMovementData(super.tileWidth, super.tileHeight);
+        this.#pseudoAnimationObject.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
         this.#countAnimationsRequiringMovement();
     }
 
