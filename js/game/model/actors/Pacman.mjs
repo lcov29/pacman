@@ -113,7 +113,7 @@ export default class Pacman extends Actor {
 
    #handleOtherPacmanCollision() {
       let result = true;
-      const isNextPositionPacman = super.isNextPositionActorCharacter(Configuration.pacmanCharacter);
+      const isNextPositionPacman = super.level.isPositionOccupiedByPacman(super.nextPositionId);
 
       if (isNextPositionPacman) {
          const otherPacmanPositionId = super.nextPositionId;
