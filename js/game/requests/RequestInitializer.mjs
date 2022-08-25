@@ -33,7 +33,7 @@ export default class RequestInitializer {
             request.xPositionDestination = position.x;
             request.yPositionDestination = position.y;
 
-            const actorCharacter = position.actorLayerCharacter;
+            const actorCharacter = position.elementCharacter;
             request.actorCharacter =  actorCharacter;
 
             const isGhostCharacter = Configuration.ghostCharacterList.includes(actorCharacter);
