@@ -61,6 +61,11 @@ export default class Ghost extends Actor {
    }
    
 
+   isNextPositionOccupiedByPacman() {
+      return super.level.isNextPositionOccupiedByPacman(super.nextPositionId);
+   }
+
+
    isNextPositionEqualToTeleportDestination() {
       return super.nextPositionId === super.getTeleportDestinationForCurrentPosition().id;
    }
