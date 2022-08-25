@@ -29,6 +29,44 @@ export default class BoardParser {
     }
 
 
+    #buildBoardPositionArray(board) {
+        const output = [];
+        let row = [];
+
+        for (let y = 0; y < board.length; y++) {
+            for (let x = 0; x < board[y].length; x++) {
+                const currentCharacter = board[y][x];
+                const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
+
+                if (isActorCharacter) {
+                    row.push(new BoardPosition(x, y, Configuration.emptyTileCharacter));
+                } else {
+                    row.push(new BoardPosition(x, y, currentCharacter));
+                }
+            }
+            output.push(row);
+            row = [];
+        }
+        return output;
+    }
+
+
+    #indexAccessiblePositions(positionArray) {
+        let id = 0;
+        for (let y = 0; y < positionArray.length; y++) {
+            for (let x = 0; x < positionArray[y].length; x++) {
+                const elementCharacter = positionArray[y][x].elementCharacter;
+                const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
+                
+                if (isAccessibleByActor) {
+                    positionArray[y][x].id = id;
+                    id++;
+                }
+             }
+        }
+    }
+
+
     #buildBoardElementPositionList(positionList, board) {
         return positionList.map((position) => {
             const elementCharacter = (position.ghost) ? position.ghost : '';
@@ -69,42 +107,5 @@ export default class BoardParser {
         }
     }
 
-
-    #buildBoardPositionArray(board) {
-        const output = [];
-        let row = [];
-
-        for (let y = 0; y < board.length; y++) {
-            for (let x = 0; x < board[y].length; x++) {
-                const currentCharacter = board[y][x];
-                const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
-
-                if (isActorCharacter) {
-                    row.push(new BoardPosition(x, y, Configuration.emptyTileCharacter));
-                } else {
-                    row.push(new BoardPosition(x, y, currentCharacter));
-                }
-            }
-            output.push(row);
-            row = [];
-        }
-        return output;
-    }
-
-
-    #indexAccessiblePositions(positionArray) {
-        let id = 0;
-        for (let y = 0; y < positionArray.length; y++) {
-            for (let x = 0; x < positionArray[y].length; x++) {
-                const elementCharacter = positionArray[y][x].elementCharacter;
-                const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
-                
-                if (isAccessibleByActor) {
-                    positionArray[y][x].id = id;
-                    id++;
-                }
-             }
-        }
-    }
     
 }
