@@ -118,12 +118,14 @@ export default class Level {
     }
 
 
+    // TODO: FIX: method can fail when multiple ghosts with different states are on same position
     isPositionOccupiedByHostileGhost(positionId) {
         const func = (ghost) => { return ghost.isHostile(); };
         return this.#iterateList(positionId, this.#ghostList, func, false);
     }
 
 
+    // TODO: FIX: method can fail when multiple ghosts with different states are on same position
     isPositionOccupiedByKillableGhost(positionId) {
         const func = (ghost) => { return ghost.isKillable(); };
         return this.#iterateList(positionId, this.#ghostList, func, false);
@@ -288,6 +290,7 @@ export default class Level {
     }
 
 
+    // TODO: Refactor method (actors -> actorList, forEach, extract comparison into seperate constant)
     #killActor(actors, positionId) {
         for (let actor of actors) {
             if (actor.currentPositionId === positionId) {
