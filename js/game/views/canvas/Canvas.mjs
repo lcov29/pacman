@@ -23,17 +23,32 @@ export default class Canvas {
     }
 
 
+    get tileHeight() {
+        return this.#tileHeight;
+    }
+
+
+    get columnNumber() {
+        return this.#columnNumber;
+    }
+
+
+    get rowNumber() {
+        return this.#rowNumber;
+    }
+
+
+    get numberOfPendingUpdateRequests() {
+        return this.#updateRequestStack.length;
+    }
+
+    
     set tileWidth(width) {
         if (width < 1) {
             throw new RangeError('tileWidth must be greater than zero');
         } else {
             this.#tileWidth = width;
         }
-    }
-
-
-    get tileHeight() {
-        return this.#tileHeight;
     }
 
 
@@ -46,11 +61,6 @@ export default class Canvas {
     }
 
 
-    get columnNumber() {
-        return this.#columnNumber;
-    }
-
-
     set columnNumber(number) {
         if (number < 1) {
             throw new RangeError('columnNumber must be greater than zero');
@@ -60,22 +70,12 @@ export default class Canvas {
     }
 
 
-    get rowNumber() {
-        return this.#rowNumber;
-    }
-
-
     set rowNumber(number) {
         if (number < 1) {
             throw new RangeError('rowNumber must be greater than zero');
         } else {
             this.#rowNumber = number;
         }
-    }
-
-
-    get numberOfPendingUpdateRequests() {
-        return this.#updateRequestStack.length;
     }
 
 
