@@ -176,7 +176,7 @@ export default class Board {
 
       const countCharacters = (x, y) => {
          for (let character of characterList) {
-            if (this.#board[y][x].elementLayerCharacter === character) {
+            if (this.#board[y][x].elementCharacter === character) {
                counter++;
                break;
             }

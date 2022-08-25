@@ -24,7 +24,7 @@ export default class LevelInitializer {
         const teleporterList = [new Teleporter(), new Teleporter(), new Teleporter()];
 
         for (let position of teleporterPositionList) {
-            switch (position.elementLayerCharacter) {
+            switch (position.elementCharacter) {
                 case Configuration.teleporter1Character:
                     teleporterList[0].add(position);
                     break;
@@ -102,7 +102,7 @@ export default class LevelInitializer {
     static initializeGhostScatterPositions(ghostScatterPositionList, ghostList) {
         for (let scatterPosition of ghostScatterPositionList) {
             for (let ghost of ghostList) { 
-                const isMatchingScatterPosition = ghost.character === scatterPosition.elementLayerCharacter
+                const isMatchingScatterPosition = ghost.character === scatterPosition.elementCharacter
 
                 if (isMatchingScatterPosition) {
                     ghost.scatterID = scatterPosition.id;

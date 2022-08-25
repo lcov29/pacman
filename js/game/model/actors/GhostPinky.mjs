@@ -47,7 +47,7 @@ export default class GhostPinky extends Ghost {
 
 
     #isPositionAccessible(position) {
-        return !Configuration.actorsInaccessibleTileCharacterList.includes(position.elementLayerCharacter);
+        return !Configuration.actorsInaccessibleTileCharacterList.includes(position.elementCharacter);
     }
 
     

@@ -102,7 +102,7 @@ export default class Pacman extends Actor {
 
 
    #handleInaccessibleTileCollision() {
-      const nextElement = super.nextPosition.elementLayerCharacter;
+      const nextElement = super.nextPosition.elementCharacter;
       const isNextPositionInaccessible = Configuration.pacmanInaccessibleTileCharacterList.includes(nextElement);
 
       if (isNextPositionInaccessible) {
@@ -172,7 +172,7 @@ export default class Pacman extends Actor {
 
 
    #handleBonusElementCollision() {
-      const nextElementCharacter = super.nextPosition.elementLayerCharacter;
+      const nextElementCharacter = super.nextPosition.elementCharacter;
       const isNextPositionBonusElement = Configuration.bonusCharacterList.includes(nextElementCharacter);
 
       if (this.#isAlive && isNextPositionBonusElement) {
@@ -186,7 +186,7 @@ export default class Pacman extends Actor {
    #sendLevelBackgroundRequest() {
       if (this.#isBackgroundUpdateNeeded) {
          const nextPosition = super.nextPosition;
-         const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementLayerCharacter);
+         const request = new BackgroundRequest(nextPosition.x, nextPosition.y, nextPosition.elementCharacter);
          super.sendLevelBackgroundRequest(request);
       }
       this.#isBackgroundUpdateNeeded = false;

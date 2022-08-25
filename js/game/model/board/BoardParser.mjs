@@ -82,7 +82,7 @@ export default class BoardParser {
         let id = 0;
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
-                const elementCharacter = positionArray[y][x].elementLayerCharacter;
+                const elementCharacter = positionArray[y][x].elementCharacter;
                 const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
                 
                 if (isAccessibleByActor) {

@@ -92,7 +92,7 @@ export default class GhostStateScared extends GhostState {
 
 
     handleInaccessibleTileCollision() {
-        const nextPositionElementCharacter = super.ghost.nextPosition.elementLayerCharacter;
+        const nextPositionElementCharacter = super.ghost.nextPosition.elementCharacter;
         const isNextPositionInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(nextPositionElementCharacter);
 
         if (isNextPositionInaccessible) {
