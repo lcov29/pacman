@@ -71,19 +71,22 @@ export default class BoardParser {
 
 
     #buildBoardPositionArray(board) {
-        const output = [...board];
+        const output = [];
+        let row = [];
 
-        for (let y = 0; y < output.length; y++) {
-            for (let x = 0; x < output[y].length; x++) {
-                const currentCharacter = output[y][x];
+        for (let y = 0; y < board.length; y++) {
+            for (let x = 0; x < board[y].length; x++) {
+                const currentCharacter = board[y][x];
                 const isActorCharacter = Configuration.actorCharacterList.includes(currentCharacter);
 
                 if (isActorCharacter) {
-                    output[y][x] = new BoardPosition(x, y, Configuration.emptyTileCharacter);
+                    row.push(new BoardPosition(x, y, Configuration.emptyTileCharacter));
                 } else {
-                    output[y][x] = new BoardPosition(x, y, currentCharacter);
+                    row.push(new BoardPosition(x, y, currentCharacter));
                 }
             }
+            output.push(row);
+            row = [];
         }
         return output;
     }
