@@ -54,7 +54,7 @@ export default class BoardParser {
         const indexPosition = (x, y) => {
             const elementCharacter = positionArray[y][x].elementCharacter;
             const isAccessibleByActor = !Configuration.actorsInaccessibleTileCharacterList.includes(elementCharacter);
-            
+
             if (isAccessibleByActor) {
                 positionArray[y][x].id = id;
                 id++;
@@ -99,11 +99,11 @@ export default class BoardParser {
 
     #forEachPosition(func, positionArray) {
         for (let y = 0; y < positionArray.length; y++) {
-           for (let x = 0; x < positionArray[y].length; x++) {
-              func(x, y);
-           }
+            for (let x = 0; x < positionArray[y].length; x++) {
+                func(x, y);
+            }
         }
-     }
+    }
 
     
 }
