@@ -96,7 +96,6 @@ export default class BoardParser {
     }
 
 
-
     #forEachPosition(func, positionArray) {
         for (let y = 0; y < positionArray.length; y++) {
             for (let x = 0; x < positionArray[y].length; x++) {
