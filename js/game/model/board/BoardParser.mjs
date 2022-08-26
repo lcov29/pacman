@@ -7,25 +7,22 @@ import Configuration from '../../../global/Configuration.mjs';
 export default class BoardParser {
 
 
-    #boardRef = null;
-
-
-    constructor(boardReference) {
-        this.#boardRef = boardReference;
-    }
-
-
     parse(levelJson) {
         const parsedLevelJson = JSON.parse(levelJson);
 
         const board = this.#buildBoardPositionArray(parsedLevelJson.board);
         this.#indexAccessiblePositions(board);
-        this.#boardRef.board = board;
 
-        this.#boardRef.ghostScatterPositionList = this.#buildBoardElementPositionList(parsedLevelJson.scatterPositionList, board);
-        this.#boardRef.ghostOptionalSpawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.optionalSpawnList, board);
-        this.#boardRef.bonusSpawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.bonusSpawnPositionList, board);
-        this.#initializeOtherPositionLists(parsedLevelJson.board);
+        const spawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.bonusSpawnPositionList, board);
+        const scatterPositionList = this.#buildBoardElementPositionList(parsedLevelJson.scatterPositionList, board);
+        const optionalSpawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.optionalSpawnList, board);
+
+        const pacmanPositionList = this.#buildActorPositionListFor([Configuration.pacmanCharacter], parsedLevelJson.board, board);
+        const ghostPositionList = this.#buildActorPositionListFor(Configuration.ghostCharacterList, parsedLevelJson.board, board);
+        const teleporterPositionList = this.#buildActorPositionListFor(Configuration.teleporterCharacterList, parsedLevelJson.board, board);
+
+        return {board, spawnPositionList, scatterPositionList, optionalSpawnPositionList,
+                pacmanPositionList, ghostPositionList, teleporterPositionList};
     }
 
 
@@ -77,34 +74,23 @@ export default class BoardParser {
     }
 
 
-    #initializeOtherPositionLists(board) {
-        for (let y = 0; y < board.length; y++) {
-           for (let x = 0; x < board[y].length; x++) {
-              const elementCharacter = board[y][x];
-              const currentBoardPositionId = this.#boardRef.getPosition(x, y).id;
-  
-              const isCurrentActorPacman = elementCharacter === Configuration.pacmanCharacter;
-              if (isCurrentActorPacman) {
-                const boardPosition = new BoardPosition(x, y, elementCharacter);
-                boardPosition.id = currentBoardPositionId;
-                this.#boardRef.initialPacmanPositionList.push(boardPosition);
-              }
+    #buildActorPositionListFor(actorCharacterList, parsedJsonBoard, indexedBoard) {
+        const actorBoardPositionList = [];
 
-              const isCurrentActorGhost = Configuration.ghostCharacterList.includes(elementCharacter);
-              if (isCurrentActorGhost) {
-                const boardPosition = new BoardPosition(x, y, elementCharacter);
-                boardPosition.id = currentBoardPositionId;
-                this.#boardRef.initialGhostPositionList.push(boardPosition);
-              }
-  
-              const isCurrentElementTeleporter = Configuration.teleporterCharacterList.includes(elementCharacter);
-              if (isCurrentElementTeleporter) {
-                const boardPosition = new BoardPosition(x, y, elementCharacter);
-                boardPosition.id = currentBoardPositionId;
-                this.#boardRef.teleporterPositionList.push(boardPosition);
-              }
-           }
+        for (let y = 0; y < parsedJsonBoard.length; y++) {
+            for (let x = 0; x < parsedJsonBoard[y].length; x++) {
+               const currentCharacter = parsedJsonBoard[y][x];
+               const currentBoardPositionId = indexedBoard[y][x].id;
+
+               const isMatchingCharacter = actorCharacterList.includes(currentCharacter);
+               if (isMatchingCharacter) {
+                 const boardPosition = new BoardPosition(x, y, currentCharacter);
+                 boardPosition.id = currentBoardPositionId;
+                 actorBoardPositionList.push(boardPosition);
+               }
+            }
         }
+        return actorBoardPositionList;
     }
 
     
