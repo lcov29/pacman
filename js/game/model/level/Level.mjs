@@ -292,13 +292,9 @@ export default class Level {
     }
 
 
-    // TODO: Refactor method (actors -> actorList, forEach, extract comparison into seperate constant)
-    #killActor(actors, positionId) {
-        for (let actor of actors) {
-            if (actor.currentPositionId === positionId) {
-                actor.kill();
-            }
-        }
+    #killActor(actorList, positionId) {
+        const actorAtPositionList = actorList.filter(actor => { return actor.currentPositionId === positionId; });
+        actorAtPositionList.forEach(actor => actor.kill());
     }
 
 
