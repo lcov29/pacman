@@ -77,21 +77,32 @@ export default class BoardParser {
     #buildActorPositionListFor(actorCharacterList, parsedJsonBoard, indexedBoard) {
         const actorBoardPositionList = [];
 
-        for (let y = 0; y < parsedJsonBoard.length; y++) {
-            for (let x = 0; x < parsedJsonBoard[y].length; x++) {
-               const currentCharacter = parsedJsonBoard[y][x];
-               const currentBoardPositionId = indexedBoard[y][x].id;
+        const initializeBoardPositionList = (x, y) => {
+            const currentCharacter = parsedJsonBoard[y][x];
+            const currentBoardPositionId = indexedBoard[y][x].id;
 
-               const isMatchingCharacter = actorCharacterList.includes(currentCharacter);
-               if (isMatchingCharacter) {
-                 const boardPosition = new BoardPosition(x, y, currentCharacter);
-                 boardPosition.id = currentBoardPositionId;
-                 actorBoardPositionList.push(boardPosition);
-               }
+            const isMatchingCharacter = actorCharacterList.includes(currentCharacter);
+
+            if (isMatchingCharacter) {
+              const boardPosition = new BoardPosition(x, y, currentCharacter);
+              boardPosition.id = currentBoardPositionId;
+              actorBoardPositionList.push(boardPosition);
             }
-        }
+        };
+
+        this.#forEachPosition(initializeBoardPositionList, parsedJsonBoard);
         return actorBoardPositionList;
     }
+
+
+
+    #forEachPosition(func, positionArray) {
+        for (let y = 0; y < positionArray.length; y++) {
+           for (let x = 0; x < positionArray[y].length; x++) {
+              func(x, y);
+           }
+        }
+     }
 
     
 }
