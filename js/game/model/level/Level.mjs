@@ -122,21 +122,24 @@ export default class Level {
         const func = function() { return true; };
         return this.#iterateList(positionId, this.#pacmanList, func, false);
     }
+    
 
-
-    // TODO: FIX: method can fail when multiple ghosts with different states are on same position
     isPositionOccupiedByHostileGhost(positionId) {
-        const func = (ghost) => { return ghost.isHostile(); };
-        return this.#iterateList(positionId, this.#ghostList, func, false);
+        const filterFunction = (ghost) => {
+            const isSamePosition = ghost.currentPositionId === positionId;
+            return isSamePosition && ghost.isHostile();
+        }
+        const hostileGhostsAtPositionList = this.#ghostList.filter(filterFunction);
+        return hostileGhostsAtPositionList.length > 0;
     }
 
 
     isPositionOccupiedByKillableGhost(positionId) {
-        const filterFunc = (ghost) => {
+        const filterFunction = (ghost) => {
             const isSamePosition = ghost.currentPositionId === positionId;
             return isSamePosition && ghost.isKillable();
         }
-        const killableGhostsAtPositionList = this.#ghostList.filter(filterFunc);
+        const killableGhostsAtPositionList = this.#ghostList.filter(filterFunction);
         return killableGhostsAtPositionList.length > 0;
     }
 
