@@ -29,34 +29,34 @@ function callBackMobileMenuButton() {
 
 
 function callBackKeyDown(event) {
-   switch(event.keyCode) {
+   switch(event.code) {
    
-      case Configuration.keyCodeUpArrow:
-      case Configuration.keyCodeW:
+      case 'ArrowUp':
+      case 'KeyW':
          game.setNextPacmanDirection(Configuration.directionNameUp);
          event.preventDefault();
          break;
       
-      case Configuration.keyCodeRightArrow:
-      case Configuration.keyCodeD:
+      case 'ArrowRight':
+      case 'KeyD':
          game.setNextPacmanDirection(Configuration.directionNameRight);
          event.preventDefault();
          break;
       
-      case Configuration.keyCodeDownArrow:
-      case Configuration.keyCodeS:
+      case 'ArrowDown':
+      case 'KeyS':
          game.setNextPacmanDirection(Configuration.directionNameDown);
          event.preventDefault();
          break;
 
-      case Configuration.keyCodeLeftArrow:
-      case Configuration.keyCodeA:
+      case 'ArrowLeft':
+      case 'KeyA':
          game.setNextPacmanDirection(Configuration.directionNameLeft);
          event.preventDefault();
          break;
 
-      case Configuration.keyCodeEnter:
-      case Configuration.keyCodeSpace:
+      case 'Enter':
+      case 'Space':
          game.start();
          event.preventDefault();
          break;
