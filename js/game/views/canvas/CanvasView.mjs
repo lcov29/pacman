@@ -6,6 +6,7 @@ import Configuration from '../../../global/Configuration.mjs';
 
 export default class CanvasView {
 
+    
     #game = null;
     #backgroundCanvas = null;
     #mainCanvas = null;

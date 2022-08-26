@@ -1,5 +1,3 @@
-'use strict';
-
 import Ghost from './Ghost.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 

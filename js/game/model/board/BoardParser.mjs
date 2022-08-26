@@ -1,5 +1,3 @@
-'use strict';
-
 import BoardPosition from './BoardPosition.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 

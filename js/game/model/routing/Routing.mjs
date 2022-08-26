@@ -1,5 +1,3 @@
-'use strict';
-
 import RoutingAlgorithm from './RoutingAlgorithm.mjs';
 import BoardPosition from '../board/BoardPosition.mjs';
 import RoutingNode from './RoutingNode.mjs';

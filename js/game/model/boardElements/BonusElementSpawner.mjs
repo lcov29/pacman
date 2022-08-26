@@ -1,5 +1,3 @@
-'use strict';
-
 import Utility from '../../../global/Utility.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs'

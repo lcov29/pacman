@@ -1,6 +1,3 @@
-'use strict';
-
-
 import LevelInitializer from './LevelInitializer.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import Utility from '../../../global/Utility.mjs';
@@ -20,6 +17,7 @@ import RequestInitializer from '../../requests/RequestInitializer.mjs';
 
 
 export default class Level {
+
 
     #game = null;
     #board = null;

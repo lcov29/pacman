@@ -1,6 +1,3 @@
-'use strict';
-
-
 export default class EditorMapDimensionChangeState {
 
 

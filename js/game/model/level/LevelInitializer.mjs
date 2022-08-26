@@ -1,5 +1,3 @@
-'use strict';
-
 import Configuration from '../../../global/Configuration.mjs';
 import Teleporter from '../boardElements/Teleporter.mjs'
 import Routing from '../routing/Routing.mjs';

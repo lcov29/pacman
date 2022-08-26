@@ -1,5 +1,3 @@
-'use strict';
-
 import Actor from './Actor.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs'

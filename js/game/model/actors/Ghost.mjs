@@ -1,5 +1,3 @@
-'use strict';
-
 import GhostStateScaredStart from './ghostStates/GhostStateScaredStart.mjs';
 import GhostStateScaredEnd from './ghostStates/GhostStateScaredEnd.mjs';
 import GhostStateScatter from './ghostStates/GhostStateScatter.mjs';

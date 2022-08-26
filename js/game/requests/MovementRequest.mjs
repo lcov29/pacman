@@ -1,5 +1,3 @@
-'use strict';
-
 import Directions from "../model/Directions.mjs";
 import Configuration from "../../global/Configuration.mjs";
 

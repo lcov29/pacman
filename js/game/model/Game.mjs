@@ -1,5 +1,3 @@
-'use strict';
-
 import Level from './level/Level.mjs';
 import Directions from './Directions.mjs';
 import CanvasView from '../views/canvas/CanvasView.mjs';

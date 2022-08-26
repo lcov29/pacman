@@ -1,5 +1,3 @@
-'use strict';
-
 import Configuration from '../../global/Configuration.mjs';
 import EditorElementMapper from '../EditorElementMapper.mjs';
 

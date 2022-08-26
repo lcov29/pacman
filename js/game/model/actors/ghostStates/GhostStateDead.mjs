@@ -1,5 +1,3 @@
-'use strict';
-
 import GhostState from './GhostState.mjs';
 import Configuration from '../../../../global/Configuration.mjs';
 import GhostStateRespawn from './GhostStateRespawn.mjs';
