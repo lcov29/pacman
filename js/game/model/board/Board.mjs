@@ -28,42 +28,7 @@ export default class Board {
       this.#ghostScatterPositionList = parsedLevel.scatterPositionList;
       this.#ghostOptionalSpawnPositionList = parsedLevel.optionalSpawnPositionList;
    }
-
-
-   set board(board) {
-      this.#board = board;
-   }
-
-
-   set initialPacmanPositionList(positionList) {
-      this.#initialPacmanPositionList = positionList;
-   }
-
-
-   set initialGhostPositionList(positionList) {
-      this.#initialGhostPositionList = positionList;
-   }
-
-
-   set teleporterPositionList(positionList) {
-      this.#teleporterPositionList = positionList;
-   }
-
-
-   set bonusSpawnPositionList(positionList) {
-      this.#bonusSpawnPositionList = positionList;
-   }
-
-
-   set ghostScatterPositionList(positionList) {
-      this.#ghostScatterPositionList = positionList;
-   }
-
-
-   set ghostOptionalSpawnPositionList(positionList) {
-      this.#ghostOptionalSpawnPositionList = positionList;
-   }
-
+   
 
    get initialPacmanPositionList() {
       return this.#initialPacmanPositionList;
