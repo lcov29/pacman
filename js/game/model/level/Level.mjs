@@ -176,7 +176,7 @@ export default class Level {
 
 
     processBackgroundRequest(request) {
-        this.#board.updateElementLayerPosition(request.xPosition, request.yPosition, request.elementCharacter);
+        this.#board.updateCharacterAt(request.xPosition, request.yPosition, request.elementCharacter);
         this.#addInformationToBackgroundRequest(request);
         this.#game.addBackgroundRequest(request);
     }
