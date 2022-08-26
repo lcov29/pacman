@@ -4,7 +4,6 @@ import Configuration from '../../../global/Configuration.mjs';
 import BoardParser from './BoardParser.mjs';
 import Directions from '../Directions.mjs';
 
-// TODO: extract looping through board into new method
 
 export default class Board {
 
@@ -28,7 +27,7 @@ export default class Board {
       this.#ghostScatterPositionList = parsedLevel.scatterPositionList;
       this.#ghostOptionalSpawnPositionList = parsedLevel.optionalSpawnPositionList;
    }
-   
+
 
    get initialPacmanPositionList() {
       return this.#initialPacmanPositionList;
@@ -89,7 +88,7 @@ export default class Board {
       const outputList = [];
 
       const addAccessiblePosition = (x, y) => {
-         if (this.isAccessibleAt(x, y)) {
+         if (this.#isAccessibleAt(x, y)) {
             outputList.push(this.getPosition(x, y));
          }
       }
@@ -104,7 +103,7 @@ export default class Board {
       let idList = [];
 
       const addAccessibleNeighborId = (x, y) => {
-         if (this.isAccessibleAt(x, y)) {
+         if (this.#isAccessibleAt(x, y)) {
             for(let position of this.buildAccessibleNeighborList(x, y)) {
                idList.push(position.id);
             }
@@ -125,24 +124,13 @@ export default class Board {
          const direction = Directions.getDirectionByID(i);
          const neighborX = xPosition + direction.x;
          const neighborY = yPosition + direction.y;
-         if (this.isIndexOnBoard(neighborX, neighborY) && this.isAccessibleAt(neighborX, neighborY)) {
+         if (this.#isIndexOnBoard(neighborX, neighborY) && this.#isAccessibleAt(neighborX, neighborY)) {
             neighborPositionList.push(this.getPosition(neighborX, neighborY));
          }
       }
       return neighborPositionList;
    }
 
-
-   isAccessibleAt(x, y) {
-      return this.#board[y][x].id !== Configuration.idInaccessibleBoardTiles;
-   }
-
-
-   isIndexOnBoard(x, y) {
-      return 0 <= y && y < this.#board.length && 
-             0 <= x && x < this.#board[y].length;
-   }
-   
 
    countOccurrencesOfCharacters(characterList) {
       let counter = 0;
@@ -158,6 +146,17 @@ export default class Board {
 
       this.#forEachBoardPosition(countCharacters);
       return counter;
+   }
+
+
+   #isAccessibleAt(x, y) {
+      return this.#board[y][x].id !== Configuration.idInaccessibleBoardTiles;
+   }
+
+
+   #isIndexOnBoard(x, y) {
+      return 0 <= y && y < this.#board.length && 
+             0 <= x && x < this.#board[y].length;
    }
 
 
