@@ -131,10 +131,13 @@ export default class Level {
     }
 
 
-    // TODO: FIX: method can fail when multiple ghosts with different states are on same position
     isPositionOccupiedByKillableGhost(positionId) {
-        const func = (ghost) => { return ghost.isKillable(); };
-        return this.#iterateList(positionId, this.#ghostList, func, false);
+        const filterFunc = (ghost) => {
+            const isSamePosition = ghost.currentPositionId === positionId;
+            return isSamePosition && ghost.isKillable();
+        }
+        const killableGhostsAtPositionList = this.#ghostList.filter(filterFunc);
+        return killableGhostsAtPositionList.length > 0;
     }
 
 
