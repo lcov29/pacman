@@ -31,6 +31,7 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 ##### Version 0.06
 * replace div-based game screen with canvas
 * replace png sprites with svg sprites
+* replace deprecated KeyboardEvent.keyCode
 * add animations for pacman and ghost movement
 * add animation for transition between ghost states scared and scatter
 * add counter for number of lifes
