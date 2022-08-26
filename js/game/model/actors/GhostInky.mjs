@@ -75,7 +75,6 @@ export default class GhostInky extends Ghost {
     }
 
 
-    // TODO: Refactor method
     #calculateTargetTileId(pacmanOffsetPosition, ghostPosition) {
         let xDifference = pacmanOffsetPosition.x - ghostPosition.x;
         let yDifference = pacmanOffsetPosition.y - ghostPosition.y;
