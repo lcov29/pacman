@@ -12,7 +12,6 @@ import BackgroundRequest from '../../requests/BackgroundRequest.mjs'
    Note 2:     Each pacman moves in the same current direction as all the others
 
    Note 3:     Each position on the board can only be occupied by a single pacman. 
-               Two pacmans can not share a position.
 
    Note 4:     If a pacman is blocking the move of another pacman, the move of the blocked pacman will be 
                postponed until the blocking pacman has finished its turn. If the target position is then 

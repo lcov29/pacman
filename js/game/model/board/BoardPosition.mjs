@@ -5,7 +5,7 @@ import Configuration from '../../../global/Configuration.mjs';
     =================================================================================================================
     Representation of a tile on the board.
 
-    Note 1:     Positions accessible by actors (pacman and ghosts)are indexed by the BoardParser (zero based)
+    Note 1:     Positions accessible by actors (pacman and ghosts) are indexed by the BoardParser (zero based)
 
     Note 2:     All board positions hold only non-actor characters and no teleporter elements (e.g. wall, point, powerup, ...).
                 Position and state of actors (pacman and ghosts) are tracked via actor objects managed by level.mjs.
