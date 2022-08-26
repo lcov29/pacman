@@ -271,15 +271,18 @@ export default class Level {
 
     #movePacmans() {
         const unmovedPacmanList = [...this.#pacmanList];
-        while (unmovedPacmanList.length > 0) {
-            for (let pacman of unmovedPacmanList) {
-                if (!pacman.hasCompletedCurrentTurn) {
-                    if (pacman.move()) {
-                        Utility.removeElementFrom(unmovedPacmanList, pacman);
-                    }
+        const movePacman = (pacman) => {
+            if (!pacman.hasCompletedCurrentTurn) {
+                if (pacman.move()) {
+                    Utility.removeElementFrom(unmovedPacmanList, pacman);
                 }
             }
+        };
+
+        while (unmovedPacmanList.length > 0) {
+            unmovedPacmanList.forEach(movePacman);
         }
+        
         this.#resetTurnCompletionStatusOfPacmans();
     }
 
