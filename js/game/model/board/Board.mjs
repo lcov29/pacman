@@ -18,7 +18,15 @@ export default class Board {
 
 
    constructor(levelJson) {
-      new BoardParser(this).parse(levelJson);
+      const parsedLevel = new BoardParser().parse(levelJson);
+
+      this.#board = parsedLevel.board;
+      this.#initialPacmanPositionList = parsedLevel.pacmanPositionList;
+      this.#initialGhostPositionList = parsedLevel.ghostPositionList;
+      this.#teleporterPositionList = parsedLevel.teleporterPositionList;
+      this.#bonusSpawnPositionList = parsedLevel.spawnPositionList;
+      this.#ghostScatterPositionList = parsedLevel.scatterPositionList;
+      this.#ghostOptionalSpawnPositionList = parsedLevel.optionalSpawnPositionList;
    }
 
 
@@ -57,17 +65,6 @@ export default class Board {
    }
 
 
-   updateElementLayerPosition(x, y, character) {
-      const internalPosition = this.#board[y][x];
-      internalPosition.elementCharacter = character;
-   }
-
-
-   getPosition(x, y) {
-      return this.#board[y][x].clone();
-   }
-
-
    get initialPacmanPositionList() {
       return this.#initialPacmanPositionList;
    }
@@ -95,6 +92,17 @@ export default class Board {
 
    get ghostOptionalSpawnPositionList() {
       return this.#ghostOptionalSpawnPositionList;
+   }
+
+
+   getPosition(x, y) {
+      return this.#board[y][x].clone();
+   }
+
+
+   updateElementLayerPosition(x, y, character) {
+      const internalPosition = this.#board[y][x];
+      internalPosition.elementCharacter = character;
    }
 
 
