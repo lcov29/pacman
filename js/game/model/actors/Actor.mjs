@@ -54,7 +54,6 @@ export default class Actor {
    }
 
 
-   // TODO: Add a method like isCurrentPositionId(id)
    get currentPosition() {
       return this.#currentPosition;
    }
