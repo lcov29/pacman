@@ -2,20 +2,17 @@
 
 import Configuration from '../../../global/Configuration.mjs';
 
+
 /*  
     =================================================================================================================
     Representation of a tile on the board.
 
-    Note 1:     Positions that can be accessed by actors get indexed by the BoardParser (zero based)
+    Note 1:     Positions that can be accessed by actors are indexed by the BoardParser (zero based)
 
-    Note 2:     Each tile is divided into two layers:
-                - actor layer (contains characters of pacman and ghosts, else character representing an empty tile)
-                - element layer (contains characters of non-actors like points, walls, powerups ...)
+    Note 2:     All board positions hold only non-actor characters (e.g. wall, point, powerup, ...).
+                Position and state of actors (pacman and ghosts) are tracked via actor objects managed by level.mjs.
 
-                This separation facilitates the implementation of actor movement at the cost of a higher complexity
-                of parsing the user defined level. Actors accessing a tile do not overwrite its element and therefore
-                do not need to save and restore the element upon leaving the tile (e.g a ghost entering a tile does 
-                not consume the occupying point character)
+                This separation prevents actors from overwriting level elements or other actor position information.
     =================================================================================================================
  */
 
@@ -38,7 +35,7 @@ export default class BoardPosition {
 
 
     set id(id) {
-        // prevent id of accessible elements to change after initialisation
+        // prevent change of accessible element ids after initialization
         const isBoardTileInaccessible = this.#id === Configuration.idInaccessibleBoardTiles;
         this.#id = (isBoardTileInaccessible) ? id : this.#id;
     }
