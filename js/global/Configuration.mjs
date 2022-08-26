@@ -208,20 +208,6 @@ export default class Configuration {
                                    Configuration.nameGhostStateScaredEnd,
                                    Configuration.nameGhostStateScatter];
 
-   
-
-   // Key Codes for user commands (Source: https://keycode.info/)
-      static keyCodeRightArrow = 39;
-      static keyCodeDownArrow = 40;
-      static keyCodeLeftArrow = 37;
-      static keyCodeUpArrow = 38;
-      static keyCodeEnter = 13;
-      static keyCodeSpace = 32;
-      static keyCodeW = 87;
-      static keyCodeA = 65;
-      static keyCodeS = 83;
-      static keyCodeD = 68;
-
 
 
    // Settings for canvas view
