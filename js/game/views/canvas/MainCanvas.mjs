@@ -11,6 +11,7 @@ export default class MainCanvas extends Canvas {
     #numberOfAnimationsRequiringMovement = 0;
     #actorAnimationObjectList = [];
     #pseudoAnimationObject = null;
+    #respawnRequestList = [];
 
 
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
@@ -29,6 +30,11 @@ export default class MainCanvas extends Canvas {
         }
 
         this.#actorAnimationObjectList.push(this.#pseudoAnimationObject);
+    }
+
+
+    addRespawnRequest(request) {
+        this.#respawnRequestList.push(request);
     }
 
 
