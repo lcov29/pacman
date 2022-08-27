@@ -1,9 +1,11 @@
 import GhostStateScaredStart from './ghostStates/GhostStateScaredStart.mjs';
 import GhostStateScaredEnd from './ghostStates/GhostStateScaredEnd.mjs';
 import GhostStateScatter from './ghostStates/GhostStateScatter.mjs';
+import GhostStateRespawn from './ghostStates/GhostStateRespawn.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import Directions from '../Directions.mjs';
 import Actor from './Actor.mjs';
+import RespawnRequest from '../../requests/RespawnRequest.mjs';
 
 
 export default class Ghost extends Actor {
@@ -102,6 +104,7 @@ export default class Ghost extends Actor {
          this.#state.handleSpawnCollision();
          this.#updateMovementDirection(super.currentPosition, super.nextPosition);
          super.sendLevelMovementRequest(this.#state.name);
+         this.#sendRespawnRequest();
          super.updateCurrentPosition();
          this.#state.decrementRemainingTurns();
      }
@@ -162,6 +165,16 @@ export default class Ghost extends Actor {
 
    countScaredGhosts() {
       return super.level.countScaredGhosts();
+   }
+
+
+   #sendRespawnRequest() {
+      const isRespawning = this.#state instanceof GhostStateRespawn;
+
+      if (isRespawning) {
+         const request = new RespawnRequest(super.nextPosition, this.#state.respawnStage);
+         super.level.processRespawnRequest(request);
+      }
    }
 
 
