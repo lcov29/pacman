@@ -1,7 +1,8 @@
-import Configuration from "../../../global/Configuration.mjs";
-import AnimationObject from "./AnimationObject.mjs";
-import Canvas from "./Canvas.mjs";
+import RespawnAnimationObject from "./RespawnAnimationObject.mjs";
 import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
+import AnimationObject from "./AnimationObject.mjs";
+import Configuration from "../../../global/Configuration.mjs";
+import Canvas from "./Canvas.mjs";
 
 
 // TODO: add method addMovementRequest() referencing Canvas.addUpdateRequest():
