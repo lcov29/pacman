@@ -69,16 +69,15 @@ export default class Configuration {
       static nameGhostStateScatter = 'scatter';
       static nameGhostStateRespawn = 'respawn';
 
+      static initialGhostStateName = Configuration.nameGhostStateScatter;
+
       static turnDurationGhostStateChase = 20;
       static turnDurationGhostStateScared = 25;
       static turnDurationGhostStateScaredEnd = 5;
       static turnDurationGhostStateScatter = 7;
-      static turnDurationGhostStateRespawn = 4;
-
-      static initialGhostStateName = Configuration.nameGhostStateScatter;
-      static ghostStateScaredRemainingTurnNumberToTriggerWarning = 5;
 
       static ghostMaxRespawnStage = 4;
+      
       static ghostClydeMinTileDistanceToPacman = 8;
       static ghostPinkyMaxTileOffsetToPacmanDirectionPosition = 4;
       static ghostInkyMaxTileOffsetToPacmanDirectionPosition = 2;
