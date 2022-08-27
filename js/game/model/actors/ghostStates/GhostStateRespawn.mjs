@@ -22,6 +22,11 @@ export default class GhostStateRespawn extends GhostState {
     }
 
 
+    get respawnStage() {
+        return this.#respawnStage;
+    }
+
+
     isHostileTowardsPacman() {
         return false;
     }
