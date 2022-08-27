@@ -87,7 +87,22 @@ export default class MainCanvas extends Canvas {
         super.setBackgroundTo(this.#backgroundCanvas);
 
         for (let animationObject of this.#animationObjectList) {
-            super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
+
+            if (animationObject instanceof AnimationObject) {
+                super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
+            }
+
+            if (animationObject instanceof RespawnAnimationObject) {
+                const argumentObject  = {
+                    xPosition: animationObject.xPosition,
+                    yPosition: animationObject.yPosition,
+                    widthInPixel: super.widthInPixel,
+                    heightInPixel: animationObject.rectangleHeightInPixel,
+                    color: 'black'
+                };
+
+                super.drawRectangle(argumentObject);
+            }
         }
     }
     
