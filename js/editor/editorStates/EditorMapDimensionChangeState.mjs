@@ -54,11 +54,11 @@ export default class EditorMapDimensionChangeState {
 
 
     #resetSpawnInputs() {
-        const inputIdList = ['spawn_position_ghost_blinky', 'spawn_position_ghost_pinky',
-                             'spawn_position_ghost_clyde', 'spawn_position_ghost_inky'];
+        const inputIdList = ['spawnPositionGhostBlinky', 'spawnPositionGhostPinky',
+                             'spawnPositionGhostClyde', 'spawnPositionGhostInky'];
 
-        const controlIdList = ['spawn_control_ghost_blinky', 'spawn_control_ghost_pinky',
-                               'spawn_control_ghost_clyde', 'spawn_control_ghost_inky'];
+        const controlIdList = ['spawnControlGhostBlinky', 'spawnControlGhostPinky',
+                               'spawnControlGhostClyde', 'spawnControlGhostInky'];
 
         this.#resetInputs(inputIdList, controlIdList);
     }

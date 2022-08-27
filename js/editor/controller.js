@@ -48,7 +48,7 @@ for (let scatterButton of scatterButtonList) {
 
 
 // add handlers to spawn select buttons
-const spawnButtonList = document.querySelectorAll('button[name="button_spawn_position"]');
+const spawnButtonList = document.querySelectorAll('button[name="buttonSpawnPosition"]');
 for (let spawnButton of spawnButtonList) {
     spawnButton.addEventListener('click', buttonSpawnSelectionCallback);
 }
