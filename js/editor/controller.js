@@ -41,7 +41,7 @@ for (let scatterSpawnInput of scatterSpawnInputList) {
 
 
 // add handlers to scatter select buttons
-const scatterButtonList = document.querySelectorAll('button[name="button_scatter_position"]');
+const scatterButtonList = document.querySelectorAll('button[name="buttonScatterPosition"]');
 for (let scatterButton of scatterButtonList) {
     scatterButton.addEventListener('click', buttonScatterSelectionCallback);
 }
