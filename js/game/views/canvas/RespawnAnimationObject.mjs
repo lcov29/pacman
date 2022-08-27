@@ -14,9 +14,9 @@ export default class RespawnAnimationObject {
     #respawnAnimationSpeedInPixel = -1;
 
 
-    constructor(respawnRequest, tileHeight) {
-        this.#xPosition = respawnRequest.xPosition;
-        this.#yPosition = respawnRequest.yPosition;
+    constructor(respawnRequest, tileWidth, tileHeight) {
+        this.#xPosition = respawnRequest.xPosition * tileWidth;
+        this.#yPosition = respawnRequest.yPosition * tileHeight;
         this.#currentRespawnStage = respawnRequest.respawnStage;
         this.#maxRespawnStage = Configuration.ghostMaxRespawnStage;
         this.#tileHeightInPixel = tileHeight;
