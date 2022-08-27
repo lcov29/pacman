@@ -34,6 +34,7 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * replace deprecated KeyboardEvent.keyCode
 * add animations for pacman and ghost movement
 * add animation for transition between ghost states scared and scatter
+* add animation for ghost respawn
 * add counter for number of lifes
 * refactor codebase
 * fix bugs
