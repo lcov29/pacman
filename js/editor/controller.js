@@ -27,8 +27,8 @@ editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouse
 
 
 // add handlers to map dimension controls
-document.getElementById('map_width').addEventListener('blur', validateMapWidthInput);
-document.getElementById('map_height').addEventListener('blur', validateMapHeightInput);
+document.getElementById('mapWidth').addEventListener('blur', validateMapWidthInput);
+document.getElementById('mapHeight').addEventListener('blur', validateMapHeightInput);
 document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
@@ -118,8 +118,8 @@ function inputScatterSpawnMouseLeaveCallback(event) {
 
 
 function buttonMapDimensionChangeCallback() {
-    const isMapHeightSet = document.getElementById('map_height').value !== '';
-    const isMapWidthSet = document.getElementById('map_width').value !== '';
+    const isMapHeightSet = document.getElementById('mapHeight').value !== '';
+    const isMapWidthSet = document.getElementById('mapWidth').value !== '';
     if (isMapHeightSet && isMapWidthSet) {
         editor.setState(new EditorMapDimensionChangeState());
     }

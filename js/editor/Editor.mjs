@@ -37,8 +37,8 @@ export default class Editor {
 
 
     #initializeDimensionInput() {
-        this.#inputMapWidth = document.getElementById('map_width');
-        this.#inputMapHeight = document.getElementById('map_height');
+        this.#inputMapWidth = document.getElementById('mapWidth');
+        this.#inputMapHeight = document.getElementById('mapHeight');
 
         this.#inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
         this.#inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
