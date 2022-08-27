@@ -3,6 +3,7 @@ import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
 import AnimationObject from "./AnimationObject.mjs";
 import Configuration from "../../../global/Configuration.mjs";
 import Canvas from "./Canvas.mjs";
+import Utility from "../../../global/Utility.mjs";
 
 
 // TODO: add method addMovementRequest() referencing Canvas.addUpdateRequest():
@@ -114,6 +115,10 @@ export default class MainCanvas extends Canvas {
                 animationObject.move(distanceInPixel);
                 if (animationObject.isAnimationComplete()) {
                     this.#decrementNumberOfAnimationsRequiringMovement();
+
+                    if (animationObject instanceof RespawnAnimationObject) {
+                        Utility.removeElementFrom(this.#animationObjectList, animationObject);
+                    }
                 } 
             }
 
