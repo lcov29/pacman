@@ -40,6 +40,11 @@ export default class Game {
    }
 
 
+   addRespawnRequest(request) {
+      this.#viewList.forEach((view) => { view.addRespawnRequest(request); });
+   }
+
+
    addBackgroundRequest(request) {
       this.#viewList.forEach((view) => { view.addBackgroundRequest(request); });
    }
