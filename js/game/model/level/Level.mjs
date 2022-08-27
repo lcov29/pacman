@@ -177,6 +177,11 @@ export default class Level {
     }
 
 
+    processRespawnRequest(request) {
+        this.#game.addRespawnRequest(request);
+    }
+
+
     processBackgroundRequest(request) {
         this.#board.updateCharacterAt(request.xPosition, request.yPosition, request.elementCharacter);
         this.#addInformationToBackgroundRequest(request);
