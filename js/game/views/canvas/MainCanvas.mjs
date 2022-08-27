@@ -52,7 +52,7 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    processRespawnRequestList() {
+    #processRespawnRequestList() {
         for (respawnRequest of this.#respawnRequestList) {
             this.#animationObjectList.push(new RespawnAnimationObject(respawnRequest));
         }
