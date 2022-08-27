@@ -95,9 +95,9 @@ export default class MainCanvas extends Canvas {
 
             if (animationObject instanceof RespawnAnimationObject) {
                 const argumentObject  = {
-                    xPosition: animationObject.xPosition,
-                    yPosition: animationObject.yPosition,
-                    widthInPixel: super.widthInPixel,
+                    xCanvasPosition: animationObject.xPosition,
+                    yCanvasPosition: animationObject.yPosition,
+                    widthInPixel: super.tileWidth,
                     heightInPixel: animationObject.rectangleHeightInPixel,
                     color: 'black'
                 };
