@@ -40,7 +40,7 @@ export default class CanvasView {
     addRespawnRequest(request) {
         const canvasOffsetRowForScore = 1;
         request.yPosition = request.yPosition + canvasOffsetRowForScore;
-        this.#mainCanvas.addRequest(request);
+        this.#mainCanvas.addRespawnRequest(request);
     }
 
 
