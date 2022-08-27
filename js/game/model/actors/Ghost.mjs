@@ -172,7 +172,6 @@ export default class Ghost extends Actor {
       const isRespawning = this.#state instanceof GhostStateRespawn;
 
       if (isRespawning && this.#state.isRespawnRequestNecessary()) {
-         console.log(this.#state.respawnStage);
          const request = new RespawnRequest(super.nextPosition, this.#state.respawnStage);
          super.level.processRespawnRequest(request);
       }
