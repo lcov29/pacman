@@ -7,6 +7,8 @@ export default class GhostStateRespawn extends GhostState {
 
 
     #respawnStage = 0;
+    #isWaitingForScaredGhosts = false;
+    #isMaxRespawnStageReached = false;
 
 
     constructor(ghost) {
@@ -34,6 +36,11 @@ export default class GhostStateRespawn extends GhostState {
 
     isKillable() {
         return false;
+    }
+
+
+    isRespawnRequestNecessary() {
+        return !this.#isMaxRespawnStageReached && !this.#isWaitingForScaredGhosts;
     }
 
 
@@ -75,20 +82,21 @@ export default class GhostStateRespawn extends GhostState {
 
 
     handleSpawnCollision() {
-        const isNoScaredGhostsOnBoard = super.ghost.countScaredGhosts() === 0;
+        this.#isMaxRespawnStageReached = this.#respawnStage === Configuration.ghostMaxRespawnStage;
 
-        if (!this.#isFinalRespawnStageReached()) {
+        if (!this.#isMaxRespawnStageReached) {
             this.#respawnStage++;
         }
 
-        if (this.#isFinalRespawnStageReached() && isNoScaredGhostsOnBoard) {
+        const isAnyGhostScared = super.ghost.isAnyGhostScared();
+
+        if (this.#isMaxRespawnStageReached && isAnyGhostScared) {
+            this.#isWaitingForScaredGhosts = true;
+        }
+
+        if (this.#isMaxRespawnStageReached && !isAnyGhostScared) {
             super.end();
         }
-    }
-
-
-    #isFinalRespawnStageReached() {
-        return this.#respawnStage === Configuration.ghostMaxRespawnStage;
     }
 
 
