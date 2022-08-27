@@ -135,6 +135,17 @@ export default class Canvas {
     }
 
 
+    drawRectangle(argumentObject) {
+        const {xCanvasPosition, yCanvasPosition, widthInPixel, heightInPixel, color} = argumentObject;
+
+        this.#context.save();
+        this.#context.translate(xCanvasPosition, yCanvasPosition);
+        this.#context.fillStyle = color;
+        this.#context.fillRect(0, 0, widthInPixel, heightInPixel);
+        this.#context.restore();
+    }
+
+
     drawText(xCanvasPosition, yCanvasPosition, text, maxWidthXPosition) {
         for (let i = xCanvasPosition; i <= maxWidthXPosition; i++) {
             this.clearTileAt(i, yCanvasPosition);
