@@ -4,12 +4,13 @@ import Canvas from "./Canvas.mjs";
 import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
 
 
+// TODO: add method addMovementRequest() referencing Canvas.addUpdateRequest():
 export default class MainCanvas extends Canvas {
 
 
     #backgroundCanvas = null;
     #numberOfAnimationsRequiringMovement = 0;
-    #actorAnimationObjectList = [];
+    #animationObjectList = [];
     #pseudoAnimationObject = null;
     #respawnRequestList = [];
 
@@ -26,10 +27,10 @@ export default class MainCanvas extends Canvas {
 
         for (let i = 0; i < numberOfActorRequests; i++) {
             const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
-            this.#actorAnimationObjectList.push(animationObject);
+            this.#animationObjectList.push(animationObject);
         }
 
-        this.#actorAnimationObjectList.push(this.#pseudoAnimationObject);
+        this.#animationObjectList.push(this.#pseudoAnimationObject);
     }
 
 
@@ -38,10 +39,24 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    processUpdateRequestStack(isLevelInitialization = false) {
+    processUpdateRequests(isLevelInitialization = false) {
+        this.#processMovementRequestList(isLevelInitialization);
+        this.#processRespawnRequestList();
+        this.#countAnimationsRequiringMovement();
+    }
+
+
+    #processMovementRequestList(isLevelInitialization) {
         super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
         this.#pseudoAnimationObject.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
-        this.#countAnimationsRequiringMovement();
+    }
+
+
+    processRespawnRequestList() {
+        for (respawnRequest of this.#respawnRequestList) {
+            this.#animationObjectList.push(new RespawnAnimationObject(respawnRequest));
+        }
+        this.#respawnRequestList = [];
     }
 
 
@@ -60,7 +75,7 @@ export default class MainCanvas extends Canvas {
 
         const mainSprite = super.mapActorToMainSprite(argumentObject);
         const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
-        const animationObject = this.#actorAnimationObjectList[index];
+        const animationObject = this.#animationObjectList[index];
 
         animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
     }
@@ -69,14 +84,14 @@ export default class MainCanvas extends Canvas {
     drawCurrentLevelState() {
         super.setBackgroundTo(this.#backgroundCanvas);
 
-        for (let animationObject of this.#actorAnimationObjectList) {
+        for (let animationObject of this.#animationObjectList) {
             super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
         }
     }
     
 
     moveAnimationObjectsBy(distanceInPixel) {
-        for (let animationObject of this.#actorAnimationObjectList) {
+        for (let animationObject of this.#animationObjectList) {
 
             if (!animationObject.isAnimationComplete()) {
                 animationObject.move(distanceInPixel);
@@ -90,7 +105,7 @@ export default class MainCanvas extends Canvas {
 
 
     #countAnimationsRequiringMovement() {
-        const countList = this.#actorAnimationObjectList.filter(object => !object.isAnimationComplete());
+        const countList = this.#animationObjectList.filter(object => !object.isAnimationComplete());
         this.#numberOfAnimationsRequiringMovement = countList.length;
     } 
 
