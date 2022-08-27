@@ -19,7 +19,7 @@ export default class Editor {
 
 
     constructor() {
-        this.#editorContainer = document.getElementById('editor_container');
+        this.#editorContainer = document.getElementById('editorContainer');
         this.#currentState = new EditorDefaultState();
         this.#initializeInternalLevel();
         this.#initializeDimensionInput();

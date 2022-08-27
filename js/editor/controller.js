@@ -20,7 +20,7 @@ for (let radio of radioList) {
 
 
 // add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
-const editorContainer = document.getElementById('editor_container');
+const editorContainer = document.getElementById('editorContainer');
 editorContainer.addEventListener('mousedown', editor.handleEditorContainerMouseDown.bind(editor));
 editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.bind(editor));
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
