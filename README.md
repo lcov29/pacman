@@ -1,7 +1,7 @@
 ## About this project
 This is an attempt to build a variant of the game pacman using HTML, CSS and JavaScript for training purposes.
  
-The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behaviour.
+The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
 
 For all information about the original game i used [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman.
 <br>
