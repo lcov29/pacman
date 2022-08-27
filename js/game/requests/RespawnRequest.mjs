@@ -28,4 +28,9 @@ export default class RespawnRequest {
     }
 
 
+    set yPosition(y) {
+        this.#yPosition = y;
+    }
+
+
 } 
