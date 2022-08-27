@@ -33,10 +33,10 @@ export default class EditorElementMapper {
 
 
         EditorElementMapper.buttonIdToInputIdMap = new Map();
-        EditorElementMapper.buttonIdToInputIdMap.set('select_scatter_position_ghost_blinky', 'scatter_position_ghost_blinky');
-        EditorElementMapper.buttonIdToInputIdMap.set('select_scatter_position_ghost_pinky', 'scatter_position_ghost_pinky');
-        EditorElementMapper.buttonIdToInputIdMap.set('select_scatter_position_ghost_inky', 'scatter_position_ghost_inky');
-        EditorElementMapper.buttonIdToInputIdMap.set('select_scatter_position_ghost_clyde', 'scatter_position_ghost_clyde');
+        EditorElementMapper.buttonIdToInputIdMap.set('selectScatterPositionGhostBlinky', 'scatterPositionGhostBlinky');
+        EditorElementMapper.buttonIdToInputIdMap.set('selectScatterPositionGhostPinky', 'scatterPositionGhostPinky');
+        EditorElementMapper.buttonIdToInputIdMap.set('selectScatterPositionGhostInky', 'scatterPositionGhostInky');
+        EditorElementMapper.buttonIdToInputIdMap.set('selectScatterPositionGhostClyde', 'scatterPositionGhostClyde');
         EditorElementMapper.buttonIdToInputIdMap.set('select_spawn_position_ghost_blinky', 'spawn_position_ghost_blinky');
         EditorElementMapper.buttonIdToInputIdMap.set('select_spawn_position_ghost_pinky', 'spawn_position_ghost_pinky');
         EditorElementMapper.buttonIdToInputIdMap.set('select_spawn_position_ghost_inky', 'spawn_position_ghost_inky');
@@ -44,10 +44,10 @@ export default class EditorElementMapper {
 
 
         EditorElementMapper.buttonIdToGhostCharacterMap = new Map();
-        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
-        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_pinky', Configuration.ghostPinkyCharacter);
-        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_inky', Configuration.ghostInkyCharacter);
-        EditorElementMapper.buttonIdToGhostCharacterMap.set('select_scatter_position_ghost_clyde', Configuration.ghostClydeCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('selectScatterPositionGhostBlinky', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('selectScatterPositionGhostPinky', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('selectScatterPositionGhostInky', Configuration.ghostInkyCharacter);
+        EditorElementMapper.buttonIdToGhostCharacterMap.set('selectScatterPositionGhostClyde', Configuration.ghostClydeCharacter);
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_blinky', Configuration.ghostBlinkyCharacter);
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_pinky', Configuration.ghostPinkyCharacter);
         EditorElementMapper.buttonIdToGhostCharacterMap.set('select_spawn_position_ghost_inky', Configuration.ghostInkyCharacter);
@@ -55,17 +55,17 @@ export default class EditorElementMapper {
 
 
         EditorElementMapper.internalElementToScatterSpawnControlIdMap = new Map();
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostBlinkyCharacter, ['scatter_control_ghost_blinky', 'spawn_control_ghost_blinky']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostPinkyCharacter, ['scatter_control_ghost_pinky', 'spawn_control_ghost_pinky']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostClydeCharacter, ['scatter_control_ghost_clyde', 'spawn_control_ghost_clyde']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostInkyCharacter, ['scatter_control_ghost_inky', 'spawn_control_ghost_inky']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostBlinkyCharacter, ['scatterControlGhostBlinky', 'spawn_control_ghost_blinky']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostPinkyCharacter, ['scatterControlGhostPinky', 'spawn_control_ghost_pinky']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostClydeCharacter, ['scatterControlGhostClyde', 'spawn_control_ghost_clyde']);
+        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostInkyCharacter, ['scatterControlGhostInky', 'spawn_control_ghost_inky']);
 
 
         EditorElementMapper.scatterSpawnControlIdToInputIdMap = new Map();
-        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatter_control_ghost_blinky', 'scatter_position_ghost_blinky');
-        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatter_control_ghost_pinky', 'scatter_position_ghost_pinky');
-        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatter_control_ghost_clyde', 'scatter_position_ghost_clyde');
-        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatter_control_ghost_inky', 'scatter_position_ghost_inky');
+        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatterControlGhostBlinky', 'scatterPositionGhostBlinky');
+        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatterControlGhostPinky', 'scatterPositionGhostPinky');
+        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatterControlGhostClyde', 'scatterPositionGhostClyde');
+        EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('scatterControlGhostInky', 'scatterPositionGhostInky');
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_blinky', 'spawn_position_ghost_blinky');
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_pinky', 'spawn_position_ghost_pinky');
         EditorElementMapper.scatterSpawnControlIdToInputIdMap.set('spawn_control_ghost_clyde', 'spawn_position_ghost_clyde');

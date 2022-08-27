@@ -43,11 +43,11 @@ export default class EditorMapDimensionChangeState {
 
 
     #resetScatterInputs() {
-        const inputIdList = ['scatter_position_ghost_blinky', 'scatter_position_ghost_pinky',
-                             'scatter_position_ghost_clyde', 'scatter_position_ghost_inky'];
+        const inputIdList = ['scatterPositionGhostBlinky', 'scatterPositionGhostPinky',
+                             'scatterPositionGhostClyde', 'scatterPositionGhostInky'];
 
-        const controlIdList = ['scatter_control_ghost_blinky', 'scatter_control_ghost_pinky',
-                               'scatter_control_ghost_clyde', 'scatter_control_ghost_inky'];
+        const controlIdList = ['scatterControlGhostBlinky', 'scatterControlGhostPinky',
+                               'scatterControlGhostClyde', 'scatterControlGhostInky'];
 
         this.#resetInputs(inputIdList, controlIdList);
     }
