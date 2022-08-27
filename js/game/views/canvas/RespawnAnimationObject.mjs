@@ -54,7 +54,11 @@ export default class RespawnAnimationObject {
     }
 
 
-    move() {
+    move(distanceInPixel) {
+        if (this.#respawnAnimationSpeedInPixel === -1) {
+            this.convertActorMovementSpeed(distanceInPixel);
+        }
+
         if (!this.isAnimationComplete()) {
             const calculatedRectangleHeightInPixel = this.#currentRectangleHeightInPixel - this.#respawnAnimationSpeedInPixel;
             this.#currentRectangleHeightInPixel = this.#handleUnderrunMinRectangleHeight(calculatedRectangleHeightInPixel);
