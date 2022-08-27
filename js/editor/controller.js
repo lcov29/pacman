@@ -29,7 +29,7 @@ editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouse
 // add handlers to map dimension controls
 document.getElementById('mapWidth').addEventListener('blur', validateMapWidthInput);
 document.getElementById('mapHeight').addEventListener('blur', validateMapHeightInput);
-document.getElementById('button_map_sizer').addEventListener('click', buttonMapDimensionChangeCallback);
+document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
 // add handlers to scatter spawn control group
