@@ -54,7 +54,8 @@ export default class MainCanvas extends Canvas {
 
     #processRespawnRequestList() {
         for (respawnRequest of this.#respawnRequestList) {
-            this.#animationObjectList.push(new RespawnAnimationObject(respawnRequest));
+            const animationObject = new RespawnAnimationObject(respawnRequest, super.tileHeight);
+            this.#animationObjectList.push(animationObject);
         }
         this.#respawnRequestList = [];
     }
