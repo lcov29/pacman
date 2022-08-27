@@ -75,16 +75,20 @@ export default class GhostStateRespawn extends GhostState {
 
 
     handleSpawnCollision() {
-        const isFinalRespawnStageReached = this.#respawnStage === Configuration.ghostMaxRespawnStage;
         const isNoScaredGhostsOnBoard = super.ghost.countScaredGhosts() === 0;
 
-        if (!isFinalRespawnStageReached) {
+        if (!this.#isFinalRespawnStageReached()) {
             this.#respawnStage++;
         }
 
-        if (isFinalRespawnStageReached && isNoScaredGhostsOnBoard) {
+        if (this.#isFinalRespawnStageReached() && isNoScaredGhostsOnBoard) {
             super.end();
         }
+    }
+
+
+    #isFinalRespawnStageReached() {
+        return this.#respawnStage === Configuration.ghostMaxRespawnStage;
     }
 
 
