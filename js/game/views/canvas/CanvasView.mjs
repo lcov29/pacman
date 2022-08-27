@@ -37,6 +37,13 @@ export default class CanvasView {
     }
 
 
+    addRespawnRequest(request) {
+        const canvasOffsetRowForScore = 1;
+        request.yPosition =request.yPosition + canvasOffsetRowForScore;
+        this.#mainCanvas.addRequest(request);
+    }
+
+
     addMovementRequest(request) {
         const canvasOffsetRowForScore = 1;
         request.yPositionStart = request.yPositionStart + canvasOffsetRowForScore;
