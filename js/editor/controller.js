@@ -55,7 +55,7 @@ for (let spawnButton of spawnButtonList) {
 
 
 // add handler to play button
-document.getElementById('play_level').addEventListener('click', buttonPlayCallback);
+document.getElementById('playLevel').addEventListener('click', buttonPlayCallback);
 
 
 function radioButtonTileSelectionCallback(event) {
