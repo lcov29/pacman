@@ -6,7 +6,6 @@ import Canvas from "./Canvas.mjs";
 import Utility from "../../../global/Utility.mjs";
 
 
-// TODO: add method addMovementRequest() referencing Canvas.addUpdateRequest():
 export default class MainCanvas extends Canvas {
 
 
@@ -14,7 +13,6 @@ export default class MainCanvas extends Canvas {
     #numberOfAnimationsRequiringMovement = 0;
     #animationObjectList = [];
     #pseudoAnimationObject = null;
-    #respawnRequestList = [];
 
 
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
@@ -24,63 +22,56 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    initializeAnimationObjectList() {
-        const numberOfActorRequests = super.numberOfPendingUpdateRequests;
-
-        for (let i = 0; i < numberOfActorRequests; i++) {
-            const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
-            this.#animationObjectList.push(animationObject);
-        }
-
-        this.#animationObjectList.push(this.#pseudoAnimationObject);
+    #flushAnimationObjectList() {
+        this.#animationObjectList = [];
     }
 
 
-    addRespawnRequest(request) {
-        this.#respawnRequestList.push(request);
-    }
-
-
-    processUpdateRequests(isLevelInitialization = false) {
-        this.#processMovementRequestList(isLevelInitialization);
-        this.#processRespawnRequestList();
+    processMovementRequestList(movementRequestList, isLevelInitialization = false) {
+        this.#flushAnimationObjectList();
+        this.#loadMovementRequestListIntoAnimationObjectList(movementRequestList);
+        this.#pseudoAnimationObject.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
         this.#countAnimationsRequiringMovement();
     }
 
 
-    #processMovementRequestList(isLevelInitialization) {
-        super.processUpdateRequestStack(this.loadMovementRequestIntoAnimationObject, this);
-        this.#pseudoAnimationObject.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
+    processRespawnRequestList(respawnRequestList) {
+        const respawnAnimationObjectList = respawnRequestList.map(request => {
+            return new RespawnAnimationObject(request, super.tileWidth, super.tileHeight);
+        });
+
+        this.#animationObjectList = this.#animationObjectList.concat(respawnAnimationObjectList);
+        this.#countAnimationsRequiringMovement();
     }
 
 
-    #processRespawnRequestList() {
-        for (let respawnRequest of this.#respawnRequestList) {
-            const animationObject = new RespawnAnimationObject(respawnRequest, super.tileWidth, super.tileHeight);
-            this.#animationObjectList.push(animationObject);
-        }
-        this.#respawnRequestList = [];
+    #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
+        const animationObjectList = movementRequestList.map(request => {
+
+            // TODO: move to method getActorMainSprite() and getActorAlternateSprite()
+            const argumentObject = {
+                actorCharacter: request.actorCharacter,
+                actorStateName: request.actorStateName,
+                teleportationStatus : request.isTeleportation,
+                directionName: request.directionName,
+            };
+    
+            const mainSprite = super.mapActorToMainSprite(argumentObject);
+            const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
+
+            // TODO: think about moving parameter into constructor of AnimationObject
+            const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
+            animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
+
+            return animationObject;
+        });
+
+        this.#animationObjectList = animationObjectList;
     }
 
 
     isAnimationComplete() {
         return this.#numberOfAnimationsRequiringMovement === 0;
-    }
-
-
-    loadMovementRequestIntoAnimationObject(request, index) {
-        const argumentObject = {
-            actorCharacter: request.actorCharacter,
-            actorStateName: request.actorStateName,
-            teleportationStatus : request.isTeleportation,
-            directionName: request.directionName,
-        };
-
-        const mainSprite = super.mapActorToMainSprite(argumentObject);
-        const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
-        const animationObject = this.#animationObjectList[index];
-
-        animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
     }
 
 
