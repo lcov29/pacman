@@ -30,6 +30,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 - [] improve notification about victory and defeat
 - [] add documentation with class diagrams
 - [] add tests
+- [] improve css styling
 <br>
 
 
