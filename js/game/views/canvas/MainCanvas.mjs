@@ -30,11 +30,11 @@ export default class MainCanvas extends Canvas {
 
 
     processRespawnRequestList(respawnRequestList) {
-        const respawnAnimationObjectList = respawnRequestList.map(request => {
+        const respawnAnimationList = respawnRequestList.map(request => {
             return new ActorRespawnAnimation(request, super.tileWidth, super.tileHeight);
         });
 
-        this.#animationList = this.#animationList.concat(respawnAnimationObjectList);
+        this.#animationList = this.#animationList.concat(respawnAnimationList);
         this.#countAnimationsRequiringMovement();
     }
 
