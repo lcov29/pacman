@@ -17,6 +17,7 @@ export default class BackgroundCanvas extends Canvas {
             const request = backgroundRequestList[0];
             this.#drawLifeCounterSpriteRepresentation(request.lifeCount);
             this.#drawScore(request);
+
             backgroundRequestList.forEach(request => this.#drawBackgroundTileFor(request));
         }
     }
@@ -51,11 +52,13 @@ export default class BackgroundCanvas extends Canvas {
 
 
     #drawScore(request) {
+        const maxTextWidthColumn = 5;
+
         const argumentObject = {
             xCanvasPosition: 0, 
             yCanvasPosition: 0, 
             text: `Score: ${request.score}`, 
-            maxWidthXPosition: (request.xPosition + 4) * super.tileWidth, 
+            maxWidthXPosition: maxTextWidthColumn * super.tileWidth,
             style: 'white', 
             font: 'bold 1em sans-serif'
         };
