@@ -50,7 +50,9 @@ export default class AnimationObject {
     }
 
 
-    load(movementRequest, mainSprite, alternateSprite, tileWidth, tileHeight) {
+    load(argumentObject) {
+        const {movementRequest, mainSprite, alternateSprite, tileWidth, tileHeight} = argumentObject;
+        
         this.#xPosition = movementRequest.xPositionStart * tileWidth;
         this.#yPosition = movementRequest.yPositionStart * tileHeight;
 
