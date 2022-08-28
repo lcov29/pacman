@@ -1,5 +1,7 @@
 ## About this project
 This is an attempt to build a variant of the game pacman using HTML, CSS and JavaScript for training purposes.
+
+The game currently offers the ability to play one level until all points are consumed and to create a custom level via the level editor.
  
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
 <br>
