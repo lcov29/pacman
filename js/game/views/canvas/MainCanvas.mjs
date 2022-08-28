@@ -10,7 +10,7 @@ export default class MainCanvas extends Canvas {
 
     #backgroundCanvas = null;
     #numberOfAnimationsRequiringMovement = 0;
-    #animationObjectList = [];
+    #animationList = [];
     #pseudoAnimationObject = null;
 
 
@@ -34,13 +34,13 @@ export default class MainCanvas extends Canvas {
             return new ActorRespawnAnimation(request, super.tileWidth, super.tileHeight);
         });
 
-        this.#animationObjectList = this.#animationObjectList.concat(respawnAnimationObjectList);
+        this.#animationList = this.#animationList.concat(respawnAnimationObjectList);
         this.#countAnimationsRequiringMovement();
     }
 
 
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
-        const animationObjectList = movementRequestList.map(request => {
+        const animationList = movementRequestList.map(request => {
             const animationObject = new ActorMovementAnimation();
 
             const argumentObject = {
@@ -55,7 +55,7 @@ export default class MainCanvas extends Canvas {
             return animationObject;
         });
 
-        this.#animationObjectList = animationObjectList;
+        this.#animationList = animationList;
     }
 
 
@@ -67,7 +67,7 @@ export default class MainCanvas extends Canvas {
     drawCurrentLevelState() {
         super.setBackgroundTo(this.#backgroundCanvas);
 
-        for (let animationObject of this.#animationObjectList) {
+        for (let animationObject of this.#animationList) {
 
             if (animationObject instanceof ActorMovementAnimation) {
                 super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
@@ -89,7 +89,7 @@ export default class MainCanvas extends Canvas {
     
 
     moveAnimationObjectsBy(distanceInPixel) {
-        for (let animationObject of this.#animationObjectList) {
+        for (let animationObject of this.#animationList) {
 
             if (!animationObject.isAnimationComplete()) {
                 animationObject.move(distanceInPixel);
@@ -97,7 +97,7 @@ export default class MainCanvas extends Canvas {
                     this.#decrementNumberOfAnimationsRequiringMovement();
 
                     if (animationObject instanceof ActorRespawnAnimation) {
-                        Utility.removeElementFrom(this.#animationObjectList, animationObject);
+                        Utility.removeElementFrom(this.#animationList, animationObject);
                     }
                 } 
             }
@@ -107,12 +107,12 @@ export default class MainCanvas extends Canvas {
 
 
     #flushAnimationObjectList() {
-        this.#animationObjectList = [];
+        this.#animationList = [];
     }
 
 
     #countAnimationsRequiringMovement() {
-        const countList = this.#animationObjectList.filter(object => !object.isAnimationComplete());
+        const countList = this.#animationList.filter(object => !object.isAnimationComplete());
         this.#numberOfAnimationsRequiringMovement = countList.length;
     } 
 
