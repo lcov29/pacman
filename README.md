@@ -43,12 +43,14 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Canvas
+- [] fix sprite display priority between moving and respawning ghosts
 - [] add level counter with bonus element sprites
 - [] draw value of earned points as text on canvas after point, powerup, bonus and scared ghost consumption
 - [] add death animation for pacman
 - [] add start screen before starting level
 - [] add graphic transfer between different levels
 - [] add game over screen displaying statistics
+- [] add sprite priority checks to prevent actor sprites from overwriting actor sprites of higher priority
 <br>
 
 
@@ -88,7 +90,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 * add animations for pacman and ghost movement
 * add animation for transition between ghost states scared and scatter
 * add animation for ghost respawn
-* add counter for number of lifes
+* add sprite counter for number of remaining lifes
 * refactor codebase
 * fix bugs
 <br>
