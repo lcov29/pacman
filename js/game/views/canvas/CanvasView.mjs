@@ -1,5 +1,5 @@
-import MainCanvas from './MainCanvas.mjs';
-import BackgroundCanvas from './BackgroundCanvas.mjs';
+import MainCanvas from './canvasObjects/MainCanvas.mjs';
+import BackgroundCanvas from './canvasObjects/BackgroundCanvas.mjs';
 import SpriteMapper from './SpriteMapper.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
