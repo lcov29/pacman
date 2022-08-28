@@ -12,10 +12,14 @@ export default class PseudoAnimationObject extends AnimationObject {
 
 
     loadPseudoMovementData(isLevelInitialization, tileWidth, tileHeight) {
-        const pseudoMovementRequest = this.#buildPseudoMovementRequest(isLevelInitialization);
-        const mainSprite = document.getElementById('undefinedTile');
-        const alternateSprite = null;
-        super.load(pseudoMovementRequest, mainSprite, alternateSprite, tileWidth, tileHeight);
+        const argumentObject = {
+            movementRequest: this.#buildPseudoMovementRequest(isLevelInitialization),
+            mainSprite: document.getElementById('undefinedTile'),
+            alternateSprite: null,
+            tileWidth,
+            tileHeight
+        };
+        super.load(argumentObject);
     }
 
 
