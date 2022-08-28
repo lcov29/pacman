@@ -1,4 +1,4 @@
-import RespawnAnimationObject from "./RespawnAnimationObject.mjs";
+import ActorRespawnAnimation from "./ActorRespawnAnimation.mjs";
 import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
 import AnimationObject from "./AnimationObject.mjs";
 import Configuration from "../../../global/Configuration.mjs";
@@ -32,7 +32,7 @@ export default class MainCanvas extends Canvas {
 
     processRespawnRequestList(respawnRequestList) {
         const respawnAnimationObjectList = respawnRequestList.map(request => {
-            return new RespawnAnimationObject(request, super.tileWidth, super.tileHeight);
+            return new ActorRespawnAnimation(request, super.tileWidth, super.tileHeight);
         });
 
         this.#animationObjectList = this.#animationObjectList.concat(respawnAnimationObjectList);
@@ -74,7 +74,7 @@ export default class MainCanvas extends Canvas {
                 super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
             }
 
-            if (animationObject instanceof RespawnAnimationObject) {
+            if (animationObject instanceof ActorRespawnAnimation) {
                 const argumentObject  = {
                     xCanvasPosition: animationObject.xPosition,
                     yCanvasPosition: animationObject.yPosition,
@@ -97,7 +97,7 @@ export default class MainCanvas extends Canvas {
                 if (animationObject.isAnimationComplete()) {
                     this.#decrementNumberOfAnimationsRequiringMovement();
 
-                    if (animationObject instanceof RespawnAnimationObject) {
+                    if (animationObject instanceof ActorRespawnAnimation) {
                         Utility.removeElementFrom(this.#animationObjectList, animationObject);
                     }
                 } 

@@ -1,7 +1,7 @@
 import Configuration from '../../../global/Configuration.mjs';
 
 
-export default class RespawnAnimationObject {
+export default class ActorRespawnAnimation {
 
 
     #xPosition = -1;
