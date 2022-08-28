@@ -1,6 +1,6 @@
 import ActorRespawnAnimation from "./ActorRespawnAnimation.mjs";
 import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
-import AnimationObject from "./AnimationObject.mjs";
+import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
 import Configuration from "../../../global/Configuration.mjs";
 import Canvas from "./Canvas.mjs";
 import Utility from "../../../global/Utility.mjs";
@@ -42,7 +42,7 @@ export default class MainCanvas extends Canvas {
 
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
         const animationObjectList = movementRequestList.map(request => {
-            const animationObject = new AnimationObject();
+            const animationObject = new ActorMovementAnimation();
 
             const argumentObject = {
                 movementRequest: request,
@@ -70,7 +70,7 @@ export default class MainCanvas extends Canvas {
 
         for (let animationObject of this.#animationObjectList) {
 
-            if (animationObject instanceof AnimationObject) {
+            if (animationObject instanceof ActorMovementAnimation) {
                 super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
             }
 

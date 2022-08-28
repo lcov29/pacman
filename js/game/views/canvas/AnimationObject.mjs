@@ -1,7 +1,7 @@
 import Configuration from "../../../global/Configuration.mjs";
 
 
-export default class AnimationObject {
+export default class ActorMovementAnimation {
     
     
     #xPosition = 0;

@@ -1,9 +1,9 @@
 import Configuration from "../../../global/Configuration.mjs";
 import MovementRequest from "../../requests/MovementRequest.mjs";
-import AnimationObject from "./AnimationObject.mjs";
+import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
 
 
-export default class PseudoAnimationObject extends AnimationObject {
+export default class PseudoAnimationObject extends ActorMovementAnimation {
 
 
     constructor() {
