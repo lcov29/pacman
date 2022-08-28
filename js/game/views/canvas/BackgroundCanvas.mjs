@@ -29,7 +29,7 @@ export default class BackgroundCanvas extends Canvas {
 
         super.clearTileAt(xCanvasPosition, yCanvasPosition);
 
-        const isBackgroundTileDefined = (request.elementCharacter !== Configuration.undefinedTileCharacter);
+        const isBackgroundTileDefined = request.elementCharacter !== Configuration.undefinedTileCharacter;
         if (isBackgroundTileDefined) {
             const blackBackgroundSprite = super.mapBackgroundToSprite(Configuration.emptyTileCharacter);
             super.drawSprite(xCanvasPosition, yCanvasPosition, blackBackgroundSprite);
