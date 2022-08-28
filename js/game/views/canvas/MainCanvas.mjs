@@ -22,11 +22,6 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    #flushAnimationObjectList() {
-        this.#animationObjectList = [];
-    }
-
-
     processMovementRequestList(movementRequestList, isLevelInitialization = false) {
         this.#flushAnimationObjectList();
         this.#loadMovementRequestListIntoAnimationObjectList(movementRequestList);
@@ -114,6 +109,11 @@ export default class MainCanvas extends Canvas {
             }
 
         }
+    }
+
+
+    #flushAnimationObjectList() {
+        this.#animationObjectList = [];
     }
 
 
