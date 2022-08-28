@@ -8,7 +8,6 @@ export default class Canvas {
     #tileHeight = -1;
     #columnNumber = -1;
     #rowNumber = -1;
-    #updateRequestStack = [];
 
 
     constructor(canvasElement, spriteMapper) {
@@ -35,11 +34,6 @@ export default class Canvas {
 
     get rowNumber() {
         return this.#rowNumber;
-    }
-
-
-    get numberOfPendingUpdateRequests() {
-        return this.#updateRequestStack.length;
     }
 
     
@@ -102,17 +96,6 @@ export default class Canvas {
     }
 
 
-    addRequest(request) {
-        this.#updateRequestStack.push(request);
-    }
-
-
-    processUpdateRequestStack(processFunction, thisArgument) {
-        this.#updateRequestStack.forEach(processFunction, thisArgument);
-        this.#updateRequestStack = [];
-    }
-
-
     setBackgroundTo(backgroundCanvas) {
         this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
         this.#context.drawImage(backgroundCanvas, 0, 0);
@@ -146,6 +129,7 @@ export default class Canvas {
     }
 
 
+    // TODO: Refactor to use argument object + add fillStyle + add font as parameters
     drawText(xCanvasPosition, yCanvasPosition, text, maxWidthXPosition) {
         for (let i = xCanvasPosition; i <= maxWidthXPosition; i++) {
             this.clearTileAt(i, yCanvasPosition);
