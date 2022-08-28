@@ -42,16 +42,8 @@ export default class MainCanvas extends Canvas {
 
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
         const animationObjectList = movementRequestList.map(request => {
-
-            const argumentObject = {
-                actorCharacter: request.actorCharacter,
-                actorStateName: request.actorStateName,
-                teleportationStatus : request.isTeleportation,
-                directionName: request.directionName,
-            };
-    
-            const mainSprite = super.mapActorToMainSprite(argumentObject);
-            const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
+            const mainSprite = this.#getMainSpriteFor(request);
+            const alternateSprite = this.#getAlternateSpriteFor(request);
 
             const animationObject = new AnimationObject();
             animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
@@ -125,6 +117,28 @@ export default class MainCanvas extends Canvas {
         if (!this.isAnimationComplete()) {
             this.#numberOfAnimationsRequiringMovement--;
         }
+    }
+
+
+    #getMainSpriteFor(movementRequest) {
+        const argumentObject = this.#buildArgumentObjectForSpriteMapping(movementRequest);
+        return super.mapActorToMainSprite(argumentObject); 
+    }
+
+
+    #getAlternateSpriteFor(movementRequest) {
+        const argumentObject = this.#buildArgumentObjectForSpriteMapping(movementRequest);
+        return super.mapActorToAlternateSprite(argumentObject);
+    }
+
+
+    #buildArgumentObjectForSpriteMapping(movementRequest) {
+        return {
+            actorCharacter: movementRequest.actorCharacter,
+            actorStateName: movementRequest.actorStateName,
+            teleportationStatus : movementRequest.isTeleportation,
+            directionName: movementRequest.directionName
+        };
     }
     
 
