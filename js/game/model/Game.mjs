@@ -25,7 +25,7 @@ export default class Game {
       this.#level = new Level(this);
       const jsonLevel = this.#readLevelJson();
       this.#level.initialize(jsonLevel);
-      this.#initializeViews();
+      this.#initializeViews(jsonLevel);
    }
 
 
@@ -97,10 +97,12 @@ export default class Game {
    }
 
 
-   #initializeViews() {
+   #initializeViews(jsonLevel) {
       this.#sendInitialBackgroundRequests();
       this.#sendInitialMovementRequests();
-      this.#viewList.forEach((view) => { view.initialize(); });
+
+      const boardDimension = this.#getBoardDimension(jsonLevel);
+      this.#viewList.forEach((view) => { view.initialize(boardDimension); });
    }
 
 
@@ -138,6 +140,15 @@ export default class Game {
       for (let request of requestList) {
          this.addMovementRequest(request);
       }
+   }
+
+
+   #getBoardDimension(jsonLevel) {
+      const board = JSON.parse(jsonLevel).board;
+      const rowCount = board.length;
+      const columnCount = board[0].length; // no ragged arrays
+      return {rowCount, columnCount};
+
    }
    
    
