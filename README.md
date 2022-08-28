@@ -5,11 +5,9 @@ The movement patterns of the ghosts and other aspects are only loosely based on 
 
 For all information about the original game i used [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman.
 <br>
-<br>
 
 ## How to play
 Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it to a webserver. 
-<br>
 <br>
 
 ## Ideas for improvements and additional features
@@ -22,7 +20,6 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * add spawn stack for respawning multiple ghosts of the same type
 * represent level counter with fruits
 * improve notification about victory and defeat
-<br>
 <br>
 
 ## Version history
@@ -39,14 +36,12 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * refactor codebase
 * fix bugs
 <br>
-<br>
 
 ##### Version 0.05
 * add bonus element
 * implement chase pattern for ghost pinky
 * implement chase pattern for ghost clyde
 * implement chase pattern for ghost inky
-<br>
 <br>
 
 ##### Version 0.04
@@ -56,7 +51,6 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
     * set scatter positions for ghosts
     * set optional spawn positions for ghosts
     * send and parse custom level
-<br>
 <br>
 
 ##### Version 0.03
@@ -73,14 +67,12 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * add sprites for movement state respawn
 * add sprites for bonus elements
 <br>
-<br>
 
 ##### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
 * implement collision handling for pacmans
 * implement collision handling for ghosts
-<br>
 <br>
 
 ##### Version 0.01
