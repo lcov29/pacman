@@ -2,12 +2,17 @@
 This is an attempt to build a variant of the game pacman using HTML, CSS and JavaScript for training purposes.
  
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
-
-For all information about the original game i used [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman.
 <br>
 
 ## How to play
 Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it to a webserver. 
+<br>
+
+## External programs and resources used
+
+* [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman for information about the original game
+* [Inkscape](https://inkscape.org/) for creating the svg sprites
+* [Online SVG Converter](https://svg-converter.com/minify) for minifying the svg sprites
 <br>
 
 ## Ideas for improvements and additional features
