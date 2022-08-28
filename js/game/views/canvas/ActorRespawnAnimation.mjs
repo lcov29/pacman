@@ -41,14 +41,6 @@ export default class ActorRespawnAnimation {
     }
 
 
-    convertActorMovementSpeed(actorMovementSpeedInPixel) {
-        const tileHeightPerRespawnStage =  this.#calculateTileHeightPerRespawnStageInPixel();
-        const numberOfAnimationIterations = this.#tileHeightInPixel / actorMovementSpeedInPixel;
-
-        this.#respawnAnimationSpeedInPixel = tileHeightPerRespawnStage / numberOfAnimationIterations;
-    }
-
-
     isAnimationComplete() {
         return this.#currentRectangleHeightInPixel === this.#minRectangleHeightInPixel;
     }
@@ -56,13 +48,21 @@ export default class ActorRespawnAnimation {
 
     move(distanceInPixel) {
         if (this.#respawnAnimationSpeedInPixel === -1) {
-            this.convertActorMovementSpeed(distanceInPixel);
+            this.#convertActorMovementSpeedToRespawnSpeed(distanceInPixel);
         }
 
         if (!this.isAnimationComplete()) {
             const calculatedRectangleHeightInPixel = this.#currentRectangleHeightInPixel - this.#respawnAnimationSpeedInPixel;
             this.#currentRectangleHeightInPixel = this.#handleUnderrunMinRectangleHeight(calculatedRectangleHeightInPixel);
         }
+    }
+
+
+    #convertActorMovementSpeedToRespawnSpeed(actorMovementSpeedInPixel) {
+        const tileHeightPerRespawnStage =  this.#calculateTileHeightPerRespawnStageInPixel();
+        const numberOfAnimationIterations = this.#tileHeightInPixel / actorMovementSpeedInPixel;
+
+        this.#respawnAnimationSpeedInPixel = tileHeightPerRespawnStage / numberOfAnimationIterations;
     }
 
 
