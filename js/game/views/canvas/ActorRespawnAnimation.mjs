@@ -46,9 +46,9 @@ export default class ActorRespawnAnimation {
     }
 
 
-    move(distanceInPixel) {
+    move(movementSpeedInPixel) {
         if (this.#respawnAnimationSpeedInPixel === -1) {
-            this.#convertActorMovementSpeedToRespawnSpeed(distanceInPixel);
+            this.#convertActorMovementSpeedToRespawnSpeed(movementSpeedInPixel);
         }
 
         if (!this.isAnimationComplete()) {
