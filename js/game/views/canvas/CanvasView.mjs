@@ -79,7 +79,7 @@ export default class CanvasView {
 
     #callBackAnimation() {
         this.#mainCanvas.drawCurrentLevelState();
-        this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
+        this.#mainCanvas.moveAnimationsBy(Configuration.actorMovementSpeedInPixel);
         
         if (this.#mainCanvas.isAnimationComplete()) {
             this.#backgroundCanvas.processBackgroundRequestList(this.#backgroundRequestList);
