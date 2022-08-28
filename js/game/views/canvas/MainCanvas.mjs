@@ -41,7 +41,7 @@ export default class MainCanvas extends Canvas {
 
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
         const animationList = movementRequestList.map(request => {
-            const animationObject = new ActorMovementAnimation();
+            const animation = new ActorMovementAnimation();
 
             const argumentObject = {
                 movementRequest: request,
@@ -51,8 +51,8 @@ export default class MainCanvas extends Canvas {
                 tileHeight: super.tileHeight
             };
             
-            animationObject.load(argumentObject);
-            return animationObject;
+            animation.load(argumentObject);
+            return animation;
         });
 
         this.#animationList = animationList;
@@ -67,18 +67,18 @@ export default class MainCanvas extends Canvas {
     drawCurrentLevelState() {
         super.setBackgroundTo(this.#backgroundCanvas);
 
-        for (let animationObject of this.#animationList) {
+        for (let animation of this.#animationList) {
 
-            if (animationObject instanceof ActorMovementAnimation) {
-                super.drawSprite(animationObject.xPosition, animationObject.yPosition, animationObject.sprite);
+            if (animation instanceof ActorMovementAnimation) {
+                super.drawSprite(animation.xPosition, animation.yPosition, animation.sprite);
             }
 
-            if (animationObject instanceof ActorRespawnAnimation) {
+            if (animation instanceof ActorRespawnAnimation) {
                 const argumentObject  = {
-                    xCanvasPosition: animationObject.xPosition,
-                    yCanvasPosition: animationObject.yPosition,
+                    xCanvasPosition: animation.xPosition,
+                    yCanvasPosition: animation.yPosition,
                     widthInPixel: super.tileWidth,
-                    heightInPixel: animationObject.rectangleHeightInPixel,
+                    heightInPixel: animation.rectangleHeightInPixel,
                     color: 'black'
                 };
 
@@ -89,15 +89,15 @@ export default class MainCanvas extends Canvas {
     
 
     moveAnimationObjectsBy(distanceInPixel) {
-        for (let animationObject of this.#animationList) {
+        for (let animation of this.#animationList) {
 
-            if (!animationObject.isAnimationComplete()) {
-                animationObject.move(distanceInPixel);
-                if (animationObject.isAnimationComplete()) {
+            if (!animation.isAnimationComplete()) {
+                animation.move(distanceInPixel);
+                if (animation.isAnimationComplete()) {
                     this.#decrementNumberOfAnimationsRequiringMovement();
 
-                    if (animationObject instanceof ActorRespawnAnimation) {
-                        Utility.removeElementFrom(this.#animationList, animationObject);
+                    if (animation instanceof ActorRespawnAnimation) {
+                        Utility.removeElementFrom(this.#animationList, animation);
                     }
                 } 
             }
