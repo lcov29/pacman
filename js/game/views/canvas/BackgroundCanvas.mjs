@@ -17,13 +17,12 @@ export default class BackgroundCanvas extends Canvas {
             const request = backgroundRequestList[0];
             this.#drawLifeCounterSpriteRepresentation(request.lifeCount);
             this.#drawScore(request);
-            backgroundRequestList.forEach(request => this.drawBackgroundRequest(request));
+            backgroundRequestList.forEach(request => this.#drawBackgroundTileFor(request));
         }
     }
 
 
-    // TODO: rename to drawBackgroundTileFor()
-    drawBackgroundRequest(request) {
+    #drawBackgroundTileFor(request) {
         const xCanvasPosition = request.xPosition * super.tileWidth;
         const yCanvasPosition = request.yPosition * super.tileHeight;
 
