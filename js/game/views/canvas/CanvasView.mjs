@@ -11,6 +11,9 @@ export default class CanvasView {
     #backgroundCanvas = null;
     #mainCanvas = null;
     #animationFrameId;
+    #backgroundRequestList = [];
+    #movementRequestList = [];
+    #respawnRequestList = [];
 
 
     constructor(mainCanvas, backgroundCanvas, game) {
@@ -23,24 +26,28 @@ export default class CanvasView {
 
     initialize() {
         this.#initializeCanvasSize();
-        this.#mainCanvas.initializeAnimationObjectList();
-        this.#backgroundCanvas.processUpdateRequestStack();
-        this.#mainCanvas.processUpdateRequests(true);
+        this.#backgroundCanvas.processBackgroundRequestList(this.#backgroundRequestList);
+
+        const isInitialization = true;
+        this.#mainCanvas.processMovementRequestList(this.#movementRequestList, isInitialization);
+        this.#mainCanvas.processRespawnRequestList(this.#respawnRequestList);
         this.#mainCanvas.drawCurrentLevelState();
+
+        this.#flushRequestLists();
     }
 
 
     addBackgroundRequest(request) {
         const canvasOffsetRowForScore = 1;
         request.yPosition = request.yPosition + canvasOffsetRowForScore;
-        this.#backgroundCanvas.addRequest(request);
+        this.#backgroundRequestList.push(request);
     }
 
 
     addRespawnRequest(request) {
         const canvasOffsetRowForScore = 1;
         request.yPosition = request.yPosition + canvasOffsetRowForScore;
-        this.#mainCanvas.addRespawnRequest(request);
+        this.#respawnRequestList.push(request);
     }
 
 
@@ -48,12 +55,13 @@ export default class CanvasView {
         const canvasOffsetRowForScore = 1;
         request.yPositionStart = request.yPositionStart + canvasOffsetRowForScore;
         request.yPositionDestination = request.yPositionDestination + canvasOffsetRowForScore;
-        this.#mainCanvas.addRequest(request);
+        this.#movementRequestList.push(request);
     }
 
 
-    processUpdateRequestStack() {
-        this.#mainCanvas.processUpdateRequests();
+    processRequests() {
+        this.#mainCanvas.processMovementRequestList(this.#movementRequestList);
+        this.#mainCanvas.processRespawnRequestList(this.#respawnRequestList);
     }
 
 
@@ -75,7 +83,8 @@ export default class CanvasView {
         this.#mainCanvas.moveAnimationObjectsBy(Configuration.actorMovementSpeedInPixel);
         
         if (this.#mainCanvas.isAnimationComplete()) {
-            this.#backgroundCanvas.processUpdateRequestStack();
+            this.#backgroundCanvas.processBackgroundRequestList(this.#backgroundRequestList);
+            this.#flushRequestLists();
             this.#game.notifyAnimationComplete();
         }
 
@@ -98,6 +107,13 @@ export default class CanvasView {
             canvas.rowNumber = rowNumber;
             canvas.resize();
         }
+    }
+
+
+    #flushRequestLists() {
+        this.#backgroundRequestList = [];
+        this.#movementRequestList = [];
+        this.#respawnRequestList = [];
     }
 
 
