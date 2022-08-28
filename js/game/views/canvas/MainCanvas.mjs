@@ -1,5 +1,5 @@
 import ActorRespawnAnimation from "./ActorRespawnAnimation.mjs";
-import PseudoAnimationObject from "./PseudoAnimationObject.mjs";
+import PseudoMovementAnimation from "./PseudoMovementAnimation.mjs";
 import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
 import Configuration from "../../../global/Configuration.mjs";
 import Canvas from "./Canvas.mjs";
@@ -18,7 +18,7 @@ export default class MainCanvas extends Canvas {
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
         super(mainCanvas, spriteMapper);
         this.#backgroundCanvas = backgroundCanvas;
-        this.#pseudoAnimationObject = new PseudoAnimationObject();
+        this.#pseudoAnimationObject = new PseudoMovementAnimation();
     }
 
 

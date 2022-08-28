@@ -3,7 +3,7 @@ import MovementRequest from "../../requests/MovementRequest.mjs";
 import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
 
 
-export default class PseudoAnimationObject extends ActorMovementAnimation {
+export default class PseudoMovementAnimation extends ActorMovementAnimation {
 
 
     constructor() {
