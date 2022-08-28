@@ -8,13 +8,21 @@ export default class BackgroundCanvas extends Canvas {
     constructor(backgroundCanvas, spriteMapper) {
         super(backgroundCanvas, spriteMapper);
     }
-    
 
-    processUpdateRequestStack() {
-        super.processUpdateRequestStack(this.drawBackgroundRequest, this);
+
+    processBackgroundRequestList(backgroundRequestList) {
+        const isListFilled = backgroundRequestList.length > 0;
+
+        if (isListFilled) {
+            const request = backgroundRequestList[0];
+            this.#drawLifeCounterSpriteRepresentation(request.lifeCount);
+            this.#drawScore(request);
+            backgroundRequestList.forEach(request => this.drawBackgroundRequest(request));
+        }
     }
 
 
+    // TODO: rename to drawBackgroundTileFor()
     drawBackgroundRequest(request) {
         const xCanvasPosition = request.xPosition * super.tileWidth;
         const yCanvasPosition = request.yPosition * super.tileHeight;
@@ -29,13 +37,10 @@ export default class BackgroundCanvas extends Canvas {
             const currentElementSprite = super.mapBackgroundToSprite(request.elementCharacter);
             super.drawSprite(xCanvasPosition, yCanvasPosition, currentElementSprite);
         }
-
-        super.drawText(0, 0, `Score: ${request.score}`, (request.xPosition + 4) * super.tileWidth);
-        this.drawLifeCounterSpriteRepresentation(request.lifeCount);
     }
 
 
-    drawLifeCounterSpriteRepresentation(numberOfLifes) {
+    #drawLifeCounterSpriteRepresentation(numberOfLifes) {
         for (let i = 1; i <= numberOfLifes; i++) {
             const xCanvasPosition = (this.columnNumber - i) * super.tileWidth;
             const yCanvasPosition = 0;
@@ -43,6 +48,15 @@ export default class BackgroundCanvas extends Canvas {
             super.clearTileAt(xCanvasPosition, yCanvasPosition);
             super.drawSprite(xCanvasPosition, yCanvasPosition, sprite);
         }
+    }
+
+
+    #drawScore(request) {
+        const xPositionInPixel = 0;
+        const yPositionInPixel = 0;
+        const text = `Score: ${request.score}`;
+        const maxWidthInPixel = (request.xPosition + 4) * super.tileWidth;
+        super.drawText(xPositionInPixel, yPositionInPixel, text, maxWidthInPixel);
     }
 
 
