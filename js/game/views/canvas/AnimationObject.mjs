@@ -1,3 +1,6 @@
+import Configuration from "../../../global/Configuration.mjs";
+
+
 export default class AnimationObject {
     
     
@@ -10,13 +13,11 @@ export default class AnimationObject {
     #mainSprite = null;
     #alternateSprite = null;
     #useMainSprite = true;
-    #alternationIntervalLength = 0;
+    #alternationIntervalLength = Configuration.spriteAlternationIntervalLength;
     #alternationCounter = 0;
 
 
-    constructor(alternationIntervalLength) {
-        this.#alternationIntervalLength = alternationIntervalLength;
-    }
+    constructor() {}
 
 
     get xPosition() {
