@@ -2,6 +2,9 @@ import MainCanvas from './MainCanvas.mjs';
 import BackgroundCanvas from './BackgroundCanvas.mjs';
 import SpriteMapper from './SpriteMapper.mjs';
 import Configuration from '../../../global/Configuration.mjs';
+import BackgroundRequest from '../../requests/BackgroundRequest.mjs';
+import RespawnRequest from '../../requests/RespawnRequest.mjs';
+import MovementRequest from '../../requests/MovementRequest.mjs';
 
 
 export default class CanvasView {
@@ -38,24 +41,20 @@ export default class CanvasView {
 
 
     addBackgroundRequest(request) {
-        const canvasOffsetRowForScore = 1;
-        request.yPosition = request.yPosition + canvasOffsetRowForScore;
-        this.#backgroundRequestList.push(request);
+       this.#addOffsetForBoardStatusBar(request);
+       this.#backgroundRequestList.push(request);
     }
 
 
     addRespawnRequest(request) {
-        const canvasOffsetRowForScore = 1;
-        request.yPosition = request.yPosition + canvasOffsetRowForScore;
-        this.#respawnRequestList.push(request);
+       this.#addOffsetForBoardStatusBar(request);
+       this.#respawnRequestList.push(request);
     }
 
 
     addMovementRequest(request) {
-        const canvasOffsetRowForScore = 1;
-        request.yPositionStart = request.yPositionStart + canvasOffsetRowForScore;
-        request.yPositionDestination = request.yPositionDestination + canvasOffsetRowForScore;
-        this.#movementRequestList.push(request);
+       this.#addOffsetForBoardStatusBar(request);
+       this.#movementRequestList.push(request);
     }
 
 
@@ -106,6 +105,24 @@ export default class CanvasView {
             canvas.columnNumber = columnNumber;
             canvas.rowNumber = rowNumber;
             canvas.resize();
+        }
+    }
+
+
+    #addOffsetForBoardStatusBar(request) {
+        const canvasOffsetRowForScore = 1;
+
+        const isBackgroundRequest = request instanceof BackgroundRequest;
+        const isRespawnRequest = request instanceof RespawnRequest;
+        const isMovementRequest = request instanceof MovementRequest;
+
+        if (isBackgroundRequest || isRespawnRequest) {
+            request.yPosition = request.yPosition + canvasOffsetRowForScore;
+        }
+
+        if (isMovementRequest) {
+            request.yPositionStart = request.yPositionStart + canvasOffsetRowForScore;
+            request.yPositionDestination = request.yPositionDestination + canvasOffsetRowForScore;
         }
     }
 
