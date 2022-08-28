@@ -42,12 +42,17 @@ export default class MainCanvas extends Canvas {
 
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
         const animationObjectList = movementRequestList.map(request => {
-            const mainSprite = this.#getMainSpriteFor(request);
-            const alternateSprite = this.#getAlternateSpriteFor(request);
-
             const animationObject = new AnimationObject();
-            animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
 
+            const argumentObject = {
+                movementRequest: request,
+                mainSprite: this.#getMainSpriteFor(request),
+                alternateSprite: this.#getAlternateSpriteFor(request),
+                tileWidth: super.tileWidth,
+                tileHeight: super.tileHeight
+            };
+            
+            animationObject.load(argumentObject);
             return animationObject;
         });
 
