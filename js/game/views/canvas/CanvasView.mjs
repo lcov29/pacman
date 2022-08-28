@@ -94,14 +94,13 @@ export default class CanvasView {
 
 
     #initializeCanvasSize(boardDimension) {
-        const tileWidth = 30 * devicePixelRatio;
-        const tileHeight = 30 * devicePixelRatio;
+        const offsetScoreInformationRow = 1;
 
         for (let canvas of [this.#backgroundCanvas, this.#mainCanvas]) {
-            canvas.tileWidth = tileWidth;
-            canvas.tileHeight = tileHeight;
+            canvas.tileWidth = 30 * devicePixelRatio;
+            canvas.tileHeight = 30 * devicePixelRatio;
             canvas.columnNumber = boardDimension.columnCount;
-            canvas.rowNumber = boardDimension.rowCount + 1;
+            canvas.rowNumber = boardDimension.rowCount + offsetScoreInformationRow;
             canvas.resize();
         }
     }
