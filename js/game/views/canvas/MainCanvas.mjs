@@ -1,7 +1,6 @@
 import ActorRespawnAnimation from "./ActorRespawnAnimation.mjs";
 import PseudoMovementAnimation from "./PseudoMovementAnimation.mjs";
 import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
-import Configuration from "../../../global/Configuration.mjs";
 import Canvas from "./Canvas.mjs";
 import Utility from "../../../global/Utility.mjs";
 
