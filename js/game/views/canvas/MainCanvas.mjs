@@ -43,7 +43,6 @@ export default class MainCanvas extends Canvas {
     #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
         const animationObjectList = movementRequestList.map(request => {
 
-            // TODO: move to method getActorMainSprite() and getActorAlternateSprite()
             const argumentObject = {
                 actorCharacter: request.actorCharacter,
                 actorStateName: request.actorStateName,
@@ -54,8 +53,7 @@ export default class MainCanvas extends Canvas {
             const mainSprite = super.mapActorToMainSprite(argumentObject);
             const alternateSprite = super.mapActorToAlternateSprite(argumentObject);
 
-            // TODO: think about moving parameter into constructor of AnimationObject
-            const animationObject = new AnimationObject(Configuration.spriteAlternationIntervalLength);
+            const animationObject = new AnimationObject();
             animationObject.load(request, mainSprite, alternateSprite, super.tileWidth, super.tileHeight);
 
             return animationObject;
