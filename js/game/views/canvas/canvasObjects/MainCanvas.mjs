@@ -2,7 +2,7 @@ import ActorRespawnAnimation from "../Animations/ActorRespawnAnimation.mjs";
 import PseudoMovementAnimation from "../Animations/PseudoMovementAnimation.mjs";
 import ActorMovementAnimation from "../Animations/ActorMovementAnimation.mjs";
 import Canvas from "./Canvas.mjs";
-import Utility from "../../../../global/Configuration.mjs";
+import Utility from "../../../../global/Utility.mjs";
 
 
 export default class MainCanvas extends Canvas {
