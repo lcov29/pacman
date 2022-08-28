@@ -54,7 +54,7 @@ export default class AnimationObject {
         this.#yPosition = movementRequest.yPositionStart * tileHeight;
 
         if (movementRequest.isTeleportation) {
-            // move undefined tile for one tile to improve animation of teleportation
+            // move undefined tile one tile to improve animation of teleportation
             this.#xDestination = (movementRequest.xPositionStart + movementRequest.xDirection) * tileWidth;
             this.#yDestination = (movementRequest.yPositionStart + movementRequest.yDirection) * tileHeight;
         } else {
