@@ -22,8 +22,8 @@ export default class MainCanvas extends Canvas {
 
 
     processMovementRequestList(movementRequestList, isLevelInitialization = false) {
-        this.#flushAnimationObjectList();
-        this.#loadMovementRequestListIntoAnimationObjectList(movementRequestList);
+        this.#flushAnimationList();
+        this.#loadMovementRequestListIntoAnimationList(movementRequestList);
         this.#pseudoMovementAnimation.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
         this.#countAnimationsRequiringMovement();
     }
@@ -39,7 +39,7 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    #loadMovementRequestListIntoAnimationObjectList(movementRequestList) {
+    #loadMovementRequestListIntoAnimationList(movementRequestList) {
         const animationList = movementRequestList.map(request => {
             const animation = new ActorMovementAnimation();
 
@@ -88,7 +88,7 @@ export default class MainCanvas extends Canvas {
     }
     
 
-    moveAnimationObjectsBy(distanceInPixel) {
+    moveAnimationsBy(distanceInPixel) {
         for (let animation of this.#animationList) {
 
             if (!animation.isAnimationComplete()) {
@@ -106,7 +106,7 @@ export default class MainCanvas extends Canvas {
     }
 
 
-    #flushAnimationObjectList() {
+    #flushAnimationList() {
         this.#animationList = [];
     }
 
