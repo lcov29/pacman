@@ -4,6 +4,16 @@ This is an attempt to build a variant of the game pacman using HTML, CSS and Jav
 The game currently offers the ability to play one level until all points are consumed and to create a custom level via the level editor.
  
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
+
+
+![Default Level](./screenshots/defaultLevel.png)
+Default Level
+
+![Level Editor](./screenshots/levelEditor.png)
+Level Editor
+
+![Custom Level](./screenshots/customLevel.png)
+
 <br>
 
 
