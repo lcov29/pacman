@@ -587,56 +587,101 @@ export default class SpriteMapper {
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
 
-        // Scared (Ghosts Blinky, Inky, Pinky And Clyde)
+        // Scared and ScaredEnd (Ghosts Blinky, Inky, Pinky And Clyde)
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameUp);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameUp);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
         spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameUp);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameUp);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameUp);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameRight);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameRight);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
         spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameRight);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameRight);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameRight);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameDown);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameDown);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
         spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameDown);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameDown);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameDown);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostBlinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameLeft);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
         spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameLeft);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostInkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
         spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameLeft);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
+        spriteName = Utility.getSpriteName(Configuration.ghostPinkyCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
         spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScared, statusTeleportation, Configuration.directionNameLeft);
+        this.#actorMainSpriteMap.set(spriteName, sprite);
+
+        spriteName = Utility.getSpriteName(Configuration.ghostClydeCharacter, Configuration.nameGhostStateScaredEnd, statusTeleportation, Configuration.directionNameLeft);
         this.#actorMainSpriteMap.set(spriteName, sprite);
 
 
