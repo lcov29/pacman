@@ -6,6 +6,11 @@ The game currently offers the ability to play one level until all points are con
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
 <br>
 
+
+## Current Status
+Work in progress
+
+
 ## How to play
 Play the game via [github-pages](https://voss29.github.io/pacman/). 
 
