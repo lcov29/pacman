@@ -11,20 +11,20 @@ export default class MainCanvas extends Canvas {
     #backgroundCanvas = null;
     #numberOfAnimationsRequiringMovement = 0;
     #animationList = [];
-    #pseudoAnimationObject = null;
+    #pseudoMovementAnimation = null;
 
 
     constructor(mainCanvas, backgroundCanvas, spriteMapper) {
         super(mainCanvas, spriteMapper);
         this.#backgroundCanvas = backgroundCanvas;
-        this.#pseudoAnimationObject = new PseudoMovementAnimation();
+        this.#pseudoMovementAnimation = new PseudoMovementAnimation();
     }
 
 
     processMovementRequestList(movementRequestList, isLevelInitialization = false) {
         this.#flushAnimationObjectList();
         this.#loadMovementRequestListIntoAnimationObjectList(movementRequestList);
-        this.#pseudoAnimationObject.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
+        this.#pseudoMovementAnimation.loadPseudoMovementData(isLevelInitialization, super.tileWidth, super.tileHeight);
         this.#countAnimationsRequiringMovement();
     }
 
