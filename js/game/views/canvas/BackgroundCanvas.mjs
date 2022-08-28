@@ -52,11 +52,16 @@ export default class BackgroundCanvas extends Canvas {
 
 
     #drawScore(request) {
-        const xPositionInPixel = 0;
-        const yPositionInPixel = 0;
-        const text = `Score: ${request.score}`;
-        const maxWidthInPixel = (request.xPosition + 4) * super.tileWidth;
-        super.drawText(xPositionInPixel, yPositionInPixel, text, maxWidthInPixel);
+        const argumentObject = {
+            xCanvasPosition: 0, 
+            yCanvasPosition: 0, 
+            text: `Score: ${request.score}`, 
+            maxWidthXPosition: (request.xPosition + 4) * super.tileWidth, 
+            style: 'white', 
+            font: 'bold 1em sans-serif'
+        };
+
+        super.drawText(argumentObject);
     }
 
 
