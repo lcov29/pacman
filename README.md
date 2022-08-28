@@ -17,19 +17,69 @@ You can also upload this project to a webserver. Since the codebase includes mod
 <br>
 
 ## Ideas for improvements and additional features
-* add death animation
-* add sound effects
-* add ability to play on mobile devices
-* add level rotation
-* add instruction page
-* add highscore counter
-* add spawn stack for respawning multiple ghosts of the same type
-* represent level counter with fruits
-* improve notification about victory and defeat
+<br>
+
+
+#### General
+- [] make project responsive
+- [] make game usable on mobile devices
+- [] add instruction page
+- [] add about page
+- [] improve notification about victory and defeat
+- [] add documentation with class diagrams
+- [] add tests
+<br>
+
+
+#### Game
+- [] add level rotation
+- [] implement point value multiplicator for consumption of multiple scared ghosts
+- [] add option to pause game
+- [] add sound effects for actors
+- [] add level theme song
+- [] add ability to mute game
+- [] add spawn stack for respawning multiple ghosts of the same type
+<br>
+
+
+#### Canvas
+- [] add level counter with bonus element sprites
+- [] draw value of earned points as text on canvas after point, powerup, bonus and scared ghost consumption
+- [] add death animation for pacman
+- [] add start screen before starting level
+- [] add graphic transfer between different levels
+- [] add game over screen displaying statistics
+<br>
+
+
+#### ConsoleView
+- [] add console view for logging 
+- [] add ability to toggle console view
+<br>
+
+
+#### Level Editor
+- [] add ability to add level to rotation
+- [] add ability to delete level from rotation
+- [] add ability to rearrange level order in rotation
+- [] add ability to define level repetition within rotation
+- [] add ability to copy level rotation string to clipboard
+<br>
+
+
+#### Database
+- [] add indexedDB
+- [] store and show level rotations
+- [] load level rotations to game
+- [] load level rotations to editor
+- [] delete level rotations
+- [] load level rotation string to database
+
 <br>
 
 ## Version history
 <br>
+
 
 #### Version 0.06
 * replace div-based game screen with canvas
@@ -43,12 +93,14 @@ You can also upload this project to a webserver. Since the codebase includes mod
 * fix bugs
 <br>
 
+
 #### Version 0.05
 * add bonus element
 * implement chase pattern for ghost pinky
 * implement chase pattern for ghost clyde
 * implement chase pattern for ghost inky
 <br>
+
 
 #### Version 0.04
 * add visual level editor with basic functions:
@@ -58,6 +110,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
     * set optional spawn positions for ghosts
     * send and parse custom level
 <br>
+
 
 #### Version 0.03
 * add powerups
@@ -74,12 +127,14 @@ You can also upload this project to a webserver. Since the codebase includes mod
 * add sprites for bonus elements
 <br>
 
+
 #### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
 * implement collision handling for pacmans
 * implement collision handling for ghosts
 <br>
+
 
 #### Version 0.01
 * build basic level from user input
