@@ -5,14 +5,15 @@ The movement patterns of the ghosts and other aspects are only loosely based on 
 <br>
 
 ## How to play
-Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it to a webserver. 
+Play the game via [github-pages](https://voss29.github.io/pacman/). 
+
+You can also upload this project to a webserver. Since the codebase includes module files (extension _.mjs_) you may need to configure it to use _Content-Type: text/javascript_. [More Information](https://v8.dev/features/modules#mjs) 
 <br>
 
 ## External programs and resources used
-
 * [The Pac-Man Dossier](https://pacman.holenet.info/) by Jamey Pittman for information about the original game
-* [Inkscape](https://inkscape.org/) for creating the svg sprites
-* [Online SVG Converter](https://svg-converter.com/minify) for minifying the svg sprites
+* [Inkscape](https://inkscape.org/) for creating svg sprites
+* [Online SVG Converter](https://svg-converter.com/minify) for minifying svg sprites
 <br>
 
 ## Ideas for improvements and additional features
@@ -30,7 +31,7 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 ## Version history
 <br>
 
-##### Version 0.06
+#### Version 0.06
 * replace div-based game screen with canvas
 * replace png sprites with svg sprites
 * replace deprecated KeyboardEvent.keyCode
@@ -42,14 +43,14 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * fix bugs
 <br>
 
-##### Version 0.05
+#### Version 0.05
 * add bonus element
 * implement chase pattern for ghost pinky
 * implement chase pattern for ghost clyde
 * implement chase pattern for ghost inky
 <br>
 
-##### Version 0.04
+#### Version 0.04
 * add visual level editor with basic functions:
     * set width and height
     * add actors and elements
@@ -58,7 +59,7 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
     * send and parse custom level
 <br>
 
-##### Version 0.03
+#### Version 0.03
 * add powerups
 * add ghost doors (only accessible by ghosts)
 * add movement states for ghosts:
@@ -73,14 +74,14 @@ Play the game via [github-pages](https://voss29.github.io/pacman/) or upload it 
 * add sprites for bonus elements
 <br>
 
-##### Version 0.02
+#### Version 0.02
 * adjust sprites of pacman and ghosts to their current direction of movement
 * add teleporter tiles
 * implement collision handling for pacmans
 * implement collision handling for ghosts
 <br>
 
-##### Version 0.01
+#### Version 0.01
 * build basic level from user input
 * implement basic pacman behavior
   * move in four directions
