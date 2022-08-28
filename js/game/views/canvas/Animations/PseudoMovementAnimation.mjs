@@ -1,5 +1,5 @@
-import Configuration from "../../../global/Configuration.mjs";
-import MovementRequest from "../../requests/MovementRequest.mjs";
+import Configuration from "../../../../global/Configuration.mjs";
+import MovementRequest from "../../../requests/MovementRequest.mjs";
 import ActorMovementAnimation from "./ActorMovementAnimation.mjs";
 
 

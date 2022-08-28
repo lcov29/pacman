@@ -1,4 +1,4 @@
-import Configuration from '../../../global/Configuration.mjs';
+import Configuration from "../../../../global/Configuration.mjs";
 
 
 export default class ActorRespawnAnimation {
