@@ -129,16 +129,17 @@ export default class Canvas {
     }
 
 
-    // TODO: Refactor to use argument object + add fillStyle + add font as parameters
-    drawText(xCanvasPosition, yCanvasPosition, text, maxWidthXPosition) {
+    drawText(argumentObject) {
+        const {xCanvasPosition, yCanvasPosition, text, maxWidthXPosition, style, font} = argumentObject;
+
         for (let i = xCanvasPosition; i <= maxWidthXPosition; i++) {
             this.clearTileAt(i, yCanvasPosition);
         }
 
         this.#context.save();
         this.#context.translate(xCanvasPosition, yCanvasPosition);
-        this.#context.fillStyle = 'white';
-        this.#context.font = 'bold 1em sans-serif';
+        this.#context.fillStyle = style;
+        this.#context.font = font;
         this.#context.fillText(text, xCanvasPosition * this.#tileWidth, yCanvasPosition * this.#tileHeight + (this.#tileHeight / 2));
         this.#context.restore();
     }
