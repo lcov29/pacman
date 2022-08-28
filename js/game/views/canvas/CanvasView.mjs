@@ -27,8 +27,8 @@ export default class CanvasView {
     }
 
 
-    initialize() {
-        this.#initializeCanvasSize();
+    initialize(boardDimension) {
+        this.#initializeCanvasSize(boardDimension);
         this.#backgroundCanvas.processBackgroundRequestList(this.#backgroundRequestList);
 
         const isInitialization = true;
@@ -93,17 +93,15 @@ export default class CanvasView {
     }
 
 
-    #initializeCanvasSize() {
+    #initializeCanvasSize(boardDimension) {
         const tileWidth = 30 * devicePixelRatio;
         const tileHeight = 30 * devicePixelRatio;
-        const columnNumber = 27;
-        const rowNumber = 22 + 1;
 
         for (let canvas of [this.#backgroundCanvas, this.#mainCanvas]) {
             canvas.tileWidth = tileWidth;
             canvas.tileHeight = tileHeight;
-            canvas.columnNumber = columnNumber;
-            canvas.rowNumber = rowNumber;
+            canvas.columnNumber = boardDimension.columnCount;
+            canvas.rowNumber = boardDimension.rowCount + 1;
             canvas.resize();
         }
     }
