@@ -219,7 +219,7 @@ export default class Configuration {
 
    // Others
       static idInaccessibleBoardTiles = -1;   // must be < 0
-      static customLevelSessionStorageItemName = 'customPacmanLevel';
+      static customLevelRotationSessionStorageName = 'voss29PacmanCustomLevelRotation';
 
 
 }
