@@ -2,12 +2,14 @@ import Level from './level/Level.mjs';
 import Directions from './Directions.mjs';
 import CanvasView from '../views/canvas/CanvasView.mjs';
 import Configuration from '../../global/Configuration.mjs';
+import LevelRotation from './level/LevelRotation.mjs';
 
 
 export default class Game {
 
 
-   #level = null;
+   #currentLevel = null;
+   #levelRotation = [];
    #mainView = null;
    #viewList = [];
    #isAnimationLoopContinuationNeeded = true;
@@ -21,16 +23,21 @@ export default class Game {
    }
 
 
-   loadLevel() {
-      this.#level = new Level(this);
-      const jsonLevel = this.#readLevelJson();
-      this.#level.initialize(jsonLevel);
-      this.#initializeViews(jsonLevel);
+   initialize() {
+      this.#levelRotation = new LevelRotation();
+      this.#levelRotation.initialize();
+      this.loadNextLevel();
+   }
+
+
+   loadNextLevel() {
+      this.#currentLevel = this.#levelRotation.getNextLevel(this);
+      this.#initializeViews();
    }
 
 
    setNextPacmanDirection(directionName) {
-      this.#level.setNextPacmanDirection(directionName);
+      this.#currentLevel.setNextPacmanDirection(directionName);
    }
 
 
@@ -76,7 +83,7 @@ export default class Game {
       this.#handleWin();
       this.#handleDefeat();
       if (isGameInProgress) {
-         this.#level.calculateNextTurn();
+         this.#currentLevel.calculateNextTurn();
       } else {
          this.end();
       }
@@ -84,51 +91,38 @@ export default class Game {
    }
 
 
-   #readLevelJson() {
-      const customLevelItemName = Configuration.customLevelSessionStorageItemName;
-      const customLevel = window.sessionStorage.getItem(customLevelItemName);
-
-      if (customLevel) {
-         window.sessionStorage.removeItem(customLevelItemName);
-         return customLevel;
-      } else {
-         return Configuration.jsonDefaultLevel;
-      }
-   }
-
-
-   #initializeViews(jsonLevel) {
+   #initializeViews() {
       this.#sendInitialBackgroundRequests();
       this.#sendInitialMovementRequests();
 
-      const boardDimension = this.#getBoardDimension(jsonLevel);
+      const boardDimension = this.#levelRotation.getCurrentLevelBoardDimension();
       this.#viewList.forEach((view) => { view.initialize(boardDimension); });
    }
 
 
    #isGameInProgress() {
-      const isNotWon = !this.#level.isWon();
-      const isNotLost = !this.#level.isLost();
+      const isNotWon = !this.#currentLevel.isWon();
+      const isNotLost = !this.#currentLevel.isLost();
       return isNotWon && isNotLost;
    }
 
 
    #handleWin() {
-      if (this.#level.isWon()) {
+      if (this.#currentLevel.isWon()) {
          window.alert('Victory');   // Placeholder, replace later
       }
    }
 
 
    #handleDefeat() {
-      if (this.#level.isLost()) {
+      if (this.#currentLevel.isLost()) {
          window.alert('Game over'); // Placeholder, replace later
       }
    }
 
 
    #sendInitialBackgroundRequests() {
-      const requestList = this.#level.getInitialBackgroundRequestList();
+      const requestList = this.#currentLevel.getInitialBackgroundRequestList();
       for (let request of requestList) {
          this.addBackgroundRequest(request);
       }
@@ -136,20 +130,11 @@ export default class Game {
 
 
    #sendInitialMovementRequests() {
-      const requestList = this.#level.getInitialActorMovementRequestList();
+      const requestList = this.#currentLevel.getInitialActorMovementRequestList();
       for (let request of requestList) {
          this.addMovementRequest(request);
       }
    }
 
-
-   #getBoardDimension(jsonLevel) {
-      const board = JSON.parse(jsonLevel).board;
-      const rowCount = board.length;
-      const columnCount = board[0].length; // no ragged arrays
-      return {rowCount, columnCount};
-
-   }
-   
    
 }
