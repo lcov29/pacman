@@ -6,14 +6,13 @@ import Configuration from "../../global/Configuration.mjs";
 export default class RequestInitializer {
 
 
-    static buildInitialBackgroundRequestList(boardPositionArray, score, lifeCount) {
+    static buildInitialBackgroundRequestList(boardPositionArray, score) {
         const requestList = [];
 
         for (let row of boardPositionArray) {
             for (let element of row) {
                 const request = new BackgroundRequest(element.x, element.y, element.elementCharacter);
                 request.score = score;
-                request.lifeCount = lifeCount;
                 requestList.push(request);
             }
         }
