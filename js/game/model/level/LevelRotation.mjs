@@ -30,15 +30,10 @@ export default class LevelRotation {
 
     getNextLevel(gameReference) {
         this.#decrementRemainingIterations();
-
-        const level = new Level(gameReference);
-        const levelJson = this.#getCurrentLevelJson();
-        level.initialize(levelJson);
-
+        const levelObject = this.#parseCurrentJsonLevelIntoLevelObject(gameReference);
         this.#updateCurrentJsonLevelIndex();
         this.#updateRemainingTurnsForNewLevel();
-
-        return level;
+        return levelObject;
     }
 
 
@@ -47,7 +42,22 @@ export default class LevelRotation {
         const rowCount = currentLevelJsonBoard.length;
         const columnCount = currentLevelJsonBoard[0].length; // no ragged arrays
         return {rowCount, columnCount};
-     }
+    }
+
+
+    #decrementRemainingIterations() {
+        if (this.#currentJsonLevelRemainingIterations > 0) {
+            this.#currentJsonLevelRemainingIterations--;
+        }
+    }
+
+
+    #parseCurrentJsonLevelIntoLevelObject(gameReference) {
+        const level = new Level(gameReference);
+        const levelJson = this.#getCurrentLevelJson();
+        level.initialize(levelJson);
+        return level;
+    }
 
 
     #updateCurrentJsonLevelIndex() {
@@ -69,13 +79,6 @@ export default class LevelRotation {
 
         if (isLevelRotationNecessary) {
             this.#currentJsonLevelRemainingIterations = this.#getCurrentLevelJson().numberOfIterations;
-        }
-    }
-
-    
-    #decrementRemainingIterations() {
-        if (this.#currentJsonLevelRemainingIterations > 0) {
-            this.#currentJsonLevelRemainingIterations--;
         }
     }
 
