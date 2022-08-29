@@ -6,18 +6,16 @@ export default class BoardParser {
 
 
     parse(levelJson) {
-        const parsedLevelJson = JSON.parse(levelJson);
-
-        const board = this.#buildBoardPositionArray(parsedLevelJson.board);
+        const board = this.#buildBoardPositionArray(levelJson.board);
         this.#indexAccessiblePositions(board);
 
-        const spawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.bonusSpawnPositionList, board);
-        const scatterPositionList = this.#buildBoardElementPositionList(parsedLevelJson.scatterPositionList, board);
-        const optionalSpawnPositionList = this.#buildBoardElementPositionList(parsedLevelJson.optionalSpawnList, board);
+        const spawnPositionList = this.#buildBoardElementPositionList(levelJson.bonusSpawnPositionList, board);
+        const scatterPositionList = this.#buildBoardElementPositionList(levelJson.scatterPositionList, board);
+        const optionalSpawnPositionList = this.#buildBoardElementPositionList(levelJson.optionalGhostSpawnList, board);
 
-        const pacmanPositionList = this.#buildActorPositionListFor([Configuration.pacmanCharacter], parsedLevelJson.board, board);
-        const ghostPositionList = this.#buildActorPositionListFor(Configuration.ghostCharacterList, parsedLevelJson.board, board);
-        const teleporterPositionList = this.#buildActorPositionListFor(Configuration.teleporterCharacterList, parsedLevelJson.board, board);
+        const pacmanPositionList = this.#buildActorPositionListFor([Configuration.pacmanCharacter], levelJson.board, board);
+        const ghostPositionList = this.#buildActorPositionListFor(Configuration.ghostCharacterList, levelJson.board, board);
+        const teleporterPositionList = this.#buildActorPositionListFor(Configuration.teleporterCharacterList, levelJson.board, board);
 
         return {board, spawnPositionList, scatterPositionList, optionalSpawnPositionList,
                 pacmanPositionList, ghostPositionList, teleporterPositionList};
