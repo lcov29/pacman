@@ -209,7 +209,7 @@ export default class Editor {
 
 
     sendLevelJson() {
-        const itemName = Configuration.customLevelSessionStorageItemName;
+        const itemName = Configuration.customLevelRotationSessionStorageName;
         const levelJSONString = this.#internalLevel.buildLevelJSONString();
         window.sessionStorage.setItem(itemName, levelJSONString);
     }
