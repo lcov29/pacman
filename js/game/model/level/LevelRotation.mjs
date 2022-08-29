@@ -37,6 +37,14 @@ export default class LevelRotation {
     }
 
 
+    getCurrentLevelDimension() {
+        const currentLevelJsonBoard = this.#getCurrentLevelJson().board;
+        const rowCount = currentLevelJsonBoard.length;
+        const columnCount = currentLevelJsonBoard[0].length; // no ragged arrays
+        return {rowCount, columnCount};
+     }
+
+
     #getCurrentLevelJson() {
         return this.#jsonLevelRotationList[this.#currentJsonLevelIndex];
     }
