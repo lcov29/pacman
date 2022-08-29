@@ -84,6 +84,8 @@ export default class Game {
          this.#currentLevel.calculateNextTurn();
       } else {
          this.end();
+         this.loadNextLevel();
+         this.start();
       }
       this.#isAnimationLoopContinuationNeeded = isGameInProgress;
    }
