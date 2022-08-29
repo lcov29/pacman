@@ -23,14 +23,14 @@ export default class LevelRotation {
            levelRotationString = Configuration.jsonDefaultLevel;
         }
   
-        this.#jsonLevelRotationList = JSON.parse(levelRotationString);
+        this.#jsonLevelRotationList = JSON.parse(levelRotationString).rotation;
         this.#currentJsonLevelRemainingIterations = this.#getCurrentLevelJson().numberOfIterations;
     }
     
 
-    getNextLevel() {
+    getNextLevel(gameReference) {
         this.#updateCurrentJsonLevelIndex();
-        const level = new Level(this);
+        const level = new Level(gameReference);
         const levelJson = this.#getCurrentLevelJson();
         level.initialize(levelJson);
         return level;
