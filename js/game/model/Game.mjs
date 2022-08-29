@@ -1,7 +1,5 @@
-import Level from './level/Level.mjs';
 import Directions from './Directions.mjs';
 import CanvasView from '../views/canvas/CanvasView.mjs';
-import Configuration from '../../global/Configuration.mjs';
 import LevelRotation from './level/LevelRotation.mjs';
 
 
