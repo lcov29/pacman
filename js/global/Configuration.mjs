@@ -58,7 +58,7 @@ export default class Configuration {
 
                                  '"bonusSpawnPositionList":[{"x":13,"y":12}],' + 
                                  
-                                 '"numberOfRepetitions":"Infinity"}';
+                                 '"numberOfIterations":"Infinity"}';
 
 
 
