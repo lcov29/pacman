@@ -51,12 +51,14 @@ export default class Configuration {
                                                         '{"ghost":"i","x":1,"y":20},' +
                                                         '{"ghost":"c","x":25,"y":20}],' +
                                                                   
-                                 '"optionalSpawnList":[{"ghost":"b","x":10,"y":10},' +
-                                                      '{"ghost":"y","x":11,"y":10},' +
-                                                      '{"ghost":"i","x":15,"y":10},' +
-                                                      '{"ghost":"c","x":16,"y":10}],' +
+                                 '"optionalGhostSpawnList":[{"ghost":"b","x":10,"y":10},' +
+                                                           '{"ghost":"y","x":11,"y":10},' +
+                                                           '{"ghost":"i","x":15,"y":10},' +
+                                                           '{"ghost":"c","x":16,"y":10}],' +
 
-                                 '"bonusSpawnPositionList":[{"x":13,"y":12}]}';
+                                 '"bonusSpawnPositionList":[{"x":13,"y":12}],' + 
+                                 
+                                 '"numberOfRepetitions":"Infinity"}';
 
 
 
