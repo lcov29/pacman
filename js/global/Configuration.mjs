@@ -60,7 +60,9 @@ export default class Configuration {
 
                                      '"bonusSpawnPositionList":[{"x":13,"y":12}],' + 
                                  
-                                     '"numberOfIterations":"Infinity"}]}';
+                                     '"numberOfIterations":"Infinity"}],' +
+                                     
+                                  '"initialPacmanLifes":3}';
 
 
 
