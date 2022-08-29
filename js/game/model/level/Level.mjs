@@ -27,7 +27,6 @@ export default class Level {
     #ghostList = [];
     #availablePoints = 0;
     #consumedPoints = 0;
-    #totalPacmanLifes = 0;
     #score = 0;
 
 
@@ -43,7 +42,6 @@ export default class Level {
         this.#pacmanList = LevelInitializer.initializePacmans(this.#board.initialPacmanPositionList, this);
         this.#ghostList = this.#initializeGhosts();
         this.#availablePoints = this.#countAvailablePoints();
-        this.#totalPacmanLifes = Configuration.initialPacmanLifes;
     }
 
 
@@ -104,7 +102,7 @@ export default class Level {
 
     getInitialBackgroundRequestList() {
         const boardPositionArray = this.#board.buildBoardPositionArray();
-        return RequestInitializer.buildInitialBackgroundRequestList(boardPositionArray, this.#score, this.#totalPacmanLifes);
+        return RequestInitializer.buildInitialBackgroundRequestList(boardPositionArray, this.#score /*, this.#totalPacmanLifes*/);
     }
     
     
@@ -147,11 +145,6 @@ export default class Level {
     }
 
 
-    isLost() {
-        return this.#totalPacmanLifes === 0;
-    }
-
-
     incrementScoreBy(value) {
         this.#score += value;
     }
@@ -168,7 +161,7 @@ export default class Level {
 
 
     decrementTotalPacmanLifes() {
-        this.#totalPacmanLifes--;
+        this.#game.decrementPacmanLifes();
     }
 
 
@@ -191,7 +184,7 @@ export default class Level {
 
     calculateNextTurn() {
         this.#movePacmans();
-        if (!this.isWon() && !this.isLost()) {
+        if (!this.isWon()) {
             this.#moveGhosts();
         }
         this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
@@ -269,7 +262,6 @@ export default class Level {
 
     #addInformationToBackgroundRequest(request) {
         request.score = this.#score;
-        request.lifeCount = this.#totalPacmanLifes;
     }
 
 
@@ -299,7 +291,6 @@ export default class Level {
     #moveGhosts() {
         for (let ghost of this.#ghostList) {
             ghost.move();
-            if (this.isLost()) { break; }
         }
     }
 
