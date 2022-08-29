@@ -29,10 +29,15 @@ export default class LevelRotation {
     
 
     getNextLevel(gameReference) {
-        this.#updateCurrentJsonLevelIndex();
+        this.#decrementRemainingIterations();
+
         const level = new Level(gameReference);
         const levelJson = this.#getCurrentLevelJson();
         level.initialize(levelJson);
+
+        this.#updateCurrentJsonLevelIndex();
+        this.#updateRemainingTurnsForNewLevel();
+
         return level;
     }
 
@@ -45,27 +50,39 @@ export default class LevelRotation {
      }
 
 
+    #updateCurrentJsonLevelIndex() {
+        const isLevelRotationNecessary = this.#currentJsonLevelRemainingIterations === 0;
+        const isLastLevelInRotation = (this.#currentJsonLevelIndex + 1) === this.#jsonLevelRotationList.length;
+
+        if (isLevelRotationNecessary && isLastLevelInRotation) {
+            this.#currentJsonLevelIndex = 0;    // restart rotation at first level 
+        }
+
+        if (isLevelRotationNecessary && !isLastLevelInRotation) {
+            this.#currentJsonLevelIndex++;
+        }
+    }
+
+
+    #updateRemainingTurnsForNewLevel() {
+        const isLevelRotationNecessary = this.#currentJsonLevelRemainingIterations === 0;
+
+        if (isLevelRotationNecessary) {
+            this.#currentJsonLevelRemainingIterations = this.#getCurrentLevelJson().numberOfIterations;
+        }
+    }
+
+    
+    #decrementRemainingIterations() {
+        if (this.#currentJsonLevelRemainingIterations > 0) {
+            this.#currentJsonLevelRemainingIterations--;
+        }
+    }
+
+
     #getCurrentLevelJson() {
         return this.#jsonLevelRotationList[this.#currentJsonLevelIndex];
     }
 
-
-    #updateCurrentJsonLevelIndex() {
-        const hasRemainingIterationsLeft = this.#currentJsonLevelRemainingIterations > 0;
-
-        if (hasRemainingIterationsLeft) {
-            this.#currentJsonLevelRemainingIterations--;
-            return;
-        }
-
-        const isLastLevelInRotation = this.#currentJsonLevelIndex === this.#jsonLevelRotationList.length;
-
-        if (isLastLevelInRotation) {
-            this.#currentJsonLevelIndex = 0;    // proceed with first level       
-        } else {
-            this.#currentJsonLevelIndex++;
-        }
-    }
-        
 
 }
