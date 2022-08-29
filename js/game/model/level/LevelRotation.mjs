@@ -8,6 +8,7 @@ export default class LevelRotation {
     #jsonLevelRotationList = [];
     #currentJsonLevelIndex = 0;
     #currentJsonLevelRemainingIterations = 0;
+    #initialPacmanLifes = 0;
 
 
     constructor() {}
@@ -23,8 +24,15 @@ export default class LevelRotation {
            levelRotationString = Configuration.jsonDefaultLevel;
         }
   
-        this.#jsonLevelRotationList = JSON.parse(levelRotationString).rotation;
+        const jsonLevel = JSON.parse(levelRotationString);
+        this.#jsonLevelRotationList = jsonLevel.rotation;
+        this.#initialPacmanLifes = jsonLevel.initialPacmanLifes;
         this.#currentJsonLevelRemainingIterations = this.#getCurrentLevelJson().numberOfIterations;
+    }
+
+
+    get initialPacmanLifes() {
+        return this.#initialPacmanLifes;
     }
     
 
