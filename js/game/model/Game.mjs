@@ -11,6 +11,7 @@ export default class Game {
    #mainView = null;
    #viewList = [];
    #isAnimationLoopContinuationNeeded = true;
+   #remainingPacmanLifes = 0;
 
 
    constructor(mainCanvas, backgroundCanvas) {
@@ -24,6 +25,7 @@ export default class Game {
    initialize() {
       this.#levelRotation = new LevelRotation();
       this.#levelRotation.initialize();
+      this.#remainingPacmanLifes = this.#levelRotation.initialPacmanLifes;
       this.loadNextLevel();
    }
 
@@ -39,7 +41,6 @@ export default class Game {
    }
 
 
-
    addMovementRequest(request) {
       this.#viewList.forEach((view) => { view.addMovementRequest(request); });
    }
@@ -51,6 +52,7 @@ export default class Game {
 
 
    addBackgroundRequest(request) {
+      request.lifeCount = this.#remainingPacmanLifes;
       this.#viewList.forEach((view) => { view.addBackgroundRequest(request); });
    }
 
@@ -91,6 +93,18 @@ export default class Game {
    }
 
 
+   decrementPacmanLifes() {
+      if (this.#remainingPacmanLifes > 0) {
+         this.#remainingPacmanLifes--
+      }
+   }
+
+
+   #isLost() {
+      this.#remainingPacmanLifes === 0;
+   }
+
+
    #initializeViews() {
       this.#sendInitialBackgroundRequests();
       this.#sendInitialMovementRequests();
@@ -102,7 +116,7 @@ export default class Game {
 
    #isGameInProgress() {
       const isNotWon = !this.#currentLevel.isWon();
-      const isNotLost = !this.#currentLevel.isLost();
+      const isNotLost = !this.#isLost();
       return isNotWon && isNotLost;
    }
 
@@ -115,7 +129,7 @@ export default class Game {
 
 
    #handleDefeat() {
-      if (this.#currentLevel.isLost()) {
+      if (this.#isLost()) {
          window.alert('Game over'); // Placeholder, replace later
       }
    }
