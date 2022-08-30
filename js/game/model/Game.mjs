@@ -93,6 +93,11 @@ export default class Game {
    }
 
 
+   incrementScoreBy(value) {
+      this.#currentTotalScore += value;
+  }
+
+
    #isGameOver() {
       this.#remainingPacmanLifes === 0;
    }
