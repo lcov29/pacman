@@ -27,7 +27,6 @@ export default class Level {
     #ghostList = [];
     #availablePoints = 0;
     #consumedPoints = 0;
-    #score = 0;
 
 
     constructor(game) {
@@ -102,7 +101,7 @@ export default class Level {
 
     getInitialBackgroundRequestList() {
         const boardPositionArray = this.#board.buildBoardPositionArray();
-        return RequestInitializer.buildInitialBackgroundRequestList(boardPositionArray, this.#score /*, this.#totalPacmanLifes*/);
+        return RequestInitializer.buildInitialBackgroundRequestList(boardPositionArray);
     }
     
     
@@ -182,7 +181,6 @@ export default class Level {
 
     processBackgroundRequest(request) {
         this.#board.updateCharacterAt(request.xPosition, request.yPosition, request.elementCharacter);
-        this.#addInformationToBackgroundRequest(request);
         this.#game.addBackgroundRequest(request);
     }
 
@@ -270,11 +268,6 @@ export default class Level {
         for (let pacman of this.#pacmanList) {
             pacman.resetTurnCompletionStatus();
         }
-    }
-
-
-    #addInformationToBackgroundRequest(request) {
-        request.score = this.#score;
     }
 
 
