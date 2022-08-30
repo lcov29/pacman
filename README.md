@@ -102,6 +102,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 - [ ] add ability to rearrange level order in rotation
 - [ ] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
+- [ ] validate custom levels in editor before loading
 <br>
 
 
