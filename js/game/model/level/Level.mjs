@@ -27,7 +27,6 @@ export default class Level {
     #ghostList = [];
     #availablePoints = 0;
     #consumedPoints = 0;
-    #initialLevelJson = null;
 
 
     constructor(game) {
