@@ -187,11 +187,13 @@ export default class Level {
 
     calculateNextTurn() {
         if (this.isWon()) {
+            this.#game.saveCurrentLevelScore();
             this.#game.loadNextLevel();
             return;
         }
 
         if (this.isLost()) {
+            this.#game.resetCurrentLevelScore();
             // this.restart();
             return;
         }
