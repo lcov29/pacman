@@ -114,11 +114,6 @@ export default class Game {
 
    incrementScoreBy(value) {
       this.#currentTotalScore += value;
-  }
-
-
-   #isGameOver() {
-      this.#remainingPacmanLifes === 0;
    }
 
 
@@ -131,9 +126,13 @@ export default class Game {
    }
 
 
-   #handleDefeat() {
-      if (this.#isGameOver()) {
-         window.alert('Game over'); // Placeholder, replace later
+   handleGameOver() {
+      const isGameOver = this.#remainingPacmanLifes === 0;
+
+      if (isGameOver) {
+         // Placeholder functionality, replace later
+         this.pause();
+         window.alert('Game over');
       }
    }
 
