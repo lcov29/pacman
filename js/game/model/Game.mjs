@@ -79,7 +79,7 @@ export default class Game {
    }
 
 
-   notifyAnimationComplete() {
+   calculateNextTurn() {
       this.#currentLevel.calculateNextTurn();
    }
 
