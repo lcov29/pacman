@@ -31,7 +31,7 @@ export default class EditorInternalLevel {
 
     initialize(width, height) {
         this.#reset();
-        this.#buildEmptyMap(width, height);
+        this.#buildEmptyBoard(width, height);
         this.#initializeCharacterToCoordinateListMap();
     }
 
@@ -169,7 +169,7 @@ export default class EditorInternalLevel {
     }
 
 
-    #buildEmptyMap(width, height) {
+    #buildEmptyBoard(width, height) {
         this.#internalBoard = [];
         const row = [];
         for (let x = 0; x < width; x++) {
