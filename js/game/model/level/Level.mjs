@@ -253,11 +253,6 @@ export default class Level {
     }
 
 
-    #restart() {
-        this.initialize(this.#initialLevelJson);
-    }
-
-
     #iterateList(positionId, elementList, func, defaultReturn) {
         for (let element of elementList) {
             const isMatchingPosition = element.currentPositionId === positionId;
