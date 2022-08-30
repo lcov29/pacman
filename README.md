@@ -68,9 +68,9 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Game
-- [ ] add level rotation
+- [x] add level rotation
 - [ ] implement point value multiplicator for consumption of multiple scared ghosts
-- [ ] add option to pause game
+- [x] add option to pause game
 - [ ] add sound effects for actors
 - [ ] add level theme song
 - [ ] add ability to mute game
@@ -117,6 +117,11 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 ## Version history
 <br>
+
+
+#### Version 0.07
+* add level rotation
+* add option to pause game
 
 
 #### Version 0.06
