@@ -185,6 +185,7 @@ export default class Level {
     }
 
 
+    // TODO: divide handling of win/lose from actual movement
     calculateNextTurn() {
         if (this.isWon()) {
             this.#game.saveCurrentLevelScore();
