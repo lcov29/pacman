@@ -1,9 +1,9 @@
+import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
+import RequestInitializer from '../../requests/RequestInitializer.mjs';
 import LevelInitializer from './LevelInitializer.mjs';
 import Configuration from '../../../global/Configuration.mjs';
 import Utility from '../../../global/Utility.mjs';
 import Board from '../board/Board.mjs';
-import BonusElementSpawner from '../boardElements/BonusElementSpawner.mjs';
-import RequestInitializer from '../../requests/RequestInitializer.mjs';
 
 
 /*  
@@ -145,6 +145,11 @@ export default class Level {
     }
 
 
+    isLost() {
+        return this.#pacmanList.length === 0;
+    }
+
+
     incrementScoreBy(value) {
         this.#score += value;
     }
@@ -183,10 +188,19 @@ export default class Level {
 
 
     calculateNextTurn() {
-        this.#movePacmans();
-        if (!this.isWon()) {
-            this.#moveGhosts();
+
+        if (this.isWon()) {
+            this.#game.loadNextLevel();
+            return;
         }
+
+        if (this.isLost()) {
+            // this.restart();
+            return;
+        }
+
+        this.#movePacmans();
+        this.#moveGhosts();
         this.#bonusElementSpawner.handleSpawn(this.#consumedPoints);
         this.#game.notifyTurnCalculationComplete();
     }
@@ -291,6 +305,9 @@ export default class Level {
     #moveGhosts() {
         for (let ghost of this.#ghostList) {
             ghost.move();
+            if (this.isLost()) {
+                break;
+            }
         }
     }
 
