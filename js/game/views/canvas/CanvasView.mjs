@@ -87,8 +87,10 @@ export default class CanvasView {
             this.#game.notifyAnimationComplete();
         }
 
-        if (this.#game.isAnimationLoopContinuationNecessary()) {
+        if (this.#game.isAnimationNecessary) {
             this.#animationFrameId = requestAnimationFrame(this.#callBackAnimation.bind(this));
+        } else {
+            this.stopAnimationLoop();
         }
     }
 
