@@ -79,7 +79,16 @@ export default class Game {
    }
 
 
-   pause() {
+   togglePause() {
+      if (this.#isAnimationNecessary) {
+         this.#pause();
+      } else {
+         this.start();
+      }
+   }
+
+
+   #pause() {
       this.#mainView.stopAnimationLoop();
       this.#isAnimationNecessary = false;
    }
@@ -131,7 +140,7 @@ export default class Game {
 
       if (isGameOver) {
          // Placeholder functionality, replace later
-         this.pause();
+         this.#pause();
          window.alert('Game over');
       }
    }
