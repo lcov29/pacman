@@ -50,7 +50,6 @@ export default class Pacman extends Actor {
 
 
    kill() {
-      super.level.decrementTotalPacmanLifes();
       super.level.removeDeadPacmanAt(super.currentPositionId);
       this.#isAlive = false;
    }
