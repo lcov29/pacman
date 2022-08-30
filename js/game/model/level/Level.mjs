@@ -151,7 +151,7 @@ export default class Level {
 
 
     incrementScoreBy(value) {
-        this.#score += value;
+        this.#game.incrementScoreBy(value);
     }
 
 
