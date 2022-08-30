@@ -47,18 +47,18 @@ export default class Game {
 
 
    addMovementRequest(request) {
-      this.#viewList.forEach((view) => { view.addMovementRequest(request); });
+      this.#viewList.forEach(view => view.addMovementRequest(request));
    }
 
 
    addRespawnRequest(request) {
-      this.#viewList.forEach((view) => { view.addRespawnRequest(request); });
+      this.#viewList.forEach(view => view.addRespawnRequest(request));
    }
 
 
    addBackgroundRequest(request) {
       request.lifeCount = this.#remainingPacmanLifes;
-      this.#viewList.forEach((view) => { view.addBackgroundRequest(request); });
+      this.#viewList.forEach(view => view.addBackgroundRequest(request));
    }
 
 
@@ -75,7 +75,7 @@ export default class Game {
 
 
    notifyTurnCalculationComplete() {
-      this.#viewList.forEach((view) => { view.processRequests(); });
+      this.#viewList.forEach(view => view.processRequests());
    }
 
 
@@ -101,7 +101,7 @@ export default class Game {
       this.#sendInitialMovementRequests();
 
       const boardDimension = this.#levelRotation.getCurrentLevelBoardDimension();
-      this.#viewList.forEach((view) => { view.initialize(boardDimension); });
+      this.#viewList.forEach(view => view.initialize(boardDimension));
    }
 
 
