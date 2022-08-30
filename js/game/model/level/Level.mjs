@@ -27,6 +27,7 @@ export default class Level {
     #ghostList = [];
     #availablePoints = 0;
     #consumedPoints = 0;
+    #initialLevelJson = null;
 
 
     constructor(game) {
@@ -35,6 +36,7 @@ export default class Level {
 
 
     initialize(levelJson) {
+        this.#initialLevelJson = levelJson;
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board.teleporterPositionList);
@@ -195,7 +197,7 @@ export default class Level {
 
         if (this.isLost()) {
             this.#game.resetCurrentLevelScore();
-            // this.restart();
+            this.#restart();
             return;
         }
 
@@ -252,6 +254,11 @@ export default class Level {
         argumentObject.levelReference = this;
 
         return LevelInitializer.initializeGhosts(argumentObject);
+    }
+
+
+    #restart() {
+        this.initialize(this.#initialLevelJson);
     }
 
 
