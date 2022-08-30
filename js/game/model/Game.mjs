@@ -58,8 +58,10 @@ export default class Game {
    }
 
 
+   // TODO: think about moving lifeCount and score to separate update requests
    addBackgroundRequest(request) {
       request.lifeCount = this.#remainingPacmanLifes;
+      request.score = this.#currentTotalScore;
       this.#viewList.forEach(view => view.addBackgroundRequest(request));
    }
 
