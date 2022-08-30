@@ -84,7 +84,7 @@ export default class CanvasView {
         if (this.#mainCanvas.isAnimationComplete()) {
             this.#backgroundCanvas.processBackgroundRequestList(this.#backgroundRequestList);
             this.#flushRequestLists();
-            this.#game.notifyAnimationComplete();
+            this.#game.calculateNextTurn();
         }
 
         if (this.#game.isAnimationNecessary) {
