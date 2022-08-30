@@ -12,6 +12,8 @@ export default class Game {
    #viewList = [];
    #isAnimationNecessary = false;
    #remainingPacmanLifes = 0;
+   #completedLevelScore = 0;
+   #currentTotalScore = 0;
 
 
    constructor(mainCanvas, backgroundCanvas) {
