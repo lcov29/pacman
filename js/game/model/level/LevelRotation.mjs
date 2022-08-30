@@ -45,6 +45,11 @@ export default class LevelRotation {
     }
 
 
+    getCurrentLevel(gameReference) {
+        return this.#parseCurrentJsonLevelIntoLevelObject(gameReference);
+    }
+
+
     getCurrentLevelBoardDimension() {
         const currentLevelJsonBoard = this.#getCurrentLevelJson().board;
         const rowCount = currentLevelJsonBoard.length;
