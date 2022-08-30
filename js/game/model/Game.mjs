@@ -114,18 +114,14 @@ export default class Game {
 
    #sendInitialBackgroundRequests() {
       const requestList = this.#currentLevel.getInitialBackgroundRequestList();
-      for (let request of requestList) {
-         this.addBackgroundRequest(request);
-      }
+      requestList.forEach(request => this.addBackgroundRequest(request));
    }
 
 
    #sendInitialMovementRequests() {
       const requestList = this.#currentLevel.getInitialActorMovementRequestList();
-      for (let request of requestList) {
-         this.addMovementRequest(request);
-      }
+      requestList.forEach(request => this.addMovementRequest(request));
    }
 
-   
+
 }
