@@ -66,7 +66,7 @@ export default class CanvasView {
 
     startAnimationLoop() {
         if (!this.#animationFrameId) {
-            this.#animationFrameId = requestAnimationFrame(this.#callBackAnimation.bind(this));
+            this.#animationFrameId = requestAnimationFrame(this.#animationLoop.bind(this));
         }
     }
 
@@ -77,7 +77,7 @@ export default class CanvasView {
     }
 
 
-    #callBackAnimation() {
+    #animationLoop() {
         this.#mainCanvas.drawCurrentLevelState();
         this.#mainCanvas.moveAnimationsBy(Configuration.actorMovementSpeedInPixel);
         
@@ -88,7 +88,7 @@ export default class CanvasView {
         }
 
         if (this.#game.isAnimationNecessary) {
-            this.#animationFrameId = requestAnimationFrame(this.#callBackAnimation.bind(this));
+            this.#animationFrameId = requestAnimationFrame(this.#animationLoop.bind(this));
         } else {
             this.stopAnimationLoop();
         }
