@@ -78,6 +78,16 @@ export default class Game {
    }
 
 
+   saveCurrentLevelScore() {
+      this.#completedLevelScore = this.#currentTotalScore;
+   }
+
+
+   resetCurrentLevelScore() {
+      this.#currentTotalScore = this.#completedLevelScore;
+   }
+
+
    notifyTurnCalculationComplete() {
       this.#viewList.forEach(view => view.processRequests());
    }
