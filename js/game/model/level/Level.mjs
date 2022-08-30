@@ -188,7 +188,6 @@ export default class Level {
 
 
     calculateNextTurn() {
-
         if (this.isWon()) {
             this.#game.loadNextLevel();
             return;
