@@ -105,13 +105,6 @@ export default class Game {
    }
 
 
-   #isGameInProgress() {
-      const isLevelNotWon = !this.#currentLevel.isWon();
-      const isLevelNotLost = !this.#currentLevel.isLost();
-      return isLevelNotWon && isLevelNotLost;
-   }
-
-
    #handleDefeat() {
       if (this.#isGameOver()) {
          window.alert('Game over'); // Placeholder, replace later
