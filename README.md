@@ -122,6 +122,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 #### Version 0.07
 * add level rotation
 * add option to pause game
+<br>
 
 
 #### Version 0.06
