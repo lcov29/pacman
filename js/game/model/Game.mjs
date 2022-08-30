@@ -43,6 +43,13 @@ export default class Game {
    }
 
 
+   reloadCurrentLevel() {
+      this.#currentLevel = this.#levelRotation.getCurrentLevel(this);
+      this.#initializeViews();
+      this.#isAnimationNecessary = false;
+   }
+
+
    setNextPacmanDirection(directionName) {
       this.#currentLevel.setNextPacmanDirection(directionName);
    }
