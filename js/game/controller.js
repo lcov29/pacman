@@ -60,5 +60,9 @@ function callBackKeyDown(event) {
          game.start();
          event.preventDefault();
          break;
+
+      case 'KeyP':
+         game.togglePause();
+         break;
    }         
 }
