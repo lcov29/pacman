@@ -10,15 +10,19 @@ export default class Game {
    #levelRotation = [];
    #mainView = null;
    #viewList = [];
-   #isAnimationLoopContinuationNeeded = true;
+   #isAnimationNecessary = false;
    #remainingPacmanLifes = 0;
 
 
    constructor(mainCanvas, backgroundCanvas) {
       this.#mainView = new CanvasView(mainCanvas, backgroundCanvas, this);
       this.#viewList = [this.#mainView];
-      this.#isAnimationLoopContinuationNeeded = true;
       Directions.initializeDirectionMaps();
+   }
+
+
+   get isAnimationNecessary() {
+      return this.#isAnimationNecessary;
    }
 
 
@@ -33,6 +37,7 @@ export default class Game {
    loadNextLevel() {
       this.#currentLevel = this.#levelRotation.getNextLevel(this);
       this.#initializeViews();
+      this.#isAnimationNecessary = false;
    }
 
 
@@ -59,16 +64,13 @@ export default class Game {
 
    start() {
       this.#mainView.startAnimationLoop();
+      this.#isAnimationNecessary = true;
    }
 
 
    end() {
       this.#mainView.stopAnimationLoop();
-   }
-
-
-   isAnimationLoopContinuationNecessary() {
-      return this.#isAnimationLoopContinuationNeeded;
+      this.#isAnimationNecessary = false;
    }
 
 
@@ -78,22 +80,7 @@ export default class Game {
 
 
    notifyAnimationComplete() {
-
-      if (this.#isGameInProgress()) {
-         this.#currentLevel.calculateNextTurn();
-      } else {
-
-         this.end();
-
-         if (this.#isGameOver()) {
-            this.#handleDefeat();
-         } else {
-            this.loadNextLevel();
-            this.start();
-         }
-
-      }
-      this.#isAnimationLoopContinuationNeeded = this.#isGameInProgress();
+      this.#currentLevel.calculateNextTurn();
    }
 
 
