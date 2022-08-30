@@ -68,7 +68,7 @@ export default class Game {
    }
 
 
-   end() {
+   pause() {
       this.#mainView.stopAnimationLoop();
       this.#isAnimationNecessary = false;
    }
