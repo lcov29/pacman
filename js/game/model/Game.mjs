@@ -78,18 +78,22 @@ export default class Game {
 
 
    notifyAnimationComplete() {
-      const isGameInProgress = this.#isGameInProgress();
 
-      this.#handleWin();
-      this.#handleDefeat();
-      if (isGameInProgress) {
+      if (this.#isGameInProgress()) {
          this.#currentLevel.calculateNextTurn();
       } else {
+
          this.end();
-         this.loadNextLevel();
-         this.start();
+
+         if (this.#isGameOver()) {
+            this.#handleDefeat();
+         } else {
+            this.loadNextLevel();
+            this.start();
+         }
+
       }
-      this.#isAnimationLoopContinuationNeeded = isGameInProgress;
+      this.#isAnimationLoopContinuationNeeded = this.#isGameInProgress();
    }
 
 
@@ -100,7 +104,7 @@ export default class Game {
    }
 
 
-   #isLost() {
+   #isGameOver() {
       this.#remainingPacmanLifes === 0;
    }
 
@@ -115,21 +119,14 @@ export default class Game {
 
 
    #isGameInProgress() {
-      const isNotWon = !this.#currentLevel.isWon();
-      const isNotLost = !this.#isLost();
-      return isNotWon && isNotLost;
-   }
-
-
-   #handleWin() {
-      if (this.#currentLevel.isWon()) {
-         window.alert('Victory');   // Placeholder, replace later
-      }
+      const isLevelNotWon = !this.#currentLevel.isWon();
+      const isLevelNotLost = !this.#currentLevel.isLost();
+      return isLevelNotWon && isLevelNotLost;
    }
 
 
    #handleDefeat() {
-      if (this.#isLost()) {
+      if (this.#isGameOver()) {
          window.alert('Game over'); // Placeholder, replace later
       }
    }
