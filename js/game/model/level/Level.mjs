@@ -166,11 +166,6 @@ export default class Level {
     }
 
 
-    decrementTotalPacmanLifes() {
-        this.#game.decrementPacmanLifes();
-    }
-
-
     processMovementRequest(request) {
         this.#game.addMovementRequest(request);
     }
@@ -197,7 +192,8 @@ export default class Level {
 
         if (this.isLost()) {
             this.#game.resetCurrentLevelScore();
-            this.#restart();
+            this.#game.decrementPacmanLifes();
+            this.#game.reloadCurrentLevel();
             return;
         }
 
