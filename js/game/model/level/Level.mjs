@@ -35,7 +35,6 @@ export default class Level {
 
 
     initialize(levelJson) {
-        this.#initialLevelJson = levelJson;
         this.#board = new Board(levelJson);
         this.#bonusElementSpawner = new BonusElementSpawner(this.#board.bonusSpawnPositionList, 1, this);
         this.#teleporterList = LevelInitializer.initializeTeleporters(this.#board.teleporterPositionList);
@@ -193,6 +192,7 @@ export default class Level {
             this.#game.resetCurrentLevelScore();
             this.#game.decrementPacmanLifes();
             this.#game.reloadCurrentLevel();
+            this.#game.handleGameOver();
             return;
         }
 
