@@ -277,7 +277,7 @@ export default class Editor {
 
 
     #getLevelRotationJSONString() {
-        const initialPacmanLifes = this.#inputInitialLifeInput.value;
+        const initialPacmanLifes = parseInt(this.#inputInitialLifeInput.value);
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
         return rotationJsonString;
     }
