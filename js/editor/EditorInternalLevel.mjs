@@ -146,15 +146,16 @@ export default class EditorInternalLevel {
 
 
     #getGhostCharacterListForPositionAt(positionList, coordinateString) {
-        const output = [];
+        const ghostCharacterList = [];
         const coordinate = this.#parseCoordinateString(coordinateString);
+        
         for (let position of positionList) {
             const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
             if (isSamePosition) {
-                output.push(position.ghost);
+                ghostCharacterList.push(position.ghost);
             }
         }
-        return output;
+        return ghostCharacterList;
     }
 
 
