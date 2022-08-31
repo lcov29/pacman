@@ -2,6 +2,7 @@ import Configuration from '../global/Configuration.mjs';
 import EditorInternalLevel from './EditorInternalLevel.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
+import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
 
 
 export default class Editor {
@@ -10,6 +11,7 @@ export default class Editor {
     #editorContainer = null;
     #inputMapWidth = null;
     #inputMapHeight = null;
+    #internalLevelRotation = null;
     #internalLevel = null;
     #isGhostBlinkyScatterSpawnControlDisplayed = false;
     #isGhostPinkyScatterSpawnControlDisplayed = false;
@@ -21,18 +23,16 @@ export default class Editor {
     constructor() {
         this.#editorContainer = document.getElementById('editorContainer');
         this.#currentState = new EditorDefaultState();
-        this.#initializeInternalLevel();
         this.#initializeDimensionInput();
+        this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
     }
 
 
-    #initializeInternalLevel() {
-        this.#internalLevel = new EditorInternalLevel();
-
-        const width = Configuration.editorBoardDefaultWidth;
-        const height = Configuration.editorBoardDefaultHeight;
-        this.#internalLevel.initialize(width, height);
+    #initializeInternalLevelRotation() {
+        this.#internalLevelRotation = new EditorInternalLevelRotation();
+        this.#internalLevelRotation.initialize(this.getMapWidthInput(), this.getMapWidthInput());
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
@@ -210,8 +210,8 @@ export default class Editor {
 
     sendLevelJson() {
         const itemName = Configuration.customLevelRotationSessionStorageName;
-        const levelJSONString = this.#internalLevel.buildLevelJSONString();
-        window.sessionStorage.setItem(itemName, levelJSONString);
+        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(2);
+        window.sessionStorage.setItem(itemName, rotationJsonString);
     }
 
 
