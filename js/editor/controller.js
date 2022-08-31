@@ -102,15 +102,25 @@ function validateMapHeightInput(event) {
 
 
 function processLevelIterationInput(event) {
-    const input = document.getElementById(event.target.id);
-    const inputNumber = parseInt(input.value);
-    const isValidInput = inputNumber > 0;
-
-    if (!isValidInput) {
-        input.value = '1';
-    }
-
+    validateLevelIterationInput(event);
     editor.updateCurrentLevelIterationNumber();
+}
+
+
+function validateLevelIterationInput(event) {
+    const input = document.getElementById(event.target.id);
+    const inputValue = input.value.toLowerCase();
+    const inputNumber = parseInt(inputValue);
+    const isInputValidNumber = !isNaN(inputNumber) && inputNumber > 0;
+    const isInputInfinity = inputValue === 'infinity';
+
+    if (!isInputValidNumber) {
+        if (isInputInfinity) {
+            input.value = "Infinity";
+        } else {
+            input.value = "1";
+        }
+    }
 }
 
 

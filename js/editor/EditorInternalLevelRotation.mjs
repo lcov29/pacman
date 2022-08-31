@@ -66,6 +66,7 @@ export default class EditorInternalLevelRotation {
     buildLevelRotationJSONString(initialPacmanLifes) {
         const rotation = this.#internalLevelList.map(internalLevel => internalLevel.buildLevelJSON());
         const json = {rotation, initialPacmanLifes};
+        debugger;
         return JSON.stringify(json);
     }
 

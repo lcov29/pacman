@@ -64,7 +64,9 @@ export default class Editor {
 
     updateCurrentLevelIterationNumber() {
         const iterationNumber = document.getElementById('iterationNumberInput').value;
-        this.#internalLevel.numberOfIterations = parseInt(iterationNumber);
+        const isInfinity = iterationNumber === 'Infinity';
+        this.#internalLevel.numberOfIterations = (isInfinity) ? Infinity : parseInt(iterationNumber);
+
     }
 
 
