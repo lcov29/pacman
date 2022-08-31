@@ -9,6 +9,7 @@ export default class EditorInternalLevel {
     #scatterPositionList = [];
     #optionalSpawnPositionList = [];
     #bonusSpawnPositionList = [];
+    #numberOfIterations = 1;
     #ghostBlinkyCoordinateList = [];
     #ghostPinkyCoordinateList = [];
     #ghostInkyCoordinateList = [];
@@ -18,6 +19,22 @@ export default class EditorInternalLevel {
 
     constructor() {
         this.#characterToCoordinateListMap = new Map();
+    }
+
+
+    set numberOfIterations(number) {
+        const isValidInput = number > 0;
+
+        if (isValidInput) {
+            this.#numberOfIterations = number;
+        } else {
+            throw new RangeError('Invalid argument: number of iterations must be greater zero');
+        }
+    }
+
+
+    get numberOfIterations() {
+        return this.#numberOfIterations;
     }
 
 
@@ -127,13 +144,14 @@ export default class EditorInternalLevel {
     }
 
 
-    buildLevelJSONString() {
-        const jsonObject = {};
-        jsonObject.board = this.#internalBoard;
-        jsonObject.scatterPositionList = this.#scatterPositionList;
-        jsonObject.optionalGhostSpawnList = this.#optionalSpawnPositionList;
-        jsonObject.bonusSpawnPositionList = this.#bonusSpawnPositionList;
-        return JSON.stringify(jsonObject);
+    buildLevelJSON() {
+        const json = {};
+        json.board = this.#internalBoard;
+        json.scatterPositionList = this.#scatterPositionList;
+        json.optionalGhostSpawnList = this.#optionalSpawnPositionList;
+        json.bonusSpawnPositionList = this.#bonusSpawnPositionList;
+        json.numberOfIterations = this.#numberOfIterations;
+        return jsonObject;
     }
 
 
@@ -221,7 +239,7 @@ export default class EditorInternalLevel {
 
     #removeCoordinateFromPositionList(positionList, coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
-        
+
         for (let position of positionList) {
             const isSameCoordinate = position.x === coordinate.x && position.y === coordinate.y;
             if (isSameCoordinate) {
