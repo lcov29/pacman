@@ -32,6 +32,10 @@ document.getElementById('mapHeight').addEventListener('blur', validateMapHeightI
 document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
+// add handlers to level iteration input
+document.getElementById('iterationNumberInput').addEventListener('blur', validateLevelIterationInput);
+
+
 // add handlers to scatter spawn control group
 const scatterSpawnInputList = document.querySelectorAll('input[class="inputPosition"]');
 for (let scatterSpawnInput of scatterSpawnInputList) {
@@ -93,6 +97,23 @@ function validateMapHeightInput(event) {
         }
     } catch(e) {
         input.value = '';
+    }
+}
+
+
+function validateLevelIterationInput(event) {
+    const input = document.getElementById(event.target.id);
+    const inputValue = input.value.toLowerCase();
+    const inputNumber = parseInt(inputValue);
+    const isInputValidNumber = !isNaN(inputNumber);
+    const isInputInfinity = inputValue === 'infinity';
+
+    if (!isInputValidNumber) {
+        if (isInputInfinity) {
+            input.value = "Infinity";
+        } else {
+            input.value = "1";
+        }
     }
 }
 
