@@ -11,6 +11,7 @@ export default class Editor {
     #editorContainer = null;
     #inputMapWidth = null;
     #inputMapHeight = null;
+    #inputInitialLifeInput = null;
     #internalLevelRotation = null;
     #internalLevel = null;
     #isGhostBlinkyScatterSpawnControlDisplayed = false;
@@ -23,6 +24,7 @@ export default class Editor {
     constructor() {
         this.#editorContainer = document.getElementById('editorContainer');
         this.#currentState = new EditorDefaultState();
+        this.#inputInitialLifeInput = document.getElementById('initialLifeInput')
         this.#initializeDimensionInput();
         this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
@@ -134,6 +136,11 @@ export default class Editor {
 
     getMapHeightInput() {
         return this.#inputMapHeight.value;
+    }
+
+
+    getInitialLifesInput() {
+        return this.#inputInitialLifeInput.value;
     }
 
 
