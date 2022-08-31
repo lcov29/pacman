@@ -196,7 +196,7 @@ export default class EditorInternalLevel {
         }
 
         const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
-        
+
         if (isNewCharacterGhost) {
             this.#addCoordinateToGhostList(coordinateString, newCharacter);
         }
@@ -221,6 +221,7 @@ export default class EditorInternalLevel {
 
     #removeCoordinateFromPositionList(positionList, coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
+        
         for (let position of positionList) {
             const isSameCoordinate = position.x === coordinate.x && position.y === coordinate.y;
             if (isSameCoordinate) {
