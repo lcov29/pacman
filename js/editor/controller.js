@@ -33,7 +33,7 @@ document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDim
 
 
 // add handlers to level iteration input
-document.getElementById('iterationNumberInput').addEventListener('blur', validateLevelIterationInput);
+document.getElementById('iterationNumberInput').addEventListener('blur', processLevelIterationInput);
 
 
 // add handlers to scatter spawn control group
@@ -101,20 +101,16 @@ function validateMapHeightInput(event) {
 }
 
 
-function validateLevelIterationInput(event) {
+function processLevelIterationInput(event) {
     const input = document.getElementById(event.target.id);
-    const inputValue = input.value.toLowerCase();
-    const inputNumber = parseInt(inputValue);
-    const isInputValidNumber = !isNaN(inputNumber);
-    const isInputInfinity = inputValue === 'infinity';
+    const inputNumber = parseInt(input.value);
+    const isValidInput = inputNumber > 0;
 
-    if (!isInputValidNumber) {
-        if (isInputInfinity) {
-            input.value = "Infinity";
-        } else {
-            input.value = "1";
-        }
+    if (!isValidInput) {
+        input.value = '1';
     }
+
+    editor.updateCurrentLevelIterationNumber();
 }
 
 
