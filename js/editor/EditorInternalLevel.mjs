@@ -148,7 +148,7 @@ export default class EditorInternalLevel {
     #getGhostCharacterListForPositionAt(positionList, coordinateString) {
         const ghostCharacterList = [];
         const coordinate = this.#parseCoordinateString(coordinateString);
-        
+
         for (let position of positionList) {
             const isSamePosition = position.x === coordinate.x && position.y === coordinate.y;
             if (isSamePosition) {
@@ -189,13 +189,14 @@ export default class EditorInternalLevel {
 
 
     #updateGhostCoordinateList(coordinateString, currentBoardCharacter, newCharacter) {
-
         const isCurrentCharacterGhost = Configuration.ghostCharacterList.includes(currentBoardCharacter);
+
         if (isCurrentCharacterGhost) {
             this.#removeCoordinateStringFromGhostList(coordinateString, currentBoardCharacter);
         }
 
         const isNewCharacterGhost = Configuration.ghostCharacterList.includes(newCharacter);
+        
         if (isNewCharacterGhost) {
             this.#addCoordinateToGhostList(coordinateString, newCharacter);
         }
