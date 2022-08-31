@@ -62,6 +62,12 @@ export default class Editor {
     }
 
 
+    updateCurrentLevelIterationNumber() {
+        const iterationNumber = document.getElementById('iterationNumberInput').value;
+        this.#internalLevel.numberOfIterations = parseInt(iterationNumber);
+    }
+
+
     resetSpawnScatterControlDisplayStatus() {
         this.#isGhostBlinkyScatterSpawnControlDisplayed = false;
         this.#isGhostPinkyScatterSpawnControlDisplayed = false;
