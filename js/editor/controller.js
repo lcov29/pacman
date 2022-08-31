@@ -120,6 +120,8 @@ function validateLevelIterationInput(event) {
         } else {
             input.value = "1";
         }
+    } else {
+        input.value = inputNumber;
     }
 }
 
