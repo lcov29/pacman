@@ -17,14 +17,6 @@ export default class EditorInternalLevel {
 
 
     constructor() {
-        this.#internalBoard = [[]];
-        this.#scatterPositionList = [];
-        this.#optionalSpawnPositionList = [];
-        this.#bonusSpawnPositionList = [];
-        this.#ghostBlinkyCoordinateList = [];
-        this.#ghostPinkyCoordinateList = [];
-        this.#ghostInkyCoordinateList = [];
-        this.#ghostClydeCoordinateList = [];
         this.#characterToCoordinateListMap = new Map();
     }
 
