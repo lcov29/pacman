@@ -115,11 +115,13 @@ export default class EditorInternalLevel {
     }
 
 
+    // TODO: rename method to removeScatterPositionAt()
     removeScatterPosition(coordinateString) {
        this.#removeCoordinateFromPositionList(this.#scatterPositionList, coordinateString);
     }
 
 
+    // TODO: rename method to removeSpawnPositionAt()
     removeSpawnPosition(coordinateString) {
        this.#removeCoordinateFromPositionList(this.#optionalSpawnPositionList, coordinateString)
     }
