@@ -32,7 +32,7 @@ document.getElementById('mapHeight').addEventListener('blur', validateMapHeightI
 document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
-// add handlers to level iteration input
+document.getElementById('initialLifeInput').addEventListener('blur', validateInitialLifeInput);
 document.getElementById('iterationNumberInput').addEventListener('blur', processLevelIterationInput);
 
 
@@ -77,6 +77,8 @@ function validateMapWidthInput(event) {
         
         if (isWidthInputInvalid) {
             input.value = '';
+        } else {
+            input.value = inputNumber;
         }
     } catch(e) {
         input.value = '';
@@ -94,9 +96,24 @@ function validateMapHeightInput(event) {
 
         if (isHeightInputInvalid) {
             input.value = '';
+        } else {
+            input.value = inputNumber;
         }
     } catch(e) {
         input.value = '';
+    }
+}
+
+
+function validateInitialLifeInput(event) {
+    const input = document.getElementById(event.target.id);
+    const inputNumber = parseInt(input.value);
+    const isInputValidNumber = !isNaN(inputNumber) && inputNumber > 0;
+
+    if (!isInputValidNumber) {
+        input.value = 1;
+    } else {
+        input.value = inputNumber;
     }
 }
 
