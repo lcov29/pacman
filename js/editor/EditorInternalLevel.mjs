@@ -35,14 +35,14 @@ export default class EditorInternalLevel {
 
 
     getGhostCoordinateListFor(ghostCharacter) {
-        const coordinate = this.#characterToCoordinateListMap.get(ghostCharacter);
-        return [...coordinate];
+        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
+        return [...ghostCoordinateList];
     }
 
 
     getGhostCounterFor(ghostCharacter) {
-        const coordinate = this.#characterToCoordinateListMap.get(ghostCharacter);
-        return coordinate.length;
+        const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
+        return ghostCoordinateList.length;
     }
 
 
