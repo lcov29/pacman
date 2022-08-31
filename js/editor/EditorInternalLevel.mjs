@@ -280,7 +280,7 @@ export default class EditorInternalLevel {
         parsedInput = parsedInput.split(',');
         const x = parseInt(parsedInput[0]);
         const y = parseInt(parsedInput[1]);
-        return {'x': x, 'y': y};
+        return {x, y};
     }
 
     
