@@ -1,5 +1,4 @@
 import Configuration from '../global/Configuration.mjs';
-import EditorInternalLevel from './EditorInternalLevel.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
