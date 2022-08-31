@@ -33,11 +33,6 @@ export default class EditorInternalLevel {
     }
 
 
-    get numberOfIterations() {
-        return this.#numberOfIterations;
-    }
-
-
     initialize(width, height) {
         this.#reset();
         this.#buildEmptyBoard(width, height);
