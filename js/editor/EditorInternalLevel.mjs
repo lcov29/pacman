@@ -151,7 +151,7 @@ export default class EditorInternalLevel {
         json.optionalGhostSpawnList = this.#optionalSpawnPositionList;
         json.bonusSpawnPositionList = this.#bonusSpawnPositionList;
         json.numberOfIterations = this.#numberOfIterations;
-        return jsonObject;
+        return json;
     }
 
 
