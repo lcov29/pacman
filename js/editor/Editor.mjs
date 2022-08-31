@@ -23,32 +23,10 @@ export default class Editor {
     constructor() {
         this.#editorContainer = document.getElementById('editorContainer');
         this.#currentState = new EditorDefaultState();
-        this.#inputInitialLifeInput = document.getElementById('initialLifeInput')
+        this.#inputInitialLifeInput = document.getElementById('initialLifeInput');
         this.#initializeDimensionInput();
         this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
-    }
-
-
-    #initializeInternalLevelRotation() {
-        this.#internalLevelRotation = new EditorInternalLevelRotation();
-        this.#internalLevelRotation.initialize(this.getMapWidthInput(), this.getMapWidthInput());
-        this.#internalLevel = this.#internalLevelRotation.getLevel();
-    }
-
-
-    #initializeDimensionInput() {
-        this.#inputMapWidth = document.getElementById('mapWidth');
-        this.#inputMapHeight = document.getElementById('mapHeight');
-
-        this.#inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
-        this.#inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
-
-        this.#inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
-        this.#inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
-
-        this.#inputMapWidth.value = Configuration.editorBoardDefaultWidth;
-        this.#inputMapHeight.value = Configuration.editorBoardDefaultHeight;
     }
 
 
@@ -153,6 +131,16 @@ export default class Editor {
     }
 
 
+    getGhostCharacterFor(buttonId) {
+        return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
+    }
+
+
+    getInternalElement(tileType) {
+        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
+    }
+
+
     isCoordinateBonusSpawnPosition(coordinateString) {
         return this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
     }
@@ -216,18 +204,8 @@ export default class Editor {
 
     sendLevelJson() {
         const itemName = Configuration.customLevelRotationSessionStorageName;
-        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(2);
+        const rotationJsonString = this.#getLevelRotationJSONString();
         window.sessionStorage.setItem(itemName, rotationJsonString);
-    }
-
-
-    getGhostCharacterFor(buttonId) {
-        return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
-    }
-
-
-    getInternalElement(tileType) {
-        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
     }
 
 
@@ -265,6 +243,35 @@ export default class Editor {
 
     handleEditorTileMouseLeave(event) {
         this.#currentState.handleEditorTileMouseLeave(event.target.id);
+    }
+
+
+    #initializeInternalLevelRotation() {
+        this.#internalLevelRotation = new EditorInternalLevelRotation();
+        this.#internalLevelRotation.initialize(this.getMapWidthInput(), this.getMapWidthInput());
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+    }
+
+
+    #initializeDimensionInput() {
+        this.#inputMapWidth = document.getElementById('mapWidth');
+        this.#inputMapHeight = document.getElementById('mapHeight');
+
+        this.#inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
+        this.#inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
+
+        this.#inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
+        this.#inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
+
+        this.#inputMapWidth.value = Configuration.editorBoardDefaultWidth;
+        this.#inputMapHeight.value = Configuration.editorBoardDefaultHeight;
+    }
+
+
+    #getLevelRotationJSONString() {
+        const initialPacmanLifes = this.#inputInitialLifeInput.value;
+        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
+        return rotationJsonString;
     }
 
 
