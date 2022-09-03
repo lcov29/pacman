@@ -224,7 +224,7 @@ function addLevelCallback() {
     addLevelSelectEventListener(newLevelNode);
     insertLevelInRotation(newLevelNode);
     highlightNewLevel();
-    setIterationNumberForSelectedLevel(5);
+    setIterationNumberForSelectedLevel();
 }
 
 
@@ -268,11 +268,12 @@ function highlightNewLevel() {
 }
 
 
-function setIterationNumberForSelectedLevel(iterationNumber) {
+function setIterationNumberForSelectedLevel() {
     const selectedLevel = document.getElementsByClassName('levelSelected')[0];
     const iterationDiv = selectedLevel.children[0];
-    const classInfiniteSymbol = 'displayInfiniteSymbol';
+    const iterationNumber = document.getElementById('iterationNumberInput').value;
     const isInfiniteIteration = iterationNumber === 'Infinity';
+    const classInfiniteSymbol = 'displayInfiniteSymbol';
 
     if (isInfiniteIteration) {
         iterationDiv.classList.add(classInfiniteSymbol);
