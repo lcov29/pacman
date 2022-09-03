@@ -15,12 +15,12 @@ export default class EditorBoardDimensionInput {
 
 
     get width() {
-        return this.#inputWidth.value;
+        return parseInt(this.#inputWidth.value);
     }
 
 
     get height() {
-        return this.#inputHeight.value;
+        return parseInt(this.#inputHeight.value);
     }
 
 
