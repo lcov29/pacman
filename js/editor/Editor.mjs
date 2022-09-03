@@ -2,16 +2,17 @@ import Configuration from '../global/Configuration.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
-import EditorBoardEditingArea from './editorComponents/EditorBoardEditingArea.mjs';
+import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
+import EditorMapDimensionInput from './editorGuiComponents/EditorMapDimensionInput.mjs';
 
 
 export default class Editor {
 
 
     #boardEditingArea = null;
+    #boardDimensionInput = null;
 
-    #inputMapWidth = null;
-    #inputMapHeight = null;
+
     #inputInitialLifeInput = null;
     #internalLevelRotation = null;
     #internalLevel = null;
@@ -24,23 +25,32 @@ export default class Editor {
 
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
+        this.#boardDimensionInput = new EditorMapDimensionInput('mapWidth', 'mapHeight');
         this.#currentState = new EditorDefaultState();
         this.#inputInitialLifeInput = document.getElementById('initialLifeInput');
-        this.#initializeDimensionInput();
         this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
     }
 
 
     initialize() {
+        this.#boardDimensionInput.initialize();
         this.buildBoardEditingArea();
     }
 
 
     buildBoardEditingArea() {
-        const width = this.getMapWidthInput();
-        const height = this.getMapHeightInput();
-        this.#boardEditingArea.build(width, height);
+        this.#boardEditingArea.build(this.#boardDimensionInput.width, this.#boardDimensionInput.height);
+    }
+
+
+    validateMapWidthInput() {
+        this.#boardDimensionInput.validateMapWidthInput();
+    }
+    
+    
+    validateMapHeightInput() {
+        this.#boardDimensionInput.validateMapHeightInput();
     }
 
 
@@ -86,9 +96,7 @@ export default class Editor {
 
 
     resetInternalLevel() {
-        const width = this.getMapWidthInput();
-        const height = this.getMapHeightInput();
-        this.#internalLevel.initialize(width, height);
+        this.#internalLevel.initialize(this.#boardDimensionInput.width, this,this.#boardDimensionInput.height);
     }
 
 
@@ -118,16 +126,6 @@ export default class Editor {
             case Configuration.ghostClydeCharacter:
                 return this.#isGhostClydeScatterSpawnControlDisplayed;
         }
-    }
-
-
-    getMapWidthInput() {
-        return this.#inputMapWidth.value;
-    }
-
-
-    getMapHeightInput() {
-        return this.#inputMapHeight.value;
     }
 
 
@@ -251,23 +249,8 @@ export default class Editor {
 
     #initializeInternalLevelRotation() {
         this.#internalLevelRotation = new EditorInternalLevelRotation();
-        this.#internalLevelRotation.initialize(this.getMapWidthInput(), this.getMapWidthInput());
+        this.#internalLevelRotation.initialize(this.#boardDimensionInput.height, this.#boardDimensionInput.width);
         this.#internalLevel = this.#internalLevelRotation.getLevel();
-    }
-
-
-    #initializeDimensionInput() {
-        this.#inputMapWidth = document.getElementById('mapWidth');
-        this.#inputMapHeight = document.getElementById('mapHeight');
-
-        this.#inputMapWidth.setAttribute('min', Configuration.editorBoardMinWidth);
-        this.#inputMapWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
-
-        this.#inputMapHeight.setAttribute('min', Configuration.editorBoardMinHeight);
-        this.#inputMapHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
-
-        this.#inputMapWidth.value = Configuration.editorBoardDefaultWidth;
-        this.#inputMapHeight.value = Configuration.editorBoardDefaultHeight;
     }
 
 
