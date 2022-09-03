@@ -119,7 +119,7 @@ export default class EditorTileManipulationState {
         for (let ghostCharacter of Configuration.ghostCharacterList) {
 
             const isGhostTypeOnBoard = this.#editor.getCounterForGhostType(ghostCharacter) > 0;
-            const isGhostControlDisplayed = this.#editor.getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter);
+            const isGhostControlDisplayed = this.#editor.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
     
             if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
                 this.#displayScatterSpawnControlsFor(ghostCharacter);
@@ -140,7 +140,7 @@ export default class EditorTileManipulationState {
             document.getElementById(controlId).classList.remove('invisible');
         }
 
-        this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, true);
+        this.#editor.setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
     }
 
 
@@ -153,7 +153,7 @@ export default class EditorTileManipulationState {
             document.getElementById(inputId).value = '';
         }
 
-        this.#editor.setSpawnScatterControlDisplayStatus(ghostCharacter, false);
+        this.#editor.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
     }
 
 
