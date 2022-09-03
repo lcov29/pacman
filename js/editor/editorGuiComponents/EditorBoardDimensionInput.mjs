@@ -52,20 +52,12 @@ export default class EditorBoardDimensionInput {
 
 
     #validateInput(input, minValue, maxValue) {
-        try {
-            const inputNumber = parseInt(input.value);
-            const isInputBelowMinimum = inputNumber < minValue;
-            const isInputAboveMaximum = inputNumber > maxValue;
-            const isInputInvalid = isInputBelowMinimum || isInputAboveMaximum;
-    
-            if (isInputInvalid) {
-                input.value = '';
-            } else {
-                input.value = inputNumber;
-            }
-        } catch(e) {
-            input.value = '';
-        }
+        const inputNumber = parseInt(input.value);
+        const isNumber = !isNaN(inputNumber);
+        const isInRange = (minValue <= inputNumber) && (inputNumber <= maxValue);
+        const isValid = isNumber && isInRange;
+
+        input.value = (isValid) ? inputNumber : '';
     }
 
 
