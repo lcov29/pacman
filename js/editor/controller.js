@@ -2,15 +2,12 @@
 
 import Editor from './Editor.mjs';
 import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
-import EditorScatterSelectionState from './editorStates/EditorScatterSelectionState.mjs';
 import EditorMapDimensionChangeState from './editorStates/EditorMapDimensionChangeState.mjs';
-import EditorSpawnSelectionState from './editorStates/EditorSpawnSelectionState.mjs';
 import Configuration from '../global/Configuration.mjs';
 
 
 const editor = new Editor();
 editor.initialize();
-buttonMapDimensionChangeCallback();
 
 
 
@@ -41,28 +38,6 @@ document.getElementById('initialLifeInput').addEventListener('blur', editor.vali
 document.getElementById('iterationNumberInput').addEventListener('blur', editor.validateLevelIterationInput.bind(editor));
 
 
-// add handlers to scatter spawn control group
-const scatterSpawnInputList = document.querySelectorAll('input[class="inputPosition"]');
-for (let scatterSpawnInput of scatterSpawnInputList) {
-    scatterSpawnInput.addEventListener('mouseenter', inputScatterSpawnMouseEnterCallback);
-    scatterSpawnInput.addEventListener('mouseleave', inputScatterSpawnMouseLeaveCallback);
-}
-
-
-// add handlers to scatter select buttons
-const scatterButtonList = document.querySelectorAll('button[name="buttonScatterPosition"]');
-for (let scatterButton of scatterButtonList) {
-    scatterButton.addEventListener('click', buttonScatterSelectionCallback);
-}
-
-
-// add handlers to spawn select buttons
-const spawnButtonList = document.querySelectorAll('button[name="buttonSpawnPosition"]');
-for (let spawnButton of spawnButtonList) {
-    spawnButton.addEventListener('click', buttonSpawnSelectionCallback);
-}
-
-
 // add handler to play button
 document.getElementById('playLevel').addEventListener('click', buttonPlayCallback);
 
@@ -76,42 +51,12 @@ function radioButtonTileSelectionCallback(event) {
 }
 
 
-function inputScatterSpawnMouseEnterCallback(event) {
-    const coordinateString = document.getElementById(event.target.id).value;
-    const isCoordinateStringValid = coordinateString !== '';
-
-    if (isCoordinateStringValid) {
-       document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
-    }
-}
-
-
-function inputScatterSpawnMouseLeaveCallback(event) {
-    const coordinateString = document.getElementById(event.target.id).value;
-    const isCoordinateStringValid = coordinateString !== '';
-
-    if (isCoordinateStringValid) {
-        document.getElementById(coordinateString).classList.remove('scatterSpawnSelectionPointHighlight');
-    }
-}
-
-
 function buttonMapDimensionChangeCallback() {
     const isMapHeightSet = document.getElementById('mapHeight').value !== '';
     const isMapWidthSet = document.getElementById('mapWidth').value !== '';
     if (isMapHeightSet && isMapWidthSet) {
         editor.setState(new EditorMapDimensionChangeState());
     }
-}
-
-
-function buttonScatterSelectionCallback(event) {
-    editor.setState(new EditorScatterSelectionState(event.target.id));
-}
-
-
-function buttonSpawnSelectionCallback(event) {
-    editor.setState(new EditorSpawnSelectionState(event.target.id));
 }
 
 
