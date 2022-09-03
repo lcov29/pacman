@@ -279,4 +279,9 @@ input[type=radio] {
 #levelAddButton:hover {
     background-color: black;
     transition-duration: 2000ms;
-} 
+}
+
+
+#levelElementTemplate {
+    display: none;
+}
