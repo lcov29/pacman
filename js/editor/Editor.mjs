@@ -4,6 +4,7 @@ import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
 import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
+import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 
 
 export default class Editor {
@@ -11,9 +12,9 @@ export default class Editor {
 
     #boardEditingArea = null;
     #boardDimensionInput = null;
+    #lifeInput = null;
 
 
-    #inputInitialLifeInput = null;
     #internalLevelRotation = null;
     #internalLevel = null;
     #isGhostBlinkyScatterSpawnControlDisplayed = false;
@@ -26,8 +27,11 @@ export default class Editor {
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
         this.#boardDimensionInput = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
+        this.#lifeInput = new EditorLifeInput('initialLifeInput');
+
+
+
         this.#currentState = new EditorDefaultState();
-        this.#inputInitialLifeInput = document.getElementById('initialLifeInput');
         this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
     }
@@ -36,6 +40,7 @@ export default class Editor {
     initialize() {
         this.#boardDimensionInput.initialize();
         this.buildBoardEditingArea();
+        this.#lifeInput.initialize();
     }
 
 
@@ -51,6 +56,11 @@ export default class Editor {
     
     validateMapHeightInput() {
         this.#boardDimensionInput.validateMapHeightInput();
+    }
+
+
+    validateLifeInput() {
+        this.#lifeInput.validate();
     }
 
 
@@ -126,11 +136,6 @@ export default class Editor {
             case Configuration.ghostClydeCharacter:
                 return this.#isGhostClydeScatterSpawnControlDisplayed;
         }
-    }
-
-
-    getInitialLifesInput() {
-        return this.#inputInitialLifeInput.value;
     }
 
 
@@ -255,7 +260,7 @@ export default class Editor {
 
 
     #getLevelRotationJSONString() {
-        const initialPacmanLifes = parseInt(this.#inputInitialLifeInput.value);
+        const initialPacmanLifes = parseInt(this.#lifeInput.life);
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
         return rotationJsonString;
     }
