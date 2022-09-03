@@ -162,6 +162,7 @@ export default class Configuration {
       static editorMaxLife = 10;
       static editorDefaultLife = 3;
 
+      static editorMinIterationNumber = 1;
       static editorDefaultIterationNumber = 1;
       
 
