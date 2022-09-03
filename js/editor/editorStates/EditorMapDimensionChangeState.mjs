@@ -11,10 +11,9 @@ export default class EditorMapDimensionChangeState {
         this.#editor = editor;
         this.#editor.resetSpawnScatterControlDisplayStatus();
         this.#editor.resetInternalLevel();
-        this.#editor.clearMap();
+        this.#editor.buildBoardEditingArea();
         this.#resetScatterInputs();
         this.#resetSpawnInputs();
-        this.#initializeEditingArea();
     }
 
 
@@ -71,28 +70,6 @@ export default class EditorMapDimensionChangeState {
 
         for (let controlId of controlIdList) {
             document.getElementById(controlId).classList.add('invisible');
-        }
-    }
-
-
-    #initializeEditingArea() {
-        const width = this.#editor.getMapWidthInput();
-        const height = this.#editor.getMapHeightInput();
-        this.#editor.setEditorContainerDimension(width, height);
-        
-        for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-                const newDiv = document.createElement('div');
-                const newId = `(${x},${y})`;
-                newDiv.setAttribute('id', newId);
-                newDiv.setAttribute('title', newId);
-                newDiv.setAttribute('class', 'editorTile undefinedTile');
-                newDiv.addEventListener('mouseover', this.#editor.handleEditorTileMouseOver.bind(this.#editor));
-                newDiv.addEventListener('mouseenter', this.#editor.handleEditorTileMouseEnter.bind(this.#editor));
-                newDiv.addEventListener('mouseleave', this.#editor.handleEditorTileMouseLeave.bind(this.#editor));
-                newDiv.addEventListener('click', this.#editor.handleEditorTileClick.bind(this.#editor));
-                this.#editor.addEditorTile(newDiv);
-            }
         }
     }
 
