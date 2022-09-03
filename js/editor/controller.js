@@ -9,6 +9,7 @@ import Configuration from '../global/Configuration.mjs';
 
 
 const editor = new Editor();
+editor.initialize();
 buttonMapDimensionChangeCallback();
 
 
