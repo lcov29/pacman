@@ -274,3 +274,9 @@ input[type=radio] {
     width: 8%;
     min-height: 100%;
 }
+
+
+#levelAddButton:hover {
+    background-color: black;
+    transition-duration: 2000ms;
+} 
