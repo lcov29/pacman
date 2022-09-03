@@ -76,7 +76,7 @@ img {
     grid-column: 1 / 4;
     grid-row: 2;
     border: 0.2rem solid white;
-    padding: 1%;
+    padding: 0.7%;
 }
 
 
@@ -284,4 +284,51 @@ input[type=radio] {
 
 #levelElementTemplate {
     display: none;
+}
+
+
+.level {
+    background-color: black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 1.5rem;
+    min-width: 10%;
+    position: relative;
+}
+
+
+.level:hover {
+    opacity: 0.8;
+}
+
+
+.levelRepetition {
+    padding-left: 0.25em;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+
+.levelDelete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-right: 0.25rem;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    background-color: red;
+    opacity: 0.5;
+}
+
+
+.levelDelete:hover {
+    opacity: 1;
+}
+
+
+.displayInfiniteSymbol::after {
+    content: '\221E';
 }
