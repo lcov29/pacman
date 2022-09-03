@@ -38,7 +38,7 @@ document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDim
 
 
 document.getElementById('initialLifeInput').addEventListener('blur', editor.validateLifeInput.bind(editor));
-document.getElementById('iterationNumberInput').addEventListener('blur', processLevelIterationInput);
+document.getElementById('iterationNumberInput').addEventListener('blur', editor.validateLevelIterationInput.bind(editor));
 
 
 // add handlers to scatter spawn control group
@@ -121,32 +121,8 @@ function buttonPlayCallback() {
 }
 
 
-function processLevelIterationInput(event) {
-    validateLevelIterationInput(event);
-    editor.updateCurrentLevelIterationNumber();
-}
-
 
 // ========== Helper Functions ==========
-
-
-function validateLevelIterationInput(event) {
-    const input = document.getElementById(event.target.id);
-    const inputValue = input.value.toLowerCase();
-    const inputNumber = parseInt(inputValue);
-    const isInputValidNumber = !isNaN(inputNumber) && inputNumber > 0;
-    const isInputInfinity = inputValue === 'infinity';
-
-    if (!isInputValidNumber) {
-        if (isInputInfinity) {
-            input.value = "Infinity";
-        } else {
-            input.value = "1";
-        }
-    } else {
-        input.value = inputNumber;
-    }
-}
 
 
 // workaround to make loading of index.html on github pages possible
