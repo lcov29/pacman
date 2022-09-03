@@ -2,12 +2,15 @@ import Configuration from '../global/Configuration.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
+import EditorBoardEditingArea from './editorComponents/EditorBoardEditingArea.mjs';
 
 
 export default class Editor {
 
 
-    #editorContainer = null;
+    //#editorContainer = null;
+    #boardEditingArea = null;
+
     #inputMapWidth = null;
     #inputMapHeight = null;
     #inputInitialLifeInput = null;
@@ -21,7 +24,7 @@ export default class Editor {
 
 
     constructor() {
-        this.#editorContainer = document.getElementById('editorContainer');
+        this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
         this.#currentState = new EditorDefaultState();
         this.#inputInitialLifeInput = document.getElementById('initialLifeInput');
         this.#initializeDimensionInput();
@@ -30,17 +33,22 @@ export default class Editor {
     }
 
 
+    initialize() {
+        this.buildBoardEditingArea();
+    }
+
+
+    buildBoardEditingArea() {
+        const width = this.getMapWidthInput();
+        const height = this.getMapHeightInput();
+        this.#boardEditingArea.build(width, height);
+    }
+
+
     setState(state) {
         this.#currentState.exit();
         this.#currentState = state;
         this.#currentState.initialize(this);
-    }
-
-
-    setEditorContainerDimension(width, height) {
-        const rootElement = document.querySelector(':root');
-        rootElement.style.setProperty('--editorContainerWidthInTiles', width);
-        rootElement.style.setProperty('--editorContainerHeightInTiles', height);
     }
 
 
@@ -160,11 +168,6 @@ export default class Editor {
     }
 
 
-    addEditorTile(newTile) {
-        this.#editorContainer.appendChild(newTile);
-    }
-
-
     addScatterPosition(buttonId, coordinateString) {
         const ghostCharacter = this.getGhostCharacterFor(buttonId);
         this.#internalLevel.addScatterPosition(ghostCharacter, coordinateString);
@@ -200,13 +203,6 @@ export default class Editor {
 
     removeBonusSpawnPositionAt(coordinateString) {
         this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
-    }
-
-
-    clearMap() {
-        while (this.#editorContainer.firstChild) {
-           this.#editorContainer.removeChild(this.#editorContainer.firstChild);
-        }
     }
 
 
