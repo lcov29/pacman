@@ -329,6 +329,11 @@ input[type=radio] {
 }
 
 
+.levelSelected {
+    border: 0.2rem solid white;
+}
+
+
 .displayInfiniteSymbol::after {
     content: '\221E';
 }
