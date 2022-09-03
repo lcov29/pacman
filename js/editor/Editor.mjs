@@ -3,7 +3,7 @@ import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
 import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
-import EditorMapDimensionInput from './editorGuiComponents/EditorMapDimensionInput.mjs';
+import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
 
 
 export default class Editor {
@@ -25,7 +25,7 @@ export default class Editor {
 
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
-        this.#boardDimensionInput = new EditorMapDimensionInput('mapWidth', 'mapHeight');
+        this.#boardDimensionInput = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
         this.#currentState = new EditorDefaultState();
         this.#inputInitialLifeInput = document.getElementById('initialLifeInput');
         this.#initializeInternalLevelRotation();
