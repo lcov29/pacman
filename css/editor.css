@@ -28,7 +28,7 @@ img {
     row-gap: 1.5rem;
     display: grid;
     grid-template-columns: 1.5fr 10fr 3fr;
-    grid-template-rows: 80fr 10fr;
+    grid-template-rows: 80fr 14fr;
     margin: 2em;
 }
 
@@ -76,6 +76,7 @@ img {
     grid-column: 1 / 4;
     grid-row: 2;
     border: 0.2rem solid white;
+    padding: 1%;
 }
 
 
@@ -249,4 +250,27 @@ input[type=radio] {
 
 .ghostClydeTile {
     background-image: url('../sprites/actors/ghost_clyde/clyde_down.svg');
+}
+
+
+
+/* NEW */
+
+#rotationContainer {
+    display: inline-flex;
+    overflow-x: auto;
+    width: 90%;
+    min-height: 100%;
+    vertical-align: top;
+}
+
+
+#levelAddButton {
+    display: inline;
+    background-color: transparent;
+    border: 0.1rem dashed white;
+    color: white;
+    font-weight: bold;
+    width: 8%;
+    min-height: 100%;
 }
