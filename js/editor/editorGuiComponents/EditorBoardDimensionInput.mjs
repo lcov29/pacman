@@ -1,7 +1,7 @@
 import Configuration from "../../global/Configuration.mjs";
 
 
-export default class EditorMapDimensionInput {
+export default class EditorBoardDimensionInput {
 
 
     #inputWidth = null;
