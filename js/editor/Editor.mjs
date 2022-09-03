@@ -5,6 +5,7 @@ import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
 import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
+import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
 
 
 export default class Editor {
@@ -13,6 +14,7 @@ export default class Editor {
     #boardEditingArea = null;
     #boardDimensionInput = null;
     #lifeInput = null;
+    #levelIterationInput = null;
 
 
     #internalLevelRotation = null;
@@ -28,6 +30,7 @@ export default class Editor {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
         this.#boardDimensionInput = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
         this.#lifeInput = new EditorLifeInput('initialLifeInput');
+        this.#levelIterationInput = new EditorLevelIterationInput('iterationNumberInput');
 
 
 
@@ -41,6 +44,7 @@ export default class Editor {
         this.#boardDimensionInput.initialize();
         this.buildBoardEditingArea();
         this.#lifeInput.initialize();
+        this.#levelIterationInput.initialize();
     }
 
 
@@ -61,6 +65,11 @@ export default class Editor {
 
     validateLifeInput() {
         this.#lifeInput.validate();
+    }
+
+
+    validateLevelIterationInput() {
+        this.#levelIterationInput.validate();
     }
 
 
@@ -86,14 +95,6 @@ export default class Editor {
                 this.#isGhostClydeScatterSpawnControlDisplayed = isDisplayed;
                 break;
         }
-    }
-
-
-    updateCurrentLevelIterationNumber() {
-        const iterationNumber = document.getElementById('iterationNumberInput').value;
-        const isInfinity = iterationNumber === 'Infinity';
-        this.#internalLevel.numberOfIterations = (isInfinity) ? Infinity : parseInt(iterationNumber);
-
     }
 
 
