@@ -12,9 +12,9 @@ export default class Editor {
 
 
     #boardEditingArea = null;
-    #boardDimensionInput = null;
-    #lifeInput = null;
-    #levelIterationInput = null;
+    #inputBoardDimension = null;
+    #inputLife = null;
+    #inputLevelIteration = null;
 
 
     #internalLevelRotation = null;
@@ -28,9 +28,9 @@ export default class Editor {
 
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
-        this.#boardDimensionInput = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
-        this.#lifeInput = new EditorLifeInput('initialLifeInput');
-        this.#levelIterationInput = new EditorLevelIterationInput('iterationNumberInput');
+        this.#inputBoardDimension = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
+        this.#inputLife = new EditorLifeInput('initialLifeInput');
+        this.#inputLevelIteration = new EditorLevelIterationInput('iterationNumberInput');
 
 
 
@@ -41,35 +41,35 @@ export default class Editor {
 
 
     initialize() {
-        this.#boardDimensionInput.initialize();
+        this.#inputBoardDimension.initialize();
         this.buildBoardEditingArea();
-        this.#lifeInput.initialize();
-        this.#levelIterationInput.initialize();
+        this.#inputLife.initialize();
+        this.#inputLevelIteration.initialize();
     }
 
 
     buildBoardEditingArea() {
-        this.#boardEditingArea.build(this.#boardDimensionInput.width, this.#boardDimensionInput.height);
+        this.#boardEditingArea.build(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
     }
 
 
     validateMapWidthInput() {
-        this.#boardDimensionInput.validateMapWidthInput();
+        this.#inputBoardDimension.validateMapWidthInput();
     }
     
     
     validateMapHeightInput() {
-        this.#boardDimensionInput.validateMapHeightInput();
+        this.#inputBoardDimension.validateMapHeightInput();
     }
 
 
     validateLifeInput() {
-        this.#lifeInput.validate();
+        this.#inputLife.validate();
     }
 
 
     validateLevelIterationInput() {
-        this.#levelIterationInput.validate();
+        this.#inputLevelIteration.validate();
     }
 
 
@@ -107,7 +107,7 @@ export default class Editor {
 
 
     resetInternalLevel() {
-        this.#internalLevel.initialize(this.#boardDimensionInput.width, this,this.#boardDimensionInput.height);
+        this.#internalLevel.initialize(this.#inputBoardDimension.width, this,this.#inputBoardDimension.height);
     }
 
 
@@ -255,13 +255,13 @@ export default class Editor {
 
     #initializeInternalLevelRotation() {
         this.#internalLevelRotation = new EditorInternalLevelRotation();
-        this.#internalLevelRotation.initialize(this.#boardDimensionInput.height, this.#boardDimensionInput.width);
+        this.#internalLevelRotation.initialize(this.#inputBoardDimension.height, this.#inputBoardDimension.width);
         this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
     #getLevelRotationJSONString() {
-        const initialPacmanLifes = parseInt(this.#lifeInput.life);
+        const initialPacmanLifes = parseInt(this.#inputLife.life);
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
         return rotationJsonString;
     }
