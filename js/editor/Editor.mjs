@@ -6,6 +6,7 @@ import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
+import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
 
 
 export default class Editor {
@@ -15,14 +16,10 @@ export default class Editor {
     #inputBoardDimension = null;
     #inputLife = null;
     #inputLevelIteration = null;
-
+    #inputScatterSpawn = null;
 
     #internalLevelRotation = null;
     #internalLevel = null;
-    #isGhostBlinkyScatterSpawnControlDisplayed = false;
-    #isGhostPinkyScatterSpawnControlDisplayed = false;
-    #isGhostClydeScatterSpawnControlDisplayed = false;
-    #isGhostInkyScatterSpawnControlDisplayed = false;
     #currentState = null;
 
 
@@ -31,11 +28,11 @@ export default class Editor {
         this.#inputBoardDimension = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
         this.#inputLife = new EditorLifeInput('initialLifeInput');
         this.#inputLevelIteration = new EditorLevelIterationInput('iterationNumberInput');
+        this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
 
 
 
         this.#currentState = new EditorDefaultState();
-        this.#initializeInternalLevelRotation();
         EditorElementMapper.initializeMaps();
     }
 
@@ -45,6 +42,10 @@ export default class Editor {
         this.buildBoardEditingArea();
         this.#inputLife.initialize();
         this.#inputLevelIteration.initialize();
+        this.#inputScatterSpawn.initialize();
+
+        this.#initializeInternalLevelRotation();
+
     }
 
 
@@ -80,34 +81,18 @@ export default class Editor {
     }
 
 
-    setSpawnScatterControlDisplayStatus(ghostCharacter, isDisplayed) {
-        switch(ghostCharacter) {
-            case Configuration.ghostBlinkyCharacter:
-                this.#isGhostBlinkyScatterSpawnControlDisplayed = isDisplayed;
-                break;
-            case Configuration.ghostPinkyCharacter:
-                this.#isGhostPinkyScatterSpawnControlDisplayed = isDisplayed;
-                break;
-            case Configuration.ghostInkyCharacter:
-                this.#isGhostInkyScatterSpawnControlDisplayed = isDisplayed;
-                break;
-            case Configuration.ghostClydeCharacter:
-                this.#isGhostClydeScatterSpawnControlDisplayed = isDisplayed;
-                break;
-        }
+    setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
+        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed);
     }
 
 
     resetSpawnScatterControlDisplayStatus() {
-        this.#isGhostBlinkyScatterSpawnControlDisplayed = false;
-        this.#isGhostPinkyScatterSpawnControlDisplayed = false;
-        this.#isGhostClydeScatterSpawnControlDisplayed = false;
-        this.#isGhostInkyScatterSpawnControlDisplayed = false;
+        this.#inputScatterSpawn.resetSpawnScatterControlDisplayStatus();
     }
 
 
     resetInternalLevel() {
-        this.#internalLevel.initialize(this.#inputBoardDimension.width, this,this.#inputBoardDimension.height);
+        this.#internalLevel.initialize(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
     }
 
 
@@ -126,17 +111,8 @@ export default class Editor {
     }
 
 
-    getScatterSpawnControlDisplayStatusForGhostType(ghostCharacter) {
-        switch(ghostCharacter) {
-            case Configuration.ghostBlinkyCharacter:
-                return this.#isGhostBlinkyScatterSpawnControlDisplayed;
-            case Configuration.ghostPinkyCharacter:
-                return this.#isGhostPinkyScatterSpawnControlDisplayed;
-            case Configuration.ghostInkyCharacter:
-                return this.#isGhostInkyScatterSpawnControlDisplayed;
-            case Configuration.ghostClydeCharacter:
-                return this.#isGhostClydeScatterSpawnControlDisplayed;
-        }
+    getScatterSpawnControlDisplayStatusFor(ghostCharacter) {
+        return this.#inputScatterSpawn.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
     }
 
 
