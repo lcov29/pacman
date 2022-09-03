@@ -158,6 +158,8 @@ export default class Configuration {
       static editorBoardMaxWidth = 30;
       static editorBoardDefaultWidth = 20;
 
+      static editorMinLife = 1;
+      static editorMaxLife = 10;
       static editorDefaultLife = 3;
       
 
