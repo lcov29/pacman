@@ -8,7 +8,6 @@ import EditorBoardEditingArea from './editorComponents/EditorBoardEditingArea.mj
 export default class Editor {
 
 
-    //#editorContainer = null;
     #boardEditingArea = null;
 
     #inputMapWidth = null;
