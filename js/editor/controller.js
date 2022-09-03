@@ -32,8 +32,8 @@ editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouse
 
 
 // add handlers to map dimension controls
-document.getElementById('mapWidth').addEventListener('blur', validateMapWidthInput);
-document.getElementById('mapHeight').addEventListener('blur', validateMapHeightInput);
+document.getElementById('mapWidth').addEventListener('blur', editor.validateMapWidthInput.bind(editor));
+document.getElementById('mapHeight').addEventListener('blur', editor.validateMapHeightInput.bind(editor));
 document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
@@ -137,44 +137,6 @@ function validateInitialLifeInput(event) {
 function processLevelIterationInput(event) {
     validateLevelIterationInput(event);
     editor.updateCurrentLevelIterationNumber();
-}
-
-
-function validateMapWidthInput(event) {
-    const input = document.getElementById(event.target.id);
-    try {
-        const inputNumber = parseInt(input.value);
-        const isWidthInputBelowMinimum = inputNumber < Configuration.editorBoardMinWidth;
-        const isWidthInputAboveMaximum = inputNumber > Configuration.editorBoardMaxWidth;
-        const isWidthInputInvalid = isWidthInputBelowMinimum || isWidthInputAboveMaximum;
-        
-        if (isWidthInputInvalid) {
-            input.value = '';
-        } else {
-            input.value = inputNumber;
-        }
-    } catch(e) {
-        input.value = '';
-    }
-}
-
-
-function validateMapHeightInput(event) {
-    const input = document.getElementById(event.target.id);
-    try {
-        const inputNumber = parseInt(input.value);
-        const isHeightInputBelowMinimum = inputNumber < Configuration.editorBoardMinHeight;
-        const isHeightInputAboveMaximum = inputNumber > Configuration.editorBoardMaxHeight;
-        const isHeightInputInvalid = isHeightInputBelowMinimum || isHeightInputAboveMaximum;
-
-        if (isHeightInputInvalid) {
-            input.value = '';
-        } else {
-            input.value = inputNumber;
-        }
-    } catch(e) {
-        input.value = '';
-    }
 }
 
 
