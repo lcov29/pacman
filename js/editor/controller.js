@@ -37,7 +37,7 @@ document.getElementById('mapHeight').addEventListener('blur', editor.validateMap
 document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
 
 
-document.getElementById('initialLifeInput').addEventListener('blur', validateInitialLifeInput);
+document.getElementById('initialLifeInput').addEventListener('blur', editor.validateLifeInput.bind(editor));
 document.getElementById('iterationNumberInput').addEventListener('blur', processLevelIterationInput);
 
 
@@ -118,19 +118,6 @@ function buttonSpawnSelectionCallback(event) {
 function buttonPlayCallback() {
     editor.sendLevelJson();
     loadIndexPage();
-}
-
-
-function validateInitialLifeInput(event) {
-    const input = document.getElementById(event.target.id);
-    const inputNumber = parseInt(input.value);
-    const isInputValidNumber = !isNaN(inputNumber) && inputNumber > 0;
-
-    if (!isInputValidNumber) {
-        input.value = 1;
-    } else {
-        input.value = inputNumber;
-    }
 }
 
 
