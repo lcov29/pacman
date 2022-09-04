@@ -44,15 +44,6 @@ function radioButtonTileSelectionCallback(event) {
 }
 
 
-function buttonMapDimensionChangeCallback() {
-    const isMapHeightSet = document.getElementById('mapHeight').value !== '';
-    const isMapWidthSet = document.getElementById('mapWidth').value !== '';
-    if (isMapHeightSet && isMapWidthSet) {
-        editor.setState(new EditorMapDimensionChangeState());
-    }
-}
-
-
 function buttonPlayCallback() {
     editor.sendLevelJson();
     loadIndexPage();
