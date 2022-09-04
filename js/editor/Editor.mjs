@@ -67,6 +67,12 @@ export default class Editor {
     }
 
 
+    handleLevelIterationNumberChange() {
+        const levelIterationNumber = this.#inputLevelIteration.levelIterationNumber;
+        this.#levelRotationBar.setIterationNumberForSelectedLevel(levelIterationNumber);
+    }
+
+
     // =================================================================================
 
 
@@ -85,12 +91,6 @@ export default class Editor {
 
     validateLifeInput() {
         this.#inputLife.validate();
-    }
-
-
-    updateIterationNumberForCurrentLevel() {
-        const levelIterationNumber = this.#inputLevelIteration.levelIterationNumber;
-        this.#levelRotationBar.setIterationNumberForSelectedLevel(levelIterationNumber);
     }
 
 
