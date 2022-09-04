@@ -1,7 +1,6 @@
 'use strict';
 
 import Editor from './Editor.mjs';
-import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
 import Configuration from '../global/Configuration.mjs';
 
 
@@ -15,12 +14,12 @@ editor.initialize();
 
 // add handlers to level elements in selector bar
 const radioList = document.querySelectorAll('input[name="selectors"]');
-for (let radio of radioList) {
-    radio.addEventListener('click', radioButtonTileSelectionCallback);
+for (const radio of radioList) {
+    radio.addEventListener('click', editor.handleSelectionTileClick.bind(editor));
 }
 
 
-// add handlers to editor container (enable drawing level elements while keeping the mouse button pressed)
+// add handlers to editor container (enable drawing level elements while keeping the mouse pressed)
 const editorContainer = document.getElementById('editorContainer');
 editorContainer.addEventListener('mousedown', editor.handleEditorContainerMouseDown.bind(editor));
 editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.bind(editor));
@@ -33,11 +32,6 @@ document.getElementById('playLevel').addEventListener('click', buttonPlayCallbac
 
 
 // ========== Callback Functions For Event Listeners ==========
-
-
-function radioButtonTileSelectionCallback(event) {
-    editor.setState(new EditorTileManipulationState(event.target.id));
-}
 
 
 function buttonPlayCallback() {
