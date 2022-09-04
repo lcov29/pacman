@@ -28,12 +28,6 @@ editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
 
 
-// add handlers to map dimension controls
-document.getElementById('mapWidth').addEventListener('blur', editor.validateMapWidthInput.bind(editor));
-document.getElementById('mapHeight').addEventListener('blur', editor.validateMapHeightInput.bind(editor));
-document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDimensionChangeCallback);
-
-
 document.getElementById('initialLifeInput').addEventListener('blur', editor.validateLifeInput.bind(editor));
 
 
