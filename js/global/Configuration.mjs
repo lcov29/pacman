@@ -150,6 +150,8 @@ export default class Configuration {
       static fileNameIndex = 'index.html';
       static fileNameEditor = 'editor.html';
 
+      static editorLevelDeletionPromptMessage = 'Delete this level?';
+
       static editorBoardMinHeight = 4;
       static editorBoardMaxHeight = 30;
       static editorBoardDefaultHeight = 20;
