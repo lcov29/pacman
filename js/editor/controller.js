@@ -27,9 +27,6 @@ editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
 
 
-document.getElementById('initialLifeInput').addEventListener('blur', editor.validateLifeInput.bind(editor));
-
-
 // add handler to play button
 document.getElementById('playLevel').addEventListener('click', buttonPlayCallback);
 
