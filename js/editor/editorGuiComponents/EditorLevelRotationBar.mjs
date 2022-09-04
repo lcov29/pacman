@@ -112,9 +112,9 @@ export default class EditorLevelRotationBar {
 
     #setLevelIterationNumberFor(levelElement, levelIterationNumber) {
         const iterationDiv = levelElement.children[0];
-        const isInfiniteIteration = levelIterationNumber === 'Infinity';
+        const isInfinity = levelIterationNumber === 'Infinity' || !isFinite(levelIterationNumber);
     
-        if (isInfiniteIteration) {
+        if (isInfinity) {
             iterationDiv.classList.add(this.#cssClassDisplayInfiniteSymbol);
             iterationDiv.innerText = '';
         } else {
