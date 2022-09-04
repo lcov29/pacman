@@ -6,6 +6,7 @@ export default class EditorLevelIterationInput {
 
     #editor = null;
     #inputLevelIteration = null;
+    #previousLevelIteration = -1;
 
 
     constructor(editorReference) {
@@ -30,12 +31,18 @@ export default class EditorLevelIterationInput {
 
     reset() {
         this.#inputLevelIteration.value = Configuration.editorDefaultIterationNumber;
+        this.#previousLevelIteration = Configuration.editorDefaultIterationNumber;
     }
 
 
     updateLevelIterationInputCallback() {
-        this.#validate();
-        this.#editor.updateIterationNumberForCurrentLevel();
+        const isValid = this.#validate();
+        const isUpdated = this.#isLevelIterationUpdated();
+
+        if (isValid && isUpdated) {
+            this.#updatePreviousLevelIteration();
+            this.#editor.handleLevelIterationNumberChange();
+        }
     }
 
 
@@ -56,8 +63,20 @@ export default class EditorLevelIterationInput {
         if (isValidNumber) {
             this.#inputLevelIteration.value = inputNumber;
         } else {
-            this.#inputLevelIteration.value = (isInfinity) ? 'Infinity' : Configuration.editorDefaultIterationNumber;
+            this.#inputLevelIteration.value = (isInfinity) ? 'Infinity' : this.#previousLevelIteration;
         }
+        return isValidNumber || isInfinity;
+    }
+
+
+    #isLevelIterationUpdated() {
+        // use unstrict comparison operator because input can contain a string ('Infinity') or number
+        return this.#inputLevelIteration.value != this.#previousLevelIteration;
+    }
+
+
+    #updatePreviousLevelIteration() {
+        this.#previousLevelIteration = this.#inputLevelIteration.value;
     }
 
 
