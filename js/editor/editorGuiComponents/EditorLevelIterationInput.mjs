@@ -4,11 +4,13 @@ import Configuration from "../../global/Configuration.mjs";
 export default class EditorLevelIterationInput {
 
 
+    #editor = null;
     #inputLevelIteration = null;
 
 
-    constructor(inputLevelIterationId) {
-        this.#inputLevelIteration = document.getElementById(inputLevelIterationId);
+    constructor(editorReference) {
+        this.#editor = editorReference;
+        this.#inputLevelIteration = document.getElementById('iterationNumberInput');
     }
 
 
@@ -21,6 +23,7 @@ export default class EditorLevelIterationInput {
 
 
     initialize() {
+        this.#addInputBlurEventListener();
         this.reset();
     }
 
@@ -30,7 +33,18 @@ export default class EditorLevelIterationInput {
     }
 
 
-    validate() {
+    updateLevelIterationInputCallback() {
+        this.#validate();
+        this.#editor.updateIterationNumberForCurrentLevel();
+    }
+
+
+    #addInputBlurEventListener() {
+        this.#inputLevelIteration.addEventListener('blur', this.updateLevelIterationInputCallback.bind(this));
+    }
+
+
+    #validate() {
         const inputText = this.#inputLevelIteration.value;
         const inputNumber = parseInt(inputText);
 

@@ -35,7 +35,6 @@ document.getElementById('buttonMapSizer').addEventListener('click', buttonMapDim
 
 
 document.getElementById('initialLifeInput').addEventListener('blur', editor.validateLifeInput.bind(editor));
-document.getElementById('iterationNumberInput').addEventListener('blur', editor.validateLevelIterationInput.bind(editor));
 
 
 // add handler to play button
