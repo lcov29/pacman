@@ -67,16 +67,6 @@ export default class Editor {
     }
 
 
-    validateMapWidthInput() {
-        this.#inputBoardDimension.validateMapWidthInput();
-    }
-    
-    
-    validateMapHeightInput() {
-        this.#inputBoardDimension.validateMapHeightInput();
-    }
-
-
     validateLifeInput() {
         this.#inputLife.validate();
     }
