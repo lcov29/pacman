@@ -29,7 +29,7 @@ export default class Editor {
 
 
     constructor() {
-        this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
+        this.#boardEditingArea = new EditorBoardEditingArea(this);
         this.#inputBoardDimension = new EditorBoardDimensionInput(this);
         this.#inputLife = new EditorLifeInput('initialLifeInput');
         this.#inputLevelIteration = new EditorLevelIterationInput(this);
@@ -44,8 +44,8 @@ export default class Editor {
 
 
     initialize() {
+        this.#boardEditingArea.initialize();
         this.#inputBoardDimension.initialize();
-        this.buildBoardEditingArea();
         this.#inputLife.initialize();
         this.#inputLevelIteration.initialize();
         this.#inputScatterSpawn.initialize();
@@ -57,8 +57,8 @@ export default class Editor {
 
     handleBoardDimensionChange() {
         this.#inputScatterSpawn.reset();
-        this.buildBoardEditingArea();
-        this.resetInternalLevel();
+        this.#buildBoardEditingArea();
+        this.#resetInternalLevel();
     }
 
 
@@ -71,7 +71,7 @@ export default class Editor {
     }
 
 
-    buildBoardEditingArea() {
+    #buildBoardEditingArea() {
         const width = this.#inputBoardDimension.width;
         const height = this.#inputBoardDimension.height;
         this.#boardEditingArea.build(width, height);
@@ -101,7 +101,7 @@ export default class Editor {
     }
 
 
-    resetInternalLevel() {
+    #resetInternalLevel() {
         this.#internalLevel.initialize(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
     }
 
