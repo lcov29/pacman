@@ -9,6 +9,7 @@ import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIteratio
 import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
 import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
 import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
+import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
 
 
 export default class Editor {
@@ -20,6 +21,7 @@ export default class Editor {
     #inputLevelIteration = null;
     #inputScatterSpawn = null;
     #levelRotationBar = null;
+    #saveButton = null;
 
     #lastAssignedLevelId = 0;
 
@@ -36,6 +38,7 @@ export default class Editor {
         this.#inputLevelIteration = new EditorLevelIterationInput(this);
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
         this.#levelRotationBar = new EditorLevelRotationBar(this);
+        this.#saveButton = new EditorSaveButton(this);
 
 
 
@@ -51,6 +54,7 @@ export default class Editor {
         this.#inputLevelIteration.initialize();
         this.#inputScatterSpawn.initialize();
         this.#levelRotationBar.initialize();
+        this.#saveButton.initialize();
 
         this.#initializeInternalLevelRotation();
     }
@@ -78,6 +82,26 @@ export default class Editor {
     handleLevelIterationNumberChange() {
         const levelIterationNumber = this.#inputLevelIteration.levelIterationNumber;
         this.#levelRotationBar.setIterationNumberForSelectedLevel(levelIterationNumber);
+    }
+
+
+    handleButtonSaveClick() {
+        this.#sendLevelJson();
+        this.#loadIndexPage();
+    }
+
+
+    #sendLevelJson() {
+        const itemName = Configuration.customLevelRotationSessionStorageName;
+        const rotationJsonString = this.#getLevelRotationJSONString();
+        window.sessionStorage.setItem(itemName, rotationJsonString);
+    }
+
+
+    #loadIndexPage() {
+        // workaround for loading of index.html on github pages
+        const url = location.href;
+        location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
     }
 
 
@@ -205,13 +229,6 @@ export default class Editor {
 
     removeBonusSpawnPositionAt(coordinateString) {
         this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
-    }
-
-
-    sendLevelJson() {
-        const itemName = Configuration.customLevelRotationSessionStorageName;
-        const rotationJsonString = this.#getLevelRotationJSONString();
-        window.sessionStorage.setItem(itemName, rotationJsonString);
     }
 
 
