@@ -4,13 +4,15 @@ import Configuration from "../../global/Configuration.mjs";
 export default class EditorBoardDimensionInput {
 
 
+    #editor = null;
     #inputWidth = null;
     #inputHeight = null;
 
 
-    constructor(inputWidthId, inputHeightId) {
-        this.#inputWidth = document.getElementById(inputWidthId);
-        this.#inputHeight = document.getElementById(inputHeightId);
+    constructor(editorReference) {
+        this.#editor = editorReference;
+        this.#inputWidth = document.getElementById('mapWidth');
+        this.#inputHeight = document.getElementById('mapHeight');
     }
 
 
@@ -25,12 +27,7 @@ export default class EditorBoardDimensionInput {
 
 
     initialize() {
-        this.#inputWidth.setAttribute('min', Configuration.editorBoardMinWidth);
-        this.#inputWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
-
-        this.#inputHeight.setAttribute('min', Configuration.editorBoardMinHeight);
-        this.#inputHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
-
+        this.#initializeMinMaxAttributes();
         this.reset();
     }
 
@@ -48,6 +45,15 @@ export default class EditorBoardDimensionInput {
     
     validateMapHeightInput() {
         this.#validateInput(this.#inputHeight, Configuration.editorBoardMinHeight, Configuration.editorBoardMaxHeight);
+    }
+
+
+    #initializeMinMaxAttributes() {
+        this.#inputWidth.setAttribute('min', Configuration.editorBoardMinWidth);
+        this.#inputWidth.setAttribute('max', Configuration.editorBoardMaxWidth);
+
+        this.#inputHeight.setAttribute('min', Configuration.editorBoardMinHeight);
+        this.#inputHeight.setAttribute('max', Configuration.editorBoardMaxHeight);
     }
 
 

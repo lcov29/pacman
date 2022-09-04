@@ -30,7 +30,7 @@ export default class Editor {
 
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
-        this.#inputBoardDimension = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
+        this.#inputBoardDimension = new EditorBoardDimensionInput(this);
         this.#inputLife = new EditorLifeInput('initialLifeInput');
         this.#inputLevelIteration = new EditorLevelIterationInput(this);
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
