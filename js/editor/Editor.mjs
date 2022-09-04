@@ -32,7 +32,7 @@ export default class Editor {
         this.#boardEditingArea = new EditorBoardEditingArea('editorContainer', this);
         this.#inputBoardDimension = new EditorBoardDimensionInput('mapWidth', 'mapHeight');
         this.#inputLife = new EditorLifeInput('initialLifeInput');
-        this.#inputLevelIteration = new EditorLevelIterationInput('iterationNumberInput');
+        this.#inputLevelIteration = new EditorLevelIterationInput(this);
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
         this.#levelRotationBar = new EditorLevelRotationBar(this);
 
@@ -82,8 +82,9 @@ export default class Editor {
     }
 
 
-    validateLevelIterationInput() {
-        this.#inputLevelIteration.validate();
+    updateIterationNumberForCurrentLevel() {
+        const levelIterationNumber = this.#inputLevelIteration.levelIterationNumber;
+        this.#levelRotationBar.setIterationNumberForSelectedLevel(levelIterationNumber);
     }
 
 
