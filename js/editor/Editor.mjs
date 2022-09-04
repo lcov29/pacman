@@ -31,7 +31,7 @@ export default class Editor {
     constructor() {
         this.#boardEditingArea = new EditorBoardEditingArea(this);
         this.#inputBoardDimension = new EditorBoardDimensionInput(this);
-        this.#inputLife = new EditorLifeInput('initialLifeInput');
+        this.#inputLife = new EditorLifeInput(this);
         this.#inputLevelIteration = new EditorLevelIterationInput(this);
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
         this.#levelRotationBar = new EditorLevelRotationBar(this);
@@ -59,6 +59,11 @@ export default class Editor {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
         this.#resetInternalLevel();
+    }
+
+
+    handleLifeInputChange() {
+        const newLifeNumber = this.#inputLife.life;
     }
 
 
