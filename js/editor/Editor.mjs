@@ -7,6 +7,7 @@ import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensio
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
 import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
+import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
 
 
 export default class Editor {
@@ -17,6 +18,10 @@ export default class Editor {
     #inputLife = null;
     #inputLevelIteration = null;
     #inputScatterSpawn = null;
+    #levelRotationBar = null;
+
+    #lastAssignedLevelId = 0;
+
 
     #internalLevelRotation = null;
     #internalLevel = null;
@@ -29,6 +34,7 @@ export default class Editor {
         this.#inputLife = new EditorLifeInput('initialLifeInput');
         this.#inputLevelIteration = new EditorLevelIterationInput('iterationNumberInput');
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
+        this.#levelRotationBar = new EditorLevelRotationBar(this);
 
 
 
@@ -43,9 +49,16 @@ export default class Editor {
         this.#inputLife.initialize();
         this.#inputLevelIteration.initialize();
         this.#inputScatterSpawn.initialize();
+        this.#levelRotationBar.initialize();
 
         this.#initializeInternalLevelRotation();
 
+    }
+
+
+    buildNextLevelId() {
+        this.#lastAssignedLevelId++;
+        return `level${this.#lastAssignedLevelId}`;
     }
 
 
