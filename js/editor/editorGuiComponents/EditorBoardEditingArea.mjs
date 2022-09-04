@@ -15,6 +15,7 @@ export default class EditorBoardEditingArea {
 
 
     initialize() {
+        this.#initializeEventListeners();
         this.build(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
     }
 
@@ -23,6 +24,29 @@ export default class EditorBoardEditingArea {
         this.#setCSSVariables(width, height);
         this.#clearBoardEditingArea();
         this.#buildBoardEditingArea(width, height);
+    }
+
+
+    mouseDownCallback(event) {
+        this.#editor.handleEditorContainerMouseDown(event);
+    }
+
+    
+    mouseUpCallback(event) {
+        this.#editor.handleEditorContainerMouseUp(event);
+    }
+
+
+    mouseLeaveCallback(event) {
+        this.#editor.handleEditorContainerMouseLeave(event);
+    }
+
+
+    #initializeEventListeners() {
+        // event listeners enable drawing level elements while keeping the mouse pressed
+        this.#boardEditingArea.addEventListener('mousedown', this.mouseDownCallback.bind(this));
+        this.#boardEditingArea.addEventListener('mouseup', this.mouseUpCallback.bind(this));
+        this.#boardEditingArea.addEventListener('mouseleave', this.mouseLeaveCallback.bind(this));
     }
 
 
