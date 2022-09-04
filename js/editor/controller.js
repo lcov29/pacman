@@ -2,7 +2,6 @@
 
 import Editor from './Editor.mjs';
 import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
-import EditorMapDimensionChangeState from './editorStates/EditorMapDimensionChangeState.mjs';
 import Configuration from '../global/Configuration.mjs';
 
 
