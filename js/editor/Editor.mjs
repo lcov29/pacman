@@ -8,6 +8,7 @@ import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
 import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
 import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
+import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
 
 
 export default class Editor {
@@ -52,6 +53,13 @@ export default class Editor {
         this.#levelRotationBar.initialize();
 
         this.#initializeInternalLevelRotation();
+    }
+
+
+    handleSelectionTileClick(event) {
+        const tileElementId = event.target.id;
+        const newState = new EditorTileManipulationState(tileElementId);
+        this.setState(newState);
     }
 
 
