@@ -1,3 +1,6 @@
+import Configuration from "../../global/Configuration.mjs";
+
+
 export default class EditorBoardEditingArea {
 
 
@@ -5,20 +8,25 @@ export default class EditorBoardEditingArea {
     #editor = null;
 
 
-    constructor(id, editorReference) {
-        this.#boardEditingArea = document.getElementById(id);
+    constructor(editorReference) {
         this.#editor = editorReference;
+        this.#boardEditingArea = document.getElementById('editorContainer');
+    }
+
+
+    initialize() {
+        this.build(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
     }
 
 
     build(width, height) {
-        this.#initializeCSSVariables(width, height);
+        this.#setCSSVariables(width, height);
         this.#clearBoardEditingArea();
-        this.#initializeBoardEditingArea(width, height);
+        this.#buildBoardEditingArea(width, height);
     }
 
 
-    #initializeCSSVariables(width, height) {
+    #setCSSVariables(width, height) {
         const rootElement = document.querySelector(':root');
         rootElement.style.setProperty('--editorContainerWidthInTiles', width);
         rootElement.style.setProperty('--editorContainerHeightInTiles', height);
@@ -32,7 +40,7 @@ export default class EditorBoardEditingArea {
     }
 
 
-    #initializeBoardEditingArea(width, height) {
+    #buildBoardEditingArea(width, height) {
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
                 const boardElement = this.#createBoardElement(x, y);
