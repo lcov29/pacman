@@ -52,8 +52,17 @@ export default class Editor {
         this.#levelRotationBar.initialize();
 
         this.#initializeInternalLevelRotation();
-
     }
+
+
+    handleBoardDimensionChange() {
+        this.#inputScatterSpawn.reset();
+        this.buildBoardEditingArea();
+        this.resetInternalLevel();
+    }
+
+
+    // =================================================================================
 
 
     buildNextLevelId() {
@@ -63,7 +72,9 @@ export default class Editor {
 
 
     buildBoardEditingArea() {
-        this.#boardEditingArea.build(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
+        const width = this.#inputBoardDimension.width;
+        const height = this.#inputBoardDimension.height;
+        this.#boardEditingArea.build(width, height);
     }
 
 
@@ -87,11 +98,6 @@ export default class Editor {
 
     setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
         this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed);
-    }
-
-
-    resetSpawnScatterControlDisplayStatus() {
-        this.#inputScatterSpawn.resetSpawnScatterControlDisplayStatus();
     }
 
 
