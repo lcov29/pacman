@@ -1,15 +1,10 @@
 'use strict';
 
 import Editor from './Editor.mjs';
-import Configuration from '../global/Configuration.mjs';
 
 
 const editor = new Editor();
 editor.initialize();
-
-
-
-// ========== Add Event Listeners ==========
 
 
 // add handlers to level elements in selector bar
@@ -24,28 +19,3 @@ const editorContainer = document.getElementById('editorContainer');
 editorContainer.addEventListener('mousedown', editor.handleEditorContainerMouseDown.bind(editor));
 editorContainer.addEventListener('mouseup', editor.handleEditorContainerMouseUp.bind(editor));
 editorContainer.addEventListener('mouseleave', editor.handleEditorContainerMouseLeave.bind(editor));
-
-
-// add handler to play button
-document.getElementById('playLevel').addEventListener('click', buttonPlayCallback);
-
-
-
-// ========== Callback Functions For Event Listeners ==========
-
-
-function buttonPlayCallback() {
-    editor.sendLevelJson();
-    loadIndexPage();
-}
-
-
-
-// ========== Helper Functions ==========
-
-
-// workaround to make loading of index.html on github pages possible
-function loadIndexPage() {
-    const url = location.href;
-    location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
-}
