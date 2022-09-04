@@ -50,7 +50,7 @@ export default class EditorBoardDimensionInput {
 
         if (isValid && isUpdated) {
             this.#updatePreviousWidth();
-            this.#editor.buildBoardEditingArea();        
+            this.#editor.handleBoardDimensionChange();        
         }
     }
 
@@ -61,7 +61,7 @@ export default class EditorBoardDimensionInput {
 
         if (isValid && isUpdated) {
             this.#updatePreviousHeight();
-            this.#editor.buildBoardEditingArea();
+            this.#editor.handleBoardDimensionChange();
         }
     }
 
