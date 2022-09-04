@@ -7,6 +7,7 @@ export default class EditorScatterSpawnInput {
 
 
     #editor = null;
+    #inputControlIdList = [];
     #isGhostBlinkyScatterSpawnControlDisplayed = false;
     #isGhostPinkyScatterSpawnControlDisplayed = false;
     #isGhostClydeScatterSpawnControlDisplayed = false;
@@ -19,6 +20,7 @@ export default class EditorScatterSpawnInput {
 
 
     initialize() {
+        this.#initializeInputControlIdList();
         this.#initializeScatterSpawnInputMouseEventListeners();
         this.#initializeScatterButtonsEventListener();
         this.#initializeSpawnButtonsEventListener();
@@ -57,11 +59,42 @@ export default class EditorScatterSpawnInput {
     }
 
 
-    resetSpawnScatterControlDisplayStatus() {
+    reset() {
+        this.#resetSpawnScatterInputElements();
+        this.#resetSpawnScatterControlDisplayStatus();
+    }
+
+
+    #resetSpawnScatterInputElements() {
+        for (const element of this.#inputControlIdList) {
+            const inputElement = document.getElementById(element.inputId);
+            const controlElement = document.getElementById(element.controlId);
+
+            inputElement.value = '';
+            controlElement.classList.add('invisible');
+        }
+    }
+
+
+    #resetSpawnScatterControlDisplayStatus() {
         this.#isGhostBlinkyScatterSpawnControlDisplayed = false;
         this.#isGhostPinkyScatterSpawnControlDisplayed = false;
         this.#isGhostClydeScatterSpawnControlDisplayed = false;
         this.#isGhostInkyScatterSpawnControlDisplayed = false;
+    }
+
+
+    #initializeInputControlIdList() {
+        this.#inputControlIdList = [
+            {inputId: 'scatterPositionGhostBlinky', controlId: 'scatterControlGhostBlinky'},
+            {inputId: 'scatterPositionGhostPinky', controlId: 'scatterControlGhostPinky'},
+            {inputId: 'scatterPositionGhostInky', controlId: 'scatterControlGhostInky'},
+            {inputId: 'scatterPositionGhostClyde', controlId: 'scatterControlGhostClyde'},
+            {inputId: 'spawnPositionGhostBlinky', controlId: 'spawnControlGhostBlinky'},
+            {inputId: 'spawnPositionGhostPinky', controlId: 'spawnControlGhostPinky'},
+            {inputId: 'spawnPositionGhostInky', controlId: 'spawnControlGhostInky'},
+            {inputId: 'spawnPositionGhostClyde', controlId: 'spawnControlGhostClyde'}
+        ];
     }
 
 
