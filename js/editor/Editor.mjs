@@ -139,6 +139,17 @@ export default class Editor {
     }
 
 
+    updateInternalBoard(coordinateString, element) {
+        const internalElement = this.getInternalElement(element);
+        this.#internalLevel.update(coordinateString, internalElement);
+    }
+
+
+    getInternalElement(tileType) {
+        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
+    }
+
+
     // =================================================================================
 
     setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
@@ -186,19 +197,8 @@ export default class Editor {
     }
 
 
-    getInternalElement(tileType) {
-        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
-    }
-
-
     isCoordinateBonusSpawnPosition(coordinateString) {
         return this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
-    }
-
-
-    updateInternalBoard(coordinateString, element) {
-        const internalElement = this.getInternalElement(element);
-        this.#internalLevel.update(coordinateString, internalElement);
     }
 
 
