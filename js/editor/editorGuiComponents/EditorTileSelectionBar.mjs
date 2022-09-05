@@ -28,7 +28,6 @@ export default class EditorTileSelectionBar {
         this.#setSelectedTileId(event.target.id);
         const newState = new EditorTileManipulationState();
         this.#editor.setState(newState);
-        window.alert(`tileClickCallback for current element: ${this.selectedElement}`);
     }
 
 
