@@ -83,7 +83,7 @@ export default class EditorTileManipulationState {
 
 
     #updateBonusSpawnList(coordinateString, nextTileType) {
-        const isBonusSpawnOverwritten =this.#editor.isCoordinateBonusSpawnPosition(coordinateString)
+        const isBonusSpawnOverwritten = this.#editor.isCoordinateBonusSpawnPosition(coordinateString)
         const isBonusSpawnTile = nextTileType === 'bonus_spawn_tile';
 
         if (isBonusSpawnOverwritten) {
