@@ -5,9 +5,9 @@ import EditorElementMapper from '../EditorElementMapper.mjs';
 export default class EditorTileManipulationState {
 
     
-    #selectorTileType = '';
     #editor = null;
-    #isMousePressedInsideEditorArea = false;
+    #selectorTileType = '';
+    #isMousePressedInsideBoardEditingArea = false;
 
 
     constructor(selectorTileType) {
@@ -22,17 +22,17 @@ export default class EditorTileManipulationState {
 
 
     handleEditorContainerMouseDown(callerId) {
-        this.#isMousePressedInsideEditorArea = true;
+        this.#isMousePressedInsideBoardEditingArea = true;
     }
 
 
     handleEditorContainerMouseUp(callerId) {
-        this.#isMousePressedInsideEditorArea = false;
+        this.#isMousePressedInsideBoardEditingArea = false;
     }
 
 
     handleEditorContainerMouseLeave(callerId) {
-        this.#isMousePressedInsideEditorArea = false;
+        this.#isMousePressedInsideBoardEditingArea = false;
     }
 
 
@@ -47,7 +47,7 @@ export default class EditorTileManipulationState {
 
 
     handleEditorTileMouseOver(callerId) {
-        if (this.#isMousePressedInsideEditorArea) {
+        if (this.#isMousePressedInsideBoardEditingArea) {
             this.handleEditorTileClick(callerId);
         }
     }
