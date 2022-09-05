@@ -105,15 +105,6 @@ export default class Editor {
     }
 
 
-    // =================================================================================
-
-
-    buildNextLevelId() {
-        this.#lastAssignedLevelId++;
-        return `level${this.#lastAssignedLevelId}`;
-    }
-
-
     #buildBoardEditingArea() {
         const width = this.#inputBoardDimension.width;
         const height = this.#inputBoardDimension.height;
@@ -121,8 +112,23 @@ export default class Editor {
     }
 
 
-    validateLifeInput() {
-        this.#inputLife.validate();
+    #initializeInternalLevelRotation() {
+        this.#internalLevelRotation = new EditorInternalLevelRotation();
+        this.#internalLevelRotation.initialize(this.#inputBoardDimension.height, this.#inputBoardDimension.width);
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+    }
+
+
+    #getLevelRotationJSONString() {
+        const initialPacmanLifes = parseInt(this.#inputLife.life);
+        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
+        return rotationJsonString;
+    }
+
+
+    buildNextLevelId() {
+        this.#lastAssignedLevelId++;
+        return `level${this.#lastAssignedLevelId}`;
     }
 
 
@@ -132,6 +138,8 @@ export default class Editor {
         this.#currentState.initialize(this);
     }
 
+
+    // =================================================================================
 
     setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
         this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed);
@@ -266,20 +274,6 @@ export default class Editor {
 
     handleEditorTileMouseLeave(event) {
         this.#currentState.handleEditorTileMouseLeave(event.target.id);
-    }
-
-
-    #initializeInternalLevelRotation() {
-        this.#internalLevelRotation = new EditorInternalLevelRotation();
-        this.#internalLevelRotation.initialize(this.#inputBoardDimension.height, this.#inputBoardDimension.width);
-        this.#internalLevel = this.#internalLevelRotation.getLevel();
-    }
-
-
-    #getLevelRotationJSONString() {
-        const initialPacmanLifes = parseInt(this.#inputLife.life);
-        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
-        return rotationJsonString;
     }
 
 
