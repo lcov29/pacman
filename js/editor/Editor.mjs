@@ -42,7 +42,7 @@ export default class Editor {
 
 
 
-        this.#currentState = new EditorDefaultState();
+        this.#currentState = new EditorDefaultState(this);
         EditorElementMapper.initializeMaps();
     }
 
