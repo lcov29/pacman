@@ -10,11 +10,12 @@ import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInp
 import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
 import EditorTileManipulationState from './editorStates/EditorTileManipulationState.mjs';
 import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
+import EditorTileSelectionBar from './editorGuiComponents/EditorTileSelectionBar.mjs';
 
 
 export default class Editor {
 
-
+    #tileSelectionBar = null;
     #boardEditingArea = null;
     #inputBoardDimension = null;
     #inputLife = null;
@@ -32,6 +33,7 @@ export default class Editor {
 
 
     constructor() {
+        this.#tileSelectionBar = new EditorTileSelectionBar(this);
         this.#boardEditingArea = new EditorBoardEditingArea(this);
         this.#inputBoardDimension = new EditorBoardDimensionInput(this);
         this.#inputLife = new EditorLifeInput(this);
@@ -48,6 +50,7 @@ export default class Editor {
 
 
     initialize() {
+        this.#tileSelectionBar.initialize();
         this.#boardEditingArea.initialize();
         this.#inputBoardDimension.initialize();
         this.#inputLife.initialize();
