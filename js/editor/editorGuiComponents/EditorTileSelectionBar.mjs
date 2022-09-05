@@ -8,11 +8,13 @@ export default class EditorTileSelectionBar {
     #editor = null;
     #tileList = null;
     #selectedTileId = '';
+    #cssClassNameSelectedTile = '';
 
 
     constructor(editorReference) {
         this.#editor = editorReference;
         this.#tileList = document.querySelectorAll('input[name="selectors"]');
+        this.#cssClassNameSelectedTile = 'selectorSelected';
     }
 
 
@@ -32,8 +34,15 @@ export default class EditorTileSelectionBar {
         for (let tile of this.#tileList) {
             const tileLabel = document.querySelector(`label[for="${tile.id}"]`);
             const isCurrentRadioSelected = selectedTileId === tile.id;
-            tileLabel.classList.toggle('selectorSelected', isCurrentRadioSelected);
+            tileLabel.classList.toggle(this.#cssClassNameSelectedTile, isCurrentRadioSelected);
         }
+    }
+
+
+    resetHighlightingOfChosenTile() {
+        const selectedTileId = document.querySelector('input[name="selectors"]:checked').id;
+        const selectedTileLabel = document.querySelector(`label[for="${selectedTileId}"]`);
+        selectedTileLabel.classList.remove(this.#cssClassNameSelectedTile);
     }
 
 
