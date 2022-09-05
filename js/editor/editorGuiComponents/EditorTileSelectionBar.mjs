@@ -23,6 +23,11 @@ export default class EditorTileSelectionBar {
     }
 
 
+    get selectedElementId() {
+        return this.#selectedTileId;
+    }
+
+
     initialize() {
         this.#addTileClickEventListeners();
     }
