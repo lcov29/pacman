@@ -27,6 +27,12 @@ export default class EditorBoardEditingArea {
     }
 
 
+    setBoardTileTo(coordinateString, tileType) {
+        const styleclass = `editorTile ${tileType}`;
+        document.getElementById(coordinateString).setAttribute('class', styleclass);
+    }
+
+
     mouseDownCallback(event) {
         this.#editor.handleEditorContainerMouseDown(event);
     }
