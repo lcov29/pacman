@@ -151,7 +151,7 @@ export default class EditorInternalLevel {
         json.scatterPositionList = this.#scatterPositionList;
         json.optionalGhostSpawnList = this.#optionalSpawnPositionList;
         json.bonusSpawnPositionList = this.#bonusSpawnPositionList;
-        json.numberOfIterations = this.#numberOfIterations;
+        json.numberOfIterations = this.#numberOfIterations.toString();  // explicit parsing to handle value Infinity
         return json;
     }
 
