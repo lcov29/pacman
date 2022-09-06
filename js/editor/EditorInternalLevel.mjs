@@ -68,6 +68,12 @@ export default class EditorInternalLevel {
     }
 
 
+    isTileAccessible(coordinateString) {
+        const tileCharacter = this.getBoardCharacterAt(coordinateString);
+        return !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
+    }
+
+
     isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
         const coordinate = this.#parseCoordinateString(coordinateString);
