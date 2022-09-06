@@ -32,6 +32,12 @@ export default class EditorInternalLevelRotation {
     }
 
 
+    setCurrentLevelIterationNumber(iterationNumber) {
+        const currentLevel = this.getLevel();
+        currentLevel.numberOfIterations = iterationNumber;
+    }
+
+
     removeLevel(internalLevel) {
         Utility.removeElementFrom(this.#internalLevelList, internalLevel);        
     }
