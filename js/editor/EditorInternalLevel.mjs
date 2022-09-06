@@ -40,13 +40,6 @@ export default class EditorInternalLevel {
     }
 
 
-    /*
-    getBoardCharacterAt(coordinateString) {
-        const coordinate = this.#parseCoordinateString(coordinateString);
-        return this.#internalBoard[coordinate.y][coordinate.x];
-    }*/
-
-
     getGhostCoordinateListFor(ghostCharacter) {
         const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
         return [...ghostCoordinateList];
@@ -70,7 +63,6 @@ export default class EditorInternalLevel {
 
 
     isTileAccessible(coordinateString) {
-        // const tileCharacter = this.getBoardCharacterAt(coordinateString);
         const tileCharacter = this.#getBoardCharacterAt(coordinateString);
         return !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
     }
@@ -93,7 +85,6 @@ export default class EditorInternalLevel {
 
     update(coordinateString, character) {
         const coordinate = this.#parseCoordinateString(coordinateString);
-        //const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
         this.#setBoardCharacter(coordinate, character);
@@ -136,14 +127,12 @@ export default class EditorInternalLevel {
     }
 
 
-    // TODO: rename method to removeScatterPositionAt()
-    removeScatterPosition(coordinateString) {
+    removeScatterPositionAt(coordinateString) {
        this.#removeCoordinateFromPositionList(this.#scatterPositionList, coordinateString);
     }
 
 
-    // TODO: rename method to removeSpawnPositionAt()
-    removeSpawnPosition(coordinateString) {
+    removeSpawnPositionAt(coordinateString) {
        this.#removeCoordinateFromPositionList(this.#optionalSpawnPositionList, coordinateString)
     }
 
