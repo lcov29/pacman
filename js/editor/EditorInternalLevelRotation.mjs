@@ -1,11 +1,13 @@
 import EditorInternalLevel from "./EditorInternalLevel.mjs";
 import Utility from "../global/Utility.mjs";
+import Configuration from "../global/Configuration.mjs";
 
 
 export default class EditorInternalLevelRotation {
 
 
     #internalLevelList = [];
+    #initialLifeNumber = 0;
     #currentSelectedLevelIndex = 0;
 
 
@@ -16,6 +18,12 @@ export default class EditorInternalLevelRotation {
         const initialLevel = new EditorInternalLevel();
         initialLevel.initialize(initialLevelWidth, initialLevelHeight);
         this.#internalLevelList = [initialLevel];
+        this.#initialLifeNumber = Configuration.editorDefaultLife;
+    }
+
+
+    set initialLifeNumber(number) {
+        this.#initialLifeNumber = number;
     }
 
 
@@ -63,9 +71,9 @@ export default class EditorInternalLevelRotation {
     }
 
 
-    buildLevelRotationJSONString(initialPacmanLifes) {
+    buildLevelRotationJSONString() {
         const rotation = this.#internalLevelList.map(internalLevel => internalLevel.buildLevelJSON());
-        const json = {rotation, initialPacmanLifes};
+        const json = {rotation, initialPacmanLifes: this.#initialLifeNumber};
         return JSON.stringify(json);
     }
 
