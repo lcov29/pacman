@@ -79,6 +79,7 @@ export default class Editor {
     handleLevelIterationNumberChange() {
         const levelIterationNumber = this.#inputLevelIteration.levelIterationNumber;
         this.#levelRotationBar.setIterationNumberForSelectedLevel(levelIterationNumber);
+        this.#internalLevelRotation.setCurrentLevelIterationNumber(levelIterationNumber);
     }
 
 
@@ -114,15 +115,6 @@ export default class Editor {
         this.#internalLevelRotation.initialize(this.#inputBoardDimension.height, this.#inputBoardDimension.width);
         this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
-
-
-    /*
-    #getLevelRotationJSONString() {
-        const initialPacmanLifes = parseInt(this.#inputLife.life);
-        debugger;
-        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
-        return rotationJsonString;
-    }*/
 
 
     #getLevelRotationJSONString() {
