@@ -63,6 +63,13 @@ export default class Editor {
     }
 
 
+    setState(state) {
+        this.#currentState.exit();
+        this.#currentState = state;
+        this.#currentState.initialize(this);
+    }
+
+
     handleBoardDimensionChange() {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
@@ -88,7 +95,8 @@ export default class Editor {
         this.#loadIndexPage();
     }
 
-
+    
+    // ========== START CHECKED PRIVATE METHODS ==========
     #sendLevelJson() {
         const itemName = Configuration.customLevelRotationSessionStorageName;
         const rotationJsonString = this.#getLevelRotationJSONString();
@@ -101,6 +109,7 @@ export default class Editor {
         const url = location.href;
         location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
     }
+    // ========== END CHECKED PRIVATE METHODS ==========
 
 
     #buildBoardEditingArea() {
@@ -128,12 +137,6 @@ export default class Editor {
         return `level${this.#lastAssignedLevelId}`;
     }
 
-
-    setState(state) {
-        this.#currentState.exit();
-        this.#currentState = state;
-        this.#currentState.initialize(this);
-    }
 
 
     updateInternalBoard(coordinateString) {
