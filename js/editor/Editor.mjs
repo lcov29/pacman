@@ -63,12 +63,6 @@ export default class Editor {
     }
 
 
-    handleSelectionTileClick(event) {
-        const state = new EditorTileManipulationState(this);
-        this.setState(state);
-    }
-
-
     handleBoardDimensionChange() {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
@@ -77,7 +71,8 @@ export default class Editor {
 
 
     handleLifeInputChange() {
-        const newLifeNumber = this.#inputLife.life;
+        const lifeNumber = parseInt(this.#inputLife.life);
+        this.#internalLevelRotation.initialLifeNumber = lifeNumber;
     }
 
 
@@ -121,9 +116,17 @@ export default class Editor {
     }
 
 
+    /*
     #getLevelRotationJSONString() {
         const initialPacmanLifes = parseInt(this.#inputLife.life);
+        debugger;
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString(initialPacmanLifes);
+        return rotationJsonString;
+    }*/
+
+
+    #getLevelRotationJSONString() {
+        const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString();
         return rotationJsonString;
     }
 
