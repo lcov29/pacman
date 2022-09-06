@@ -5,11 +5,12 @@ export default class EditorTileManipulationState {
     #isMousePressedInsideBoardEditingArea = false;
 
 
-    constructor() {}
-
-
-    initialize(editorReference) {
+    constructor(editorReference) {
         this.#editor = editorReference;
+    }
+
+
+    initialize() {
         this.#editor.highlightChosenSelectorTile();
     }
 
