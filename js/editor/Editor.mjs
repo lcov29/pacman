@@ -1,15 +1,15 @@
-import Configuration from '../global/Configuration.mjs';
-import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
-import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
-import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
-import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
 import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
+import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
 import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
-import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
 import EditorTileSelectionBar from './editorGuiComponents/EditorTileSelectionBar.mjs';
+import EditorElementMapper from './EditorElementMapper.mjs';
+import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
+import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
+import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
+import Configuration from '../global/Configuration.mjs';
 
 
 export default class Editor {
@@ -27,7 +27,6 @@ export default class Editor {
     #currentState = null;
     #internalLevel = null;
     #lastAssignedLevelId = 0;
-
 
 
     constructor() {
