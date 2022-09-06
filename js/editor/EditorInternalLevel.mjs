@@ -40,10 +40,11 @@ export default class EditorInternalLevel {
     }
 
 
+    /*
     getBoardCharacterAt(coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         return this.#internalBoard[coordinate.y][coordinate.x];
-    }
+    }*/
 
 
     getGhostCoordinateListFor(ghostCharacter) {
@@ -69,7 +70,8 @@ export default class EditorInternalLevel {
 
 
     isTileAccessible(coordinateString) {
-        const tileCharacter = this.getBoardCharacterAt(coordinateString);
+        // const tileCharacter = this.getBoardCharacterAt(coordinateString);
+        const tileCharacter = this.#getBoardCharacterAt(coordinateString);
         return !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
     }
 
@@ -91,7 +93,8 @@ export default class EditorInternalLevel {
 
     update(coordinateString, character) {
         const coordinate = this.#parseCoordinateString(coordinateString);
-        const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
+        //const currentBoardCharacter = this.getBoardCharacterAt(coordinateString);
+        const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
         this.#setBoardCharacter(coordinate, character);
     }
@@ -161,6 +164,12 @@ export default class EditorInternalLevel {
         this.#characterToCoordinateListMap.set(Configuration.ghostPinkyCharacter, this.#ghostPinkyCoordinateList);
         this.#characterToCoordinateListMap.set(Configuration.ghostInkyCharacter, this.#ghostInkyCoordinateList);
         this.#characterToCoordinateListMap.set(Configuration.ghostClydeCharacter, this.#ghostClydeCoordinateList);
+    }
+
+
+    #getBoardCharacterAt(coordinateString) {
+        const coordinate = this.#parseCoordinateString(coordinateString);
+        return this.#internalBoard[coordinate.y][coordinate.x];
     }
 
 
