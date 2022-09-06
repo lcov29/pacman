@@ -12,7 +12,7 @@ export default class EditorElementMapper {
     static ghostCharacterToCSSHighlightClassMap = null;
 
 
-    static initializeMaps() {
+    static initialize() {
         EditorElementMapper.tileTypeToInternalElementMap = new Map();
         EditorElementMapper.tileTypeToInternalElementMap.set('wallTile', Configuration.wallCharacter);
         EditorElementMapper.tileTypeToInternalElementMap.set('emptyTile', Configuration.emptyTileCharacter);
