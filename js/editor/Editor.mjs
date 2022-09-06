@@ -64,9 +64,8 @@ export default class Editor {
 
 
     handleSelectionTileClick(event) {
-        const tileElementId = event.target.id;
-        const newState = new EditorTileManipulationState(tileElementId);
-        this.setState(newState);
+        const state = new EditorTileManipulationState(this);
+        this.setState(state);
     }
 
 
@@ -142,36 +141,176 @@ export default class Editor {
     }
 
 
-    updateInternalBoard(coordinateString, element) {
-        const internalElement = this.getInternalElement(element);
-        this.#internalLevel.update(coordinateString, internalElement);
+    updateInternalBoard(coordinateString) {
+        const internalCharacter = this.#tileSelectionBar.selectedElement;
+        this.#internalLevel.update(coordinateString, internalCharacter);
     }
 
 
-    getInternalElement(tileType) {
-        return EditorElementMapper.tileTypeToInternalElementMap.get(tileType);
+    setBoardEditorTileToSelectedTile(callerId) {
+        const tileType = this.#tileSelectionBar.selectedElementId;
+        this.#boardEditingArea.setBoardTileTo(callerId, tileType);
+    };
+
+
+    highlightChosenSelectorTile() {
+        this.#tileSelectionBar.highlightChosenTile();
+    }
+
+
+    resetHighlightingOfChosenSelectorTile() {
+        this.#tileSelectionBar.resetHighlightingOfChosenTile();
+    }
+
+
+    // TODO: Update
+    updateBonusSpawnList(coordinateString, nextTileType) {
+        const tileId = this.#tileSelectionBar.selectedElementId;
+        const isBonusSpawnOverwritten = this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
+        const isBonusSpawnTile = tileId === 'bonus_spawn_tile';
+
+        if (isBonusSpawnOverwritten) {
+            this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
+        }
+
+        if (isBonusSpawnTile) {
+            this.#internalLevel.addBonusSpawnPosition(coordinateString);
+        }
+    }
+
+
+    manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId) {
+        const tileCharacter = this.#tileSelectionBar.selectedElement;
+        const isTileInaccessible = Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
+
+        const ghostCharacterListScatter = this.#internalLevel.getGhostCharacterListForScatterPosition(callerId);
+        const ghostCharacterListSpawn = this.#internalLevel.getGhostCharacterListForSpawnPosition(callerId);
+        const isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
+        
+        if (isTileInaccessible && isTileScatterOrSpawn) {
+            this.#internalLevel.removeScatterPosition(callerId);
+            this.#internalLevel.removeSpawnPosition(callerId);
+            this.#clearScatterInputFor(ghostCharacterListScatter);
+            this.#clearSpawnInputFor(ghostCharacterListSpawn);
+        } 
+    }
+
+
+    removeScatterSpawnOfDeletedGhostTypes() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
+
+            if (!isGhostTypeOnBoard) {
+                this.#internalLevel.removeScatterPositionFor(ghostCharacter);
+                this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
+            }
+        }
+    }
+
+
+    manageScatterSpawnControlVisibility() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+
+            const isGhostTypeOnBoard = this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
+            const isGhostControlDisplayed = this.#inputScatterSpawn.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
+    
+            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
+                this.#displayScatterSpawnControlsFor(ghostCharacter);
+            }
+    
+            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
+                this.#hideScatterSpawnControlsFor(ghostCharacter);
+            }
+
+        }
+    }
+
+
+    highlightPlacedGhostsOfType(ghostCharacter) {
+        const ghostCoordinateList = this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
+        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
+
+        for (const coordinate of ghostCoordinateList) {
+            document.getElementById(coordinate).classList.add(ghostHighlightClass);
+        }
+    }
+
+
+    resetHighlightOfPlacedGhostsOfType(ghostCharacter) {
+        const ghostCoordinateList = this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
+        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
+
+        for (const coordinate of ghostCoordinateList) {
+            document.getElementById(coordinate).classList.remove(ghostHighlightClass);
+        }
+    } 
+
+
+    isTileAccessible(coordinateString) {
+        return this.#internalLevel.isTileAccessible(coordinateString);
+    }
+
+
+    #clearScatterInputFor(ghostCharacterList) {
+        for (let ghostCharacter of ghostCharacterList) {
+            let inputId = this.#getScatterControlId(ghostCharacter);
+            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
+            document.getElementById(inputId).value = '';
+        }
+    }
+
+
+    #clearSpawnInputFor(ghostCharacterList) {
+        for (let ghostCharacter of ghostCharacterList) {
+            let inputId = this.#getSpawnControlId(ghostCharacter);
+            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
+            document.getElementById(inputId).value = '';
+        }
+    }
+
+
+    #displayScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
+
+        for (const controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).classList.remove('invisible');
+        }
+        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
+    }
+
+
+    #hideScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
+
+        for (const controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).classList.add('invisible');
+            const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
+            document.getElementById(inputId).value = '';
+        }
+        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
+    }
+
+
+    #getScatterControlId(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[0];
+    }
+
+
+    #getSpawnControlId(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
+    }
+
+
+    #getScatterSpawnControlIdForInputId(inputId) {
+        return EditorElementMapper.scatterSpawnControlIdToInputIdMap.get(inputId);
     }
 
 
     // =================================================================================
 
-    setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
-        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed);
-    }
-
 
     #resetInternalLevel() {
         this.#internalLevel.initialize(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
-    }
-
-
-    getBoardCharacterAt(coordinates) {
-        return this.#internalLevel.getBoardCharacterAt(coordinates);
-    }
-
-
-    getCounterForGhostType(ghostCharacter) {
-        return this.#internalLevel.getGhostCounterFor(ghostCharacter);
     }
 
 
@@ -180,28 +319,8 @@ export default class Editor {
     }
 
 
-    getScatterSpawnControlDisplayStatusFor(ghostCharacter) {
-        return this.#inputScatterSpawn.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
-    }
-
-
-    getGhostCharacterListForScatterPosition(coordinateString) {
-        return this.#internalLevel.getGhostCharacterListForScatterPosition(coordinateString);
-    }
-
-
-    getGhostCharacterListForSpawnPosition(coordinateString) {
-        return this.#internalLevel.getGhostCharacterListForSpawnPosition(coordinateString);
-    }
-
-
     getGhostCharacterFor(buttonId) {
         return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
-    }
-
-
-    isCoordinateBonusSpawnPosition(coordinateString) {
-        return this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
     }
 
 
@@ -217,11 +336,7 @@ export default class Editor {
     }
 
 
-    addBonusSpawnPosition(coordinateString) {
-        this.#internalLevel.addBonusSpawnPosition(coordinateString);
-    }
-
-
+    
     removeScatterPositionFor(ghostCharacter) {
         this.#internalLevel.removeScatterPositionFor(ghostCharacter);
     }
@@ -229,17 +344,6 @@ export default class Editor {
 
     removeSpawnPositionFor(ghostCharacter) {
         this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
-    }
-
-
-    removeScatterAndSpawnPosition(coordinateString) {
-        this.#internalLevel.removeScatterPosition(coordinateString);
-        this.#internalLevel.removeSpawnPosition(coordinateString);
-    }
-
-
-    removeBonusSpawnPositionAt(coordinateString) {
-        this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
     }
 
 
