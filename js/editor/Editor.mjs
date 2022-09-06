@@ -251,7 +251,7 @@ export default class Editor {
 
     #clearScatterInputFor(ghostCharacterList) {
         for (let ghostCharacter of ghostCharacterList) {
-            let inputId = this.#getScatterControlId(ghostCharacter);
+            let inputId = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[0];
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
         }
@@ -260,7 +260,7 @@ export default class Editor {
 
     #clearSpawnInputFor(ghostCharacterList) {
         for (let ghostCharacter of ghostCharacterList) {
-            let inputId = this.#getSpawnControlId(ghostCharacter);
+            let inputId = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
             inputId = this.#getScatterSpawnControlIdForInputId(inputId);
             document.getElementById(inputId).value = '';
         }
@@ -289,16 +289,6 @@ export default class Editor {
     }
 
 
-    #getScatterControlId(ghostCharacter) {
-        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[0];
-    }
-
-
-    #getSpawnControlId(ghostCharacter) {
-        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
-    }
-
-
     #getScatterSpawnControlIdForInputId(inputId) {
         return EditorElementMapper.scatterSpawnControlIdToInputIdMap.get(inputId);
     }
@@ -317,22 +307,16 @@ export default class Editor {
     }
 
 
-    getGhostCharacterFor(buttonId) {
-        return EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
-    }
-
-
     addScatterPosition(buttonId, coordinateString) {
-        const ghostCharacter = this.getGhostCharacterFor(buttonId);
+        const ghostCharacter = EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
         this.#internalLevel.addScatterPosition(ghostCharacter, coordinateString);
     }
 
 
     addSpawnPosition(buttonId, coordinateString) {
-        const ghostCharacter = this.getGhostCharacterFor(buttonId);
+        const ghostCharacter = EditorElementMapper.buttonIdToGhostCharacterMap.get(buttonId);
         this.#internalLevel.addOptionalSpawnPosition(ghostCharacter, coordinateString);
     }
-
 
     
     removeScatterPositionFor(ghostCharacter) {
