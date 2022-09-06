@@ -150,14 +150,14 @@ export default class EditorScatterSpawnInput {
 
     scatterSelectionButtonCallback(event) {
         const inputId = event.target.id;
-        const scatterSelectionState = new EditorScatterSelectionState(inputId);
+        const scatterSelectionState = new EditorScatterSelectionState(this.#editor, inputId);
         this.#editor.setState(scatterSelectionState);
     }
     
     
     spawnSelectionButtonCallback(event) {
         const inputId = event.target.id;
-        const scatterSelectionState = new EditorSpawnSelectionState(inputId);
+        const scatterSelectionState = new EditorSpawnSelectionState(this.#editor, inputId);
         this.#editor.setState(scatterSelectionState);
     }
 
