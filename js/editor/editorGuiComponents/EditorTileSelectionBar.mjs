@@ -53,7 +53,7 @@ export default class EditorTileSelectionBar {
 
     tileClickCallback(event) {
         this.#setSelectedTileId(event.target.id);
-        const newState = new EditorTileManipulationState();
+        const newState = new EditorTileManipulationState(this.#editor);
         this.#editor.setState(newState);
     }
 
