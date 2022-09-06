@@ -23,10 +23,11 @@ export default class Editor {
     #inputScatterSpawn = null;
     #levelRotationBar = null;
     #saveButton = null;
-    #lastAssignedLevelId = 0;
     #internalLevelRotation = null;
-    #internalLevel = null;
     #currentState = null;
+    #internalLevel = null;
+    #lastAssignedLevelId = 0;
+
 
 
     constructor() {
@@ -38,6 +39,7 @@ export default class Editor {
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
         this.#levelRotationBar = new EditorLevelRotationBar(this);
         this.#saveButton = new EditorSaveButton(this);
+        this.#internalLevelRotation = new EditorInternalLevelRotation();
         this.#currentState = new EditorDefaultState(this);
         EditorElementMapper.initializeMaps();
     }
@@ -52,7 +54,8 @@ export default class Editor {
         this.#inputScatterSpawn.initialize();
         this.#levelRotationBar.initialize();
         this.#saveButton.initialize();
-        this.#initializeInternalLevelRotation();
+        this.#internalLevelRotation.initialize();
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
@@ -253,13 +256,6 @@ export default class Editor {
 
     handleEditorTileMouseLeave(event) {
         this.#currentState.handleEditorTileMouseLeave(event.target.id);
-    }
-
-
-    #initializeInternalLevelRotation() {
-        this.#internalLevelRotation = new EditorInternalLevelRotation();
-        this.#internalLevelRotation.initialize(this.#inputBoardDimension.height, this.#inputBoardDimension.width);
-        this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
