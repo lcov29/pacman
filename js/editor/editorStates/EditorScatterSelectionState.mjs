@@ -5,25 +5,26 @@ import EditorSelectionState from './EditorSelectionState.mjs';
 export default class EditorScatterSelectionState extends EditorSelectionState {
 
     
-    constructor(buttonId) {
-        super(buttonId);
+    constructor(editorReference, buttonId) {
+        super(editorReference, buttonId);
     }
 
 
-    initialize(editor) {
-        super.editor = editor;
-        const ghostCharacter = super.editor.getGhostCharacterFor(super.buttonId);
-        super.editor.removeScatterPositionFor(ghostCharacter);
-        super.initializeInputReference();
-        super.highlightPlacedGhosts();
+    initialize() {
+        super.initialize();
+        super.editor.removeScatterPositionFor(super.ghostCharacter);
+        super.editor.highlightPlacedGhostsOfType(super.ghostCharacter);
     }
 
 
     handleEditorTileClick(callerId) {
-        if (super.isTileAccessible(callerId)) {
+        const isTileAccessible = super.editor.isTileAccessible(callerId);
+
+        if (isTileAccessible) {
             super.editor.addScatterPosition(super.buttonId, callerId);
             super.editor.setState(new EditorDefaultState());
-            document.getElementById(callerId).classList.remove('scatterSpawnSelectionPointHighlight');
+            const boardEditorTile =  document.getElementById(callerId);
+            boardEditorTile.classList.remove(super.cssClassHighlightSelectedBoardTile);
         }
     }
 
