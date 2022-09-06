@@ -71,7 +71,7 @@ export default class Editor {
     setBoardEditorTileToSelectedTile(callerId) {
         const tileType = this.#tileSelectionBar.selectedElementId;
         this.#boardEditingArea.setBoardTileTo(callerId, tileType);
-    };
+    }
 
 
     isTileAccessible(coordinateString) {
@@ -133,23 +133,13 @@ export default class Editor {
 
 
     highlightPlacedGhostsOfType(ghostCharacter) {
-        const ghostCoordinateList = this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
-        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
-
-        for (const coordinate of ghostCoordinateList) {
-            document.getElementById(coordinate).classList.add(ghostHighlightClass);
-        }
+        this.#toggleHighlightOfPlacedGhostsOfType(ghostCharacter);
     }
 
 
     resetHighlightOfPlacedGhostsOfType(ghostCharacter) {
-        const ghostCoordinateList = this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
-        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
-
-        for (const coordinate of ghostCoordinateList) {
-            document.getElementById(coordinate).classList.remove(ghostHighlightClass);
-        }
-    } 
+        this.#toggleHighlightOfPlacedGhostsOfType(ghostCharacter, true);
+    }
 
 
     manageScatterSpawnControlVisibility() {
@@ -347,6 +337,22 @@ export default class Editor {
             document.getElementById(inputId).value = '';
         }
         this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
+    }
+
+
+    #toggleHighlightOfPlacedGhostsOfType(ghostCharacter, resetHighlight = false) {
+        const ghostCoordinateList = this.#internalLevel.getGhostCoordinateListFor(ghostCharacter);
+        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
+
+        for (const coordinate of ghostCoordinateList) {
+            const tileElementClassList = document.getElementById(coordinate).classList;
+
+            if (resetHighlight) {
+                tileElementClassList.remove(ghostHighlightClass);
+            } else {
+                tileElementClassList.add(ghostHighlightClass);
+            }
+        }
     }
     
 
