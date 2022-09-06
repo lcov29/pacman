@@ -41,11 +41,11 @@ export default class Editor {
         this.#saveButton = new EditorSaveButton(this);
         this.#internalLevelRotation = new EditorInternalLevelRotation();
         this.#currentState = new EditorDefaultState(this);
-        EditorElementMapper.initializeMaps();
     }
 
 
     initialize() {
+        EditorElementMapper.initialize();
         this.#tileSelectionBar.initialize();
         this.#boardEditingArea.initialize();
         this.#inputBoardDimension.initialize();
