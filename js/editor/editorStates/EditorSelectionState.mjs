@@ -1,18 +1,27 @@
-import Configuration from '../../global/Configuration.mjs';
 import EditorDefaultState from './EditorDefaultState.mjs';
 import EditorElementMapper from '../EditorElementMapper.mjs';
 
 
 export default class EditorSelectionState {
 
-    
+
     #editor = null;
-    #positionInput = null;
     #buttonId = null;
+    #inputPosition = null;
+    #ghostCharacter = '';
+    #cssClassHighlightSelectedBoardTile = 'scatterSpawnSelectionPointHighlight';
 
 
-    constructor(buttonId) {
+    constructor(editorReference, buttonId) {
+        this.#editor = editorReference;
         this.#buttonId = buttonId;
+    }
+
+
+    initialize() {
+        const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.#buttonId);
+        this.#inputPosition = document.getElementById(inputId);
+        this.#ghostCharacter = EditorElementMapper.buttonIdToGhostCharacterMap.get(this.#buttonId);
     }
 
 
@@ -31,6 +40,21 @@ export default class EditorSelectionState {
     }
 
 
+    get inputPosition() {
+        return this.#inputPosition;
+    }
+
+
+    get ghostCharacter() {
+        return this.#ghostCharacter;
+    }
+
+
+    get cssClassHighlightSelectedBoardTile() {
+        return this.#cssClassHighlightSelectedBoardTile;
+    }
+
+
     handleEditorContainerMouseDown(callerId) {}
 
 
@@ -39,7 +63,7 @@ export default class EditorSelectionState {
 
     handleEditorContainerMouseLeave(callerId) {
         this.#editor.setState(new EditorDefaultState());
-        this.#positionInput.value = '';
+        this.#inputPosition.value = '';
     }
 
 
@@ -47,69 +71,34 @@ export default class EditorSelectionState {
 
 
     handleEditorTileMouseEnter(callerId) {
-        const isTileAccessible = this.isTileAccessible(callerId);
+        const isTileAccessible = this.#editor.isTileAccessible(callerId);
         const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
 
         if (isTileAccessible && !isTileSelectedGhostType) {
-           document.getElementById(callerId).classList.add('scatterSpawnSelectionPointHighlight');
+           document.getElementById(callerId).classList.add(this.#cssClassHighlightSelectedBoardTile);
         }
-        this.#positionInput.value = (isTileAccessible) ? callerId : '';
+        this.#inputPosition.value = (isTileAccessible) ? callerId : '';
     }
 
 
     handleEditorTileMouseLeave(callerId) {
-        if (!this.#isTileSelectedGhostType(callerId)) {
-            document.getElementById(callerId).classList.remove('scatterSpawnSelectionPointHighlight');
+        const isTileSelectedGhostType = this.#isTileSelectedGhostType(callerId);
+
+        if (!isTileSelectedGhostType) {
+            document.getElementById(callerId).classList.remove(this.#cssClassHighlightSelectedBoardTile);
         }
     }
 
 
     exit() {
-        this.#resetHighlightPlacedGhosts();
+        this.#editor.resetHighlightOfPlacedGhostsOfType(this.#ghostCharacter);
     }
 
 
-    initializeInputReference() {
-        const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.#buttonId);
-        this.#positionInput = document.getElementById(inputId);
+    #isTileSelectedGhostType(coordinate) {
+        const ghostCoordinateList = this.#editor.getGhostCoordinateListFor(this.#ghostCharacter);
+        return ghostCoordinateList.includes(coordinate);
     }
-
-
-    highlightPlacedGhosts() {
-        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
-        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
-
-        for (let coordinate of this.#getSelectedGhostCoordinateList()) {
-            document.getElementById(coordinate).classList.add(ghostHighlightClass);
-        }
-    }
-
-
-    isTileAccessible(tileId) {
-        const tileCharacter = this.#editor.getBoardCharacterAt(tileId);
-        return !Configuration.actorsInaccessibleTileCharacterList.includes(tileCharacter);
-    }
-
-
-    #getSelectedGhostCoordinateList() {
-        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
-        return this.#editor.getGhostCoordinateListFor(ghostCharacter);    
-    }
-
-
-    #isTileSelectedGhostType(tileId) {
-        return this.#getSelectedGhostCoordinateList().includes(tileId);
-    }
-
-
-    #resetHighlightPlacedGhosts() {
-        const ghostCharacter = this.#editor.getGhostCharacterFor(this.#buttonId);
-        const ghostHighlightClass = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
-
-        for (let coordinate of this.#getSelectedGhostCoordinateList()) {
-            document.getElementById(coordinate).classList.remove(ghostHighlightClass);
-        }
-    } 
 
 
 }
