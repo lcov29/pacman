@@ -169,11 +169,11 @@ export default class Editor {
         const isTileScatterOrSpawn = (ghostCharacterListScatter.length > 0) || (ghostCharacterListSpawn.length > 0);
         
         if (isTileInaccessible && isTileScatterOrSpawn) {
-            this.#internalLevel.removeScatterPosition(callerId);
-            this.#internalLevel.removeSpawnPosition(callerId);
+            this.#internalLevel.removeScatterPositionAt(callerId);
+            this.#internalLevel.removeSpawnPositionAt(callerId);
             this.#clearScatterInputFor(ghostCharacterListScatter);
             this.#clearSpawnInputFor(ghostCharacterListSpawn);
-        } 
+        }
     }
 
 
