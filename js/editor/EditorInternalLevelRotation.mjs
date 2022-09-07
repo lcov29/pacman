@@ -27,6 +27,12 @@ export default class EditorInternalLevelRotation {
     }
 
 
+    setCurrentLevelIterationNumber(iterationNumber) {
+        const currentLevel = this.getLevel();
+        currentLevel.numberOfIterations = iterationNumber;
+    }
+
+
     addLevel(levelId) {
         const width = Configuration.editorBoardDefaultWidth;
         const height = Configuration.editorBoardDefaultHeight;
@@ -38,9 +44,16 @@ export default class EditorInternalLevelRotation {
     }
 
 
-    setCurrentLevelIterationNumber(iterationNumber) {
-        const currentLevel = this.getLevel();
-        currentLevel.numberOfIterations = iterationNumber;
+    loadLevel(levelId) {
+        for (let i = 0; i < this.#internalLevelList.length; i++) {
+            const level = this.#internalLevelList[i];
+            const isMatchingLevel = level.id === levelId;
+
+            if (isMatchingLevel) {
+                this.#currentSelectedLevelIndex = i;
+                break;
+            }
+        }
     }
 
 
