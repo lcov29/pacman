@@ -84,9 +84,11 @@ export default class EditorInternalLevel {
 
 
     update(coordinateString, character) {
-        const coordinate = this.#parseCoordinateString(coordinateString);
+        //const coordinate = this.#parseCoordinateString(coordinateString);
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
+
+        const coordinate = this.#parseCoordinateString(coordinateString);
         this.#setBoardCharacter(coordinate, character);
     }
 
