@@ -29,18 +29,22 @@ export default class EditorBoardDimensionInput {
 
 
     initialize() {
-        this.reset();
         this.#initializeWidthHeightInputEventListeners();
         this.#initializeMinMaxAttributes();
     }
 
 
-    reset() {
-        this.#inputWidth.value = Configuration.editorBoardDefaultWidth;
-        this.#previousWidth = Configuration.editorBoardDefaultWidth
+    setDimension(width, height) {
+        this.#inputWidth.value = width;
+        this.#previousWidth = width;
 
-        this.#inputHeight.value = Configuration.editorBoardDefaultHeight;
-        this.#previousHeight = Configuration.editorBoardDefaultHeight;
+        this.#inputHeight.value = height;
+        this.#previousHeight = height;
+    }
+
+
+    reset() {
+        this.setDimension(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
     }
 
 
