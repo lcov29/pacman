@@ -28,6 +28,16 @@ export default class EditorInternalLevel {
     }
 
 
+    get width() {
+        return this.#internalBoard[0].length;
+    }
+
+
+    get height() {
+        return this.#internalBoard.length;
+    }
+
+
     set numberOfIterations(number) {
         const isValidInput = number > 0;
 
