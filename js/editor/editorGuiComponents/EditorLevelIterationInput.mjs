@@ -25,7 +25,6 @@ export default class EditorLevelIterationInput {
 
     initialize() {
         this.#addInputBlurEventListener();
-        this.reset();
     }
 
 
