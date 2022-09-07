@@ -84,7 +84,6 @@ export default class EditorInternalLevel {
 
 
     update(coordinateString, character) {
-        //const coordinate = this.#parseCoordinateString(coordinateString);
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
 
@@ -140,12 +139,20 @@ export default class EditorInternalLevel {
 
 
     buildLevelJSON() {
+        /*
         const json = {};
         json.board = this.#internalBoard;
         json.scatterPositionList = this.#scatterPositionList;
         json.optionalGhostSpawnList = this.#optionalSpawnPositionList;
         json.bonusSpawnPositionList = this.#bonusSpawnPositionList;
-        json.numberOfIterations = this.#numberOfIterations.toString();  // explicit parsing to handle value Infinity
+        json.numberOfIterations = this.#numberOfIterations.toString();  // explicit parsing to handle value Infinity*/
+        const json = {
+            board: this.#internalBoard,
+            scatterPositionList: this.#scatterPositionList,
+            optionalGhostSpawnList: this.#optionalSpawnPositionList,
+            bonusSpawnPositionList: this.#bonusSpawnPositionList,
+            numberOfIterations: this.#numberOfIterations.toString()
+        };
         return json;
     }
 
