@@ -24,7 +24,7 @@ export default class EditorLevelRotationBar {
 
     initialize() {
         this.#levelAddButton.addEventListener('click', this.addNewLevelCallback.bind(this));
-        this.#addNewLevelElement();
+        this.addNewLevelElement();
     }
 
 
@@ -35,7 +35,7 @@ export default class EditorLevelRotationBar {
 
 
     addNewLevelCallback(event) {
-        this.#addNewLevelElement();
+        this.#editor.handleAddNewLevel();
     }
 
 
@@ -56,8 +56,7 @@ export default class EditorLevelRotationBar {
     }
 
 
-    #addNewLevelElement() {
-        const levelId = this.#editor.buildNextLevelId();
+    addNewLevelElement(levelId) {
         const levelElement = this.#buildLevelElement(levelId);
         this.#addDeleteButtonEventListenerFor(levelElement);
         this.#addLevelSelectEventListenerFor(levelElement);
