@@ -204,6 +204,18 @@ export default class Editor {
     }
 
 
+    handleAddNewLevel() {
+        const levelId = this.buildNextLevelId();
+        this.#internalLevelRotation.addLevel(levelId);
+        this.#levelRotationBar.addNewLevelElement(levelId);
+        this.#inputBoardDimension.reset();
+        this.#inputLevelIteration.reset();
+        this.#inputScatterSpawn.reset();
+        this.#buildBoardEditingArea();
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+    }
+
+
     handleLifeInputChange() {
         const lifeNumber = parseInt(this.#inputLife.life);
         this.#internalLevelRotation.initialLifeNumber = lifeNumber;
