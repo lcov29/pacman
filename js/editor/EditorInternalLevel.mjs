@@ -23,6 +23,11 @@ export default class EditorInternalLevel {
     }
 
 
+    get id() {
+        return this.#levelId;
+    }
+
+
     set numberOfIterations(number) {
         const isValidInput = number > 0;
 
