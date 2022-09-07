@@ -54,7 +54,8 @@ export default class Editor {
         this.#levelRotationBar.initialize();
         this.#saveButton.initialize();
         this.#internalLevelRotation.initialize();
-        this.#internalLevel = this.#internalLevelRotation.getLevel();
+        this.handleAddNewLevel()
+        //this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
@@ -213,6 +214,15 @@ export default class Editor {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
         this.#internalLevel = this.#internalLevelRotation.getLevel();
+    }
+
+
+    handleLevelSwitch(levelId) {
+        this.#internalLevelRotation.loadLevel(levelId);
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+        this.#inputBoardDimension.setDimension(this.#internalLevel.width, this.#internalLevel.height);
+        this.#inputLevelIteration.levelIterationNumber = this.#internalLevel.numberOfIterations;
+        this.#boardEditingArea.loadBoard(this.#internalLevel.board);
     }
 
 
