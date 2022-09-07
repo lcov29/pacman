@@ -27,8 +27,14 @@ export default class EditorInternalLevelRotation {
     }
 
 
-    addLevel(internalLevel) {
-        this.#internalLevelList.push(internalLevel);
+    addLevel(levelId) {
+        const width = Configuration.editorBoardDefaultWidth;
+        const height = Configuration.editorBoardDefaultHeight;
+    
+        const newLevel = new EditorInternalLevel();
+        newLevel.initialize(width, height, levelId);
+        this.#internalLevelList.push(newLevel);
+        this.#currentSelectedLevelIndex = this.#internalLevelList.length - 1;
     }
 
 
@@ -38,9 +44,10 @@ export default class EditorInternalLevelRotation {
     }
 
 
+    /*
     removeLevel(internalLevel) {
         Utility.removeElementFrom(this.#internalLevelList, internalLevel);        
-    }
+    }*/
 
 
     getLevel() {
@@ -48,6 +55,7 @@ export default class EditorInternalLevelRotation {
     }
 
 
+    /*
     next() {
         isEndOfRotationReached = this.#currentSelectedLevelIndex === this.#internalLevelList.length - 1;
 
@@ -63,9 +71,10 @@ export default class EditorInternalLevelRotation {
         if (isIndexDecrementable) {
             this.#currentSelectedLevelIndex--;
         }
-    }
+    }*/
 
 
+    /*
     selectLevelAt(index) {
         const isValidIndex = (0 <= index) && (index < this.#internalLevelList.length);
 
@@ -74,7 +83,7 @@ export default class EditorInternalLevelRotation {
         } else {
             throw new RangeError('Invalid index');
         }
-    }
+    }*/
 
 
     buildLevelRotationJSONString() {
