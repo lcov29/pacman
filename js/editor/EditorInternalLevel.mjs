@@ -139,13 +139,6 @@ export default class EditorInternalLevel {
 
 
     buildLevelJSON() {
-        /*
-        const json = {};
-        json.board = this.#internalBoard;
-        json.scatterPositionList = this.#scatterPositionList;
-        json.optionalGhostSpawnList = this.#optionalSpawnPositionList;
-        json.bonusSpawnPositionList = this.#bonusSpawnPositionList;
-        json.numberOfIterations = this.#numberOfIterations.toString();  // explicit parsing to handle value Infinity*/
         const json = {
             board: this.#internalBoard,
             scatterPositionList: this.#scatterPositionList,
