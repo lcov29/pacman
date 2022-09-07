@@ -23,6 +23,12 @@ export default class EditorLevelIterationInput {
     }
 
 
+    set levelIterationNumber(iterationNumber) {
+        this.#inputLevelIteration.value = iterationNumber;
+        this.#previousLevelIteration = iterationNumber;
+    }
+
+
     initialize() {
         this.#addInputBlurEventListener();
     }
