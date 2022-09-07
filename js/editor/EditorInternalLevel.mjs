@@ -5,6 +5,7 @@ import Utility from '../global/Utility.mjs';
 export default class EditorInternalLevel {
 
 
+    #levelId = '';
     #internalBoard = [[]];
     #scatterPositionList = [];
     #optionalSpawnPositionList = [];
@@ -33,7 +34,8 @@ export default class EditorInternalLevel {
     }
 
 
-    initialize(width, height) {
+    initialize(width, height, levelId) {
+        this.#levelId = (levelId) ? levelId : this.#levelId;
         this.#reset();
         this.#buildEmptyBoard(width, height);
         this.#initializeCharacterToCoordinateListMap();
