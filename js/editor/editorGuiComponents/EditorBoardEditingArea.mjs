@@ -1,4 +1,5 @@
 import Configuration from "../../global/Configuration.mjs";
+import EditorElementMapper from "../EditorElementMapper.mjs";
 
 
 export default class EditorBoardEditingArea {
@@ -16,7 +17,6 @@ export default class EditorBoardEditingArea {
 
     initialize() {
         this.#initializeEventListeners();
-        //this.build(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
     }
 
 
@@ -24,6 +24,14 @@ export default class EditorBoardEditingArea {
         this.#setCSSVariables(width, height);
         this.#clearBoardEditingArea();
         this.#buildBoardEditingArea(width, height);
+    }
+
+
+    loadBoard(board) {
+        const width = board[0].length;
+        const height = board.length;
+        this.build(width, height);
+        this.#loadBoardIntoEditingArea(board);
     }
 
 
@@ -75,6 +83,18 @@ export default class EditorBoardEditingArea {
             for (let x = 0; x < width; x++) {
                 const boardElement = this.#createBoardElement(x, y);
                 this.#boardEditingArea.appendChild(boardElement);
+            }
+        }
+    }
+
+
+    #loadBoardIntoEditingArea(board) {
+        for (let y = 0; y < board.length; y++) {
+            for (let x = 0; x < board[y].length; x++) {
+                const currentCharacter = board[y][x];
+                const coordinateString = `(${x},${y})`;
+                const tileType = EditorElementMapper.internalElementToTileTypeMap.get(currentCharacter);
+                this.setBoardTileTo(coordinateString, tileType);
             }
         }
     }
