@@ -15,9 +15,6 @@ export default class EditorInternalLevelRotation {
 
 
     initialize() {
-        const initialLevel = new EditorInternalLevel();
-        initialLevel.initialize(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
-        this.#internalLevelList = [initialLevel];
         this.#initialLifeNumber = Configuration.editorDefaultLife;
     }
 

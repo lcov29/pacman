@@ -16,7 +16,7 @@ export default class EditorBoardEditingArea {
 
     initialize() {
         this.#initializeEventListeners();
-        this.build(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
+        //this.build(Configuration.editorBoardDefaultWidth, Configuration.editorBoardDefaultHeight);
     }
 
 

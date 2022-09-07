@@ -24,7 +24,6 @@ export default class EditorLevelRotationBar {
 
     initialize() {
         this.#levelAddButton.addEventListener('click', this.addNewLevelCallback.bind(this));
-        this.addNewLevelElement();
     }
 
 
@@ -52,6 +51,7 @@ export default class EditorLevelRotationBar {
 
     selectLevelCallback(event) {
         const selectedLevelElement = event.target;
+        this.#editor.handleLevelSwitch(event.target.id);
         this.#highlight(selectedLevelElement);
     }
 
