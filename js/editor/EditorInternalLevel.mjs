@@ -28,6 +28,11 @@ export default class EditorInternalLevel {
     }
 
 
+    get board() {
+        return [...this.#internalBoard];
+    }
+
+
     get width() {
         return this.#internalBoard[0].length;
     }
@@ -35,6 +40,11 @@ export default class EditorInternalLevel {
 
     get height() {
         return this.#internalBoard.length;
+    }
+
+
+    get numberOfIterations() {
+        return this.#numberOfIterations;
     }
 
 
