@@ -33,6 +33,16 @@ export default class EditorInternalLevel {
     }
 
 
+    get scatterPositionList() {
+        return [...this.#scatterPositionList];
+    }
+
+
+    get optionalSpawnPositionList() {
+        return [...this.#optionalSpawnPositionList];
+    }
+
+
     get width() {
         return this.#internalBoard[0].length;
     }
