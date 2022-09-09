@@ -119,21 +119,6 @@ export default class EditorInternalLevel {
     }
 
 
-    #isCoordinateBonusSpawnPosition(coordinateString) {
-        let result = false;
-        const coordinate = this.#parseCoordinateString(coordinateString);
-
-        for (let spawnPosition of this.#bonusSpawnPositionList) {
-            const isSamePosition = spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y;
-            if (isSamePosition) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }
-
-
     update(coordinateString, character) {
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
@@ -171,13 +156,6 @@ export default class EditorInternalLevel {
     }
 
 
-    #addBonusSpawnPosition(coordinateString) {
-        this.#removeBonusSpawnPositionAt(coordinateString);
-        const positionObject = this.#buildBonusSpawnPositionObject(coordinateString);
-        this.#bonusSpawnPositionList.push(positionObject);
-    }
-
-
     removeScatterPositionFor(ghostCharacter) {
         this.#removeCharacterFromPositionList(this.#scatterPositionList, ghostCharacter);
     }
@@ -185,11 +163,6 @@ export default class EditorInternalLevel {
 
     removeSpawnPositionFor(ghostCharacter) {
         this.#removeCharacterFromPositionList(this.#optionalSpawnPositionList, ghostCharacter);
-    }
-
-
-    #removeBonusSpawnPositionAt(coordinateString) {
-        this.#removeCoordinateFromPositionList(this.#bonusSpawnPositionList, coordinateString);
     }
 
 
@@ -245,6 +218,33 @@ export default class EditorInternalLevel {
 
     #setBoardCharacter(coordinates, character) {
         this.#internalBoard[coordinates.y][coordinates.x] = character;
+    }
+
+
+    #isCoordinateBonusSpawnPosition(coordinateString) {
+        let result = false;
+        const coordinate = this.#parseCoordinateString(coordinateString);
+
+        for (let spawnPosition of this.#bonusSpawnPositionList) {
+            const isSamePosition = spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y;
+            if (isSamePosition) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+
+    #addBonusSpawnPosition(coordinateString) {
+        this.#removeBonusSpawnPositionAt(coordinateString);
+        const positionObject = this.#buildBonusSpawnPositionObject(coordinateString);
+        this.#bonusSpawnPositionList.push(positionObject);
+    }
+
+
+    #removeBonusSpawnPositionAt(coordinateString) {
+        this.#removeCoordinateFromPositionList(this.#bonusSpawnPositionList, coordinateString);
     }
 
 
