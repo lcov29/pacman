@@ -97,6 +97,7 @@ export default class MainCanvas extends Canvas {
                     this.#decrementNumberOfAnimationsRequiringMovement();
 
                     if (animation instanceof ActorRespawnAnimation) {
+                        // TODO: check if removing is causing problems inside a for each loop
                         Utility.removeElementFrom(this.#animationList, animation);
                     }
                 } 
