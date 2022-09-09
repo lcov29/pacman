@@ -177,19 +177,6 @@ export default class Editor {
     }
 
 
-    /*
-    removeScatterSpawnOfDeletedGhostTypes() {
-        for (const ghostCharacter of Configuration.ghostCharacterList) {
-            const isGhostTypeOnBoard = this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
-
-            if (!isGhostTypeOnBoard) {
-                this.#internalLevel.removeScatterPositionFor(ghostCharacter);
-                this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
-            }
-        }
-    }*/
-
-
     buildNextLevelId() {
         this.#lastAssignedLevelId++;
         return `level${this.#lastAssignedLevelId}`;
