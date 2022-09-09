@@ -83,6 +83,18 @@ export default class EditorInternalLevel {
     }
 
 
+    getScatterPositionFor(ghostCharacter) {
+        const scatterPositionList = this.#scatterPositionList.filter(element => element.ghost === ghostCharacter);
+        return scatterPositionList[0];
+    }
+
+
+    getSpawnPositionFor(ghostCharacter) {
+        const spawnPositionList = this.#optionalSpawnPositionList.filter(element => element.ghost === ghostCharacter);
+        return spawnPositionList[0];
+    }
+
+
     getGhostCounterFor(ghostCharacter) {
         const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
         return ghostCoordinateList.length;
