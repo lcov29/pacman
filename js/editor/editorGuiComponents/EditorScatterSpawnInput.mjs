@@ -8,9 +8,6 @@ export default class EditorScatterSpawnInput {
 
 
     #editor = null;
-    #inputControlIdList = [];
-    #inputScatterControlIdList = [];
-    #inputSpawnControlIdList = [];
     #isGhostBlinkyScatterSpawnControlDisplayed = false;
     #isGhostPinkyScatterSpawnControlDisplayed = false;
     #isGhostClydeScatterSpawnControlDisplayed = false;
@@ -23,14 +20,13 @@ export default class EditorScatterSpawnInput {
 
 
     initialize() {
-        this.#initializeInputControlIdList();
         this.#initializeScatterSpawnInputMouseEventListeners();
         this.#initializeScatterButtonsEventListener();
         this.#initializeSpawnButtonsEventListener();
     }
 
 
-    setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
+    #setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
         switch(ghostCharacter) {
             case Configuration.ghostBlinkyCharacter:
                 this.#isGhostBlinkyScatterSpawnControlDisplayed = isDisplayed;
@@ -48,7 +44,7 @@ export default class EditorScatterSpawnInput {
     }
 
 
-    getScatterSpawnControlDisplayStatusFor(ghostCharacter) {
+    #getScatterSpawnControlDisplayStatusFor(ghostCharacter) {
         switch(ghostCharacter) {
             case Configuration.ghostBlinkyCharacter:
                 return this.#isGhostBlinkyScatterSpawnControlDisplayed;
@@ -71,7 +67,7 @@ export default class EditorScatterSpawnInput {
     updateScatterSpawnPositions() {
         for (const ghostCharacter of Configuration.ghostCharacterList) {
             const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
-            const isGhostControlDisplayed = this.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
+            const isGhostControlDisplayed = this.#getScatterSpawnControlDisplayStatusFor(ghostCharacter);
     
             if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
                 this.#displayScatterSpawnControlsFor(ghostCharacter);
@@ -107,7 +103,7 @@ export default class EditorScatterSpawnInput {
         for (const controlId of ghostTypeControlIdList) {
             document.getElementById(controlId).classList.remove('invisible');
         }
-        this.setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
+        this.#setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
     }
 
 
@@ -117,7 +113,7 @@ export default class EditorScatterSpawnInput {
         for (const controlId of ghostTypeControlIdList) {
             document.getElementById(controlId).classList.add('invisible');
         }
-        this.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
+        this.#setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
     }
 
 
@@ -125,7 +121,6 @@ export default class EditorScatterSpawnInput {
         const inputId = this.#getScatterInputIdFor(ghostCharacter);
         const position = this.#editor.getScatterPositionFor(ghostCharacter);
         const value = (position) ? `(${position.x},${position.y})` : '';
-
         document.getElementById(inputId).value = value;
     }
 
@@ -134,7 +129,6 @@ export default class EditorScatterSpawnInput {
         const inputId = this.#getSpawnInputIdFor(ghostCharacter);
         const position = this.#editor.getSpawnPositionFor(ghostCharacter);
         const value = (position) ? `(${position.x},${position.y})` : '';
-
         document.getElementById(inputId).value = value;
     }
 
@@ -187,12 +181,12 @@ export default class EditorScatterSpawnInput {
 
 
     #resetSpawnScatterInputElements() {
-        for (const element of this.#inputControlIdList) {
-            const inputElement = document.getElementById(element.inputId);
-            const controlElement = document.getElementById(element.controlId);
-
-            inputElement.value = '';
-            controlElement.classList.add('invisible');
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const scatterSpawnControlIdList = this.#getScatterSpawnControlIdListFor(ghostCharacter);
+            const scatterControl = document.getElementById(scatterSpawnControlIdList[0]);
+            const spawnControl = document.getElementById(scatterSpawnControlIdList[1]);
+            scatterControl.value = '';
+            spawnControl.classList.add('invisible');
         }
     }
 
@@ -202,23 +196,6 @@ export default class EditorScatterSpawnInput {
         this.#isGhostPinkyScatterSpawnControlDisplayed = false;
         this.#isGhostClydeScatterSpawnControlDisplayed = false;
         this.#isGhostInkyScatterSpawnControlDisplayed = false;
-    }
-
-
-    #initializeInputControlIdList() {
-        this.#inputScatterControlIdList = [
-            {ghostCharacter: Configuration.ghostBlinkyCharacter, inputId: 'scatterPositionGhostBlinky', controlId: 'scatterControlGhostBlinky'},
-            {ghostCharacter: Configuration.ghostPinkyCharacter, inputId: 'scatterPositionGhostPinky', controlId: 'scatterControlGhostPinky'},
-            {ghostCharacter: Configuration.ghostInkyCharacter, inputId: 'scatterPositionGhostInky', controlId: 'scatterControlGhostInky'},
-            {ghostCharacter: Configuration.ghostClydeCharacter, inputId: 'scatterPositionGhostClyde', controlId: 'scatterControlGhostClyde'}
-        ];
-        this.#inputSpawnControlIdList = [
-            {ghostCharacter: Configuration.ghostBlinkyCharacter, inputId: 'spawnPositionGhostBlinky', controlId: 'spawnControlGhostBlinky'},
-            {ghostCharacter: Configuration.ghostPinkyCharacter, inputId: 'spawnPositionGhostPinky', controlId: 'spawnControlGhostPinky'},
-            {ghostCharacter: Configuration.ghostInkyCharacter, inputId: 'spawnPositionGhostInky', controlId: 'spawnControlGhostInky'},
-            {ghostCharacter: Configuration.ghostClydeCharacter, inputId: 'spawnPositionGhostClyde', controlId: 'spawnControlGhostClyde'}
-        ];
-        this.#inputControlIdList = [...this.#inputScatterControlIdList, ... this.#inputSpawnControlIdList]; 
     }
 
 
