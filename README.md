@@ -97,10 +97,11 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Level Editor
-- [ ] add ability to add level to rotation
+- [x] add ability to add level to rotation
+- [x] add ability to switch between levels in rotation
 - [ ] add ability to delete level from rotation
 - [ ] add ability to rearrange level order in rotation
-- [ ] add ability to define level repetition within rotation
+- [x] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
 - [ ] add preview image for created levels
 - [ ] add eraser tool
