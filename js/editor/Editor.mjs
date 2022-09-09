@@ -111,16 +111,7 @@ export default class Editor {
 
     updateBonusSpawnList(coordinateString) {
         const tileId = this.#tileSelectionBar.selectedElementId;
-        const isBonusSpawnOverwritten = this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
-        const isBonusSpawnTile = tileId === 'bonus_spawn_tile';
-
-        if (isBonusSpawnOverwritten) {
-            this.#internalLevel.removeBonusSpawnPositionAt(coordinateString);
-        }
-
-        if (isBonusSpawnTile) {
-            this.#internalLevel.addBonusSpawnPosition(coordinateString);
-        }
+        this.#internalLevel.updateBonusSpawnList(tileId, coordinateString);
     }
 
 

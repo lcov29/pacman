@@ -143,6 +143,20 @@ export default class EditorInternalLevel {
     }
 
 
+    updateBonusSpawnList(tileId, coordinateString) {
+        const isBonusSpawnOverwritten = this.isCoordinateBonusSpawnPosition(coordinateString);
+        const isBonusSpawnTile = tileId === 'bonusSpawnTile';
+
+        if (isBonusSpawnOverwritten) {
+            this.removeBonusSpawnPositionAt(coordinateString);
+        }
+
+        if (isBonusSpawnTile) {
+            this.addBonusSpawnPosition(coordinateString);
+        }
+    }
+
+
     addScatterPosition(ghostCharacter, coordinateString) {
         this.removeScatterPositionFor(ghostCharacter);
         const positionObject = this.#buildScatterSpawnPositionObject(ghostCharacter, coordinateString);
