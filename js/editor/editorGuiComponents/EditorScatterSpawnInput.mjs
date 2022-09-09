@@ -1,4 +1,5 @@
 import Configuration from "../../global/Configuration.mjs";
+import EditorElementMapper from "../EditorElementMapper.mjs";
 import EditorSpawnSelectionState from "../editorStates/EditorSpawnSelectionState.mjs";
 import EditorScatterSelectionState from "../editorStates/EditorScatterSelectionState.mjs";
 
@@ -61,32 +62,127 @@ export default class EditorScatterSpawnInput {
     }
 
 
-    displayScatterPositionList(scatterPositionList) {
-        this.#displayScatterSpawnPositionList(scatterPositionList, this.#inputScatterControlIdList);
+    loadScatterSpawnPositions() {
+        this.reset();
+        this.#initializeScatterSpawnControls();
     }
 
 
-    displaySpawnPositionList(spawnPositionList) {
-        this.#displayScatterSpawnPositionList(spawnPositionList, this.#inputSpawnControlIdList);
-    }
-
-
-    #displayScatterSpawnPositionList(positionList, inputControlIdList) {
-        for (const position of positionList) {
-            const ghostCharacter = position.ghost;
-            const controlIdObject = inputControlIdList.filter(element => element.ghostCharacter === ghostCharacter)[0];
-            const controlClassList = document.getElementById(controlIdObject.controlId).classList;
-            const inputPosition = document.getElementById(controlIdObject.inputId);
-          
-            controlClassList.remove('invisible');
-            inputPosition.value = `(${position.x},${position.y})`;
+    updateScatterSpawnPositions() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
+            const isGhostControlDisplayed = this.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
+    
+            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
+                this.#displayScatterSpawnControlsFor(ghostCharacter);
+                this.#loadScatterPositionInputFor(ghostCharacter);
+                this.#loadSpawnPositionInputFor(ghostCharacter);
+            }
+    
+            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
+                this.#hideScatterSpawnControlsFor(ghostCharacter);
+                this.#clearScatterPositionInputFor(ghostCharacter);
+                this.#clearSpawnPositionInputFor(ghostCharacter);
+            }
         }
+    }
+
+
+    #initializeScatterSpawnControls() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
+    
+            if (isGhostTypeOnBoard) {
+                this.#displayScatterSpawnControlsFor(ghostCharacter);
+                this.#loadScatterPositionInputFor(ghostCharacter);
+                this.#loadSpawnPositionInputFor(ghostCharacter);
+            }
+        }
+    }
+
+
+    #displayScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = this.#getScatterSpawnControlIdListFor(ghostCharacter);
+
+        for (const controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).classList.remove('invisible');
+        }
+        this.setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
+    }
+
+
+    #hideScatterSpawnControlsFor(ghostCharacter) {
+        const ghostTypeControlIdList = this.#getScatterSpawnControlIdListFor(ghostCharacter);
+
+        for (const controlId of ghostTypeControlIdList) {
+            document.getElementById(controlId).classList.add('invisible');
+        }
+        this.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
+    }
+
+
+    #loadScatterPositionInputFor(ghostCharacter) {
+        const inputId = this.#getScatterInputIdFor(ghostCharacter);
+        const position = this.#editor.getScatterPositionFor(ghostCharacter);
+        const value = (position) ? `(${position.x},${position.y})` : '';
+
+        document.getElementById(inputId).value = value;
+    }
+
+
+    #loadSpawnPositionInputFor(ghostCharacter) {
+        const inputId = this.#getSpawnInputIdFor(ghostCharacter);
+        const position = this.#editor.getSpawnPositionFor(ghostCharacter);
+        const value = (position) ? `(${position.x},${position.y})` : '';
+
+        document.getElementById(inputId).value = value;
+    }
+
+
+    clearScatterInputFor(ghostCharacterList) {
+        for (const ghostCharacter of ghostCharacterList) {
+            this.#clearScatterPositionInputFor(ghostCharacter);
+        }
+    }
+
+
+    clearSpawnInputFor(ghostCharacterList) {
+        for (const ghostCharacter of ghostCharacterList) {
+            this.#clearSpawnPositionInputFor(ghostCharacter);
+        }
+    }
+
+
+    #clearScatterPositionInputFor(ghostCharacter) {
+        const inputId = this.#getScatterInputIdFor(ghostCharacter);
+        document.getElementById(inputId).value = '';
+    }
+
+
+    #clearSpawnPositionInputFor(ghostCharacter) {
+        const inputId = this.#getSpawnInputIdFor(ghostCharacter);
+        document.getElementById(inputId).value = '';
     }
 
 
     reset() {
         this.#resetSpawnScatterInputElements();
         this.#resetSpawnScatterControlDisplayStatus();
+    }
+
+
+    #getScatterSpawnControlIdListFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
+    }
+
+
+    #getScatterInputIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterInputIdMap.get(ghostCharacter);
+    }
+
+
+    #getSpawnInputIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToSpawnInputIdMap.get(ghostCharacter);
     }
 
 

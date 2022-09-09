@@ -55,7 +55,6 @@ export default class Editor {
         this.#saveButton.initialize();
         this.#internalLevelRotation.initialize();
         this.handleAddNewLevel();
-        //this.#internalLevel = this.#internalLevelRotation.getLevel();
     }
 
 
@@ -145,19 +144,23 @@ export default class Editor {
     }
 
 
-    manageScatterSpawnControlVisibility() {
-        for (const ghostCharacter of Configuration.ghostCharacterList) {
-            const isGhostTypeOnBoard = this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
-            const isGhostControlDisplayed = this.#inputScatterSpawn.getScatterSpawnControlDisplayStatusFor(ghostCharacter);
-    
-            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
-                this.#displayScatterSpawnControlsFor(ghostCharacter);
-            }
-    
-            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
-                this.#hideScatterSpawnControlsFor(ghostCharacter);
-            }
-        }
+    isGhostTypeOnBoard(ghostCharacter) {
+        return this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
+    }
+
+
+    getScatterPositionFor(ghostCharacter) {
+        return this.#internalLevel.getScatterPositionFor(ghostCharacter);
+    }
+
+
+    getSpawnPositionFor(ghostCharacter) {
+        return this.#internalLevel.getSpawnPositionFor(ghostCharacter);
+    }
+
+
+    updateScatterSpawnPositions() {
+        this.#inputScatterSpawn.updateScatterSpawnPositions();
     }
 
 
@@ -172,8 +175,8 @@ export default class Editor {
         if (isTileInaccessible && isTileScatterOrSpawn) {
             this.#internalLevel.removeScatterPositionAt(callerId);
             this.#internalLevel.removeSpawnPositionAt(callerId);
-            this.#clearScatterInputFor(ghostCharacterListScatter);
-            this.#clearSpawnInputFor(ghostCharacterListSpawn);
+            this.#inputScatterSpawn.clearScatterInputFor(ghostCharacterListScatter);
+            this.#inputScatterSpawn.clearSpawnInputFor(ghostCharacterListSpawn);
         }
     }
 
@@ -222,9 +225,7 @@ export default class Editor {
         this.#internalLevel = this.#internalLevelRotation.getLevel();
         this.#inputBoardDimension.setDimension(this.#internalLevel.width, this.#internalLevel.height);
         this.#inputLevelIteration.levelIterationNumber = this.#internalLevel.numberOfIterations;
-        this.#inputScatterSpawn.reset();
-        this.#inputScatterSpawn.displayScatterPositionList(this.#internalLevel.scatterPositionList);
-        this.#inputScatterSpawn.displaySpawnPositionList(this.#internalLevel.optionalSpawnPositionList);
+        this.#inputScatterSpawn.loadScatterSpawnPositions();
         this.#boardEditingArea.loadBoard(this.#internalLevel.board);
     }
 
@@ -283,11 +284,6 @@ export default class Editor {
     }
 
 
-    #getScatterSpawnControlIdForInputId(inputId) {
-        return EditorElementMapper.scatterSpawnControlIdToInputIdMap.get(inputId);
-    }
-
-
     #getLevelRotationJSONString() {
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString();
         return rotationJsonString;
@@ -317,46 +313,6 @@ export default class Editor {
         const width = this.#inputBoardDimension.width;
         const height = this.#inputBoardDimension.height;
         this.#boardEditingArea.build(width, height);
-    }
-
-
-    #clearScatterInputFor(ghostCharacterList) {
-        for (let ghostCharacter of ghostCharacterList) {
-            let inputId = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[0];
-            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
-            document.getElementById(inputId).value = '';
-        }
-    }
-
-
-    #clearSpawnInputFor(ghostCharacterList) {
-        for (let ghostCharacter of ghostCharacterList) {
-            let inputId = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter)[1];
-            inputId = this.#getScatterSpawnControlIdForInputId(inputId);
-            document.getElementById(inputId).value = '';
-        }
-    }
-
-
-    #displayScatterSpawnControlsFor(ghostCharacter) {
-        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
-
-        for (const controlId of ghostTypeControlIdList) {
-            document.getElementById(controlId).classList.remove('invisible');
-        }
-        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
-    }
-
-
-    #hideScatterSpawnControlsFor(ghostCharacter) {
-        const ghostTypeControlIdList = EditorElementMapper.internalElementToScatterSpawnControlIdMap.get(ghostCharacter);
-
-        for (const controlId of ghostTypeControlIdList) {
-            document.getElementById(controlId).classList.add('invisible');
-            const inputId = this.#getScatterSpawnControlIdForInputId(controlId);
-            document.getElementById(inputId).value = '';
-        }
-        this.#inputScatterSpawn.setSpawnScatterControlDisplayStatusFor(ghostCharacter, false);
     }
 
 
