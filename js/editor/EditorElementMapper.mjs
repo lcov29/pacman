@@ -34,6 +34,8 @@ export default class EditorElementMapper {
         EditorElementMapper.tileTypeToInternalElementMap.set('ghostPinkyTile', Configuration.ghostPinkyCharacter);
         EditorElementMapper.tileTypeToInternalElementMap.set('ghostInkyTile', Configuration.ghostInkyCharacter);
         EditorElementMapper.tileTypeToInternalElementMap.set('ghostClydeTile', Configuration.ghostClydeCharacter);
+        EditorElementMapper.tileTypeToInternalElementMap.set('undefinedTile', Configuration.undefinedTileCharacter);
+
 
 
         EditorElementMapper.internalElementToTileTypeMap = new Map();
@@ -53,6 +55,7 @@ export default class EditorElementMapper {
         EditorElementMapper.internalElementToTileTypeMap.set(Configuration.ghostPinkyCharacter, 'ghostPinkyTile');
         EditorElementMapper.internalElementToTileTypeMap.set(Configuration.ghostInkyCharacter, 'ghostInkyTile');
         EditorElementMapper.internalElementToTileTypeMap.set(Configuration.ghostClydeCharacter, 'ghostClydeTile');
+        EditorElementMapper.internalElementToTileTypeMap.set(Configuration.undefinedTileCharacter, 'undefinedTile');
 
 
         EditorElementMapper.buttonIdToInputIdMap = new Map();
