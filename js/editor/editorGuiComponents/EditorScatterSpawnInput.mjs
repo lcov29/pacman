@@ -27,6 +27,131 @@ export default class EditorScatterSpawnInput {
     }
 
 
+    loadScatterSpawnPositions() {
+        this.reset();
+        this.#initializeScatterSpawnControls();
+    }
+
+
+    updateScatterSpawnPositions() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
+            const isGhostControlDisplayed = this.#getScatterSpawnControlDisplayStatusFor(ghostCharacter);
+    
+            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
+                this.#displayControlsFor(ghostCharacter);
+                this.#loadScatterPositionInputFor(ghostCharacter);
+                this.#loadSpawnPositionInputFor(ghostCharacter);
+            }
+    
+            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
+                this.#hideControldFor(ghostCharacter);
+                this.#clearScatterPositionInputFor(ghostCharacter);
+                this.#clearSpawnPositionInputFor(ghostCharacter);
+            }
+        }
+    }
+
+
+    reset() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            this.#clearInputFor(ghostCharacter);
+            this.#hideControldFor(ghostCharacter);
+        }
+    }
+
+
+    clearScatterInputFor(ghostCharacterList) {
+        for (const ghostCharacter of ghostCharacterList) {
+            this.#clearScatterPositionInputFor(ghostCharacter);
+        }
+    }
+
+
+    clearSpawnInputFor(ghostCharacterList) {
+        for (const ghostCharacter of ghostCharacterList) {
+            this.#clearSpawnPositionInputFor(ghostCharacter);
+        }
+    }
+
+
+    // ========== Callback Functions ==========
+
+
+    scatterSpawnMouseEnterCallback(event) {
+        const inputId = event.target.id;
+        const coordinateString = document.getElementById(inputId).value;
+        const isCoordinateStringValid = coordinateString !== '';
+    
+        if (isCoordinateStringValid) {
+            document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
+        }
+    }
+
+
+    scatterSpawnMouseLeaveCallback(event) {
+        const inputId = event.target.id;
+        const coordinateString = document.getElementById(inputId).value;
+        const isCoordinateStringValid = coordinateString !== '';
+    
+        if (isCoordinateStringValid) {
+            document.getElementById(coordinateString).classList.remove('scatterSpawnSelectionPointHighlight');
+        }
+    }
+
+
+    scatterSelectionButtonCallback(event) {
+        const inputId = event.target.id;
+        const scatterSelectionState = new EditorScatterSelectionState(this.#editor, inputId);
+        this.#editor.setState(scatterSelectionState);
+    }
+
+
+    spawnSelectionButtonCallback(event) {
+        const inputId = event.target.id;
+        const scatterSelectionState = new EditorSpawnSelectionState(this.#editor, inputId);
+        this.#editor.setState(scatterSelectionState);
+    }
+
+
+    #initializeScatterSpawnInputMouseEventListeners() {
+        const scatterSpawnInputList = document.querySelectorAll('input[class="inputPosition"]');
+        for (const scatterSpawnInput of scatterSpawnInputList) {
+            scatterSpawnInput.addEventListener('mouseenter', this.scatterSpawnMouseEnterCallback.bind(this));
+            scatterSpawnInput.addEventListener('mouseleave', this.scatterSpawnMouseLeaveCallback.bind(this));
+        }
+    }
+
+
+    #initializeScatterButtonsEventListener() {
+        const scatterButtonList = document.querySelectorAll('button[name="buttonScatterPosition"]');
+        for (const scatterButton of scatterButtonList) {
+            scatterButton.addEventListener('click', this.scatterSelectionButtonCallback.bind(this));
+        }
+    }
+
+
+    #initializeSpawnButtonsEventListener() {
+        const spawnButtonList = document.querySelectorAll('button[name="buttonSpawnPosition"]');
+        for (const spawnButton of spawnButtonList) {
+            spawnButton.addEventListener('click', this.spawnSelectionButtonCallback.bind(this));
+        }
+    }
+
+
+    #initializeScatterSpawnControls() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
+    
+            if (isGhostTypeOnBoard) {
+                this.#displayControlsFor(ghostCharacter);
+                this.#loadScatterPositionInputFor(ghostCharacter);
+                this.#loadSpawnPositionInputFor(ghostCharacter);
+            }
+        }
+    }
+
+
     #setSpawnScatterControlDisplayStatusFor(ghostCharacter, isDisplayed) {
         switch(ghostCharacter) {
             case Configuration.ghostBlinkyCharacter:
@@ -59,42 +184,23 @@ export default class EditorScatterSpawnInput {
     }
 
 
-    loadScatterSpawnPositions() {
-        this.reset();
-        this.#initializeScatterSpawnControls();
+    #getScatterControlIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterControlIdMap.get(ghostCharacter);
     }
 
 
-    updateScatterSpawnPositions() {
-        for (const ghostCharacter of Configuration.ghostCharacterList) {
-            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
-            const isGhostControlDisplayed = this.#getScatterSpawnControlDisplayStatusFor(ghostCharacter);
-    
-            if (isGhostTypeOnBoard && !isGhostControlDisplayed) {
-                this.#displayControlsFor(ghostCharacter);
-                this.#loadScatterPositionInputFor(ghostCharacter);
-                this.#loadSpawnPositionInputFor(ghostCharacter);
-            }
-    
-            if (!isGhostTypeOnBoard && isGhostControlDisplayed) {
-                this.#hideControldFor(ghostCharacter);
-                this.#clearScatterPositionInputFor(ghostCharacter);
-                this.#clearSpawnPositionInputFor(ghostCharacter);
-            }
-        }
+    #getSpawnControlIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToSpawnControlIdMap.get(ghostCharacter);
     }
 
 
-    #initializeScatterSpawnControls() {
-        for (const ghostCharacter of Configuration.ghostCharacterList) {
-            const isGhostTypeOnBoard = this.#editor.isGhostTypeOnBoard(ghostCharacter);
-    
-            if (isGhostTypeOnBoard) {
-                this.#displayControlsFor(ghostCharacter);
-                this.#loadScatterPositionInputFor(ghostCharacter);
-                this.#loadSpawnPositionInputFor(ghostCharacter);
-            }
-        }
+    #getScatterInputIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToScatterInputIdMap.get(ghostCharacter);
+    }
+
+
+    #getSpawnInputIdFor(ghostCharacter) {
+        return EditorElementMapper.internalElementToSpawnInputIdMap.get(ghostCharacter);
     }
 
 
@@ -122,7 +228,7 @@ export default class EditorScatterSpawnInput {
         controlClasslist.remove(this.#cssClassNameInvisible); 
     }
 
-    
+
     #hideControldFor(ghostCharacter) {
         this.#hideScatterControlFor(ghostCharacter);
         this.#hideSpawnControlFor(ghostCharacter);
@@ -148,6 +254,24 @@ export default class EditorScatterSpawnInput {
     }
 
 
+    #clearInputFor(ghostCharacter) {
+        this.#clearScatterPositionInputFor(ghostCharacter);
+        this.#clearSpawnPositionInputFor(ghostCharacter);
+    }
+
+
+    #clearScatterPositionInputFor(ghostCharacter) {
+        const inputId = this.#getScatterInputIdFor(ghostCharacter);
+        document.getElementById(inputId).value = '';
+    }
+
+
+    #clearSpawnPositionInputFor(ghostCharacter) {
+        const inputId = this.#getSpawnInputIdFor(ghostCharacter);
+        document.getElementById(inputId).value = '';
+    }
+
+
     #loadScatterPositionInputFor(ghostCharacter) {
         const inputId = this.#getScatterInputIdFor(ghostCharacter);
         const position = this.#editor.getScatterPositionFor(ghostCharacter);
@@ -170,130 +294,6 @@ export default class EditorScatterSpawnInput {
         } else {
             return '';
         }
-    }
-
-
-    clearScatterInputFor(ghostCharacterList) {
-        for (const ghostCharacter of ghostCharacterList) {
-            this.#clearScatterPositionInputFor(ghostCharacter);
-        }
-    }
-
-
-    clearSpawnInputFor(ghostCharacterList) {
-        for (const ghostCharacter of ghostCharacterList) {
-            this.#clearSpawnPositionInputFor(ghostCharacter);
-        }
-    }
-
-
-    #clearInputFor(ghostCharacter) {
-        this.#clearScatterPositionInputFor(ghostCharacter);
-        this.#clearSpawnPositionInputFor(ghostCharacter);
-    }
-
-
-    #clearScatterPositionInputFor(ghostCharacter) {
-        const inputId = this.#getScatterInputIdFor(ghostCharacter);
-        document.getElementById(inputId).value = '';
-    }
-
-
-    #clearSpawnPositionInputFor(ghostCharacter) {
-        const inputId = this.#getSpawnInputIdFor(ghostCharacter);
-        document.getElementById(inputId).value = '';
-    }
-
-
-    #getScatterControlIdFor(ghostCharacter) {
-        return EditorElementMapper.internalElementToScatterControlIdMap.get(ghostCharacter);
-    }
-
-
-    #getSpawnControlIdFor(ghostCharacter) {
-        return EditorElementMapper.internalElementToSpawnControlIdMap.get(ghostCharacter);
-    }
-
-
-    #getScatterInputIdFor(ghostCharacter) {
-        return EditorElementMapper.internalElementToScatterInputIdMap.get(ghostCharacter);
-    }
-
-
-    #getSpawnInputIdFor(ghostCharacter) {
-        return EditorElementMapper.internalElementToSpawnInputIdMap.get(ghostCharacter);
-    }
-
-
-    reset() {
-        for (const ghostCharacter of Configuration.ghostCharacterList) {
-            this.#clearInputFor(ghostCharacter);
-            this.#hideControldFor(ghostCharacter);
-        }
-    }
-    
-
-    #initializeScatterSpawnInputMouseEventListeners() {
-        const scatterSpawnInputList = document.querySelectorAll('input[class="inputPosition"]');
-        for (const scatterSpawnInput of scatterSpawnInputList) {
-            scatterSpawnInput.addEventListener('mouseenter', this.scatterSpawnMouseEnterCallback.bind(this));
-            scatterSpawnInput.addEventListener('mouseleave', this.scatterSpawnMouseLeaveCallback.bind(this));
-        }
-    }
-
-
-    #initializeScatterButtonsEventListener() {
-        const scatterButtonList = document.querySelectorAll('button[name="buttonScatterPosition"]');
-        for (const scatterButton of scatterButtonList) {
-            scatterButton.addEventListener('click', this.scatterSelectionButtonCallback.bind(this));
-        }
-    }
-
-
-    #initializeSpawnButtonsEventListener() {
-        const spawnButtonList = document.querySelectorAll('button[name="buttonSpawnPosition"]');
-        for (const spawnButton of spawnButtonList) {
-            spawnButton.addEventListener('click', this.spawnSelectionButtonCallback.bind(this));
-        }
-    }
-
-
-    // ========== Callback Functions ==========
-
-
-    scatterSpawnMouseEnterCallback(event) {
-        const inputId = event.target.id;
-        const coordinateString = document.getElementById(inputId).value;
-        const isCoordinateStringValid = coordinateString !== '';
-    
-        if (isCoordinateStringValid) {
-           document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
-        }
-    }
-
-
-    scatterSpawnMouseLeaveCallback(event) {
-        const inputId = event.target.id;
-        const coordinateString = document.getElementById(inputId).value;
-        const isCoordinateStringValid = coordinateString !== '';
-    
-        if (isCoordinateStringValid) {
-            document.getElementById(coordinateString).classList.remove('scatterSpawnSelectionPointHighlight');
-        }
-    }
-
-
-    scatterSelectionButtonCallback(event) {
-        const inputId = event.target.id;
-        const scatterSelectionState = new EditorScatterSelectionState(this.#editor, inputId);
-        this.#editor.setState(scatterSelectionState);
-    }
-    
-    
-    spawnSelectionButtonCallback(event) {
-        const inputId = event.target.id;
-        const scatterSelectionState = new EditorSpawnSelectionState(this.#editor, inputId);
-        this.#editor.setState(scatterSelectionState);
     }
 
 
