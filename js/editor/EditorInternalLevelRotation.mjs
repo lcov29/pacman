@@ -54,46 +54,9 @@ export default class EditorInternalLevelRotation {
     }
 
 
-    /*
-    removeLevel(internalLevel) {
-        Utility.removeElementFrom(this.#internalLevelList, internalLevel);        
-    }*/
-
-
     getLevel() {
         return this.#internalLevelList[this.#currentSelectedLevelIndex];
     }
-
-
-    /*
-    next() {
-        isEndOfRotationReached = this.#currentSelectedLevelIndex === this.#internalLevelList.length - 1;
-
-        if (!isEndOfRotationReached) {
-            this.#currentSelectedLevelIndex++;
-        }
-    }
-
-
-    previous() {
-        isIndexDecrementable = this.#currentSelectedLevelIndex > 0;
-
-        if (isIndexDecrementable) {
-            this.#currentSelectedLevelIndex--;
-        }
-    }*/
-
-
-    /*
-    selectLevelAt(index) {
-        const isValidIndex = (0 <= index) && (index < this.#internalLevelList.length);
-
-        if (isValidIndex) {
-            this.#currentSelectedLevelIndex = index;
-        } else {
-            throw new RangeError('Invalid index');
-        }
-    }*/
 
 
     buildLevelRotationJSONString() {
