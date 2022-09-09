@@ -8,7 +8,8 @@ export default class EditorElementMapper {
     static internalElementToTileTypeMap = null;
     static buttonIdToInputIdMap = null;
     static buttonIdToGhostCharacterMap = null;
-    static internalElementToScatterSpawnControlIdMap = null;
+    static internalElementToScatterControlIdMap = null;
+    static internalElementToSpawnControlIdMap = null;
     static internalElementToScatterInputIdMap = null;
     static internalElementToSpawnInputIdMap = null;
     static scatterSpawnControlIdToInputIdMap = null;
@@ -76,11 +77,18 @@ export default class EditorElementMapper {
         EditorElementMapper.buttonIdToGhostCharacterMap.set('selectSpawnPositionGhostClyde', Configuration.ghostClydeCharacter);
 
 
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap = new Map();
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostBlinkyCharacter, ['scatterControlGhostBlinky', 'spawnControlGhostBlinky']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostPinkyCharacter, ['scatterControlGhostPinky', 'spawnControlGhostPinky']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostClydeCharacter, ['scatterControlGhostClyde', 'spawnControlGhostClyde']);
-        EditorElementMapper.internalElementToScatterSpawnControlIdMap.set(Configuration.ghostInkyCharacter, ['scatterControlGhostInky', 'spawnControlGhostInky']);
+        EditorElementMapper.internalElementToScatterControlIdMap = new Map();
+        EditorElementMapper.internalElementToScatterControlIdMap.set(Configuration.ghostBlinkyCharacter, 'scatterControlGhostBlinky');
+        EditorElementMapper.internalElementToScatterControlIdMap.set(Configuration.ghostPinkyCharacter, 'scatterControlGhostPinky');
+        EditorElementMapper.internalElementToScatterControlIdMap.set(Configuration.ghostInkyCharacter, 'scatterControlGhostInky');
+        EditorElementMapper.internalElementToScatterControlIdMap.set(Configuration.ghostClydeCharacter, 'scatterControlGhostClyde');
+
+
+        EditorElementMapper.internalElementToSpawnControlIdMap = new Map();
+        EditorElementMapper.internalElementToSpawnControlIdMap.set(Configuration.ghostBlinkyCharacter, 'spawnControlGhostBlinky');
+        EditorElementMapper.internalElementToSpawnControlIdMap.set(Configuration.ghostPinkyCharacter, 'spawnControlGhostPinky');
+        EditorElementMapper.internalElementToSpawnControlIdMap.set(Configuration.ghostInkyCharacter, 'spawnControlGhostInky');
+        EditorElementMapper.internalElementToSpawnControlIdMap.set(Configuration.ghostClydeCharacter, 'spawnControlGhostClyde');
 
 
         EditorElementMapper.internalElementToScatterInputIdMap = new Map();
