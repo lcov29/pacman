@@ -287,6 +287,7 @@ export default class EditorInternalLevel {
             const isSameCharacter = currentPosition.ghost === ghostCharacter;
 
             if (isSameCharacter) {
+                // method can not be called within a for each loop because of index manipulation
                 Utility.removeElementFrom(positionList, currentPosition);
             } else {
                 currentIndex++;
@@ -304,6 +305,7 @@ export default class EditorInternalLevel {
             const isSameCoordinate = currentPosition.x === coordinate.x && currentPosition.y === coordinate.y;
 
             if (isSameCoordinate) {
+                // method can not be called within a for each loop because of index manipulation
                 Utility.removeElementFrom(positionList, currentPosition);
             } else {
                 currentIndex++;
