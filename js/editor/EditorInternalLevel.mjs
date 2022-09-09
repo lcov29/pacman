@@ -156,6 +156,18 @@ export default class EditorInternalLevel {
     }
 
 
+    removeScatterSpawnOfDeletedGhostTypes() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isGhostTypeOnBoard = this.getGhostCounterFor(ghostCharacter) > 0;
+
+            if (!isGhostTypeOnBoard) {
+                this.removeScatterPositionFor(ghostCharacter);
+                this.removeSpawnPositionFor(ghostCharacter);
+            }
+        }
+    }
+
+
     removeScatterPositionFor(ghostCharacter) {
         this.#removeCharacterFromPositionList(this.#scatterPositionList, ghostCharacter);
     }
