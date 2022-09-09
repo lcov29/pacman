@@ -85,13 +85,15 @@ export default class EditorInternalLevel {
 
     getScatterPositionFor(ghostCharacter) {
         const scatterPositionList = this.#scatterPositionList.filter(element => element.ghost === ghostCharacter);
-        return scatterPositionList[0];
+        const result = (scatterPositionList.length > 0) ? scatterPositionList[0] : null;
+        return result;
     }
 
 
     getSpawnPositionFor(ghostCharacter) {
         const spawnPositionList = this.#optionalSpawnPositionList.filter(element => element.ghost === ghostCharacter);
-        return spawnPositionList[0];
+        const result = (spawnPositionList.length > 0) ? spawnPositionList[0] : null;
+        return result;
     }
 
 
