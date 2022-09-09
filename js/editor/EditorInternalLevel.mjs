@@ -119,7 +119,7 @@ export default class EditorInternalLevel {
     }
 
 
-    isCoordinateBonusSpawnPosition(coordinateString) {
+    #isCoordinateBonusSpawnPosition(coordinateString) {
         let result = false;
         const coordinate = this.#parseCoordinateString(coordinateString);
 
@@ -144,15 +144,15 @@ export default class EditorInternalLevel {
 
 
     updateBonusSpawnList(tileId, coordinateString) {
-        const isBonusSpawnOverwritten = this.isCoordinateBonusSpawnPosition(coordinateString);
+        const isBonusSpawnOverwritten = this.#isCoordinateBonusSpawnPosition(coordinateString);
         const isBonusSpawnTile = tileId === 'bonusSpawnTile';
 
         if (isBonusSpawnOverwritten) {
-            this.removeBonusSpawnPositionAt(coordinateString);
+            this.#removeBonusSpawnPositionAt(coordinateString);
         }
 
         if (isBonusSpawnTile) {
-            this.addBonusSpawnPosition(coordinateString);
+            this.#addBonusSpawnPosition(coordinateString);
         }
     }
 
@@ -171,8 +171,8 @@ export default class EditorInternalLevel {
     }
 
 
-    addBonusSpawnPosition(coordinateString) {
-        this.removeBonusSpawnPositionAt(coordinateString);
+    #addBonusSpawnPosition(coordinateString) {
+        this.#removeBonusSpawnPositionAt(coordinateString);
         const positionObject = this.#buildBonusSpawnPositionObject(coordinateString);
         this.#bonusSpawnPositionList.push(positionObject);
     }
@@ -188,7 +188,7 @@ export default class EditorInternalLevel {
     }
 
 
-    removeBonusSpawnPositionAt(coordinateString) {
+    #removeBonusSpawnPositionAt(coordinateString) {
         this.#removeCoordinateFromPositionList(this.#bonusSpawnPositionList, coordinateString);
     }
 
