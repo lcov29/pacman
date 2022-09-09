@@ -280,10 +280,16 @@ export default class EditorInternalLevel {
 
 
     #removeCharacterFromPositionList(positionList, ghostCharacter) {
-        for (let position of positionList) {
-            const isSameCharacter = position.ghost === ghostCharacter;
+        let currentIndex = 0;
+
+        while (currentIndex < positionList.length) {
+            const currentPosition = positionList[currentIndex];
+            const isSameCharacter = currentPosition.ghost === ghostCharacter;
+
             if (isSameCharacter) {
-                Utility.removeElementFrom(positionList, position);
+                Utility.removeElementFrom(positionList, currentPosition);
+            } else {
+                currentIndex++;
             }
         }
     }
@@ -291,11 +297,16 @@ export default class EditorInternalLevel {
 
     #removeCoordinateFromPositionList(positionList, coordinateString) {
         const coordinate = this.#parseCoordinateString(coordinateString);
+        let currentIndex = 0;
 
-        for (let position of positionList) {
-            const isSameCoordinate = position.x === coordinate.x && position.y === coordinate.y;
+        while (currentIndex < positionList.length) {
+            const currentPosition = positionList[currentIndex];
+            const isSameCoordinate = currentPosition.x === coordinate.x && currentPosition.y === coordinate.y;
+
             if (isSameCoordinate) {
-                Utility.removeElementFrom(positionList, position);
+                Utility.removeElementFrom(positionList, currentPosition);
+            } else {
+                currentIndex++;
             }
         }
     }
