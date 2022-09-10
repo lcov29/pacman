@@ -54,9 +54,10 @@ export default class EditorLevelRotationBar {
 
 
     selectLevelCallback(event) {
-        const selectedLevelElement = event.target;
+        const selectedLevelElement = event.currentTarget;
         this.#editor.handleLevelSwitch(event.target.id);
         this.#highlight(selectedLevelElement);
+        event.stopPropagation();
     }
 
 
