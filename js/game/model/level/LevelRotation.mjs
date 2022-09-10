@@ -34,13 +34,13 @@ export default class LevelRotation {
     get initialPacmanLifes() {
         return this.#initialPacmanLifes;
     }
-    
+
 
     getNextLevel(gameReference) {
+        this.#updateCurrentJsonLevelIndex();
+        this.#loadRemainingTurnsForNewLevel();
         this.#decrementRemainingIterations();
         const levelObject = this.#parseCurrentJsonLevelIntoLevelObject(gameReference);
-        this.#updateCurrentJsonLevelIndex();
-        this.#updateRemainingTurnsForNewLevel();
         return levelObject;
     }
 
@@ -87,7 +87,7 @@ export default class LevelRotation {
     }
 
 
-    #updateRemainingTurnsForNewLevel() {
+    #loadRemainingTurnsForNewLevel() {
         const isLevelRotationNecessary = this.#currentJsonLevelRemainingIterations === 0;
 
         if (isLevelRotationNecessary) {
