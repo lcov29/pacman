@@ -177,6 +177,12 @@ export default class Editor {
     }
 
 
+    removeInternalLevel(levelId) {
+        this.#internalLevelRotation.removeLevel(levelId);
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+    }
+
+
     buildNextLevelId() {
         this.#lastAssignedLevelId++;
         return `level${this.#lastAssignedLevelId}`;
