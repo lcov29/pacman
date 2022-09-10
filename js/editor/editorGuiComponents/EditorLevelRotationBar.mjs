@@ -42,8 +42,12 @@ export default class EditorLevelRotationBar {
         const isDeletionConfirmed = window.confirm(Configuration.editorLevelDeletionPromptMessage);
 
         if (isDeletionConfirmed) {
-            this.#removeLevelNode(event);
-            this.#selectFirstLevelInRotation();
+            const levelId = this.#getLevelIdForDeleteButton(event.currentTarget);
+            this.#editor.removeInternalLevel(levelId);
+
+            this.#removeLevelNode(levelId);
+            this.#addNewLevelToEmptyRotation();
+            this.#selectRightmostLevelInRotation();
             event.stopPropagation();
         }
     }
@@ -63,6 +67,11 @@ export default class EditorLevelRotationBar {
         this.#insertInRotation(levelElement);
         this.#setLevelIterationNumberFor(levelElement, Configuration.editorDefaultIterationNumber);
         this.#highlight(levelElement);
+    }
+
+
+    #getLevelIdForDeleteButton(button) {
+        return button.parentElement.id;
     }
 
 
@@ -90,22 +99,23 @@ export default class EditorLevelRotationBar {
     }
 
 
-    #removeLevelNode(event) {
-        const deleteButton = event.currentTarget;
-        const levelElement = deleteButton.parentElement;
-        levelElement.remove();
+    #removeLevelNode(levelId) {
+        document.getElementById(levelId).remove();
     }
 
 
-    #selectFirstLevelInRotation() {
-        const levelRotationList = this.#levelRotationContainer.children;
-        const isLevelRotationEmpty = levelRotationList.length === 0;
-    
+    #addNewLevelToEmptyRotation() {
+        const isLevelRotationEmpty = !this.#levelRotationContainer.hasChildNodes();
         if (isLevelRotationEmpty) {
             this.addNewLevelCallback();
         }
-        const firstLevelInRotation = this.#levelRotationContainer.children[0];
-        firstLevelInRotation.click();
+    }
+
+
+    #selectRightmostLevelInRotation() {
+        const rightmostLevelIndex = this.#levelRotationContainer.children.length - 1;
+        const rightmostLevel = this.#levelRotationContainer.children[rightmostLevelIndex];
+        rightmostLevel.click();
     }
 
 
