@@ -1,5 +1,4 @@
 import EditorInternalLevel from "./EditorInternalLevel.mjs";
-import Utility from "../global/Utility.mjs";
 import Configuration from "../global/Configuration.mjs";
 
 
