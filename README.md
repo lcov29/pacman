@@ -103,7 +103,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 - [ ] add ability to rearrange level order in rotation
 - [x] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
-- [ ] add preview image for created levels
+- [x] add preview image for created levels
 - [ ] add eraser tool
 - [ ] validate custom levels in editor before loading
 <br>
@@ -127,10 +127,11 @@ You can also upload this project to a webserver. Since the codebase includes mod
 * add level rotation
 * add option to pause game
 * add features to level editor
-  * add levels to rotation
-  * delete levels from rotation
-  * define repetitions of each level within rotation
+  * add level to rotation
+  * delete level from rotation
   * switch between levels
+  * define repetitions of each level within rotation
+  * add level preview in icon
 * refactor codebase for level editor
 <br>
 
