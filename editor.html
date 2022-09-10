@@ -163,7 +163,34 @@
            </section>
            
         </main>
+
+        <canvas id="previewCanvas" class="invisible"></canvas>
+
+      <!-- svg sprites to prevent pre-loading issues in canvas -->
+      <div class="invisible">
+         <img id="emptySpace" src="./sprites/background/emptySpace.svg">
+         <img id="wall" src="./sprites/background/wall.svg">
+         <img id="undefinedTile" src="./sprites/background/undefined_tile.svg">
+
+         <img id="teleporter1" src="./sprites/background/teleporters/teleporter1.svg">
+         <img id="teleporter2" src="./sprites/background/teleporters/teleporter2.svg">
+         <img id="teleporter3" src="./sprites/background/teleporters/teleporter3.svg">
+
+         <img id="ghostDoorHorizontal" src="./sprites/background/door/ghost_door_horizontal.svg">
+         <img id="ghostDoorVertical" src="./sprites/background/door/ghost_door_vertical.svg">
+         <img id="ghostDoorDiagonal" src="./sprites/background/door/ghost_door_diagonal.svg">
+
+         <img id="point" src="./sprites/background/consumables/point.svg">
+         <img id="powerUp" src="./sprites/background/consumables/powerUp.svg">
+         <img id="bonusCherry" src="./sprites/background/consumables/bonus_elements/bonusCherry.svg">
+
+         <img id="pacmanRight" src="./sprites/actors/pacman/pacman_right.svg">
+         <img id="blinkyRight" src="./sprites/actors/ghost_blinky/blinky_right.svg"> 
+         <img id="pinkyRight" src="./sprites/actors/ghost_pinky/pinky_right.svg">
+         <img id="inkyRight" src="./sprites/actors/ghost_inky/inky_right.svg">    
+         <img id="clydeRight" src="./sprites/actors/ghost_clyde/clyde_right.svg">
+      </div>
   
-    </body>
+   </body>
    
 </html>
