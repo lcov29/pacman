@@ -5,6 +5,7 @@ import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInp
 import EditorBoardEditingArea from './editorGuiComponents/EditorBoardEditingArea.mjs';
 import EditorLevelRotationBar from './editorGuiComponents/EditorLevelRotationBar.mjs';
 import EditorTileSelectionBar from './editorGuiComponents/EditorTileSelectionBar.mjs';
+import EditorPreviewCanvas from './editorGuiComponents/EditorPreviewCanvas.mjs';
 import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
@@ -24,6 +25,7 @@ export default class Editor {
     #levelRotationBar = null;
     #saveButton = null;
     #internalLevelRotation = null;
+    #previewCanvas = null;
     #currentState = null;
     #internalLevel = null;
     #lastAssignedLevelId = 0;
@@ -39,6 +41,7 @@ export default class Editor {
         this.#levelRotationBar = new EditorLevelRotationBar(this);
         this.#saveButton = new EditorSaveButton(this);
         this.#internalLevelRotation = new EditorInternalLevelRotation();
+        this.#previewCanvas = new EditorPreviewCanvas();
         this.#currentState = new EditorDefaultState(this);
     }
 
@@ -112,6 +115,16 @@ export default class Editor {
     updateBonusSpawnList(coordinateString) {
         const tileId = this.#tileSelectionBar.selectedElementId;
         this.#internalLevel.updateBonusSpawnList(tileId, coordinateString);
+    }
+
+
+    updateLevelPreview(coordinateString) {
+        const internalCharacter = this.#tileSelectionBar.selectedElement;
+        this.#previewCanvas.draw(coordinateString, internalCharacter);
+
+        const levelId = this.#internalLevel.id;
+        const previewDataUrl = this.#previewCanvas.getDataURL();
+        this.#levelRotationBar.setPreview(levelId, previewDataUrl);
     }
 
 
@@ -207,6 +220,7 @@ export default class Editor {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
         this.#internalLevel = this.#internalLevelRotation.getLevel();
+        this.#previewCanvas.drawLevel(this.#internalLevel.board);
     }
 
 
@@ -217,6 +231,8 @@ export default class Editor {
         this.#inputLevelIteration.levelIterationNumber = this.#internalLevel.numberOfIterations;
         this.#inputScatterSpawn.loadScatterSpawnPositions();
         this.#boardEditingArea.loadBoard(this.#internalLevel.board);
+        this.#previewCanvas.drawLevel(this.#internalLevel.board);
+        this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
     }
 
 
