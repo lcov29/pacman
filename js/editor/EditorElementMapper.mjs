@@ -14,6 +14,7 @@ export default class EditorElementMapper {
     static internalElementToSpawnInputIdMap = null;
     static scatterSpawnControlIdToInputIdMap = null;
     static ghostCharacterToCSSHighlightClassMap = null;
+    static internalElementToSpriteIdMap = null;
 
 
     static initialize() {
@@ -124,6 +125,26 @@ export default class EditorElementMapper {
         EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostPinkyCharacter, 'ghostPinkyHighlight');
         EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostInkyCharacter, 'ghostInkyHighlight');
         EditorElementMapper.ghostCharacterToCSSHighlightClassMap.set(Configuration.ghostClydeCharacter, 'ghostClydeHighlight');
+    
+    
+        EditorElementMapper.internalElementToSpriteIdMap = new Map();
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.emptyTileCharacter, 'emptySpace');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.wallCharacter, 'wall');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.undefinedTileCharacter, 'undefinedTile');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.teleporter1Character, 'teleporter1');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.teleporter2Character, 'teleporter2');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.teleporter3Character, 'teleporter3');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostDoorHorizontalCharacter, 'ghostDoorHorizontal');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostDoorVerticalCharacter, 'ghostDoorVertical');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostDoorDiagonalCharacter, 'ghostDoorDiagonal');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.pointCharacter, 'point');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.powerUpCharacter, 'powerUp');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.bonusSpawnTile, 'bonusCherry');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.pacmanCharacter, 'pacmanRight');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostBlinkyCharacter, 'blinkyRight');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostPinkyCharacter, 'pinkyRight');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostInkyCharacter, 'inkyRight');
+        EditorElementMapper.internalElementToSpriteIdMap.set(Configuration.ghostClydeCharacter, 'clydeRight');
     }
 
 
