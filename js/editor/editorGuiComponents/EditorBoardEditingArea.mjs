@@ -87,6 +87,7 @@ export default class EditorBoardEditingArea {
     }
 
 
+    // TODO: CHECK IF BONUS SPAWN TILES ARE DISPLAYED
     #loadBoardIntoEditingArea(board) {
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
