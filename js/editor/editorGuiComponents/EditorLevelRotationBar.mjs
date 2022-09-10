@@ -33,6 +33,12 @@ export default class EditorLevelRotationBar {
     }
 
 
+    setPreview(levelId, previewDataUrl) {
+        const level = document.getElementById(levelId);
+        level.setAttribute('style', `background-image: url(${previewDataUrl});`);
+    }
+
+
     addNewLevelCallback(event) {
         this.#editor.handleAddNewLevel();
     }
