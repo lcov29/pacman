@@ -1,5 +1,6 @@
 import EditorInternalLevel from "./EditorInternalLevel.mjs";
 import Configuration from "../global/Configuration.mjs";
+import Utility from "../global/Utility.mjs";
 
 
 export default class EditorInternalLevelRotation {
@@ -37,6 +38,13 @@ export default class EditorInternalLevelRotation {
         newLevel.initialize(width, height, levelId);
         this.#internalLevelList.push(newLevel);
         this.#currentSelectedLevelIndex = this.#internalLevelList.length - 1;
+    }
+
+
+    removeLevel(levelId) {
+        const level = this.#internalLevelList.filter(level => level.id === levelId)[0];
+        Utility.removeElementFrom(this.#internalLevelList, level);
+        this.#currentSelectedLevelIndex--;
     }
 
 
