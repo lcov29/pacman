@@ -99,7 +99,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 #### Level Editor
 - [x] add ability to add level to rotation
 - [x] add ability to switch between levels in rotation
-- [ ] add ability to delete level from rotation
+- [x] add ability to delete level from rotation
 - [ ] add ability to rearrange level order in rotation
 - [x] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
@@ -126,6 +126,12 @@ You can also upload this project to a webserver. Since the codebase includes mod
 #### Version 0.07
 * add level rotation
 * add option to pause game
+* add features to level editor
+  * add levels to rotation
+  * delete levels from rotation
+  * define repetitions of each level within rotation
+  * switch between levels
+* refactor codebase for level editor
 <br>
 
 
