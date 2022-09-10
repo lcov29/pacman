@@ -37,6 +37,7 @@ export default class EditorTileManipulationState {
         this.#editor.updateScatterSpawnPositions();
         this.#editor.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
         this.#editor.setBoardEditorTileToSelectedTile(callerId);
+        this.#editor.updateLevelPreview(callerId);
     }
 
 
