@@ -85,7 +85,6 @@ export default class EditorScatterSpawnInput {
     
         if (isCoordinateStringValid) {
             const cssHighlightClass = this.#getCssHighlightClassFor(event.target.id);
-            // document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
             document.getElementById(coordinateString).classList.add(cssHighlightClass);
         }
     }
