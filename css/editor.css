@@ -25,11 +25,12 @@ img {
 
 .mainContainer {
     column-gap: 1rem;
-    row-gap: 1.5rem;
+    row-gap: 10vh;
     display: grid;
     grid-template-columns: 1.5fr 10fr 3fr;
     grid-template-rows: 80fr 14fr;
     margin: 2em;
+    height: 93vh;
 }
 
 
