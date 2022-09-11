@@ -9,7 +9,7 @@ export default class EditorSelectionState {
     #buttonId = null;
     #inputPosition = null;
     #ghostCharacter = '';
-    #cssClassHighlightSelectedBoardTile = 'scatterSpawnSelectionPointHighlight';
+    #cssClassHighlightSelectedBoardTile = '';
 
 
     constructor(editorReference, buttonId) {
@@ -22,6 +22,7 @@ export default class EditorSelectionState {
         const inputId = EditorElementMapper.buttonIdToInputIdMap.get(this.#buttonId);
         this.#inputPosition = document.getElementById(inputId);
         this.#ghostCharacter = EditorElementMapper.buttonIdToGhostCharacterMap.get(this.#buttonId);
+        this.#cssClassHighlightSelectedBoardTile = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(this.#ghostCharacter);
     }
 
 
