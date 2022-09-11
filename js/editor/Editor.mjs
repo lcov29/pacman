@@ -208,6 +208,9 @@ export default class Editor {
         this.handleLevelIterationNumberChange();
         this.#buildBoardEditingArea();
         this.#resetInternalLevel();
+        this.#internalLevel = this.#internalLevelRotation.getLevel();
+        this.#previewCanvas.drawLevel(this.#internalLevel.board);
+        this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
     }
 
 
