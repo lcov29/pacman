@@ -253,9 +253,6 @@ input[type=radio] {
 }
 
 
-
-/* NEW */
-
 #rotationContainer {
     display: inline-flex;
     overflow-x: auto;
