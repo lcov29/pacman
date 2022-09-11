@@ -288,9 +288,10 @@ input[type=radio] {
 
 
 .level {
-    background-color: black;
+    background-color: rgb(38 35 35);
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     margin-right: 1.5rem;
     min-width: 10%;
     position: relative;
