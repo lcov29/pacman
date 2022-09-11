@@ -84,7 +84,9 @@ export default class EditorScatterSpawnInput {
         const isCoordinateStringValid = coordinateString !== '';
     
         if (isCoordinateStringValid) {
-            document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
+            const cssHighlightClass = this.#getCssHighlightClassFor(event.target.id);
+            // document.getElementById(coordinateString).classList.add('scatterSpawnSelectionPointHighlight');
+            document.getElementById(coordinateString).classList.add(cssHighlightClass);
         }
     }
 
@@ -95,7 +97,8 @@ export default class EditorScatterSpawnInput {
         const isCoordinateStringValid = coordinateString !== '';
     
         if (isCoordinateStringValid) {
-            document.getElementById(coordinateString).classList.remove('scatterSpawnSelectionPointHighlight');
+            const cssHighlightClass = this.#getCssHighlightClassFor(event.target.id);
+            document.getElementById(coordinateString).classList.remove(cssHighlightClass);
         }
     }
 
@@ -201,6 +204,16 @@ export default class EditorScatterSpawnInput {
 
     #getSpawnInputIdFor(ghostCharacter) {
         return EditorElementMapper.internalElementToSpawnInputIdMap.get(ghostCharacter);
+    }
+
+
+    #getCssHighlightClassFor(scatterSpawnInputId) {
+        let ghostCharacter = EditorElementMapper.scatterInputIdTointernalElementMap.get(scatterSpawnInputId);
+        if (!ghostCharacter) {
+            ghostCharacter = EditorElementMapper.spawnInputIdToInternalElementMap.get(scatterSpawnInputId);
+        }
+        const cssClassScatterSpawnHighlight = EditorElementMapper.ghostCharacterToCSSHighlightClassMap.get(ghostCharacter);
+        return cssClassScatterSpawnHighlight;
     }
 
 
