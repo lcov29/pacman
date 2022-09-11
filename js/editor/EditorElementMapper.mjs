@@ -12,6 +12,8 @@ export default class EditorElementMapper {
     static internalElementToSpawnControlIdMap = null;
     static internalElementToScatterInputIdMap = null;
     static internalElementToSpawnInputIdMap = null;
+    static scatterInputIdTointernalElementMap = null;
+    static spawnInputIdToInternalElementMap = null;
     static scatterSpawnControlIdToInputIdMap = null;
     static ghostCharacterToCSSHighlightClassMap = null;
     static internalElementToSpriteIdMap = null;
@@ -107,6 +109,20 @@ export default class EditorElementMapper {
         EditorElementMapper.internalElementToSpawnInputIdMap.set(Configuration.ghostPinkyCharacter, 'spawnPositionGhostPinky');
         EditorElementMapper.internalElementToSpawnInputIdMap.set(Configuration.ghostInkyCharacter, 'spawnPositionGhostInky');
         EditorElementMapper.internalElementToSpawnInputIdMap.set(Configuration.ghostClydeCharacter, 'spawnPositionGhostClyde');
+
+
+        EditorElementMapper.scatterInputIdTointernalElementMap = new Map();
+        EditorElementMapper.scatterInputIdTointernalElementMap.set('scatterPositionGhostBlinky', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.scatterInputIdTointernalElementMap.set('scatterPositionGhostPinky', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.scatterInputIdTointernalElementMap.set('scatterPositionGhostInky', Configuration.ghostInkyCharacter);
+        EditorElementMapper.scatterInputIdTointernalElementMap.set('scatterPositionGhostClyde', Configuration.ghostClydeCharacter);
+
+
+        EditorElementMapper.spawnInputIdToInternalElementMap = new Map();
+        EditorElementMapper.spawnInputIdToInternalElementMap.set('spawnPositionGhostBlinky', Configuration.ghostBlinkyCharacter);
+        EditorElementMapper.spawnInputIdToInternalElementMap.set('spawnPositionGhostPinky', Configuration.ghostPinkyCharacter);
+        EditorElementMapper.spawnInputIdToInternalElementMap.set('spawnPositionGhostInky', Configuration.ghostInkyCharacter);
+        EditorElementMapper.spawnInputIdToInternalElementMap.set('spawnPositionGhostClyde', Configuration.ghostClydeCharacter);
 
 
         EditorElementMapper.scatterSpawnControlIdToInputIdMap = new Map();
