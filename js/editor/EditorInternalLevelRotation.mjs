@@ -7,6 +7,7 @@ export default class EditorInternalLevelRotation {
 
 
     #internalLevelList = [];
+    #name = '';
     #initialLifeNumber = 0;
     #currentSelectedLevelIndex = 0;
 
@@ -16,6 +17,11 @@ export default class EditorInternalLevelRotation {
 
     initialize() {
         this.#initialLifeNumber = Configuration.editorDefaultLife;
+    }
+
+
+    set name(name) {
+        this.#name = name;
     }
 
 
@@ -68,7 +74,7 @@ export default class EditorInternalLevelRotation {
 
     buildLevelRotationJSONString() {
         const rotation = this.#internalLevelList.map(internalLevel => internalLevel.buildLevelJSON());
-        const json = {rotation, initialPacmanLifes: this.#initialLifeNumber};
+        const json = {rotation, initialPacmanLifes: this.#initialLifeNumber, name: this.#name};
         return JSON.stringify(json);
     }
 
