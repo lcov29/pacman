@@ -1,3 +1,4 @@
+import EditorLevelRotationNameInput from './editorGuiComponents/EditorLevelRotationNameInput.mjs';
 import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
@@ -18,8 +19,9 @@ export default class Editor {
 
     #tileSelectionBar = null;
     #boardEditingArea = null;
-    #inputBoardDimension = null;
     #inputLife = null;
+    #inputLevelRotationName = null;
+    #inputBoardDimension = null;
     #inputLevelIteration = null;
     #inputScatterSpawn = null;
     #levelRotationBar = null;
@@ -34,8 +36,9 @@ export default class Editor {
     constructor() {
         this.#tileSelectionBar = new EditorTileSelectionBar(this);
         this.#boardEditingArea = new EditorBoardEditingArea(this);
-        this.#inputBoardDimension = new EditorBoardDimensionInput(this);
         this.#inputLife = new EditorLifeInput(this);
+        this.#inputLevelRotationName = new EditorLevelRotationNameInput(this);
+        this.#inputBoardDimension = new EditorBoardDimensionInput(this);
         this.#inputLevelIteration = new EditorLevelIterationInput(this);
         this.#inputScatterSpawn = new EditorScatterSpawnInput(this);
         this.#levelRotationBar = new EditorLevelRotationBar(this);
@@ -50,8 +53,9 @@ export default class Editor {
         EditorElementMapper.initialize();
         this.#tileSelectionBar.initialize();
         this.#boardEditingArea.initialize();
-        this.#inputBoardDimension.initialize();
         this.#inputLife.initialize();
+        this.#inputLevelRotationName.initialize();
+        this.#inputBoardDimension.initialize();
         this.#inputLevelIteration.initialize();
         this.#inputScatterSpawn.initialize();
         this.#levelRotationBar.initialize();
@@ -103,6 +107,11 @@ export default class Editor {
 
     removeSpawnPositionFor(ghostCharacter) {
         this.#internalLevel.removeSpawnPositionFor(ghostCharacter);
+    }
+
+
+    updateLevelRotationName(name) {
+        this.#internalLevelRotation.name = name;
     }
 
 
