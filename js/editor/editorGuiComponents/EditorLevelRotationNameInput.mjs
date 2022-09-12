@@ -38,7 +38,7 @@ export default class EditorLevelRotationNameInput {
 
 
     #getEscapedInputNameValue() {
-        const regex = /[^a-z0-9\s]/gi;  
+        const regex = /[^a-z0-9\s]/gi;
         let name = this.#inputName.value;
         name = name.replace(regex, '');
         name = name.trim();
