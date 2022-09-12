@@ -88,69 +88,70 @@
             </fieldset>
 
             <fieldset>
-            <legend>Level</legend>
+               <legend>Level</legend>
 
-            <div class="controlGroup">
-               <label for="mapWidth">Width</label>
-               <input id="mapWidth" type="number">
-            </div>
-            <div class="controlGroup">
-               <label for="mapHeight">Height</label>
-               <input id="mapHeight" type="number">
-            </div>
+               <div class="controlGroup">
+                  <label for="mapWidth">Width</label>
+                  <input id="mapWidth" type="number">
+               </div>
+               
+               <div class="controlGroup">
+                  <label for="mapHeight">Height</label>
+                  <input id="mapHeight" type="number">
+               </div>
 
-            <div class="controlGroup">
-               <label for="iterationNumberInput">Iterations</label>
-               <input id="iterationNumberInput" type="text" value="1" required>
-            </div>
+               <div class="controlGroup">
+                  <label for="iterationNumberInput">Iterations</label>
+                  <input id="iterationNumberInput" type="text" value="1" required>
+               </div>
 
-            <fieldset id="scatterPositionFieldset">
-               <legend>Scatter Positions</legend>
-               <div id="scatterControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
-                  <input id="scatterPositionGhostBlinky" class="inputPosition" type="text" readonly>
-                  <button id="selectScatterPositionGhostBlinky" name="buttonScatterPosition">Select</button>
-               </div>
-               <div id="scatterControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
-                  <input id="scatterPositionGhostPinky" class="inputPosition" type="text" readonly>
-                  <button id="selectScatterPositionGhostPinky" name="buttonScatterPosition">Select</button>
-               </div>
-               <div id="scatterControlGhostInky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_inky/inky_down.svg">
-                  <input id="scatterPositionGhostInky" class="inputPosition" type="text" readonly>
-                  <button id="selectScatterPositionGhostInky" name="buttonScatterPosition">Select</button>
-               </div>
-               <div id="scatterControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
-                  <input id="scatterPositionGhostClyde" class="inputPosition" type="text" readonly>
-                  <button id="selectScatterPositionGhostClyde" name="buttonScatterPosition">Select</button>
-               </div>
-            </fieldset>
+               <fieldset id="scatterPositionFieldset">
+                  <legend>Scatter Positions</legend>
+                  <div id="scatterControlGhostBlinky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                     <input id="scatterPositionGhostBlinky" class="inputPosition" type="text" readonly>
+                     <button id="selectScatterPositionGhostBlinky" name="buttonScatterPosition">Select</button>
+                  </div>
+                  <div id="scatterControlGhostPinky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                     <input id="scatterPositionGhostPinky" class="inputPosition" type="text" readonly>
+                     <button id="selectScatterPositionGhostPinky" name="buttonScatterPosition">Select</button>
+                  </div>
+                  <div id="scatterControlGhostInky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                     <input id="scatterPositionGhostInky" class="inputPosition" type="text" readonly>
+                     <button id="selectScatterPositionGhostInky" name="buttonScatterPosition">Select</button>
+                  </div>
+                  <div id="scatterControlGhostClyde" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                     <input id="scatterPositionGhostClyde" class="inputPosition" type="text" readonly>
+                     <button id="selectScatterPositionGhostClyde" name="buttonScatterPosition">Select</button>
+                  </div>
+               </fieldset>
 
-            <fieldset>
-               <legend>Spawn Positions</legend>
-               <div id="spawnControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
-                  <input id="spawnPositionGhostBlinky" class="inputPosition" type="text" readonly>
-                  <button id="selectSpawnPositionGhostBlinky" name="buttonSpawnPosition">Select</button>
-               </div>
-               <div id="spawnControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
-                  <input id="spawnPositionGhostPinky" class="inputPosition" type="text" readonly>
-                  <button id="selectSpawnPositionGhostPinky" name="buttonSpawnPosition">Select</button>
-               </div>
-               <div id="spawnControlGhostInky" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_inky/inky_down.svg">
-                  <input id="spawnPositionGhostInky" class="inputPosition" type="text" readonly>
-                  <button id="selectSpawnPositionGhostInky" name="buttonSpawnPosition">Select</button>
-               </div>
-               <div id="spawnControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                  <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
-                  <input id="spawnPositionGhostClyde" class="inputPosition" type="text" readonly>
-                  <button id="selectSpawnPositionGhostClyde" name="buttonSpawnPosition">Select</button>
-               </div>
-            </fieldset>
+               <fieldset>
+                  <legend>Spawn Positions</legend>
+                  <div id="spawnControlGhostBlinky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                     <input id="spawnPositionGhostBlinky" class="inputPosition" type="text" readonly>
+                     <button id="selectSpawnPositionGhostBlinky" name="buttonSpawnPosition">Select</button>
+                  </div>
+                  <div id="spawnControlGhostPinky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                     <input id="spawnPositionGhostPinky" class="inputPosition" type="text" readonly>
+                     <button id="selectSpawnPositionGhostPinky" name="buttonSpawnPosition">Select</button>
+                  </div>
+                  <div id="spawnControlGhostInky" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                     <input id="spawnPositionGhostInky" class="inputPosition" type="text" readonly>
+                     <button id="selectSpawnPositionGhostInky" name="buttonSpawnPosition">Select</button>
+                  </div>
+                  <div id="spawnControlGhostClyde" class="scatterSpawnControlGroup invisible">
+                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                     <input id="spawnPositionGhostClyde" class="inputPosition" type="text" readonly>
+                     <button id="selectSpawnPositionGhostClyde" name="buttonSpawnPosition">Select</button>
+                  </div>
+               </fieldset>
 
             </fieldset>
 
