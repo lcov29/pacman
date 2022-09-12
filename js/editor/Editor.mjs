@@ -185,6 +185,21 @@ export default class Editor {
     }
 
 
+    manageScatterSpawnControlVisibility() {
+        const scatterControlClassList = document.getElementById('scatterPositionFieldset').classList;
+        const spawnControlClassList = document.getElementById('spawnPositionFieldset').classList;
+        const cssClassInvisible = 'invisible';
+
+        if (this.#hasGhostsOnBoard()) {
+            scatterControlClassList.remove(cssClassInvisible);
+            spawnControlClassList.remove(cssClassInvisible);
+        } else {
+            scatterControlClassList.add(cssClassInvisible);
+            spawnControlClassList.add(cssClassInvisible);
+        }
+    }
+
+
     removeScatterSpawnOfDeletedGhostTypes() {
         this.#internalLevel.removeScatterSpawnOfDeletedGhostTypes();
     }
@@ -301,6 +316,17 @@ export default class Editor {
 
     #resetInternalLevel() {
         this.#internalLevel.initialize(this.#inputBoardDimension.width, this.#inputBoardDimension.height);
+    }
+
+
+    #hasGhostsOnBoard() {
+        for (const ghostCharacter of Configuration.ghostCharacterList) {
+            const isOnBoard = this.isGhostTypeOnBoard(ghostCharacter);
+            if (isOnBoard) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
