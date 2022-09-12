@@ -25,7 +25,7 @@ img {
 
 .mainContainer {
     column-gap: 1rem;
-    row-gap: 10vh;
+    row-gap: 5vh;
     display: grid;
     grid-template-columns: 1.5fr 10fr 3fr;
     grid-template-rows: 80fr 14fr;
@@ -64,7 +64,6 @@ img {
     grid-column: 3;
     grid-row: 1;
     background-color: #1c1c1a;
-    border: 2px solid white;
     color: white;
     display: flex;
     flex-direction: column;
@@ -91,6 +90,7 @@ img {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 
@@ -101,12 +101,6 @@ img {
 
 input[type=radio] {
     display: none;
-}
-
-
-.inputMapDimension {
-    margin: auto;
-    width: 3em;
 }
 
 
@@ -280,6 +274,11 @@ input[type=radio] {
 }
 
 
+#playLevel {
+    width: 100%;
+}
+
+
 #levelElementTemplate {
     display: none;
 }
@@ -335,4 +334,21 @@ input[type=radio] {
 
 .displayInfiniteSymbol::after {
     content: '\221E';
+}
+
+
+#scatterPositionFieldset {
+    margin-bottom: 1.5rem;
+}
+
+
+.scatterSpawnControlGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+fieldset {
+    padding: 1rem;
 }
