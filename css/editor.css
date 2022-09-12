@@ -38,7 +38,7 @@ img {
     grid-column: 1;
     grid-row: 1;
     background-color: #1c1c1a;
-    border: 2px solid white;
+    border: 0.2rem solid white;
     column-gap: 0.5em;
     display: flex;
     flex-direction: row;
@@ -351,4 +351,10 @@ input[type=radio] {
 
 fieldset {
     padding: 1rem;
+    border: 0.2rem solid white;
+}
+
+
+legend {
+    font-weight: bold;
 }
