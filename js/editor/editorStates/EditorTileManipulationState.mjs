@@ -33,6 +33,7 @@ export default class EditorTileManipulationState {
     handleEditorTileClick(callerId) {
         this.#editor.updateInternalBoard(callerId);
         this.#editor.updateBonusSpawnList(callerId);
+        this.#editor.manageScatterSpawnControlVisibility();
         this.#editor.removeScatterSpawnOfDeletedGhostTypes();
         this.#editor.updateScatterSpawnPositions();
         this.#editor.manageOverwriteOfSpawnScatterWithInaccessibleElement(callerId);
