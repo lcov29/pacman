@@ -10,69 +10,69 @@
       <script type="module" src="./js/editor/controller.js"></script>
    </head>
 
-    <body>
+   <body>
 
-        <main class="mainContainer">
-  
-           <section class="selectorContainer">
-  
-              <div class="selectionBar">
-                 <label class="selector wallTile" for="wallTile" title="Wall Tile"></label>
-                 <input id="wallTile" type="radio" name="selectors">
-     
-                 <label class="selector emptyTile" for="emptyTile" title="Empty Tile (accessible)"></label>
-                 <input id="emptyTile" type="radio" name="selectors">
+      <main class="mainContainer">
 
-                 <label class="selector pointTile" for="pointTile" title="Point Tile (consumable)"></label>
-                 <input id="pointTile" type="radio" name="selectors">
-     
-                 <label class="selector powerupTile" for="powerupTile" title="Powerup Tile (consumable)"></label>
-                 <input id="powerupTile" type="radio" name="selectors">
-     
-                 <label class="selector ghostDoorHorizontalTile" for="ghostDoorHorizontalTile" title="Ghost Door (unaccessible for Pacman)"></label>
-                 <input id="ghostDoorHorizontalTile" type="radio" name="selectors">
-     
-                 <label class="selector ghostDoorVerticalTile" for="ghostDoorVerticalTile" title="Ghost Door (unaccessible for Pacman)"></label>
-                 <input id="ghostDoorVerticalTile" type="radio" name="selectors">
-     
-                 <label class="selector ghostDoorCrossingTile" for="ghostDoorCrossingTile" title="Ghost Door (unaccessible for Pacman)"></label>
-                 <input id="ghostDoorCrossingTile" type="radio" name="selectors">
-     
-                 <label class="selector teleporter1Tile" for="teleporter1Tile" title="Teleporter 1 Tile (requires destination of same type)"></label>
-                 <input id="teleporter1Tile" type="radio" name="selectors">
-     
-                 <label class="selector teleporter2Tile" for="teleporter2Tile" title="Teleporter 2 Tile (requires destination of same type)"></label>
-                 <input id="teleporter2Tile" type="radio" name="selectors">
-     
-                 <label class="selector teleporter3Tile" for="teleporter3Tile" title="Teleporter 3 Tile (requires destination of same type)"></label>
-                 <input id="teleporter3Tile" type="radio" name="selectors">
-     
-                 <label class="selector bonusSpawnTile" for="bonusSpawnTile" title="Spawn Tile For Bonus (consumable)"></label>
-                 <input id="bonusSpawnTile" type="radio" name="selectors">
-              </div>
-  
-              <div class="selectionBar">
-                 <label class="selector pacmanTile" for="pacmanTile" title="Pacman"></label>
-                 <input id="pacmanTile" type="radio" name="selectors">
+         <section class="selectorContainer">
 
-                 <label class="selector ghostBlinkyTile" for="ghostBlinkyTile" title="Ghost Blinky"></label>            
-                 <input id="ghostBlinkyTile" type="radio" name="selectors">
+         <div class="selectionBar">
+            <label class="selector wallTile" for="wallTile" title="Wall Tile"></label>
+            <input id="wallTile" type="radio" name="selectors">
 
-                 <label class="selector ghostPinkyTile" for="ghostPinkyTile" title="Ghost Pinky"></label>                       
-                 <input id="ghostPinkyTile" type="radio" name="selectors">
+            <label class="selector emptyTile" for="emptyTile" title="Empty Tile (accessible)"></label>
+            <input id="emptyTile" type="radio" name="selectors">
 
-                 <label class="selector ghostInkyTile" for="ghostInkyTile" title="Ghost Inky"></label>                                 
-                 <input id="ghostInkyTile" type="radio" name="selectors">
+            <label class="selector pointTile" for="pointTile" title="Point Tile (consumable)"></label>
+            <input id="pointTile" type="radio" name="selectors">
 
-                 <label class="selector ghostClydeTile" for="ghostClydeTile" title="Ghost Clyde"></label>                                            
-                 <input id="ghostClydeTile" type="radio" name="selectors">
-              </div>
-              
-           </section>
-  
-           <section id="editorContainer" class="editorContainer"></section>
-  
-           <section class="controlContainer">
+            <label class="selector powerupTile" for="powerupTile" title="Powerup Tile (consumable)"></label>
+            <input id="powerupTile" type="radio" name="selectors">
+
+            <label class="selector ghostDoorHorizontalTile" for="ghostDoorHorizontalTile" title="Ghost Door (unaccessible for Pacman)"></label>
+            <input id="ghostDoorHorizontalTile" type="radio" name="selectors">
+
+            <label class="selector ghostDoorVerticalTile" for="ghostDoorVerticalTile" title="Ghost Door (unaccessible for Pacman)"></label>
+            <input id="ghostDoorVerticalTile" type="radio" name="selectors">
+
+            <label class="selector ghostDoorCrossingTile" for="ghostDoorCrossingTile" title="Ghost Door (unaccessible for Pacman)"></label>
+            <input id="ghostDoorCrossingTile" type="radio" name="selectors">
+
+            <label class="selector teleporter1Tile" for="teleporter1Tile" title="Teleporter 1 Tile (requires destination of same type)"></label>
+            <input id="teleporter1Tile" type="radio" name="selectors">
+
+            <label class="selector teleporter2Tile" for="teleporter2Tile" title="Teleporter 2 Tile (requires destination of same type)"></label>
+            <input id="teleporter2Tile" type="radio" name="selectors">
+
+            <label class="selector teleporter3Tile" for="teleporter3Tile" title="Teleporter 3 Tile (requires destination of same type)"></label>
+            <input id="teleporter3Tile" type="radio" name="selectors">
+
+            <label class="selector bonusSpawnTile" for="bonusSpawnTile" title="Spawn Tile For Bonus (consumable)"></label>
+            <input id="bonusSpawnTile" type="radio" name="selectors">
+         </div>
+
+         <div class="selectionBar">
+            <label class="selector pacmanTile" for="pacmanTile" title="Pacman"></label>
+            <input id="pacmanTile" type="radio" name="selectors">
+
+            <label class="selector ghostBlinkyTile" for="ghostBlinkyTile" title="Ghost Blinky"></label>            
+            <input id="ghostBlinkyTile" type="radio" name="selectors">
+
+            <label class="selector ghostPinkyTile" for="ghostPinkyTile" title="Ghost Pinky"></label>                       
+            <input id="ghostPinkyTile" type="radio" name="selectors">
+
+            <label class="selector ghostInkyTile" for="ghostInkyTile" title="Ghost Inky"></label>                                 
+            <input id="ghostInkyTile" type="radio" name="selectors">
+
+            <label class="selector ghostClydeTile" for="ghostClydeTile" title="Ghost Clyde"></label>                                            
+            <input id="ghostClydeTile" type="radio" name="selectors">
+         </div>
+
+         </section>
+
+         <section id="editorContainer" class="editorContainer"></section>
+
+         <section class="controlContainer">
 
             <fieldset>
                <legend>Level Rotation</legend>
@@ -88,87 +88,87 @@
             </fieldset>
 
             <fieldset>
-               <legend>Level</legend>
+            <legend>Level</legend>
 
-               <div class="controlGroup">
-                  <label for="mapWidth">Width</label>
-                  <input id="mapWidth" type="number">
+            <div class="controlGroup">
+               <label for="mapWidth">Width</label>
+               <input id="mapWidth" type="number">
+            </div>
+            <div class="controlGroup">
+               <label for="mapHeight">Height</label>
+               <input id="mapHeight" type="number">
+            </div>
+
+            <div class="controlGroup">
+               <label for="iterationNumberInput">Iterations</label>
+               <input id="iterationNumberInput" type="text" value="1" required>
+            </div>
+
+            <fieldset id="scatterPositionFieldset">
+               <legend>Scatter Positions</legend>
+               <div id="scatterControlGhostBlinky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                  <input id="scatterPositionGhostBlinky" class="inputPosition" type="text" readonly>
+                  <button id="selectScatterPositionGhostBlinky" name="buttonScatterPosition">Select</button>
                </div>
-               <div class="controlGroup">
-                  <label for="mapHeight">Height</label>
-                  <input id="mapHeight" type="number">
+               <div id="scatterControlGhostPinky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                  <input id="scatterPositionGhostPinky" class="inputPosition" type="text" readonly>
+                  <button id="selectScatterPositionGhostPinky" name="buttonScatterPosition">Select</button>
                </div>
-
-               <div class="controlGroup">
-                  <label for="iterationNumberInput">Iterations</label>
-                  <input id="iterationNumberInput" type="text" value="1" required>
+               <div id="scatterControlGhostInky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                  <input id="scatterPositionGhostInky" class="inputPosition" type="text" readonly>
+                  <button id="selectScatterPositionGhostInky" name="buttonScatterPosition">Select</button>
                </div>
+               <div id="scatterControlGhostClyde" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                  <input id="scatterPositionGhostClyde" class="inputPosition" type="text" readonly>
+                  <button id="selectScatterPositionGhostClyde" name="buttonScatterPosition">Select</button>
+               </div>
+            </fieldset>
 
-               <fieldset id="scatterPositionFieldset">
-                  <legend>Scatter Positions</legend>
-                  <div id="scatterControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
-                     <input id="scatterPositionGhostBlinky" class="inputPosition" type="text" readonly>
-                     <button id="selectScatterPositionGhostBlinky" name="buttonScatterPosition">Select</button>
-                  </div>
-                  <div id="scatterControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
-                     <input id="scatterPositionGhostPinky" class="inputPosition" type="text" readonly>
-                     <button id="selectScatterPositionGhostPinky" name="buttonScatterPosition">Select</button>
-                  </div>
-                  <div id="scatterControlGhostInky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
-                     <input id="scatterPositionGhostInky" class="inputPosition" type="text" readonly>
-                     <button id="selectScatterPositionGhostInky" name="buttonScatterPosition">Select</button>
-                  </div>
-                  <div id="scatterControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
-                     <input id="scatterPositionGhostClyde" class="inputPosition" type="text" readonly>
-                     <button id="selectScatterPositionGhostClyde" name="buttonScatterPosition">Select</button>
-                  </div>
-               </fieldset>
-
-               <fieldset>
-                  <legend>Spawn Positions</legend>
-                  <div id="spawnControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
-                     <input id="spawnPositionGhostBlinky" class="inputPosition" type="text" readonly>
-                     <button id="selectSpawnPositionGhostBlinky" name="buttonSpawnPosition">Select</button>
-                  </div>
-                  <div id="spawnControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
-                     <input id="spawnPositionGhostPinky" class="inputPosition" type="text" readonly>
-                     <button id="selectSpawnPositionGhostPinky" name="buttonSpawnPosition">Select</button>
-                  </div>
-                  <div id="spawnControlGhostInky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
-                     <input id="spawnPositionGhostInky" class="inputPosition" type="text" readonly>
-                     <button id="selectSpawnPositionGhostInky" name="buttonSpawnPosition">Select</button>
-                  </div>
-                  <div id="spawnControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
-                     <input id="spawnPositionGhostClyde" class="inputPosition" type="text" readonly>
-                     <button id="selectSpawnPositionGhostClyde" name="buttonSpawnPosition">Select</button>
-                  </div>
-               </fieldset>
+            <fieldset>
+               <legend>Spawn Positions</legend>
+               <div id="spawnControlGhostBlinky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                  <input id="spawnPositionGhostBlinky" class="inputPosition" type="text" readonly>
+                  <button id="selectSpawnPositionGhostBlinky" name="buttonSpawnPosition">Select</button>
+               </div>
+               <div id="spawnControlGhostPinky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                  <input id="spawnPositionGhostPinky" class="inputPosition" type="text" readonly>
+                  <button id="selectSpawnPositionGhostPinky" name="buttonSpawnPosition">Select</button>
+               </div>
+               <div id="spawnControlGhostInky" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                  <input id="spawnPositionGhostInky" class="inputPosition" type="text" readonly>
+                  <button id="selectSpawnPositionGhostInky" name="buttonSpawnPosition">Select</button>
+               </div>
+               <div id="spawnControlGhostClyde" class="scatterSpawnControlGroup invisible">
+                  <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                  <input id="spawnPositionGhostClyde" class="inputPosition" type="text" readonly>
+                  <button id="selectSpawnPositionGhostClyde" name="buttonSpawnPosition">Select</button>
+               </div>
+            </fieldset>
 
             </fieldset>
-  
-           </section>
 
-           <section class="levelRotationBar">
-               <div id="rotationContainer"></div>
-               <button id="levelAddButton">Add Level</button>
+         </section>
 
-               <div id="levelElementTemplate" class="level">
-                  <div class="levelRepetition"></div>
-                  <button class="levelDelete">X</button>
-              </div>
-           </section>
-           
-        </main>
+         <section class="levelRotationBar">
+            <div id="rotationContainer"></div>
+            <button id="levelAddButton">Add Level</button>
 
-        <canvas id="previewCanvas" class="invisible"></canvas>
+            <div id="levelElementTemplate" class="level">
+               <div class="levelRepetition"></div>
+               <button class="levelDelete">X</button>
+            </div>
+         </section>
+
+      </main>
+
+      <canvas id="previewCanvas" class="invisible"></canvas>
 
       <!-- svg sprites to prevent pre-loading issues in canvas -->
       <div class="invisible">
@@ -194,7 +194,7 @@
          <img id="inkyRight" src="./sprites/actors/ghost_inky/inky_right.svg">    
          <img id="clydeRight" src="./sprites/actors/ghost_clyde/clyde_right.svg">
       </div>
-  
+
    </body>
    
 </html>
