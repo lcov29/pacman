@@ -129,7 +129,8 @@ export default class Editor {
 
     updateLevelPreview(coordinateString) {
         const internalCharacter = this.#tileSelectionBar.selectedElement;
-        this.#previewCanvas.draw(coordinateString, internalCharacter);
+        const isBonusSpawnPosition = this.#internalLevel.isCoordinateBonusSpawnPosition(coordinateString);
+        this.#previewCanvas.draw(coordinateString, internalCharacter, isBonusSpawnPosition);
 
         const levelId = this.#internalLevel.id;
         const previewDataUrl = this.#previewCanvas.getDataURL();
