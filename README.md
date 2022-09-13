@@ -104,7 +104,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 - [x] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
 - [x] add preview image for created levels
-- [ ] add eraser tool
+- [x] add eraser tool
 - [ ] validate custom levels in editor before loading
 <br>
 
@@ -132,6 +132,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
   * switch between levels
   * define repetitions of each level within rotation
   * add level preview in icon
+  * add eraser tool
 * refactor codebase for level editor
 <br>
 
