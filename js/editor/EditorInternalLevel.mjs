@@ -43,6 +43,11 @@ export default class EditorInternalLevel {
     }
 
 
+    get bonusSpawnPositionList() {
+        return [...this.#bonusSpawnPositionList];
+    }
+
+
     get width() {
         return this.#internalBoard[0].length;
     }
