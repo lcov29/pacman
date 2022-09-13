@@ -233,7 +233,7 @@ export default class Editor {
         this.#buildBoardEditingArea();
         this.#resetInternalLevel();
         this.#internalLevel = this.#internalLevelRotation.getLevel();
-        this.#previewCanvas.drawLevel(this.#internalLevel.board);
+        this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
         this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
     }
 
@@ -247,7 +247,7 @@ export default class Editor {
         this.#inputScatterSpawn.reset();
         this.#buildBoardEditingArea();
         this.#internalLevel = this.#internalLevelRotation.getLevel();
-        this.#previewCanvas.drawLevel(this.#internalLevel.board);
+        this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
     }
 
 
@@ -258,7 +258,7 @@ export default class Editor {
         this.#inputLevelIteration.levelIterationNumber = this.#internalLevel.numberOfIterations;
         this.#inputScatterSpawn.loadScatterSpawnPositions();
         this.#boardEditingArea.loadBoard(this.#internalLevel.board);
-        this.#previewCanvas.drawLevel(this.#internalLevel.board);
+        this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
         this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
     }
 
