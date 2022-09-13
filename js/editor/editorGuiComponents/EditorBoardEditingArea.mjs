@@ -1,4 +1,5 @@
 import EditorElementMapper from "../EditorElementMapper.mjs";
+import Configuration from "../../global/Configuration.mjs";
 
 
 export default class EditorBoardEditingArea {
@@ -26,11 +27,11 @@ export default class EditorBoardEditingArea {
     }
 
 
-    loadBoard(board) {
+    loadBoard(board, bonusSpawnPositionList) {
         const width = board[0].length;
         const height = board.length;
         this.build(width, height);
-        this.#loadBoardIntoEditingArea(board);
+        this.#loadBoardIntoEditingArea(board, bonusSpawnPositionList);
     }
 
 
@@ -70,6 +71,17 @@ export default class EditorBoardEditingArea {
     }
 
 
+    #isPositionBonusSpawn(x, y, bonusSpawnPositionList) {
+        for (const bonusSpawnPosition of bonusSpawnPositionList) {
+            const isSamePosition = bonusSpawnPosition.x === x && bonusSpawnPosition.y === y;
+            if (isSamePosition) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     #clearBoardEditingArea() {
         while (this.#boardEditingArea.firstChild) {
            this.#boardEditingArea.removeChild(this.#boardEditingArea.firstChild);
@@ -87,12 +99,12 @@ export default class EditorBoardEditingArea {
     }
 
 
-    // TODO: CHECK IF BONUS SPAWN TILES ARE DISPLAYED
-    #loadBoardIntoEditingArea(board) {
+    #loadBoardIntoEditingArea(board, bonusSpawnPositionList) {
         for (let y = 0; y < board.length; y++) {
             for (let x = 0; x < board[y].length; x++) {
-                const currentCharacter = board[y][x];
                 const coordinateString = `(${x},${y})`;
+                const isBonusSpawnPosition = this.#isPositionBonusSpawn(x, y, bonusSpawnPositionList);
+                const currentCharacter = (isBonusSpawnPosition) ? Configuration.bonusStrawberryCharacter : board[y][x];
                 const tileType = EditorElementMapper.internalElementToTileTypeMap.get(currentCharacter);
                 this.setBoardTileTo(coordinateString, tileType);
             }
