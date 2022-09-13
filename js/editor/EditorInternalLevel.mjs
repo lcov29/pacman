@@ -124,6 +124,21 @@ export default class EditorInternalLevel {
     }
 
 
+    isCoordinateBonusSpawnPosition(coordinateString) {
+        let result = false;
+        const coordinate = this.#parseCoordinateString(coordinateString);
+
+        for (let spawnPosition of this.#bonusSpawnPositionList) {
+            const isSamePosition = spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y;
+            if (isSamePosition) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+
     update(coordinateString, character) {
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
@@ -134,7 +149,7 @@ export default class EditorInternalLevel {
 
 
     updateBonusSpawnList(tileId, coordinateString) {
-        const isBonusSpawnOverwritten = this.#isCoordinateBonusSpawnPosition(coordinateString);
+        const isBonusSpawnOverwritten = this.isCoordinateBonusSpawnPosition(coordinateString);
         const isBonusSpawnTile = tileId === 'bonusSpawnTile';
 
         if (isBonusSpawnOverwritten) {
@@ -235,21 +250,6 @@ export default class EditorInternalLevel {
 
     #setBoardCharacter(coordinates, character) {
         this.#internalBoard[coordinates.y][coordinates.x] = character;
-    }
-
-
-    #isCoordinateBonusSpawnPosition(coordinateString) {
-        let result = false;
-        const coordinate = this.#parseCoordinateString(coordinateString);
-
-        for (let spawnPosition of this.#bonusSpawnPositionList) {
-            const isSamePosition = spawnPosition.x === coordinate.x && spawnPosition.y === coordinate.y;
-            if (isSamePosition) {
-                result = true;
-                break;
-            }
-        }
-        return result;
     }
 
 
