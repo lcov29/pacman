@@ -249,7 +249,8 @@ input[type=radio] {
 
 
 .eraserTile {
-    background-color: red;
+    background-image: url('../icon/eraser.svg');
+    background-color: white;
 }
 
 
