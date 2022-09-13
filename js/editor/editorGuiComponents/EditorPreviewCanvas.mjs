@@ -8,6 +8,7 @@ export default class EditorPreviewCanvas {
     #context = null;
     #tileWidth = -1;
     #tileHeight = -1;
+    #bonusSpawnPositionSprite = null;
 
 
     constructor() {
@@ -15,6 +16,7 @@ export default class EditorPreviewCanvas {
         this.#context = this.#canvas.getContext('2d');
         this.#tileWidth = 30 * devicePixelRatio;
         this.#tileHeight = 30 * devicePixelRatio;
+        this.#bonusSpawnPositionSprite = document.getElementById('bonusCherry');
     }
 
 
@@ -23,30 +25,60 @@ export default class EditorPreviewCanvas {
     }
 
 
-    drawLevel(board) {
+    drawLevel(board, bonusSpawnPositionList) {
+        this.#clearCanvas();
+        this.#resize(board);
+        this.#drawBoard(board);
+        this.#drawBonusSpawnPosition(bonusSpawnPositionList); 
+        // draw bonus spawn positions, because they do not show up as tile characters on board
+    }
+
+
+    /*
+    draw(coordinateString, levelCharacter) {
+        const coordinate = this.#parseCoordinateString(coordinateString);
+        const sprite = this.#getSpriteFor(levelCharacter);
+
+        this.#clearTileAt(coordinate.x, coordinate.y);
+        this.#drawSprite(coordinate.x, coordinate.y, sprite);
+    }*/
+
+
+    draw(coordinateString, levelCharacter, isBonusSpawnPosition) {
+        const coordinate = this.#parseCoordinateString(coordinateString);
+        const sprite = (isBonusSpawnPosition) ? this.#bonusSpawnPositionSprite : this.#getSpriteFor(levelCharacter);
+
+        this.#clearTileAt(coordinate.x, coordinate.y);
+        this.#drawSprite(coordinate.x, coordinate.y, sprite);
+    }
+
+
+
+    #drawBoard(board) {
         const columnNumber = board[0].length; // no ragged arrays
         const rowNumber = board.length;
-
-        this.#resize(columnNumber, rowNumber);
-        this.#clearCanvas();
 
         for (let y = 0; y < rowNumber; y++) {
             for (let x = 0; x < columnNumber; x++) {
                 const levelCharacter = board[y][x];
-                this.#drawSprite(x, y, levelCharacter);
+                const sprite = this.#getSpriteFor(levelCharacter);
+                this.#drawSprite(x, y, sprite);
             }
         }
     }
 
 
-    draw(coordinateString, levelCharacter) {
-        const coordinate = this.#parseCoordinateString(coordinateString);
-        this.#clearTileAt(coordinate.x, coordinate.y);
-        this.#drawSprite(coordinate.x, coordinate.y, levelCharacter);
+    #drawBonusSpawnPosition(bonusSpawnPositionList) {
+        for (const spawnPosition of bonusSpawnPositionList) {
+            this.#drawSprite(spawnPosition.x, spawnPosition.y, this.#bonusSpawnPositionSprite);
+        }
     }
 
 
-    #resize(columnNumber, rowNumber) {
+    #resize(board) {
+        const columnNumber = board[0].length; // no ragged arrays
+        const rowNumber = board.length;
+
         this.#canvas.width = this.#tileWidth * columnNumber;
         this.#canvas.height = this.#tileHeight * rowNumber;
     }
@@ -68,10 +100,9 @@ export default class EditorPreviewCanvas {
     }
 
 
-    #drawSprite(column, row, levelCharacter) {    
+    #drawSprite(column, row, sprite) {    
         const xCanvasPosition = this.#calculateXCanvasPositionOf(column);
         const yCanvasPosition = this.#calculateYCanvasPositionOf(row);
-        const sprite = this.#getSpriteFor(levelCharacter);
         
         this.#context.save();
         this.#context.translate(xCanvasPosition, yCanvasPosition);
