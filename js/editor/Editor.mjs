@@ -258,7 +258,7 @@ export default class Editor {
         this.#inputBoardDimension.setDimension(this.#internalLevel.width, this.#internalLevel.height);
         this.#inputLevelIteration.levelIterationNumber = this.#internalLevel.numberOfIterations;
         this.#inputScatterSpawn.loadScatterSpawnPositions();
-        this.#boardEditingArea.loadBoard(this.#internalLevel.board);
+        this.#boardEditingArea.loadBoard(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
         this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
         this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
     }
