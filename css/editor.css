@@ -248,6 +248,11 @@ input[type=radio] {
 }
 
 
+.eraserTile {
+    background-color: red;
+}
+
+
 #rotationContainer {
     display: inline-flex;
     overflow-x: auto;
