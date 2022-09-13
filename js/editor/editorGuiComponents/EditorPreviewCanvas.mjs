@@ -34,16 +34,6 @@ export default class EditorPreviewCanvas {
     }
 
 
-    /*
-    draw(coordinateString, levelCharacter) {
-        const coordinate = this.#parseCoordinateString(coordinateString);
-        const sprite = this.#getSpriteFor(levelCharacter);
-
-        this.#clearTileAt(coordinate.x, coordinate.y);
-        this.#drawSprite(coordinate.x, coordinate.y, sprite);
-    }*/
-
-
     draw(coordinateString, levelCharacter, isBonusSpawnPosition) {
         const coordinate = this.#parseCoordinateString(coordinateString);
         const sprite = (isBonusSpawnPosition) ? this.#bonusSpawnPositionSprite : this.#getSpriteFor(levelCharacter);
@@ -51,7 +41,6 @@ export default class EditorPreviewCanvas {
         this.#clearTileAt(coordinate.x, coordinate.y);
         this.#drawSprite(coordinate.x, coordinate.y, sprite);
     }
-
 
 
     #drawBoard(board) {
