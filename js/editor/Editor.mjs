@@ -278,8 +278,15 @@ export default class Editor {
 
 
     handleButtonSaveClick() {
-        this.#sendLevelJson();
-        this.#loadIndexPage();
+        const validationResult = this.#internalLevelRotation.validate();
+
+        if (validationResult) {
+            document.getElementById(validationResult.levelId).click();
+            window.alert(validationResult.errorMessage);
+        } else {
+            this.#sendLevelJson();
+            this.#loadIndexPage();
+        }
     }
 
 
