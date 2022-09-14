@@ -68,9 +68,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Game
-- [x] add level rotation
 - [ ] implement point value multiplicator for consumption of multiple scared ghosts
-- [x] add option to pause game
 - [ ] add sound effects for actors
 - [ ] add level theme song
 - [ ] add ability to mute game
@@ -97,15 +95,8 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Level Editor
-- [x] add ability to add level to rotation
-- [x] add ability to switch between levels in rotation
-- [x] add ability to delete level from rotation
 - [ ] add ability to rearrange level order in rotation
-- [x] add ability to define level repetition within rotation
 - [ ] add ability to copy level rotation string to clipboard
-- [x] add preview image for created levels
-- [x] add eraser tool
-- [x] validate custom levels in editor before loading
 <br>
 
 
