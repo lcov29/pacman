@@ -72,6 +72,18 @@ export default class EditorInternalLevelRotation {
     }
 
 
+    validate() {
+        for (const level of this.#internalLevelList) {
+            const validator = level.validate();
+
+            if (!validator.isValid()) {
+                const errorMessage = validator.getErrorMessageString();
+                return {levelId: level.id, errorMessage};
+            }
+        }
+    }
+
+
     buildLevelRotationJSONString() {
         const rotation = this.#internalLevelList.map(internalLevel => internalLevel.buildLevelJSON());
         const json = {rotation, initialPacmanLifes: this.#initialLifeNumber, name: this.#name};
