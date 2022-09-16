@@ -1,0 +1,14 @@
+@import url(./navigationMobile.css);
+@import url(./navigationDesktop.css);
+
+
+body {
+    background-color: #1c1c1a;
+    color: white;
+    font-family: 'Lucida Console', monospace;
+}
+
+
+.invisible {
+    display: none;
+}
