@@ -223,6 +223,11 @@ export default class Configuration {
                                    Configuration.nameGhostStateScatter];
 
 
+   // Settings for indexedDB
+      static indexedDatabaseName = 'pacmanLevelRotationDB';
+      static indexedDatabaseStoreName = 'pacmanLevelRotationStore';
+      static indexedDatabaseVersion = 1;
+
 
    // Settings for canvas view
       static spriteAlternationIntervalLength = 5;
