@@ -4,7 +4,7 @@ import Configuration from "../global/Configuration.mjs";
 export default class IndexedDatabase {
 
 
-    #databaseReference = null;
+    #database = null;
     #recordList = [];
 
 
@@ -54,7 +54,7 @@ export default class IndexedDatabase {
 
 
     #getObjectStore(mode) {
-        const transaction = this.#databaseReference.transaction(Configuration.indexedDatabaseStoreName, mode);
+        const transaction = this.#database.transaction(Configuration.indexedDatabaseStoreName, mode);
         return transaction.objectStore(Configuration.indexedDatabaseStoreName);
     }
 
@@ -70,15 +70,16 @@ export default class IndexedDatabase {
 
     #initializeUpgradeCallback(databaseOpenRequest) {
         const upgradeHandler = event => {
-            this.#databaseReference = event.target.result;
-            const isObjectStoreInitialized = this.#databaseReference.objectStoreNames.contains(Configuration.indexedDatabaseStoreName);
+            console.log('upgrading database...');
+            this.#database = event.target.result;
+            const isObjectStoreInitialized = this.#database.objectStoreNames.contains(Configuration.indexedDatabaseStoreName);
             
             if (isObjectStoreInitialized) {
-                this.#databaseReference.deleteObjectStore(Configuration.indexedDatabaseStoreName);
+                this.#database.deleteObjectStore(Configuration.indexedDatabaseStoreName);
             }
 
             const optionObject = {autoIncrement: true, keyPath: 'name'};
-            const objectStore = this.#databaseReference.createObjectStore(Configuration.indexedDatabaseStoreName, optionObject);
+            const objectStore = this.#database.createObjectStore(Configuration.indexedDatabaseStoreName, optionObject);
             objectStore.createIndex('levelRotationIndex', 'name', {unique: true});
         };
         databaseOpenRequest.addEventListener('upgradeneeded', upgradeHandler);
@@ -87,7 +88,7 @@ export default class IndexedDatabase {
 
     #initializeSuccessCallback(databaseOpenRequest) {
         const successHandler = event => {
-            this.#databaseReference = event.target.result;
+            this.#database = event.target.result;
             this.displayData();
         };
         databaseOpenRequest.addEventListener('success', successHandler);
