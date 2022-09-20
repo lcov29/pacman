@@ -11,7 +11,9 @@ import EditorElementMapper from './EditorElementMapper.mjs';
 import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
+import IndexedDatabase from '../database/IndexedDatabase.mjs';
 import Configuration from '../global/Configuration.mjs';
+
 
 
 export default class Editor {
@@ -29,6 +31,7 @@ export default class Editor {
     #internalLevelRotation = null;
     #previewCanvas = null;
     #currentState = null;
+    #indexedDatabase = null;
     #internalLevel = null;
     #lastAssignedLevelId = 0;
 
@@ -46,6 +49,9 @@ export default class Editor {
         this.#internalLevelRotation = new EditorInternalLevelRotation();
         this.#previewCanvas = new EditorPreviewCanvas();
         this.#currentState = new EditorDefaultState(this);
+        this.#indexedDatabase = new IndexedDatabase(error => {
+            console.log('Unable to connect to indexedDB');
+        });
     }
 
 
@@ -284,6 +290,7 @@ export default class Editor {
             document.getElementById(validationResult.levelId).click();
             window.alert(validationResult.errorMessage);
         } else {
+            this.#storeLevelJsonInDatabase();
             this.#sendLevelJson();
             this.#loadIndexPage();
         }
@@ -344,6 +351,12 @@ export default class Editor {
             }
         }
         return false;
+    }
+
+
+    #storeLevelJsonInDatabase() {
+        const levelRotation = JSON.parse(this.#getLevelRotationJSONString());
+        this.#indexedDatabase.storeLevelRotation(levelRotation);
     }
 
 
