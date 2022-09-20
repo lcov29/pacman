@@ -70,7 +70,6 @@ export default class IndexedDatabase {
 
     #initializeUpgradeCallback(databaseOpenRequest) {
         const upgradeHandler = event => {
-            console.log('upgrading database...');
             this.#database = event.target.result;
             const isObjectStoreInitialized = this.#database.objectStoreNames.contains(Configuration.indexedDatabaseStoreName);
             
@@ -89,7 +88,6 @@ export default class IndexedDatabase {
     #initializeSuccessCallback(databaseOpenRequest) {
         const successHandler = event => {
             this.#database = event.target.result;
-            this.displayData();
         };
         databaseOpenRequest.addEventListener('success', successHandler);
     }
