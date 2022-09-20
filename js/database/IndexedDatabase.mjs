@@ -19,13 +19,7 @@ export default class IndexedDatabase {
 
 
     isSupportedByCurrentBrowser() {
-        return window.indexedDB === undefined;
-    }
-
-
-    loadLevelRotation(name, successHandler) {
-        const request = this.#getObjectStore('readonly').get(name);
-        request.addEventListener('success', successHandler);
+        return window.indexedDB !== undefined && window.indexedDB !== null;
     }
 
 
@@ -36,6 +30,12 @@ export default class IndexedDatabase {
 
     deleteLevelRotation(name) {
         this.#getObjectStore('readwrite').delete(name);
+    }
+
+
+    loadLevelRotation(name, successHandler) {
+        const request = this.#getObjectStore('readonly').get(name);
+        request.addEventListener('success', successHandler);
     }
 
 
