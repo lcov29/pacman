@@ -5,17 +5,6 @@ export default class IndexedDatabase {
 
 
     #database = null;
-    #recordList = [];
-
-
-    get recordList() {
-        return this.#recordList;
-    }
-
-
-    constructor(errorHandler) {
-        this.#initializeConnection(errorHandler);
-    }
 
 
     isSupportedByCurrentBrowser() {
@@ -23,32 +12,88 @@ export default class IndexedDatabase {
     }
 
 
+    openConnection() {
+        return new Promise((resolve, reject) => {
+            const databaseOpenRequest = window.indexedDB.open('testDatabase', 1);
+
+
+            databaseOpenRequest.addEventListener('upgradeneeded', event => {
+                this.#database = event.target.result;
+                const isObjectStoreInitialized = this.#database.objectStoreNames.contains(Configuration.indexedDatabaseStoreName);
+
+                if (isObjectStoreInitialized) {
+                    this.#database.deleteObjectStore(Configuration.indexedDatabaseStoreName);
+                }
+
+                const optionObject = {autoIncrement: true, keyPath: 'name'};
+                const objectStore = this.#database.createObjectStore(Configuration.indexedDatabaseStoreName, optionObject);
+                objectStore.createIndex('levelRotationIndex', 'name', {unique: true});
+            }); 
+
+
+            databaseOpenRequest.addEventListener('success', event => {
+                this.#database = event.target.result;
+                resolve();
+            });
+
+
+            databaseOpenRequest.addEventListener('error', event => {
+                reject();
+            });
+
+        });
+    }
+
+
     storeLevelRotation(levelRotation) {
-        this.#getObjectStore('readwrite').put(levelRotation);
+        return new Promise((resolve, reject) => {
+            const request = this.#getObjectStore('readwrite').put(levelRotation);
+            request.addEventListener('success', resolve);
+            request.addEventListener('error', reject);
+        });
     }
 
 
     deleteLevelRotation(name) {
-        this.#getObjectStore('readwrite').delete(name);
+        return new Promise((resolve, reject) => {
+            const request = this.#getObjectStore('readwrite').delete(name);
+            request.addEventListener('success', resolve);
+            request.addEventListener('error', reject);
+        });
     }
 
 
-    loadLevelRotation(name, successHandler) {
-        const request = this.#getObjectStore('readonly').get(name);
-        request.addEventListener('success', successHandler);
+    loadLevelRotation(name) {
+        return new Promise((resolve, reject) => {
+            const request = this.#getObjectStore('readonly').get(name);
+
+            request.addEventListener('success', event => {
+                const levelRotation = event.target.result;
+                resolve(levelRotation);
+            });
+
+            request.addEventListener('error', reject);
+        });
     }
 
 
-    displayData() {
-        this.#recordList = [];
-        const request = this.#getObjectStore('readonly').openCursor();
+    loadLevelRotationList() {
+        return new Promise((resolve, reject) => {
+            const levelRotationList = [];
+            const request = this.#getObjectStore('readonly').openCursor();
 
-        request.addEventListener('success', event => {
-            const cursor = event.target.result;
-            if (cursor) {
-                this.#recordList.push(cursor.value);
-                cursor.continue();
-            }
+            request.addEventListener('success', event => {
+                const cursor = event.target.result;
+                if (cursor) {
+                    levelRotationList.push(cursor.value);
+                    cursor.continue();
+                } else {
+                    resolve(levelRotationList);
+                }
+            });
+
+            request.addEventListener('error', reject);
+
         });
     }
 
@@ -56,40 +101,6 @@ export default class IndexedDatabase {
     #getObjectStore(mode) {
         const transaction = this.#database.transaction(Configuration.indexedDatabaseStoreName, mode);
         return transaction.objectStore(Configuration.indexedDatabaseStoreName);
-    }
-
-
-    #initializeConnection(errorHandler) {
-        const databaseOpenRequest = window.indexedDB.open(Configuration.indexedDatabaseName, Configuration.indexedDatabaseVersion);
-
-        this.#initializeUpgradeCallback(databaseOpenRequest);
-        this.#initializeSuccessCallback(databaseOpenRequest);
-        databaseOpenRequest.addEventListener('error', errorHandler);
-    }
-
-
-    #initializeUpgradeCallback(databaseOpenRequest) {
-        const upgradeHandler = event => {
-            this.#database = event.target.result;
-            const isObjectStoreInitialized = this.#database.objectStoreNames.contains(Configuration.indexedDatabaseStoreName);
-            
-            if (isObjectStoreInitialized) {
-                this.#database.deleteObjectStore(Configuration.indexedDatabaseStoreName);
-            }
-
-            const optionObject = {autoIncrement: true, keyPath: 'name'};
-            const objectStore = this.#database.createObjectStore(Configuration.indexedDatabaseStoreName, optionObject);
-            objectStore.createIndex('levelRotationIndex', 'name', {unique: true});
-        };
-        databaseOpenRequest.addEventListener('upgradeneeded', upgradeHandler);
-    }
-
-
-    #initializeSuccessCallback(databaseOpenRequest) {
-        const successHandler = event => {
-            this.#database = event.target.result;
-        };
-        databaseOpenRequest.addEventListener('success', successHandler);
     }
 
 
