@@ -49,13 +49,15 @@ export default class Editor {
         this.#internalLevelRotation = new EditorInternalLevelRotation();
         this.#previewCanvas = new EditorPreviewCanvas();
         this.#currentState = new EditorDefaultState(this);
+        /*
         this.#indexedDatabase = new IndexedDatabase(error => {
             console.log('Unable to connect to indexedDB');
-        });
+        });*/
+        this.#indexedDatabase = new IndexedDatabase();
     }
 
 
-    initialize() {
+    async initialize() {
         EditorElementMapper.initialize();
         this.#tileSelectionBar.initialize();
         this.#boardEditingArea.initialize();
@@ -67,6 +69,7 @@ export default class Editor {
         this.#levelRotationBar.initialize();
         this.#saveButton.initialize();
         this.#internalLevelRotation.initialize();
+        await this.#indexedDatabase.openConnection();
         this.handleAddNewLevel();
     }
 
@@ -283,14 +286,14 @@ export default class Editor {
     }
 
 
-    handleButtonSaveClick() {
+    async handleButtonSaveClick() {
         const validationResult = this.#internalLevelRotation.validate();
 
         if (validationResult) {
             document.getElementById(validationResult.levelId).click();
             window.alert(validationResult.errorMessage);
         } else {
-            this.#storeLevelJsonInDatabase();
+            await this.#storeLevelJsonInDatabase();
             this.#sendLevelJson();
             this.#loadIndexPage();
         }
@@ -354,9 +357,9 @@ export default class Editor {
     }
 
 
-    #storeLevelJsonInDatabase() {
+    async #storeLevelJsonInDatabase() {
         const levelRotation = JSON.parse(this.#getLevelRotationJSONString());
-        this.#indexedDatabase.storeLevelRotation(levelRotation);
+        await this.#indexedDatabase.storeLevelRotation(levelRotation);
     }
 
 
