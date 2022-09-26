@@ -49,10 +49,6 @@ export default class Editor {
         this.#internalLevelRotation = new EditorInternalLevelRotation();
         this.#previewCanvas = new EditorPreviewCanvas();
         this.#currentState = new EditorDefaultState(this);
-        /*
-        this.#indexedDatabase = new IndexedDatabase(error => {
-            console.log('Unable to connect to indexedDB');
-        });*/
         this.#indexedDatabase = new IndexedDatabase();
     }
 
