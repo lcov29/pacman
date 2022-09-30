@@ -76,6 +76,16 @@ export default class Editor {
     }
 
 
+    getScatterPositionFor(ghostCharacter) {
+        return this.#internalLevel.getScatterPositionFor(ghostCharacter);
+    }
+
+
+    getSpawnPositionFor(ghostCharacter) {
+        return this.#internalLevel.getSpawnPositionFor(ghostCharacter);
+    }
+
+    
     setState(state) {
         this.#currentState.exit();
         this.#currentState = state;
@@ -91,6 +101,11 @@ export default class Editor {
 
     isTileAccessible(coordinateString) {
         return this.#internalLevel.isTileAccessible(coordinateString);
+    }
+
+
+    isGhostTypeOnBoard(ghostCharacter) {
+        return this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
     }
 
 
@@ -144,6 +159,11 @@ export default class Editor {
     }
 
 
+    updateScatterSpawnPositions() {
+        this.#inputScatterSpawn.updateScatterSpawnPositions();
+    }
+
+
     highlightChosenSelectorTile() {
         this.#tileSelectionBar.highlightChosenTile();
     }
@@ -161,26 +181,6 @@ export default class Editor {
 
     resetHighlightOfPlacedGhostsOfType(ghostCharacter) {
         this.#toggleHighlightOfPlacedGhostsOfType(ghostCharacter, true);
-    }
-
-
-    isGhostTypeOnBoard(ghostCharacter) {
-        return this.#internalLevel.getGhostCounterFor(ghostCharacter) > 0;
-    }
-
-
-    getScatterPositionFor(ghostCharacter) {
-        return this.#internalLevel.getScatterPositionFor(ghostCharacter);
-    }
-
-
-    getSpawnPositionFor(ghostCharacter) {
-        return this.#internalLevel.getSpawnPositionFor(ghostCharacter);
-    }
-
-
-    updateScatterSpawnPositions() {
-        this.#inputScatterSpawn.updateScatterSpawnPositions();
     }
 
 
