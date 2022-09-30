@@ -5,9 +5,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
       <title>Level Editor</title>
-      <link rel="icon" type="image/svg+xml" href="./sprites/actors/pacman/pacman_right.svg">
-      <link rel="stylesheet" href="./css/editor.css">
-      <script type="module" src="./js/editor/controller.js"></script>
+      <link rel="icon" type="image/svg+xml" href="../sprites/actors/pacman/pacman_right.svg">
+      <link rel="stylesheet" href="../css/editor.css">
+      <script type="module" src="../js/editor/controller.js"></script>
    </head>
 
    <body>
@@ -111,22 +111,22 @@
                <fieldset id="scatterPositionFieldset" class="invisible">
                   <legend>Scatter Positions</legend>
                   <div id="scatterControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                     <img src="../sprites/actors/ghost_blinky/blinky_down.svg">
                      <input id="scatterPositionGhostBlinky" class="inputPosition" type="text" readonly>
                      <button id="selectScatterPositionGhostBlinky" name="buttonScatterPosition">Select</button>
                   </div>
                   <div id="scatterControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                     <img src="../sprites/actors/ghost_pinky/pinky_down.svg">
                      <input id="scatterPositionGhostPinky" class="inputPosition" type="text" readonly>
                      <button id="selectScatterPositionGhostPinky" name="buttonScatterPosition">Select</button>
                   </div>
                   <div id="scatterControlGhostInky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                     <img src="../sprites/actors/ghost_inky/inky_down.svg">
                      <input id="scatterPositionGhostInky" class="inputPosition" type="text" readonly>
                      <button id="selectScatterPositionGhostInky" name="buttonScatterPosition">Select</button>
                   </div>
                   <div id="scatterControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                     <img src="../sprites/actors/ghost_clyde/clyde_down.svg">
                      <input id="scatterPositionGhostClyde" class="inputPosition" type="text" readonly>
                      <button id="selectScatterPositionGhostClyde" name="buttonScatterPosition">Select</button>
                   </div>
@@ -135,22 +135,22 @@
                <fieldset id="spawnPositionFieldset" class="invisible">
                   <legend>Optional Spawn Positions</legend>
                   <div id="spawnControlGhostBlinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_blinky/blinky_down.svg">
+                     <img src="../sprites/actors/ghost_blinky/blinky_down.svg">
                      <input id="spawnPositionGhostBlinky" class="inputPosition" type="text" readonly>
                      <button id="selectSpawnPositionGhostBlinky" name="buttonSpawnPosition">Select</button>
                   </div>
                   <div id="spawnControlGhostPinky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_pinky/pinky_down.svg">
+                     <img src="../sprites/actors/ghost_pinky/pinky_down.svg">
                      <input id="spawnPositionGhostPinky" class="inputPosition" type="text" readonly>
                      <button id="selectSpawnPositionGhostPinky" name="buttonSpawnPosition">Select</button>
                   </div>
                   <div id="spawnControlGhostInky" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_inky/inky_down.svg">
+                     <img src="../sprites/actors/ghost_inky/inky_down.svg">
                      <input id="spawnPositionGhostInky" class="inputPosition" type="text" readonly>
                      <button id="selectSpawnPositionGhostInky" name="buttonSpawnPosition">Select</button>
                   </div>
                   <div id="spawnControlGhostClyde" class="scatterSpawnControlGroup invisible">
-                     <img src="./sprites/actors/ghost_clyde/clyde_down.svg">
+                     <img src="../sprites/actors/ghost_clyde/clyde_down.svg">
                      <input id="spawnPositionGhostClyde" class="inputPosition" type="text" readonly>
                      <button id="selectSpawnPositionGhostClyde" name="buttonSpawnPosition">Select</button>
                   </div>
@@ -176,27 +176,27 @@
 
       <!-- svg sprites to prevent pre-loading issues in canvas -->
       <div class="invisible">
-         <img id="emptySpace" src="./sprites/background/emptySpace.svg">
-         <img id="wall" src="./sprites/background/wall.svg">
-         <img id="undefinedTileSprite" src="./sprites/background/undefined_tile.svg">
+         <img id="emptySpace" src="../sprites/background/emptySpace.svg">
+         <img id="wall" src="../sprites/background/wall.svg">
+         <img id="undefinedTileSprite" src="../sprites/background/undefined_tile.svg">
 
-         <img id="teleporter1" src="./sprites/background/teleporters/teleporter1.svg">
-         <img id="teleporter2" src="./sprites/background/teleporters/teleporter2.svg">
-         <img id="teleporter3" src="./sprites/background/teleporters/teleporter3.svg">
+         <img id="teleporter1" src="../sprites/background/teleporters/teleporter1.svg">
+         <img id="teleporter2" src="../sprites/background/teleporters/teleporter2.svg">
+         <img id="teleporter3" src="../sprites/background/teleporters/teleporter3.svg">
 
-         <img id="ghostDoorHorizontal" src="./sprites/background/door/ghost_door_horizontal.svg">
-         <img id="ghostDoorVertical" src="./sprites/background/door/ghost_door_vertical.svg">
-         <img id="ghostDoorDiagonal" src="./sprites/background/door/ghost_door_diagonal.svg">
+         <img id="ghostDoorHorizontal" src="../sprites/background/door/ghost_door_horizontal.svg">
+         <img id="ghostDoorVertical" src="../sprites/background/door/ghost_door_vertical.svg">
+         <img id="ghostDoorDiagonal" src="../sprites/background/door/ghost_door_diagonal.svg">
 
-         <img id="point" src="./sprites/background/consumables/point.svg">
-         <img id="powerUp" src="./sprites/background/consumables/powerUp.svg">
-         <img id="bonusCherry" src="./sprites/background/consumables/bonus_elements/bonusCherry.svg">
+         <img id="point" src="../sprites/background/consumables/point.svg">
+         <img id="powerUp" src="../sprites/background/consumables/powerUp.svg">
+         <img id="bonusCherry" src="../sprites/background/consumables/bonus_elements/bonusCherry.svg">
 
-         <img id="pacmanRight" src="./sprites/actors/pacman/pacman_right.svg">
-         <img id="blinkyRight" src="./sprites/actors/ghost_blinky/blinky_right.svg"> 
-         <img id="pinkyRight" src="./sprites/actors/ghost_pinky/pinky_right.svg">
-         <img id="inkyRight" src="./sprites/actors/ghost_inky/inky_right.svg">    
-         <img id="clydeRight" src="./sprites/actors/ghost_clyde/clyde_right.svg">
+         <img id="pacmanRight" src="../sprites/actors/pacman/pacman_right.svg">
+         <img id="blinkyRight" src="../sprites/actors/ghost_blinky/blinky_right.svg"> 
+         <img id="pinkyRight" src="../sprites/actors/ghost_pinky/pinky_right.svg">
+         <img id="inkyRight" src="../sprites/actors/ghost_inky/inky_right.svg">    
+         <img id="clydeRight" src="../sprites/actors/ghost_clyde/clyde_right.svg">
       </div>
 
    </body>
