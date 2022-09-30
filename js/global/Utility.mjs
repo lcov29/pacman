@@ -1,3 +1,6 @@
+import Configuration from "./Configuration.mjs";
+
+
 export default class Utility {
 
 
@@ -17,5 +20,19 @@ export default class Utility {
         return `${actorCharacter}_${actorStateName}_${teleportationStatus}_${directionName}`;
     }
 
+
+    static loadPage(currentPageName, targetPageName) {
+        // workaround for loading pages on github pages
+        let url = location.href;
+
+        const isIndexPage = targetPageName === Configuration.fileNameIndex;
+        if (isIndexPage) {
+            url = url.replace('html/', '');
+        }
+        
+        url = url.replace(currentPageName, targetPageName);
+        location.href = url;
+    }
     
+
 }
