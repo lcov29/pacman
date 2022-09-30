@@ -224,26 +224,31 @@ input[type=radio] {
 
 
 .pacmanTile {
+    background-color: black;
     background-image: url('../sprites/actors/pacman/pacman_right.svg');
 }
 
 
 .ghostBlinkyTile {
+    background-color: black;
     background-image: url('../sprites/actors/ghost_blinky/blinky_down.svg');
 }
 
 
 .ghostPinkyTile {
+    background-color: black;
     background-image: url('../sprites/actors/ghost_pinky/pinky_down.svg');
 }
 
 
 .ghostInkyTile {
+    background-color: black;
     background-image: url('../sprites/actors/ghost_inky/inky_down.svg');
 }
 
 
 .ghostClydeTile {
+    background-color: black;
     background-image: url('../sprites/actors/ghost_clyde/clyde_down.svg');
 }
 
