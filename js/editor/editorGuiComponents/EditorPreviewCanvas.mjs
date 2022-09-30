@@ -1,3 +1,4 @@
+import Configuration from "../../global/Configuration.mjs";
 import EditorElementMapper from "../EditorElementMapper.mjs";
 
 
@@ -95,6 +96,13 @@ export default class EditorPreviewCanvas {
         
         this.#context.save();
         this.#context.translate(xCanvasPosition, yCanvasPosition);
+
+        const isSpriteDefined = sprite !== document.getElementById('undefinedTileSprite');
+        if (isSpriteDefined) {
+            const backgroundSprite = this.#getSpriteFor(Configuration.emptyTileCharacter);
+            this.#context.drawImage(backgroundSprite, 0, 0, this.#tileWidth, this.#tileHeight);
+        }
+
         this.#context.drawImage(sprite, 0, 0, this.#tileWidth, this.#tileHeight);
         this.#context.restore();
     }
