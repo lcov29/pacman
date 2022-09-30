@@ -13,6 +13,7 @@ import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import IndexedDatabase from '../database/IndexedDatabase.mjs';
 import Configuration from '../global/Configuration.mjs';
+import Utility from '../global/Utility.mjs';
 
 
 
@@ -291,7 +292,7 @@ export default class Editor {
         } else {
             await this.#storeLevelJsonInDatabase();
             this.#sendLevelJson();
-            this.#loadIndexPage();
+            Utility.loadPage(Configuration.fileNameEditor, Configuration.fileNameIndex);
         }
     }
 
@@ -363,13 +364,6 @@ export default class Editor {
         const itemName = Configuration.customLevelRotationSessionStorageName;
         const rotationJsonString = this.#getLevelRotationJSONString();
         window.sessionStorage.setItem(itemName, rotationJsonString);
-    }
-
-
-    #loadIndexPage() {
-        // workaround for loading of index.html on github pages
-        const url = location.href;
-        location.href = url.replace(Configuration.fileNameEditor, Configuration.fileNameIndex);
     }
 
 

@@ -1,5 +1,7 @@
 import IndexedDatabase from "../database/IndexedDatabase.mjs";
 import SessionStorage from "../database/SessionStorage.mjs";
+import Configuration from "../global/Configuration.mjs";
+import Utility from "../global/Utility.mjs";
 
 
 export default class CustomLevelSelection {
@@ -60,7 +62,7 @@ export default class CustomLevelSelection {
             const levelName = event.target.parentElement.id;
             const levelRotation = await this.#database.loadLevelRotation(levelName);
             SessionStorage.setLevelRotation(levelRotation);
-            this.#loadPage('index.html');
+            Utility.loadPage(Configuration.fileNameCustomLevelSelection, Configuration.fileNameIndex);
         }.bind(this));
     }
 
@@ -72,7 +74,7 @@ export default class CustomLevelSelection {
             const levelName = event.target.parentElement.id;
             const levelRotation = await this.#database.loadLevelRotation(levelName);
             SessionStorage.setLevelRotation(levelRotation);
-            this.#loadPage('editor.html');
+            Utility.loadPage(Configuration.fileNameCustomLevelSelection, Configuration.fileNameEditor);
         }.bind(this));
     }
 
@@ -89,13 +91,6 @@ export default class CustomLevelSelection {
 
     #addLevelRotationItemToSelection(levelRotationItem) {
         this.#levelRotationItemContainer.append(levelRotationItem);
-    }
-
-
-    #loadPage(pageName) {
-        // workaround for github pages
-        const url = location.href;
-        location.href = url.replace('database.html', pageName);
     }
 
 
