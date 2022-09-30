@@ -149,6 +149,7 @@ export default class Configuration {
    // Editor Settings
       static fileNameIndex = 'index.html';
       static fileNameEditor = 'editor.html';
+      static fileNameCustomLevelSelection = 'database.html';
 
       static editorLevelDeletionPromptMessage = 'Delete this level?';
 
