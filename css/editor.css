@@ -178,21 +178,25 @@ input[type=radio] {
 
 
 .pointTile {
+    background-color: black;
     background-image: url('../sprites/background/consumables/point.svg');
 }
 
 
 .powerupTile {
+    background-color: black;
     background-image: url('../sprites/background/consumables/powerUp.svg');
 }
 
 
 .ghostDoorHorizontalTile {
+    background-color: black;
     background-image: url('../sprites/background/door/ghost_door_horizontal.svg');
 }
 
 
 .ghostDoorVerticalTile {
+    background-color: black;
     background-image: url('../sprites/background/door/ghost_door_vertical.svg');
 }
 
@@ -203,16 +207,19 @@ input[type=radio] {
 
 
 .teleporter1Tile {
+    background-color: black;
     background-image: url('../sprites/background/teleporters/teleporter1.svg');
 }
 
 
 .teleporter2Tile {
+    background-color: black;
     background-image: url('../sprites/background/teleporters/teleporter2.svg');
 }
 
 
 .teleporter3Tile {
+    background-color: black;
     background-image: url('../sprites/background/teleporters/teleporter3.svg');
 }
 
