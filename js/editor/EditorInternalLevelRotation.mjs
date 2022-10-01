@@ -15,11 +15,6 @@ export default class EditorInternalLevelRotation {
     constructor() {}
 
 
-    initialize() {
-        this.#initialLifeNumber = Configuration.editorDefaultLife;
-    }
-
-
     set name(name) {
         this.#name = name;
     }
@@ -33,6 +28,42 @@ export default class EditorInternalLevelRotation {
     setCurrentLevelIterationNumber(iterationNumber) {
         const currentLevel = this.getLevel();
         currentLevel.numberOfIterations = iterationNumber;
+    }
+
+
+    getLevel() {
+        return this.#internalLevelList[this.#currentSelectedLevelIndex];
+    }
+
+
+    initialize() {
+        this.#initialLifeNumber = Configuration.editorDefaultLife;
+    }
+
+
+    loadLevelRotation(levelRotation) {
+        const internalLevelList = levelRotation.rotation.map(level => {
+            const internalLevel = new EditorInternalLevel();
+            internalLevel.load(level);
+            return internalLevel;
+        });
+
+        this.#internalLevelList = internalLevelList;
+        this.#name = levelRotation.name;
+        this.#initialLifeNumber = levelRotation.initialPacmanLifes;
+    }
+
+
+    loadLevel(levelId) {
+        for (let i = 0; i < this.#internalLevelList.length; i++) {
+            const level = this.#internalLevelList[i];
+            const isMatchingLevel = level.id === levelId;
+
+            if (isMatchingLevel) {
+                this.#currentSelectedLevelIndex = i;
+                break;
+            }
+        }
     }
 
 
@@ -51,24 +82,6 @@ export default class EditorInternalLevelRotation {
         const level = this.#internalLevelList.filter(level => level.id === levelId)[0];
         Utility.removeElementFrom(this.#internalLevelList, level);
         this.#currentSelectedLevelIndex--;
-    }
-
-
-    loadLevel(levelId) {
-        for (let i = 0; i < this.#internalLevelList.length; i++) {
-            const level = this.#internalLevelList[i];
-            const isMatchingLevel = level.id === levelId;
-
-            if (isMatchingLevel) {
-                this.#currentSelectedLevelIndex = i;
-                break;
-            }
-        }
-    }
-
-
-    getLevel() {
-        return this.#internalLevelList[this.#currentSelectedLevelIndex];
     }
 
 
