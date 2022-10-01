@@ -140,6 +140,19 @@ export default class EditorInternalLevel {
     }
 
 
+    load(level) {
+        this.#reset();
+        this.#levelId = level.id;
+        this.#internalBoard = level.board;
+        this.#scatterPositionList = level.scatterPositionList;
+        this.#optionalSpawnPositionList = level.optionalGhostSpawnList;
+        this.#bonusSpawnPositionList = level.bonusSpawnPositionList;
+        this.#numberOfIterations = level.numberOfIterations;
+        this.#initializeCharacterToCoordinateListMap();
+        this.#initializeGhostCoordinateStringList(level.board);
+    }
+
+
     update(coordinateString, character) {
         const currentBoardCharacter = this.#getBoardCharacterAt(coordinateString);
         this.#updateGhostCoordinateList(coordinateString, currentBoardCharacter, character);
@@ -218,6 +231,7 @@ export default class EditorInternalLevel {
 
     buildLevelJSON() {
         const json = {
+            id: this.#levelId,
             board: this.#internalBoard,
             scatterPositionList: this.#scatterPositionList,
             optionalGhostSpawnList: this.#optionalSpawnPositionList,
@@ -233,6 +247,21 @@ export default class EditorInternalLevel {
         this.#characterToCoordinateListMap.set(Configuration.ghostPinkyCharacter, this.#ghostPinkyCoordinateList);
         this.#characterToCoordinateListMap.set(Configuration.ghostInkyCharacter, this.#ghostInkyCoordinateList);
         this.#characterToCoordinateListMap.set(Configuration.ghostClydeCharacter, this.#ghostClydeCoordinateList);
+    }
+
+
+    #initializeGhostCoordinateStringList(board) {
+        for (let y = 0; y < board.length; y++) {
+            for (let x = 0; x < board[y].length; x++) {
+                const currentCharacter = board[y][x];
+                const isGhostCharacter = Configuration.ghostCharacterList.includes(currentCharacter);
+
+                if (isGhostCharacter) {
+                    const ghostCoordinateList = this.#characterToCoordinateListMap.get(currentCharacter);
+                    ghostCoordinateList.push(`(${x},${y})`);
+                }
+            }
+        }
     }
 
 
@@ -312,9 +341,9 @@ export default class EditorInternalLevel {
     }
 
 
-    #addCoordinateToGhostList(coordinate, ghostCharacter) {
+    #addCoordinateToGhostList(coordinateString, ghostCharacter) {
         const ghostCoordinateList = this.#characterToCoordinateListMap.get(ghostCharacter);
-        ghostCoordinateList.push(coordinate);
+        ghostCoordinateList.push(coordinateString);
     }
 
 
@@ -381,6 +410,7 @@ export default class EditorInternalLevel {
     #parseCoordinateString(coordinateString) {
         let parsedInput = coordinateString.replace('(', '');
         parsedInput = parsedInput.replace(')', '');
+        parsedInput = parsedInput.replace(' ', '');
         parsedInput = parsedInput.split(',');
         const x = parseInt(parsedInput[0]);
         const y = parseInt(parsedInput[1]);
