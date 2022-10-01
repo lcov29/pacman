@@ -12,6 +12,7 @@ export default class EditorInternalLevel {
     #optionalSpawnPositionList = [];
     #bonusSpawnPositionList = [];
     #numberOfIterations = 1;
+    #previewImageUrl = '';
     #ghostBlinkyCoordinateList = [];
     #ghostPinkyCoordinateList = [];
     #ghostInkyCoordinateList = [];
@@ -72,6 +73,11 @@ export default class EditorInternalLevel {
         } else {
             throw new RangeError('Invalid argument: number of iterations must be greater zero');
         }
+    }
+
+
+    set previewImageUrl(url) {
+        this.#previewImageUrl = url;
     }
 
 
@@ -236,7 +242,8 @@ export default class EditorInternalLevel {
             scatterPositionList: this.#scatterPositionList,
             optionalGhostSpawnList: this.#optionalSpawnPositionList,
             bonusSpawnPositionList: this.#bonusSpawnPositionList,
-            numberOfIterations: this.#numberOfIterations.toString()
+            numberOfIterations: this.#numberOfIterations.toString(),
+            previewImageUrl: this.#previewImageUrl
         };
         return json;
     }
