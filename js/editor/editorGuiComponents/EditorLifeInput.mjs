@@ -26,6 +26,12 @@ export default class EditorLifeInput {
     }
 
 
+    setLife(lifeNumber) {
+        this.#inputLife.value = lifeNumber;
+        this.updateLifeInputCallback();
+    }
+
+
     updateLifeInputCallback() {
         const isValid = this.#validate();
         const isUpdated = this.#isLifeInputUpdated();
