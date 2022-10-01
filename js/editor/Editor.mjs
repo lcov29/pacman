@@ -1,5 +1,5 @@
 import EditorLevelRotationNameInput from './editorGuiComponents/EditorLevelRotationNameInput.mjs';
-import EditorInternalLevelRotation from './EditorInternalLevelRotation.mjs';
+import EditorInternalLevelRotation from './editorInternalLevel/EditorInternalLevelRotation.mjs';
 import EditorBoardDimensionInput from './editorGuiComponents/EditorBoardDimensionInput.mjs';
 import EditorLevelIterationInput from './editorGuiComponents/EditorLevelIterationInput.mjs';
 import EditorScatterSpawnInput from './editorGuiComponents/EditorScatterSpawnInput.mjs';
