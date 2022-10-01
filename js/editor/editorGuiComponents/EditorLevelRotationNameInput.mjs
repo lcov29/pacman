@@ -12,6 +12,12 @@ export default class EditorLevelRotationNameInput {
     }
 
 
+    setName(name) {
+        this.#inputName.value = name;
+        this.updateNameInputCallback();
+    }
+
+
     initialize() {
         this.#initializeEventListener();
         this.#inputName.value = this.#defaultName;
