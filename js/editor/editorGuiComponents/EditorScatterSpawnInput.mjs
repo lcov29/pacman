@@ -58,6 +58,8 @@ export default class EditorScatterSpawnInput {
             this.#clearInputFor(ghostCharacter);
             this.#hideControldFor(ghostCharacter);
         }
+        this.#hideControl('scatterPositionFieldset');
+        this.#hideControl('spawnPositionFieldset');
     }
 
 
@@ -217,6 +219,8 @@ export default class EditorScatterSpawnInput {
 
 
     #displayControlsFor(ghostCharacter) {
+        this.#displayControl('scatterPositionFieldset');
+        this.#displayControl('spawnPositionFieldset');
         this.#displayScatterControlFor(ghostCharacter);
         this.#displaySpawnControlFor(ghostCharacter);
         this.#setSpawnScatterControlDisplayStatusFor(ghostCharacter, true);
