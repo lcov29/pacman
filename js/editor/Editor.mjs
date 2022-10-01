@@ -156,6 +156,7 @@ export default class Editor {
         const levelId = this.#internalLevel.id;
         const previewDataUrl = this.#previewCanvas.getDataURL();
         this.#levelRotationBar.setPreview(levelId, previewDataUrl);
+        this.#internalLevel.previewImageUrl = previewDataUrl;
     }
 
 
@@ -241,7 +242,9 @@ export default class Editor {
         this.#resetInternalLevel();
         this.#internalLevel = this.#internalLevelRotation.getLevel();
         this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
-        this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
+        const previewDataUrl = this.#previewCanvas.getDataURL();
+        this.#levelRotationBar.setPreview(this.#internalLevel.id, previewDataUrl);
+        this.#internalLevel.previewImageUrl = previewDataUrl;
     }
 
 
@@ -266,7 +269,9 @@ export default class Editor {
         this.#inputScatterSpawn.loadScatterSpawnPositions();
         this.#boardEditingArea.loadBoard(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
         this.#previewCanvas.drawLevel(this.#internalLevel.board, this.#internalLevel.bonusSpawnPositionList);
-        this.#levelRotationBar.setPreview(this.#internalLevel.id, this.#previewCanvas.getDataURL());
+        const previewDataUrl = this.#previewCanvas.getDataURL();
+        this.#levelRotationBar.setPreview(this.#internalLevel.id, previewDataUrl);
+        this.#internalLevel.previewImageUrl = previewDataUrl;
     }
 
 
@@ -399,6 +404,7 @@ export default class Editor {
 
             levelRotation.rotation.forEach(level => {
                 this.#levelRotationBar.addNewLevelElement(level.id, level.numberOfIterations);
+                this.#levelRotationBar.setPreview(level.id, level.previewImageUrl);
             });
             this.#levelRotationBar.highlightFirstLevel();
         }
