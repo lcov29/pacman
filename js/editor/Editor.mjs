@@ -12,9 +12,9 @@ import EditorDefaultState from './editorStates/EditorDefaultState.mjs';
 import EditorSaveButton from './editorGuiComponents/EditorSaveButton.mjs';
 import EditorLifeInput from './editorGuiComponents/EditorLifeInput.mjs';
 import IndexedDatabase from '../database/IndexedDatabase.mjs';
+import SessionStorage from '../database/SessionStorage.mjs';
 import Configuration from '../global/Configuration.mjs';
 import Utility from '../global/Utility.mjs';
-
 
 
 export default class Editor {
@@ -66,8 +66,8 @@ export default class Editor {
         this.#levelRotationBar.initialize();
         this.#saveButton.initialize();
         this.#internalLevelRotation.initialize();
-        await this.#indexedDatabase.openConnection();
-        this.handleAddNewLevel();
+        await this.#initializeDatabaseConnection();
+        this.#initializeLevel();
     }
 
 
@@ -332,6 +332,23 @@ export default class Editor {
     }
 
 
+    async #initializeDatabaseConnection() {
+        try {
+            await this.#indexedDatabase.openConnection();
+        } catch(error) {
+            console.log('Failed to connect to indexedDB');
+        }
+    }
+
+
+    #initializeLevel() {
+        const isLevelLoaded = this.#loadLevelRotation();
+        if (!isLevelLoaded) {
+            this.handleAddNewLevel();
+        }
+    }
+
+
     #getLevelRotationJSONString() {
         const rotationJsonString = this.#internalLevelRotation.buildLevelRotationJSONString();
         return rotationJsonString;
@@ -357,6 +374,36 @@ export default class Editor {
     async #storeLevelJsonInDatabase() {
         const levelRotation = JSON.parse(this.#getLevelRotationJSONString());
         await this.#indexedDatabase.storeLevelRotation(levelRotation);
+    }
+
+
+    #loadLevelRotation() {
+        const levelRotation = SessionStorage.getLevelRotation();
+        const isLevelRotationAvailable = levelRotation !== null;
+
+        if (isLevelRotationAvailable) {
+            this.#internalLevelRotation.loadLevelRotation(levelRotation);
+            this.#internalLevel = this.#internalLevelRotation.getLevel();
+            this.#inputLevelRotationName.setName(levelRotation.name);
+            this.#inputLife.setLife(levelRotation.initialPacmanLifes);
+
+            const firstLevel = levelRotation.rotation[0];
+            const width = firstLevel.board[0].length;
+            const height = firstLevel.board.length;
+
+            this.#inputBoardDimension.setDimension(width, height);
+            this.#boardEditingArea.loadBoard(firstLevel.board, firstLevel.bonusSpawnPositionList);
+            this.#inputLevelIteration.levelIterationNumber = firstLevel.numberOfIterations;
+            this.#inputScatterSpawn.loadScatterSpawnPositions();
+            this.#lastAssignedLevelId = levelRotation.rotation.length;
+
+            levelRotation.rotation.forEach(level => {
+                this.#levelRotationBar.addNewLevelElement(level.id, level.numberOfIterations);
+            });
+            this.#levelRotationBar.highlightFirstLevel();
+        }
+
+        return isLevelRotationAvailable;
     }
 
 
