@@ -149,7 +149,7 @@ export default class Configuration {
    // HTML File Names
       static fileNameIndex = 'index.html';
       static fileNameEditor = 'editor.html';
-      static fileNameCustomLevelSelection = 'database.html';
+      static fileNameCustomLevelSelection = 'customLevelSelection.html';
 
 
 
