@@ -1,6 +1,6 @@
 import EditorLevelValidator from "./EditorLevelValidator.mjs";
-import Configuration from '../global/Configuration.mjs';
-import Utility from '../global/Utility.mjs';
+import Configuration from '../../global/Configuration.mjs';
+import Utility from '../../global/Utility.mjs';
 
 
 export default class EditorInternalLevel {

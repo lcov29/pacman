@@ -1,6 +1,6 @@
 import EditorInternalLevel from "./EditorInternalLevel.mjs";
-import Configuration from "../global/Configuration.mjs";
-import Utility from "../global/Utility.mjs";
+import Configuration from "../../global/Configuration.mjs";
+import Utility from "../../global/Utility.mjs";
 
 
 export default class EditorInternalLevelRotation {
