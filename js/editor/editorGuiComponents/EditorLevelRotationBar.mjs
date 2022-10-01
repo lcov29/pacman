@@ -67,13 +67,19 @@ export default class EditorLevelRotationBar {
     }
 
 
-    addNewLevelElement(levelId) {
+    addNewLevelElement(levelId, iterationNumber = Configuration.editorDefaultIterationNumber) {
         const levelElement = this.#buildLevelElement(levelId);
         this.#addDeleteButtonEventListenerFor(levelElement);
         this.#addLevelSelectEventListenerFor(levelElement);
         this.#insertInRotation(levelElement);
-        this.#setLevelIterationNumberFor(levelElement, Configuration.editorDefaultIterationNumber);
+        this.#setLevelIterationNumberFor(levelElement, iterationNumber);
         this.#highlight(levelElement);
+    }
+
+
+    highlightFirstLevel() {
+        const firstLevelElement = document.getElementById('level1');
+        this.#highlight(firstLevelElement);
     }
 
 
