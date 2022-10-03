@@ -23,7 +23,7 @@ export default class CustomLevelSelection {
         try {
             await this.#database.openConnection();
             const levelRotationList = await this.#database.loadLevelRotationList();
-            levelRotationList.forEach(levelRotation => this.addLevelRotationItemFor(levelRotation).bind(this));
+            levelRotationList.forEach(levelRotation => this.addLevelRotationItemFor(levelRotation));
         } catch (err) {
             document.getElementById('indexedDBWarning').classList.remove('invisible');
         }
@@ -50,22 +50,22 @@ export default class CustomLevelSelection {
     }
 
 
+    #addLevelPreview(levelRotationItem, levelPreviewUrl) {
+        levelRotationItem.children[0].src = levelPreviewUrl;
+    }
+
+
     #addLevelRotationName(levelRotationItem, name) {
-        const nameParagraph = levelRotationItem.children[0];
+        const nameParagraph = levelRotationItem.children[1].children[0];
         nameParagraph.innerText = name;
     }
 
 
-    #addLevelPreview(levelRotationItem, levelPreviewUrl) {
-        levelRotationItem.setAttribute('style', `background-image: url(${levelPreviewUrl});`);
-    }
-
-
     #addPlayButtonEventListenerFor(levelRotationItem) {
-        const playButton = levelRotationItem.children[1];
+        const playButton = levelRotationItem.children[1].children[1].children[0];
 
         playButton.addEventListener('click', async function(event) {
-            const levelName = event.target.parentElement.id;
+            const levelName = this.#getLevelRotationNameForButtonClickEvent(event);
             const levelRotation = await this.#database.loadLevelRotation(levelName);
             SessionStorage.setLevelRotation(levelRotation);
             Utility.loadPage(Configuration.fileNameCustomLevelSelection, Configuration.fileNameIndex);
@@ -74,10 +74,10 @@ export default class CustomLevelSelection {
 
 
     #addEditButtonEventListenerFor(levelRotationItem) {
-        const editButton = levelRotationItem.children[2];
+        const editButton = levelRotationItem.children[1].children[1].children[1];
 
         editButton.addEventListener('click', async function(event) {
-            const levelName = event.target.parentElement.id;
+            const levelName = this.#getLevelRotationNameForButtonClickEvent(event);
             const levelRotation = await this.#database.loadLevelRotation(levelName);
             SessionStorage.setLevelRotation(levelRotation);
             Utility.loadPage(Configuration.fileNameCustomLevelSelection, Configuration.fileNameEditor);
@@ -86,17 +86,22 @@ export default class CustomLevelSelection {
 
 
     #addDeleteButtonEventListenerFor(levelRotationItem) {
-        const deleteButton = levelRotationItem.children[3];
+        const deleteButton = levelRotationItem.children[1].children[1].children[2];
 
         deleteButton.addEventListener('click', async function(event) {
-            const levelRotationName = event.target.parentElement.id;
-            await this.#database.deleteLevelRotation(levelRotationName);
+            const levelName = this.#getLevelRotationNameForButtonClickEvent(event);
+            await this.#database.deleteLevelRotation(levelName);
         }.bind(this));
     }
 
 
     #addLevelRotationItemToSelection(levelRotationItem) {
         this.#levelRotationItemContainer.append(levelRotationItem);
+    }
+
+
+    #getLevelRotationNameForButtonClickEvent(event) {
+        return event.target.parentElement.parentElement.parentElement.id;
     }
 
 
