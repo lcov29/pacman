@@ -1,47 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-      <title>Pacman</title>
-      <link rel="icon" type="image/svg+xml" href="../sprites/actors/pacman/pacman_right.svg">
-      <link rel="stylesheet" href="../css/customLevelSelection.css">
-      <script type="module" src="../js/customLevelSelection/controller.js"></script>
-   </head>
-   
-   <body>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+   <title>Pacman</title>
+   <link rel="icon" type="image/svg+xml" href="../sprites/actors/pacman/pacman_right.svg">
+   <link rel="stylesheet" href="../css/customLevelSelection.css">
+   <script type="module" src="../js/customLevelSelection/controller.js"></script>
+</head>
 
-      <nav class="menuBar">
-         <button class="buttonMobileMenu">Menu</button>
-         <ul>
-            <li><a href="../index.html">Game</a></li>
-            <li class="currentSite"><a href="#">Custom Level</a></li>
-            <li><a href="./editor.html">Level Editor</a></li>
-            <li><a href="#">Instructions</a></li>
-            <li><a href="#">About</a></li>
-         </ul>
-      </nav>
+<body>
 
-      <br>
+   <nav class="menuBar">
+      <button class="buttonMobileMenu">Menu</button>
+      <ul>
+         <li><a href="../index.html">Game</a></li>
+         <li class="currentSite"><a href="#">Custom Level</a></li>
+         <li><a href="./editor.html">Level Editor</a></li>
+         <li><a href="#">Instructions</a></li>
+         <li><a href="#">About</a></li>
+      </ul>
+   </nav>
 
-      <main>
+   <br>
 
-         <div id="levelRotationItemContainer"></div>
+   <main>
 
-         <div id="indexedDBWarning" class="invisible">
-            <p>Unable to access indexedDB.</p>
+      <div id="levelRotationItemContainer"></div>
+
+      <div id="indexedDBWarning" class="invisible">
+         <p>Unable to access indexedDB.</p>
+      </div>
+
+      <div id="templateLevelRotationItem" class="levelRotationItem invisible">
+         <img class="previewArea"></img>
+         <div class="overlay">
+            <div class="levelRotationName"></div>
+            <div class="optionBar">
+               <button class="levelPlay">Play</button>
+               <button class="levelEdit">Edit</button>
+               <button class="levelDelete">Delete</button>
+            </div>
          </div>
+      </div>
 
-         <div id="templateLevelRotationItem" class="levelRotationItem invisible">
-            <p class="levelRotationName"></p>
-            <button class="levelPlay">Play</button>
-            <button class="levelEdit">Edit</button>
-            <button class="levelDelete">Delete</button>
-         </div>
+   </main>
 
-      </main>
+</body>
 
-   </body>
-   
 </html>
