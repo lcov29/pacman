@@ -1,8 +1,17 @@
 ## About this project
 This is an attempt to build a variant of the game pacman using HTML, CSS and JavaScript for training purposes.
 
-The game currently offers the ability to play one level until all points are consumed and to create a custom level via the level editor.
+<br>
+
+The game currently offers the following features:
+
+* play default level based on the original level layout
+* create custom level rotation
+* save custom level rotations in your browser
+* play, change and delete custom level rotations
  
+<br>
+
 The movement patterns of the ghosts and other aspects are only loosely based on the original game, so do not expect the same behavior.
 
 <br>
@@ -101,16 +110,28 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 
 #### Database
-- [ ] add indexedDB
-- [ ] store and show level rotations
-- [ ] load level rotations to game
-- [ ] load level rotations to editor
-- [ ] delete level rotations
+- [x] add indexedDB
+- [x] store and show level rotations
+- [x] load level rotations to game
+- [x] load level rotations to editor
+- [x] delete level rotations
 - [ ] load level rotation string to database
 
 <br>
 
 ## Version history
+<br>
+
+#### Version 0.08
+* add support for database indexedDB
+  * save level rotation
+  * query level rotation
+  * delete level rotation
+* add site listing all saved level rotations
+  * preview slider for all level in level rotation
+  * load level rotation in editor
+  * play level rotation
+  * delete level rotations
 <br>
 
 
