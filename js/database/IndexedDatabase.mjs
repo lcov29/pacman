@@ -14,7 +14,7 @@ export default class IndexedDatabase {
 
     openConnection() {
         return new Promise((resolve, reject) => {
-            const databaseOpenRequest = window.indexedDB.open('testDatabase', 1);
+            const databaseOpenRequest = window.indexedDB.open(Configuration.indexedDatabaseName, Configuration.indexedDatabaseVersion);
 
 
             databaseOpenRequest.addEventListener('upgradeneeded', event => {
