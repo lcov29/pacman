@@ -9,7 +9,7 @@ body {
 }
 
 
-#levelRotationSelection {
+#levelRotationItemContainer {
     margin: 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -20,9 +20,17 @@ body {
 
 
 .levelRotationItem {
-    margin: 0.5rem;
-    padding: 0.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
     border: 0.1rem white solid;
+    margin: 0.5rem;
+    min-width: 20%;
+    padding: 0.5rem;
+}
+
+
+.levelRotationName {
+    font-weight: bold;
 }
 
 
