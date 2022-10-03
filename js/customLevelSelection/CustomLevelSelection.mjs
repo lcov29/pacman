@@ -33,6 +33,7 @@ export default class CustomLevelSelection {
     addLevelRotationItemFor(levelRotationJson) {
         const levelRotationItem = this.#buildLevelRotationItem(levelRotationJson.name);
         this.#addLevelRotationName(levelRotationItem, levelRotationJson.name);
+        this.#addLevelPreview(levelRotationItem, levelRotationJson.rotation[0].previewImageUrl);
         this.#addPlayButtonEventListenerFor(levelRotationItem);
         this.#addEditButtonEventListenerFor(levelRotationItem);
         this.#addDeleteButtonEventListenerFor(levelRotationItem);
@@ -52,6 +53,11 @@ export default class CustomLevelSelection {
     #addLevelRotationName(levelRotationItem, name) {
         const nameParagraph = levelRotationItem.children[0];
         nameParagraph.innerText = name;
+    }
+
+
+    #addLevelPreview(levelRotationItem, levelPreviewUrl) {
+        levelRotationItem.setAttribute('style', `background-image: url(${levelPreviewUrl});`);
     }
 
 
