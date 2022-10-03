@@ -40,7 +40,6 @@ body {
     height: 100%;
     background-color: black;
     transition: 0.25s ease;
-    opacity: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,15 +47,26 @@ body {
 }
 
 
+.levelRotationItem:hover {
+    border-width: 0.3rem;
+}
+
+
+/*
 .levelRotationItem:hover .overlay {
     opacity: 1;
-}
+}*/
 
 
 .previewArea {
     max-width: 100%;
     height: 100%;
     object-fit: scale-down;
+}
+
+
+.hidePreviewArea {
+    opacity: 0;
 }
 
 
