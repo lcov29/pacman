@@ -47,6 +47,7 @@ body {
     justify-content: space-evenly;
 }
 
+
 .levelRotationItem:hover .overlay {
     opacity: 1;
 }
@@ -63,6 +64,25 @@ body {
     font-weight: bold;
     overflow-wrap: break-word;
     max-width: 100%;
+}
+
+
+.optionBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+
+.option {
+    max-width: 20%;
+    height: auto;
+    opacity: 0.7;
+}
+
+
+.option:hover {
+    opacity: 1;
 }
 
 
