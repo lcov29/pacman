@@ -20,17 +20,49 @@ body {
 
 
 .levelRotationItem {
-    background-size: contain;
-    background-repeat: no-repeat;
     border: 0.1rem white solid;
     margin: 0.5rem;
-    min-width: 20%;
-    padding: 0.5rem;
+    position: relative;
+    max-width: 40%;
+    max-height: 20vh;
+    text-align: center;
+    background-color: black;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transition: 0.25s ease;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.levelRotationItem:hover .overlay {
+    opacity: 1;
+}
+
+
+.previewArea {
+    max-width: 100%;
+    height: 100%;
+    object-fit: scale-down;
 }
 
 
 .levelRotationName {
     font-weight: bold;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 
