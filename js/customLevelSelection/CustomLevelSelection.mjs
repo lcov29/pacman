@@ -24,6 +24,7 @@ export default class CustomLevelSelection {
     async initialize() {
         try {
             await this.#database.openConnection();
+            await this.#database.addPredefinedLevelRotations();
             const levelRotationList = await this.#database.loadLevelRotationList();
             levelRotationList.forEach(levelRotation => this.addLevelRotationItemFor(levelRotation));
         } catch (err) {
