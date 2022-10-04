@@ -119,9 +119,9 @@ export default class CustomLevelSelection {
             if (levelRotation.rotation.length > 1) {
                 this.#startLevelPreviewSliderFor(currentElement, levelRotation);
                 this.#previewSliderId = setInterval(this.#startLevelPreviewSliderFor.bind(this),
-                                        1_500,
-                                        currentElement,
-                                        levelRotation);
+                                                    Configuration.previewSliderStageDurationInMilliseconds,
+                                                    currentElement,
+                                                    levelRotation);
             }
 
             event.stopPropagation();
