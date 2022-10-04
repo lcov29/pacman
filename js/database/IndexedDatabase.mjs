@@ -1,4 +1,5 @@
 import Configuration from "../global/Configuration.mjs";
+import { defaultLevel } from "../customLevelSelection/PredefinedCustomLevels.mjs";
 
 
 export default class IndexedDatabase {
@@ -25,10 +26,10 @@ export default class IndexedDatabase {
                     this.#database.deleteObjectStore(Configuration.indexedDatabaseStoreName);
                 }
 
-                const optionObject = {autoIncrement: true, keyPath: 'name'};
+                const optionObject = { autoIncrement: true, keyPath: 'name' };
                 const objectStore = this.#database.createObjectStore(Configuration.indexedDatabaseStoreName, optionObject);
-                objectStore.createIndex('levelRotationIndex', 'name', {unique: true});
-            }); 
+                objectStore.createIndex('levelRotationIndex', 'name', { unique: true });
+            });
 
 
             databaseOpenRequest.addEventListener('success', event => {
@@ -41,6 +42,18 @@ export default class IndexedDatabase {
                 reject();
             });
 
+        });
+    }
+
+
+    addPredefinedLevelRotations() {
+        return new Promise(async (resolve, reject) => {
+            const levelRotationList = await this.loadLevelRotationList();
+            const isDefaultLevelLoaded = levelRotationList.filter(rotation => rotation.name === defaultLevel.name).length > 0;
+            if (!isDefaultLevelLoaded) {
+                await this.storeLevelRotation(defaultLevel);
+            }
+            resolve();
         });
     }
 
