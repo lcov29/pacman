@@ -15,16 +15,16 @@ body {
     flex-wrap: wrap;
     flex-direction: row;
     flex: 1;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 
 .levelRotationItem {
     border: 0.1rem white solid;
-    margin: 0.5rem;
+    margin: 1rem;
     position: relative;
-    max-width: 40%;
-    max-height: 20vh;
+    width: 30%;
+    height: 20vh;
     text-align: center;
     background-color: black;
 }
@@ -48,7 +48,7 @@ body {
 
 
 .levelRotationItem:hover {
-    border-width: 0.3rem;
+    border-color: darkred;
 }
 
 
