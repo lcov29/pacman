@@ -400,6 +400,7 @@ export default class Editor {
             this.#boardEditingArea.loadBoard(firstLevel.board, firstLevel.bonusSpawnPositionList);
             this.#inputLevelIteration.levelIterationNumber = firstLevel.numberOfIterations;
             this.#inputScatterSpawn.loadScatterSpawnPositions();
+            this.#previewCanvas.drawLevel(firstLevel.board, firstLevel.bonusSpawnPositionList);
             this.#lastAssignedLevelId = levelRotation.rotation.length;
 
             levelRotation.rotation.forEach(level => {
