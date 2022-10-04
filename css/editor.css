@@ -154,7 +154,7 @@ input[type=radio] {
 
 
 .editorTile {
-    border: 1px solid white;
+    border: 1px solid gray;
     box-sizing: border-box;
     height: 32px;
     width: 32px;
