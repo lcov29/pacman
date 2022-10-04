@@ -9,6 +9,30 @@ body {
 }
 
 
+#warningFlexContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+
+#warningIcon {
+    margin-right: 1rem;
+}
+
+
+#warningText {
+    display: flex;
+    align-items: center;
+}
+
+
+#warningText p {
+    margin: 0;
+    padding: 0;
+}
+
+
 #levelRotationItemContainer {
     margin: 1rem;
     display: flex;
