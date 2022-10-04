@@ -1,5 +1,5 @@
 import Configuration from "../global/Configuration.mjs";
-import { defaultLevel } from "../customLevelSelection/PredefinedCustomLevels.mjs";
+import {defaultLevel, demoLevel} from "../customLevelSelection/PredefinedCustomLevels.mjs";
 
 
 export default class IndexedDatabase {
@@ -49,10 +49,13 @@ export default class IndexedDatabase {
     addPredefinedLevelRotations() {
         return new Promise(async (resolve, reject) => {
             const levelRotationList = await this.loadLevelRotationList();
+
             const isDefaultLevelLoaded = levelRotationList.filter(rotation => rotation.name === defaultLevel.name).length > 0;
-            if (!isDefaultLevelLoaded) {
-                await this.storeLevelRotation(defaultLevel);
-            }
+            if (!isDefaultLevelLoaded) { await this.storeLevelRotation(defaultLevel); }
+
+            const isDemoLevelLoaded = levelRotationList.filter(rotation => rotation.name === demoLevel.name).length > 0;
+            if (!isDemoLevelLoaded) { await this.storeLevelRotation(demoLevel); }
+            
             resolve();
         });
     }
