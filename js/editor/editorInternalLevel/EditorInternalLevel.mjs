@@ -154,6 +154,7 @@ export default class EditorInternalLevel {
         this.#optionalSpawnPositionList = level.optionalGhostSpawnList;
         this.#bonusSpawnPositionList = level.bonusSpawnPositionList;
         this.#numberOfIterations = level.numberOfIterations;
+        this.#previewImageUrl = level.previewImageUrl;
         this.#initializeCharacterToCoordinateListMap();
         this.#initializeGhostCoordinateStringList(level.board);
     }
