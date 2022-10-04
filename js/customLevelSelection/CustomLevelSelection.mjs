@@ -145,7 +145,6 @@ export default class CustomLevelSelection {
         levelRotationItem.addEventListener('click', event => {
            clearInterval(this.#previewSliderId);
            const overlay = levelRotationItem.children[1];
-           console.log(overlay);
            overlay.classList.remove('invisible');
         });
     }
