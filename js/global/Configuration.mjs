@@ -161,6 +161,7 @@ export default class Configuration {
    
    // Custom Level Selection Settings
       static previewSliderStageDurationInMilliseconds = 1_500;
+      static customLevelRotationDeletionPromptMessage = 'Delete this level rotation?';
 
 
 
