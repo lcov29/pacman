@@ -95,8 +95,15 @@ export default class CustomLevelSelection {
         const deleteButton = levelRotationItem.children[1].children[1].children[2];
 
         deleteButton.addEventListener('click', async function (event) {
-            const levelName = this.#getLevelRotationNameForButtonClickEvent(event);
-            await this.#database.deleteLevelRotation(levelName);
+            const isDeletionConfirmed = window.confirm(Configuration.customLevelRotationDeletionPromptMessage);
+
+            if (isDeletionConfirmed) {
+                const levelName = this.#getLevelRotationNameForButtonClickEvent(event);
+                const levelElement = document.getElementById(levelName);
+                this.#levelRotationItemContainer.removeChild(levelElement);
+                await this.#database.deleteLevelRotation(levelName);
+            }
+
         }.bind(this));
     }
 
