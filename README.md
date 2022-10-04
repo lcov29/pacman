@@ -132,6 +132,7 @@ You can also upload this project to a webserver. Since the codebase includes mod
   * load level rotation in editor
   * play level rotation
   * delete level rotations
+* add two demo levels to select and edit
 <br>
 
 
