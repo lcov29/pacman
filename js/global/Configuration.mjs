@@ -152,6 +152,11 @@ export default class Configuration {
       static fileNameCustomLevelSelection = 'customLevelSelection.html';
 
 
+   
+   // Custom Level Selection Settings
+      static previewSliderStageDurationInMilliseconds = 1_500;
+
+
 
    // Editor Settings
       static editorLevelDeletionPromptMessage = 'Delete this level?';
