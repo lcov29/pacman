@@ -134,8 +134,11 @@ export default class CustomLevelSelection {
     #addLevelPreviewSliderEndEventListenerFor(levelRotationItem) {
         levelRotationItem.addEventListener('mouseleave', async function (event) {
             clearInterval(this.#previewSliderId);
+            this.#currentLevelPreviewSliderIndex = -1;
+
             const levelName = levelRotationItem.id;
             const levelRotation = await this.#database.loadLevelRotation(levelName);
+
             this.#addLevelPreview(levelRotationItem, levelRotation.rotation[0].previewImageUrl);
             levelRotationItem.children[1].classList.add('invisible');
         }.bind(this));
