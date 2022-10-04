@@ -30,7 +30,16 @@
       <div id="levelRotationItemContainer"></div>
 
       <div id="indexedDBWarning" class="invisible">
-         <p>Unable to access indexedDB.</p>
+         <div id="warningFlexContainer">
+            <img id="warningIcon" src="../icon/warning.svg">
+            <div id="warningText">
+               <div>
+                  <p>Unable to access browser database indexedDB.</p>
+                  <br>
+                  <p>Make sure that your browser is not in restrictive mode (incognito / private).</p>
+               </div>
+            </div>
+         </div>
       </div>
 
       <div id="templateLevelRotationItem" class="levelRotationItem invisible">
