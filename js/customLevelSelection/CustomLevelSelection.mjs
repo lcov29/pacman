@@ -115,7 +115,7 @@ export default class CustomLevelSelection {
 
             const levelName = currentElement.id;
             const levelRotation = await this.#database.loadLevelRotation(levelName);
-
+            
             if (levelRotation.rotation.length > 1) {
                 this.#startLevelPreviewSliderFor(currentElement, levelRotation);
                 this.#previewSliderId = setInterval(this.#startLevelPreviewSliderFor.bind(this),
@@ -161,7 +161,6 @@ export default class CustomLevelSelection {
         const currentLevel = levelRotationJson.rotation[this.#currentLevelPreviewSliderIndex];
         this.#addLevelPreview(levelRotationItem, currentLevel.previewImageUrl);
     }
-
 
 
     #getLevelRotationNameForButtonClickEvent(event) {
