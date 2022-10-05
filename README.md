@@ -139,19 +139,8 @@ You can also upload this project to a webserver. Since the codebase includes mod
 
 #### Level Editor
 - [ ] add ability to rearrange level order in rotation
-- [ ] add ability to copy level rotation string to clipboard
 <br>
 
-
-#### Database
-- [x] add indexedDB
-- [x] store and show level rotations
-- [x] load level rotations to game
-- [x] load level rotations to editor
-- [x] delete level rotations
-- [ ] load level rotation string to database
-
-<br>
 
 ## Version history
 <br>
