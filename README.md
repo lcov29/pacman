@@ -60,6 +60,40 @@ You can also upload this project to a webserver. Since the codebase includes mod
   
 <br>
 
+## Topics learned
+<br>
+
+### JavaScript
+* basics
+* classes and inheritance
+* modules
+* regular expressions
+* asynchronous functions
+* setting css variables
+
+### CSS
+* basics
+* flexbox
+* grid
+* css variables
+* import
+* media query
+
+### HTML
+* basics
+
+### WebAPIs
+* Document Object Model (DOM)
+* DOM Event
+* Canvas
+* WebStorage
+* indexedDB
+
+### Programming Design Patterns
+* State Pattern
+
+<br>
+
 ## Ideas for improvements and additional features
 <br>
 
