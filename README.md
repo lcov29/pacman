@@ -1,5 +1,5 @@
 ## About this project
-This is an attempt to build a variant of the game pacman using HTML, CSS and JavaScript for training purposes.
+This is an attempt to build a variant of the game pacman from scratch using HTML, CSS and JavaScript for training purposes.
 
 <br>
 
@@ -7,7 +7,7 @@ The game currently offers the following features:
 
 * play default level based on the original level layout
 * create custom level rotation
-* save custom level rotations in your browser
+* save custom level rotations in browser database
 * play, change and delete custom level rotations
  
 <br>
