@@ -295,7 +295,9 @@ export default class Editor {
             document.getElementById(validationResult.levelId).click();
             window.alert(validationResult.errorMessage);
         } else {
-            await this.#storeLevelJsonInDatabase();
+            try {
+                await this.#storeLevelJsonInDatabase();
+            } catch {}  
             this.#sendLevelJson();
             Utility.loadPage(Configuration.fileNameEditor, Configuration.fileNameIndex);
         }
