@@ -45,7 +45,7 @@ Work in progress
 <br>
 
 ## How to play
-Play the game via [github-pages](https://voss29.github.io/pacman/). 
+Play the game via [github-pages](https://lcov29.github.io/pacman/). 
 
 <br>
 
